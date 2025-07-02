@@ -1,0 +1,19 @@
+/* 自定义 katex 样式：只启用 MathML 渲染 */
+math {
+    /* 可选：增强可读性 */
+    font-size: 1.2em;
+    vertical-align: middle;
+    display: inline-block !important; /* 确保行内公式对齐 */
+}
+
+/* 块级公式居中 */
+.katex-display {
+    text-align: center;
+    margin: 1em 0;
+}
+
+/* 强制 math 块级居中（如果需要） */
+.katex-display math {
+    display: block;
+    margin: 0 auto;
+}

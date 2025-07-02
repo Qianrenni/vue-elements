@@ -1,0 +1,39 @@
+# 依赖目录
+node_modules/
+dist/
+*.local
+
+# 构建输出目录（Vite/Rollup）
+dist/
+*.map
+
+# 日志文件
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 编辑器/IDE 临时文件
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.iml
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 环境变量文件（不提交敏感信息）
+.env
+.env.local
+.env.*.local
+
+# 测试覆盖率报告
+coverage/
+*.lcov
+
+# 缓存文件
+.vite/
+.cache/

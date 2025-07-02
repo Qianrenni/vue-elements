@@ -1,0 +1,387 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: inherit;
+    color: inherit;
+}
+
+
+:root {
+
+    /* 🎨 基础颜色 */
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    --background-color: #f8f9fa;
+    --text-color: #212529;
+    --subtle-text-color: #6c757d;
+    --border-color: #dee2e6;
+    --card-bg: #ffffff;
+    --box-shadow: rgba(0, 0, 0, 0.08);
+
+    --primary-color: #5a67d8;    /* 深紫蓝色 */
+    --primary-hover: #434fd9;
+    --primary-light: #764ba2;
+
+    --success-color: #28a745;
+    --success-bg: #e6f9f0;
+    --success-border: #b2f2cc;
+
+    --warning-color: #fd7e14;
+    --warning-bg: #fff8e1;
+    --warning-border: #ffeac2;
+
+    --danger-color: #dc3545;
+    --danger-bg: #ffe6e6;
+    --danger-border: #ffcccc;
+
+    --gray-100: #f1f1f1;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #868e96;
+    --gray-700: #495057;
+
+    --btn-bg: var(--primary-color);
+    --btn-text: #ffffff;
+    --btn-hover: var(--primary-hover);
+    --btn-disabled: #e9ecef;
+
+    /* 🔗 链接样式 */
+    --link-color: var(--primary-color);
+    --link-hover: #6677ef;         /* 和主色协调的悬停色 */
+
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+
+    /* 自定义变量 */
+    --content-height-2 :calc( 100vh - 3rem);
+    --content-height-without-header:calc( 100vh - 20px - 3rem );
+}
+
+/* 🌑 暗黑模式样式 */
+body.dark-mode {
+    /* 🖌️ 主题背景与文字 */
+    --background-color: #121212;
+    --text-color: #f0f0f0;
+    --subtle-text-color: #999999;  /* 略降低亮度，避免喧宾夺主 */
+    --border-color: #2a2a2a;
+    --card-bg: #1e1e1e;
+    --box-shadow: rgba(255, 255, 255, 0.05);
+
+    /* 🔵 主色系（按钮/链接/强调） */
+    --primary-color: #5a67d8;     /* 更现代的亮紫蓝主色 */
+    --primary-hover: #4f5cce;     /* 悬停稍加深 */
+    --primary-light: #764ba2;
+
+    /* 🟢 成功 / 绿色 */
+    --success-color: #4cd964;
+    --success-bg: #2e4432;
+    --success-border: #3d6e43;
+
+    /* ⚠️ 警告 / 黄色 */
+    --warning-color: #ffcc00;
+    --warning-bg: #4a4524;
+    --warning-border: #bfae52;
+
+    /* ❌ 错误 / 红色 */
+    --danger-color: #ff3b30;
+    --danger-bg: #4a2727;
+    --danger-border: #b35e5e;
+
+    /* 🧱 中性灰色系 */
+    --gray-100: #202020;
+    --gray-200: #2a2a2a;
+    --gray-300: #333333;
+    --gray-400: #444444;
+    --gray-500: #555555;
+    --gray-600: #666666;
+    --gray-700: #888888;
+
+    /* 🎳 按钮样式 */
+    --btn-bg: var(--primary-color);
+    --btn-text: #ffffff;
+    --btn-hover: var(--primary-hover);
+    --btn-disabled: #555555;
+
+    /* 🔗 链接样式 */
+    --link-color: var(--primary-color);
+    --link-hover: #6677ef;         /* 和主色一致，更柔和 */
+}
+body {
+    /*基础配置*/
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* 文字颜色类 */
+.text-white         { color: var(--color-white); }
+.text-black         { color: var(--color-black); }
+.text-primary       { color: var(--primary-color); }
+.text-success       { color: var(--success-color); }
+.text-warning       { color: var(--warning-color); }
+.text-danger        { color: var(--danger-color); }
+.text-muted         { color: var(--subtle-text-color); }
+.text-secondary     { color: var(--text-color); }
+.text-center        { text-align: center; }
+.text-left          { text-align: left; }
+.text-right         { text-align: right; }
+
+/* 背景颜色类 */
+.bg-white           { background-color: var(--color-white); }
+.bg-black           { background-color: var(--color-black); }
+.bg-primary         { background-color: var(--primary-color); }
+.bg-success         { background-color: var(--success-bg); }
+.bg-warning         { background-color: var(--warning-bg); }
+.bg-danger          { background-color: var(--danger-bg); }
+.bg-card            { background-color: var(--card-bg); }
+.bg-body            { background-color: var(--background-color); }
+.bg-gray-100        { background-color: var(--gray-100); }
+.bg-gray-200        { background-color: var(--gray-200); }
+.bg-gray-300        { background-color: var(--gray-300); }
+.bg-gray-400        { background-color: var(--gray-400); }
+.bg-gray-500        { background-color: var(--gray-500); }
+.bg-gray-600        { background-color: var(--gray-600); }
+.bg-gray-700        { background-color: var(--gray-700); }
+
+
+/* 边框类 */
+.border-gray        { border:1px solid  var(--border-color); }
+.border-primary {border:2px solid var(--primary-color); }
+.border-bottom-foreground {border-bottom: 1px solid var(--text-color);}
+
+.gray-swatch,
+.color-block {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+/* 按钮类 */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-hover);
+}
+
+.btn-disabled {
+    background-color: var(--btn-disabled);
+    cursor: not-allowed;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--btn-text);
+}
+
+/* 鼠标悬停类 */
+.hover-primary{
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+.hover-primary:hover{
+    background-color: var(--primary-color);
+    color: white;;
+}
+
+/* 徽章类 */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 4px;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: var(--success-color);
+}
+.badge-warning {
+    color: #fff;
+    background-color: var(--warning-color);
+}
+.badge-danger {
+    color: #fff;
+    background-color: var(--danger-color);
+}
+.badge-gray {
+    color: #fff;
+    background-color: var(--gray-500);
+}
+
+
+/* 链接类 */
+.link {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+.link:hover {
+    color: var(--link-hover);
+}
+
+/* 卡片类 */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--box-shadow);
+    overflow: hidden;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+/* 表格类 */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.table thead th {
+    text-align: left;
+    padding: 0.75rem;
+    background-color: var(--gray-100);
+    color: var(--subtle-text-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table tbody td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 表单类 */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+.input-search {
+    border-radius: 1rem;
+
+}
+.input-search:focus{
+    outline: 1px solid var(--color-white);
+}
+
+/* 间距类 */
+:root{
+    --distance: 1rem;
+    --half-distance: 0.5rem;
+    --third-distance: 0.33rem;
+    --fourth-distance: 0.25rem;
+
+}
+.margin-rem       {    margin: var(--distance);}
+.margin-half-rem { margin: var(--half-distance);}
+.margin-third-rem { margin: var(--third-distance);}
+.margin-fourth-rem { margin: var(--fourth-distance);}
+
+.margin-vetical   {    margin: var(--distance) 0;}
+.margin-half-vetical { margin: var(--half-distance) 0;}
+.margin-third-vetical { margin: var(--third-distance) 0;}
+.margin-fourth-vetical { margin: var(--fourth-distance) 0;}
+
+.margin-horizontal{    margin: 0 var(--distance);}
+.margin-half-horizontal { margin: 0 var(--half-distance);}
+.margin-third-horizontal { margin: 0 var(--third-distance);}
+.margin-fourth-horizontal { margin: 0 var(--fourth-distance);}
+
+.padding-rem      {    padding: var(--distance);}
+.padding-half-rem { padding: var(--half-distance);}
+.padding-third-rem { padding: var(--third-distance);}
+.padding-fourth-rem { padding: var(--fourth-distance);}
+
+.padding-vetical  {    padding: var(--distance) 0;}
+.padding-vetical {padding: var(--half-distance) 0;}
+.padding-third-vetical { padding: var(--third-distance) 0;}
+.padding-fourth-vetical { padding: var(--fourth-distance) 0;}
+
+.padding-horizontal{    padding: 0 var(--distance);}
+.padding-half-horizontal { padding: 0 var(--half-distance);}
+.padding-third-horizontal { padding: 0 var(--third-distance);}
+.padding-fourth-horizontal { padding: 0 var(--fourth-distance);}
+
+.gap {gap: var(--distance);}
+.gap-half {gap: var(--half-distance);}
+.gap-third {gap: var(--third-distance);}
+.gap-fourth {gap: var(--fourth-distance);}
+
+
+
+/*容器类*/
+.container {display: flex;}
+
+.container-column {display: flex; flex-direction: column;}
+.container-center {display: flex; justify-content: center;  }
+.container-align-center {display: flex; align-items: center;  }
+.container-flex-start {display: flex; justify-content: flex-start;  }
+.container-flex-end {display: flex; justify-content: flex-end;  }
+.container-space-between {display: flex; justify-content: space-between;  }
+.container-space-around {display: flex; justify-content: space-around;  }
+.container-space-evenly {display: flex; justify-content: space-evenly;  }
+.container-wrap {display: flex; flex-wrap: wrap;  }
+.container-nowrap {display: flex; flex-wrap: nowrap;  }
+.container-reverse {display: flex; flex-direction: row-reverse;  }
+.container-column-reverse {display: flex; flex-direction: column-reverse;  }
+.container-banner {width: 75vw;}
+
+/* 背景颜色类 */
+.bg-image-header { background: linear-gradient(to right, #1e40af, #4338ca);}
+
+/*响应式*/
+@media screen and (max-width: 768px) {
+    .container-banner {width: 100vw;}
+}

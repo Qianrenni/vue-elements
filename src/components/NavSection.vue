@@ -1,0 +1,159 @@
+<template>
+  <div class="nav-section bg-body text-secondary border-gray">
+    <!-- 返回按钮 -->
+    <div v-if="stack.length > 1" class="back-button" @click="goBack">
+      ← 返回上一级
+    </div>
+
+    <!-- 当前层级标题 -->
+    <h4 v-if="currentLevelTitle" class="current-title">
+      {{ currentLevelTitle }}
+    </h4>
+
+    <!-- 导航列表 -->
+    <ul class="section-nav">
+      <li
+          v-for="section in currentSections"
+          :key="section.id"
+          class="nav-item"
+      >
+        <a
+            v-if="section.children?.length"
+            href="javascript:void(0)"
+            class="nav-link has-child hover-primary"
+            :class="{ active: activeId === section.id }"
+            @click="enterSubLevel(section)"
+        >
+          {{ section.title }}
+        </a>
+        <a
+            v-else
+            href="javascript:void(0)"
+            class="nav-link hover-primary"
+            :class="{ active: activeId === section.id }"
+            @click="markActive(section)"
+        >
+          {{ section.title }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, computed, watch } from 'vue'
+
+// 定义类型
+interface Section {
+  id: number | string
+  title: string
+  children?: Section[]
+}
+
+// props
+const props = defineProps<{
+  sections: Section[]
+}>()
+
+// 事件定义
+const emit = defineEmits<{
+  (e: 'handleNavigation', section: Section): void
+}>()
+
+// 数据状态
+const stack = ref<{ title: string; children: Section[] }[]>([
+  { title: '课程目录', children: [] }
+])
+const activeId = ref<string | number | null>(null)
+
+// 初始化栈数据
+watch(
+    () => props.sections,
+    (newSections) => {
+      stack.value = [{ title: '课程目录', children: newSections }]
+      activeId.value = null
+    },
+    { immediate: true }
+)
+
+// 计算当前显示的菜单项
+const currentSections = computed(() => {
+  return stack.value.length ? stack.value[stack.value.length - 1].children : props.sections
+})
+
+// 当前层级标题
+const currentLevelTitle = computed(() => {
+  if (stack.value.length <= 1) return '课程目录'
+  return stack.value[stack.value.length - 1].title
+})
+
+// 方法
+function enterSubLevel(section: Section) {
+  stack.value.push(section)
+  activeId.value = section.id
+}
+
+function goBack() {
+  if (stack.value.length > 1) {
+    stack.value.pop()
+  }
+  if (stack.value.length === 1) {
+    stack.value[0].children = props.sections
+  }
+}
+
+function markActive(section: Section) {
+  activeId.value = section.id
+  emit('handleNavigation', section)
+}
+</script>
+
+<style scoped>
+/* 这里保持原样式不变即可 */
+.nav-section {
+  max-width: 200px;
+  padding: 1rem 0 0 1rem;
+}
+
+.back-button {
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.current-title {
+  padding-right: 1em;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.section-nav {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.nav-link {
+  display: block;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.4rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link.has-child::after {
+  content: '→';
+}
+
+.nav-link.active {
+  background-color: var(--primary-color);
+  color: var(--color-white);
+}
+
+@media screen and (max-width: 768px) {
+  .nav-section {
+    width: 100%;
+    max-width: 100vw;
+  }
+}
+</style>
