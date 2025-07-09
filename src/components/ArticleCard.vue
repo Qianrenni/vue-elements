@@ -19,6 +19,9 @@ defineProps({
     default: '暂无摘要'
   }
 })
+defineOptions({
+  name: 'ArticleCard'
+})
 </script>
 
 <style scoped>

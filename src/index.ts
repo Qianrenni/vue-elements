@@ -1,22 +1,37 @@
-import ArticleCard from "./components/ArticleCard.vue"
-import CollapsibleSection from "./components/CollapsibleSection.vue";
-import MarkdownRender from "./components/MarkdownRender.vue";
-import NavSection from "./components/NavSection.vue";
-import MobileFrame from './components/MobileFrame.vue'
-import RainFigure from "./components/RainFigure.vue";
-import SkillTag from "./components/SkillTag.vue";
 
+import {default as QActicleCard} from './components/ArticleCard.vue'
+import {default as QCollapsibleSection} from './components/CollapsibleSection.vue'
+import {default as QMarkdownRender} from './components/MarkdownRender.vue'
+import {default as QNavSection} from './components/NavSection.vue'
+import {default as QMobileFrame} from './components/MobileFrame.vue'
+import {default as QRainFigure} from './components/RainFigure.vue'
+import {default as QSkillTag} from './components/SkillTag.vue'
+import {default as QThemeToggle} from './components/ThemeToggle.vue'
+
+import {type App} from 'vue'
 import './style/common.css'
-
 export default {
-    install(app){
-        app.component('ArticleCard', ArticleCard)
-        app.component('CollapsibleSection', CollapsibleSection)
-        app.component('MarkdownRender', MarkdownRender)
-        app.component('NavSection', NavSection)
-        app.component('MobileFrame', MobileFrame)
-        app.component('RainFigure', RainFigure)
-        app.component('SkillTag', SkillTag)
+    install(app:App){
+        app.component('QActicleCard', QActicleCard)
+        app.component('QCollapsibleSection', QCollapsibleSection)
+        app.component('QMarkdownRender', QMarkdownRender)
+        app.component('QNavSection', QNavSection)
+        app.component('QMobileFrame', QMobileFrame)
+        app.component('QRainFigure', QRainFigure)
+        app.component('QSkillTag', QSkillTag)
+        app.component('QThemeToggle', QThemeToggle)
     }
 }
-export { ArticleCard, CollapsibleSection, MarkdownRender, NavSection, MobileFrame, RainFigure, SkillTag}
+
+
+export {
+    QActicleCard,
+    QCollapsibleSection,
+    QMarkdownRender,
+    QNavSection,
+    QMobileFrame,
+    QRainFigure,
+    QSkillTag,
+    QThemeToggle
+}
+

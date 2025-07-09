@@ -1,36 +1,49 @@
 {
   "name": "qyani-components",
-  "version": "1.0.0",
+  "version": "1.0.9",
   "description": "a frontend components lib",
   "main": "dist/qyani-components.cjs.js",
   "module": "dist/qyani-components.es.js",
-  "unpkg": "dist/qyani-components.umd.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src",
-    "README.md"
-  ],
+  "browser": "dist/qyani-components.umd.js",
+  "types": "types/index.d.ts",
   "scripts": {
-    "build": "vite build",
-    "prepublishOnly": "npm run build"
+    "type-check": "npx vue-tsc --build --declaration --clean",
+    "dev": "vite",
+    "build": "vite build"
   },
   "author": "qyaniwu",
   "license": "ISC",
   "peerDependencies": {
     "vue": "^3.2.0"
   },
+  "keywords": [
+    "vue",
+    "components",
+    "typescript",
+    "library"
+  ],
+  "files": [
+    "dist",
+    "src/",
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "types"
+  ],
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.0",
-    "rollup-plugin-visualizer": "^6.0.3",
-    "typescript": "^5.0.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "rollup-plugin-postcss": "^4.0.2",
+    "typescript": "^5.8.3",
     "vite": "^7.0.0",
-    "vue": "^3.2.0"
+    "vue-tsc": "^3.0.1"
   },
   "dependencies": {
     "highlight.js": "^11.11.1",
     "marked": "^15.0.11",
     "marked-katex-extension": "^5.1.4",
-    "pinyin-pro": "^3.26.0"
+    "pinyin-pro": "^3.26.0",
+    "vue": "^3.2.0"
   }
 }
