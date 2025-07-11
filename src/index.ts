@@ -7,9 +7,8 @@ import {default as QMobileFrame} from './components/MobileFrame.vue'
 import {default as QRainFigure} from './components/RainFigure.vue'
 import {default as QSkillTag} from './components/SkillTag.vue'
 import {default as QThemeToggle} from './components/ThemeToggle.vue'
-
 import {type App} from 'vue'
-import './style/common.css'
+
 export default {
     install(app:App){
         app.component('QActicleCard', QActicleCard)
