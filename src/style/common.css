@@ -367,6 +367,7 @@ body {
 .container-column {display: flex; flex-direction: column;}
 .container-center {display: flex; justify-content: center;  }
 .container-align-center {display: flex; align-items: center;  }
+.container-align-content {display: flex; align-content: center;  }
 .container-flex-start {display: flex; justify-content: flex-start;  }
 .container-flex-end {display: flex; justify-content: flex-end;  }
 .container-space-between {display: flex; justify-content: space-between;  }
@@ -378,6 +379,9 @@ body {
 .container-column-reverse {display: flex; flex-direction: column-reverse;  }
 .container-banner {width: 75vw;}
 .container-768-row-column {display: flex;}
+.container-flex-1 {flex: 1;}
+.container-flex-2 {flex: 2;}
+.container-flex-3 {flex: 3;}
 /* 背景颜色类 */
 .bg-image-header { background: linear-gradient(to right, #1e40af, #4338ca);}
 
@@ -385,25 +389,42 @@ body {
 
 
 
-
-/*超出范围滚动类*/
-.scroll-x {
-    overflow-x: auto;
-    -ms-overflow-x: auto;
-    scrollbar-width: thin; /* 设置滚动条为窄样式 */
-    scrollbar-color: var(--primary-color) var(--background-color); /* 滚动条颜色设置 */
+.scroll-container {
+    overflow: hidden;
 }
 
-/* 滚动条小点（滑块）样式 */
-.scroll-x::-webkit-scrollbar-thumb {
+/* 水平滚动 */
+.scroll-container.scroll-x {
+    -ms-overflow-x: auto;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--background-color);
+}
+
+/* 垂直滚动 */
+.scroll-container.scroll-y {
+    -ms-overflow-y: auto;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--background-color);
+}
+
+/* 滚动条滑块样式 (webkit 浏览器) */
+.scroll-container::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
     border-radius: 8px;
 }
 
 /* 滚动条轨道样式 */
-.scroll-x::-webkit-scrollbar-track {
+.scroll-container::-webkit-scrollbar-track {
     background-color: var(--background-color);
     border-radius: 8px;
+}
+
+/* 滚动条整体样式 */
+.scroll-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
 /* 图片类 */
@@ -419,9 +440,14 @@ body {
 
 
 /*响应式类*/
-.hidden-768{
+.hidden-768 {}
 
-}
+
+
+/*圆角类*/
+.radius-rem {border-radius: 1rem;}
+.radius-half-rem {border-radius: 0.5rem;}
+.radius-third-rem {border-radius: 0.33rem;}
 
 /*响应式*/
 @media screen and (max-width: 768px) {

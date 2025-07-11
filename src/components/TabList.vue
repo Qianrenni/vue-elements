@@ -1,7 +1,8 @@
 <template>
-  <SkillTag v-for="(item, index) in list"
+  <Tag v-for="(item, index) in list"
              :key="index"
-             :skill="item"
+             :text="item"
+             :circle="circle"
              class="margin-fourth-rem"
              :class="{ active: activeCategory === index }"
              @click="clickHandler(index)"
@@ -12,7 +13,7 @@
 
 import { defineOptions, defineProps ,defineEmits } from "vue";
 import { ref } from "vue";
-import SkillTag from "./SkillTag.vue";
+import Tag from "./Tag.vue";
 
 defineOptions({
   name: "TabList"
@@ -22,6 +23,11 @@ defineProps({
   list: {
     type: Array as () => string[],
     default: () => []
+  },
+  circle:{
+    type: String,
+    default:'large',
+    validator:(value:string)=>['large','middle','small','none'].includes(value)
   }
 });
 

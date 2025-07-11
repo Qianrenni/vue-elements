@@ -47,6 +47,7 @@ defineOptions({
   animation-name: up-down;
   animation-duration: 1s;
   animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
 @keyframes up-down {
@@ -54,7 +55,7 @@ defineOptions({
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
   }
   100% {
     transform: translateY(0);

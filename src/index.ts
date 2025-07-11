@@ -5,7 +5,7 @@ import {default as QMarkdownRender} from './components/MarkdownRender.vue'
 import {default as QNavSection} from './components/NavSection.vue'
 import {default as QMobileFrame} from './components/MobileFrame.vue'
 import {default as QRainFigure} from './components/RainFigure.vue'
-import {default as QSkillTag} from './components/SkillTag.vue'
+import {default as QSkillTag} from './components/Tag.vue'
 import {default as QThemeToggle} from './components/ThemeToggle.vue'
 import {type App} from 'vue'
 
