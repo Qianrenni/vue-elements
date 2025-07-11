@@ -1,5 +1,5 @@
 
-import {default as QActicleCard} from './components/ArticleCard.vue'
+import {default as QActicleCard} from './components/Card.vue'
 import {default as QCollapsibleSection} from './components/CollapsibleSection.vue'
 import {default as QMarkdownRender} from './components/MarkdownRender.vue'
 import {default as QNavSection} from './components/NavSection.vue'

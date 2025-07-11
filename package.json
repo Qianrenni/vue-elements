@@ -9,7 +9,9 @@
   "scripts": {
     "type-check": "npx vue-tsc --build --declaration --clean",
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build && tsc --declaration",
+    "test": "vite",
+    "preview": "vite preview --port 5000 --open"
   },
   "author": "qyaniwu",
   "license": "ISC",

@@ -5,11 +5,12 @@ import  postcss from 'rollup-plugin-postcss'
 export default defineConfig({
     plugins: [
         vue(),
-        postcss({
-            extract: true, // 将 CSS 提取为单独文件
-            inject: false, // 禁用动态注入
-            modules: false, // 确保不启用 CSS Modules（除非你需要）
-        })],  // 启用 Vue 插件
+        // postcss({
+        //     extract: true, // 将 CSS 提取为单独文件
+        //     inject: false, // 禁用动态注入
+        //     modules: false, // 确保不启用 CSS Modules（除非你需要）
+        // })
+        ],  // 启用 Vue 插件
     build: {
         lib: {  // 关键：启用库模式
             entry: resolve(__dirname, 'src/index.ts'),  // 入口文件（你的组件库主入口）
@@ -26,5 +27,5 @@ export default defineConfig({
                 },
             },
         },
-    },
+    }
 })

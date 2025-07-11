@@ -12,6 +12,7 @@
     "skipLibCheck": true,                    // 跳过库文件的类型检查（提升构建速度）
     "forceConsistentCasingInFileNames": true, // 强制文件名大小写一致（避免跨平台问题）
     "allowJs": true,
+    "emitDeclarationOnly": true, // 👈 只输出类型声明文件，不编译代码
     /* 路径解析（可选，如果使用路径别名） */
     // "baseUrl": ".",
     // "paths": {
