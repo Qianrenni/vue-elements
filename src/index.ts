@@ -1,5 +1,5 @@
 
-import {default as QActicleCard} from './components/ArticleCard.vue'
+
 import {default as QCollapsibleSection} from './components/CollapsibleSection.vue'
 import {default as QMarkdownRender} from './components/MarkdownRender.vue'
 import {default as QNavSection} from './components/NavSection.vue'
@@ -11,7 +11,7 @@ import {type App} from 'vue'
 
 export default {
     install(app:App){
-        app.component('QActicleCard', QActicleCard)
+
         app.component('QCollapsibleSection', QCollapsibleSection)
         app.component('QMarkdownRender', QMarkdownRender)
         app.component('QNavSection', QNavSection)
@@ -24,7 +24,6 @@ export default {
 
 
 export {
-    QActicleCard,
     QCollapsibleSection,
     QMarkdownRender,
     QNavSection,
