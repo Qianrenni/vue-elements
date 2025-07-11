@@ -1,6 +1,5 @@
 # 忽略开发相关文件
 node_modules
-dist
 vite.config.ts
 tsconfig.json
 package-lock.json

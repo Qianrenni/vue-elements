@@ -1,10 +1,9 @@
 # 依赖目录
 node_modules/
-dist/
+
 *.local
 
 # 构建输出目录（Vite/Rollup）
-dist/
 *.map
 
 # 日志文件
