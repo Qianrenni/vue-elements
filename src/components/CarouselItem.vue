@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel-item container-center container-align-center">
+  <div class="carousel-item">
     <slot />
   </div>
 </template>

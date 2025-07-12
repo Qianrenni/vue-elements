@@ -12,7 +12,12 @@
         class="carousel-inner container-flex-start"
         :style="{
           transform: transformStyle,
-          transition: transition
+          transition: transition,
+          width: `${props.width*(vertical?1:totalItemsCount)}px`,
+          height: `${props.height*(vertical?totalItemsCount:1)}px`
+        }"
+        :class="{
+         'container-wrap': vertical,
         }"
     >
       <!-- 复制最后一项到最前 -->
@@ -81,7 +86,7 @@ const props = defineProps({
   },
   indicatorPosition: {
     type: String,
-    default: 'left-top'
+    default: 'center-bottom'
   },
   width:{
     type: Number,
@@ -185,8 +190,8 @@ function goTo(index) {
 function startAutoplay() {
   if (props.autoplay && itemsCount.value > 1) {
     console.log('carousel start autoplay')
-    stopAutoplay()
-    intervalId = setInterval(next, props.interval);
+    stopAutoplay();
+    intervalId = setInterval(props.direction === 'next' ? next : prev, props.interval);
 
   }
 }
