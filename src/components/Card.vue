@@ -1,5 +1,10 @@
 <template>
-  <div class="card container-column">
+  <div class="card container-column "
+       :class="{
+        'card-animation': animation
+       }"
+    >
+
     <div class="card-header">
       <slot name="header"></slot>
     </div>
@@ -18,6 +23,12 @@
 <script setup lang="ts">
 import { defineOptions } from 'vue'
 
+defineProps({
+  animation: {
+    type: Boolean,
+    default: false
+  }
+})
 defineOptions({
   name: 'Card'
 })
@@ -43,22 +54,22 @@ defineOptions({
 /*  flex: 0 0 auto;*/
 /*}*/
 
-.card:hover {
+.card-animation:hover {
+  /*修改转动点为中心*/
   animation-name: up-down;
   animation-duration: 1s;
-  animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
 
 @keyframes up-down {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) ;
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-10px) rotateY(270deg);
   }
   100% {
-    transform: translateY(0);
+    transform: translateY(0)  rotateY(360deg);
   }
 }
 </style>

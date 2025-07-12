@@ -17,10 +17,8 @@ defineOptions({
 
 <style scoped>
 .avatar {
-  width: 40px;
-  height: 40px;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 2px solid var(--primary-color);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   object-fit: cover;
 }
