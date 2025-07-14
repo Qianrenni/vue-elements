@@ -12,22 +12,19 @@ defineOptions({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       class="trash-icon"
+      stroke-width="5"
+      stroke="currentColor"
+      stroke-linecap="round"
   >
     <!-- 垃圾桶盖子 -->
     <path
-        d="M35 20 V0 H65 V20"
-        stroke-width="3"
-        stroke-linecap="round"
-        stroke="currentColor"
+        d="M35 20 V5 H65 V20"
     />
 
     <!-- 垃圾桶盖子把手 -->
     <path
         d="M10 28 V20 H90 V28
         M20 30 V90 H80 V30 M35 30 V90 M50 30 V90 M65 30 V90"
-        stroke-width="3"
-        stroke-linecap="round"
-        stroke="currentColor"
     />
 
 
