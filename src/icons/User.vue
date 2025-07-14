@@ -1,14 +1,23 @@
 <template>
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-    <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+  <svg viewBox="0 0 100 100" width="100" height="100" fill="transparent" xmlns="http://www.w3.org/2000/svg">
+    <circle r="20" cx="50" cy="25" stroke-width="5" stroke="currentColor"/>
+    <path
+        d="M5 95 A45 45 180 0 1 95 95"
+        stroke-width="5"
+        stroke="currentColor"
+    />
+    <line x1="5" y1="95" x2="95" y2="95" stroke-width="5" stroke="currentColor"/>
   </svg>
 </template>
 
-<script>
+<script lang="ts" setup>
+defineOptions({
+  name:'User'
+})
 
 </script>
 
 <style scoped>
 
 </style>
+
