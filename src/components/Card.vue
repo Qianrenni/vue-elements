@@ -5,15 +5,15 @@
        }"
     >
 
-    <div class="card-header">
+    <div class="card-header container-center">
       <slot name="header"></slot>
     </div>
 
-    <div class="card-body">
+    <div class="card-body container-center">
       <slot name="default"></slot>
     </div>
 
-    <div class="card-footer">
+    <div class="card-footer container-center">
       <slot name="footer"></slot>
     </div>
 
@@ -42,17 +42,17 @@ defineOptions({
   transition: transform 0.2s;
 }
 
-/*.card-header {*/
-/*  flex: 0 0 auto;*/
-/*}*/
+.card-header {
+  flex: 0 0 auto;
+}
 
-/*.card-body {*/
-/*  flex: 1 1 auto;*/
-/*}*/
+.card-body {
+  flex: 1 1 auto;
+}
 
-/*.card-footer {*/
-/*  flex: 0 0 auto;*/
-/*}*/
+.card-footer {
+  flex: 0 0 auto;
+}
 
 .card-animation:hover {
   /*修改转动点为中心*/

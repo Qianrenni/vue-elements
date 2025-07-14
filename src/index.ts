@@ -24,7 +24,6 @@ export default {
 
 
 export {
-    QActicleCard,
     QCollapsibleSection,
     QMarkdownRender,
     QNavSection,

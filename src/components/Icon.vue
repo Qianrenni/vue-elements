@@ -1,8 +1,8 @@
 <template>
-  <component :is="iconMap[icon]"/>
+  <component  :is="component"  style="cursor: pointer;width: 16px; height: 16px;" />
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import {defineProps, defineAsyncComponent, defineOptions} from 'vue'
 const props = defineProps(
     {
@@ -13,9 +13,7 @@ const props = defineProps(
     }
 )
 
-const iconMap = {
-  'user': defineAsyncComponent(() => import('../icons/User.vue'))
-}
+const component = defineAsyncComponent(() => import(`../icons/${props.icon.charAt(0).toUpperCase() + props.icon.slice(1)}.vue`))
 defineOptions({
   name:'Icon'
 })
