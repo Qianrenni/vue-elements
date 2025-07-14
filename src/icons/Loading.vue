@@ -1,0 +1,37 @@
+<template>
+  <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      width="100"
+      height="100"
+      fill="transparent"
+      stroke="currentColor"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+  >
+    <path
+        d="
+          M 50 2 V40
+          M 15 15 L40 40
+          M 2 50 H40
+          M 15 85 L40 60
+          M50 98 V60
+          M85 85 L60 60
+          M98 50 H60
+          M85 15 L60 40
+          "
+    />
+  </svg>
+</template>
+
+<script lang="ts" setup>
+defineOptions({
+  name: 'Loading'
+})
+
+</script>
+
+<style scoped>
+
+</style>

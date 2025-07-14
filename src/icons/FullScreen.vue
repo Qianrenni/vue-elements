@@ -1,0 +1,33 @@
+<template>
+  <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      width="100"
+      height="100"
+      fill="transparent"
+      stroke="currentColor"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+  >
+    <path d="
+            M5 5 H40 M60 5 H95
+            V40 M95 60 V95 H60
+            M40 95 H5 V60
+            M5 40 V5
+          "
+    />
+  </svg>
+
+</template>
+
+<script lang="ts" setup>
+import {defineOptions} from "vue";
+
+defineOptions({
+  name:'FullScreen'
+})
+</script>
+
+<style scoped>
+</style>

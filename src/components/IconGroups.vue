@@ -1,10 +1,11 @@
 <template>
   <div class="container-flex-start container-wrap">
-    <Card v-for="(component, name) in iconMap" :key="name" class="margin-rem" animation>  <!-- 添加 :key -->
+    <Card v-for="(component, name) in iconMap" :key="name" class="margin-rem">  <!-- 添加 :key -->
       <template #default>
         <component
             :is="component"
             style="cursor: pointer; width: 16px; height: 16px;"
+            :strokeWidth="strokeWidth"
         />  <!-- 修复闭合标签 -->
       </template>
       <template #footer>
@@ -15,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, defineOptions, computed } from 'vue'
+import { defineAsyncComponent, defineOptions } from 'vue'
 import Card from './Card.vue'
 
 
