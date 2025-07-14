@@ -69,7 +69,7 @@ body.dark-mode {
     --text-color: #f0f0f0;
     --subtle-text-color: #999999;  /* 略降低亮度，避免喧宾夺主 */
     --border-color: #2a2a2a;
-    --card-bg: #1e1e1e;
+    --card-bg: #3e3e3e;
     --box-shadow: rgba(255, 255, 255, 0.05);
 
     /* 🔵 主色系（按钮/链接/强调） */
