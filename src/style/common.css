@@ -33,7 +33,7 @@
     --warning-bg: #fff8e1;
     --warning-border: #ffeac2;
 
-    --danger-color: #dc3545;
+    --danger-color: #fef9c3;
     --danger-bg: #ffe6e6;
     --danger-border: #ffcccc;
 
@@ -83,12 +83,12 @@ body.dark-mode {
     --success-border: #3d6e43;
 
     /* ⚠️ 警告 / 黄色 */
-    --warning-color: #ffcc00;
+    --warning-color: #dbeafe;
     --warning-bg: #4a4524;
     --warning-border: #bfae52;
 
     /* ❌ 错误 / 红色 */
-    --danger-color: #ff3b30;
+    --danger-color: #dcfce7;
     --danger-bg: #4a2727;
     --danger-border: #b35e5e;
 
@@ -134,7 +134,7 @@ body {
 .text-center        { text-align: center; }
 .text-left          { text-align: left; }
 .text-right         { text-align: right; }
-
+.text-gray          { color: #ced4da;}
 /* 背景颜色类 */
 .bg-white           { background-color: var(--color-white); }
 .bg-black           { background-color: var(--color-black); }
@@ -151,7 +151,7 @@ body {
 .bg-gray-500        { background-color: var(--gray-500); }
 .bg-gray-600        { background-color: var(--gray-600); }
 .bg-gray-700        { background-color: var(--gray-700); }
-
+.bg-transparent     { background-color: transparent; }
 
 /* 边框类 */
 .border-gray        { border:1px solid  var(--border-color); }
@@ -243,28 +243,28 @@ body {
     color: #fff;
     background-color: var(--gray-500);
 }
-
-
+.badge-primary {
+    color: #fff;
+    background-color: var(--primary-color);
+}
 /* 链接类 */
-.link {
+.link-primary {
     color: var(--link-color);
     text-decoration: none;
     transition: color var(--transition-speed);
 }
-.link:hover {
+.link-primary:hover {
     color: var(--link-hover);
 }
 
-/* 卡片类 */
-.card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px var(--box-shadow);
-    overflow: hidden;
-    margin-bottom: 1rem;
-    padding: 1rem;
+.link-gray {
+    color: #ced4da;
+    text-decoration: none;
 }
+.link-gray:hover {
+    color: #eee;
+}
+
 
 /* 表格类 */
 .table {
@@ -367,6 +367,7 @@ body {
 .container-column {display: flex; flex-direction: column;}
 .container-center {display: flex; justify-content: center;  }
 .container-align-center {display: flex; align-items: center;  }
+.container-align-content {display: flex; align-content: center;  }
 .container-flex-start {display: flex; justify-content: flex-start;  }
 .container-flex-end {display: flex; justify-content: flex-end;  }
 .container-space-between {display: flex; justify-content: space-between;  }
@@ -377,11 +378,80 @@ body {
 .container-reverse {display: flex; flex-direction: row-reverse;  }
 .container-column-reverse {display: flex; flex-direction: column-reverse;  }
 .container-banner {width: 75vw;}
-
+.container-768-row-column {display: flex;}
+.container-flex-1 {flex: 1;}
+.container-flex-2 {flex: 2;}
+.container-flex-3 {flex: 3;}
 /* 背景颜色类 */
 .bg-image-header { background: linear-gradient(to right, #1e40af, #4338ca);}
+
+
+
+
+
+.scroll-container {
+    overflow: hidden;
+}
+
+/* 水平滚动 */
+.scroll-container.scroll-x {
+    -ms-overflow-x: auto;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--background-color);
+}
+
+/* 垂直滚动 */
+.scroll-container.scroll-y {
+    -ms-overflow-y: auto;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--background-color);
+}
+
+/* 滚动条滑块样式 (webkit 浏览器) */
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 8px;
+}
+
+/* 滚动条轨道样式 */
+.scroll-container::-webkit-scrollbar-track {
+    background-color: var(--background-color);
+    border-radius: 8px;
+}
+
+/* 滚动条整体样式 */
+.scroll-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* 图片类 */
+.img-cover {
+    object-fit: cover;
+}
+.img-contain {
+    object-fit: contain;
+}
+.img-fill {
+    object-fit: fill;
+}
+
+
+/*响应式类*/
+.hidden-768 {}
+
+
+
+/*圆角类*/
+.radius-rem {border-radius: 1rem;}
+.radius-half-rem {border-radius: 0.5rem;}
+.radius-third-rem {border-radius: 0.33rem;}
 
 /*响应式*/
 @media screen and (max-width: 768px) {
     .container-banner {width: 100vw;}
+    .hidden-768 {display: none;}
+    .container-768-row-column {flex-direction: column;}
 }
