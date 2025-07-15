@@ -4,7 +4,8 @@
       <template #default>
         <component
             :is="component"
-            style="cursor: pointer; width: 32px; height: 32px;"
+            style="cursor: pointer;"
+            :style="{width: size, height: size}"
         />  <!-- 修复闭合标签 -->
       </template>
       <template #footer>
@@ -18,7 +19,12 @@
 import { defineAsyncComponent, defineOptions } from 'vue'
 import Card from './Card.vue'
 
-
+defineProps({
+  size:{
+    type: String,
+    default: '32px'
+  }
+})
 // 获取 ions 目录下所有 .vue 文件
 const iconFiles = import.meta.glob('../icons/*.vue')
 

@@ -1,5 +1,11 @@
 <template>
-  <component  :is="component"  style="cursor: pointer;width: 16px; height: 16px;" />
+  <component  :is="component"
+              style="cursor: pointer;"
+              :style="{
+                width: props.size,
+                height: props.size
+              }"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -9,6 +15,10 @@ const props = defineProps(
       icon: {
         type: String,
         default: 'user'
+      },
+      size: {
+        type: String,
+        default: '32px'
       }
     }
 )
