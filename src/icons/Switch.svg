@@ -11,11 +11,11 @@
         stroke-linejoin="round"
 >
     <path d="
-            M35 20
-            L10 45
+            M35 15
+            L10 40
             H90
-            M65 80
-            L90 55
+            M65 85
+            L90 60
             H10
             "
     />
