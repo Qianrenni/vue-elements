@@ -1,40 +1,52 @@
 <template>
   <div class="container-flex-start container-wrap">
-    <Card v-for="(component, name) in iconMap" :key="name" class="margin-rem">  <!-- 添加 :key -->
-      <template #default>
-        <component
-            :is="component"
-            style="cursor: pointer; width: 16px; height: 16px;"
-            :strokeWidth="strokeWidth"
-        />  <!-- 修复闭合标签 -->
-      </template>
-      <template #footer>
-        {{ name }}
-      </template>
-    </Card>
+    <div v-for="(svgContent, name) in svgMap" :key="name" class="margin-rem container-column container-align-center">
+      <div v-html="svgContent" style="cursor: pointer;"/>
+      <div>{{ name }}</div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, defineOptions } from 'vue'
-import Card from './Card.vue'
+import { ref, onMounted } from 'vue';
 
+const props=defineProps({
+  size: {
+    type: String,
+    default: '32'
+  }
+});
 
-// 获取 ions 目录下所有 .vue 文件
-const iconFiles = import.meta.glob('../icons/*.vue')
+// 获取所有.svg文件
+const svgFiles = import.meta.glob('../icons/*.svg');
+const svgMap = ref<Record<string, string>>({});
 
-// 自动生成图标名称映射
-const iconMap = Object.fromEntries(
-    Object.keys(iconFiles).map(path => {
-      const name = path.split('/').pop()?.replace('.vue', '').toLowerCase() || ''
-      return [name, defineAsyncComponent(iconFiles[path])]
-    })
-)
+// 动态加载所有.svg文件
+const loadSvgs = async () => {
+  for (const path in svgFiles) {
+    try {
+      const name = path.split('/').pop()?.replace('.svg', '').toLowerCase() || '';
+      const module = await import(path+'?raw');
 
-// const component = computed(() => iconMap[props.icon.toLowerCase()])
+      svgMap.value[name] = module.default.replace(
+        '<svg',
+        `<svg width="${props.size}" height="${props.size}"`
+      );
+    } catch (error) {
+      console.error(`Failed to load SVG: ${path}`, error);
+    }
+  }
+};
+
+onMounted(() => {
+  loadSvgs();
+});
+
 defineOptions({
   name: 'IconGroups'
-})
+});
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

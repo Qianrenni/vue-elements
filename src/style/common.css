@@ -33,7 +33,7 @@
     --warning-bg: #fff8e1;
     --warning-border: #ffeac2;
 
-    --danger-color: #fef9c3;
+    --danger-color: #f11;
     --danger-bg: #ffe6e6;
     --danger-border: #ffcccc;
 
@@ -77,20 +77,7 @@ body.dark-mode {
     --primary-hover: #4f5cce;     /* 悬停稍加深 */
     --primary-light: #764ba2;
 
-    /* 🟢 成功 / 绿色 */
-    --success-color: #4cd964;
-    --success-bg: #2e4432;
-    --success-border: #3d6e43;
 
-    /* ⚠️ 警告 / 黄色 */
-    --warning-color: #dbeafe;
-    --warning-bg: #4a4524;
-    --warning-border: #bfae52;
-
-    /* ❌ 错误 / 红色 */
-    --danger-color: #dcfce7;
-    --danger-bg: #4a2727;
-    --danger-border: #b35e5e;
 
     /* 🧱 中性灰色系 */
     --gray-100: #202020;
@@ -214,6 +201,13 @@ body {
     background-color: var(--primary-color);
     color: white;;
 }
+.hover-red {}
+.hover-red:hover {color: #f00;}
+
+/*透明度类*/
+.opacity-2-9 {opacity: 0.1;}
+.opacity-2-9:hover {opacity: 0.9;}
+
 
 /* 徽章类 */
 .badge {
@@ -228,23 +222,24 @@ body {
 }
 
 .badge-success {
-    color: #fff;
-    background-color: var(--success-color);
+    color:var(--success-color);
+    background-color: var(--success-bg);
 }
 .badge-warning {
-    color: #fff;
-    background-color: var(--warning-color);
+    color:var(--warning-color);
+    background-color: var(--warning-bg);
+
 }
 .badge-danger {
-    color: #fff;
-    background-color: var(--danger-color);
+    color:var(--danger-color);
+    background-color: var(--danger-bg);
 }
 .badge-gray {
-    color: #fff;
-    background-color: var(--gray-500);
+    color:  var(--gray-100);;
+    background-color: var(--gray-700);
 }
 .badge-primary {
-    color: #fff;
+    color: var(--color-white);
     background-color: var(--primary-color);
 }
 /* 链接类 */
@@ -448,6 +443,14 @@ body {
 .radius-rem {border-radius: 1rem;}
 .radius-half-rem {border-radius: 0.5rem;}
 .radius-third-rem {border-radius: 0.33rem;}
+
+/*mouse type*/
+.mouse-cursor {cursor:pointer;}
+
+/*旋转类*/
+.rotate-90 {transform: rotateZ(90deg);}
+
+
 
 /*响应式*/
 @media screen and (max-width: 768px) {

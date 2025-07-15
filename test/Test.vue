@@ -44,8 +44,26 @@
     </div>
   </div>
   <div class="container">
-    <IconGroups/>
+    <icon-groups/>
   </div>
+  <div class="container">
+    <div  style="height: 100px;width: 100px;">
+      <badge text="危险" type="danger" />
+    </div>
+    <div style="height: 100px;width: 100px;">
+      <badge text="警告" type="warning"/>
+    </div>
+    <div  style="height: 100px;width: 100px;">
+      <badge text="成功" type="success"/>
+    </div>
+    <div  style="height: 100px;width: 100px;">
+      <badge text="主色" type="primary"/>
+    </div>
+    <div  style="height: 100px;width: 100px;">
+      <badge text="灰色" type="gray"/>
+    </div>
+  </div>
+
 
 </template>
 <script lang="ts" setup>
@@ -59,6 +77,7 @@ import ScollContainer from "../src/layout/ScollContainer.vue";
 import Carousel from "../src/components/Carousel.vue";
 import CarouselItem from "../src/components/CarouselItem.vue";
 import IconGroups from "../src/components/IconGroups.vue";
+import Badge from "../src/components/Badge.vue";
 const list=['1','2','3']
 </script>
 <style>

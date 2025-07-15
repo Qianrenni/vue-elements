@@ -6,7 +6,29 @@
         height: `${props.height}px`
       }"
   >
-    <!-- 轮播内容容器 -->
+
+    <icon
+        v-if="showButton"
+        :icon="indicatorPosition === 'center-bottom'?'left':'up'"
+        class="opacity-2-9 carousel-indicators"
+        style="z-index: 1"
+        :class="{
+          'left-center':indicatorPosition === 'center-bottom',
+          'center-top':indicatorPosition !== 'center-top'&&indicatorPosition !== 'center-bottom'
+        }"
+        @click="prev"
+    />
+    <icon
+        v-if="showButton"
+        :icon="indicatorPosition === 'center-bottom'?'right':'down'"
+        class="opacity-2-9 carousel-indicators"
+        style="z-index: 1"
+        :class="{
+          'right-center':indicatorPosition === 'center-bottom',
+          'center-bottom':indicatorPosition !== 'center-top'&&indicatorPosition !== 'center-bottom'
+        }"
+        @click="next"
+    />
     <div
 
         class="carousel-inner container-flex-start"
@@ -66,6 +88,7 @@
 
 <script setup>
 import {ref, computed, onMounted, onBeforeUnmount, useSlots, useTemplateRef} from 'vue'
+import Icon from "./Icon.vue";
 
 const props = defineProps({
   vertical: {
@@ -76,6 +99,7 @@ const props = defineProps({
     type:  Boolean,
     default: true
   },
+  //变换时间
   duration: {
     type: Number,
     default: 500
@@ -96,34 +120,51 @@ const props = defineProps({
     type: Number,
     required: true
   },
+  //间隔时间
   interval:{
     type: Number,
     default: 1500
   },
+  //轮播方向
   direction:{
     type: String,
     default: 'next',
     validator(value) {
       return ['next', 'prev'].includes(value)
     }
+  },
+  showButton:{
+    type: Boolean,
+    default: true
   }
 
 })
+//使用插槽
 const slots = useSlots()
-/* 轮播项*/
+
+/* 获取轮播项*/
 const items = computed(() => {
+
+  //如果是空内容，返回空
   if (!slots.default) return []
+  //如果是用v-for渲染的要进行判断而后获取子节点
   if (slots.default()[0].type === Symbol.for('v-fgt')) {
     console.log('carousel use v-for');
     return slots.default()[0].children;
   }
+  //以上都不是则按照增长逻辑进行
   return slots.default().filter(vnode => vnode.type.name === 'CarouselItem')
 })
 
+//轮播项数量
 const itemsCount = computed(() => items.value.length)
+
+//总轮播项数量
 const totalItemsCount = computed(() => items.value.length + 2) // 前后各加一个复制项
+
 // 当前索引
 const currentIndex = ref(1)
+//实际索引
 const realIndex= computed(() => {
   if (currentIndex.value<=0) {
     return itemsCount.value - 1
@@ -133,17 +174,25 @@ const realIndex= computed(() => {
   }
   return currentIndex.value - 1
 })
+//轮播容器引用
 const carousel = useTemplateRef('carousel')
+//计时器Id
 let intervalId = null
+
 // 计算 transform 样式
 const transformStyle = computed(() => {
   const value = -currentIndex.value * (props.vertical ? props.height : props.width)
+  //返回应该偏移的值
   return props.vertical ? `translateY(${value}px)` : `translateX(${value}px)`
 })
+//是否使用过渡
 const useTransition = ref(true)
+
+//过渡样式
 const transition = computed(() => {
   return useTransition.value ? `${props.duration}ms ease-in-out` : 'none'
 })
+
 // 上一页
 function prev() {
   if(currentIndex.value<=0){
