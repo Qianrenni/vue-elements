@@ -1,0 +1,33 @@
+<script setup lang="ts">
+defineOptions({
+  name: 'Down'
+})
+</script>
+
+<template>
+  <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      width="100"
+      height="100"
+      fill="transparent"
+      stroke="currentColor"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+  >
+    <path
+        d="
+          M25 25
+          L50 75
+          L75 25 Z
+          "
+    />
+  </svg>
+
+
+</template>
+
+<style scoped>
+
+</style>

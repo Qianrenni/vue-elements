@@ -4,8 +4,7 @@
       <template #default>
         <component
             :is="component"
-            style="cursor: pointer; width: 16px; height: 16px;"
-            :strokeWidth="strokeWidth"
+            style="cursor: pointer; width: 32px; height: 32px;"
         />  <!-- 修复闭合标签 -->
       </template>
       <template #footer>
