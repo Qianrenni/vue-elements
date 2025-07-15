@@ -204,6 +204,11 @@ body {
 .hover-red {}
 .hover-red:hover {color: #f00;}
 
+/*透明度类*/
+.opacity-2-9 {opacity: 0.1;}
+.opacity-2-9:hover {opacity: 0.9;}
+
+
 /* 徽章类 */
 .badge {
     display: inline-block;
@@ -442,7 +447,8 @@ body {
 /*mouse type*/
 .mouse-cursor {cursor:pointer;}
 
-
+/*旋转类*/
+.rotate-90 {transform: rotateZ(90deg);}
 
 
 
