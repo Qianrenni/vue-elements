@@ -44,7 +44,7 @@
     </div>
   </div>
   <div class="container">
-    <IconGroups/>
+    <icon-groups/>
   </div>
 
 
@@ -60,7 +60,6 @@ import ScollContainer from "../src/layout/ScollContainer.vue";
 import Carousel from "../src/components/Carousel.vue";
 import CarouselItem from "../src/components/CarouselItem.vue";
 import IconGroups from "../src/components/IconGroups.vue";
-import Icon from "../src/components/Icon.vue";
 const list=['1','2','3']
 </script>
 <style>
