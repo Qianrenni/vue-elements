@@ -1,8 +1,8 @@
 <template>
-  <div v-if="type==='personal'" class="badge" :style="{ color: foreground, backgroundColor: background }">
+  <div v-if="type==='personal'" class="badge mouse-cursor " :style="{ color: foreground, backgroundColor: background }">
     {{ text }}
   </div>
-  <div v-else class="badge"
+  <div v-else class="badge  mouse-cursor"
       :class="{
       'badge-primary': type === 'primary',
       'badge-success': type === 'success',
@@ -28,11 +28,11 @@ const props = defineProps({
   },
   foreground: {
     type: String,
-    default: '#fff'
+    default: 'var(--text-color)'
   },
   background: {
     type: String,
-    default: '#fbf6c1'
+    default: 'var(--background-color)'
   }
 })
 
