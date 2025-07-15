@@ -1,24 +1,26 @@
 <template>
-  <div v-if="type==='personal'" class="badge mouse-cursor " :style="{ color: foreground, backgroundColor: background }">
-    {{ text }}
-  </div>
-  <div v-else class="badge  mouse-cursor"
+    <span v-if="type==='personal'"
+          class="badge mouse-cursor "
+          :style="{ color: foreground, backgroundColor: background }">
+      {{text}}
+    </span>
+  <span v-else class="badge  mouse-cursor"
       :class="{
-      'badge-primary': type === 'primary',
-      'badge-success': type === 'success',
-      'badge-warning': type === 'warning',
-      'badge-danger': type === 'danger',
-      'badge-gray': type === 'gray',
+      'text-primary': type === 'primary',
+      'text-success': type === 'success',
+      'text-warning': type === 'warning',
+      'text-danger': type === 'danger',
+      'text-gray': type === 'gray',
       }">
     {{text}}
-  </div>
+  </span>
 </template>
 
 <script lang="ts" setup>
 import { defineOptions,defineProps } from 'vue'
 const props = defineProps({
   type: {
-    type: String,
+    type: String as ()=>'primary' | 'danger' | 'success' | 'warning' | 'gray' | 'personal',
     default: 'personal',
     validator: (value: string) => ['primary', 'danger', 'success', 'warning','gray','personal'].includes(value)
   },
@@ -37,7 +39,7 @@ const props = defineProps({
 })
 
 defineOptions({
-  name: 'Badge'
+  name: 'TypeText'
 })
 </script>
 

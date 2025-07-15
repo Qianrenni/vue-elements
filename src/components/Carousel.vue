@@ -86,7 +86,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {ref, computed, onMounted, onBeforeUnmount, useSlots, useTemplateRef} from 'vue'
 import Icon from "./Icon.vue";
 
@@ -109,7 +109,7 @@ const props = defineProps({
     default: true
   },
   indicatorPosition: {
-    type: String,
+    type: String  as () => 'center-bottom' | 'center-top' | 'left-bottom' | 'left-top' | 'left-center' | 'right-bottom' | 'right-top' | 'right-center',
     default: 'center-bottom'
   },
   width:{
