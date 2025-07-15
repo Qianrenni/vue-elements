@@ -214,6 +214,8 @@ body {
     background-color: var(--primary-color);
     color: white;;
 }
+.hover-red {}
+.hover-red:hover {color: #f00;}
 
 /* 徽章类 */
 .badge {
@@ -448,6 +450,11 @@ body {
 .radius-rem {border-radius: 1rem;}
 .radius-half-rem {border-radius: 0.5rem;}
 .radius-third-rem {border-radius: 0.33rem;}
+
+
+
+
+
 
 /*响应式*/
 @media screen and (max-width: 768px) {
