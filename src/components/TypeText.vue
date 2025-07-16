@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 import { defineOptions,defineProps } from 'vue'
-const props = defineProps({
+defineProps({
   type: {
     type: String as ()=>'primary' | 'danger' | 'success' | 'warning' | 'gray' | 'personal',
     default: 'personal',

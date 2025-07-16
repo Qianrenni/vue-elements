@@ -28,13 +28,5 @@ defineProps({
 </script>
 
 <style scoped>
-.tag {
-  display: inline-flex;
-  align-items: center;
-  height: 24px;
-  padding: 0.4rem 0.8rem;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  cursor: pointer;
-}
+
 </style>

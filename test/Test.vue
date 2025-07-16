@@ -46,27 +46,34 @@
   <div class="container">
     <icon-groups/>
   </div>
-  <div class="container">
-    <div  style="height: 100px;width: 100px;">
+  <div class="container margin-vetical">
+    <div  >
       <type-text text="危险" type="danger" />
     </div>
-    <div style="height: 100px;width: 100px;">
+    <div >
       <type-text text="警告" type="warning"/>
     </div>
-    <div  style="height: 100px;width: 100px;">
+    <div  >
       <type-text text="成功" type="success"/>
     </div>
-    <div  style="height: 100px;width: 100px;">
+    <div  >
       <type-text text="主色" type="primary"/>
     </div>
-    <div  style="height: 100px;width: 100px;">
+    <div  >
       <type-text text="灰色" type="gray"/>
     </div>
   </div>
-  <div class="container" style="width: 250px;height: 10px;">
-    <progress-bar percent="50%"  ></progress-bar>
+  <div class="container container-align-center gap-half" >
+    <div class="container container-align-center" style="width: 250px;height: 5px;">
+      <progress-bar percent="90%"  class="" />
+    </div>
+    <span>90%</span>
   </div>
-
+  <div class="container">
+    <Badge  value="100">
+      <span class="padding-horizontal">Message</span>
+    </Badge>
+  </div>
 </template>
 <script lang="ts" setup>
 import Avator from "../src/components/Avator.vue";
@@ -81,6 +88,7 @@ import CarouselItem from "../src/components/CarouselItem.vue";
 import IconGroups from "../src/components/IconGroups.vue";
 import TypeText from "../src/components/TypeText.vue";
 import ProgressBar from "../src/components/ProgressBar.vue";
+import Badge from "../src/components/Badge.vue";
 const list=['1','2','3']
 </script>
 <style>
