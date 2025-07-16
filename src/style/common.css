@@ -445,10 +445,14 @@ body {
 
 /*自定义*/
 .dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(50%) translateY(-50%);
     width: 1rem;
     height: 1rem;
     border-radius: 50%;
-    background-color: #ff1111;
+    background-color: var(--info-bg);
 }
 .tag {
     display: inline-flex;

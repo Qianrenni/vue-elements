@@ -73,6 +73,9 @@
     <Badge  value="100">
       <span class="padding-horizontal">Message</span>
     </Badge>
+    <Badge  dot>
+      <span >Message</span>
+    </Badge>
   </div>
 </template>
 <script lang="ts" setup>
