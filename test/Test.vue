@@ -27,19 +27,15 @@ import Card from '../src/components/Card.vue'
 const components = [
   {
     name:'Avator',
-    component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayAvator.vue')))
   },
   {
     name:'Badge',
-    component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayBadge.vue')))
   },
   {
     name:'Card',
-    component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayCard.vue')))
   },
   {
     name:'Carousel',
-    component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayCarousel.vue')))
   },
   // {
   //   name:'CollapsibleSection',
@@ -51,61 +47,55 @@ const components = [
   // },
   {
     name:'Icon',
-    component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayIcon.vue')))
   },
   {
     name:'IconGroups',
-    component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayIconGroups.vue')))
   },
   // {
   //   name:'MarkdownRender',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayMarkdownRender.vue')))
   // },
   // {
   //   name:'MobileFrame',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayMobileFrame.vue')))
   // },
   // {
   //   name:'NavSection',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayNavSection.vue')))
   // },
   // {
   //   name:'ProcessBar',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayProcessBar.vue')))
+
   // },
   // {
   //   name:'RainFigure',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayRainFigure.vue')))
+
   // },
   // {
   //   name:'Search',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplaySearch.vue')))
+
   // },
-  // {
-  //   name:'TabList',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayTabList.vue')))
-  // },
+  {
+    name:'TabList',
+
+  },
   // {
   //   name:'Tag',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayTag.vue')))
+
   // },
   // {
   //   name:'ThemeToggle',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayThemeToggle.vue')))
+
   // },,
   // {
   //   name:'TypeText',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayTypeText.vue')))
   // },
 ]
 
 // 当前选中的组件
-const currentComponent = shallowRef(components[0].component())
+const currentComponent = shallowRef(markRaw(defineAsyncComponent(() => import(`./display/Display${components[0].name}.vue`))))
 
 // 选择组件的方法
 const selectComponent = async (item) => {
   console.log('switch ')
-  currentComponent.value = item.component()
+  currentComponent.value = markRaw(defineAsyncComponent(() => import(`./display/Display${item.name}.vue`)))
 }
 </script>
 

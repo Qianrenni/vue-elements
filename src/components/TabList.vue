@@ -1,64 +1,73 @@
 <template>
-  <Tag v-for="(item, index) in list"
-             :key="index"
-             :text="item"
-             :circle="circle"
-             :hoverClass="hoverClass"
-             class="margin-fourth-rem"
-             :class="{ [activeClass]: activeCategory === index }"
-             @click="clickHandler(index)"
-  />
+  <div class="tablist margin-half-vetical">
+    <span
+        v-for="(item, index) in list"
+        :key="index"
+        @click="clickHandler(index)"
+        :class="{
+        [activeClass]: index === activeCategory
+      }"
+        class="tab-item padding-half-rem mouse-cursor "
+    >
+      {{ item }}
+    </span>
+  </div>
 </template>
 
 <script lang="ts" setup>
-
-import { defineOptions, defineProps ,defineEmits } from "vue";
-import { ref } from "vue";
-import Tag from "./Tag.vue";
+import { defineProps, defineEmits, ref } from 'vue'
+import { defineOptions } from 'vue'
 
 defineOptions({
-  name: "TabList"
-});
+  name: 'TabList'
+})
 
-defineProps({
+const props = defineProps({
   list: {
     type: Array as () => string[],
     default: () => []
   },
-  circle:{
-    type: String as ()=>'large'|'middle'|'small'|'none',
-    default:'small',
-    validator:(value:string)=>['large','middle','small','none'].includes(value)
-  },
-  hoverClass:{
-    type:String,
-    default:'button'
-  },
-  activeClass:{
-    type:String,
-    default:'active'
+  activeClass: {
+    type: String,
+    default: 'active'
   }
-});
+})
 
-let activeCategory = ref<number | null>(null);
 const emit = defineEmits<{
-  select: [index: number];
-}>();
+  (e: 'select', index: number): void
+}>()
+
+const activeCategory = ref<number | null>(null)
 
 function clickHandler(index: number) {
-  console.log(`click ${index}`);
-  activeCategory.value = index;
-  emit("select", index);
+  activeCategory.value = index
+  emit('select', index)
 }
 </script>
 
 <style scoped>
-.active {
-  color: var(--color-white); /* 请替换为实际需要的颜色值 */
-  background-color: var(--primary-color)
+
+
+.tab-item {
+  font-weight: bold;
+  position: relative;
+  transition: all 0.3s ease-in-out;
 }
-.active:hover {
-  color: var(--color-white); /* 请替换为实际需要的颜色值 */
-  background-color: var(--primary-color)
+
+.tab-item:hover {
+  background-color: var(--background-color);
+}
+.tab-item.active{
+  color: var(--primary-color);
+}
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary-color);
+  transition: transform 0.3s ease-in-out;
 }
 </style>
