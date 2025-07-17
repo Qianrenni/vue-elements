@@ -5,17 +5,19 @@
        }"
     >
 
-    <div class="card-header container-center">
+    <div class="card-header container-space-between ">
       <slot name="header"></slot>
     </div>
 
-    <div class="card-body  container-center">
+    <div class="card-body container-space-between ">
       <slot name="left"></slot>
-      <slot name="default" class="container-flex-1"></slot>
+      <div class="container-flex-1">
+        <slot name="default"/>
+      </div>
       <slot name="right"></slot>
     </div>
 
-    <div class="card-footer container-center">
+    <div class="card-footer container-space-between ">
       <slot name="footer"></slot>
     </div>
 

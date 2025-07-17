@@ -143,7 +143,11 @@ body {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
-
+.text-title{
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.2rem;
+}
 
 
 
