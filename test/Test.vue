@@ -93,11 +93,25 @@
   </div>
   <div class="container">
     <Badge  value="100"  class="margin-horizontal">
-      <span class="padding-horizontal ">Message</span>
+      <span class="button">Message</span>
     </Badge>
     <Badge  dot class="margin-horizontal">
-      <span  >Message</span>
+      <span class="button">Message</span>
     </Badge>
+  </div>
+  <div class="container">
+    <div class="button">
+      普通
+    </div>
+    <div class="button button-primary">
+      主色
+    </div>
+    <div class="button button-outline">
+      outline
+    </div>
+    <div class="button button-disabled">
+      disabled
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
