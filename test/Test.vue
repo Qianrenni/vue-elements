@@ -70,7 +70,7 @@
   </div>
   <div class="container margin-vetical">
     <div  >
-      <type-text text="危险" type="danger" />
+      <type-text text="危险" type="danger"/>
     </div>
     <div >
       <type-text text="警告" type="warning"/>
@@ -91,7 +91,7 @@
     </div>
     <span>90%</span>
   </div>
-  <div class="container">
+  <div class="container margin-vetical">
     <Badge  value="100"  class="margin-horizontal">
       <span class="button">Message</span>
     </Badge>

@@ -129,6 +129,24 @@ body {
 .text-left          { text-align: left; }
 .text-right         { text-align: right; }
 .text-gray          { color:var(--gray-100);background-color: var(--gray-700);}
+/*文字样式类*/
+.text-one-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.text-two-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+
+
+
 /* 背景颜色类 */
 .bg-white           { background-color: var(--color-white); }
 .bg-black           { background-color: var(--color-black); }
@@ -376,22 +394,25 @@ body {
 
 
 
-.scroll-container {
-    overflow: hidden;
+.scroll-container   { overflow: hidden;}
+.scroll-container:hover{
+    overflow-y: auto;
+    overflow-x: auto;
+    -ms-overflow-x: auto;
+    -ms-overflow-style: auto;
 }
-
 /* 水平滚动 */
 .scroll-container.scroll-x {
-    -ms-overflow-x: auto;
-    overflow-x: auto;
+    /*-ms-overflow-x: auto;*/
+    /*overflow-x: auto;*/
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) var(--background-color);
 }
 
 /* 垂直滚动 */
 .scroll-container.scroll-y {
-    -ms-overflow-y: auto;
-    overflow-y: auto;
+    /*-ms-overflow-y: auto;*/
+    /*overflow-y: auto;*/
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) var(--background-color);
 }
@@ -415,15 +436,9 @@ body {
 }
 
 /* 图片类 */
-.img-cover {
-    object-fit: cover;
-}
-.img-contain {
-    object-fit: contain;
-}
-.img-fill {
-    object-fit: fill;
-}
+.img-cover      { object-fit: cover;}
+.img-contain    { object-fit: contain;}
+.img-fill       { object-fit: fill;}
 
 
 /*响应式类*/

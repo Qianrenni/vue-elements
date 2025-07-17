@@ -1,10 +1,10 @@
 <template>
     <span v-if="type==='personal'"
-          class="badge mouse-cursor "
+          class="mouse-cursor "
           :style="{ color: foreground, backgroundColor: background }">
       {{text}}
     </span>
-  <span v-else class="badge  mouse-cursor"
+  <span v-else class="mouse-cursor padding-fourth-rem"
       :class="{
       'text-primary': type === 'primary',
       'text-success': type === 'success',
