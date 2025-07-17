@@ -1,11 +1,13 @@
 <template>
   <span
-      class="tag btn-outline"
+      class="tag"
       :class="{
         'radius-rem': circle === 'large',
         'radius-half-rem': circle === 'middle',
-        'radius-third-rem': circle === 'small'
+        'radius-third-rem': circle === 'small',
+        [hoverClass]: true
       }"
+
   >{{ text }}</span>
 </template>
 
@@ -19,12 +21,15 @@ defineProps({
     default:''
   },
   circle:{
-    type: String,
-    default:'large',
+    type: String as () => 'large' | 'middle' | 'small' | 'none',
+    default:'small',
     validator:(value:string)=>['large','middle','small','none'].includes(value)
+  },
+  hoverClass:{
+    type: String ,
+    default: 'button'
   }
-  }
-)
+})
 </script>
 
 <style scoped>

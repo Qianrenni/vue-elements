@@ -3,6 +3,7 @@
              :key="index"
              :text="item"
              :circle="circle"
+             :hoverClass="hoverClass"
              class="margin-fourth-rem"
              :class="{ active: activeCategory === index }"
              @click="clickHandler(index)"
@@ -25,9 +26,13 @@ defineProps({
     default: () => []
   },
   circle:{
-    type: String,
-    default:'large',
+    type: String as ()=>'large'|'middle'|'small'|'none',
+    default:'small',
     validator:(value:string)=>['large','middle','small','none'].includes(value)
+  },
+  hoverClass:{
+    type:String,
+    default:'button'
   }
 });
 
