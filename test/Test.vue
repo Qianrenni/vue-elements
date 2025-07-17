@@ -3,6 +3,28 @@
     <div class="container">
       <Card style="background-color: transparent" animation>
         <Avator style="width: 100px;"></Avator>
+        <template #footer>
+          人像
+        </template>
+        <template #left>
+          人像
+        </template>
+        <template #right>
+          <div class="container-column container-space-between">
+            <span>
+              人像
+            </span>
+            <span>
+              人像
+            </span>
+            <span>
+              人像
+            </span>
+          </div>
+        </template>
+        <template #header>
+          人像
+        </template>
       </Card>
     </div>
     <div class="container">
@@ -70,11 +92,11 @@
     <span>90%</span>
   </div>
   <div class="container">
-    <Badge  value="100">
-      <span class="padding-horizontal">Message</span>
+    <Badge  value="100"  class="margin-horizontal">
+      <span class="padding-horizontal ">Message</span>
     </Badge>
-    <Badge  dot>
-      <span >Message</span>
+    <Badge  dot class="margin-horizontal">
+      <span  >Message</span>
     </Badge>
   </div>
 </template>

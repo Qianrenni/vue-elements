@@ -9,8 +9,10 @@
       <slot name="header"></slot>
     </div>
 
-    <div class="card-body container-center">
-      <slot name="default"></slot>
+    <div class="card-body  container-center">
+      <slot name="left"></slot>
+      <slot name="default" class="container-flex-1"></slot>
+      <slot name="right"></slot>
     </div>
 
     <div class="card-footer container-center">
