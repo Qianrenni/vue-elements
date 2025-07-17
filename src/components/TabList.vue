@@ -5,7 +5,7 @@
              :circle="circle"
              :hoverClass="hoverClass"
              class="margin-fourth-rem"
-             :class="{ active: activeCategory === index }"
+             :class="{ [activeClass]: activeCategory === index }"
              @click="clickHandler(index)"
   />
 </template>
@@ -33,6 +33,10 @@ defineProps({
   hoverClass:{
     type:String,
     default:'button'
+  },
+  activeClass:{
+    type:String,
+    default:'active'
   }
 });
 
@@ -50,6 +54,10 @@ function clickHandler(index: number) {
 
 <style scoped>
 .active {
+  color: var(--color-white); /* 请替换为实际需要的颜色值 */
+  background-color: var(--primary-color)
+}
+.active:hover {
   color: var(--color-white); /* 请替换为实际需要的颜色值 */
   background-color: var(--primary-color)
 }

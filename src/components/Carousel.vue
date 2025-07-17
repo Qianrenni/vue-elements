@@ -129,7 +129,7 @@ const props = defineProps({
   direction:{
     type: String,
     default: 'next',
-    validator(value) {
+    validator(value:string) {
       return ['next', 'prev'].includes(value)
     }
   },
