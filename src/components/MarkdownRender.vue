@@ -11,13 +11,31 @@ import '../style/gitub-markdown.css'
 import 'highlight.js/styles/github-dark.css'
 import '../style/katex.css'
 import {pinyin} from 'pinyin-pro'
-
+import java from 'highlight.js/lib/languages/java'
+import python from 'highlight.js/lib/languages/python'
+import javascript from 'highlight.js/lib/languages/javascript'
+import xml from 'highlight.js/lib/languages/xml'
+import css from 'highlight.js/lib/languages/css'
+import html from 'highlight.js/lib/languages/vbscript-html'
+import typescript from 'highlight.js/lib/languages/typescript'
+import kotlin from 'highlight.js/lib/languages/kotlin'
+import cplus from 'highlight.js/lib/languages/cpp'
+import c from 'highlight.js/lib/languages/c'
+import json from 'highlight.js/lib/languages/json'
+import yaml from 'highlight.js/lib/languages/yaml'
+hljs.registerLanguage('java', java)
 // 注册语言
-hljs.registerLanguage('java', require('highlight.js/lib/languages/java'))
-hljs.registerLanguage('python', require('highlight.js/lib/languages/python'))
-hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'))
-hljs.registerLanguage('html', require('highlight.js/lib/languages/xml'))
-hljs.registerLanguage('css', require('highlight.js/lib/languages/css'))
+hljs.registerLanguage('python', python)
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('xml', xml)
+hljs.registerLanguage('css', css)
+hljs.registerLanguage('html', html)
+hljs.registerLanguage('typescript', typescript)
+hljs.registerLanguage('kotlin', kotlin)
+hljs.registerLanguage('c++', cplus)
+hljs.registerLanguage('c', c)
+hljs.registerLanguage('json', json)
+hljs.registerLanguage('yaml', yaml)
 
 // props
 const props = defineProps({
