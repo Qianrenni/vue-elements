@@ -7,7 +7,7 @@
         :class="{
         [activeClass]: index === activeCategory
       }"
-        class="tab-item padding-half-rem mouse-cursor "
+        class="tab-item padding-half-rem mouse-cursor"
     >
       {{ item }}
     </span>
@@ -37,7 +37,7 @@ const emit = defineEmits<{
   (e: 'select', index: number): void
 }>()
 
-const activeCategory = ref<number | null>(null)
+const activeCategory = ref<number | null>(props.list.length>0 ? 0 : null)
 
 function clickHandler(index: number) {
   activeCategory.value = index
@@ -59,6 +59,11 @@ function clickHandler(index: number) {
 }
 .tab-item.active{
   color: var(--primary-color);
+  background-color: var(--background-color);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  box-shadow: 2px -2px 8px rgba(0, 0, 0, 0.3);
+
 }
 .tab-item.active::after {
   content: '';
