@@ -14,12 +14,13 @@ const code = `
 }
 \`\`\`
 `
+const url="http://1.95.141.194/user/"
 </script>
 
 <template>
 
   <h1 class="text-center">示例</h1>
-
+  <mobile-frame :src="url" />
 
   <markdown-render :content="code"/>
 </template>

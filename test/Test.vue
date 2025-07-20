@@ -15,7 +15,7 @@
     </template>
     <template #default>
       <scoll-container style="height: 100vh;width: calc( 100vw - 200px)" scroll-x scroll-y >
-        <div class="container-column " style="height: 100%;">
+        <div class="container-column " >
           <!-- 正确的方式：只传递组件定义，props单独绑定 -->
           <component :is="currentComponent"/>
         </div>
@@ -59,6 +59,9 @@ const components = [
   },
   {
     name:'MobileFrame',
+  },
+  {
+    name: 'ScrollNotice',
   },
   // {
   //   name:'NavSection',
