@@ -398,13 +398,18 @@ body {
 
 
 
-.scroll-container   { overflow: hidden;}
-.scroll-container:hover{
+.scroll-container   {
     overflow-y: auto;
     overflow-x: auto;
     -ms-overflow-x: auto;
     -ms-overflow-style: auto;
 }
+/*.scroll-container:hover{*/
+/*    overflow-y: auto;*/
+/*    overflow-x: auto;*/
+/*    -ms-overflow-x: auto;*/
+/*    -ms-overflow-style: auto;*/
+/*}*/
 /* 水平滚动 */
 .scroll-container.scroll-x {
     /*-ms-overflow-x: auto;*/

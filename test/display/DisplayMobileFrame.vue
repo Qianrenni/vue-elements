@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import Icon from "../../src/components/Icon.vue";
+import MobileFrame   from "../../src/components/MobileFrame.vue"
 defineOptions({
-  name: "DisplayIcon",
+  name: "DisplayMobileFrame",
 })
-const code=`
-# Props
+const code = `
 \`\`\`json
 {
-  icon: {
+  src: {
     type: String,
-    default: 'User'
-  },
-  size: {
-    type: String,
-    default: '32'
+    required: true
   }
 }
 \`\`\`
@@ -24,9 +19,8 @@ const code=`
 <template>
 
   <h1 class="text-center">示例</h1>
-  <div class="container-flex-start  margin-vetical gap" >
-    <icon/>
-  </div>
+
+
   <markdown-render :content="code"/>
 </template>
 

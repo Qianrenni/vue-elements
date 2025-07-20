@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import Avator from "../../src/components/Avator.vue";
 import MarkdownRender from "../../src/components/MarkdownRender.vue";
 import TabList from "../../src/components/TabList.vue";
 defineOptions({
-  name: "DisplayAvator",
+  name: "DisplayTabList",
 })
 const code=`
 \`\`\`json

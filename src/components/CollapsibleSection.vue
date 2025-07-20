@@ -68,9 +68,9 @@ const props = defineProps({
     default: true,
   },
   direction: {
-    type: String,
+    type: String as () => 'up' | 'down' | 'left' | 'right',
     default: 'down',
-    validator: (value) =>
+    validator: (value: string) =>
         ['up', 'down', 'left', 'right'].includes(value),
   },
 })

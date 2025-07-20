@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import MarkdownRender from "../../src/components/MarkdownRender.vue";
 import Card from "../../src/components/Card.vue";
+import ScollContainer from "../../src/layout/ScollContainer.vue";
 defineOptions({
   name: "DisplayCard",
 })
@@ -52,13 +53,12 @@ const code=`
 </script>
 
 <template>
-
   <h1 class="text-center">示例</h1>
   <div class="container-column">
     <Card animation >
       <template #header>
         title
-       </template>
+      </template>
       <template #default>
         default
       </template>

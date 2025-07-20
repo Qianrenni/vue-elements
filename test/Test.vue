@@ -1,7 +1,8 @@
 <template>
   <card style="height: 100vh;">
     <template #left>
-      <div class="container-column padding-rem border-gray">
+      <scoll-container scroll-y style="height: 100vh;min-width: 200px;">
+        <div class="container-column padding-rem border-gray">
         <span
             v-for="(item, index) in components"
             :key="index"
@@ -9,13 +10,16 @@
             class="margin-half-vetical button">
             {{item.name}}
         </span>
-      </div>
+        </div>
+      </scoll-container>
     </template>
     <template #default>
-      <div class="container-column padding-rem" style="height: 100%;">
-        <!-- 正确的方式：只传递组件定义，props单独绑定 -->
-        <component :is="currentComponent"/>
-      </div>
+      <scoll-container style="height: 100vh;width: calc( 100vw - 200px)" scroll-x scroll-y >
+        <div class="container-column " style="height: 100%;">
+          <!-- 正确的方式：只传递组件定义，props单独绑定 -->
+          <component :is="currentComponent"/>
+        </div>
+      </scoll-container>
     </template>
   </card>
 </template>
@@ -23,6 +27,7 @@
 <script lang="ts" setup>
 import {defineAsyncComponent, markRaw, reactive, ref, shallowRef} from "vue";
 import Card from '../src/components/Card.vue'
+import ScollContainer from "../src/layout/ScollContainer.vue";
 // 使用 markRaw 避免组件被 Vue 的响应式系统转换
 const components = [
   {
@@ -37,26 +42,24 @@ const components = [
   {
     name:'Carousel',
   },
-  // {
-  //   name:'CollapsibleSection',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayCollapsibleSection.vue')))
-  // },
-  // {
-  //   name:'Divider',
-  //   component:() => markRaw(defineAsyncComponent(() => import('./display/DisplayDivider.vue')))
-  // },
+  {
+    name:'CollapsibleSection',
+  },
+  {
+    name:'Divider',
+  },
   {
     name:'Icon',
   },
   {
     name:'IconGroups',
   },
-  // {
-  //   name:'MarkdownRender',
-  // },
-  // {
-  //   name:'MobileFrame',
-  // },
+  {
+    name:'MarkdownRender',
+  },
+  {
+    name:'MobileFrame',
+  },
   // {
   //   name:'NavSection',
   // },

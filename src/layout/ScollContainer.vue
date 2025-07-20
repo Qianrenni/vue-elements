@@ -1,6 +1,6 @@
 <template>
   <div
-      class="scroll-container container"
+      class="scroll-container"
       :class="{
       'scroll-x': scrollX,
       'scroll-y': scrollY

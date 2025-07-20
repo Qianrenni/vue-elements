@@ -64,7 +64,7 @@ const code=`
 <template>
 
   <h1 class="text-center">示例</h1>
-  <div class="container-flex-start  margin-vetical gap" >
+  <div class="container-flex-start  margin-vetical gap"  >
     <Carousel :height="300" :width="300 " class="bg-body">
       <CarouselItem v-for="index in 5" :key="index">
         <div style="height: 300px;width: 300px;" class="container-center container-align-center">
@@ -80,7 +80,7 @@ const code=`
       </CarouselItem>
     </Carousel>
   </div>
-  <markdown-render :content="code"/>
+  <markdown-render :content="code"  />
 </template>
 
 <style scoped>

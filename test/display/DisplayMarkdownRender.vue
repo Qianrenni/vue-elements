@@ -1,22 +1,24 @@
 <script setup lang="ts">
 import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import Icon from "../../src/components/Icon.vue";
+
 defineOptions({
-  name: "DisplayIcon",
+  name: "DisplayMarkdownRender",
 })
-const code=`
-# Props
+const code = `
 \`\`\`json
 {
-  icon: {
+  content: {
     type: String,
-    default: 'User'
-  },
-  size: {
-    type: String,
-    default: '32'
+    required: true
   }
 }
+\`\`\`
+`
+
+const example1=`
+\`\`\`python
+def function():
+    return True
 \`\`\`
 `
 </script>
@@ -24,8 +26,8 @@ const code=`
 <template>
 
   <h1 class="text-center">示例</h1>
-  <div class="container-flex-start  margin-vetical gap" >
-    <icon/>
+  <div class="container">
+    <markdown-render :content="example1"/>
   </div>
   <markdown-render :content="code"/>
 </template>

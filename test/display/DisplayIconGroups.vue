@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
 import IconGroups from "../../src/components/IconGroups.vue";
 defineOptions({
   name: "DisplayDisplayIconGroups",
