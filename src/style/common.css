@@ -129,6 +129,13 @@ body {
 .text-left          { text-align: left; }
 .text-right         { text-align: right; }
 .text-gray          { color:var(--gray-100);background-color: var(--gray-700);}
+.text-2rem          { font-size: 2rem; }
+.text-15rem         { font-size: 1.5rem; }
+.text-12rem         { font-size: 1.2rem; }
+.text-08rem         { font-size: 0.8rem; }
+.text-half-rem      { font-size: 0.5rem;}
+.text-third-rem     { font-size: 0.3rem;}
+
 /*文字样式类*/
 .text-one-line {
     white-space: nowrap;
