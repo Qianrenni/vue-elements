@@ -1,5 +1,5 @@
 <template>
-  <div class="rain-figure-container">
+  <div class="rain-figure-container container-center">
     <div style="position: relative">
       <img ref="rainFigure" class="rain-image" :src="imageUrl" alt="" @load="resizeCanvas" />
       <canvas ref="rainCanvas" class="rain-canvas"></canvas>
@@ -11,9 +11,12 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 // Props
-const props = defineProps<{
-  imageUrl: string
-}>()
+const props = defineProps({
+  imageUrl: {
+    type: String,
+    required: true
+  }
+})
 
 // Refs
 const rainCanvas = ref<HTMLCanvasElement | null>(null)
@@ -138,9 +141,6 @@ onBeforeUnmount(() => {
 .rain-figure-container {
   position: relative;
   width: 100%;
-  height: var(--content-height-without-header);
-  display: flex;
-  justify-content: center;
 }
 
 .rain-image {

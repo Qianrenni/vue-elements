@@ -20,10 +20,10 @@ const searchValue = ref('')
   <div class="container"  style="width: 100%;position: relative;">
     <icon icon="search"
           style="position: absolute;
-                left: 0;top: 50%;
+                left: 0.5rem;top: 50%;
                 background-color: transparent;
                 transform: translateY(-50%)"
-          size="18px"
+          size="1.1rem"
           @click="emits('search', searchValue)"
     />
     <input
@@ -40,7 +40,7 @@ const searchValue = ref('')
 <style scoped>
 .search-input {
   outline: none;
-  padding-left: 20px;
+  padding-left: 2rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   flex:1;

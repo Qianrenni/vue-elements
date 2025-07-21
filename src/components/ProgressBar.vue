@@ -20,7 +20,7 @@ defineOptions({
 defineProps({
   percent: {
     type: String,
-    default: '0%'
+    required: true
   },
   color: {
     type: String,

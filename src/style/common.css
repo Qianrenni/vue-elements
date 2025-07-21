@@ -9,7 +9,7 @@
 
 
 :root {
-
+    font-size: 16px;
     /* 🎨 基础颜色 */
     --color-white: #ffffff;
     --color-black: #000000;
@@ -38,8 +38,8 @@
     --danger-bg: #ffe6e6;
     --danger-border: #ffcccc;
 
-    --info-color: #393838;
-    --info-bg: #ffffff;
+    --info-color: #ffffff;
+    --info-bg: #ff0000;
     --info-border: #c8e9e5;
 
     --gray-100: #f1f1f1;

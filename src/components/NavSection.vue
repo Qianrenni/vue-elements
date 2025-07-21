@@ -52,7 +52,8 @@ interface Section {
 
 // props
 const props = defineProps<{
-  sections: Section[]
+  sections: Section[],
+  title: string,
 }>()
 
 // 事件定义
@@ -62,7 +63,7 @@ const emit = defineEmits<{
 
 // 数据状态
 const stack = ref<{ title: string; children: Section[] }[]>([
-  { title: '课程目录', children: [] }
+  { title: props.title, children: [] }
 ])
 const activeId = ref<string | number | null>(null)
 
@@ -70,7 +71,7 @@ const activeId = ref<string | number | null>(null)
 watch(
     () => props.sections,
     (newSections) => {
-      stack.value = [{ title: '课程目录', children: newSections }]
+      stack.value = [{ title: props.title, children: newSections }]
       activeId.value = null
     },
     { immediate: true }
@@ -83,7 +84,7 @@ const currentSections = computed(() => {
 
 // 当前层级标题
 const currentLevelTitle = computed(() => {
-  if (stack.value.length <= 1) return '课程目录'
+  if (stack.value.length <= 1) return props.title
   return stack.value[stack.value.length - 1].title
 })
 
