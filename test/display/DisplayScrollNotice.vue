@@ -24,7 +24,7 @@ const code=`
 
   <h1 class="text-center">示例</h1>
   <div class="container">
-    <scroll-notice :text="'无线滚动'" :width="300" style="background-color: #f0f0f0;" class="padding-fourth-rem radius-rem"/>
+    <scroll-notice :text="'无线滚动'" :width="300"  class="padding-fourth-rem radius-rem bg-body"/>
   </div>
   <markdown-render :content="code"/>
 </template>

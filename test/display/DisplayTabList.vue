@@ -7,13 +7,13 @@ defineOptions({
 const code=`
 \`\`\`json
 {
-  url:{
-    type:String,
-    default:'https://picsum.photos/id/1005/200/200'
+  list: {
+    type: Array as () => string[],
+    default: () => []
   },
-  size:{
-    type:String,
-    default:'64px'
+  activeClass: {
+    type: String,
+    default: 'active'
   }
 }
 \`\`\`

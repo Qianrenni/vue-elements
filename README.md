@@ -11,3 +11,9 @@ import 'qyani-components/dist/qyani-components.*.css';
 ```
 import { the-components } from 'qyani-components';
 ```
+
+# 打开展示页面
+**1.注释掉Vite.config.json中的postcss**
+
+# 打包组件库
+**启用postcss插件**

@@ -13,16 +13,16 @@
     <!-- 导航列表 -->
     <ul class="section-nav">
       <li
-          v-for="section in currentSections"
-          :key="section.id"
+          v-for="(section,index) in currentSections"
+          :key="index"
           class="nav-item"
       >
         <a
             v-if="section.children?.length"
             href="javascript:void(0)"
             class="nav-link has-child hover-primary"
-            :class="{ active: activeId === section.id }"
-            @click="enterSubLevel(section)"
+            :class="{ active: activeId === index }"
+            @click="enterSubLevel(section,index)"
         >
           {{ section.title }}
         </a>
@@ -30,8 +30,8 @@
             v-else
             href="javascript:void(0)"
             class="nav-link hover-primary"
-            :class="{ active: activeId === section.id }"
-            @click="markActive(section)"
+            :class="{ active: activeId === index }"
+            @click="markActive(section, index)"
         >
           {{ section.title }}
         </a>
@@ -58,7 +58,7 @@ const props = defineProps<{
 
 // 事件定义
 const emit = defineEmits<{
-  (e: 'handleNavigation', section: Section): void
+  (e: 'select', section: Section): void
 }>()
 
 // 数据状态
@@ -89,9 +89,9 @@ const currentLevelTitle = computed(() => {
 })
 
 // 方法
-function enterSubLevel(section: Section) {
+function enterSubLevel(section: Section, index: number) {
   stack.value.push(section)
-  activeId.value = section.id
+  activeId.value = index
 }
 
 function goBack() {
@@ -103,9 +103,10 @@ function goBack() {
   }
 }
 
-function markActive(section: Section) {
-  activeId.value = section.id
-  emit('handleNavigation', section)
+function markActive(section: Section,index: number) {
+  activeId.value = index;
+  console.log(section);
+  emit('select', section)
 }
 </script>
 

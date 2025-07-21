@@ -25,7 +25,7 @@ const code=`
 
   <h1 class="text-center">示例</h1>
   <div class="container-flex-start  margin-vetical gap" >
-    <icon/>
+    <icon icon="Wifi"/>
   </div>
   <markdown-render :content="code"/>
 </template>

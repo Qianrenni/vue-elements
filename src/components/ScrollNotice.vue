@@ -5,7 +5,6 @@
   >
     <div
         ref="noticeRef"
-        class="scroll-notice"
         :style="{ transform: `translateX(${translateX}px)`}"
     >
       {{ text }}

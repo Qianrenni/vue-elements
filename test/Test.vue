@@ -14,8 +14,8 @@
       </scoll-container>
     </template>
     <template #default>
-      <scoll-container style="height: 100vh;width: calc( 100vw - 200px - 2rem)" scroll-x scroll-y
-        class="margin-half-horizontal">
+      <scoll-container style="height: 100vh;width: calc( 100vw - 200px )" scroll-x scroll-y
+        class="padding-half-horizontal">
         <div class="container-column " >
           <!-- 正确的方式：只传递组件定义，props单独绑定 -->
           <component :is="currentComponent"/>
@@ -41,6 +41,7 @@ const components = [
     'IconGroups',
     'MarkdownRender',
     'MobileFrame',
+    'NavSection',
     'ProgressBar',
     'RainFigure',
     'ScrollNotice',

@@ -18,7 +18,7 @@ const searchValue = ref('')
 
 <template>
   <div class="container"  style="width: 100%;position: relative;">
-    <icon icon="search"
+    <icon icon="Search"
           style="position: absolute;
                 left: 0.5rem;top: 50%;
                 background-color: transparent;

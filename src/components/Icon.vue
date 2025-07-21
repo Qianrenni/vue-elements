@@ -23,7 +23,7 @@ const rawSvgContent = ref('');
 // 动态加载SVG内容
 const loadSvg = async () => {
   try {
-    const module = await import(`../icons/${props.icon[0].toUpperCase()}${props.icon.slice(1)}.svg?raw`);
+    const module = await import(`./src/icons/${props.icon}.svg?raw`);
     rawSvgContent.value = module.default;
   } catch (error) {
     console.error(`Failed to load SVG: ../icons/${props.icon}.svg`, error);
