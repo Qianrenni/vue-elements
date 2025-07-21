@@ -11,6 +11,7 @@
       'text-warning': type === 'warning',
       'text-danger': type === 'danger',
       'text-gray': type === 'gray',
+      'text-info': type === 'info',
       }">
     {{text}}
   </span>
@@ -20,9 +21,9 @@
 import { defineOptions,defineProps } from 'vue'
 defineProps({
   type: {
-    type: String as ()=>'primary' | 'danger' | 'success' | 'warning' | 'gray' | 'personal',
+    type: String as ()=>'primary' | 'danger' | 'success' | 'warning' | 'gray' | 'personal' |'info',
     default: 'personal',
-    validator: (value: string) => ['primary', 'danger', 'success', 'warning','gray','personal'].includes(value)
+    validator: (value: string) => ['primary', 'danger', 'success', 'warning','gray','personal','info'].includes(value)
   },
   text: {
     type: String,

@@ -51,19 +51,10 @@ function clickHandler(index: number) {
 .tab-item {
   font-weight: bold;
   position: relative;
-  transition: all 0.3s ease-in-out;
 }
 
-.tab-item:hover {
-  background-color: var(--background-color);
-}
 .tab-item.active{
   color: var(--primary-color);
-  background-color: var(--background-color);
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  box-shadow: 2px -2px 8px rgba(0, 0, 0, 0.3);
-
 }
 .tab-item.active::after {
   content: '';

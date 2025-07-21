@@ -1,21 +1,12 @@
-<template>
-  <span
-      class="tag"
-      :class="{
-        'radius-rem': circle === 'large',
-        'radius-half-rem': circle === 'middle',
-        'radius-third-rem': circle === 'small',
-        [hoverClass]: true
-      }"
-
-  >{{ text }}</span>
-</template>
-
 <script setup lang="ts">
-import {defineProps} from 'vue'
-
-// 使用 defineProps 接收属性
-defineProps({
+import MarkdownRender from "../../src/components/MarkdownRender.vue";
+import Tag from "../../src/components/Tag.vue";
+defineOptions({
+  name: "DisplayTag",
+})
+const code=`
+\`\`\`json
+{
   text:{
     type: String,
     default:''
@@ -29,8 +20,19 @@ defineProps({
     type: String ,
     default: ' button button-outline'
   }
-})
+}
+\`\`\`
+`
 </script>
+
+<template>
+
+  <h1 class="text-center">示例</h1>
+  <div class="container">
+    <tag text="主色" />
+  </div>
+  <markdown-render :content="code"/>
+</template>
 
 <style scoped>
 

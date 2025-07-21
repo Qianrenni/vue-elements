@@ -38,8 +38,8 @@
     --danger-bg: #ffe6e6;
     --danger-border: #ffcccc;
 
-    --info-color: #FEEEEEFF;
-    --info-bg: #F56D6DFF;
+    --info-color: #393838;
+    --info-bg: #ffffff;
     --info-border: #c8e9e5;
 
     --gray-100: #f1f1f1;
@@ -118,7 +118,7 @@ body {
 /* 文字颜色类 */
 .text-white         { color: var(--color-white); }
 .text-black         { color: var(--color-black); }
-.text-primary       { color: var(--primary-color);}
+.text-primary       { color: var(--primary-color);background-color: var(--color-white); }
 .text-success       { color: var(--success-color); background-color: var(--success-bg);}
 .text-warning       { color: var(--warning-color); background-color: var(--warning-bg);}
 .text-danger        { color: var(--danger-color); background-color: var(--danger-bg);}

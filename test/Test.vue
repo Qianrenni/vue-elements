@@ -8,7 +8,7 @@
             :key="index"
             @click="selectComponent(item)"
             class="margin-half-vetical button">
-            {{item.name}}
+            {{item}}
         </span>
         </div>
       </scoll-container>
@@ -25,83 +25,37 @@
 </template>
 
 <script lang="ts" setup>
-import {defineAsyncComponent, markRaw, reactive, ref, shallowRef} from "vue";
+import {defineAsyncComponent, markRaw, shallowRef} from "vue";
 import Card from '../src/components/Card.vue'
 import ScollContainer from "../src/layout/ScollContainer.vue";
 // 使用 markRaw 避免组件被 Vue 的响应式系统转换
 const components = [
-  {
-    name:'Avator',
-  },
-  {
-    name:'Badge',
-  },
-  {
-    name:'Card',
-  },
-  {
-    name:'Carousel',
-  },
-  {
-    name:'CollapsibleSection',
-  },
-  {
-    name:'Divider',
-  },
-  {
-    name:'Icon',
-  },
-  {
-    name:'IconGroups',
-  },
-  {
-    name:'MarkdownRender',
-  },
-  {
-    name:'MobileFrame',
-  },
-  {
-    name: 'ScrollNotice',
-  },
-  // {
-  //   name:'NavSection',
-  // },
-  // {
-  //   name:'ProcessBar',
+    'Avator',
+    'Badge',
+    'Card',
+    'Carousel',
+    'CollapsibleSection',
+    'Divider',
+    'Icon',
+    'IconGroups',
+    'MarkdownRender',
+    'MobileFrame',
+    'ScrollNotice',
+    'Search',
+    'TabList',
+    'Tag',
+    'ThemeToggle',
+    'TypeText'
 
-  // },
-  // {
-  //   name:'RainFigure',
-
-  // },
-  // {
-  //   name:'Search',
-
-  // },
-  {
-    name:'TabList',
-
-  },
-  // {
-  //   name:'Tag',
-
-  // },
-  // {
-  //   name:'ThemeToggle',
-
-  // },,
-  // {
-  //   name:'TypeText',
-  // },
 ]
 
 // 当前选中的组件
-const currentComponent = shallowRef(markRaw(defineAsyncComponent(() => import(`./display/Display${components[0].name}.vue`))))
+const currentComponent = shallowRef(markRaw(defineAsyncComponent(() => import(`./display/Display${components[0]}.vue`))))
 
 // 选择组件的方法
 const selectComponent = async (item) => {
   console.log('switch ')
-  currentComponent.value = markRaw(defineAsyncComponent(() => import(`./display/Display${item.name}.vue`)))
+  currentComponent.value = markRaw(defineAsyncComponent(() => import(`./display/Display${item}.vue`)))
 }
 </script>
 
