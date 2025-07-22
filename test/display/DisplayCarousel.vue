@@ -64,18 +64,18 @@ const code=`
 <template>
 
   <h1 class="text-center">示例</h1>
-  <div class="container-flex-start  margin-vetical gap"  >
-    <Carousel :height="300" :width="300 " class="bg-body">
+  <div class="container-align-center container-column margin-vetical gap"  >
+    <Carousel :height="300" :width="600" >
       <CarouselItem v-for="index in 5" :key="index">
-        <div style="height: 300px;width: 300px;" class="container-center container-align-center">
-          {{index}}
+        <div style="height: 300px;width: 600px;" class="container-center container-align-center">
+          <img :src="`https://picsum.photos/600/300?random=${index+5}`" alt=""/>
         </div>
       </CarouselItem>
     </Carousel>
-    <Carousel :height="300" :width="300 " class="bg-body" vertical indicator-position="right-center">
+    <Carousel :height="300" :width="600 "  vertical indicator-position="right-center">
       <CarouselItem v-for="index in 5" :key="index">
-        <div style="height: 300px;width: 300px;" class="container-center container-align-center">
-          {{index}}
+        <div style="height: 300px;width: 600px;" class="container-center container-align-center">
+          <img :src="`https://picsum.photos/600/300?random=${index+10}`" alt=""/>
         </div>
       </CarouselItem>
     </Carousel>

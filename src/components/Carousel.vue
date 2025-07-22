@@ -9,7 +9,7 @@
 
     <icon
         v-if="showButton"
-        :icon="indicatorPosition === 'center-bottom'?'left':'up'"
+        :icon="indicatorPosition === 'center-bottom'?'Left':'Up'"
         class="opacity-2-9 carousel-indicators"
         style="z-index: 1"
         :class="{
@@ -20,7 +20,7 @@
     />
     <icon
         v-if="showButton"
-        :icon="indicatorPosition === 'center-bottom'?'right':'down'"
+        :icon="indicatorPosition === 'center-bottom'?'Right':'Down'"
         class="opacity-2-9 carousel-indicators"
         style="z-index: 1"
         :class="{
