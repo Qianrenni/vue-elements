@@ -1,9 +1,9 @@
 {
   "name": "qyani-components",
-  "version": "1.0.9",
+  "version": "1.1.3",
   "description": "a frontend components lib",
-  "main": "dist/qyani-components.cjs.js",
-  "module": "dist/qyani-components.es.js",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
   "browser": "dist/qyani-components.umd.js",
   "types": "types/index.d.ts",
   "type": "module",
@@ -27,11 +27,11 @@
   ],
   "files": [
     "dist",
-    "src/",
     "README.md",
     "LICENSE",
     "package.json",
-    "types"
+    "types",
+    "src"
   ],
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.0",

@@ -1,6 +1,5 @@
 import {default as QAvator} from './components/Avator.vue'
 import {default as QBadge} from './components/Badge.vue'
-import {default as QCard} from './components/Card.vue'
 import {default as QCarousel} from './components/Carousel.vue'
 import {default as QCarouselItem} from './components/CarouselItem.vue'
 import {default as QCollapsibleSection} from './components/CollapsibleSection.vue'
@@ -18,13 +17,16 @@ import {default as QTabList} from './components/TabList.vue'
 import {default as QTag} from './components/Tag.vue'
 import {default as QThemeToggle} from './components/ThemeToggle.vue'
 import {default as QTypeText} from './components/TypeText.vue'
+
+import {default as QCard} from './layout/Card.vue'
+import {default as QScollContainer} from './layout/ScollContainer.vue'
+
 import {type App} from 'vue'
 import './style/common.css'
 export default {
     install(app:App){
         app.component('QAvator',QAvator)
         app.component('QBadge',QBadge)
-        app.component('QCard',QCard)
         app.component('QCarousel',QCarousel)
         app.component('QCarouselItem',QCarouselItem)
         app.component('QCollapsibleSection',QCollapsibleSection)
@@ -43,6 +45,9 @@ export default {
         app.component('QThemeToggle',QThemeToggle)
         app.component('QTypeText',QTypeText)
 
+        app.component('QCard',QCard)
+        app.component('QScollContainer',QScollContainer)
+
     }
 }
 
@@ -50,7 +55,6 @@ export default {
 export {
     QAvator,
     QBadge,
-    QCard,
     QCarousel,
     QCarouselItem,
     QCollapsibleSection,
@@ -67,6 +71,9 @@ export {
     QTabList,
     QTag,
     QThemeToggle,
-    QTypeText
+    QTypeText,
+
+    QCard,
+    QScollContainer,
 }
 

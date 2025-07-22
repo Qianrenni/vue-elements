@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import Card from "../../src/components/Card.vue";
+import Card from "../../src/layout/Card.vue";
 import ScollContainer from "../../src/layout/ScollContainer.vue";
 defineOptions({
   name: "DisplayCard",
