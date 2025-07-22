@@ -1,9 +1,9 @@
 {
   "name": "qyani-components",
-  "version": "1.1.3",
+  "version": "1.1.5",
   "description": "a frontend components lib",
-  "main": "src/index.ts",
-  "module": "src/index.ts",
+  "main": "dist/qyani-components.cjs.js",
+  "module": "dist/qyani-components.es.js",
   "browser": "dist/qyani-components.umd.js",
   "types": "types/index.d.ts",
   "type": "module",
@@ -30,8 +30,7 @@
     "README.md",
     "LICENSE",
     "package.json",
-    "types",
-    "src"
+    "types"
   ],
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.0",
@@ -40,10 +39,8 @@
     "rollup-plugin-postcss": "^4.0.2",
     "typescript": "^5.8.3",
     "vite": "^7.0.0",
-    "vue-tsc": "^3.0.1"
-  },
-  "dependencies": {
-    "highlight.js": "^11.11.1",
+    "vue-tsc": "^3.0.1",
+    "highlight.js": "latest",
     "marked": "^15.0.11",
     "marked-katex-extension": "^5.1.4",
     "pinyin-pro": "^3.26.0",
