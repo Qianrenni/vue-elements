@@ -70,12 +70,12 @@
 /* 🌑 暗黑模式样式 */
 body.dark-mode {
     /* 🖌️ 主题背景与文字 */
-    --background-color: #121212;
+    --background-color:  #232323;
     --secondary-background-color: #3f3f3f;
     --text-color: #f0f0f0;
     --subtle-text-color: #999999;  /* 略降低亮度，避免喧宾夺主 */
     --border-color: #c5bebe;
-    --card-bg: #3e3e3e;
+    --card-bg: #121212;
     --box-shadow: rgba(255, 255, 255, 0.05);
 
     /* 🔵 主色系（按钮/链接/强调） */
