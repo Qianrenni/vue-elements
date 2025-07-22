@@ -1,20 +1,20 @@
 <template>
-  <card style="height: 100vh;">
+  <card style="height: 100vh;width: 75vw;margin: 0 auto;">
     <template #left>
-      <scoll-container scroll-y style="height: 100vh;min-width: 200px;">
-        <div class="container-column padding-rem border-gray">
+      <scoll-container scroll-y style="height: 100vh;">
+        <div class="container-column padding-rem bo">
         <span
             v-for="(item, index) in components"
             :key="index"
             @click="selectComponent(item)"
-            class="margin-half-vetical button">
+            class="margin-half-vetical text-hover-gray">
             {{item}}
         </span>
         </div>
       </scoll-container>
     </template>
     <template #default>
-      <scoll-container style="height: 100vh;width: calc( 100vw - 200px )" scroll-x scroll-y
+      <scoll-container style="height: 100vh;width: calc( 75vw - 200px )" scroll-x scroll-y
         class="padding-half-horizontal">
         <div class="container-column " >
           <!-- 正确的方式：只传递组件定义，props单独绑定 -->

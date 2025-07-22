@@ -19,7 +19,7 @@ import {default as QTag} from './components/Tag.vue'
 import {default as QThemeToggle} from './components/ThemeToggle.vue'
 import {default as QTypeText} from './components/TypeText.vue'
 import {type App} from 'vue'
-
+import './style/common.css'
 export default {
     install(app:App){
         app.component('QAvator',QAvator)

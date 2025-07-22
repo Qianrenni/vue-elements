@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-section bg-body text-secondary border-gray">
+  <div class="nav-section  text-secondary ">
     <!-- 返回按钮 -->
     <div v-if="stack.length > 1" class="back-button" @click="goBack">
       ← 返回上一级
@@ -112,10 +112,7 @@ function markActive(section: Section,index: number) {
 
 <style scoped>
 /* 这里保持原样式不变即可 */
-.nav-section {
-  max-width: 200px;
-  padding: 1rem 0 0 1rem;
-}
+.nav-section {}
 
 .back-button {
   margin-bottom: 0.5rem;

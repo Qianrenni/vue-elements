@@ -11,7 +11,7 @@
 
     <div class="card-body container-space-between ">
       <slot name="left"></slot>
-      <div class="container-flex-1">
+      <div >
         <slot name="default"/>
       </div>
       <slot name="right"></slot>

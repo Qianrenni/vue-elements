@@ -18,7 +18,7 @@ const props=defineProps({
 });
 
 // 获取所有.svg文件
-const svgFiles = import.meta.glob('/icons/*.svg');
+const svgFiles = import.meta.glob('../icons/*.svg');
 const svgMap = ref<Record<string, string>>({});
 
 // 动态加载所有.svg文件
