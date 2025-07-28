@@ -1,6 +1,6 @@
 
 <template>
-  <div v-html="content" style="cursor: pointer;" />
+  <div v-html="content" style="cursor: pointer;" class="container-align-center container-center" />
 </template>
 
 <script lang="ts" setup>

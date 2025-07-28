@@ -1,12 +1,21 @@
 <template>
   <div class="theme-toggle" @click="toggleMode" aria-label="切换主题">
-    <icon icon="Sun" v-if="isDarkMode" />
-    <icon icon="Moon" v-else  />
+    <icon icon="Sun" v-if="isDarkMode" :size="size" />
+    <icon icon="Moon" v-else  :size="size" />
   </div>
 </template>
 <script setup lang="ts">
 import {ref, onMounted, nextTick} from 'vue'
-
+import Icon from './Icon.vue'
+defineOptions({
+  name: 'ThemeToggle'
+})
+defineProps({
+  size: {
+    type: String,
+    default: '32'
+  }
+})
 // 响应式状态：是否为暗黑模式
 const isDarkMode = ref<boolean>(false)
 
@@ -35,11 +44,5 @@ function toggleMode(): void {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 20px;
-  height: 20px;
-}
-
-.theme-toggle:hover {
-  transform: scale(1.1);
 }
 </style>
