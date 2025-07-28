@@ -5,15 +5,16 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import Icon from "./Icon.vue";
+import {ref, onMounted, nextTick} from 'vue'
 
 // 响应式状态：是否为暗黑模式
 const isDarkMode = ref<boolean>(false)
 
 // 组件挂载后初始化状态
 onMounted(() => {
-  isDarkMode.value = document.body.classList.contains('dark-mode')
+  nextTick(()=>{
+    isDarkMode.value = document.body.classList.contains('dark-mode')
+  })
 })
 
 // 切换主题的方法

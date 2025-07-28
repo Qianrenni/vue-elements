@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import {ref, watch, onMounted} from 'vue'
+import {ref, watch, onMounted, nextTick, onBeforeMount} from 'vue'
 import {marked} from 'marked'
 import markedKatex from 'marked-katex-extension'
 import hljs from 'highlight.js'
@@ -110,13 +110,17 @@ marked.setOptions({
 // 解析 Markdown
 function parseMarkdown(content) {
   htmlContent.value = marked.parse(content)
-  highlightCode()
+  nextTick(() => {
+    highlightCode()
+    bindAnchorEvents()
+  })
 }
-
-// 高亮代码块
+// 高亮代码块v
 function highlightCode() {
   document.querySelectorAll('pre code').forEach((block) => {
-    hljs.highlightElement(block)
+    if (!block.hasAttribute('data-highlighted')) {
+      hljs.highlightElement(block)
+    }
   })
 }
 
@@ -149,9 +153,9 @@ watch(
 )
 
 // mounted 生命周期
-onMounted(() => {
+onBeforeMount(() => {
   parseMarkdown(props.content)
-  bindAnchorEvents()
+
 })
 </script>
 

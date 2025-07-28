@@ -105,7 +105,7 @@ function goBack() {
 
 function markActive(section: Section,index: number) {
   activeId.value = index;
-  console.log(section);
+  // console.log(section);
   emit('select', section)
 }
 </script>
