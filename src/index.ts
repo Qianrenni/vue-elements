@@ -23,6 +23,11 @@ import {default as QScollContainer} from './layout/ScollContainer.vue'
 
 import {type App} from 'vue'
 import './style/common.css'
+import {setupDrag} from "./events/DragUtil";
+
+
+
+
 export default {
     install(app:App){
         app.component('QAvator',QAvator)
@@ -75,5 +80,7 @@ export {
 
     QCard,
     QScollContainer,
+
+    setupDrag
 }
 
