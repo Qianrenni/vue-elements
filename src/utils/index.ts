@@ -1,1 +1,2 @@
-export  * from './debounceUtil'
+export * from './debounceUtil';
+export * from './timeUtil'
