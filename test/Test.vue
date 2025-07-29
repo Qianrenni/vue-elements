@@ -1,7 +1,7 @@
 <template>
-  <card style="height: 100vh;width: 75vw;margin: 0 auto;">
+  <card style="height: 100vh;width:1200px;margin: 0 auto;">
     <template #left>
-      <scoll-container scroll-y style="height: 100vh;">
+      <div class="scroll-container scroll-y" style="height: 100vh;max-width: 300px;">
         <div class="container-column padding-rem bo">
         <span
             v-for="(item, index) in components"
@@ -11,16 +11,15 @@
             {{item}}
         </span>
         </div>
-      </scoll-container>
+      </div>
     </template>
     <template #default>
-      <scoll-container style="height: 100vh;width: calc( 75vw - 200px )" scroll-x scroll-y
-        class="padding-half-horizontal">
+      <div class="scroll-container scroll-y" style="height: 100vh;max-width: 1000px;">
         <div class="container-column " >
           <!-- 正确的方式：只传递组件定义，props单独绑定 -->
           <component :is="currentComponent"/>
         </div>
-      </scoll-container>
+      </div>
     </template>
   </card>
 </template>
@@ -28,7 +27,6 @@
 <script lang="ts" setup>
 import {defineAsyncComponent, markRaw, shallowRef} from "vue";
 import Card from '../src/layout/Card.vue'
-import ScollContainer from "../src/layout/ScollContainer.vue";
 // 使用 markRaw 避免组件被 Vue 的响应式系统转换
 const components = [
     'Avator',
