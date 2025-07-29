@@ -1,3 +1,7 @@
+
+export * from './events'
+export * from './utils'
+
 import {default as QAvator} from './components/Avator.vue'
 import {default as QBadge} from './components/Badge.vue'
 import {default as QCarousel} from './components/Carousel.vue'
@@ -23,8 +27,6 @@ import {default as QScollContainer} from './layout/ScollContainer.vue'
 
 import {type App} from 'vue'
 import './style/common.css'
-import {setupDrag} from "./events/DragUtil";
-
 
 
 
@@ -80,7 +82,5 @@ export {
 
     QCard,
     QScollContainer,
-
-    setupDrag
 }
 
