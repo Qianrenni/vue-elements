@@ -22,7 +22,6 @@ import {default as QThemeToggle} from './components/ThemeToggle.vue'
 
 
 import {default as QCard} from './layout/Card.vue'
-import {default as QScollContainer} from './layout/ScollContainer.vue'
 
 import {type App} from 'vue'
 import './style/common.css'
@@ -51,7 +50,6 @@ export default {
 
 
         app.component('QCard',QCard)
-        app.component('QScollContainer',QScollContainer)
 
     }
 }
@@ -78,6 +76,5 @@ export {
 
 
     QCard,
-    QScollContainer,
 }
 
