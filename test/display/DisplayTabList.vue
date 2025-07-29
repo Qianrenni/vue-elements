@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import TabList from "../../src/components/TabList.vue";
+import TabList from "../../src/components/Tab.vue";
 defineOptions({
   name: "DisplayTabList",
 })

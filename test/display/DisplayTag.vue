@@ -5,22 +5,15 @@ defineOptions({
   name: "DisplayTag",
 })
 const code=`
-\`\`\`json
-{
-  text:{
-    type: String,
-    default:''
-  },
-  circle:{
-    type: String as () => 'large' | 'middle' | 'small' | 'none',
-    default:'small',
-    validator:(value:string)=>['large','middle','small','none'].includes(value)
-  },
-  hoverClass:{
-    type: String ,
-    default: ' button button-outline'
-  }
-}
+\`\`\`html
+  <div class="container">
+    <span class="tag button-outline radius-third-rem">标签</span>
+    <span class="tag button-outline radius-third-rem">标签</span>
+    <span class="tag button-outline radius-third-rem">标签</span>
+    <span class="tag button-outline radius-third-rem">标签</span>
+    <span class="tag button-outline radius-third-rem">标签</span>
+    <span class="tag button-outline radius-third-rem">标签</span>
+  </div>
 \`\`\`
 `
 </script>
@@ -29,7 +22,12 @@ const code=`
 
   <h1 class="text-center">示例</h1>
   <div class="container">
-    <tag text="主色" />
+    <span class="tag button-outline radius-third-rem">标签</span>
+    <span class="tag button-outline radius-third-rem">标签</span>
+    <span class="tag button-outline radius-third-rem">标签</span>
+    <span class="tag button-outline radius-third-rem">标签</span>
+    <span class="tag button-outline radius-third-rem">标签</span>
+    <span class="tag button-outline radius-third-rem">标签</span>
   </div>
   <markdown-render :content="code"/>
 </template>

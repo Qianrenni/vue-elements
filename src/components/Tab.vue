@@ -19,7 +19,7 @@ import { defineProps, defineEmits, ref } from 'vue'
 import { defineOptions } from 'vue'
 
 defineOptions({
-  name: 'TabList'
+  name: 'Tab'
 })
 
 const props = defineProps({

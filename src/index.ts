@@ -17,10 +17,9 @@ import {default as QProgressBar} from './components/ProgressBar.vue'
 import {default as QRainFigure} from './components/RainFigure.vue'
 import {default as QScrollNotice} from './components/ScrollNotice.vue'
 import {default as QSearch} from './components/Search.vue'
-import {default as QTabList} from './components/TabList.vue'
-import {default as QTag} from './components/Tag.vue'
+import {default as QTab} from './components/Tab.vue'
 import {default as QThemeToggle} from './components/ThemeToggle.vue'
-import {default as QTypeText} from './components/TypeText.vue'
+
 
 import {default as QCard} from './layout/Card.vue'
 import {default as QScollContainer} from './layout/ScollContainer.vue'
@@ -47,10 +46,9 @@ export default {
         app.component('QRainFigure',QRainFigure)
         app.component('QScrollNotice',QScrollNotice)
         app.component('QSearch',QSearch)
-        app.component('QTabList',QTabList)
-        app.component('QTag',QTag)
+        app.component('QTabList',QTab)
         app.component('QThemeToggle',QThemeToggle)
-        app.component('QTypeText',QTypeText)
+
 
         app.component('QCard',QCard)
         app.component('QScollContainer',QScollContainer)
@@ -75,10 +73,9 @@ export {
     QRainFigure,
     QScrollNotice,
     QSearch,
-    QTabList,
-    QTag,
+    QTab,
     QThemeToggle,
-    QTypeText,
+
 
     QCard,
     QScollContainer,
