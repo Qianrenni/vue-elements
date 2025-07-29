@@ -5,12 +5,12 @@ export class TimeUtils {
     /**
      * 构造函数：初始化时间工具类
      * @param input 可选参数，可以是Date、数字（时间戳）、字符串（日期字符串）或null/undefined
-     * @param locale 可选参数，默认语言为'en-US'
+     * @param locale 可选参数，默认语言为'zh-CN'
      * @throws 如果输入无效，抛出错误
      */
     constructor(
         input?: Date | number | string | null,
-        locale: string = 'en-US' // 默认语言
+        locale: string = 'zh-CN' // 默认语言
     ) {
         if (input === null || input === undefined) {
             this.date = new Date();

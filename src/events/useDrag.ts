@@ -2,10 +2,10 @@
  * 拖拽逻辑钩子
  * 功能：封装元素的拖拽和点击逻辑，支持动态绑定和清理事件监听
  * @param elementRef 目标元素的引用
- * @param onClick 点击事件的回调函数（可选）
+ * @param onMove 移动事件的回调函数（可选）
  * @returns 返回一个包含清理方法 `destroy` 的对象
  */
-export const useDrag = (elementRef: HTMLElement, onClick?: () => void) => {
+export const useDrag = (elementRef: HTMLElement, onMove?: (...args: any[]) => void) => {
     // 拖拽状态标志
     let isDragging = false;
     // 记录鼠标按下时的初始坐标
@@ -14,21 +14,6 @@ export const useDrag = (elementRef: HTMLElement, onClick?: () => void) => {
     // 记录元素初始位置（bottom/right）
     let startBottom = 0;
     let startRight = 0;
-    // 标记是否发生了拖拽偏移（用于区分点击和拖拽）
-    let isOffset = false;
-
-    /**
-     * 点击事件处理函数
-     * - 如果没有发生拖拽偏移（isOffset=false），则触发点击回调
-     * - 否则重置偏移标记
-     */
-    const clickHandler = () => {
-        if (!isOffset && onClick) {
-            onClick();
-        } else {
-            isOffset = false;
-        }
-    };
 
     /**
      * 开始拖拽
@@ -43,6 +28,8 @@ export const useDrag = (elementRef: HTMLElement, onClick?: () => void) => {
         startBottom = parseInt(getComputedStyle(elementRef).bottom, 10) || 0;
         startRight = parseInt(getComputedStyle(elementRef).right, 10) || 0;
         document.body.style.userSelect = 'none';
+        document.removeEventListener('mousemove', drag);
+        document.removeEventListener('mouseup', stopDrag);
         document.addEventListener('mousemove', drag);
         document.addEventListener('mouseup', stopDrag);
     };
@@ -56,9 +43,9 @@ export const useDrag = (elementRef: HTMLElement, onClick?: () => void) => {
         if (!isDragging) return;
         const dy = startY - e.clientY;
         const dx = startX - e.clientX;
-        isOffset = true;
         elementRef.style.bottom = `${startBottom + dy}px`;
         elementRef.style.right = `${startRight + dx}px`;
+        onMove?.()
     };
 
     /**
@@ -76,7 +63,6 @@ export const useDrag = (elementRef: HTMLElement, onClick?: () => void) => {
 
     // 绑定拖拽和点击事件
     elementRef.addEventListener('mousedown', startDrag);
-    elementRef.addEventListener('click', clickHandler);
 
     // 返回清理方法
     return {
@@ -86,7 +72,6 @@ export const useDrag = (elementRef: HTMLElement, onClick?: () => void) => {
          */
         destroy: () => {
             elementRef.removeEventListener('mousedown', startDrag);
-            elementRef.removeEventListener('click', clickHandler);
             document.removeEventListener('mousemove', drag);
             document.removeEventListener('mouseup', stopDrag);
         },

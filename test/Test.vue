@@ -37,6 +37,7 @@ const components = [
     'Carousel',
     'CollapsibleSection',
     'Divider',
+    'DragUtil',
     'Icon',
     'IconGroups',
     'MarkdownRender',
@@ -49,7 +50,9 @@ const components = [
     'TabList',
     'Tag',
     'ThemeToggle',
-    'TypeText'
+    'TimeUtil',
+    'TypeText',
+    'UseMousePosition'
 
 ]
 
