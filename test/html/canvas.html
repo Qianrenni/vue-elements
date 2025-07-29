@@ -66,7 +66,7 @@
         <button data-tool="eraser">橡皮擦</button>
         <input type="color" id="color-picker" value="#000000" />
         <label>粗细:
-            <input type="number" id="stroke-width" value="3" min="1" max="20" style="width:50px;" />
+            <input type="number" id="stroke-width" value="3" min="1" max="20" />
         </label>
         <button id="fill-toggle">空心图形</button>
         <button id="save-btn">💾 保存图片</button>
@@ -164,7 +164,7 @@
         if (!isDrawing) return;
         const x = e.offsetX, y = e.offsetY;
 
-        if (!['pencil','eraser'].includes(currentTool)){
+        if (!['pencil','eraser','spray'].includes(currentTool)){
             // 清除当前画布，重绘背景 + 预览
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(offscreenCanvas, 0, 0);
