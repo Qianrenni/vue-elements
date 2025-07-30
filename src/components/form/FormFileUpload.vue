@@ -12,27 +12,21 @@
         @change="onChange"
     />
     <!-- 显示已选文件名（可选） -->
-    <div v-if="fileList.length > 0" class="file-list">
+    <div v-if="fileList.length > 1" class="file-list">
       <small>已选择: {{ fileList.map(f => f.name).join(', ') }}</small>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-const props = withDefaults(defineProps<{
-      modelValue: File | FileList | null;
-      name: string;
-      label?: string;
-      accept?: string; // 如 'image/*,.pdf'
-      multiple?: boolean;
-      required?: boolean;
-    }>(),
-    {
-      label: '',
-      accept: '',
-      multiple: false,
-      required: true,
-    })
+const props = defineProps<{
+  modelValue: File | FileList | null;
+  name: string;
+  label?: string;
+  accept?: string; // 如 'image/*,.pdf'
+  multiple?: boolean;
+  required?: boolean;
+}>();
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: File | FileList | null): void;
@@ -64,8 +58,7 @@ const fileList = computed(() => {
   return [files];
 });
 
-import {computed} from 'vue';
-</script>
+import {computed} from 'vue';</script>
 
 <style scoped>
 

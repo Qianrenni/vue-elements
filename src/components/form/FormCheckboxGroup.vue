@@ -17,23 +17,17 @@
 </template>
 
 <script lang="ts" setup>
-import {PropType} from 'vue';
 import {Options} from '@/types';
 
-const props = defineProps({
-  modelValue: {
-    type: Array as PropType<string[] | number[]>,
-    default: () => []
-  },
-  label: String,
-  options: {
-    type: Array as PropType<Options[]>,
-    required: true,
-    validator: (value: Options[]) => value.length > 0
-  }
-});
+const props = defineProps<{
+  modelValue: string[],
+  label: string,
+  options: Options[],
+}>();
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string[]): void
+}>();
 
 function handleChange(e: Event) {
   const target = e.target as HTMLInputElement;

@@ -15,14 +15,11 @@
 </template>
 
 <script lang="ts" setup>
-withDefaults(defineProps<{
+defineProps<{
   modelValue: string;
   name: string;
   label?: string;
-}>(), {
-  label: '',
-});
-
+}>()
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
 }>();

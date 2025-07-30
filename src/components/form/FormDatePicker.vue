@@ -20,19 +20,14 @@ import {computed} from 'vue';
 // 支持的日期类型
 type DateType = 'date' | 'time' | 'datetime-local' | 'month' | 'week';
 
-const props = withDefaults(defineProps<{
-      modelValue: string | null | undefined;
-      name: string;
-      label?: string;
-      type: DateType;
-      placeholder?: string;
-      required?: boolean;
-    }>(),
-    {
-      label: '',
-      placeholder: '',
-      required: true,
-    })
+const props =defineProps<{
+  modelValue: string | null | undefined;
+  name: string;
+  label?: string;
+  type: DateType;
+  placeholder?: string;
+  required?: boolean;
+}>()
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;

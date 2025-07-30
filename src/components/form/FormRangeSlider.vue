@@ -4,42 +4,36 @@
     <label :for="name" class="label">{{ label }}:</label>
     <input
         :id="name"
-        v-model="value"
-        :max="max"
+        :value="modelValue"
         :min="min"
+        :max="max"
+        :step="step"
         :name="name"
         :required="required"
-        :step="step"
         type="range"
-        @input="$emit('update:modelValue', value)"
+        @input="onInput"
     />
     <output>{{ modelValue }}</output>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {computed} from "vue";
+defineProps<{
+  modelValue: number
+  name: string
+  label: string
+  min?: number
+  max?: number
+  step?: number
+  required?: boolean
+}>()
 
-const props = defineProps({
-  modelValue: Number,
-  name: String,
-  label: String,
-  min: {type: Number, default: 0},
-  max: {type: Number, default: 100},
-  step: {type: Number, default: 1},
-  required: {
-    type: Boolean,
-    default: true
-  }
-});
-const value = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(value) {
-    emit('update:modelValue', value);
-  }
-})
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: number): void
+}>()
 
-const emit = defineEmits(['update:modelValue']);
+function onInput(e: Event) {
+  const target = e.target as HTMLInputElement
+  emit('update:modelValue', target.valueAsNumber)
+}
 </script>

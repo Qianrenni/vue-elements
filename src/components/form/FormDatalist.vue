@@ -20,17 +20,14 @@
 
 <script lang="ts" setup>
 // 定义 props
-withDefaults(defineProps<{
+defineProps<{
   modelValue: string;
   name: string;
   label: string;
   options: string[];
   placeholder?: string;
   required?: boolean;
-}>(), {
-  placeholder: '',
-  required: true,
-})
+}>()
 
 // 定义 emit 事件
 const emit = defineEmits<{

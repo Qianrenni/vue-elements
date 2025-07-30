@@ -10,7 +10,7 @@
             :required="required"
             :value="opt.value"
             type="radio"
-            @change="$emit('update:modelValue', opt.value)"
+            @change="emit('update:modelValue', opt.value)"
         />
         {{ opt.label }}
       </label>
@@ -35,7 +35,9 @@ defineProps({
     default: true
   }
 });
-defineEmits(['update:modelValue']);
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>();
 </script>
 
 <style scoped>

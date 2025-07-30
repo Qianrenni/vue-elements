@@ -7,8 +7,8 @@
         :multiple="multiple"
         :name="name"
         :required="required"
-        :value="value"
-        @change="$emit('update:modelValue', value)"
+        :value="modelValue"
+        @change="onInput"
     >
       <option value="">{{ placeholder }}</option>
       <option v-for="opt in options" :value="opt.value">{{ opt.label }}</option>
@@ -38,13 +38,11 @@ const props = defineProps({
     default: true
   }
 });
-const value = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(val) {
-    emit('update:modelValue', val);
-  }
-})
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string | string[] | null): void;
+}>();
+const onInput = (e: Event) => {
+  const target = e.target as HTMLSelectElement;
+  emit('update:modelValue', target.value);
+}
 </script>

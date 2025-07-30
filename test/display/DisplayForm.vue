@@ -35,7 +35,7 @@
           class="container-space-between"
           label="电话号码"
           name="tel"
-          pattern="[0-9\\-]+"
+          pattern="[0-9-]+"
           placeholder="138-0000-0000"
           type="tel"
       />
@@ -106,7 +106,7 @@
       <FormFileUpload v-model="form.file" accept="image/*,.pdf" label="上传文件" name="file"/>
       <FormFileUpload v-model="form.files" accept="*" label="多文件上传" multiple name="files"/>
 
-      <FormTextarea v-model="form.desc" label="描述" name="desc" placeholder="请输入详情..." rows="4"/>
+      <FormTextarea v-model="form.desc" :rows="4" label="描述" name="desc" placeholder="请输入详情..."/>
     </fieldset>
 
     <!-- 6. 按钮控件 -->

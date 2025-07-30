@@ -4,20 +4,19 @@
     <label v-if="label" :for="name" class="label">{{ label }}:</label>
     <input
         :id="name"
-        v-model="value"
         :name="name"
         :pattern="pattern"
         :placeholder="placeholder"
         :required="required"
         :type="type"
         class="input-text padding-24rem"
-        @input="$emit('update:modelValue', value)"
+        @input="oninput"
+        :value="modelValue"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import {computed} from "vue";
 
 const props = defineProps({
   modelValue: String,
@@ -35,16 +34,13 @@ const props = defineProps({
   pattern: String
 });
 
-const value = computed({
-  get() {
-    return props.modelValue
-  },
-  set(value) {
-    emit('update:modelValue', value)
-  }
-})
-
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>();
+const oninput = (e: Event) => {
+    const target = e.target as HTMLInputElement;
+    emit('update:modelValue', target.value as string);
+}
 </script>
 <style lang="css" scoped>
 
