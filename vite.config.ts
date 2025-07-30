@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite'
-import { resolve } from 'path'
-import  vue from '@vitejs/plugin-vue'
-import  postcss from 'rollup-plugin-postcss'
+import {defineConfig} from 'vite'
+import {resolve} from 'path'
+import vue from '@vitejs/plugin-vue'
+
 export default defineConfig({
     plugins: [
         vue(),
@@ -10,7 +10,7 @@ export default defineConfig({
         //     inject: false, // 禁用动态注入
         //     modules: false, // 确保不启用 CSS Modules（除非你需要）
         // })
-        ],  // 启用 Vue 插件
+    ],  // 启用 Vue 插件
     build: {
         lib: {  // 关键：启用库模式
             entry: resolve(__dirname, 'src/index.ts'),  // 入口文件（你的组件库主入口）
@@ -28,7 +28,12 @@ export default defineConfig({
             },
         },
     },
-    server:{
+    server: {
         port: 8080,
+    },
+    resolve: {
+        alias: {
+            '@': resolve(__dirname, 'src')
+        }
     }
 })

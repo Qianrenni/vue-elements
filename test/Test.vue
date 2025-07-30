@@ -6,16 +6,16 @@
         <span
             v-for="(item, index) in components"
             :key="index"
-            @click="selectComponent(item)"
-            class="margin-half-vetical text-hover-gray">
-            {{item}}
+            class="margin-half-vetical text-hover-gray"
+            @click="selectComponent(item)">
+            {{ item }}
         </span>
         </div>
       </div>
     </template>
     <template #default>
       <div class="scroll-container scroll-y" style="height: 100vh;max-width: 1000px;">
-        <div class="container-column " >
+        <div class="container-column ">
           <!-- 正确的方式：只传递组件定义，props单独绑定 -->
           <component :is="currentComponent"/>
         </div>
@@ -29,28 +29,29 @@ import {defineAsyncComponent, markRaw, shallowRef} from "vue";
 import Card from '../src/components/layout/Card.vue'
 // 使用 markRaw 避免组件被 Vue 的响应式系统转换
 const components = [
-    'Avator',
-    'Badge',
-    'Card',
-    'Carousel',
-    'CollapsibleSection',
-    'Divider',
-    'DragUtil',
-    'Icon',
-    'IconGroups',
-    'MarkdownRender',
-    'MobileFrame',
-    'NavSection',
-    'ProgressBar',
-    'RainFigure',
-    'ScrollNotice',
-    'Search',
-    'Tab',
-    'Tag',
-    'ThemeToggle',
-    'TimeUtil',
-    'TypeText',
-    'UseMousePosition'
+  'Avatar',
+  'Badge',
+  'Card',
+  'Carousel',
+  'CollapsibleSection',
+  'Divider',
+  'DragUtil',
+  'Form',
+  'Icon',
+  'IconGroups',
+  'MarkdownRender',
+  'MobileFrame',
+  'NavSection',
+  'ProgressBar',
+  'RainFigure',
+  'ScrollNotice',
+  'Search',
+  'Tab',
+  'Tag',
+  'ThemeToggle',
+  'TimeUtil',
+  'TypeText',
+  'UseMousePosition'
 
 ]
 
