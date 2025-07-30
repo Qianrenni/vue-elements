@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import ScrollNotice from "../../src/components/ScrollNotice.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
+import ScrollNotice from "../../src/components/display/ScrollNotice.vue";
 defineOptions({
   name: "DisplayScrollNotice",
 })

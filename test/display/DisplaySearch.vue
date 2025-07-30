@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import Search from "../../src/components/Search.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
+import Search from "../../src/components/form/Search.vue";
 
 defineOptions({
   name: "DisplaySearch",

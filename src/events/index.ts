@@ -1,2 +1,2 @@
-export * from './useMousePosition'
-export * from './useDrag'
+export * from "./useDrag";
+export * from "./useMousePosition";

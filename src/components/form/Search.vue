@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Icon from "./Icon.vue";
+import Icon from "../basic/Icon.vue";
 import {ref} from "vue";
 
 defineOptions({

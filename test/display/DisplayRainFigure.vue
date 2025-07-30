@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import RainFigure from "../../src/components/RainFigure.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
+import RainFigure from "../../src/components/display/RainFigure.vue";
 defineOptions({
   name: "DisplayProgressBar",
 })

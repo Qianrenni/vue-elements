@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import Divider from "../../src/components/Divider.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
+import Divider from "../../src/components/display/Divider.vue";
 
 
 defineOptions({

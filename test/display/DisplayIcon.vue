@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import Icon from "../../src/components/Icon.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
+import Icon from "../../src/components/basic/Icon.vue";
 defineOptions({
   name: "DisplayIcon",
 })

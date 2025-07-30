@@ -76,12 +76,12 @@
 /* 🌑 暗黑模式样式 */
 body.dark-mode {
     /* 🖌️ 主题背景与文字 */
-    --background-color:  #232323;
+    --background-color:  #121212;
     --secondary-background-color: #3f3f3f;
     --text-color: #f0f0f0;
     --subtle-text-color: #999999;  /* 略降低亮度，避免喧宾夺主 */
     --border-color: #c5bebe;
-    --card-bg: #121212;
+    --card-bg:  #232323;
     --box-shadow: rgba(255, 255, 255, 0.05);
 
     /* 🔵 主色系（按钮/链接/强调） */
@@ -446,7 +446,8 @@ body {
 .container-flex-1 {flex: 1;}
 .container-flex-2 {flex: 2;}
 .container-flex-3 {flex: 3;}
-.container-w100-h100 {width: 100%; height: 100%;}
+.container-w100 {width: 100%;}
+.container-h100 {height: 100%;}
 /* 背景颜色类 */
 .bg-image-header { background: linear-gradient(to right, #1e40af, #4338ca);}
 

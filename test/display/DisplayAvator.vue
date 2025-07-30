@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Avator from "../../src/components/Avator.vue";
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
+import Avator from "../../src/components/display/Avator.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
 defineOptions({
   name: "DisplayAvator",
 })

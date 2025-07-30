@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import CollapsibleSection from "../../src/components/CollapsibleSection.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
+import CollapsibleSection from "../../src/components/layout/CollapsibleSection.vue";
 
 defineOptions({
   name: "DisplayCollapsibleSection",

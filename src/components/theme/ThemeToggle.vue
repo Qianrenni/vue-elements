@@ -6,7 +6,7 @@
 </template>
 <script setup lang="ts">
 import {ref, onMounted, nextTick} from 'vue'
-import Icon from './Icon.vue'
+import Icon from '../basic/Icon.vue'
 defineOptions({
   name: 'ThemeToggle'
 })

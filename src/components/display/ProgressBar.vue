@@ -1,5 +1,5 @@
 <template>
-  <div class="container-w100-h100 bg-gray-300"
+  <div class="container-w100 container-h100 bg-gray-300"
        :class="{
       'container-column': direction === 'vertical'
       }"

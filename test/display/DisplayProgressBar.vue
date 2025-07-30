@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import ProgressBar from "../../src/components/ProgressBar.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
+import ProgressBar from "../../src/components/display/ProgressBar.vue";
 defineOptions({
   name: "DisplayProgressBar",
 })

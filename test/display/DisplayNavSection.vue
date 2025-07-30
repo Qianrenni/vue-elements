@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
 import Tag from "../../src/components/Tag.vue";
-import NavSection from "../../src/components/NavSection.vue";
+import NavSection from "../../src/components/navigation/NavSection.vue";
 defineOptions({
   name: "DisplayNavSection",
 })

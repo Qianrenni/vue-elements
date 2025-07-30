@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import Badge from "../../src/components/Badge.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
+import Badge from "../../src/components/display/Badge.vue";
 defineOptions({
   name: "DisplayBadge",
 })
@@ -38,12 +38,12 @@ const code=`
     <h3>2.自定义</h3>
     <div class="container-center gap">
       <badge :dot="true">
-        <span class="button">
+        <span class="button padding-24rem">
         按钮
       </span>
       </badge>
       <badge value="100">
-      <span class="button">
+      <span class="button padding-28rem">
         按钮
       </span>
       </badge>

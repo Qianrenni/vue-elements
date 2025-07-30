@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import Carousel from "../../src/components/Carousel.vue";
-import CarouselItem from "../../src/components/CarouselItem.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
+import Carousel from "../../src/components/display/Carousel.vue";
+import CarouselItem from "../../src/components/display/CarouselItem.vue";
 defineOptions({
   name: "DisplayCarousel",
 })

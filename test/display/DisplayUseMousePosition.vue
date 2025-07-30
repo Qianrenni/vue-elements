@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MarkdownRender from "../../src/components/MarkdownRender.vue";
+import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
 import {useMousePosition} from "../../src";
 defineOptions({
   name: "DisplayUseMousePosition",

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconGroups from "../../src/components/IconGroups.vue";
+import IconGroups from "../../src/components/basic/IconGroups.vue";
 defineOptions({
   name: "DisplayDisplayIconGroups",
 })

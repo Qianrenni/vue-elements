@@ -26,7 +26,7 @@
 
 <script lang="ts" setup>
 import {defineAsyncComponent, markRaw, shallowRef} from "vue";
-import Card from '../src/layout/Card.vue'
+import Card from '../src/components/layout/Card.vue'
 // 使用 markRaw 避免组件被 Vue 的响应式系统转换
 const components = [
     'Avator',

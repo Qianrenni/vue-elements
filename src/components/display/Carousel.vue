@@ -88,7 +88,7 @@
 
 <script setup lang="ts">
 import {ref, computed, onMounted, onBeforeUnmount, useSlots, useTemplateRef} from 'vue'
-import Icon from "./Icon.vue";
+import Icon from "../basic/Icon.vue";
 
 const props = defineProps({
   vertical: {
