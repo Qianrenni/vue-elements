@@ -4,12 +4,12 @@
     <label :for="name" class="label">{{ label }}:</label>
     <input
         :id="name"
-        :value="modelValue"
-        :min="min"
         :max="max"
-        :step="step"
+        :min="min"
         :name="name"
         :required="required"
+        :step="step"
+        :value="modelValue"
         type="range"
         @input="onInput"
     />
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{
+withDefaults(defineProps<{
   modelValue: number
   name: string
   label: string
@@ -26,7 +26,12 @@ defineProps<{
   max?: number
   step?: number
   required?: boolean
-}>()
+}>(), {
+  required: true,
+  min: 0,
+  max: 100,
+  step: 1
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number): void

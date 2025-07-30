@@ -17,7 +17,7 @@
   "author": "qyaniwu",
   "license": "ISC",
   "peerDependencies": {
-    "vue": "^3.2.0"
+    "vue": "^3.5.18"
   },
   "keywords": [
     "vue",
@@ -34,16 +34,17 @@
   ],
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.0",
+    "@vue/compiler-sfc": "^3.5.17",
     "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "rollup-plugin-postcss": "^4.0.2",
-    "typescript": "^5.8.3",
-    "vite": "^7.0.0",
-    "vue-tsc": "^3.0.1",
     "highlight.js": "latest",
     "marked": "^15.0.11",
     "marked-katex-extension": "^5.1.4",
     "pinyin-pro": "^3.26.0",
-    "vue": "^3.2.0"
+    "postcss": "^8.5.6",
+    "rollup-plugin-postcss": "^4.0.2",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0",
+    "vue": "^3.5.17",
+    "vue-tsc": "^3.0.1"
   }
 }

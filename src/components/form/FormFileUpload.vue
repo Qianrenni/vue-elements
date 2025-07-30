@@ -19,14 +19,18 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue: File | FileList | null;
   name: string;
   label?: string;
   accept?: string; // 如 'image/*,.pdf'
   multiple?: boolean;
   required?: boolean;
-}>();
+}>(), {
+  required: true,
+  multiple: false,
+  accept: '*.*'
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: File | FileList | null): void;

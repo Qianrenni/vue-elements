@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{
+withDefaults(defineProps<{
   modelValue: string;
   name: string;
   label?: string;
@@ -24,7 +24,11 @@ defineProps<{
   placeholder?: string;
   required?: boolean;
   resizable?: boolean; // 是否允许拖拽调整大小，默认为true
-}>();
+}>(), {
+  rows: 3,
+  required: true,
+  resizable: false
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void

@@ -35,7 +35,7 @@
           class="container-space-between"
           label="电话号码"
           name="tel"
-          pattern="[0-9-]+"
+          pattern="[0-9]+"
           placeholder="138-0000-0000"
           type="tel"
       />
@@ -45,8 +45,8 @@
           :options="['Chrome', 'Firefox', 'Safari', 'Edge', 'Opera']"
           class="container-space-between"
           label="选择浏览器"
-          name="browser"
-          placeholder="输入或选择浏览器"
+          name="browser" placeholder="输入或选择浏览器"
+          required
       />
       <FormRangeSlider
           v-model="form.range"

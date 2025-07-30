@@ -1,4 +1,3 @@
-<!-- components/form/FormButton.vue -->
 <template>
   <button
       :type="type"
@@ -9,16 +8,15 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
-  type: {
-    type: String as () => 'button' | 'submit' | 'reset',
-    default: 'button'
-  }
+
+const props = withDefaults(defineProps<{
+  type?: 'button' | 'submit' | 'reset';
+}>(), {
+  type: 'button',
 });
+
 </script>
 
 <style scoped>
-button {
-  cursor: pointer;
-}
+
 </style>
