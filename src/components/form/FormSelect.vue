@@ -1,13 +1,14 @@
 <!-- components/form/FormSelect.vue -->
 <template>
   <div>
-    <label :for="name">{{ label }}:</label>
+    <label :for="name" class="label">{{ label }}:</label>
     <select
         :id="name"
         :multiple="multiple"
         :name="name"
         :required="required"
         :value="modelValue"
+        class="form-select"
         @change="onInput"
     >
       <option value="">{{ placeholder }}</option>
@@ -17,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, PropType} from "vue";
+import {PropType} from "vue";
 import {Options} from "@/types";
 
 const props = defineProps({

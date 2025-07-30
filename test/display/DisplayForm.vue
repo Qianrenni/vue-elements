@@ -68,6 +68,7 @@
           { value: 'option2', label: '选项 2' },
           { value: 'option3', label: '选项 3' }
         ]"
+          class="container-column"
           label="下拉选择"
           name="select"
           placeholder="请选择"

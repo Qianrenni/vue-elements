@@ -1,6 +1,8 @@
 <!-- components/form/FormRangeSlider.vue -->
 <template>
-  <div>
+  <div
+      class="range-slider"
+  >
     <label :for="name" class="label">{{ label }}:</label>
     <input
         :id="name"
@@ -10,6 +12,7 @@
         :required="required"
         :step="step"
         :value="modelValue"
+
         type="range"
         @input="onInput"
     />
@@ -42,3 +45,6 @@ function onInput(e: Event) {
   emit('update:modelValue', target.valueAsNumber)
 }
 </script>
+<style lang="css" scoped>
+
+</style>

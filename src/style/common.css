@@ -325,12 +325,97 @@ body {
 .input-text {
     flex: 1;
     border: 1px solid #222;
-    transition: border 0.3s ease;
     border-radius: 0.3rem;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    transition: border 0.3s ease;
 }
 
 .input-text:focus {
+    border: 1px solid var(--primary-color);
+}
+
+/* 覆盖自动填充样式 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: 0 0 0 300px white inset;
+}
+
+
+/* 主要 input 样式容器 */
+.range-slider input[type="range"] {
+    -webkit-appearance: none;
+    flex: 1;
+    height: 0.5rem;
+    border-radius: 0.25rem;
+    background: linear-gradient(to right, var(--primary-color), var(--primary-hover));
+}
+
+/* 滑块（thumb）样式 - WebKit */
+.range-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease;
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+/* Firefox 支持 */
+.range-slider input[type="range"]::-moz-range-thumb {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease;
+}
+
+.range-slider input[type="range"]::-moz-range-track {
+    flex: 1;
+    height: 0.5rem;
+    border-radius: 0.25rem;
+    background: linear-gradient(to right, var(--primary-color), var(--primary-hover));
+}
+
+/* 输出值样式 */
+.range-slider output {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+
+/* 自定义样式下拉选择 */
+.form-select {
+    flex: 1;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid #222; /* 边框 */
+    border-radius: 0.25rem;
+    /* 去除默认下拉箭头 */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* 添加自定义背景图 */
+    /*background-image: url('替换的图片路径');*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: right center;*/
+    /*background-size: 10px 10px; !* 图片大小 *!*/
+}
+
+.form-select:focus {
+    outline: none;
     border: 1px solid var(--primary-color);
 }
 
