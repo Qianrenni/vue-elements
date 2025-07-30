@@ -8,12 +8,21 @@
 
     <fieldset>
       <legend>1. 文本输入类</legend>
-      <FormText v-model="form.text" label="文本输入" name="text" placeholder="请输入文本"/>
+      <FormText v-model="form.text" class="container-column" label="文本输入" name="text"
+                placeholder="请输入文本"/>
       <FormText v-model="form.password" label="密码输入" name="password" placeholder="请输入密码" type="password"/>
       <FormText v-model="form.email" label="邮箱输入" name="email" placeholder="example@example.com" required
                 type="email"/>
       <FormText v-model="form.tel" label="电话号码" name="tel" pattern="[0-9\\-]+" placeholder="138-0000-0000"
                 type="tel"/>
+      <!-- 新增：Datalist 自动补全 -->
+      <FormDatalist
+          v-model="form.browser"
+          :options="['Chrome', 'Firefox', 'Safari', 'Edge', 'Opera']"
+          label="选择浏览器"
+          name="browser"
+          placeholder="输入或选择浏览器"
+      />
       <FormRangeSlider v-model="form.range" :max="10" :min="0" label="滑块输入" name="range"/>
     </fieldset>
 
@@ -70,12 +79,16 @@ import FormRadioGroup from '@/components/form/FormRadioGroup.vue';
 import FormCheckboxGroup from '@/components/form/FormCheckboxGroup.vue';
 import FormRangeSlider from '@/components/form/FormRangeSlider.vue';
 import FormButton from '@/components/form/FormButton.vue';
+// 导入新增的 FormDatalist 组件
+import FormDatalist from '@/components/form/FormDatalist.vue';
 
+// 在 form 数据中添加 browser 字段
 const form = ref({
   text: '',
   password: '',
   email: '',
   tel: '',
+  browser: '', // 新增字段
   range: 5,
   select: '',
   gender: '',
@@ -92,6 +105,7 @@ const handleReset = () => {
     password: '',
     email: '',
     tel: '',
+    browser: '', // 重置新字段
     range: 5,
     select: '',
     gender: '',

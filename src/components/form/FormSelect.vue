@@ -2,7 +2,14 @@
 <template>
   <div>
     <label :for="name">{{ label }}:</label>
-    <select :id="name" v-model="modelValue" :multiple="multiple" :name="name" :required="required">
+    <select
+        :id="name"
+        :multiple="multiple"
+        :name="name"
+        :required="required"
+        :value="value"
+        @change="$emit('update:modelValue', value)"
+    >
       <option value="">{{ placeholder }}</option>
       <option v-for="opt in options" :value="opt.value">{{ opt.label }}</option>
     </select>
@@ -10,10 +17,10 @@
 </template>
 
 <script lang="ts" setup>
-import {PropType} from "vue";
+import {computed, PropType} from "vue";
 import {Options} from "@/types";
 
-defineProps({
+const props = defineProps({
   modelValue: [String, Array],
   name: String,
   label: String,
@@ -31,5 +38,13 @@ defineProps({
     default: true
   }
 });
-defineEmits(['update:modelValue']);
+const value = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(val) {
+    emit('update:modelValue', val);
+  }
+})
+const emit = defineEmits(['update:modelValue']);
 </script>
