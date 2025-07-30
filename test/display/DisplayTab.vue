@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MarkdownRender from "../../src/components/MarkdownRender.vue";
-import TabList from "../../src/components/Tab.vue";
+import Tab from "../../src/components/Tab.vue";
 defineOptions({
   name: "DisplayTabList",
 })
@@ -24,7 +24,7 @@ const code=`
 
   <h1 class="text-center">示例</h1>
   <div class="container">
-    <TabList :list="['栏目1','栏目2','栏目3']"/>
+    <Tab :list="['栏目1','栏目2','栏目3']"/>
   </div>
   <markdown-render :content="code"/>
 </template>

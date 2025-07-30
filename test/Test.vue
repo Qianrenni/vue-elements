@@ -45,7 +45,7 @@ const components = [
     'RainFigure',
     'ScrollNotice',
     'Search',
-    'TabList',
+    'Tab',
     'Tag',
     'ThemeToggle',
     'TimeUtil',

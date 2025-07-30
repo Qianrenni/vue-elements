@@ -32,7 +32,7 @@ onBeforeUnmount(()=>{
 
 \`\`\`html
 <div  style="position:relative;height: 600px;width: 100%;overflow: hidden;">
-  <span class="shadow-black" ref="target" style="position: absolute;">被拖动元素 </span>
+  <span class="shadow-black mouse-cursor" ref="target" style="position: absolute;">被拖动元素 </span>
 </div>
 \`\`\`
 `
@@ -43,7 +43,7 @@ onBeforeUnmount(()=>{
 
   <h1 class="text-center">示例</h1>
   <div  style="position:relative;height: 600px;width: 100%;overflow: hidden;">
-    <span class="shadow-black" ref="target" style="position: absolute;">被拖动元素 </span>
+    <span class="shadow-black mouse-cursor" ref="target" style="position: absolute;">被拖动元素 </span>
   </div>
   <markdown-render :content="code"/>
 

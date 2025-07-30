@@ -7,7 +7,10 @@ defineOptions({
 })
 const code=`
 \`\`\`javascript
-const emits=defineEmits(['search'])
+const emits = defineEmits<{
+  (e: 'search', value: string): void
+  (e: 'change', value: string): void
+}>()
 const props = defineProps({
   placeholder: {
     type: String,
@@ -17,7 +20,10 @@ const props = defineProps({
 \`\`\`
 `
 const searchHandler=(e: any) => {
-  alert(e)
+  alert(e);
+}
+const changeHandler=(e: any) => {
+  console.log(e)
 }
 </script>
 
@@ -25,7 +31,7 @@ const searchHandler=(e: any) => {
 
   <h1 class="text-center">示例</h1>
   <div class="container">
-    <Search @search="(e)=>searchHandler(e)"/>
+    <Search @search="(e)=>searchHandler(e)" @change="changeHandler"/>
   </div>
   <markdown-render :content="code"/>
 </template>

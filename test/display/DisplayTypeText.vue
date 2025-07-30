@@ -6,7 +6,7 @@ defineOptions({
 })
 const code=`
 \`\`\`html
-<div class="container">
+<div class="container gap-fourth">
   <span class="text-primary">主色</span>
   <span class="text-danger">危险色</span>
   <span class="text-success">成功色</span>
@@ -21,7 +21,7 @@ const code=`
 <template>
 
   <h1 class="text-center">示例</h1>
-  <div class="container">
+  <div class="container gap">
     <span class="text-primary">主色</span>
     <span class="text-danger">危险色</span>
     <span class="text-success">成功色</span>

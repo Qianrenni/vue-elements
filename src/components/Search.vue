@@ -5,7 +5,10 @@ import {ref} from "vue";
 defineOptions({
   name: 'Search'
 })
-const emits=defineEmits(['search'])
+const emits = defineEmits<{
+  (e: 'search', value: string): void
+  (e: 'change', value: string): void
+}>()
 const props = defineProps({
   placeholder: {
     type: String,
@@ -14,6 +17,14 @@ const props = defineProps({
 })
 
 const searchValue = ref('')
+
+const keyDownhandler = (e: KeyboardEvent) => {
+  if (e.key === 'Enter') {
+    emits('search', searchValue.value)
+  }else{
+    emits('change', searchValue.value)
+  }
+}
 </script>
 
 <template>
@@ -31,7 +42,7 @@ const searchValue = ref('')
            class="search-input padding-fourth-vetical"
            :placeholder="props.placeholder"
            v-model="searchValue"
-           @keyup.enter="emits('search', searchValue)"
+           @keyup="keyDownhandler"
     />
   </div>
 
@@ -44,8 +55,9 @@ const searchValue = ref('')
   border: 1px solid #ccc;
   border-radius: 4px;
   flex:1;
+  transition: border-color 0.3s ease;
 }
 .search-input:focus{
-  border-color: var(--text-color);
+  border-color: var(--primary-color);
 }
 </style>
