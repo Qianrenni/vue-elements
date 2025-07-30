@@ -1,13 +1,14 @@
 <!-- components/form/FormRangeSlider.vue -->
 <template>
   <div>
-    <label :for="name">{{ label }}:</label>
+    <label :for="name" class="label">{{ label }}:</label>
     <input
         :id="name"
         v-model="value"
         :max="max"
         :min="min"
         :name="name"
+        :required="required"
         :step="step"
         type="range"
         @input="$emit('update:modelValue', value)"
@@ -25,7 +26,11 @@ const props = defineProps({
   label: String,
   min: {type: Number, default: 0},
   max: {type: Number, default: 100},
-  step: {type: Number, default: 1}
+  step: {type: Number, default: 1},
+  required: {
+    type: Boolean,
+    default: true
+  }
 });
 const value = computed({
   get() {

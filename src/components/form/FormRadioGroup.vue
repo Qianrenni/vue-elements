@@ -39,15 +39,5 @@ defineEmits(['update:modelValue']);
 </script>
 
 <style scoped>
-.radio-group {
-  display: flex;
-  gap: 15px;
-}
-
-.radio-group label {
-  display: inline-flex;
-  align-items: center;
-  margin: 0;
-}
 
 </style>

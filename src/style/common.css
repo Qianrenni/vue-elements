@@ -316,6 +316,23 @@ body {
     object-fit: fill;
 }
 
+/*表单类*/
+.label {
+    margin-right: 0.6rem;
+    margin-left: 0.2rem;
+}
+
+.input-text {
+    flex: 1;
+    border: 1px solid #222;
+    transition: border 0.3s ease;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.input-text:focus {
+    border: 1px solid var(--primary-color);
+}
 
 /*响应式类*/
 .hidden-768 {
@@ -492,12 +509,16 @@ body {
 }
 
 
+.padding-24rem {
+    padding: 0.2rem 0.4rem;
+}
+
 .padding-28rem {
     padding: 0.2rem 0.8rem;
 }
 
-.padding-24rem {
-    padding: 0.2rem 0.4rem;
+.padding-46rem {
+    padding: 0.4rem 0.6rem;
 }
 
 .padding-rem {

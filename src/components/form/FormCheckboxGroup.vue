@@ -55,14 +55,5 @@ function handleChange(e: Event) {
 </script>
 
 <style scoped>
-.checkbox-group {
-  display: flex;
-  gap: 15px;
-}
 
-.checkbox-group label {
-  display: inline-flex;
-  align-items: center;
-  margin: 0;
-}
 </style>

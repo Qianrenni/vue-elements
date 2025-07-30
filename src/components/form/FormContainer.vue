@@ -1,7 +1,7 @@
 <!-- components/form/FormContainer.vue -->
 <template>
   <div class="form-container">
-    <h1>{{ title }}</h1>
+    <h1 v-if="title">{{ title }}</h1>
     <p v-if="description">{{ description }}</p>
     <form @submit.prevent="$emit('submit')">
       <slot></slot>
@@ -10,10 +10,15 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
-  title: String,
-  description: String
-});
+withDefaults(
+    defineProps<{
+      title: string,
+      description: string
+    }>(),
+    {
+      title: '',
+      description: ''
+    })
 defineEmits(['submit']);
 </script>
 

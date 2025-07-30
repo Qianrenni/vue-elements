@@ -1,7 +1,7 @@
 <!-- components/form/FormText.vue -->
 <template>
   <div>
-    <label v-if="label" :for="name">{{ label }}:</label>
+    <label v-if="label" :for="name" class="label">{{ label }}:</label>
     <input
         :id="name"
         v-model="value"
@@ -10,6 +10,7 @@
         :placeholder="placeholder"
         :required="required"
         :type="type"
+        class="input-text padding-24rem"
         @input="$emit('update:modelValue', value)"
     />
   </div>
@@ -45,3 +46,6 @@ const value = computed({
 
 const emit = defineEmits(['update:modelValue']);
 </script>
+<style lang="css" scoped>
+
+</style>

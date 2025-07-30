@@ -1,13 +1,15 @@
 <!-- components/form/FormDatalist.vue -->
 <template>
   <div>
-    <label :for="name">{{ label }}:</label>
+    <label :for="name" class="label">{{ label }}:</label>
     <input
         :id="name"
         :list="name + '-list'"
         :name="name"
         :placeholder="placeholder"
+        :required="required"
         :value="modelValue"
+        class="input-text padding-24rem"
         @input="handleInput"
     />
     <datalist :id="name + '-list'">
@@ -18,13 +20,17 @@
 
 <script lang="ts" setup>
 // 定义 props
-defineProps<{
+withDefaults(defineProps<{
   modelValue: string;
   name: string;
   label: string;
   options: string[];
   placeholder?: string;
-}>();
+  required?: boolean;
+}>(), {
+  placeholder: '',
+  required: true,
+})
 
 // 定义 emit 事件
 const emit = defineEmits<{
