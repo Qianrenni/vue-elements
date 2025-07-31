@@ -13,40 +13,41 @@
         class="
         container-column
         gap-fourth
+        container-w100
         "
     >
       <div
           class="
           form-select-result
-          gap
-          scroll-container
-          scroll-x
-          container-nowrap
-          container-flex-start
           "
-          style="min-height: 2rem;"
+          style="max-height: 3rem;min-height: 2rem;"
       >
-        <div v-for="(option,index) in selectResult"
-             class="
-               container-nowrap
-               container-align-center
-               container-align-content
-               bg-body
-
+        <div
+            class="
+              scroll-container
+              scroll-x
+              container-align-center
+            "
+            style="
+              white-space: nowrap;
+              margin-right: 1.5rem;
               "
         >
-            <span
+          <span v-for="(option,index) in selectResult"
                 :key="index"
-                class="margin-fourth-horizontal"
-                style="display: inline-block;"
-            >
+                class="
+                  bg-body
+                  margin-half-horizontal
+                "
+          >
             {{ option.label }}
-          </span>
           <icon
               icon="Close"
               size="12"
+              style="display: inline;"
               @click="activeIndexSet.delete(option)"
           />
+        </span>
         </div>
         <icon
             v-if="!showOptions"
@@ -71,7 +72,7 @@
               scroll-y
               shadow-black
             "
-          style="max-height: 100px;"
+          style="max-height: 180px;"
       >
         <span
             v-for="(option , index) in options"
@@ -144,5 +145,4 @@ const swtichActiveIndex = (value: Options) => {
 </script>
 
 <style lang="css" scoped>
-
 </style>

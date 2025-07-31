@@ -263,12 +263,14 @@ body {
     -ms-overflow-style: auto;
 }
 
-/*.scroll-container:hover{*/
+/*.scroll-container:hover {*/
 /*    overflow-y: auto;*/
 /*    overflow-x: auto;*/
 /*    -ms-overflow-x: auto;*/
 /*    -ms-overflow-style: auto;*/
 /*}*/
+
+
 /* 水平滚动 */
 .scroll-container.scroll-x {
     /*-ms-overflow-x: auto;*/
@@ -422,26 +424,25 @@ input:-webkit-autofill:active {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border-color);
-
     border-radius: 0.2rem;
 }
 
 .form-select-result {
     position: relative;
     display: flex;
-    padding: 0.2rem 2rem 0.2rem 0.5rem;
     border: 1px solid var(--border-color);
 }
 
 .form-select-result .arrow {
     position: absolute;
-    right: 0.2rem;
+    right: 0.05rem;
     top: 50%;
     transform: translateY(-50%);
+    background-color: transparent;
 }
 
 .form-select-options .option {
-    padding: 0.2rem 0.5rem;
+    margin: 0.2rem 0.5rem;
     cursor: pointer;
 }
 
