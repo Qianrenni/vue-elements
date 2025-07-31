@@ -5,34 +5,36 @@
       @submit="handleSubmit"
   >
     <!-- 1. 文本输入类 -->
-    <fieldset class="container-column gap">
+    <fieldset class="container-column gap" style="width: 800px;">
       <FormText
           v-model="form.text"
-          class="container-column gap-fourth"
-          label="文本输入" name="text"
+          direction="vertical"
+          disabled
+          label="文本输入"
+          name="text"
           placeholder="请输入文本"
-          style="width:600px;"
-
+          type="text"
       />
       <FormText
           v-model="form.password"
-          class="container-column gap-fourth"
+          direction="vertical"
           label="密码输入"
           name="password"
           placeholder="请输入密码"
+          size="large"
           type="password"
       />
       <FormText
           v-model="form.email"
-          class="container-space-between"
           label="邮箱输入"
           name="email"
           placeholder="example@example.com"
+          size="small"
           type="email"
       />
       <FormText
           v-model="form.tel"
-          class="container-space-between"
+          direction="vertical"
           label="电话号码"
           name="tel"
           pattern="[0-9]+"
@@ -43,16 +45,17 @@
       <FormDatalist
           v-model="form.browser"
           :options="['Chrome', 'Firefox', 'Safari', 'Edge', 'Opera']"
-          class="container-space-between"
-          label="选择浏览器"
-          name="browser" placeholder="输入或选择浏览器"
-          required
+          direction="vertical"
+          label="选择浏览器" name="browser"
+          placeholder="输入或选择浏览器"
       />
+
       <FormRangeSlider
           v-model="form.range"
           :max="100"
           :min="0"
-          class="container-align-center gap"
+
+          direction="vertical"
           label="滑块输入"
           name="range"
       />
@@ -70,8 +73,10 @@
         ]"
           class="container-column"
           label="下拉选择"
+          multiple
           name="select"
           placeholder="请选择"
+          searchable
       />
       <FormRadioGroup
           v-model="form.gender"
@@ -143,7 +148,7 @@ const form = ref({
   tel: '',
   browser: '',
   range: 5,
-  select: '',
+  select: [],
   gender: '',
   hobby: [],
   // 新增字段
@@ -174,7 +179,7 @@ const handleReset = () => {
     tel: '',
     browser: '',
     range: 5,
-    select: '',
+    select: [],
     gender: '',
     hobby: [],
     date: '',

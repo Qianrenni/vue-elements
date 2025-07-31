@@ -1,17 +1,51 @@
 <!-- components/form/FormDatalist.vue -->
 <template>
-  <div>
-    <label :for="name" class="label">{{ label }}:</label>
-    <input
-        :id="name"
-        :list="name + '-list'"
-        :name="name"
-        :placeholder="placeholder"
-        :required="required"
-        :value="modelValue"
-        class="input-text padding-24rem"
-        @input="handleInput"
-    />
+  <div
+      :class="[
+          {
+            'container-column': direction === 'vertical',
+            'gap-half': direction === 'vertical',
+            'container-align-center': direction !== 'vertical'
+          }
+      ]"
+      class="form-text-container"
+  >
+    <label
+        v-if="label"
+        :id="id"
+        :class="{
+          'mouse-cursor-disable': disabled,
+          'text-12rem': size === 'large',
+          'text-05rem': size === 'small'
+        }"
+        :for="name"
+        class="label"
+    >
+      {{ label }}:
+    </label>
+    <div class="input-text-container container">
+      <input
+          :id="name"
+          :class="[
+            {
+              'mouse-cursor-disable': disabled,
+              'text-12rem': size === 'large',
+              'text-05rem': size === 'small'
+            }
+          ]"
+          :disabled="disabled"
+          :list="name + '-list'"
+          :name="name"
+          :placeholder="placeholder"
+          :required="required"
+          :value="modelValue"
+          class=""
+          @blur="onBlur"
+          @change="onChange"
+          @focus="onFocus"
+          @input="onInput"
+      />
+    </div>
     <datalist :id="name + '-list'">
       <option v-for="option in options" :key="option" :value="option"/>
     </datalist>
@@ -19,30 +53,51 @@
 </template>
 
 <script lang="ts" setup>
-withDefaults(defineProps<{
-  modelValue: string;
-  name: string;
-  label: string;
+import {FormComponentEmits, FormComponentProps} from "@/types";
+import {useFormEvents} from "@/events/useFormEvents";
+
+interface FormDataListProps extends FormComponentProps<string> {
   options: string[];
-  placeholder?: string;
-  required: boolean;
-}>(), {
-  placeholder: '',
-  required: true,
-})
-
-// 定义 emit 事件
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void;
-}>();
-
-// 处理输入事件，更新 v-model
-function handleInput(e: Event) {
-  const target = e.target as HTMLInputElement;
-  emit('update:modelValue', target.value);
 }
+
+withDefaults(defineProps<FormDataListProps>(), {
+  required: true,
+  direction: 'horizontal',
+  disabled: false,
+  autofocus: false,
+  readonly: false,
+  size: 'middle',
+  placeholder: '',
+  clearable: true,
+});
+const emit = defineEmits<FormComponentEmits<string>>();
+
+// 使用统一的表单事件处理器
+const {handleInput, handleChange, handleFocus, handleBlur, handleClear} =
+    useFormEvents<string>(emit);
+
+// 事件绑定
+const onInput = (e: Event) => {
+  handleInput(e as InputEvent, (ev) => (ev.target as HTMLInputElement).value);
+};
+
+const onChange = (e: Event) => {
+  handleChange(e, (ev) => (ev.target as HTMLInputElement).value);
+};
+
+const onFocus = (e: FocusEvent) => {
+  handleFocus(e);
+};
+
+const onBlur = (e: FocusEvent) => {
+  handleBlur(e);
+};
+
+const onClear = () => {
+  handleClear('');
+};
 </script>
 
-<style scoped>
-
+<style lang="css" scoped>
+/* 样式完全复用 FormText，无需额外写 */
 </style>

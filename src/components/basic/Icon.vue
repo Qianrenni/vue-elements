@@ -1,30 +1,30 @@
 <template>
   <div
-    class="container-align-center container-center"
-    style="cursor: pointer"
-    v-html="content"
+      class="container-align-center container-center"
+      style="cursor: pointer"
+      v-html="content"
   />
 </template>
 <script lang="ts" setup>
-import { computed, defineProps, onMounted, ref, watch } from "vue";
+import {computed, defineProps, onMounted, ref, watch} from "vue";
 
-const props = defineProps({
-  icon: {
-    type: String,
-    default: "User",
-  },
-  size: {
-    type: String,
-    default: "32",
-  },
-});
+defineOptions({
+  name: "Icon",
+})
+const props = withDefaults(defineProps<{
+  icon?: string;
+  size?: string | number;
+}>(), {
+  icon: "User",
+  size: "32",
+})
 
 const rawSvgContent = ref("");
 
 // 动态加载SVG内容
 const loadSvg = async () => {
   try {
-    const module = await import(`../../icons/${props.icon}.svg?raw`);
+    const module = await import(`@/icons/${props.icon}.svg?raw`);
     rawSvgContent.value = module.default;
   } catch (error) {
     console.error(`Failed to load SVG: ../icons/${props.icon}.svg`, error);
@@ -36,8 +36,8 @@ const loadSvg = async () => {
 const content = computed(() => {
   if (!rawSvgContent.value) return "";
   return rawSvgContent.value.replace(
-    "<svg",
-    `<svg width="${props.size}" height="${props.size}"`,
+      "<svg",
+      `<svg width="${props.size}" height="${props.size}"`,
   );
 });
 

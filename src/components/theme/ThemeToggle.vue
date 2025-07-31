@@ -1,27 +1,25 @@
 <template>
-  <div class="theme-toggle" @click="toggleMode" aria-label="切换主题">
-    <icon icon="Sun" v-if="isDarkMode" :size="size" />
-    <icon icon="Moon" v-else  :size="size" />
+  <div aria-label="切换主题" class="theme-toggle" @click="toggleMode">
+    <icon v-if="isDarkMode" :size="size" icon="Sun"/>
+    <icon v-else :size="size" icon="Moon"/>
   </div>
 </template>
-<script setup lang="ts">
-import {ref, onMounted, nextTick} from 'vue'
+<script lang="ts" setup>
+import {nextTick, onMounted, ref} from 'vue'
 import Icon from '../basic/Icon.vue'
+
 defineOptions({
   name: 'ThemeToggle'
 })
-defineProps({
-  size: {
-    type: String,
-    default: '32'
-  }
-})
+defineProps<{
+  size: string | number
+}>()
 // 响应式状态：是否为暗黑模式
 const isDarkMode = ref<boolean>(false)
 
 // 组件挂载后初始化状态
 onMounted(() => {
-  nextTick(()=>{
+  nextTick(() => {
     isDarkMode.value = document.body.classList.contains('dark-mode')
   })
 })

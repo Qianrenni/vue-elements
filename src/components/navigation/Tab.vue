@@ -3,11 +3,11 @@
     <span
         v-for="(item, index) in list"
         :key="index"
-        @click="clickHandler(index)"
         :class="{
         [activeClass]: index === activeCategory
       }"
         class="tab-item padding-half-rem mouse-cursor"
+        @click="clickHandler(index)"
     >
       {{ item }}
     </span>
@@ -15,29 +15,26 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, defineEmits, ref } from 'vue'
-import { defineOptions } from 'vue'
+import {defineEmits, defineOptions, defineProps, ref} from 'vue'
 
 defineOptions({
   name: 'Tab'
 })
 
-const props = defineProps({
-  list: {
-    type: Array as () => string[],
-    default: () => []
-  },
-  activeClass: {
-    type: String,
-    default: 'active'
-  }
-})
+const props = withDefaults(defineProps<{
+      list: string[]
+      activeClass: string
+    }>(),
+    {
+      list: () => [],
+      activeClass: 'active'
+    })
 
 const emit = defineEmits<{
   (e: 'select', index: number): void
 }>()
 
-const activeCategory = ref<number | null>(props.list.length>0 ? 0 : null)
+const activeCategory = ref<number | null>(props.list.length > 0 ? 0 : null)
 
 function clickHandler(index: number) {
   activeCategory.value = index
@@ -53,9 +50,10 @@ function clickHandler(index: number) {
   position: relative;
 }
 
-.tab-item.active{
+.tab-item.active {
   color: var(--primary-color);
 }
+
 .tab-item.active::after {
   content: '';
   position: absolute;

@@ -1,15 +1,15 @@
 <template>
-  <div  class="markdown-body" v-html="htmlContent"></div>
+  <div class="markdown-body" v-html="htmlContent"></div>
 </template>
 
-<script setup>
-import {ref, watch, onMounted, nextTick, onBeforeMount} from 'vue'
+<script lang="ts" setup>
+import {nextTick, onBeforeMount, ref, watch} from 'vue'
 import {marked} from 'marked'
 import markedKatex from 'marked-katex-extension'
 import hljs from 'highlight.js'
-import '../../style/gitub-markdown.css'
+import '@/style/gitub-markdown.css'
 import 'highlight.js/styles/github-dark.css'
-import '../../style/katex.css'
+import '@/style/katex.css'
 import {pinyin} from 'pinyin-pro'
 import java from 'highlight.js/lib/languages/java'
 import python from 'highlight.js/lib/languages/python'
@@ -23,6 +23,7 @@ import cplus from 'highlight.js/lib/languages/cpp'
 import c from 'highlight.js/lib/languages/c'
 import json from 'highlight.js/lib/languages/json'
 import yaml from 'highlight.js/lib/languages/yaml'
+
 hljs.registerLanguage('java', java)
 // 注册语言
 hljs.registerLanguage('python', python)
@@ -37,19 +38,20 @@ hljs.registerLanguage('c', c)
 hljs.registerLanguage('json', json)
 hljs.registerLanguage('yaml', yaml)
 
-// props
-const props = defineProps({
-  content: {
-    type: String,
-    required: true
-  }
+
+defineOptions({
+  name: 'MarkdownRender'
 })
+// props
+const props = defineProps<{
+  content: string
+}>();
 
 // 状态
 const htmlContent = ref('')
 
 // slugify 函数：中文转拼音、生成 ID
-function slugify(text) {
+function slugify(text: string) {
   return text
       .normalize('NFKC')
       .toLowerCase()
@@ -63,8 +65,8 @@ function slugify(text) {
 const renderer = new marked.Renderer()
 
 // 图片渲染
-renderer.image = function (href, title, text) {
-  let finalHref = href.href
+renderer.image = function ({href, title, text}) {
+  let finalHref = href
   if (!finalHref.startsWith('http')) {
     finalHref = `/images/${finalHref.replace(/^\.\/images\//, '')}`
   }
@@ -91,7 +93,7 @@ renderer.link = (payload) => {
 // 配置 marked
 marked.use(markedKatex({output: 'mathml', strict: false, throwOnError: false}))
 marked.setOptions({
-  highlight: (code, lang) => {
+  highlight: function (code: string, lang: string) {
     if (!lang) return hljs.highlight(code, {language: 'plaintext'}).value
     try {
       return hljs.highlight(code, {language: lang}).value
@@ -108,26 +110,28 @@ marked.setOptions({
 })
 
 // 解析 Markdown
-function parseMarkdown(content) {
-  htmlContent.value = marked.parse(content)
+async function parseMarkdown(content: string) {
+  htmlContent.value = await marked.parse(content)
   nextTick(() => {
     highlightCode()
     bindAnchorEvents()
   })
 }
+
 // 高亮代码块v
 function highlightCode() {
   document.querySelectorAll('pre code').forEach((block) => {
     if (!block.hasAttribute('data-highlighted')) {
-      hljs.highlightElement(block)
+      hljs.highlightElement(<HTMLElement>block)
     }
   })
 }
 
 // 处理锚点点击事件
-function handleAnchorClick(e) {
+function handleAnchorClick(e: MouseEvent) {
   e.preventDefault()
-  const targetId = e.target.getAttribute('href')
+  const targetId = (e.target as HTMLAnchorElement)?.getAttribute('href')
+  if (!targetId) return
   const targetElement = document.querySelector(targetId)
   if (targetElement) {
     targetElement.scrollIntoView({behavior: 'smooth'})
@@ -137,9 +141,11 @@ function handleAnchorClick(e) {
 
 // DOM 更新后绑定事件
 function bindAnchorEvents() {
-  document.querySelectorAll('a[data-anchor]').forEach((link) => {
-    link.removeEventListener('click', handleAnchorClick)
-    link.addEventListener('click', handleAnchorClick)
+  const links = document.querySelectorAll('a[data-anchor]')
+  links.forEach((link) => {
+    const anchor = link as HTMLAnchorElement
+    anchor.removeEventListener('click', handleAnchorClick)
+    anchor.addEventListener('click', handleAnchorClick)
   })
 }
 

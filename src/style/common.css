@@ -318,20 +318,42 @@ body {
 
 /*表单类*/
 .label {
+    display: flex;
+    align-items: center;
     margin-right: 0.6rem;
     margin-left: 0.2rem;
+    font-size: 0.95rem;
+
 }
 
-.input-text {
+.form-text-container {
+    display: flex;
+}
+
+.input-text-container {
+    position: relative;
     flex: 1;
-    border: 1px solid #222;
+}
+
+.form-text-container input {
+    flex: 1;
+    padding: 0.2rem 1rem 0.2rem 0.4rem;
+    outline: none;
+    border: 1px solid #ccc;
     border-radius: 0.3rem;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
     transition: border 0.3s ease;
 }
 
-.input-text:focus {
-    border: 1px solid var(--primary-color);
+.form-text-container input:focus {
+    border-color: var(--primary-color);
+}
+
+.input-text-container .close-icon {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 50%;
+    transform: translateY(50%);
 }
 
 /* 覆盖自动填充样式 */
@@ -397,7 +419,7 @@ input:-webkit-autofill:active {
 
 
 /* 自定义样式下拉选择 */
-.form-select {
+.form-select select {
     flex: 1;
     padding: 0.2rem 0.4rem;
     border: 1px solid #222; /* 边框 */
@@ -406,7 +428,9 @@ input:-webkit-autofill:active {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     /* 添加自定义背景图 */
     /*background-image: url('替换的图片路径');*/
     /*background-repeat: no-repeat;*/
@@ -414,9 +438,14 @@ input:-webkit-autofill:active {
     /*background-size: 10px 10px; !* 图片大小 *!*/
 }
 
-.form-select:focus {
+.form-select select:focus {
     outline: none;
     border: 1px solid var(--primary-color);
+    box-shadow: 0 0 3px var(--primary-color) inset;
+}
+
+.form-select select[multiple] {
+    min-height: 2rem;
 }
 
 /*响应式类*/
@@ -850,11 +879,11 @@ input:-webkit-autofill:active {
     font-size: 0.8rem;
 }
 
-.text-half-rem {
+.text-05rem {
     font-size: 0.5rem;
 }
 
-.text-third-rem {
+.text-03rem {
     font-size: 0.3rem;
 }
 

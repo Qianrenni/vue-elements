@@ -1,22 +1,22 @@
 <template>
   <div class="rain-figure-container container-center">
     <div style="position: relative">
-      <img ref="rainFigure" class="rain-image" :src="imageUrl" alt="" @load="resizeCanvas" />
+      <img ref="rainFigure" :src="imageUrl" alt="" class="rain-image" @load="resizeCanvas"/>
       <canvas ref="rainCanvas" class="rain-canvas"></canvas>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+<script lang="ts" setup>
+import {onBeforeUnmount, onMounted, ref} from 'vue'
 
-// Props
-const props = defineProps({
-  imageUrl: {
-    type: String,
-    required: true
-  }
+defineOptions({
+  name: 'RainFigure'
 })
+// Props
+defineProps<{
+  imageUrl: string
+}>()
 
 // Refs
 const rainCanvas = ref<HTMLCanvasElement | null>(null)

@@ -1,19 +1,20 @@
 <template>
-<!-- 手机外形的div -->
+  <!-- 手机外形的div -->
   <div class="phone-frame">
     <!-- 加载你的uni-app应用 -->
     <iframe :src="props.src"></iframe>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import {defineProps} from 'vue'
-const props = defineProps({
-  src: {
-    type: String,
-    required: true
-  }
+
+defineOptions({
+  name: 'MobileFrame'
 })
+const props = defineProps<{
+  src: string
+}>()
 </script>
 
 <style scoped>
@@ -24,7 +25,7 @@ const props = defineProps({
   border-radius: 15px;
   margin: 10px auto;
   position: relative;
-  box-shadow: 0 0 20px rgba(0,0,0,.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
 }
 
 /* iframe样式 */
@@ -33,7 +34,8 @@ const props = defineProps({
   height: 100%;
   border: none;
 }
-@media  screen and (max-width: 768px) {
+
+@media screen and (max-width: 768px) {
   .phone-frame {
     border: none;
     border-radius: unset;

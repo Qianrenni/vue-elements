@@ -10,15 +10,12 @@
 <script lang="ts" setup>
 import {defineOptions, defineProps} from 'vue'
 
-const props = defineProps({
-  url: {
-    type: String,
-    default: 'https://picsum.photos/id/1005/200/200'
-  },
-  size: {
-    type: String,
-    default: '64px'
-  }
+const props = withDefaults(defineProps<{
+  url?: string
+  size?: string
+}>(), {
+  url: 'https://picsum.photos/200/',
+  size: '64px',
 })
 defineOptions({
   name: 'Avatar'

@@ -19,18 +19,18 @@
       >
         <a
             v-if="section.children?.length"
-            href="javascript:void(0)"
-            class="nav-link has-child hover-primary"
             :class="{ active: activeId === index }"
+            class="nav-link has-child hover-primary"
+            href="javascript:void(0)"
             @click="enterSubLevel(section,index)"
         >
           {{ section.title }}
         </a>
         <a
             v-else
-            href="javascript:void(0)"
-            class="nav-link hover-primary"
             :class="{ active: activeId === index }"
+            class="nav-link hover-primary"
+            href="javascript:void(0)"
             @click="markActive(section, index)"
         >
           {{ section.title }}
@@ -40,12 +40,15 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+<script lang="ts" setup>
+import {computed, ref, watch} from 'vue'
+
+defineOptions({
+  name: 'NavSection'
+})
 
 // 定义类型
 interface Section {
-  id: number | string
   title: string
   children?: Section[]
 }
@@ -62,8 +65,8 @@ const emit = defineEmits<{
 }>()
 
 // 数据状态
-const stack = ref<{ title: string; children: Section[] }[]>([
-  { title: props.title, children: [] }
+const stack = ref<Section[]>([
+  {title: props.title, children: []}
 ])
 const activeId = ref<string | number | null>(null)
 
@@ -71,10 +74,10 @@ const activeId = ref<string | number | null>(null)
 watch(
     () => props.sections,
     (newSections) => {
-      stack.value = [{ title: props.title, children: newSections }]
+      stack.value = [{title: props.title, children: newSections}]
       activeId.value = null
     },
-    { immediate: true }
+    {immediate: true}
 )
 
 // 计算当前显示的菜单项
@@ -103,7 +106,7 @@ function goBack() {
   }
 }
 
-function markActive(section: Section,index: number) {
+function markActive(section: Section, index: number) {
   activeId.value = index;
   // console.log(section);
   emit('select', section)
@@ -112,8 +115,6 @@ function markActive(section: Section,index: number) {
 
 <style scoped>
 /* 这里保持原样式不变即可 */
-.nav-section {}
-
 .back-button {
   margin-bottom: 0.5rem;
   cursor: pointer;

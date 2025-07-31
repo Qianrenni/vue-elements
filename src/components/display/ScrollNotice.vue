@@ -1,7 +1,7 @@
 <template>
-  <div class="container-flex-end "
+  <div :style="{'width': `${props.width}px`}"
+       class="container-flex-end "
        style="overflow: hidden;"
-      :style="{'width': `${props.width}px`}"
   >
     <div
         ref="noticeRef"
@@ -12,21 +12,18 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import {ref, onMounted, onBeforeUnmount, watch, useTemplateRef} from 'vue'
+<script lang="ts" setup>
+import {onBeforeUnmount, onMounted, ref, useTemplateRef, watch} from 'vue'
 
-const props = defineProps({
-  text:{
-    type: String,
-    required: true
-  },
-  width:{
-    type: Number,
-    required: true
-  }
+defineOptions({
+  name: 'ScrollNotice'
 })
+const props = defineProps<{
+  width: number
+  text: string
+}>();
 
-const noticeRef =useTemplateRef('noticeRef')
+const noticeRef = useTemplateRef('noticeRef')
 const textWidth = ref(0)
 const translateX = ref(0)
 let animationFrameId: number | null = null
@@ -34,13 +31,13 @@ let speed = 1 // 滚动速度，可以根据需要调整
 // 获取元素尺寸
 const updateDimensions = () => {
   if (noticeRef.value) {
-    textWidth.value = noticeRef.value.offsetWidth;
+    textWidth.value = (noticeRef.value as HTMLElement).offsetWidth;
   }
 }
 
 // 动画函数
 const animate = () => {
-  translateX.value-= speed;
+  translateX.value -= speed;
   // 如果文本完全移出左侧，则重置到右侧
   if (translateX.value <= -props.width) {
     translateX.value = textWidth.value;
