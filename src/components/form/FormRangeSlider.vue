@@ -143,4 +143,57 @@ const onBlur = (e: FocusEvent) => {
 </script>
 
 <style lang="css" scoped>
+
+/* 主要 input 样式容器 */
+.range-slider input[type="range"] {
+  -webkit-appearance: none;
+  flex: 1;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+  background: linear-gradient(to right, var(--primary-color), var(--primary-hover));
+}
+
+/* 滑块（thumb）样式 - WebKit */
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--primary-color);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease;
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* Firefox 支持 */
+.range-slider input[type="range"]::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--primary-color);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease;
+}
+
+.range-slider input[type="range"]::-moz-range-track {
+  flex: 1;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+  background: linear-gradient(to right, var(--primary-color), var(--primary-hover));
+}
+
+/* 输出值样式 */
+.range-slider output {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
 </style>

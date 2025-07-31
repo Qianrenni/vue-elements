@@ -34,7 +34,6 @@
       />
       <FormText
           v-model="form.tel"
-          direction="vertical"
           label="电话号码"
           name="tel"
           pattern="[0-9]+"

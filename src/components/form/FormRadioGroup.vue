@@ -19,22 +19,23 @@
 </template>
 
 <script lang="ts" setup>
-import {PropType} from "vue";
-import {Options} from "@/types";
+import {FormComponentProps, Options} from "@/types";
 
-defineProps({
-  modelValue: String,
-  name: String,
-  label: String,
-  options: {
-    type: Array as PropType<Options[]>,
-    validator: (value: Options[]) => value.length > 0
-  },
-  required: {
-    type: Boolean,
-    default: true
-  }
-});
+interface FormRadioGroupProps extends FormComponentProps<string> {
+  options: Options[]
+}
+
+const props = withDefaults(defineProps<FormRadioGroupProps>()
+    , {
+      required: true,
+      direction: 'horizontal',
+      disabled: false,
+      autofocus: false,
+      readonly: false,
+      size: 'middle',
+      placeholder: '',
+      clearable: true,
+    })
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
 }>();
