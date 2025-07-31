@@ -417,35 +417,37 @@ input:-webkit-autofill:active {
     font-weight: 500;
 }
 
+.form-select-options {
 
-/* 自定义样式下拉选择 */
-.form-select select {
-    flex: 1;
-    padding: 0.2rem 0.4rem;
-    border: 1px solid #222; /* 边框 */
-    border-radius: 0.25rem;
-    /* 去除默认下拉箭头 */
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+
+    border-radius: 0.2rem;
+}
+
+.form-select-result {
+    position: relative;
+    display: flex;
+    padding: 0.2rem 2rem 0.2rem 0.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.form-select-result .arrow {
+    position: absolute;
+    right: 0.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.form-select-options .option {
+    padding: 0.2rem 0.5rem;
     cursor: pointer;
-    outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    /* 添加自定义背景图 */
-    /*background-image: url('替换的图片路径');*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: right center;*/
-    /*background-size: 10px 10px; !* 图片大小 *!*/
 }
 
-.form-select select:focus {
-    outline: none;
-    border: 1px solid var(--primary-color);
-    box-shadow: 0 0 3px var(--primary-color) inset;
-}
-
-.form-select select[multiple] {
-    min-height: 2rem;
+.form-select-options .option.active {
+    background-color: var(--primary-color);
+    color: var(--color-white);
 }
 
 /*响应式类*/

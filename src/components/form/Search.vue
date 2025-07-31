@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import Icon from "../basic/Icon.vue";
+<script lang="ts" setup>
+import Icon from "@/components/basic/Icon.vue";
 import {ref} from "vue";
 
 defineOptions({
@@ -21,28 +21,28 @@ const searchValue = ref('')
 const keyDownhandler = (e: KeyboardEvent) => {
   if (e.key === 'Enter') {
     emits('search', searchValue.value)
-  }else{
+  } else {
     emits('change', searchValue.value)
   }
 }
 </script>
 
 <template>
-  <div class="container"  style="width: 100%;position: relative;">
+  <div class="container" style="width: 100%;position: relative;">
     <icon icon="Search"
+          size="1.1rem"
           style="position: absolute;
                 left: 0.5rem;top: 50%;
                 background-color: transparent;
                 transform: translateY(-50%)"
-          size="1.1rem"
           @click="emits('search', searchValue)"
     />
     <input
-           type="search"
-           class="search-input padding-fourth-vetical"
-           :placeholder="props.placeholder"
-           v-model="searchValue"
-           @keyup="keyDownhandler"
+        v-model="searchValue"
+        :placeholder="props.placeholder"
+        class="search-input padding-fourth-vetical"
+        type="search"
+        @keyup="keyDownhandler"
     />
   </div>
 
@@ -54,10 +54,11 @@ const keyDownhandler = (e: KeyboardEvent) => {
   padding-left: 2rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  flex:1;
+  flex: 1;
   transition: border-color 0.3s ease;
 }
-.search-input:focus{
+
+.search-input:focus {
   border-color: var(--primary-color);
 }
 </style>

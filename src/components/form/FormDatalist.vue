@@ -60,6 +60,9 @@ interface FormDataListProps extends FormComponentProps<string> {
   options: string[];
 }
 
+defineOptions({
+  name: 'FormDataList'
+})
 withDefaults(defineProps<FormDataListProps>(), {
   required: true,
   direction: 'horizontal',

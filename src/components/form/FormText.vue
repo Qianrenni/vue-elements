@@ -83,6 +83,9 @@ interface FormTextProps extends FormComponentProps<string> {
   pattern?: string
 }
 
+defineOptions({
+  name: 'FormText'
+})
 withDefaults(defineProps<FormTextProps>(), {
   type: "text",
   required: true,

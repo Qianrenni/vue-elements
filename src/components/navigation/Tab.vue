@@ -22,13 +22,11 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<{
-      list: string[]
-      activeClass: string
-    }>(),
-    {
-      list: () => [],
-      activeClass: 'active'
-    })
+  list: string[]
+  activeClass?: string
+}>(), {
+  activeClass: 'active'
+})
 
 const emit = defineEmits<{
   (e: 'select', index: number): void

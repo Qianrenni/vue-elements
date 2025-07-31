@@ -79,6 +79,10 @@ import {FormComponentEmits, FormComponentProps} from "@/types";
 import {useFormEvents} from "@/events/useFormEvents";
 import {computed} from "vue";
 
+defineOptions({
+  name: 'FormRangeSlider'
+})
+
 interface FormRangeSliderProps extends FormComponentProps<number> {
   min?: number;
   max?: number;
