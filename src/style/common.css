@@ -171,9 +171,12 @@ body {
 }
 
 .button-primary {
+    padding: 0.3rem 0.5rem;
     background-color: var(--button-bg);
     color: var(--button-text);
     cursor: pointer;
+    border: 1px solid #ffffff;
+    border-radius: 0.5rem;
 }
 
 .button-primary:hover {

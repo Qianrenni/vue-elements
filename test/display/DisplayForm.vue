@@ -160,6 +160,7 @@
       <FormTextarea
           v-model="form.desc"
           :rows="4"
+          disabled
           label="描述"
           name="desc"
           placeholder="请输入详情..."
@@ -173,13 +174,11 @@
         4.按钮控件
       </legend>
       <FormButton
-          class="padding-24rem border-gray"
           type="submit"
       >
         提交
       </FormButton>
       <FormButton
-          class="padding-24rem border-gray"
           type="reset"
           @click="handleReset"
       >

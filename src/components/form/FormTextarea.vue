@@ -11,9 +11,26 @@
       ]"
       class="form-text-area-container"
   >
-    <label v-if="label" :for="name">{{ label }}:</label>
+    <label
+        v-if="label"
+        :id="name"
+        :class="{
+          'mouse-cursor-disable':disabled,
+          'text-12rem':size==='large',
+          'text-05rem':size==='small'
+        }"
+        :for="name"
+        class="label"
+    >
+      {{ label }}:
+    </label>
     <textarea
         :id="name"
+        :class="{
+          'mouse-cursor-disable':disabled,
+          'text-12rem':size==='large',
+          'text-05rem':size==='small'
+        }"
         :disabled="disabled"
         :name="name"
         :placeholder="placeholder"
@@ -41,7 +58,15 @@ interface FormTextAreaProps extends FormComponentProps<string> {
 
 const props = withDefaults(defineProps<FormTextAreaProps>(), {
   rows: 3,
-  resizable: false
+  resizable: false,
+  placeholder: '请输入内容',
+  required: true,
+  direction: 'vertical',
+  disabled: false,
+  autofocus: false,
+  readonly: false,
+  size: 'middle',
+  clearable: false,
 });
 
 const emit = defineEmits<FormComponentEmits<string>>();
@@ -52,5 +77,18 @@ const onInput = (e: Event) => {
 </script>
 
 <style scoped>
+.form-text-area-container textarea {
+  width: 100%;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #ccc;
+}
 
+.form-text-area-container textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.form-text-area-container label {
+  white-space: nowrap;
+}
 </style>
