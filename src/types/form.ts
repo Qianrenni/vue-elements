@@ -65,7 +65,7 @@ export interface FormComponentEmits<T> {
     (e: 'blur', event: FocusEvent): void
 
     // 输入中（input 事件）
-    (e: 'input', value: T, event: InputEvent): void
+    (e: 'input', value: T, event: InputEvent | Event): void
 
     // 清空操作
     (e: 'clear'): void

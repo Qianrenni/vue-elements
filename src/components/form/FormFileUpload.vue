@@ -1,36 +1,89 @@
 <!-- components/form/FormFileUpload.vue -->
 <template>
-  <div>
-    <label v-if="label" :for="name">{{ label }}:</label>
-    <input
+  <div
+      :class="[
+          {
+            'container-column':direction === 'vertical',
+            'gap-fourth':direction==='vertical',
+            'container-align-center':direction!=='vertical'
+
+          }
+      ]"
+      class="form-file-upload-container"
+  >
+    <label
+        v-if="label"
         :id="name"
-        :accept="accept"
-        :multiple="multiple"
-        :name="name"
-        :required="required"
-        type="file"
-        @change="onChange"
-    />
-    <!-- 显示已选文件名（可选） -->
-    <div v-if="fileList.length > 1" class="file-list">
-      <small>已选择: {{ fileList.map(f => f.name).join(', ') }}</small>
+        :class="{
+          'mouse-cursor-disable':disabled,
+          'text-12rem':size==='large',
+          'text-05rem':size==='small'
+        }"
+        :for="name"
+        class="label"
+    >
+      {{ label }}
+    </label>
+    <div
+        class="container-column"
+    >
+      <input
+          :id="name"
+          :accept="accept"
+          :disabled="disabled"
+          :multiple="multiple"
+          :name="name"
+          :required="required"
+          type="file"
+          @change="onChange"
+      />
+      <!-- 显示已选文件名（可选） -->
+      <span
+          v-if="fileList.length > 1"
+          class="file-list"
+      >
+      <small
+          :class="[
+              {
+                'mouse-cursor-disable':disabled,
+                'text-12rem':size==='large',
+                'text-05rem':size==='small'
+              }
+        ]"
+      >
+        已选择: {{ fileList.map(f => f.name).join(', ') }}
+      </small>
+    </span>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-const props = withDefaults(defineProps<{
-  modelValue: File | FileList | null;
-  name: string;
-  label?: string;
-  accept?: string; // 如 'image/*,.pdf'
-  multiple?: boolean;
-  required?: boolean;
-}>(), {
-  required: true,
-  multiple: false,
-  accept: '*.*'
+import {FormComponentProps} from "@/types";
+import {computed} from 'vue';
+
+defineOptions({
+  name: 'FormFileUpload',
 })
+type FileType = File | FileList | null;
+
+interface FormFileUploadProps extends FormComponentProps<FileType> {
+  multiple?: boolean;
+  accept?: string;
+}
+
+const props = withDefaults(defineProps<FormFileUploadProps>(), {
+  multiple: false,
+  accept: '*',
+  required: true,
+  direction: 'vertical',
+  disabled: false,
+  autofocus: false,
+  readonly: false,
+  size: 'middle',
+  placeholder: '选择文件',
+  clearable: true,
+});
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: File | FileList | null): void;
@@ -60,10 +113,7 @@ const fileList = computed(() => {
   if (!files) return [];
   if (files instanceof FileList) return Array.from(files);
   return [files];
-});
-
-import {computed} from 'vue';</script>
+});</script>
 
 <style scoped>
-
 </style>

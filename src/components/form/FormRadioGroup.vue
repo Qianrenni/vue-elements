@@ -1,16 +1,50 @@
 <!-- components/form/FormRadioGroup.vue -->
 <template>
-  <div>
-    <label>{{ label }} <span v-if="required">*</span></label>
-    <div class="radio-group">
-      <label v-for="opt in options" :key="opt.value">
+  <div
+      :class="[
+          {
+            'container-column':direction === 'vertical',
+            'gap-fourth':direction==='vertical',
+            'container-align-center':direction!=='vertical'
+
+          }
+      ]"
+      class="form-radio-group-container"
+  >
+    <span
+        v-if="label"
+        :class="{
+          'mouse-cursor-disable':disabled,
+          'text-12rem':size==='large',
+          'text-05rem':size==='small'
+        }"
+        class="label"
+    >
+      {{ label }}
+    </span>
+    <div class="">
+      <label
+          v-for="opt in options"
+          :key="opt.value"
+          :for="opt.value"
+          class="margin-fourth-horizontal"
+      >
         <input
             :checked="modelValue === opt.value"
+            :class="[
+              {
+                'mouse-cursor-disable':disabled,
+                'text-12rem':size==='large',
+                'text-05rem':size==='small'
+              }
+            ]
+            "
+            :disabled="disabled"
             :name="name"
             :required="required"
             :value="opt.value"
             type="radio"
-            @change="emit('update:modelValue', opt.value)"
+            @change="onChange"
         />
         {{ opt.label }}
       </label>
@@ -19,27 +53,36 @@
 </template>
 
 <script lang="ts" setup>
-import {PropType} from "vue";
-import {Options} from "@/types";
+import {FormComponentEmits, FormComponentProps, Options} from "@/types";
+import {useFormEvents} from "@/events";
 
-defineProps({
-  modelValue: String,
-  name: String,
-  label: String,
-  options: {
-    type: Array as PropType<Options[]>,
-    validator: (value: Options[]) => value.length > 0
-  },
-  required: {
-    type: Boolean,
-    default: true
-  }
-});
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
-}>();
+interface FormRadioGroupProps extends FormComponentProps<string> {
+  options: Options[];
+}
+
+defineOptions({
+  name: 'FormRadioGroup',
+})
+const props = withDefaults(defineProps<FormRadioGroupProps>(), {
+  required: true,
+  direction: 'horizontal',
+  disabled: false,
+  autofocus: false,
+  readonly: false,
+  size: 'middle',
+  placeholder: '',
+  clearable: true,
+})
+const emit = defineEmits<FormComponentEmits<string>>();
+const {handleInput} = useFormEvents<string>(emit);
+const onChange = (e: Event) => {
+  handleInput(e, (ev) => (ev.target as HTMLInputElement).value as string)
+}
 </script>
 
 <style scoped>
+.form-radio-group-container {
+  display: flex;
 
+}
 </style>

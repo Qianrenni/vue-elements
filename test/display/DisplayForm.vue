@@ -93,7 +93,8 @@
           { value: 'female', label: '女' },
           { value: 'other', label: '其他' }
         ]"
-          label="单选按钮"
+          direction="vertical"
+          label="单选按钮 :"
           name="gender"
           required
       />
@@ -110,24 +111,80 @@
 
     <!-- 3. 日期与文件 -->
     <fieldset>
-      <legend>3. 日期与文件</legend>
-      <FormDatePicker v-model="form.date" label="日期" name="date" type="date"/>
-      <FormDatePicker v-model="form.time" label="时间" name="time" type="time"/>
-      <FormDatePicker v-model="form.datetime" label="日期时间" name="datetime" type="datetime-local"/>
+      <legend
+      >
+        3. 日期与文件
+      </legend>
+      <FormDatePicker
+          v-model="form.date"
+          direction="vertical"
+          label="日期"
+          name="date"
+          type="date"
+      />
+      <FormDatePicker
+          v-model="form.time"
+          label="时间"
+          name="time"
+          type="time"
+      />
+      <FormDatePicker
+          v-model="form.datetime"
+          label="日期时间"
+          name="datetime"
+          type="datetime-local"
+      />
 
-      <FormColorPicker v-model="form.color" label="主题颜色" name="color"/>
+      <FormColorPicker
+          v-model="form.color"
+          label="主题颜色"
+          name="color"
+          size="large"
+      />
 
-      <FormFileUpload v-model="form.file" accept="image/*,.pdf" label="上传文件" name="file"/>
-      <FormFileUpload v-model="form.files" accept="*" label="多文件上传" multiple name="files"/>
+      <FormFileUpload
+          v-model="form.file"
+          accept="image/*,.pdf"
+          label="上传文件"
+          name="file"
+      />
+      <FormFileUpload
+          v-model="form.files"
+          accept="*"
+          direction="vertical"
+          label="多文件上传"
+          multiple
+          name="files"
+      />
 
-      <FormTextarea v-model="form.desc" :rows="4" label="描述" name="desc" placeholder="请输入详情..."/>
+      <FormTextarea
+          v-model="form.desc"
+          :rows="4"
+          label="描述"
+          name="desc"
+          placeholder="请输入详情..."
+      />
     </fieldset>
 
     <!-- 6. 按钮控件 -->
     <fieldset>
-      <legend>4.按钮控件</legend>
-      <FormButton class="padding-24rem border-gray" type="submit">提交</FormButton>
-      <FormButton class="padding-24rem border-gray" type="reset" @click="handleReset">重置</FormButton>
+      <legend
+      >
+        4.按钮控件
+      </legend>
+      <FormButton
+          class="padding-24rem border-gray"
+          type="submit"
+      >
+        提交
+      </FormButton>
+      <FormButton
+          class="padding-24rem border-gray"
+          type="reset"
+          @click="handleReset"
+      >
+        重置
+      </FormButton>
     </fieldset>
   </FormContainer>
 </template>

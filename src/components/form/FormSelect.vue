@@ -21,6 +21,7 @@
           form-select-result
           "
           style="max-height: 3rem;min-height: 2rem;"
+          @mousedown.prevent
       >
         <div
             class="
@@ -123,7 +124,7 @@ const showOptions = ref(false);
 
 let activeIndexSet = ref(new Set<Options>());
 const selectResult = computed(() => {
-  return props.options.filter((option, index) => activeIndexSet.value.has(option));
+  return props.options.filter((option, _) => activeIndexSet.value.has(option));
 })
 const swtichActiveIndex = (value: Options) => {
   if (!props.multiple) {
@@ -145,4 +146,36 @@ const swtichActiveIndex = (value: Options) => {
 </script>
 
 <style lang="css" scoped>
+
+.form-select-options {
+
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  border-radius: 0.2rem;
+}
+
+.form-select-result {
+  position: relative;
+  display: flex;
+  border: 1px solid var(--border-color);
+}
+
+.form-select-result .arrow {
+  position: absolute;
+  right: 0.05rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+}
+
+.form-select-options .option {
+  margin: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
+.form-select-options .option.active {
+  background-color: var(--primary-color);
+  color: var(--color-white);
+}
 </style>
