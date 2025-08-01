@@ -1,7 +1,14 @@
 <template>
   <card style="height: 100vh;width:1200px;margin: 0 auto;">
     <template #left>
-      <div class="scroll-container scroll-y" style="height: 100vh;max-width: 300px;">
+      <div
+          class="scroll-container scroll-y"
+          style="
+          height: 100vh;
+          max-width: 300px;
+          border-right: 1px solid var(--primary-color)"
+
+      >
         <div class="container-column padding-rem bo">
         <span
             v-for="(item, index) in components"
