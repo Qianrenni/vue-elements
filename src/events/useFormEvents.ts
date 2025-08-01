@@ -12,7 +12,7 @@ export function useFormEvents<T>(emit: FormComponentEmits<T>) {
         /**
          * 处理 input 事件（值变化 + emit）
          */
-        handleInput(event: InputEvent, parse: (e: InputEvent) => T) {
+        handleInput(event: InputEvent | Event, parse: (e: InputEvent | Event) => T) {
             const value = parse(event)
             emit('update:modelValue', value as T)
             emit('input', value, event)

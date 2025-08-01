@@ -1,45 +1,94 @@
 <!-- components/form/FormTextarea.vue -->
 <template>
-  <div>
-    <label v-if="label" :for="name">{{ label }}:</label>
+  <div
+      :class="[
+          {
+            'container-column':direction === 'vertical',
+            'gap-fourth':direction==='vertical',
+            'container-align-center':direction!=='vertical'
+
+          }
+      ]"
+      class="form-text-area-container"
+  >
+    <label
+        v-if="label"
+        :id="name"
+        :class="{
+          'mouse-cursor-disable':disabled,
+          'text-12rem':size==='large',
+          'text-05rem':size==='small'
+        }"
+        :for="name"
+        class="label"
+    >
+      {{ label }}:
+    </label>
     <textarea
         :id="name"
+        :class="{
+          'mouse-cursor-disable':disabled,
+          'text-12rem':size==='large',
+          'text-05rem':size==='small'
+        }"
+        :disabled="disabled"
         :name="name"
         :placeholder="placeholder"
         :required="required"
         :rows="rows"
-        :style="{ resize: resizable ? 'vertical' : 'none' }"
+        :style="{ resize: resizable ? 'both' : 'none' }"
         :value="modelValue"
         @input="onInput"
-    ></textarea>
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-withDefaults(defineProps<{
-  modelValue: string;
-  name: string;
-  label?: string;
+import {FormComponentEmits, FormComponentProps} from "@/types";
+import {useFormEvents} from "@/events";
+
+defineOptions({
+  name: 'FormTextarea'
+});
+
+interface FormTextAreaProps extends FormComponentProps<string> {
   rows?: number;
-  placeholder?: string;
-  required?: boolean;
   resizable?: boolean; // 是否允许拖拽调整大小，默认为true
-}>(), {
+}
+
+const props = withDefaults(defineProps<FormTextAreaProps>(), {
   rows: 3,
+  resizable: false,
+  placeholder: '请输入内容',
   required: true,
-  resizable: false
-})
+  direction: 'vertical',
+  disabled: false,
+  autofocus: false,
+  readonly: false,
+  size: 'middle',
+  clearable: false,
+});
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
-}>();
-
+const emit = defineEmits<FormComponentEmits<string>>();
+const {handleInput} = useFormEvents(emit);
 const onInput = (e: Event) => {
-  const target = e.target as HTMLTextAreaElement;
-  emit('update:modelValue', target.value as string);
+  handleInput(e as InputEvent, (ev) => (ev.target as HTMLInputElement).value as string)
 };
 </script>
 
 <style scoped>
+.form-text-area-container textarea {
+  width: 100%;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #ccc;
+}
 
+.form-text-area-container textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.form-text-area-container label {
+  white-space: nowrap;
+}
 </style>

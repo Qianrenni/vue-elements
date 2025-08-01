@@ -1,7 +1,10 @@
 <template>
   <div
       class="container-align-center container-center"
-      style="cursor: pointer"
+      style="
+      width: min-content;
+      height: min-content;
+      cursor: pointer"
       v-html="content"
   />
 </template>
