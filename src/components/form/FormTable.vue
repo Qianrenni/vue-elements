@@ -3,13 +3,13 @@
   <div
       :class="[
       'form-table-container',
-      {
-        'container-column': direction === 'vertical',
-        'gap-half': direction === 'vertical',
-        'container-align-start': direction === 'vertical',
-        'container-align-center': direction !== 'vertical'
-      }
-    ]"
+      // {
+      //   'container-column': direction === 'vertical',
+      //   'gap-half': direction === 'vertical',
+      //   'container-align-start': direction === 'vertical',
+      //   'container-align-center': direction !== 'vertical'
+      // }
+      ]"
       role="none"
   >
     <!-- 标签 -->
@@ -40,7 +40,9 @@
           :class="[
               {
                 'table-small': size === 'small',
-                'table-large': size === 'large'
+                'table-large': size === 'large',
+                'text-08rem':size === 'small',
+                'text-12rem':size === 'large'
               }
           ]"
           class="form-table">
@@ -56,16 +58,33 @@
                 v-if="selectionMode === 'multiple'"
                 :checked="isAllSelected"
                 :disabled="disabled"
+                class="mouse-cursor"
                 type="checkbox"
                 @change="onToggleAllSelection"
             />
           </th>
           <th
-              v-for="col in columns"
+              v-for=" (col,index) in columns"
               :key="col.value"
               :style="{ width: col.width || 'auto' }"
           >
             {{ col.label }}
+            <icon
+                v-if="sortable"
+                :size="ICON_SIZE[size]"
+                :style="{
+                  transform: `${sortColumnOrder[index]==='asc'?'rotateY(180deg)':'rotateY(0deg)'}
+                  rotateZ(90deg) translateX(-50%)`
+                }"
+                icon="Switch"
+                style="
+                transform-origin: center center;
+                position: absolute;
+                right: 0.1rem;
+                top: 50%;
+                "
+                @click="sortByColumn(col.value,index)"
+            />
           </th>
         </tr>
         </thead>
@@ -89,6 +108,7 @@
                 v-if="selectionMode === 'single'"
                 :checked="isSelected(row)"
                 :disabled="disabled"
+                class="mouse-cursor"
                 type="radio"
                 @change="onSelectRow(row)"
             />
@@ -96,6 +116,7 @@
                 v-else-if="selectionMode === 'multiple'"
                 :checked="isSelected(row)"
                 :disabled="disabled"
+                class="mouse-cursor"
                 type="checkbox"
                 @change="onToggleRowSelection(row)"
             />
@@ -104,6 +125,7 @@
               v-for="col in columns"
               :key="col.value"
               :style="{ width: col.width || 'auto' }"
+              class="text-one-line"
           >
             <!-- 支持插槽自定义渲染 -->
             <span>
@@ -126,6 +148,7 @@
 import {FormComponentEmits, FormComponentProps} from "@/types";
 import {useFormEvents} from "@/events/useFormEvents";
 import {computed, ref, watch} from "vue";
+import Icon from "@/components/basic/Icon.vue";
 
 // 列定义
 interface TableColumn {
@@ -142,6 +165,12 @@ type Row = {
 }
 type FormTableModelValueRowType = Record<string, any>;
 type FormTableModelValueType = FormTableModelValueRowType[];
+type SortOrder = "asc" | "desc" | null;
+const ICON_SIZE = {
+  small: '14',
+  middle: '18',
+  large: '22'
+}
 
 // Props 定义
 interface FormTableProps extends FormComponentProps<FormTableModelValueType> {
@@ -161,6 +190,11 @@ interface FormTableProps extends FormComponentProps<FormTableModelValueType> {
    * 选择模式：单选 / 多选 / 不可选
    */
   selectionMode?: SelectionMode;
+
+  /**
+   * 是否可排序
+   */
+  sortable?: boolean;
 }
 
 // 默认值
@@ -172,7 +206,11 @@ const props = withDefaults(defineProps<FormTableProps>(), {
   size: "middle",
   selectable: false,
   selectionMode: 'multiple',
+  sortable: true,
 });
+
+// 记录每列倒序还是顺序
+const sortColumnOrder: SortOrder[] = props.columns.map(() => null);
 
 // 定义 emits
 const emit = defineEmits<FormComponentEmits<(Record<string, any>)[]>>();
@@ -211,6 +249,25 @@ function rowWithoutTdId(rowOrRows: Row | Row[]) {
   }
 }
 
+/**
+ *
+ * @param key 列
+ * @param index 列索引
+ */
+const sortByColumn = (key: string, index: number) => {
+  if (index === -1) return;
+  sortColumnOrder[index] = sortColumnOrder[index] === 'asc' ? 'desc' : 'asc';
+  localData.value = [...localData.value].sort((a, b) => {
+    const aValue = a[key];
+    const bValue = b[key];
+    if (sortColumnOrder[index] === 'asc') {
+      return aValue > bValue ? 1 : -1;
+    } else {
+      return aValue < bValue ? 1 : -1;
+    }
+  });
+
+}
 // 是否已选中某行
 const isSelected = (row: Row) => {
   return localValue.value.some((item) => item === row || item.tdId === row.tdId);
@@ -287,13 +344,22 @@ const onBlur = (e: FocusEvent) => {
 <style lang="css" scoped>
 .form-table-container {
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   align-items: center;
+  border: 1px solid #ddd;
+}
+
+.form-table-container .label {
+  font-weight: 700;
+  transform: scale(1.2);
+  margin: 0.2rem 0;
 }
 
 .input-table-container {
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  min-width: 0;
   position: relative;
 }
 
@@ -301,57 +367,46 @@ const onBlur = (e: FocusEvent) => {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  background-color: #fff;
 }
 
 .form-table th,
 .form-table td {
-  padding: 8px 12px;
+  padding: 0.5rem 0.75rem;
   text-align: left;
   border-bottom: 1px solid #ddd;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .form-table th {
-  background-color: #f8f8f8;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-right: 1px solid #fff;
+  border-bottom: none;
   font-weight: 600;
   position: sticky;
+
   top: 0;
   z-index: 1;
 }
 
+.form-table th:last-child {
+  border-right: none;
+}
+
 /* 尺寸适配 */
-.text-05rem {
-  font-size: 0.75rem;
-}
-
-.text-12rem {
-  font-size: 1rem;
-}
-
-.table-small {
-  font-size: 0.75rem;
-}
 
 .table-small th,
 .table-small td {
-  padding: 4px 8px;
-}
-
-.table-large {
-  font-size: 1.125rem;
+  padding: 0.25rem 0.5rem;
 }
 
 .table-large th,
 .table-large td {
-  padding: 12px 16px;
+  padding: 0.75rem 1rem;
 }
 
 /* 选中行样式 */
 .row-selected {
-  background-color: #e6f7ff;
+  background-color: rgba(91, 104, 216, 0.05);
 }
 
 .row-disabled {
@@ -364,32 +419,5 @@ const onBlur = (e: FocusEvent) => {
   padding: 20px;
   color: #999;
   font-style: italic;
-}
-
-/* 禁用光标 */
-.mouse-cursor-disable {
-  cursor: not-allowed;
-}
-
-/* Flex 工具类（假设你在全局定义了这些类） */
-.container {
-  display: flex;
-  align-items: center;
-}
-
-.container-column {
-  flex-direction: column;
-}
-
-.container-align-center {
-  align-items: center;
-}
-
-.container-align-start {
-  align-items: flex-start;
-}
-
-.gap-half {
-  gap: 0.5rem;
 }
 </style>

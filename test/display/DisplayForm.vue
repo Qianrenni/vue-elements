@@ -12,13 +12,13 @@
         class="
         gap
         container-column"
+        style="
+        width: 800px;"
     >
       <fieldset
           class="
         container-column
         gap"
-          style="
-        width: 800px;"
       >
         <legend>1.文本控件</legend>
         <FormText
@@ -201,12 +201,19 @@
         </FormButton>
       </fieldset>
       <fieldset>
-        <FormTable
-            :columns="columns"
-            :data="tableData"
-            selectable
-            selection-mode="multiple"
-        />
+        <div
+            class="scroll-container scroll-x"
+            style="height: 400px"
+        >
+          <FormTable
+              :columns="columns"
+              :data="tableData"
+
+              label="表格"
+              selectable
+              selection-mode="multiple"
+          />
+        </div>
 
       </fieldset>
     </div>
@@ -238,6 +245,15 @@ const columns = [
 
 const tableData = [
   {id: 1, name: "张三", age: 24, email: "zhang@example.com"},
+  {id: 2, name: "李四", age: 28, email: "li@example.com"},
+  {id: 2, name: "李四", age: 28, email: "li@example.com"},
+  {id: 2, name: "李四", age: 28, email: "li@example.com"},
+  {id: 2, name: "李四", age: 28, email: "li@example.com"},
+  {id: 2, name: "李四", age: 28, email: "li@example.com"},
+  {id: 2, name: "李四", age: 28, email: "li@example.com"},
+  {id: 2, name: "李四", age: 28, email: "li@example.com"},
+  {id: 2, name: "李四", age: 28, email: "li@example.com"},
+  {id: 2, name: "李四", age: 28, email: "li@example.com"},
   {id: 2, name: "李四", age: 28, email: "li@example.com"},
 ];
 
