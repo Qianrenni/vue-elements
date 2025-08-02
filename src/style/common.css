@@ -365,9 +365,9 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    box-shadow: 0 0 0 300px white inset;
+    -webkit-text-fill-color: var(--text-color);
+    box-shadow: 0 0 0 1000px var(--card-bg) inset; /* 如果你想要白色背景，改为 transparent 就是透明 */
 }
-
 
 /*响应式类*/
 .hidden-768 {
