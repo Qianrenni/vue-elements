@@ -23,6 +23,7 @@
     --background-color: #f8f9fa;
     --secondary-background-color: #E8E8E8;
     --text-color: #212529;
+    --color-description: #565656;
     --subtle-text-color: #6c757d;
     --border-color: #686c71;
     --card-bg: #ffffff;
@@ -733,6 +734,10 @@ input:-webkit-autofill:active {
 .text-primary {
     color: var(--primary-color);
     background-color: var(--color-white);
+}
+
+.text-description {
+    color: var(--color-description);
 }
 
 .text-success {
