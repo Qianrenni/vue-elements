@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Q Loading Animation</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+        }
+
+        canvas {
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+<canvas id="qCanvas" height="400" width="400"></canvas>
+
+<script>
+    const canvas = document.getElementById('qCanvas');
+    const ctx = canvas.getContext('2d');
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = 100;
+
+    // 动画参数
+    let progress = 0; // 0 到 1
+    const duration = 3000; // 动画持续时间（毫秒）
+    let startTime = null;
+
+    // 四个角的起点
+    const corners = [
+        {x: 0, y: 0},           // 左上
+        {x: canvas.width, y: 0}, // 右上
+        {x: canvas.width, y: canvas.height}, // 右下
+        {x: 0, y: canvas.height}  // 左下
+    ];
+
+    // 控制点配置（用于贝塞尔曲线）
+    const controlPoints = [
+        {c1: {x: 100, y: 0}, c2: {x: centerX - 50, y: centerY - 100}}, // 左上
+        {c1: {x: canvas.width - 100, y: 0}, c2: {x: centerX + 50, y: centerY - 100}}, // 右上
+        {c1: {x: canvas.width - 100, y: canvas.height}, c2: {x: centerX + 50, y: centerY + 100}}, // 右下
+        {c1: {x: 100, y: canvas.height}, c2: {x: centerX - 50, y: centerY + 100}} // 左下
+    ];
+
+    function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+    }
+
+    function animate(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutCubic(progress);
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // 设置样式
+        ctx.strokeStyle = '#00ffcc';
+        ctx.lineWidth = 6;
+        ctx.lineCap = 'round';
+
+        // 绘制四条曲线动画
+        for (let i = 0; i < 4; i++) {
+            const start = corners[i];
+            const cp1 = controlPoints[i].c1;
+            const cp2 = controlPoints[i].c2;
+
+            ctx.beginPath();
+            ctx.moveTo(start.x, start.y);
+
+            // 计算当前曲线绘制长度
+            const segment = easedProgress * (i + 1) / 4; // 错开绘制时间
+            const t = Math.max(0, Math.min(1, segment * 4)); // 局部进度 0~1
+
+            // 近似绘制部分贝塞尔曲线（简化：线性插值分段）
+            const numSegments = 50;
+            const drawTo = Math.floor(numSegments * t);
+            let x, y;
+
+            for (let j = 0; j <= drawTo; j++) {
+                const tt = j / numSegments;
+                // 三次贝塞尔曲线插值
+                x = cubicBezier(start.x, cp1.x, cp2.x, centerX, tt);
+                y = cubicBezier(start.y, cp1.y, cp2.y, centerY, tt);
+                if (j === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+        }
+
+        // 当动画完成时，添加 Q 的“尾巴”
+        if (progress === 1) {
+            drawQTail();
+        }
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else if (progress === 1) {
+            // 循环或保持显示
+            drawQTail(); // 确保尾巴显示
+        }
+    }
+
+    // 三次贝塞尔曲线公式
+    function cubicBezier(p0, p1, p2, p3, t) {
+        const mt = 1 - t;
+        return mt * mt * mt * p0 +
+            3 * mt * mt * t * p1 +
+            3 * mt * t * t * p2 +
+            t * t * t * p3;
+    }
+
+    // 绘制 Q 的尾巴（从圆底部向右下延伸）
+    function drawQTail() {
+        ctx.strokeStyle = '#00ffcc';
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY + radius * 0.6);
+        ctx.bezierCurveTo(
+            centerX + 30, centerY + radius * 0.8,
+            centerX + 70, centerY + 50,
+            centerX + 60, centerY + 80
+        );
+        ctx.stroke();
+    }
+
+    // 开始动画
+    requestAnimationFrame(animate);
+</script>
+</body>
+</html>
