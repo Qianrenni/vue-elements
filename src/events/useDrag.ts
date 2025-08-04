@@ -6,9 +6,10 @@ import {throttleUtil} from "@/utils";
  * @param elementRef 目标元素的引用
  * @param onMove 移动事件的回调函数（可选）
  * @param interval 节流间隔（毫秒）
+ * @param threshold 移动阈值（像素）
  * @returns 返回一个包含清理方法 `destroy` 的对象
  */
-export const useDrag = (elementRef: HTMLElement, onMove?: () => void, interval = 16) => {
+export const useDrag = (elementRef: HTMLElement, onMove?: () => void, interval = 16, threshold = 10) => {
     interval = interval > 16 ? interval : 16;
     // 拖拽状态标志
     let isDragging = false;
@@ -18,7 +19,7 @@ export const useDrag = (elementRef: HTMLElement, onMove?: () => void, interval =
     // 记录元素初始位置（bottom/right）
     let startBottom = 0;
     let startRight = 0;
-
+    let isMove = false;
     /**
      * 拖拽中
      * - 计算鼠标移动的偏移量（dy/dx）
@@ -28,6 +29,9 @@ export const useDrag = (elementRef: HTMLElement, onMove?: () => void, interval =
         if (!isDragging) return;
         const dy = startY - e.clientY;
         const dx = startX - e.clientX;
+        if (Math.abs(dx) >= threshold || Math.abs(dx) <= threshold) {
+            isMove = true;
+        }
         elementRef.style.bottom = `${startBottom + dy}px`;
         elementRef.style.right = `${startRight + dx}px`;
         onMove?.();
@@ -41,6 +45,7 @@ export const useDrag = (elementRef: HTMLElement, onMove?: () => void, interval =
      */
     const startDrag = (e: MouseEvent) => {
         isDragging = true;
+        isMove = false;
         startY = e.clientY;
         startX = e.clientX;
         startBottom = parseInt(getComputedStyle(elementRef).bottom, 10) || 0;
