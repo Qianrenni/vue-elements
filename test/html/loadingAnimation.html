@@ -39,7 +39,7 @@
     let centerX, centerY;
 
     // 动画参数
-    const duration = 2000; // 每个阶段持续时间（毫秒）
+    const duration = 500; // 每个阶段持续时间（毫秒）
     let startTime = null;
     let currentStage = 0; // 0: 四角汇聚, 1: 画椭圆, 2: 画一撇
 
@@ -102,7 +102,7 @@
     // 控制点配置（可调整曲线弧度）
     function getControlPoints() {
         return [
-            {c1: {x: 100, y: 0}, c2: {x: centerX - 40, y: centerY - 60}}, // 左上
+            {c1: {x: canvas.width / 6, y: canvas.height / 8}, c2: {x: canvas.width / 3, y: canvas.height / 6}}, // 左上
             {c1: {x: canvas.width - 100, y: 0}, c2: {x: centerX + 40, y: centerY - 60}}, // 右上
             {c1: {x: canvas.width - 100, y: canvas.height}, c2: {x: centerX + 40, y: centerY + 60}}, // 右下
             {c1: {x: 100, y: canvas.height}, c2: {x: centerX - 40, y: centerY + 60}} // 左下
