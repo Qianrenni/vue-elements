@@ -261,7 +261,6 @@
         <button onclick="copyCss()">复制 CSS</button>
     </div>
 </div>
-
 <script>
     // 元素
     const hueSlider = document.getElementById('hue');
@@ -337,23 +336,40 @@
         return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
     }
 
+    // 判断颜色深浅的辅助函数
+    function isLightColor(hex) {
+        // 去掉 # 符号
+        const c = hex.substring(1);
+        const rgb = parseInt(c, 16);
+        const r = (rgb >> 16) & 0xff;
+        const g = (rgb >> 8) & 0xff;
+        const b = (rgb >> 0) & 0xff;
+        // 计算感知亮度
+        const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        return luma > 128;
+    }
+
     // 生成颜色块
     function updateColors() {
         const h = parseInt(hueSlider.value);
         const s = parseInt(satSlider.value);
         const l = parseInt(lightSlider.value);
 
+        // 在函数开头计算所有动态颜色
+        const primaryHex = hslToHex(h, s, l);
+        const primaryHoverHex = hslToHex(h, s, l + 8);
+        const primaryLightHex = hslToHex(h, s - 20, l + 30);
+        const infoBgHex = hslToHex((h + 180) % 360, 70, 55);
+        const linkHoverHex = hslToHex(h, s, l + 15);
+
         hueValue.textContent = h;
         satValue.textContent = s;
         lightValue.textContent = l;
 
         const colors = getColors(h, s, l);
-
         colorPalette.innerHTML = '';
 
-        let cssVars = `/* Generated CSS Variables */\n:root {\n`;
-        const themeColors = [];
-
+        // 添加主色调方案的色块
         colors.forEach((color, i) => {
             const {h: ch, s: cs, l: cl, name} = color;
             const hex = hslToHex(ch, cs, cl);
@@ -374,22 +390,108 @@
         `;
 
             colorPalette.appendChild(block);
-
-            // 构建 CSS 变量
-            const varName = name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
-            cssVars += `  --color-${varName}: ${hex};\n`;
-            themeColors.push(hex);
         });
-        cssVars += `}`;
 
-        cssOutput.value = cssVars;
+        // 添加生产环境变量的色块
+        const productionColors = [
+            {name: "背景色", var: "--background-color", hex: "#f8f9fa"},
+            {name: "文字色", var: "--text-color", hex: "#212529"},
+            {name: "成功", var: "--success-color", hex: "#28a745"},
+            {name: "警告", var: "--warning-bg", hex: "#ffc107"},
+            {name: "危险", var: "--danger-bg", hex: "#dc3545"},
+            {name: "信息", var: "--info-bg", hex: infoBgHex},
+            {name: "卡片背景", var: "--card-bg", hex: "#ffffff"},
+        ];
+
+        productionColors.forEach(color => {
+            const block = document.createElement('div');
+            block.className = 'color-block';
+            block.style.backgroundColor = color.hex;
+            const isLight = isLightColor(color.hex);
+            block.style.color = isLight ? '#333' : 'white';
+            block.innerHTML = `
+        <h3>${color.name}</h3>
+        <p>${color.var}</p>
+        <p>${color.hex}</p>
+        <button onclick="copyToClipboard('${color.hex}')">复制</button>
+      `;
+            colorPalette.appendChild(block);
+        });
 
         // 更新预览组件
-        previewBtn.style.backgroundColor = themeColors[0];
-        previewBtn.style.color = parseInt(colors[0].l) > 60 ? '#333' : 'white';
+        previewBtn.style.backgroundColor = primaryHex;
+        previewBtn.style.color = l > 60 ? '#333' : 'white';
 
-        previewCard.style.backgroundColor = themeColors[0];
-        previewCard.style.color = parseInt(colors[0].l) > 60 ? '#333' : 'white';
+        previewCard.style.backgroundColor = 'var(--card-bg)';
+        previewCard.style.color = 'var(--text-color)';
+
+        // 构建完整的 CSS 变量输出
+        const fullCss = `
+:root {
+    /* 🎨 中性色 */
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    --background-color: #f8f9fa;
+    --secondary-background-color: #E8E8E8;
+    --text-color: #212529;
+    --color-description: #565656;
+    --subtle-text-color: #6c757d;
+    --border-color: #686c71;
+    --card-bg: #ffffff;
+    --box-shadow: rgba(0, 0, 0, 0.08);
+
+    /* 🎯 主题色（由配色工具驱动） */
+    --primary-color: ${primaryHex}; /* 主色调 */
+    --primary-hover: ${primaryHoverHex};
+    --primary-light: ${primaryLightHex};
+
+    /* 🟢 成功色 */
+    --success-color: #28a745;
+    --success-bg: #e6f9f0;
+    --success-border: #b2f2cc;
+
+    /* 🟡 警告色 */
+    --warning-color: #333;
+    --warning-bg: #ffc107;
+    --warning-border: #ffeac2;
+
+    /* 🔴 危险色 */
+    --danger-color: white;
+    --danger-bg: #dc3545;
+    --danger-border: #ffcccc;
+
+    /* 🔵 信息色 */
+    --info-color: #ffffff;
+    --info-bg: ${infoBgHex};
+    --info-border: #c8e9e5;
+
+    /* 🌫️ 灰色系 */
+    --gray-100: #f1f1f1;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #868e96;
+    --gray-700: #495057;
+
+    /* 🖱️ 按钮 */
+    --button-bg: var(--primary-color);
+    --button-text: #ffffff;
+    --button-hover: var(--primary-hover);
+    --button-disabled: #e9ecef;
+
+    /* 🔗 链接样式 */
+    --link-color: var(--primary-color);
+    --link-hover: ${linkHoverHex};
+
+    /* 🧱 基础样式 */
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+
+        `;
+
+        cssOutput.value = fullCss;
     }
 
     function copyToClipboard(text) {
@@ -401,7 +503,7 @@
     function copyCss() {
         cssOutput.select();
         document.execCommand('copy');
-        alert('CSS 已复制到剪贴板！');
+        alert('✅ 完整设计系统 CSS 已复制到剪贴板！');
     }
 
     // 暗色模式切换
