@@ -23,7 +23,7 @@
     --background-color: #f8f9fa;
     --secondary-background-color: #E8E8E8;
     --text-color: #212529;
-    --color-description: #565656;
+    --text-description: #565656;
     --subtle-text-color: #6c757d;
     --border-color: #686c71;
     --card-bg: #ffffff;
@@ -65,13 +65,6 @@
     /* 🔗 链接样式 */
     --link-color: var(--primary-color);
     --link-hover: #6677ef; /* 和主色协调的悬停色 */
-
-    --border-radius: 8px;
-    --transition-speed: 0.3s;
-
-    /* 自定义变量 */
-    --content-height-2: calc(100vh - 3rem);
-    --content-height-without-header: calc(100vh - 20px - 3rem);
 }
 
 /* 🌑 暗黑模式样式 */
@@ -105,10 +98,6 @@ body.dark-mode {
     --button-text: #ffffff;
     --button-hover: var(--primary-hover);
     --button-disabled: #555555;
-
-    /* 🔗 链接样式 */
-    --link-color: var(--primary-color);
-    --link-hover: #6677ef; /* 和主色一致，更柔和 */
 }
 
 body {
@@ -149,7 +138,7 @@ body {
 
 /*阴影类*/
 .shadow-black {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px var(--box-shadow);
 }
 
 .gray-swatch,
@@ -243,7 +232,7 @@ body {
 .link-primary {
     color: var(--link-color);
     text-decoration: none;
-    transition: color var(--transition-speed);
+    transition: color 0.3s ease-in-out;
 }
 
 .link-primary:hover {
@@ -486,11 +475,6 @@ input:-webkit-autofill:active {
 .border-primary {
     border: 2px solid var(--primary-color);
 }
-
-.border-bottom-foreground {
-    border-bottom: 1px solid var(--text-color);
-}
-
 
 .margin-rem {
     margin: var(--distance);
@@ -737,7 +721,7 @@ input:-webkit-autofill:active {
 }
 
 .text-description {
-    color: var(--color-description);
+    color: var(--text-description);
 }
 
 .text-success {
