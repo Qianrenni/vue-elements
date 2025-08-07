@@ -3,35 +3,12 @@
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="common.css" rel="stylesheet"/>
     <title>🎨 高级前端配色助手</title>
     <style>
-        :root {
-            --bg: #f4f4f4;
-            --text: #333;
-            --card-bg: white;
-            --border: #ddd;
-            --btn-bg: #007bff;
-            --btn-text: white;
-        }
-
-        .dark-mode {
-            --bg: #1a1a1a;
-            --text: #e0e0e0;
-            --card-bg: #2d2d2d;
-            --border: #444;
-            --btn-bg: #0d6efd;
-        }
-
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: var(--bg);
-            color: var(--text);
-            transition: background-color 0.3s, color 0.3s;
-        }
-
         .container {
+            display: flex;
+            flex-direction: column;
             max-width: 1000px;
             margin: auto;
             background: var(--card-bg);
@@ -42,7 +19,7 @@
 
         h1 {
             text-align: center;
-            color: var(--text);
+            color: var(--text-color);
         }
 
         .theme-toggle {
@@ -53,8 +30,8 @@
         }
 
         .theme-toggle button {
-            background: var(--btn-bg);
-            color: var(--btn-text);
+            background: var(--button-bg);
+            color: var(--button-text);
             border: none;
             padding: 8px 16px;
             border-radius: 6px;
@@ -80,7 +57,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
-            color: var(--text);
+            color: var(--text-color);
         }
 
         input[type="range"] {
@@ -132,7 +109,6 @@
             font-size: 12px;
             border: none;
             background: rgba(255, 255, 255, 0.2);
-            color: white;
             cursor: pointer;
             border-radius: 4px;
         }
@@ -151,7 +127,7 @@
 
         .preview h2 {
             margin-top: 0;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 8px;
         }
 
@@ -186,16 +162,16 @@
             height: 120px;
             padding: 10px;
             border-radius: 6px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-color);
             background: var(--card-bg);
-            color: var(--text);
+            color: var(--text-color);
             font-family: monospace;
         }
 
         .export button {
             margin-top: 10px;
             padding: 10px 20px;
-            background: var(--btn-bg);
+            background: var(--button-bg);
             color: white;
             border: none;
             border-radius: 6px;
@@ -357,8 +333,8 @@
 
         // 在函数开头计算所有动态颜色
         const primaryHex = hslToHex(h, s, l);
-        const primaryHoverHex = hslToHex(h, s, l + 8);
-        const primaryLightHex = hslToHex(h, s - 20, l + 30);
+        const primaryHoverHex = hslToHex(h, s + 10, l - 10); // 增加饱和度并降低亮度以增强 hover 效果
+        const primaryLightHex = hslToHex(h, s - 10, l + 10);
         const infoBgHex = hslToHex((h + 180) % 360, 70, 55);
         const linkHoverHex = hslToHex(h, s, l + 15);
 
@@ -378,6 +354,7 @@
             const block = document.createElement('div');
             block.className = 'color-block';
             block.style.backgroundColor = hslStr;
+            block.style.setProperty('--hover-color', primaryHoverHex); // 动态设置 hover 颜色
 
             const isLight = cl > 65;
             block.style.color = isLight ? '#333' : 'white';
@@ -392,28 +369,30 @@
             colorPalette.appendChild(block);
         });
 
-        // 添加生产环境变量的色块
         const productionColors = [
-            {name: "背景色", var: "--background-color", hex: "#f8f9fa"},
-            {name: "文字色", var: "--text-color", hex: "#212529"},
-            {name: "成功", var: "--success-color", hex: "#28a745"},
-            {name: "警告", var: "--warning-bg", hex: "#ffc107"},
-            {name: "危险", var: "--danger-bg", hex: "#dc3545"},
-            {name: "信息", var: "--info-bg", hex: infoBgHex},
-            {name: "卡片背景", var: "--card-bg", hex: "#ffffff"},
+            {name: '主色hover', var: "--primary-hover",},
+            {name: '主色light', var: "--primary-light",},
+            {name: "背景色", var: "--background-color",},
+            {name: "文字色", var: "--text-color",},
+            {name: "成功", var: "--success-color",},
+            {name: "警告", var: "--warning-bg",},
+            {name: "危险", var: "--danger-bg",},
+            {name: "信息", var: "--info-bg",},
+            {name: "卡片背景", var: "--card-bg",},
         ];
 
-        productionColors.forEach(color => {
+        productionColors.forEach(item => {
             const block = document.createElement('div');
             block.className = 'color-block';
-            block.style.backgroundColor = color.hex;
-            const isLight = isLightColor(color.hex);
+            const color = getComputedStyle(document.getElementById('htmlRoot')).getPropertyValue(item.var);
+            block.style.backgroundColor = color;
+            const isLight = isLightColor(color);
             block.style.color = isLight ? '#333' : 'white';
             block.innerHTML = `
-        <h3>${color.name}</h3>
-        <p>${color.var}</p>
-        <p>${color.hex}</p>
-        <button onclick="copyToClipboard('${color.hex}')">复制</button>
+        <h3>${item.name}</h3>
+        <p>${item.var}</p>
+        <p>${color}</p>
+        <button onclick="copyToClipboard('${color}')">复制</button>
       `;
             colorPalette.appendChild(block);
         });
@@ -426,7 +405,7 @@
         previewCard.style.color = 'var(--text-color)';
 
         // 构建完整的 CSS 变量输出
-        const fullCss = `
+        cssOutput.value = `
 :root {
     /* 🎨 中性色 */
     --color-white: #ffffff;
@@ -490,8 +469,6 @@
     --transition-speed: 0.3s;
 
         `;
-
-        cssOutput.value = fullCss;
     }
 
     function copyToClipboard(text) {
@@ -508,8 +485,7 @@
 
     // 暗色模式切换
     themeToggle.addEventListener('click', () => {
-        const html = document.getElementById('htmlRoot');
-        const isDark = html.classList.toggle('dark-mode');
+        const isDark = document.body.classList.toggle('dark-mode');
         themeToggle.textContent = isDark ? '☀️ 亮色模式' : '🌙 暗色模式';
     });
 

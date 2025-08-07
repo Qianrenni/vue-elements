@@ -20,9 +20,9 @@
     --color-white: #ffffff;
     --color-black: #000000;
 
-    --background-color: #f8f9fa;
+    --background-color: #f4f4f4;
     --secondary-background-color: #E8E8E8;
-    --text-color: #212529;
+    --text-color: #333;
     --text-description: #565656;
     --subtle-text-color: #6c757d;
     --border-color: #686c71;
@@ -109,6 +109,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;;
     color: var(--text-color);
     background-color: var(--background-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 

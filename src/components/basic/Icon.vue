@@ -10,7 +10,6 @@
 </template>
 <script lang="ts" setup>
 import {computed, defineProps, onMounted, ref, watch} from "vue";
-
 defineOptions({
   name: "Icon",
 })

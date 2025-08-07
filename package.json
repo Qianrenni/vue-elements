@@ -5,6 +5,7 @@
   "main": "dist/qyani-components.cjs.js",
   "module": "dist/qyani-components.es.js",
   "browser": "dist/qyani-components.umd.js",
+  "packageManager": "pnpm@10.12.4",
   "types": "types/index.d.ts",
   "type": "module",
   "scripts": {
@@ -45,9 +46,7 @@
     "typescript": "^5.8.3",
     "vite": "^7.0.0",
     "vue": "^3.5.17",
-    "vue-tsc": "^3.0.1"
-  },
-  "dependencies": {
+    "vue-tsc": "^3.0.1",
     "@types/node": "^24.1.0"
   }
 }
