@@ -58,7 +58,8 @@ const components = [
   'ThemeToggle',
   'TimeUtil',
   'TypeText',
-  'UseMousePosition'
+  'UseMousePosition',
+  'Sql'
 
 ]
 

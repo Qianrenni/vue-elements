@@ -1,7 +1,12 @@
 // test/main.ts
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import Test from './Test.vue'
 import '/src/style/common.css'
+import ELementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
 const app = createApp(Test)
+
+app.use(ELementPlus)
 
 app.mount('#app')

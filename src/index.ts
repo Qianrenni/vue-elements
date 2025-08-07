@@ -20,7 +20,7 @@ import {default as QThemeToggle} from "./components/theme/ThemeToggle.vue";
 
 export * from "./events";
 export * from "./utils";
-
+export * from "./types"
 export default {
     install(app: any) {
         app.component("QAvatar", QAvatar);
