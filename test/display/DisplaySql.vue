@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import {SqlField} from "../../src";
 import ConditionSelect from "../../src/components/Sql/ConditionSelect.vue";
+import dayjs from 'dayjs'
 // === 定义字段配置 ===
 const LOG_FIELDS: SqlField[] = [
   {
@@ -16,7 +17,10 @@ const LOG_FIELDS: SqlField[] = [
   {
     name: 'datetime',
     label: '创建时间',
-    type: 'datetime'
+    type: 'datetime',
+    formatter: (value: string) => {
+      return dayjs(value).format('YYYY-MM-DD HH:mm:ss')
+    }
   },
   {
     name: 'valid',

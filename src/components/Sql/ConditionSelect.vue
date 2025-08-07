@@ -29,7 +29,7 @@
             :disabled="!cond.field"
             class="operator-select"
             clearable
-            placeholder="操作"
+            placeholder="条件"
             @change="onOperatorChange(cond)"
         >
           <el-option
@@ -77,6 +77,9 @@
         重置
       </el-button>
     </div>
+    <div>
+      <pre>{{ JSON.stringify(conditions, null, 4) }}</pre>
+    </div>
   </div>
 </template>
 
@@ -88,6 +91,7 @@ import {
   SqlField,
   SqlOperator,
   SqlRenderProps,
+  SqlValue,
 } from "@/types";
 import {reactive} from "vue";
 import {ElButton, ElOption, ElSelect} from "element-plus";
@@ -96,7 +100,7 @@ import {Plus, Search, Refresh} from "@element-plus/icons-vue";
 type Condition = {
   field: string;
   operator: SqlOperator | '';
-  value: number | string | number[] | string[];
+  value: SqlValue;
   type: string;
 };
 
@@ -105,11 +109,11 @@ defineOptions({name: 'ConditionSelect'});
 const props = defineProps<{
   fields: SqlField[]
 }>();
-
+const fieldsMap = new Map(props.fields.map(field => [field.name, field]));
 const createDefaultCondition = (): Condition => ({
   field: '',
   operator: '',
-  value: '',
+  value: null,
   type: ''
 });
 
@@ -127,13 +131,8 @@ const getAvailableOperators = (type: string) => {
 
 const onFieldChange = (condition: Condition) => {
   condition.operator = '';
-  condition.value = '';
-  for (const field of props.fields) {
-    if (field.name === condition.field) {
-      condition.type = field.type;
-      break;
-    }
-  }
+  condition.value = null;
+  condition.type = fieldsMap.get(condition.field)?.type || '';
 };
 
 const onOperatorChange = (condition: Condition) => {
@@ -143,7 +142,7 @@ const onOperatorChange = (condition: Condition) => {
   } else if (expects === 'list') {
     condition.value = [];
   } else {
-    condition.value = '';
+    condition.value = null;
   }
 };
 
@@ -164,8 +163,8 @@ const renderInput = (condition: Condition) => {
   return renderer({
     type: condition.type,
     modelValue: condition.value,
-    'onUpdate:modelValue': (val: any) => {
-      condition.value = val;
+    'onUpdate:modelValue': (val: SqlValue) => {
+      condition.value = fieldsMap.get(condition.field)?.formatter?.(val) || val;
     }
   } as SqlRenderProps);
 };

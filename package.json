@@ -51,6 +51,7 @@
     "vue-tsc": "^3.0.1"
   },
   "dependencies": {
+    "dayjs": "^1.11.13",
     "element-plus": "2.10.5"
   }
 }

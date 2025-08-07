@@ -1,6 +1,7 @@
 // query-schema.js
 export type SqlFieldType = 'string' | 'number' | 'boolean' | 'datetime';
 export type SqlOperator = 'between' | '=' | '!=' | '>' | '<' | '>=' | '<=';
+export type SqlValue = number | string | number[] | string[] | null;
 export const SQL_FIELD_TYPES: { [key in SqlFieldType]: { operators: SqlOperator[] } } = {
     number: {
         // label: '数值',
@@ -40,6 +41,8 @@ export type SqlField = {
     name: string;
     // 字段标签
     label: string;
+    // 字段格式化
+    formatter?: (val: SqlValue) => SqlValue;
 }
 
 import {Component, h} from 'vue';
@@ -48,8 +51,8 @@ import {ElDatePicker, ElInput, ElInputNumber, ElSwitch} from 'element-plus';
 // ========== 类型定义 ==========
 export interface SqlRenderProps {
     type: SqlFieldType;
-    modelValue: any;
-    'onUpdate:modelValue': (val: any) => void;
+    modelValue: SqlValue;
+    'onUpdate:modelValue': (val: SqlValue) => void;
 }
 
 // ========== 类型 → 基础组件映射 ==========
