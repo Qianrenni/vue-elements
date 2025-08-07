@@ -1,26 +1,27 @@
 // query-schema.js
-type FieldType = 'string' | 'number' | 'boolean' | 'datetime';
-const FIELD_TYPES: { [key in FieldType]: { operators: string[] } } = {
+export type SqlFieldType = 'string' | 'number' | 'boolean' | 'datetime';
+export type SqlOperator = 'between' | '=' | '!=' | '>' | '<' | '>=' | '<=';
+export const SQL_FIELD_TYPES: { [key in SqlFieldType]: { operators: SqlOperator[] } } = {
     number: {
         // label: '数值',
-        operators: ['==', '!=', '>', '<', '>=', '<=', 'between']
+        operators: ['=', '!=', '>', '<', '>=', '<=', 'between']
     },
     string: {
         // label: '文本',
-        operators: ['==', '!=']
+        operators: ['=', '!=', '>', '<', 'between']
     },
     datetime: {
         // label: '时间',
-        operators: ['==', '!=', '>', '<', 'between']
+        operators: ['=', '!=', '>', '<', 'between']
     },
     boolean: {
         // label: '布尔',
-        operators: ['==']
+        operators: ['=']
     }
 };
 
 // 操作符语义定义（全局唯一）
-const OPERATORS = {
+export const SQL_OPERATORS: { [key in SqlOperator]: Record<string, string> } = {
     '=': {label: '等于', expects: 'single'},
     '!=': {label: '不等于', expects: 'single'},
     '>': {label: '大于', expects: 'single'},
@@ -32,29 +33,27 @@ const OPERATORS = {
     // contains: {label: '包含', expects: 'single'},
     // starts_with: {label: '以...开头', expects: 'single'}
 };
-export type Field = {
+export type SqlField = {
     // 字段类型
-    type: FieldType;
+    type: SqlFieldType;
     // 字段名
     name: string;
     // 字段标签
     label: string;
 }
 
-export {FIELD_TYPES, OPERATORS};
-
 import {Component, h} from 'vue';
 import {ElDatePicker, ElInput, ElInputNumber, ElSwitch} from 'element-plus';
 
 // ========== 类型定义 ==========
-interface RenderProps {
-    type: 'string' | 'number' | 'boolean' | 'datetime' | 'enum';
+export interface SqlRenderProps {
+    type: SqlFieldType;
     modelValue: any;
     'onUpdate:modelValue': (val: any) => void;
 }
 
 // ========== 类型 → 基础组件映射 ==========
-export const TYPE_TO_COMPONENT: Record<string, Component> = {
+export const SQL_TYPE_TO_COMPONENT: Record<string, Component> = {
     string: ElInput,
     number: ElInputNumber,
     boolean: ElSwitch,
@@ -62,8 +61,8 @@ export const TYPE_TO_COMPONENT: Record<string, Component> = {
 };
 
 // ========== 操作符 → 渲染函数映射 ==========
-export const OPERATOR_TO_COMPONENT: {
-    [key: string]: (props: RenderProps) => ReturnType<typeof h>;
+export const SQL_OPERATOR_TO_COMPONENT: {
+    [key: string]: (props: SqlRenderProps) => ReturnType<typeof h>;
 } = {
     // 范围输入
     range: (props) => {
@@ -72,7 +71,6 @@ export const OPERATOR_TO_COMPONENT: {
                 type: 'datetimerange',
                 modelValue: props.modelValue,
                 'onUpdate:modelValue': props['onUpdate:modelValue'],
-                rangeSeparator: "到",
                 startPlaceholder: "开始时间",
                 endPlaceholder: "结束时间"
             });
@@ -119,7 +117,7 @@ export const OPERATOR_TO_COMPONENT: {
 
     // 单值输入
     single: (props) => {
-        const Comp = TYPE_TO_COMPONENT[props.type] || ElInput;
+        const Comp = SQL_TYPE_TO_COMPONENT[props.type] || ElInput;
 
         const commonProps = {
             modelValue: props.modelValue,

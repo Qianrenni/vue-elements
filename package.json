@@ -34,6 +34,7 @@
     "types"
   ],
   "devDependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
     "@types/node": "^24.1.0",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/compiler-sfc": "^3.5.17",
@@ -50,6 +51,6 @@
     "vue-tsc": "^3.0.1"
   },
   "dependencies": {
-    "element-plus": "^2.10.5"
+    "element-plus": "2.10.5"
   }
 }
