@@ -43,6 +43,7 @@ export type SqlField = {
     label: string;
     // 字段格式化
     formatter?: (val: SqlValue) => SqlValue;
+    isDefault?: boolean;
 }
 
 import {Component, h} from 'vue';

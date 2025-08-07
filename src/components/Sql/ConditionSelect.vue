@@ -3,26 +3,14 @@
     <!-- 条件行：每行一个条件组，内部自动换行 -->
     <div class="condition-container">
       <div
-          v-for="(cond, idx) in conditions"
-          :key="idx"
+          v-for="(cond, index) in conditions"
+          :key="index"
           class="condition"
       >
         <!-- 字段选择 -->
-        <el-select
-            v-model="cond.field"
-            class="field-select"
-            clearable
-            placeholder="选择字段"
-            @change="onFieldChange(cond)"
-        >
-          <el-option
-              v-for="field in props.fields"
-              :key="field.name"
-              :label="field.label"
-              :value="field.name"
-          />
-        </el-select>
-
+        <span class="field-label">
+          {{ fieldsMap.get(cond.field)?.label || cond.field || '字段' }}
+        </span>
         <!-- 操作符 -->
         <el-select
             v-model="cond.operator"
@@ -30,6 +18,7 @@
             class="operator-select"
             clearable
             placeholder="条件"
+            size="small"
             @change="onOperatorChange(cond)"
         >
           <el-option
@@ -45,20 +34,39 @@
             :is="renderInput(cond)"
             :disabled="!cond.operator"
             class="value-input"
+            size="small"
+        />
+        <!-- 删除按钮 -->
+        <el-button
+            v-if="conditions.length > 1"
+            :icon="Close"
+            class="delete-btn"
+            size="small"
+            text
+            @click="removeCondition(index)"
         />
       </div>
     </div>
 
     <!-- 操作按钮组 -->
     <div class="sql-query-actions">
-      <el-button
-          :icon="Plus"
-          round
+      <!-- 全局字段选择下拉：选中即添加并移除 -->
+      <el-select
+          v-model="selectedField"
+          :disabled="availableFields.length === 0"
+          :placeholder="`${availableFields.length>0 ? '可添加字段作为查询条件' : '无可用字段'}`"
+          clearable
           size="small"
-          @click="addCondition"
+          @change="addFieldFromSelect"
       >
-        添加条件
-      </el-button>
+        <el-option
+            v-for="field in availableFields"
+            :key="field.name"
+            :label="field.label"
+            :value="field.name"
+        />
+      </el-select>
+
       <el-button
           :icon="Search"
           round
@@ -72,7 +80,7 @@
           :icon="Refresh"
           round
           size="small"
-          @click="conditions.splice(0, conditions.length, createDefaultCondition())"
+          @click="resetAll"
       >
         重置
       </el-button>
@@ -93,9 +101,9 @@ import {
   SqlRenderProps,
   SqlValue,
 } from "@/types";
-import {reactive} from "vue";
+import {computed, reactive, ref} from "vue";
 import {ElButton, ElOption, ElSelect} from "element-plus";
-import {Plus, Search, Refresh} from "@element-plus/icons-vue";
+import {Plus, Search, Refresh, Close} from "@element-plus/icons-vue";
 
 type Condition = {
   field: string;
@@ -109,6 +117,7 @@ defineOptions({name: 'ConditionSelect'});
 const props = defineProps<{
   fields: SqlField[]
 }>();
+
 const fieldsMap = new Map(props.fields.map(field => [field.name, field]));
 const createDefaultCondition = (): Condition => ({
   field: '',
@@ -117,10 +126,44 @@ const createDefaultCondition = (): Condition => ({
   type: ''
 });
 
-const conditions = reactive<Condition[]>([
-  createDefaultCondition()
-]);
+const conditions = reactive<Condition[]>(
+    props.fields
+        .filter(field => field.isDefault)
+        .map(field => ({
+          field: field.name,
+          operator: '' as SqlOperator | '',
+          value: null,
+          type: field.type
+        }))
+);
 
+// 当前选中的字段（用于下拉）
+const selectedField = ref<string | null>(null);
+
+const usedFields = computed(() => {
+  return conditions
+      .map(c => c.field)
+      .filter(field => field); // 排除空值
+});
+// 可用字段（未被使用的）
+const availableFields = computed(() => {
+  return props.fields.filter(field => !usedFields.value.includes(field.name));
+});
+// 通过下拉添加字段
+const addFieldFromSelect = (fieldName: string) => {
+  if (!fieldName) return;
+  const field = fieldsMap.get(fieldName);
+  if (!field) return;
+
+  conditions.push({
+    field: field.name,
+    operator: '',
+    value: null,
+    type: field.type
+  } as Condition);
+
+  selectedField.value = null; // 重置下拉
+};
 const getAvailableOperators = (type: string) => {
   if (!type) return [];
   return SQL_FIELD_TYPES[type].operators.map(key => ({
@@ -128,13 +171,6 @@ const getAvailableOperators = (type: string) => {
     label: SQL_OPERATORS[key]?.label || key
   }));
 };
-
-const onFieldChange = (condition: Condition) => {
-  condition.operator = '';
-  condition.value = null;
-  condition.type = fieldsMap.get(condition.field)?.type || '';
-};
-
 const onOperatorChange = (condition: Condition) => {
   const expects = SQL_OPERATORS[condition.operator]?.expects || 'single';
   if (expects === 'range') {
@@ -146,10 +182,26 @@ const onOperatorChange = (condition: Condition) => {
   }
 };
 
-const addCondition = () => {
-  conditions.push(createDefaultCondition());
+// 重置所有条件
+const resetAll = () => {
+  // conditions.splice(0, conditions.length);
+  // 可选：恢复默认字段
+  conditions.splice(0, conditions.length);
+  props.fields
+      .filter(field => field.isDefault)
+      .map(field => ({
+        field: field.name,
+        operator: '' as SqlOperator | '',
+        value: null,
+        type: field.type
+      }))
+      .forEach(c => {
+        conditions.push(c);
+      })
 };
-
+const removeCondition = (index: number) => {
+  conditions.splice(index, 1);
+};
 const submitQuery = () => {
   console.log('查询条件:', conditions.filter(c => c.field && c.operator && c.value));
 };
@@ -178,6 +230,13 @@ const renderInput = (condition: Condition) => {
   border: 1px solid #e8e8e8;
   border-radius: 8px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.field-label {
+  padding: 0 12px;
+  color: #909399;
+  user-select: none;
+  font-size: 13px;
 }
 
 /* 条件容器：包裹所有条件行，支持换行 */
@@ -212,8 +271,7 @@ const renderInput = (condition: Condition) => {
 }
 
 .condition-container .condition .value-input {
-  flex: 1;
-  min-width: 120px;
+  min-width: 150px;
   width: min-content;
 }
 

@@ -20,7 +20,8 @@ const LOG_FIELDS: SqlField[] = [
     type: 'datetime',
     formatter: (value: string) => {
       return dayjs(value).format('YYYY-MM-DD HH:mm:ss')
-    }
+    },
+    isDefault: true
   },
   {
     name: 'valid',
