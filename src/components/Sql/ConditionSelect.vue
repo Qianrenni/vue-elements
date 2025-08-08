@@ -2,11 +2,7 @@
   <div class="sql-query-builder">
     <!-- 条件行：每行一个条件组，内部自动换行 -->
     <div class="condition-container">
-      <div
-          v-for="(cond, index) in conditions"
-          :key="index"
-          class="condition"
-      >
+      <div v-for="(cond, index) in conditions" :key="index" class="condition">
         <!-- 字段选择 -->
         <span class="field-label">
           {{ fieldsMap.get(cond.field)?.label || cond.field || '字段' }}
@@ -30,12 +26,7 @@
         </el-select>
 
         <!-- 动态输入组件 -->
-        <component
-            :is="renderInput(cond)"
-            :disabled="!cond.operator"
-            class="value-input"
-            size="small"
-        />
+        <component :is="renderInput(cond)" :disabled="!cond.operator" class="value-input" size="small"/>
         <!-- 删除按钮 -->
         <el-button
             v-if="conditions.length > 1"
@@ -54,97 +45,71 @@
       <el-select
           v-model="selectedField"
           :disabled="availableFields.length === 0"
-          :placeholder="`${availableFields.length>0 ? '可添加字段作为查询条件' : '无可用字段'}`"
+          :placeholder="`${availableFields.length > 0 ? '可添加字段作为查询条件' : '无可用字段'}`"
           clearable
           size="small"
           @change="addFieldFromSelect"
       >
-        <el-option
-            v-for="field in availableFields"
-            :key="field.name"
-            :label="field.label"
-            :value="field.name"
-        />
+        <el-option v-for="field in availableFields" :key="field.name" :label="field.label" :value="field.name"/>
       </el-select>
 
-      <el-button
-          :icon="Search"
-          round
-          size="small"
-          type="primary"
-          @click="submitQuery"
-      >
-        查询
-      </el-button>
-      <el-button
-          :icon="Refresh"
-          round
-          size="small"
-          @click="resetAll"
-      >
-        重置
-      </el-button>
-    </div>
-    <div>
-      <pre>{{ JSON.stringify(conditions, null, 4) }}</pre>
+      <el-button :icon="Search" round size="small" type="primary" @click="submitQuery"> 查询</el-button>
+      <el-button :icon="Refresh" round size="small" @click="resetAll"> 重置</el-button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import {computed, reactive, ref} from 'vue';
+import {Close, Refresh, Search} from '@element-plus/icons-vue';
+import dayjs from 'dayjs';
+import {ElButton, ElOption, ElSelect} from 'element-plus';
+
 import {
+  type Condition,
   SQL_FIELD_TYPES,
   SQL_OPERATOR_TO_COMPONENT,
   SQL_OPERATORS,
   type SqlField,
-  type SqlOperator,
   type SqlRenderProps,
   type SqlValue,
-} from "@/types";
-import {computed, reactive, ref} from "vue";
-import {ElButton, ElOption, ElSelect} from "element-plus";
-import {Close, Refresh, Search} from "@element-plus/icons-vue";
-
-type Condition = {
-  field: string;
-  operator: SqlOperator | '';
-  value: SqlValue;
-  type: keyof typeof SQL_FIELD_TYPES;
-};
+} from '@/types';
 
 defineOptions({name: 'ConditionSelect'});
 
 const props = defineProps<{
-  fields: SqlField[]
+  fields: SqlField[];
 }>();
 const emit = defineEmits<{
-  (e: 'submit', conditions: Condition[]): void;
-  (e: 'getSql', sql: string): void;
-}>()
-const fieldsMap = new Map(props.fields.map(field => [field.name, field]));
+  (_e: 'submit', _conditions: Condition[]): void;
+}>();
 
-const conditions = reactive<Condition[]>(
-    props.fields
-        .filter(field => field.isDefault)
-        .map(field => ({
-          field: field.name,
-          operator: '' as SqlOperator | '',
-          value: null,
-          type: field.type
-        }))
-);
+const fieldsMap = new Map(props.fields.map((field) => [field.name, field]));
+
+const filterDefault = () => {
+  return props.fields
+      .filter((field) => field.isDefault)
+      .map((field) => ({
+        field: field.name,
+        operator: field.type === 'datetime' ? 'between' : '',
+        value: field.type === 'datetime' ? getDayTime() : null,
+        type: field.type,
+      }));
+};
+
+const getDayTime = () => [dayjs().format('YYYY-MM-DD 00:00:00'), dayjs().format('YYYY-MM-DD 23:59:59')];
+
+const conditions = reactive<Condition[]>(filterDefault() as Condition[]);
 
 // 当前选中的字段（用于下拉）
-const selectedField = ref<string | null>(null);
+const selectedField = ref<string>('');
 
 const usedFields = computed(() => {
-  return conditions
-      .map(c => c.field)
-      .filter(field => field); // 排除空值
+  return conditions.map((c) => c.field).filter((field) => field); // 排除空值
 });
 // 可用字段（未被使用的）
 const availableFields = computed(() => {
-  return props.fields.filter(field => !usedFields.value.includes(field.name));
+  return props.fields.filter((field) => !usedFields.value.includes(field.name));
 });
 // 通过下拉添加字段
 const addFieldFromSelect = (fieldName: string) => {
@@ -156,20 +121,21 @@ const addFieldFromSelect = (fieldName: string) => {
     field: field.name,
     operator: '',
     value: null,
-    type: field.type
+    type: field.type,
   } as Condition);
 
-  selectedField.value = null; // 重置下拉
+  selectedField.value = ''; // 重置下拉
 };
+
 const getAvailableOperators = (type: keyof typeof SQL_FIELD_TYPES) => {
   if (!type) return [];
-  return SQL_FIELD_TYPES[type].operators.map(key => ({
+  return SQL_FIELD_TYPES[type].operators.map((key) => ({
     value: key,
-    label: SQL_OPERATORS[key]?.label || key
+    label: SQL_OPERATORS[key]?.label || key,
   }));
 };
 const onOperatorChange = (condition: Condition) => {
-  const expects = SQL_OPERATORS[(condition.operator as keyof typeof SQL_OPERATORS)]?.expects || 'single';
+  const expects = SQL_OPERATORS[condition.operator as keyof typeof SQL_OPERATORS]?.expects || 'single';
   if (expects === 'range') {
     condition.value = [null, null];
   } else if (expects === 'list') {
@@ -184,17 +150,7 @@ const resetAll = () => {
   // conditions.splice(0, conditions.length);
   // 可选：恢复默认字段
   conditions.splice(0, conditions.length);
-  props.fields
-      .filter(field => field.isDefault)
-      .map(field => ({
-        field: field.name,
-        operator: '' as SqlOperator | '',
-        value: null,
-        type: field.type
-      }))
-      .forEach(c => {
-        conditions.push(c);
-      })
+  conditions.push(...(filterDefault() as Condition[]));
 };
 const removeCondition = (index: number) => {
   conditions.splice(index, 1);
@@ -203,9 +159,7 @@ const formatValue = (c: Condition) => {
   const formatter = fieldsMap.get(c.field)?.formatter;
   if (!formatter) return c.value;
 
-  return Array.isArray(c.value)
-      ? c.value.map(v => formatter(v))
-      : formatter(c.value);
+  return Array.isArray(c.value) ? c.value.map((v) => formatter(v)) : formatter(c.value);
 };
 const submitQuery = () => {
   const cleanedConditions = conditions
@@ -216,7 +170,7 @@ const submitQuery = () => {
         const {value, operator} = c;
 
         // 如果值是 null/undefined/空字符串，直接丢弃
-        if (value == null || value === '') return false;
+        if (value === null || value === '') return false;
 
         // 如果是字符串，检查是否为空白字符串
         if (typeof value === 'string' && value.trim() === '') return false;
@@ -224,9 +178,8 @@ const submitQuery = () => {
         // 如果是数组，清理 null/undefined/空字符串，并根据操作符判断是否仍有有效值
         if (Array.isArray(value)) {
           const cleaned = value.filter((v) => {
-            if (v == null) return false;
+            if (v === null) return false;
             return !(typeof v === 'string' && v.trim() === '');
-
           });
 
           // 对于 'between'，需要至少两个值
@@ -241,8 +194,8 @@ const submitQuery = () => {
       .map((c) => {
         return {
           ...c,
-          value: formatValue(c)
-        }
+          value: formatValue(c),
+        };
       });
   console.log(cleanedConditions);
   // 提交最终条件
@@ -261,9 +214,13 @@ const renderInput = (condition: Condition) => {
     modelValue: condition.value,
     'onUpdate:modelValue': (val: SqlValue) => {
       condition.value = val;
-    }
+    },
   } as SqlRenderProps);
 };
+defineExpose({
+  resetAll,
+  submitQuery,
+});
 </script>
 
 <style scoped>
@@ -278,7 +235,7 @@ const renderInput = (condition: Condition) => {
 
 .field-label {
   padding: 0 12px;
-  color: #909399;
+  color: #333;
   user-select: none;
   font-size: 13px;
 }
@@ -315,7 +272,7 @@ const renderInput = (condition: Condition) => {
 }
 
 .condition-container .condition .value-input {
-  width: min-content;
+  width: max-content;
 }
 
 /* 操作按钮组 */
