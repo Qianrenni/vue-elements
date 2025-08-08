@@ -96,20 +96,20 @@ import {
   SQL_FIELD_TYPES,
   SQL_OPERATOR_TO_COMPONENT,
   SQL_OPERATORS,
-  SqlField,
-  SqlOperator,
-  SqlRenderProps,
-  SqlValue,
+  type SqlField,
+  type SqlOperator,
+  type SqlRenderProps,
+  type SqlValue,
 } from "@/types";
 import {computed, reactive, ref} from "vue";
 import {ElButton, ElOption, ElSelect} from "element-plus";
-import {Plus, Search, Refresh, Close} from "@element-plus/icons-vue";
+import {Close, Refresh, Search} from "@element-plus/icons-vue";
 
 type Condition = {
   field: string;
   operator: SqlOperator | '';
   value: SqlValue;
-  type: string;
+  type: keyof typeof SQL_FIELD_TYPES;
 };
 
 defineOptions({name: 'ConditionSelect'});
@@ -117,14 +117,11 @@ defineOptions({name: 'ConditionSelect'});
 const props = defineProps<{
   fields: SqlField[]
 }>();
-
+const emit = defineEmits<{
+  (e: 'submit', conditions: Condition[]): void;
+  (e: 'getSql', sql: string): void;
+}>()
 const fieldsMap = new Map(props.fields.map(field => [field.name, field]));
-const createDefaultCondition = (): Condition => ({
-  field: '',
-  operator: '',
-  value: null,
-  type: ''
-});
 
 const conditions = reactive<Condition[]>(
     props.fields
@@ -164,7 +161,7 @@ const addFieldFromSelect = (fieldName: string) => {
 
   selectedField.value = null; // 重置下拉
 };
-const getAvailableOperators = (type: string) => {
+const getAvailableOperators = (type: keyof typeof SQL_FIELD_TYPES) => {
   if (!type) return [];
   return SQL_FIELD_TYPES[type].operators.map(key => ({
     value: key,
@@ -172,9 +169,9 @@ const getAvailableOperators = (type: string) => {
   }));
 };
 const onOperatorChange = (condition: Condition) => {
-  const expects = SQL_OPERATORS[condition.operator]?.expects || 'single';
+  const expects = SQL_OPERATORS[(condition.operator as keyof typeof SQL_OPERATORS)]?.expects || 'single';
   if (expects === 'range') {
-    condition.value = condition.field === 'datetime' ? [] : [null, null];
+    condition.value = [null, null];
   } else if (expects === 'list') {
     condition.value = [];
   } else {
@@ -202,11 +199,58 @@ const resetAll = () => {
 const removeCondition = (index: number) => {
   conditions.splice(index, 1);
 };
+const formatValue = (c: Condition) => {
+  const formatter = fieldsMap.get(c.field)?.formatter;
+  if (!formatter) return c.value;
+
+  return Array.isArray(c.value)
+      ? c.value.map(v => formatter(v))
+      : formatter(c.value);
+};
 const submitQuery = () => {
-  console.log('查询条件:', conditions.filter(c => c.field && c.operator && c.value));
+  const cleanedConditions = conditions
+      .filter((c) => {
+        // 基本字段检查
+        if (!c.field || !c.operator) return false;
+
+        const {value, operator} = c;
+
+        // 如果值是 null/undefined/空字符串，直接丢弃
+        if (value == null || value === '') return false;
+
+        // 如果是字符串，检查是否为空白字符串
+        if (typeof value === 'string' && value.trim() === '') return false;
+
+        // 如果是数组，清理 null/undefined/空字符串，并根据操作符判断是否仍有有效值
+        if (Array.isArray(value)) {
+          const cleaned = value.filter((v) => {
+            if (v == null) return false;
+            return !(typeof v === 'string' && v.trim() === '');
+
+          });
+
+          // 对于 'between'，需要至少两个值
+          if (operator === 'between') {
+            return cleaned.length >= 2;
+          }
+        }
+        // 普通值（number, boolean, string）已通过上面检查
+        return true;
+      })
+      // 可选：进一步转换值类型（如 string → number）
+      .map((c) => {
+        return {
+          ...c,
+          value: formatValue(c)
+        }
+      });
+  console.log(cleanedConditions);
+  // 提交最终条件
+  emit('submit', cleanedConditions as Condition[]);
 };
 
 const renderInput = (condition: Condition) => {
+  if (!condition.operator) return null;
   const expects = SQL_OPERATORS[condition.operator]?.expects;
   const renderer = SQL_OPERATOR_TO_COMPONENT[expects];
 
@@ -216,7 +260,7 @@ const renderInput = (condition: Condition) => {
     type: condition.type,
     modelValue: condition.value,
     'onUpdate:modelValue': (val: SqlValue) => {
-      condition.value = fieldsMap.get(condition.field)?.formatter?.(val) || val;
+      condition.value = val;
     }
   } as SqlRenderProps);
 };
@@ -266,12 +310,11 @@ const renderInput = (condition: Condition) => {
 }
 
 .condition-container .condition .el-select {
-  min-width: 110px;
+  min-width: 100px;
   width: min-content;
 }
 
 .condition-container .condition .value-input {
-  min-width: 150px;
   width: min-content;
 }
 
@@ -279,7 +322,10 @@ const renderInput = (condition: Condition) => {
 .sql-query-actions {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
+.sql-query-actions .el-select {
+  max-width: 300px;
+}
 </style>

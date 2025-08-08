@@ -1,7 +1,7 @@
 // query-schema.js
 export type SqlFieldType = 'string' | 'number' | 'boolean' | 'datetime';
 export type SqlOperator = 'between' | '=' | '!=' | '>' | '<' | '>=' | '<=';
-export type SqlValue = number | string | number[] | string[] | null;
+export type SqlValue = number | string | null | undefined | number[] | string[] | null[] | undefined[];
 export const SQL_FIELD_TYPES: { [key in SqlFieldType]: { operators: SqlOperator[] } } = {
     number: {
         // label: '数值',
@@ -18,7 +18,8 @@ export const SQL_FIELD_TYPES: { [key in SqlFieldType]: { operators: SqlOperator[
     boolean: {
         // label: '布尔',
         operators: ['=']
-    }
+    },
+
 };
 
 // 操作符语义定义（全局唯一）
@@ -64,39 +65,66 @@ export const SQL_TYPE_TO_COMPONENT: Record<string, Component> = {
     datetime: ElDatePicker
 };
 
+function isArrayValue(value: SqlValue): value is number[] | string[] | null[] | undefined[] {
+    return Array.isArray(value) && value.length == 2;
+}
+
 // ========== 操作符 → 渲染函数映射 ==========
 export const SQL_OPERATOR_TO_COMPONENT: {
     [key: string]: (props: SqlRenderProps) => ReturnType<typeof h>;
 } = {
     // 范围输入
     range: (props) => {
+        if (!isArrayValue(props.modelValue)) {
+            Promise.resolve().then(() => {
+                props['onUpdate:modelValue']([undefined, undefined]);
+            });
+        }
+        const safeValue0 = isArrayValue(props.modelValue) ? props.modelValue[0] : undefined;
+        const safeValue1 = isArrayValue(props.modelValue) ? props.modelValue[1] : undefined;
         if (props.type === 'datetime') {
             return h(ElDatePicker, {
                 type: 'datetimerange',
-                modelValue: props.modelValue,
+                modelValue: props.modelValue as [],
                 'onUpdate:modelValue': props['onUpdate:modelValue'],
                 startPlaceholder: "开始时间",
                 endPlaceholder: "结束时间"
             });
-        } else {
+        } else if (props.type === 'number') {
             // 数值范围
             return h('div', {style: 'display: flex; align-items: center; gap: 6px;'}, [
                 h(ElInputNumber, {
-                    modelValue: props.modelValue?.[0] ?? undefined,
+                    modelValue: safeValue0,
                     'onUpdate:modelValue': (val: number | undefined) => {
-                        const newVal = [val, props.modelValue?.[1] ?? undefined];
-                        props['onUpdate:modelValue'](newVal);
+                        props["onUpdate:modelValue"]([val, safeValue1] as SqlValue);
                     },
                     placeholder: '最小值'
                 }),
                 h('span', '~'),
                 h(ElInputNumber, {
-                    modelValue: props.modelValue?.[1] ?? null,
+                    modelValue: safeValue1,
                     'onUpdate:modelValue': (val: number | undefined) => {
-                        const newVal = [props.modelValue?.[0] ?? undefined, val];
-                        props['onUpdate:modelValue'](newVal);
+                        props['onUpdate:modelValue']([safeValue0, val] as SqlValue);
                     },
                     placeholder: '最大值'
+                })
+            ]);
+        } else {
+            return h('div', {style: 'display: flex; align-items: center; gap: 6px;min-width: 300px;'}, [
+                h(ElInput, {
+                    modelValue: safeValue0,
+                    'onUpdate:modelValue': (v: string | null | undefined) => {
+                        props['onUpdate:modelValue']([v, safeValue1] as SqlValue);
+                    },
+                    placeholder: '起始值'
+                }),
+                h('span', '~'),
+                h(ElInput, {
+                    modelValue: safeValue1,
+                    'onUpdate:modelValue': (v: string | null | undefined) => {
+                        props['onUpdate:modelValue']([safeValue0, v] as SqlValue);
+                    },
+                    placeholder: '结束值'
                 })
             ]);
         }
@@ -113,7 +141,7 @@ export const SQL_OPERATOR_TO_COMPONENT: {
                 const parsed = props.type === 'number'
                     ? arr.map(x => (isNaN(Number(x)) ? x : Number(x)))
                     : arr;
-                props['onUpdate:modelValue'](parsed);
+                props['onUpdate:modelValue'](parsed as SqlValue);
             },
             placeholder: '用逗号分隔多个值'
         });

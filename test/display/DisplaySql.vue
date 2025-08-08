@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {SqlField} from "../../src";
+import {SqlField} from "@";
 import ConditionSelect from "../../src/components/Sql/ConditionSelect.vue";
 import dayjs from 'dayjs'
 // === 定义字段配置 ===
