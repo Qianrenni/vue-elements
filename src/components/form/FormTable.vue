@@ -90,7 +90,7 @@
         </thead>
         <tbody>
         <tr
-            v-for="(row, index) in localData"
+            v-for="(row, index) in paginatedData"
             :key="index"
             :class="[
                 {
@@ -141,6 +141,14 @@
         暂无数据
       </div>
     </div>
+    <!-- 在表格后添加这段代码 -->
+    <div v-if="pagination" class="form-table-pagination">
+      <Pagination
+          :current-page="currentPage"
+          :total-pages="totalPages"
+          @change="handlePageChange"
+      />
+    </div>
   </div>
 </template>
 
@@ -149,6 +157,7 @@ import {FormComponentEmits, FormComponentProps} from "@/types";
 import {useFormEvents} from "@/events/useFormEvents";
 import {computed, ref, watch} from "vue";
 import Icon from "@/components/basic/Icon.vue";
+import Pagination from "@/components/basic/Pagination.vue";
 
 // 列定义
 interface TableColumn {
@@ -195,6 +204,21 @@ interface FormTableProps extends FormComponentProps<FormTableModelValueType> {
    * 是否可排序
    */
   sortable?: boolean;
+
+  /**
+   * 是否启用分页
+   */
+  pagination?: boolean;
+
+  /**
+   * 每页显示的行数
+   */
+  pageSize?: number;
+
+  /**
+   * 可选的每页行数选项
+   */
+  pageSizeOptions?: number[];
 }
 
 // 默认值
@@ -207,6 +231,9 @@ const props = withDefaults(defineProps<FormTableProps>(), {
   selectable: false,
   selectionMode: 'multiple',
   sortable: true,
+  pagination: true,
+  pageSize: 10,
+  pageSizeOptions: () => [5, 10, 20, 50, 100],
 });
 
 // 记录每列倒序还是顺序
@@ -224,15 +251,47 @@ const localValue = ref<Row[]>([]);
 // 本地数据（避免直接修改 props）
 const localData = ref<Row[]>([]);
 
+// 分页相关状态
+const currentPage = ref(1);
+const internalPageSize = ref(props.pageSize);
+
 // 同步传入的 modelValue 和 data
 watch(
     () => [props.modelValue, props.data],
     () => {
       localValue.value = props.modelValue?.map((item, index) => ({tdId: index, ...item})) || [];
       localData.value = props.data?.map((item, index) => ({tdId: index, ...item})) || [];
+      // 重置分页
+      if (props.pagination) {
+        currentPage.value = 1;
+      }
     },
     {immediate: true}
 );
+
+// 监听pageSize变化
+watch(() => props.pageSize, (newVal) => {
+  internalPageSize.value = newVal;
+}, {immediate: true});
+
+// 计算总页数
+const totalPages = computed(() => {
+  if (!props.pagination || localData.value.length === 0) return 1;
+  return Math.ceil(localData.value.length / internalPageSize.value);
+});
+// 处理页码变化
+const handlePageChange = (page: number) => {
+  currentPage.value = page;
+};
+// 计算分页后的数据
+const paginatedData = computed(() => {
+  if (!props.pagination) return localData.value;
+
+  const startIndex = (currentPage.value - 1) * internalPageSize.value;
+  const endIndex = Math.min(startIndex + internalPageSize.value, localData.value.length);
+
+  return localData.value.slice(startIndex, endIndex);
+});
 
 // 剔除tdId
 function rowWithoutTdId(row: Row): Record<string, any>;
@@ -419,5 +478,11 @@ const onBlur = (e: FocusEvent) => {
   padding: 20px;
   color: #999;
   font-style: italic;
+}
+
+.form-table-pagination {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

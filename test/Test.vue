@@ -49,17 +49,19 @@ const components = [
   'MarkdownRender',
   'MobileFrame',
   'NavSection',
+  'Pagination',
   'ProgressBar',
   'RainFigure',
   'ScrollNotice',
   'Search',
+  'Sql',
   'Tab',
   'Tag',
   'ThemeToggle',
   'TimeUtil',
   'TypeText',
   'UseMousePosition',
-  'Sql'
+
 
 ]
 

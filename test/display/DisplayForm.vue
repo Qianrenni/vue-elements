@@ -208,8 +208,7 @@
           <FormTable
               :columns="columns"
               :data="tableData"
-
-              label="表格"
+              :page-size="5"
               selectable
               selection-mode="multiple"
           />
