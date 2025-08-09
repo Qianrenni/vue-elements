@@ -155,7 +155,6 @@ watch(
 
 // 实现goToPage方法
 const goToPage = (page: number) => {
-
   // 验证页码是否有效
   if (page < 1 || page > props.totalPages || page === props.currentPage) {
     return;

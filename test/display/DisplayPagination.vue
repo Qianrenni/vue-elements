@@ -9,7 +9,7 @@
         <Pagination
             :current-page="currentPage"
             :total-pages="totalPages"
-            @page-change="handlePageChange"
+            @change="handlePageChange"
         />
         <div class="text-description">
           当前页: {{ currentPage }} / {{ totalPages }}
@@ -23,7 +23,7 @@
             :current-page="currentPage2"
             :max-visible-pages="3"
             :total-pages="totalPages"
-            @page-change="handlePageChange2"
+            @change="handlePageChange2"
         />
         <div class="text-description">
           当前页: {{ currentPage2 }} / {{ totalPages }}
