@@ -4,7 +4,7 @@
  * @param interval 节流间隔（毫秒）
  * @returns 节流后的函数
  */
-export const throttleUtil = <T extends (...args: any[]) => any>(
+export const useThrottle = <T extends (...args: any[]) => any>(
     func: T,
     interval: number = 16, // 默认 16ms（约 60fps）
 ): ((...args: Parameters<T>) => void) => {

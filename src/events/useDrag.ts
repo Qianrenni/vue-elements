@@ -1,4 +1,4 @@
-import {throttleUtil} from "@/utils";
+import {useThrottle} from "@/utils";
 
 /**
  * 拖拽逻辑钩子
@@ -36,7 +36,7 @@ export const useDrag = (elementRef: HTMLElement, onMove?: () => void, interval =
         elementRef.style.right = `${startRight + dx}px`;
         onMove?.();
     };
-    const throttleDrag = throttleUtil(drag, interval);
+    const throttleDrag = useThrottle(drag, interval);
     /**
      * 开始拖拽
      * - 记录鼠标按下时的坐标和元素初始位置

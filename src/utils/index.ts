@@ -1,3 +1,3 @@
-export * from './debounceUtil';
-export * from './timeUtil'
-export * from './throttleUtil'
+export * from './useDebounce';
+export * from './useTime'
+export * from './useThrottle'

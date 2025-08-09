@@ -68,10 +68,10 @@ qyani-components/                     # 项目根目录，一个基于 Vue 的 U
 |   |   ├── form.ts                   # 表单相关的类型定义（如字段类型、验证规则等）
 |   |   └── index.ts                  # 类型导出入口，集中导出所有类型
 |   └── utils/                        # 工具函数目录，存放可复用的纯函数
-|       ├── debounceUtil.ts           # 防抖工具函数，限制高频函数执行
+|       ├── useDebounce.ts           # 防抖工具函数，限制高频函数执行
 |       ├── index.ts                  # 工具模块导出入口，统一导出所有工具函数
-|       ├── throttleUtil.ts           # 节流工具函数，控制函数执行频率
-|       └── timeUtil.ts               # 时间处理工具函数，如格式化、计算等
+|       ├── useThrottle.ts           # 节流工具函数，控制函数执行频率
+|       └── useTime.ts               # 时间处理工具函数，如格式化、计算等
 ├── test/                             # 测试目录，存放组件演示和测试用例
 |   ├── display/                      # 展示类组件的测试页面
 |   |   ├── DisplayAvatar.vue         # Avatar 组件的测试/演示页面
