@@ -49,6 +49,8 @@ const props = defineProps<{
 
 // 状态
 const htmlContent = ref('')
+// toc
+const toc = ref<{ id: string, text: string, level: number }[]>([])
 
 // slugify 函数：中文转拼音、生成 ID
 function slugify(text: string) {
@@ -75,7 +77,8 @@ renderer.image = function ({href, title, text}) {
 
 // 标题渲染
 renderer.heading = function (text) {
-  const id = slugify(text.text)
+  const id = slugify(text.text);
+  toc.value.push({id, text: text.text, level: text.depth})
   return `<h${text.depth} id="${id}">${text.text.replace(/\*+/g, '')}</h${text.depth}>`
 }
 
@@ -111,6 +114,8 @@ marked.setOptions({
 
 // 解析 Markdown
 async function parseMarkdown(content: string) {
+  // 清空toc
+  toc.value = []
   htmlContent.value = await marked.parse(content)
   nextTick(() => {
     highlightCode()
@@ -127,15 +132,22 @@ function highlightCode() {
   })
 }
 
+// 滚动到指定 ID
+function scrollToId(id: string) {
+  const element = document.getElementById(id)
+  if (element) {
+    element.scrollIntoView({behavior: 'smooth'})
+    history.pushState(null, '', '#' + id)
+  }
+}
+
 // 处理锚点点击事件
 function handleAnchorClick(e: MouseEvent) {
   e.preventDefault()
   const targetId = (e.target as HTMLAnchorElement)?.getAttribute('href')
   if (!targetId) return
-  const targetElement = document.querySelector(targetId)
-  if (targetElement) {
-    targetElement.scrollIntoView({behavior: 'smooth'})
-    history.pushState(null, '', targetId)
+  if (targetId.startsWith('#')) {
+    scrollToId(targetId.slice(1))
   }
 }
 
@@ -162,6 +174,29 @@ watch(
 onBeforeMount(() => {
   parseMarkdown(props.content)
 
+})
+defineExpose({
+  /**
+   * 获取目录结构
+   */
+  getTOC() {
+    return toc.value
+  },
+
+  /**
+   * 滚动到指定标题 ID
+   * @param id 标题的 ID（不含 #）
+   */
+  scrollTo(id: string) {
+    scrollToId(id)
+  },
+  
+  /**
+   * 获取原始内容
+   */
+  getContent() {
+    return props.content
+  }
 })
 </script>
 

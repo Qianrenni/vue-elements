@@ -15,32 +15,38 @@ const componentRef = ref()
 </script>
 
 <template>
-  <div v-if="!component" class="placeholder">
+  <div v-if="!component" class="placeholder bg-card component-detail">
     请选择一个组件
   </div>
 
-  <div v-else class="component-detail">
-    <h1>{{ component.displayName }}</h1>
+  <div v-else class="scroll-container scroll-y bg-card component-detail">
+    <div class="container-column padding-rem">
+      <!-- 右侧标题 -->
+      <h2 class="text-primary text-center padding-half-rem margin-half-vetical border-horizontal-gray">
+        {{ component.displayName }} 组件
+      </h2>
 
-    <!-- 实时预览 -->
-    <div class="preview">
-      <component
-          :is="component.name"
-          v-if="component.name"
-      />
+      <!-- 组件展示区 -->
+      <div class="component-display padding-rem radius-half-rem shadow-black">
+        <!-- Markdown 文档 -->
+        <MarkdownRender :content="component.docContent"/>
+      </div>
     </div>
-
-    <!-- Markdown 文档 -->
-    <MarkdownRender :content="component.docContent"/>
   </div>
 </template>
 
 <style scoped>
 .component-detail {
-  padding: 2rem;
   flex: 1;
   overflow-y: auto;
   background: white;
+  height: 100vh;
+  max-width: 1000px;
+}
+
+.component-display {
+  transition: all 0.5s ease;
+  min-height: 400px;
 }
 
 .preview {
@@ -58,5 +64,16 @@ const componentRef = ref()
   height: 100%;
   color: #666;
   font-size: 1.2em;
+}
+
+/* 添加进入和离开动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

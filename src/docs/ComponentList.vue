@@ -7,7 +7,7 @@ defineProps<{
   selected: ComponentInfo | null
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   (e: 'select', comp: ComponentInfo): void
 }>()
 
@@ -15,7 +15,6 @@ const {components, loadComponents} = useComponentScanner()
 
 onBeforeMount(() => {
   loadComponents()
-  console.log(components.value);
 })
 
 // ✅ 按 category 分组
@@ -32,19 +31,24 @@ const grouped = computed(() => {
 </script>
 
 <template>
-  <div class="component-list">
-    <div v-for="[category, list] in grouped" :key="category" class="category">
-      <h3>{{ category }}</h3>
-      <ul>
-        <li
+  <div class="component-list scroll-container scroll-y container-column padding-rem">
+    <!-- 左侧标题 -->
+    <h2 class="text-primary text-center padding-half-rem margin-half-vetical border-horizontal-gray">组件列表</h2>
+
+    <div v-for="[category, list] in grouped" :key="category" class="category margin-half-vetical">
+      <div class="text-12rem text-muted padding-half-rem radius-third-rem "><strong><em>{{ category }}</em></strong>
+      </div>
+      <div class="container-column padding-half-rem">
+        <span
             v-for="comp in list"
             :key="comp.name"
-            :class="{ active: selected?.name === comp.name }"
-            @click="$emit('select', comp)"
+            :class="{'component-active': selected?.name === comp.name}"
+            class="component-item padding-24rem margin-fourth-vetical radius-third-rem"
+            @click="emit('select', comp)"
         >
           {{ comp.displayName }}
-        </li>
-      </ul>
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -53,39 +57,39 @@ const grouped = computed(() => {
 .component-list {
   width: 260px;
   height: 100vh;
-  overflow-y: auto;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid var(--primary-color);
   background: #f8f9fa;
   padding: 1rem;
 }
 
-.category h3 {
-  margin: 1.5rem 0 0.5rem;
-  color: #333;
-  font-size: 1.2em;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  padding: 0.4rem 0.6rem;
-  margin: 0.2rem 0;
+/* 组件项样式 */
+.component-item {
+  transition: all 0.3s ease;
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 0.95em;
+  border-left: 3px solid transparent;
 }
 
-li:hover {
-  background: #0b5ed7;
-  color: white;
+.component-item:hover {
+  background-color: var(--gray-200);
+  transform: translateX(5px);
+  border-left: 3px solid var(--primary-light);
 }
 
-li.active {
-  background: #0d6efd;
+.component-active {
+  background-color: var(--primary-color);
   color: white;
+  border-left: 3px solid var(--primary-light);
+  font-weight: bold;
+}
+
+/* 添加进入和离开动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

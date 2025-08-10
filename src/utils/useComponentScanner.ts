@@ -17,7 +17,7 @@ export function useComponentScanner() {
         components,
         loadComponents: async () => {
             // ✅ 扫描所有 /src/components/*/Q*.vue
-            const vueModules = import.meta.glob('/src/components/*/*.vue', {eager: true})
+            const vueModules = import.meta.glob('/src/components/*/*.vue')
 
             const list: ComponentInfo[] = []
 
