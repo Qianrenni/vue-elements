@@ -1,20 +1,13 @@
 import {useThrottle} from "@/utils";
 
 /**
- * 拖拽逻辑钩子（基于 Pointer Events + setPointerCapture）
- * 功能：封装元素的拖拽逻辑，避免绑定事件到 document
  * @param elementRef 目标元素的引用
  * @param onMove 移动事件的回调函数（可选）
  * @param interval 节流间隔（毫秒）
  * @param threshold 移动阈值（像素）
- * @returns 返回一个包含清理方法 `destroy` 的对象
+ * @returns 返回一个包含清理方法 `destroy` 的对象, 以及是否移动的标志 `isMove`
  */
-export const useDrag = (
-    elementRef: HTMLElement,
-    onMove?: () => void,
-    interval = 16,
-    threshold = 10
-) => {
+export const useDrag = (elementRef: HTMLElement, onMove?: () => void, interval = 16, threshold = 10) => {
     interval = interval > 16 ? interval : 16;
 
     let isDragging = false;
@@ -23,32 +16,34 @@ export const useDrag = (
     let startBottom = 0;
     let startRight = 0;
     let isMove = false;
+    let downTarget: EventTarget | null = null; // 记录 pointerdown 时的实际目标
 
-    // 节流后的 pointermove 回调
-    const drag = (e: PointerEvent) => {
+    const updatePosition = (e: PointerEvent) => {
+        const dx = startX - e.clientX;
+        const dy = startY - e.clientY;
+        elementRef.style.bottom = `${startBottom + dy}px`;
+        elementRef.style.right = `${startRight + dx}px`;
+        onMove?.();
+    };
+
+    const throttleDrag = useThrottle(updatePosition, interval);
+
+    const rawDrag = (e: PointerEvent) => {
         if (!isDragging) return;
 
         const dx = startX - e.clientX;
         const dy = startY - e.clientY;
+        const distance = Math.hypot(dx, dy);
 
-        // 判断是否达到移动阈值
-        if (!isMove && (Math.abs(dx) >= threshold || Math.abs(dy) >= threshold)) {
+        if (!isMove && distance >= threshold) {
             isMove = true;
         }
 
-        // 更新元素位置
-        elementRef.style.bottom = `${startBottom + dy}px`;
-        elementRef.style.right = `${startRight + dx}px`;
-
-        onMove?.();
+        throttleDrag(e);
     };
 
-    const throttleDrag = useThrottle(drag, interval);
-
-    // pointerdown：开始拖拽
     const startDrag = (e: PointerEvent) => {
-        // 只处理主按键（鼠标左键）或触摸/触控笔
-        if (e.button !== 0 && e.pointerType === "mouse") return;
+        if (e.button !== 0 && e.pointerType === 'mouse') return;
 
         isDragging = true;
         isMove = false;
@@ -60,57 +55,72 @@ export const useDrag = (
         startBottom = parseInt(computedStyle.bottom, 10) || 0;
         startRight = parseInt(computedStyle.right, 10) || 0;
 
-        // 设置指针捕获
+        // 记录原始点击目标（可能是子元素）
+        downTarget = e.target;
+
         elementRef.setPointerCapture(e.pointerId);
+        document.body.style.userSelect = 'none';
 
-        // 禁止文本选中
-        document.body.style.userSelect = "none";
-
-        // 绑定事件到 elementRef 本身（不需要绑定到 document）
-        elementRef.addEventListener("pointermove", throttleDrag);
+        elementRef.addEventListener('pointermove', rawDrag);
     };
 
-    // pointerup / pointercancel：结束拖拽
     const stopDrag = (e: PointerEvent) => {
         if (!isDragging) return;
 
+        const didMove = isMove;
         isDragging = false;
 
-        // 释放指针捕获
         try {
             elementRef.releasePointerCapture(e.pointerId);
         } catch (err) {
-            // 可能已被自动释放（如 pointerup 会自动释放），忽略错误
+            console.error('Failed to release pointer capture:', err);
         }
 
-        // 清理事件监听
-        elementRef.removeEventListener("pointermove", throttleDrag);
+        elementRef.removeEventListener('pointermove', rawDrag);
+        document.body.style.userSelect = '';
 
-        // 恢复文本选中
-        document.body.style.userSelect = "";
+        // 如果没有拖动，尝试恢复原始点击行为
+        if (!didMove && downTarget instanceof Element) {
+            // 创建一个真实的 click 事件
+            const clickEvent = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window,
+                detail: 1,
+                button: 0,
+                clientX: e.clientX,
+                clientY: e.clientY,
+                screenX: e.screenX,
+                screenY: e.screenY,
+            });
 
+            // 在原始目标上派发 click
+            downTarget.dispatchEvent(clickEvent);
+        }
+
+        // 重置 downTarget
+        downTarget = null;
     };
 
-    // 绑定 pointer 事件
-    elementRef.addEventListener("pointerdown", startDrag);
-    elementRef.addEventListener("pointerup", stopDrag);
-    elementRef.addEventListener("pointercancel", stopDrag); // 触摸中断等情况
+    elementRef.addEventListener('pointerdown', startDrag);
+    elementRef.addEventListener('pointerup', stopDrag);
+    elementRef.addEventListener('pointercancel', stopDrag);
 
-    // 返回销毁函数
     return {
         destroy: () => {
-            elementRef.removeEventListener("pointerdown", startDrag);
-            elementRef.removeEventListener("pointerup", stopDrag);
-            elementRef.removeEventListener("pointercancel", stopDrag);
+            elementRef.removeEventListener('pointerdown', startDrag);
+            elementRef.removeEventListener('pointerup', stopDrag);
+            elementRef.removeEventListener('pointercancel', stopDrag);
             if (isDragging) {
-                // 强制释放捕获
+                elementRef.removeEventListener('pointermove', rawDrag);
                 try {
                     elementRef.releasePointerCapture((elementRef as any).__activePointerId || 0);
-                } catch (e) {
+                } catch (error) {
+                    console.error('Failed to release pointer capture:', error);
                 }
-                elementRef.removeEventListener("pointermove", throttleDrag);
             }
-            document.body.style.userSelect = "";
+            document.body.style.userSelect = '';
         },
+        isMove: () => isMove,
     };
 };
