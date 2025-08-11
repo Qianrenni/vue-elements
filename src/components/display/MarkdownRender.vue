@@ -1,5 +1,30 @@
 <template>
-  <div class="markdown-body" v-html="htmlContent"></div>
+  <div class="markdown-container">
+    <div class="markdown-body" v-html="htmlContent"></div>
+
+    <!-- 悬浮目录 -->
+    <div
+        v-if="showToc"
+        :class="{ 'toc-collapsed': !tocExpanded }" class="floating-toc">
+      <div class="toc-header" @click="toggleToc">
+        <span v-if="tocExpanded">目录</span>
+        <div v-else class="toc-icon">
+          <Icon icon="Minus"></Icon>
+        </div>
+      </div>
+      <div v-show="tocExpanded" class="toc-content scroll-container scroll-y">
+        <div
+            v-for="item in toc"
+            :key="item.id"
+            :class="{ [`level-${item.level}`]: true }"
+            class="toc-item"
+            @click="scrollToHeading(item.id)"
+        >
+          {{ item.text }}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -23,6 +48,7 @@ import cplus from 'highlight.js/lib/languages/cpp'
 import c from 'highlight.js/lib/languages/c'
 import json from 'highlight.js/lib/languages/json'
 import yaml from 'highlight.js/lib/languages/yaml'
+import Icon from "@/components/basic/Icon.vue";
 
 hljs.registerLanguage('java', java)
 // 注册语言
@@ -44,13 +70,26 @@ defineOptions({
 })
 // props
 const props = defineProps<{
-  content: string
+  content: string,
+  showToc?: boolean
 }>();
 
 // 状态
 const htmlContent = ref('')
 // toc
 const toc = ref<{ id: string, text: string, level: number }[]>([])
+// 目录展开状态
+const tocExpanded = ref(false)
+
+// 切换目录展开/收起
+function toggleToc() {
+  tocExpanded.value = !tocExpanded.value
+}
+
+// 点击目录项滚动到对应位置
+function scrollToHeading(id: string) {
+  scrollToId(id)
+}
 
 // slugify 函数：中文转拼音、生成 ID
 function slugify(text: string) {
@@ -190,7 +229,7 @@ defineExpose({
   scrollTo(id: string) {
     scrollToId(id)
   },
-  
+
   /**
    * 获取原始内容
    */
@@ -201,5 +240,106 @@ defineExpose({
 </script>
 
 <style scoped>
-/* 保持原有样式不变即可 */
+.markdown-container {
+  position: relative;
+}
+
+.floating-toc {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px var(--box-shadow);
+  transition: all 0.3s ease;
+  z-index: 100;
+  max-width: 300px;
+  max-height: 60vh;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.toc-collapsed {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.toc-header {
+  padding: 8px 12px;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toc-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.toc-content {
+  padding: 8px;
+  max-height: calc(60vh - 40px);
+  overflow-y: auto;
+}
+
+.toc-item {
+  padding: 4px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.2s;
+}
+
+.toc-item:hover {
+  background-color: var(--gray-100);
+  color: var(--primary-color);
+}
+
+.level-1 {
+  font-weight: bold;
+  margin-left: 0;
+}
+
+.level-2 {
+  margin-left: 12px;
+}
+
+.level-3 {
+  margin-left: 24px;
+  font-size: 0.95em;
+}
+
+.level-4, .level-5, .level-6 {
+  margin-left: 36px;
+  font-size: 0.9em;
+  color: var(--subtle-text-color);
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
+  .floating-toc {
+    top: 10px;
+    right: 10px;
+    max-width: 250px;
+  }
+
+  .toc-collapsed {
+    width: 32px;
+    height: 32px;
+  }
+}
 </style>
