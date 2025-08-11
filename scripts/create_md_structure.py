@@ -1,7 +1,7 @@
 import os
 
 
-dir_path = r'F:\eclipse\worakjava\qyani-components/src/'
+dir_path = r'D:\webstorm\workdir\qyani-elements\src'
 md_path = dir_path.replace('src', 'md')
 if not os.path.exists(md_path):
     os.mkdir(md_path)

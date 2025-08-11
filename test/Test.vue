@@ -2,7 +2,7 @@
 <!-- src/docs/App.vue -->
 <script lang="ts" setup>
 import {ref} from 'vue'
-import {ComponentInfo} from "../src/utils/useComponentScanner";
+import {ComponentInfo} from "@/utils/useComponentScanner";
 import ComponentList from "../src/docs/ComponentList.vue";
 import ComponentDetail from "../src/docs/ComponentDetail.vue";
 

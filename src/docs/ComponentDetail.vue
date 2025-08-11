@@ -19,8 +19,8 @@ const componentRef = ref()
     请选择一个组件
   </div>
 
-  <div v-else class="scroll-container scroll-y bg-card component-detail">
-    <div class="container-column padding-rem">
+  <div v-else class="scroll-container scroll-y bg-card component-detail container">
+    <div class="container-column padding-rem container-flex-1">
       <!-- 右侧标题 -->
       <h2 class="text-primary text-center padding-half-rem margin-half-vetical border-horizontal-gray">
         {{ component.displayName }} 组件
@@ -46,7 +46,7 @@ const componentRef = ref()
 
 .component-display {
   transition: all 0.5s ease;
-  min-height: 400px;
+  flex: 1;
 }
 
 .preview {

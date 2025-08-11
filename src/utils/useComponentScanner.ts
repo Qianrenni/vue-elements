@@ -16,12 +16,12 @@ export function useComponentScanner() {
     return {
         components,
         loadComponents: async () => {
-            // ✅ 扫描所有 /src/components/*/Q*.vue
+            // ✅ 扫描所有 /src/components/*/*.vue
             const vueModules = import.meta.glob('/src/components/*/*.vue')
 
             const list: ComponentInfo[] = []
 
-            for (const [vuePath, vueImporter] of Object.entries(vueModules)) {
+            for (const [vuePath, _] of Object.entries(vueModules)) {
                 // 匹配：/src/components/basic/QButton.vue
                 const match = vuePath.match(/\/src\/components\/([^/]+)\/(\w+)\.vue$/)
                 if (!match) continue
