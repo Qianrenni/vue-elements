@@ -69,10 +69,12 @@ defineOptions({
   name: 'MarkdownRender'
 })
 // props
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   content: string,
   showToc?: boolean
-}>();
+}>(), {
+  showToc: true
+})
 
 // 状态
 const htmlContent = ref('')
