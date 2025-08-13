@@ -2,7 +2,7 @@ import os
 
 
 dir_path = r'D:\webstorm\workdir\qyani-elements\src'
-md_path = dir_path.replace('src', 'md')
+md_path = dir_path.replace('src', 'docs')
 if not os.path.exists(md_path):
     os.mkdir(md_path)
 for root, dirs, files in os.walk(dir_path):

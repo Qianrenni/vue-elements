@@ -292,13 +292,12 @@ defineExpose({
 }
 
 .toc-content {
-  padding: 8px;
   max-height: calc(60vh - 40px);
   overflow-y: auto;
 }
 
 .toc-item {
-  padding: 4px 8px;
+  padding: 4px 0;
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
