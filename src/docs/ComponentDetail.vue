@@ -1,16 +1,28 @@
 <!-- src/docs/ComponentDetail.vue -->
 <script lang="ts" setup>
-import {defineOptions, ref} from 'vue'
+import {defineAsyncComponent, defineOptions, markRaw, ref, watch} from 'vue'
 import MarkdownRender from '@/components/display/MarkdownRender.vue'
 import {ComponentInfo} from "@/utils/useComponentScanner";
 
 defineOptions({
   name: 'ComponentDetail'
 })
-defineProps<{
+const props = defineProps<{
   component: ComponentInfo | null
 }>()
 
+const currentComponent = ref(null);
+watch(
+    () => props.component,
+    (newComponent) => {
+      try {
+        currentComponent.value = markRaw(defineAsyncComponent(() => import((`../../test/display/Display${newComponent?.displayName}.vue`))));
+      } catch (error) {
+        currentComponent.value = null;
+        console.log(error);
+      }
+    }
+)
 const componentRef = ref()
 </script>
 
@@ -31,6 +43,7 @@ const componentRef = ref()
         <!-- Markdown 文档 -->
         <MarkdownRender :content="component.docContent"/>
       </div>
+      <component :is="currentComponent"/>
     </div>
   </div>
 </template>
@@ -46,7 +59,7 @@ const componentRef = ref()
 
 .component-display {
   transition: all 0.5s ease;
-  flex: 1;
+  //flex: 1;
 }
 
 .preview {
