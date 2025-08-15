@@ -29,10 +29,10 @@ export function useComponentScanner() {
                 const [, category, name] = match
                 const displayName = name.startsWith('Q') ? name.slice(1) : name
 
-                // ✅ 构造 .md 路径：/md/components/basic/QButton.md
-                const docPath = `/md/components/${category}/${name}.md`
+                // ✅ 构造 .docs 路径：/docs/components/basic/QButton.docs
+                const docPath = `/docs/components/${category}/${name}.md`
 
-                // ✅ 尝试加载 .md（使用 fetch 更安全）
+                // ✅ 尝试加载 .docs（使用 fetch 更安全）
                 let docContent = '> 暂无文档'
                 try {
                     const res = await fetch(docPath)
