@@ -51,6 +51,14 @@ watch(() => props.icon, loadSvg);
 onMounted(() => {
   loadSvg();
 });
+defineExpose({
+  getDefaultProps() {
+    return {
+      icon: 'User',
+      size: '32',
+    }
+  }
+})
 </script>
 
 <style scoped></style>

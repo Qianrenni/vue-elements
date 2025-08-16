@@ -1,7 +1,8 @@
 <template>
   <div class="markdown-container">
     <div class="markdown-body" v-html="htmlContent"></div>
-
+    <span class="copy" @click.prevent="copyHandler"><Icon
+        icon="Copy" size="16"></Icon></span>
     <!-- 悬浮目录 -->
     <div
         v-if="showToc"
@@ -202,6 +203,9 @@ function bindAnchorEvents() {
   })
 }
 
+const copyHandler = async () => {
+  navigator.clipboard.writeText(props.content)
+}
 // 监听 content 变化
 watch(
     () => props.content,
@@ -243,7 +247,15 @@ defineExpose({
 
 <style scoped>
 .markdown-container {
+  border-top: 20px solid #ddd;
   position: relative;
+}
+
+.copy {
+  position: absolute;
+  right: 1rem;
+  top: 0;
+  transform: translateY(-100%);
 }
 
 .floating-toc {
