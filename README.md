@@ -6,12 +6,12 @@ qyani-components/                     # 项目根目录，一个基于 Vue 的 U
 ├── index_python.py                   # Python 脚本文件，可能用于自动化任务（如生成文档、测试等），非核心前端功能
 ├── LICENSE                           # 开源许可证文件，声明项目的使用条款（如 MIT、Apache 等）
 ├── mock/                             # 模拟数据目录，存放用于开发测试的假数据或资源
-|   └── pic.md                        # 示例 Markdown 文件，可能用于测试图片渲染或文档展示功能
+|   └── pic.docs                        # 示例 Markdown 文件，可能用于测试图片渲染或文档展示功能
 ├── package.json                      # 项目元信息文件，定义依赖、脚本命令、项目名称、版本等
 ├── pnpm-lock.yaml                    # pnpm 包管理器的锁定文件，确保依赖版本一致性
 ├── qyani-components.iml              # IntelliJ IDEA 项目配置文件，用于 IDE 识别项目结构
 ├── qyani-components_structure.txt    # 项目结构说明文本文件，便于开发者快速了解整体架构
-├── README.md                         # 项目说明文档，介绍项目功能、安装、使用方法和贡献指南
+├── README.docs                         # 项目说明文档，介绍项目功能、安装、使用方法和贡献指南
 ├── src/                              # 源码目录，存放所有前端源代码
 |   ├── components/                   # 所有可复用 Vue 组件的主目录
 |   |   ├── basic/                    # 基础组件，如图标、图标配对等

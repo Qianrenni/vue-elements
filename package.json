@@ -10,10 +10,11 @@
   "type": "module",
   "scripts": {
     "type-check": "pnpm npx vue-tsc --build --declaration --clean",
-    "dev": "pnpm vite",
     "build": "pnpm vite build && tsc --declaration",
     "test": "pnpm vite",
-    "preview": "pnpm vite preview --port 5000 --open"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "author": "qyaniwu",
   "license": "ISC",
