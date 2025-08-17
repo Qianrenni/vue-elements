@@ -247,15 +247,12 @@ defineExpose({
 
 <style scoped>
 .markdown-container {
-  border-top: 20px solid #ddd;
   position: relative;
 }
 
 .copy {
-  position: absolute;
-  right: 1rem;
-  top: 0;
-  transform: translateY(-100%);
+  display: flex;
+  justify-content: flex-end;
 }
 
 .floating-toc {
