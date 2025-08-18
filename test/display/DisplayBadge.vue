@@ -1,10 +1,10 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import MarkdownRender from "../../src/components/display/MarkdownRender.vue";
-import Badge from "../../src/components/display/Badge.vue";
+
 defineOptions({
   name: "DisplayBadge",
 })
-const code=`
+const code = `
 \`\`\`json
 {
   type: {
@@ -33,20 +33,11 @@ const code=`
   <div class="container-column">
     <h3>1.默认</h3>
     <div class="container-center">
-      <badge/>
+
     </div>
     <h3>2.自定义</h3>
     <div class="container-center gap">
-      <badge :dot="true">
-        <span class="button padding-24rem">
-        按钮
-      </span>
-      </badge>
-      <badge value="100">
-      <span class="button padding-28rem">
-        按钮
-      </span>
-      </badge>
+
 
     </div>
   </div>
