@@ -41,7 +41,7 @@ export function useComponentScanner() {
 
                 // ✅ 构造路径：src → docs（.docs），src → display（路径）
                 const docPath = vuePath.replace(/^\/src/, '/docs').replace(/\.(vue|ts)$/, '.md')
-                const displayPath = vuePath.replace(/^\/src/, '/display')
+                const displayPath = vuePath.replace(/^\/src/, '/display').replace('.ts', '.vue');
 
                 let docContent = '> 暂无文档'
                 try {
