@@ -8,7 +8,7 @@
     <div class="demo-example container-center">
       <slot/>
     </div>
-    <CollapsibleSection :initial-expanded="false">
+    <CollapsibleSection :initial-expanded="false" direction="up">
       <markdown-render :content="wrapCode" :show-copy="false" class="container-w100"/>
     </CollapsibleSection>
   </div>
