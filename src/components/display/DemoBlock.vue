@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, ref} from 'vue'
+import {computed} from 'vue'
 import MarkdownRender from "@/components/display/MarkdownRender.vue";
 import CollapsibleSection from "@/components/layout/CollapsibleSection.vue";
 
@@ -24,10 +24,8 @@ const props = defineProps<{
   code?: string
 }>()
 
-const expanded = ref(false)
 const wrapCode = computed(() => {
-  return `\`\`\`html${props.code}
-  \`\`\``
+  return props.code || ``
 })
 const copyCode = () => {
   if (!props.code) return
