@@ -1,11 +1,13 @@
 <template>
   <div class="markdown-container">
     <div class="markdown-body" v-html="htmlContent"></div>
-    <span class="copy" @click.prevent="copyHandler"><Icon
+    <span
+        v-if="showCopy&&props.content.trim()!==''"
+        class="copy" @click.prevent="copyHandler"><Icon
         icon="Copy" size="16"></Icon></span>
     <!-- 悬浮目录 -->
     <div
-        v-if="showToc"
+        v-if="toc.length>0"
         :class="{ 'toc-collapsed': !tocExpanded }" class="floating-toc">
       <div class="toc-header" @click="toggleToc">
         <span v-if="tocExpanded">目录</span>
@@ -72,9 +74,9 @@ defineOptions({
 // props
 const props = withDefaults(defineProps<{
   content: string,
-  showToc?: boolean
+  showCopy?: boolean
 }>(), {
-  showToc: true
+  showCopy: true
 })
 
 // 状态

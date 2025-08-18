@@ -3,6 +3,7 @@
 import {defineAsyncComponent, defineOptions, markRaw, ref, watch} from 'vue'
 import MarkdownRender from '@/components/display/MarkdownRender.vue'
 import {ComponentInfo} from "@/utils/useComponentScanner";
+import Tab from "@/components/navigation/Tab.vue";
 
 defineOptions({
   name: 'ComponentDetail'
@@ -15,15 +16,16 @@ const currentComponent = ref(null);
 watch(
     () => props.component,
     (newComponent) => {
+      console.log(newComponent);
       try {
-        currentComponent.value = markRaw(defineAsyncComponent(() => import((`../../test/display/Display${newComponent?.displayName}.vue`))));
+        currentComponent.value = markRaw(defineAsyncComponent(() => import(newComponent?.displayPath!)));
       } catch (error) {
         currentComponent.value = null;
         console.log(error);
       }
     }
 )
-const componentRef = ref()
+const currentTabIndex = ref<number>(0);
 </script>
 
 <template>
@@ -31,19 +33,19 @@ const componentRef = ref()
     请选择一个组件
   </div>
 
-  <div v-else class="scroll-container scroll-y bg-card component-detail container">
+  <div v-else class=" bg-card component-detail container-column">
     <div class="container-column padding-rem container-flex-1">
       <!-- 右侧标题 -->
       <h2 class="text-primary text-center padding-half-rem margin-half-vetical border-horizontal-gray">
         {{ component.displayName }} 组件
       </h2>
-
+      <Tab :list="['文档说明', '组件展示']" @select="(index)=>currentTabIndex=index"/>
       <!-- 组件展示区 -->
-      <div class="component-display padding-rem radius-half-rem shadow-black">
+      <div v-show="currentTabIndex===0" class="component-display padding-rem radius-half-rem shadow-black">
         <!-- Markdown 文档 -->
         <MarkdownRender :content="component.docContent"/>
       </div>
-      <component :is="currentComponent"/>
+      <component :is="currentComponent" v-show="currentTabIndex===1"/>
     </div>
   </div>
 </template>
@@ -52,23 +54,13 @@ const componentRef = ref()
 .component-detail {
   flex: 1;
   overflow-y: auto;
-  background: white;
-  height: 100vh;
-  max-width: 1000px;
+  max-width: 1200px;
 }
 
 .component-display {
   transition: all 0.5s ease;
-  //flex: 1;
 }
 
-.preview {
-  margin: 2rem 0;
-  padding: 1rem;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  background: #fafafa;
-}
 
 .placeholder {
   display: flex;

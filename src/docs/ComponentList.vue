@@ -31,7 +31,7 @@ const grouped = computed(() => {
 </script>
 
 <template>
-  <div class="component-list scroll-container scroll-y container-column padding-rem">
+  <div class="component-list container-column padding-rem">
     <!-- 左侧标题 -->
     <h2 class="text-primary text-center padding-half-rem margin-half-vetical border-horizontal-gray">组件列表</h2>
 
@@ -56,10 +56,7 @@ const grouped = computed(() => {
 <style scoped>
 .component-list {
   width: 260px;
-  height: 100vh;
   border-right: 1px solid var(--primary-color);
-  background: #f8f9fa;
-  padding: 1rem;
 }
 
 /* 组件项样式 */

@@ -19,7 +19,7 @@
     /* 🎨 基础颜色 */
     --color-white: #ffffff;
     --color-black: #000000;
-
+    --color-inverse: #111;
     --background-color: #fdfbfb;
     --secondary-background-color: #E8E8E8;
     --text-color: #333;
@@ -70,6 +70,7 @@
 /* 🌑 暗黑模式样式 */
 body.dark-mode {
     /* 🖌️ 主题背景与文字 */
+    --color-inverse: #fff;
     --background-color: #121212;
     --secondary-background-color: #3f3f3f;
     --text-color: #f0f0f0;
@@ -731,7 +732,6 @@ input:-webkit-autofill:active {
 
 .text-primary {
     color: var(--primary-color);
-    background-color: var(--color-white);
 }
 
 .text-description {
@@ -764,6 +764,10 @@ input:-webkit-autofill:active {
 
 .text-secondary {
     color: var(--text-color);
+}
+
+.text-inverse {
+    color: var(--color-inverse);
 }
 
 .text-center {

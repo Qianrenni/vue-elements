@@ -114,7 +114,9 @@
 
 .markdown-body table th {
     font-weight: 600;
-    background-color: var(--gray-200);
+    background-color: var(--primary-color);
+    color: var(--color-white);
+    border-color: var(--color-white);
 }
 
 /* 列表 */

@@ -102,7 +102,7 @@ qyani-components/                     # 项目根目录，一个基于 Vue 的 U
 |   |   ├── form.html                 # 原生表单功能测试页面
 |   |   └── loadingAnimation.html     # 加载动画测试页面（可能使用 CSS/JS 实现）
 |   ├── main.ts                       # 测试项目的入口 TypeScript 文件，用于挂载测试组件
-|   └── Test.vue                      # 通用测试组件，可能用于集成多个组件测试
+|   └── Docs.vue                      # 通用测试组件，可能用于集成多个组件测试
 ├── tsconfig.json                     # TypeScript 配置文件，定义编译选项和路径别名
 ├── types/                            # 项目级类型定义目录（可能与 src/types 重复或用于全局声明）
 └── vite.config.ts                    # Vite 构建工具配置文件，定义开发服务器、插件、别名等

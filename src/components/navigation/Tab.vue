@@ -64,6 +64,7 @@ function clickHandler(index: number) {
 
 .tab-item.active {
   color: var(--primary-color);
+  background-color: var(--color-white);
 }
 
 .tab-item.active::after {
