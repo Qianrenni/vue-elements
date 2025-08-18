@@ -7,18 +7,21 @@ defineOptions({
   name: "Badge"
 })
 const code = `
-    <div class="container-center gap">
-      <badge :dot="true">
-        <span class="button padding-24rem">
-        按钮
-      </span>
-      </badge>
-      <badge value="100">
-        <span class="button padding-28rem">
-          按钮
-        </span>
-      </badge>
-    </div>`
+\`\`\`html
+<div class="container-center gap">
+  <badge :dot="true">
+    <span class="button padding-24rem">
+    按钮
+  </span>
+  </badge>
+  <badge value="100">
+    <span class="button padding-28rem">
+      按钮
+    </span>
+  </badge>
+</div>
+\`\`\`
+`
 </script>
 <template>
   <DemoBlock :code="code">

@@ -3,7 +3,10 @@ import MobileFrame from '@/components/display/MobileFrame.vue'
 import DemoBlock from '@/components/display/DemoBlock.vue'
 
 const code = `
-<MobileFrame :src="url"/>`
+\`\`\`html
+<MobileFrame :src="url"/>
+\`\`\`
+`
 const url = "http://1.95.141.194/user/"
 </script>
 <template>

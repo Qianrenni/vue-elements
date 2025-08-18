@@ -5,6 +5,7 @@ import FormFileUpload from "@/components/form/FormFileUpload.vue";
 import {reactive} from "vue";
 
 const code = `
+\`\`\`html
 <div class="container-column gap">
       <FormFileUpload
           v-model="form.file"
@@ -20,7 +21,9 @@ const code = `
           multiple
           name="files"
       />
-    </div>`
+</div>
+\`\`\
+`
 const form = reactive({
   file: null,
   files: []

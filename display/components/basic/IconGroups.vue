@@ -7,7 +7,9 @@ defineOptions({
 })
 const code =
     `
+\`\`\`html
 <IconGroups/>
+\`\`\`
 `
 </script>
 

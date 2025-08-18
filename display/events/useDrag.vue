@@ -12,9 +12,24 @@ onMounted(() => {
   }
 })
 const code = `
-    <div  style="position:relative;height: 600px;width: 100%;overflow: hidden;">
-      <span class="shadow-black mouse-cursor" ref="target" style="position: absolute;">被拖动元素 </span>
-    </div>
+\`\`\`html
+<div  style="position:relative;height: 600px;width: 100%;overflow: hidden;">
+  <span class="shadow-black mouse-cursor" ref="target" style="position: absolute;">被拖动元素 </span>
+</div>
+\`\`\`
+` +
+    `
+\`\`\`typescript
+import {useDrag} from "@";
+import {onMounted, useTemplateRef} from "vue";
+
+const refSpan = useTemplateRef('target');
+onMounted(() => {
+  if (refSpan.value) {
+    useDrag(refSpan.value);
+  }
+})
+\`\`\`
 `
 </script>
 <template>

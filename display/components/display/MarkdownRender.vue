@@ -10,7 +10,10 @@ function add(a: number, b: number) {
 \`\`\`
 `
 const code = `
-    <MarkdownRender :content="content"/>`
+\`\`\`html
+    <MarkdownRender :content="content"/>
+\`\`\`
+`
 </script>
 <template>
   <DemoBlock :code="code">

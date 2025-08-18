@@ -8,18 +8,21 @@ const form = reactive({
   gender: 'male'
 });
 const code = `
-        <FormRadioGroup
-            v-model="form.gender"
-            :options="[
-          { value: 'male', label: '男' },
-          { value: 'female', label: '女' },
-          { value: 'other', label: '其他' }
-        ]"
-            direction="vertical"
-            label="单选按钮 :"
-            name="gender"
-            required
-        />`
+\`\`\`html
+<FormRadioGroup
+    v-model="form.gender"
+    :options="[
+  { value: 'male', label: '男' },
+  { value: 'female', label: '女' },
+  { value: 'other', label: '其他' }
+]"
+    direction="vertical"
+    label="单选按钮 :"
+    name="gender"
+    required
+/>
+\`\`\`
+`
 </script>
 <template>
   <DemoBlock :code="code">

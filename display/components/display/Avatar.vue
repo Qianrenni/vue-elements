@@ -7,7 +7,9 @@ defineOptions({
   name: "DisplayAvatar",
 })
 const code = `
+\`\`\`html
 <avatar/>
+\`\`\`
 `
 </script>
 <template>

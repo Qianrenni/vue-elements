@@ -6,7 +6,9 @@ defineOptions({
   name: "DisplayIcon",
 })
 const code = `
+\`\`\`html
 <Icon icon="Wifi"/>
+\`\`\`
 `
 </script>
 

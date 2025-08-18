@@ -8,12 +8,15 @@ const form = reactive({
   color: '#007BFF',
 });
 const code = `
-    <FormColorPicker
-        v-model="form.color"
-        label="主题颜色"
-        name="color"
-        size="large"
-    />`
+\`\`\`html
+<FormColorPicker
+    v-model="form.color"
+    label="主题颜色"
+    name="color"
+    size="large"
+/>
+\`\`\`
+`
 </script>
 <template>
   <DemoBlock :code="code">
