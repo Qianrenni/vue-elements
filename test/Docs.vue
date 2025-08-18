@@ -16,9 +16,7 @@ const selected = ref<ComponentInfo | null>(null)
       <theme-toggle size="32" style="color: white;"/>
     </div>
     <div class="app-layout container-center">
-      <div class="scroll-container scroll-y" style="height: calc( 100vh - 32px)">
-        <ComponentList :selected="selected" @select="selected = $event"/>
-      </div>
+      <ComponentList :selected="selected" @select="selected = $event"/>
       <ComponentDetail :component="selected"/>
     </div>
   </div>

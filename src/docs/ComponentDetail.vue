@@ -33,7 +33,7 @@ const currentTabIndex = ref<number>(0);
     请选择一个组件
   </div>
 
-  <div v-else class=" bg-card component-detail container-column">
+  <div v-else class=" bg-card component-detail container-column scroll-container scroll-y">
     <div class="container-column padding-rem container-flex-1">
       <!-- 右侧标题 -->
       <h2 class="text-primary text-center padding-half-rem margin-half-vetical border-horizontal-gray">
@@ -55,6 +55,7 @@ const currentTabIndex = ref<number>(0);
   flex: 1;
   overflow-y: auto;
   max-width: 1200px;
+  height: calc(100vh - 32px);
 }
 
 .component-display {
