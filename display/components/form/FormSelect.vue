@@ -5,6 +5,7 @@ import FormSelect from "@/components/form/FormSelect.vue";
 import {reactive} from "vue";
 
 const code = `
+\`\`\`html
 <FormSelect
             v-model="form.select"
             :options="[
@@ -26,7 +27,8 @@ const code = `
             name="select"
             placeholder="请选择"
             searchable
-        />
+/>
+\`\`\`
 `
 const form = reactive({
   select: []

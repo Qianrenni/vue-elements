@@ -273,8 +273,6 @@ body {
     /*overflow-x: auto;*/
     overflow-x: auto;
     scrollbar-width: thin;
-    scrollbar-color: var(--primary-color);
-    -ms-scrollbar-color: var(--primary-color);
     scrollbar-color: var(--primary-color) var(--background-color);
     -ms-scrollbar-color: var(--primary-color) var(--background-color);
     -ms-scrollbar-width: thin;
@@ -287,8 +285,6 @@ body {
     /*overflow-y: auto;*/
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: var(--primary-color);
-    -ms-scrollbar-color: var(--primary-color);
     scrollbar-color: var(--primary-color) var(--background-color);
     -ms-scrollbar-color: var(--primary-color) var(--background-color);
     -ms-scrollbar-width: thin;
@@ -842,6 +838,12 @@ input:-webkit-autofill:active {
     cursor: pointer;
 }
 
+.user-select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 /*响应式*/
 @media screen and (max-width: 768px) {

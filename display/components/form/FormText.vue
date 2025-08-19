@@ -5,6 +5,7 @@ import FormText from "@/components/form/FormText.vue";
 import {reactive} from "vue";
 
 const code = `
+\`\`\`html
 <FormText
         v-model="form.text"
         direction="vertical"
@@ -39,7 +40,9 @@ const code = `
         pattern="[0-9]+"
         placeholder="138-0000-0000"
         type="tel"
-    />`
+/>
+\`\`\`
+`
 const form = reactive({
   text: '',
   password: '',

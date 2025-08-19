@@ -5,34 +5,37 @@ import CollapsibleSection from "@/components/layout/CollapsibleSection.vue";
 
 
 const code = `
-  <div class="container">
+\`\`\`html
+<div class="container">
     <CollapsibleSection  style="width: 100%;">
       <div>
         <span>down</span>
       </div>
     </CollapsibleSection>
   </div>
-  <div class="container">
-    <CollapsibleSection   direction="left">
-      <div>
-        <span>left</span>
-      </div>
-    </CollapsibleSection>
-  </div>
-  <div class="container">
-    <CollapsibleSection  style="width: 100%;" direction="right">
-      <div>
-        <span>right</span>
-      </div>
-    </CollapsibleSection>
-  </div>
-  <div class="container">
-    <CollapsibleSection direction="up" style="width: 100%;">
-      <div>
-        <span>up</span>
-      </div>
-    </CollapsibleSection>
-  </div>`
+<div class="container">
+  <CollapsibleSection   direction="left">
+    <div>
+      <span>left</span>
+    </div>
+  </CollapsibleSection>
+</div>
+<div class="container">
+  <CollapsibleSection  style="width: 100%;" direction="right">
+    <div>
+      <span>right</span>
+    </div>
+  </CollapsibleSection>
+</div>
+<div class="container">
+  <CollapsibleSection direction="up" style="width: 100%;">
+    <div>
+      <span>up</span>
+    </div>
+  </CollapsibleSection>
+</div>
+\`\`\`
+  `
 </script>
 <template>
   <DemoBlock :code="code">

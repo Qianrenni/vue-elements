@@ -5,10 +5,17 @@ import {useMousePosition} from "@";
 
 const {x, y} = useMousePosition()
 const code = `
+\`\`\`html
 <div class="container">
       x:{{x}}
       y:{{y}}
 </div>
+\`\`\`
+` + `
+\`\`\`ts
+import {useMousePosition} from "@"
+const {x, y} = useMousePosition()
+\`\`\`
 `
 </script>
 <template>

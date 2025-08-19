@@ -3,7 +3,10 @@ import ThemeToggle from "@/components/theme/ThemeToggle.vue";
 import DemoBlock from "@/components/display/DemoBlock.vue";
 
 const code = `
-<theme-toggle size="32"/>`
+\`\`\`html
+<theme-toggle size="32"/>
+\`\`\`
+`
 </script>
 <template>
   <demo-block :code="code">

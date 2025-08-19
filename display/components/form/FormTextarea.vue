@@ -5,14 +5,16 @@ import FormTextarea from "@/components/form/FormTextarea.vue";
 import {reactive} from "vue";
 
 const code = `
-        <FormTextarea
-            v-model="form.desc"
-            :rows="4"
-            disabled
-            label="描述"
-            name="desc"
-            placeholder="请输入详情..."
-        />`
+\`\`\`html
+<FormTextarea
+    v-model="form.desc"
+    :rows="4"
+    disabled
+    label="描述"
+    name="desc"
+    placeholder="请输入详情..."
+/>
+\`\`\``
 const form = reactive({
   desc: "这是描述"
 })

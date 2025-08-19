@@ -10,9 +10,12 @@ const changeHandler = (e: any) => {
   alert(e);
 }
 const code = `
-    <div class="container">
-      <Search @change="changeHandler" @search="(e)=>searchHandler(e)"/>
-    </div>`
+\`\`\`html
+<div class="container">
+  <Search @change="changeHandler" @search="(e)=>searchHandler(e)"/>
+</div>
+\`\`\`
+`
 </script>
 <template>
   <DemoBlock :code="code">

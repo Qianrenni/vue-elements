@@ -50,7 +50,56 @@ const handleSelect = (section) => {
   alert(JSON.stringify(section));
 }
 const code = `
-  <NavSection :sections="content.children" :title="content.title" @select="(e)=>handleSelect(e)"/>`
+\`\`\`html
+<NavSection :sections="content.children" :title="content.title" @select="(e)=>handleSelect(e)"/>
+\`\`\`
+` + `
+\`\`\`javascript
+const content = {
+  title: '标题1',
+  children: [
+    {
+      title: '标题2',
+      children: [
+        {
+          title: '标题3',
+          children: [
+            {
+              title: '标题5'
+            },
+            {
+              title: '标题6'
+            }
+          ]
+        },
+        {
+          title: '标题4',
+          children: [
+            {
+              title: '标题7'
+            },
+            {
+              title: '标题8'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      title: '标题3',
+      children: [
+        {
+          title: '标题4'
+        },
+        {
+          title: '标题5'
+        }
+      ]
+    }
+  ]
+}
+\`\`\`
+`
 </script>
 <template>
   <DemoBlock :code="code">
