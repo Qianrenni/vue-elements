@@ -1,5 +1,5 @@
 import os
-dir_path=r'.*\components'
+dir_path=r'../src/components'
 result=[]
 install_list=[]
 components=[]
