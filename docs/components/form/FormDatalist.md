@@ -1,49 +1,43 @@
 # Props 参数
 
-| 参数         | 类型                          | 默认值    | 必填 | 说明                     |
-|------------|-----------------------------|--------|----|------------------------|
-| `name`     | `string`                    | —      | 是  | 输入框的名称，用于表单数据绑定和关联 label、datalist |
-| `label`    | `string`                    | —      | 否  | 标签文本，显示在输入框上方或左侧 |
-| `modelValue` | `string`                  | ``     | 是  | 双向绑定的值，当前输入框的值 |
-| `options`  | `string[]`                  | `[]`   | 是  | datalist 的选项列表，供自动补全使用 |
-| `placeholder` | `string`                 | ``     | 否  | 输入框占位符文本             |
-| `required` | `boolean`                   | `true` | 否  | 是否为必填项，影响验证逻辑     |
-| `disabled` | `boolean`                   | `false`| 否  | 是否禁用输入框               |
-| `readonly` | `boolean`                   | `false`| 否  | 是否只读模式                |
-| `autofocus`| `boolean`                   | `false`| 否  | 是否自动聚焦               |
-| `size`     | `'small' \| 'middle' \| 'large'` | `'middle'` | 否  | 输入框尺寸，影响字体大小和内边距 |
-| `direction`| `'horizontal' \| 'vertical'` | `'horizontal'` | 否  | 布局方向，水平或垂直排列 |
-| `clearable`| `boolean`                   | `true` | 否  | 是否显示清除按钮（由事件触发） |
+| 参数         | 类型                     | 默认值     | 必填 | 说明                                                                 |
+|------------|------------------------|---------|----|----------------------------------------------------------------------|
+| `label`    | `string`               | `''`    | 否  | 表单项标签文本                                                         |
+| `size`     | `'small' \| 'middle' \| 'large'` | `'middle'` | 否  | 控件尺寸，影响字体大小                                                     |
+| `disabled` | `boolean`              | `false` | 否  | 是否禁用输入框                                                           |
+| `required` | `boolean`              | `true`  | 否  | 是否必填项                                                             |
+| `direction`| `'horizontal' \| 'vertical'` | `'horizontal'` | 否  | 表单控件布局方向，`vertical`为竖直布局，`horizontal`为水平布局 |
+| `name`     | `string`               | `''`    | 是  | 表单字段名称，同时作为 `input` 的 `name` 属性                             |
+| `id`       | `string`               | `''`    | 否  | 表单字段 ID，用于 `label` 的 `for` 属性                                  |
+| `placeholder` | `string`            | `''`    | 否  | 输入框占位符文本                                                         |
+| `autofocus`| `boolean`              | `false` | 否  | 是否自动获取焦点                                                         |
+| `readonly` | `boolean`              | `false` | 否  | 输入框是否只读                                                           |
+| `clearable`| `boolean`              | `true`  | 否  | 是否可清除输入内容                                                         |
+| `options`  | `string[]`             | `[]`    | 是  | 数据列表，用于 `<datalist>` 提供自动补全选项                              |
+| `modelValue`| `string`              | `''`    | 是  | 绑定的输入值，支持 `v-model`                                           |
 
-> 💡 提示：支持原生 `<input>` 的所有属性（如 `type="text"`、`autocomplete` 等）
+> 💡 提示：支持原生 `input` 的所有属性（如 `autocomplete`, `maxlength` 等）
 
 ---
 
 # Events 事件
 
-| 事件名      | 回调参数           | 说明                     |
-|----------|------------------|------------------------|
-| `update:modelValue` | `string`       | 当输入框值改变时触发，用于双向绑定更新 |
-| `change` | `Event`          | 输入内容发生改变时触发（blur 或 change 事件） |
-| `focus`  | `FocusEvent`     | 输入框获得焦点时触发              |
-| `blur`   | `FocusEvent`     | 输入框失去焦点时触发              |
-| `clear`  | —                | 清除按钮被点击时触发，清空输入值       |
+| 事件名      | 回调参数 | 说明             |
+|----------|------|------------------|
+| `input`  | `(value: string)` | 输入时触发，用于支持 `v-model` 绑定 |
+| `change` | `(value: string)` | 值改变时触发                        |
+| `focus`  | —                 | 输入框获得焦点时触发                  |
+| `blur`   | —                 | 输入框失去焦点时触发                  |
+| `clear`  | —                 | 当用户点击清除按钮时触发（如果启用）     |
 
 ---
 
 # Slots 插槽
 
-| 插槽名       | 说明      | 示例                                            |
-|-----------|---------|-----------------------------------------------|
-| `default` | 默认内容插槽  | `<FormDataList><template #default>自定义标签</template></FormDataList>` |
-| `label`   | 自定义标签插槽 | `<template #label><span class="custom-label">自定义标签</span></template>` |
+当前组件未定义任何插槽。
 
 ---
 
 # Expose 方法
 
-| 方法名       | 参数 | 返回值 | 说明   |
-|-----------|----|-----|------|
-| `focus`   | —  | —   | 聚焦到输入框，等同于调用原生 focus() 方法 |
-| `blur`    | —  | —   | 失去焦点，等同于调用原生 blur() 方法 |
-| `clear`   | —  | —   | 清空输入框内容并触发 `clear` 事件 |
+当前组件未通过 `defineExpose` 暴露任何方法。
