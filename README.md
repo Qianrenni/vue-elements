@@ -100,7 +100,7 @@ qyani-components/                     # 项目根目录，一个基于 Vue 的 U
 |   ├── html/                         # 独立 HTML 测试页面，用于测试原生功能或 Canvas 动画
 |   |   ├── canvas.html               # Canvas 相关功能测试页面（如图形绘制）
 |   |   ├── form.html                 # 原生表单功能测试页面
-|   |   └── loadingAnimation.html     # 加载动画测试页面（可能使用 CSS/JS 实现）
+|   |   └── loading.html     # 加载动画测试页面（可能使用 CSS/JS 实现）
 |   ├── main.ts                       # 测试项目的入口 TypeScript 文件，用于挂载测试组件
 |   └── Docs.vue                      # 通用测试组件，可能用于集成多个组件测试
 ├── tsconfig.json                     # TypeScript 配置文件，定义编译选项和路径别名

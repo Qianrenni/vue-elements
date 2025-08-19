@@ -1,36 +1,40 @@
 import os
 
+def mk_file(path):
+    if not os.path.exists(path):
+        with open(path, 'w') as f:
+            f.write('')
+def mk_dir(path):
+    if not os.path.exists(path):
+        os.mkdir(path)
 
-dir_path = r'D:\webstorm\workdir\qyani-elements\src'
-md_path = dir_path.replace('src', 'display')
-if not os.path.exists(md_path):
-    os.mkdir(md_path)
+dir_path = r'F:\eclipse\worakjava\qyani-components\src'
+if 'src' not in dir_path:
+    raise Exception('请输入正确的路径')
+display_path = dir_path.replace('src', 'display')
+if not os.path.exists(display_path):
+    os.mkdir(display_path)
 for root, dirs, files in os.walk(dir_path):
     for dir in dirs:
         full_dir_path = os.path.join(root, dir)
         md_dir_path = full_dir_path.replace('src', 'display')
-        if not os.path.exists(md_dir_path):
-            os.mkdir(md_dir_path)
+        mk_dir(md_dir_path)
     for file in files:
         full_file_path = os.path.join(root, file)
         md_file_path = full_file_path.replace('src', 'display').split('.')[0] + '.vue'
-        if not os.path.exists(md_file_path):
-            #  新建文件
-            with open(md_file_path, 'w') as f:
-                f.write(
-'''<script lang="ts" setup>
+        mk_file(md_file_path)
 
-</script>
-<template>
-
-</template>
-
-<style scoped>
-
-</style>
-'''
-)
-
-
+docs_path = dir_path.replace('src', 'docs')
+if not os.path.exists(docs_path):
+    os.mkdir(docs_path)
+for root, dirs, files in os.walk(dir_path):
+    for dir in dirs:
+        full_dir_path = os.path.join(root, dir)
+        md_dir_path = full_dir_path.replace('src', 'docs')
+        mk_dir(md_dir_path)
+    for file in files:
+        full_file_path = os.path.join(root, file)
+        md_file_path = full_file_path.replace('src', 'docs').split('.')[0] + '.md'
+        mk_file(md_file_path)
 
 

@@ -1,4 +1,4 @@
-export class TimeUtils {
+export class UseTimeUtils {
     private date: Date;
     private locale: string;
 
@@ -31,6 +31,40 @@ export class TimeUtils {
 
     // ========================
     // 格式化（本地时间）
+
+    // ========================
+    /**
+     * 获取当前时间的TimeUtils实例
+     * @param locale 可选参数，指定本地化语言，例如：'zh-CN'（中文）、'en-US'（英文）、'ja-JP'（日文）、'fr-FR'（法文）
+     * @returns TimeUtils实例
+     */
+    static now(locale?: string): UseTimeUtils {
+        return new UseTimeUtils(undefined, locale);
+    }
+
+    // ========================
+    // 国际化格式化（支持本地化名称）
+
+    /**
+     * 从输入创建TimeUtils实例
+     * @param input 输入（Date、时间戳、日期字符串）
+     * @param locale 可选参数，指定本地化语言，例如：'zh-CN'（中文）、'en-US'（英文）、'ja-JP'（日文）、'fr-FR'（法文）
+     * @returns TimeUtils实例
+     */
+    static from(input: Date | number | string, locale?: string): UseTimeUtils {
+        return new UseTimeUtils(input, locale);
+    }
+
+    /**
+     * 创建UTC时间工具类实例
+     * @param input 可选参数，可以是Date、数字（时间戳）、字符串（日期字符串）或null/undefined
+     * @param locale 可选参数，指定本地化语言
+     * @returns UTCTimeUtils实例
+     */
+    static utc(input?: Date | number | string, locale?: string): UTCTimeUtils {
+        return new UTCTimeUtils(input, locale);
+    }
+
     // ========================
     /**
      * 格式化日期为指定格式的字符串
@@ -60,7 +94,8 @@ export class TimeUtils {
     }
 
     // ========================
-    // 国际化格式化（支持本地化名称）
+    // 基本获取（本地时间）
+
     // ========================
     /**
      * 根据本地化设置格式化日期
@@ -117,62 +152,53 @@ export class TimeUtils {
         return new Intl.DateTimeFormat(usedLocales, options).format(this.date);
     }
 
-    /**
-     * 自定义国际化格式（实验性）
-     * @param format 自定义格式字符串，例如`{YYYY}年{MM}月{DD}日 {weekday:long}`
-     * @param locales 指定本地化语言，例如：'zh-CN'（中文）、'en-US'（英文）、'ja-JP'（日文）、'fr-FR'（法文）
-     * @returns 自定义格式化后的日期字符串
-     */
-    private customFormatLocale(format: string, locales: string): string {
-        const weekday = new Intl.DateTimeFormat(locales, { weekday: 'long' }).format(this.date);
-        const weekdayShort = new Intl.DateTimeFormat(locales, { weekday: 'short' }).format(this.date);
-        const monthLong = new Intl.DateTimeFormat(locales, { month: 'long' }).format(this.date);
-        const monthShort = new Intl.DateTimeFormat(locales, { month: 'short' }).format(this.date);
-
-        return format
-            .replace(/{weekday:long}/g, weekday)
-            .replace(/{weekday:short}/g, weekdayShort)
-            .replace(/{month:long}/g, monthLong)
-            .replace(/{month:short}/g, monthShort)
-            .replace(/{YYYY}/g, this.date.getFullYear().toString())
-            .replace(/{MM}/g, this.pad(this.date.getMonth() + 1))
-            .replace(/{DD}/g, this.pad(this.date.getDate()))
-            .replace(/{HH}/g, this.pad(this.date.getHours()))
-            .replace(/{mm}/g, this.pad(this.date.getMinutes()))
-            .replace(/{ss}/g, this.pad(this.date.getSeconds()));
-    }
-
-    /**
-     * 补零函数
-     * @param n 数字
-     * @returns 补零后的字符串
-     */
-    private pad(n: number): string {
-        return n.toString().padStart(2, '0');
-    }
-
-    // ========================
-    // 基本获取（本地时间）
     // ========================
     /** 获取年份 */
-    year(): number { return this.date.getFullYear(); }
+    year(): number {
+        return this.date.getFullYear();
+    }
+
     /** 获取月份（1-12） */
-    month(): number { return this.date.getMonth() + 1; }
+    month(): number {
+        return this.date.getMonth() + 1;
+    }
+
     /** 获取日期（1-31） */
-    dateNum(): number { return this.date.getDate(); }
+    dateNum(): number {
+        return this.date.getDate();
+    }
+
     /** 获取小时（0-23） */
-    hour(): number { return this.date.getHours(); }
+    hour(): number {
+        return this.date.getHours();
+    }
+
     /** 获取分钟（0-59） */
-    minute(): number { return this.date.getMinutes(); }
+    minute(): number {
+        return this.date.getMinutes();
+    }
+
     /** 获取秒数（0-59） */
-    second(): number { return this.date.getSeconds(); }
+    second(): number {
+        return this.date.getSeconds();
+    }
+
     /** 获取毫秒数（0-999） */
-    millisecond(): number { return this.date.getMilliseconds(); }
-    /** 获取星期几（0-6，0表示星期日） */
-    day(): number { return this.date.getDay(); }
+    millisecond(): number {
+        return this.date.getMilliseconds();
+    }
 
     // ========================
     // UTC 支持
+
+    /** 获取星期几（0-6，0表示星期日） */
+    day(): number {
+        return this.date.getDay();
+    }
+
+    // ========================
+    // 加减时间
+
     // ========================
     /**
      * 转换为UTC时间工具类
@@ -182,8 +208,6 @@ export class TimeUtils {
         return new UTCTimeUtils(this.date, this.locale);
     }
 
-    // ========================
-    // 加减时间
     // ========================
     /**
      * 增加时间
@@ -215,6 +239,9 @@ export class TimeUtils {
         return this;
     }
 
+    // ========================
+    // 其他方法
+
     /**
      * 减少时间
      * @param amount 数量
@@ -226,45 +253,56 @@ export class TimeUtils {
     }
 
     // ========================
-    // 其他方法
-    // ========================
     /** 转换为Date对象 */
-    toDate(): Date { return new Date(this.date); }
+    toDate(): Date {
+        return new Date(this.date);
+    }
+
     /** 转换为时间戳 */
-    valueOf(): number { return this.date.getTime(); }
-    /** 转换为默认格式的字符串 */
-    toString(): string { return this.format(); }
+    valueOf(): number {
+        return this.date.getTime();
+    }
 
     // ========================
     // 静态工厂
-    // ========================
-    /**
-     * 获取当前时间的TimeUtils实例
-     * @param locale 可选参数，指定本地化语言，例如：'zh-CN'（中文）、'en-US'（英文）、'ja-JP'（日文）、'fr-FR'（法文）
-     * @returns TimeUtils实例
-     */
-    static now(locale?: string): TimeUtils {
-        return new TimeUtils(undefined, locale);
+
+    /** 转换为默认格式的字符串 */
+    toString(): string {
+        return this.format();
     }
 
     /**
-     * 从输入创建TimeUtils实例
-     * @param input 输入（Date、时间戳、日期字符串）
-     * @param locale 可选参数，指定本地化语言，例如：'zh-CN'（中文）、'en-US'（英文）、'ja-JP'（日文）、'fr-FR'（法文）
-     * @returns TimeUtils实例
+     * 自定义国际化格式（实验性）
+     * @param format 自定义格式字符串，例如`{YYYY}年{MM}月{DD}日 {weekday:long}`
+     * @param locales 指定本地化语言，例如：'zh-CN'（中文）、'en-US'（英文）、'ja-JP'（日文）、'fr-FR'（法文）
+     * @returns 自定义格式化后的日期字符串
      */
-    static from(input: Date | number | string, locale?: string): TimeUtils {
-        return new TimeUtils(input, locale);
+    private customFormatLocale(format: string, locales: string): string {
+        const weekday = new Intl.DateTimeFormat(locales, {weekday: 'long'}).format(this.date);
+        const weekdayShort = new Intl.DateTimeFormat(locales, {weekday: 'short'}).format(this.date);
+        const monthLong = new Intl.DateTimeFormat(locales, {month: 'long'}).format(this.date);
+        const monthShort = new Intl.DateTimeFormat(locales, {month: 'short'}).format(this.date);
+
+        return format
+            .replace(/{weekday:long}/g, weekday)
+            .replace(/{weekday:short}/g, weekdayShort)
+            .replace(/{month:long}/g, monthLong)
+            .replace(/{month:short}/g, monthShort)
+            .replace(/{YYYY}/g, this.date.getFullYear().toString())
+            .replace(/{MM}/g, this.pad(this.date.getMonth() + 1))
+            .replace(/{DD}/g, this.pad(this.date.getDate()))
+            .replace(/{HH}/g, this.pad(this.date.getHours()))
+            .replace(/{mm}/g, this.pad(this.date.getMinutes()))
+            .replace(/{ss}/g, this.pad(this.date.getSeconds()));
     }
 
     /**
-     * 创建UTC时间工具类实例
-     * @param input 可选参数，可以是Date、数字（时间戳）、字符串（日期字符串）或null/undefined
-     * @param locale 可选参数，指定本地化语言
-     * @returns UTCTimeUtils实例
+     * 补零函数
+     * @param n 数字
+     * @returns 补零后的字符串
      */
-    static utc(input?: Date | number | string, locale?: string): UTCTimeUtils {
-        return new UTCTimeUtils(input, locale);
+    private pad(n: number): string {
+        return n.toString().padStart(2, '0');
     }
 }
 
@@ -386,6 +424,62 @@ class UTCTimeUtils {
         return new Intl.DateTimeFormat(usedLocales, options).format(utcDate);
     }
 
+    // 基本 UTC 获取
+    /** 获取UTC年份 */
+    year(): number {
+        return this.date.getUTCFullYear();
+    }
+
+    /** 获取UTC月份（1-12） */
+    month(): number {
+        return this.date.getUTCMonth() + 1;
+    }
+
+    /** 获取UTC日期（1-31） */
+    dateNum(): number {
+        return this.date.getUTCDate();
+    }
+
+    /** 获取UTC小时（0-23） */
+    hour(): number {
+        return this.date.getUTCHours();
+    }
+
+    /** 获取UTC分钟（0-59） */
+    minute(): number {
+        return this.date.getUTCMinutes();
+    }
+
+    /** 获取UTC秒数（0-59） */
+    second(): number {
+        return this.date.getUTCSeconds();
+    }
+
+    /** 获取UTC毫秒数（0-999） */
+    millisecond(): number {
+        return this.date.getUTCMilliseconds();
+    }
+
+    /** 获取UTC星期几（0-6，0表示星期日） */
+    day(): number {
+        return this.date.getUTCDay();
+    }
+
+    /** 转换为Date对象 */
+    toDate(): Date {
+        return new Date(this.date);
+    }
+
+    /** 转换为时间戳 */
+    valueOf(): number {
+        return this.date.getTime();
+    }
+
+    /** 转换为默认格式的字符串 */
+    toString(): string {
+        return this.format();
+    }
+
     /**
      * 自定义国际化格式（实验性）
      * @param format 自定义格式字符串，例如`{YYYY}年{MM}月{DD}日 {weekday:long}`
@@ -394,10 +488,10 @@ class UTCTimeUtils {
      */
     private customFormatLocale(format: string, locales: string): string {
         const utcDate = new Date(this.date.getTime() + this.date.getTimezoneOffset() * 60000);
-        const weekday = new Intl.DateTimeFormat(locales, { weekday: 'long' }).format(utcDate);
-        const weekdayShort = new Intl.DateTimeFormat(locales, { weekday: 'short' }).format(utcDate);
-        const monthLong = new Intl.DateTimeFormat(locales, { month: 'long' }).format(utcDate);
-        const monthShort = new Intl.DateTimeFormat(locales, { month: 'short' }).format(utcDate);
+        const weekday = new Intl.DateTimeFormat(locales, {weekday: 'long'}).format(utcDate);
+        const weekdayShort = new Intl.DateTimeFormat(locales, {weekday: 'short'}).format(utcDate);
+        const monthLong = new Intl.DateTimeFormat(locales, {month: 'long'}).format(utcDate);
+        const monthShort = new Intl.DateTimeFormat(locales, {month: 'short'}).format(utcDate);
 
         return format
             .replace(/{weekday:long}/g, weekday)
@@ -420,32 +514,8 @@ class UTCTimeUtils {
     private pad(n: number): string {
         return n.toString().padStart(2, '0');
     }
-
-    // 基本 UTC 获取
-    /** 获取UTC年份 */
-    year(): number { return this.date.getUTCFullYear(); }
-    /** 获取UTC月份（1-12） */
-    month(): number { return this.date.getUTCMonth() + 1; }
-    /** 获取UTC日期（1-31） */
-    dateNum(): number { return this.date.getUTCDate(); }
-    /** 获取UTC小时（0-23） */
-    hour(): number { return this.date.getUTCHours(); }
-    /** 获取UTC分钟（0-59） */
-    minute(): number { return this.date.getUTCMinutes(); }
-    /** 获取UTC秒数（0-59） */
-    second(): number { return this.date.getUTCSeconds(); }
-    /** 获取UTC毫秒数（0-999） */
-    millisecond(): number { return this.date.getUTCMilliseconds(); }
-    /** 获取UTC星期几（0-6，0表示星期日） */
-    day(): number { return this.date.getUTCDay(); }
-
-    /** 转换为Date对象 */
-    toDate(): Date { return new Date(this.date); }
-    /** 转换为时间戳 */
-    valueOf(): number { return this.date.getTime(); }
-    /** 转换为默认格式的字符串 */
-    toString(): string { return this.format(); }
 }
+
 //
 // // 本地时间 - 中文
 // const cn = TimeUtils.now('zh-CN');
