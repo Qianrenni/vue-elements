@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 
-import DemoBlock from "@/components/display/DemoBlock.vue";
+import DemoBlock from "../../components/display/DemoBlock.vue";
 import {ref} from "vue";
-import {useDebounce} from "@";
+import {useDebounce} from "../../index";
 
 const count = ref(0);
 const debounceAdd = useDebounce(() => {

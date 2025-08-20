@@ -25,7 +25,7 @@ export function useComponentScanner() {
             for (const [vuePath, _] of Object.entries(vueModules)) {
                 // 跳过非实际模块或特殊文件
                 if (!vuePath || vuePath.endsWith('.d.ts')) continue
-
+                if (vuePath.includes('/src/display/')) continue
                 // 示例：/src/components/basic/QButton.vue
                 // 或：/src/hooks/useModal.ts
 
@@ -41,18 +41,9 @@ export function useComponentScanner() {
 
                 // ✅ 构造路径：src → docs（.docs），src → display（路径）
                 const docPath = vuePath.replace(/^\/src/, '/docs').replace(/\.(vue|ts)$/, '.md')
-                const displayPath = vuePath.replace(/^\/src/, '/display').replace('.ts', '.vue');
+                const displayPath = vuePath.replace(/^\/src/, '/src/display').replace('.ts', '.vue');
 
                 let docContent = '> 暂无文档'
-                try {
-                    const res = await fetch(docPath)
-                    if (res.ok) {
-                        docContent = await res.text()
-                    }
-                } catch (e) {
-                    console.warn(`[文档加载失败] ${docPath}`, e)
-                }
-
                 list.push({
                     category,
                     name,

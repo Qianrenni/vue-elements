@@ -4,6 +4,7 @@ import {defineAsyncComponent, defineOptions, markRaw, ref, watch} from 'vue'
 import MarkdownRender from '@/components/display/MarkdownRender.vue'
 import {ComponentInfo} from "@/utils/useComponentScanner";
 import Tab from "@/components/navigation/Tab.vue";
+import useMemoryCache from "@/utils/useMemoryCache";
 
 defineOptions({
   name: 'ComponentDetail'
@@ -13,12 +14,23 @@ const props = defineProps<{
 }>()
 
 const currentComponent = ref(null);
+const currentDocContent = ref<string>('');
+const memoryCache = new useMemoryCache();
 watch(
     () => props.component,
-    (newComponent) => {
+    async (newComponent) => {
       console.log(newComponent);
       try {
         currentComponent.value = markRaw(defineAsyncComponent(() => import(newComponent?.displayPath!)));
+        if (memoryCache.has(newComponent?.docPath!)) {
+          currentDocContent.value = memoryCache.get<string>(newComponent?.docPath!) ?? '';
+          return;
+        }
+        const res = await fetch(newComponent?.docPath!)
+        if (res.ok) {
+          currentDocContent.value = await res.text()
+          memoryCache.set(newComponent?.docPath!, currentDocContent.value);
+        }
       } catch (error) {
         currentComponent.value = null;
         console.log(error);
@@ -43,7 +55,7 @@ const currentTabIndex = ref<number>(0);
       <!-- 组件展示区 -->
       <div v-show="currentTabIndex===0" class="component-display padding-rem radius-half-rem shadow-black">
         <!-- Markdown 文档 -->
-        <MarkdownRender :content="component.docContent"/>
+        <MarkdownRender :content="currentDocContent"/>
       </div>
       <component :is="currentComponent" v-show="currentTabIndex===1"/>
     </div>
