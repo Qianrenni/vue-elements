@@ -1,6 +1,6 @@
 <!-- src/docs/ComponentDetail.vue -->
 <script lang="ts" setup>
-import {defineAsyncComponent, defineOptions, markRaw, ref, watch} from 'vue'
+import {defineOptions, ref, watch} from 'vue'
 import MarkdownRender from '@/components/display/MarkdownRender.vue'
 import {ComponentInfo} from "@/utils/useComponentScanner";
 import Tab from "@/components/navigation/Tab.vue";
@@ -14,16 +14,16 @@ const props = defineProps<{
 }>()
 
 const currentComponent = ref(null);
-const currentDocContent = ref<string>('');
+const currentDocContent = ref<string>('>暂无内容');
 const memoryCache = new useMemoryCache();
 watch(
     () => props.component,
     async (newComponent) => {
       console.log(newComponent);
       try {
-        currentComponent.value = markRaw(defineAsyncComponent(() => import(newComponent?.displayPath!)));
+        currentComponent.value = (await newComponent?.load()).default;
         if (memoryCache.has(newComponent?.docPath!)) {
-          currentDocContent.value = memoryCache.get<string>(newComponent?.docPath!) ?? '';
+          currentDocContent.value = memoryCache.get<string>(newComponent?.docPath!) ?? '>暂无内容';
           return;
         }
         const res = await fetch(newComponent?.docPath!)
@@ -33,6 +33,7 @@ watch(
         }
       } catch (error) {
         currentComponent.value = null;
+        currentDocContent.value = '>暂无内容';
         console.log(error);
       }
     }

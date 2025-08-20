@@ -7,8 +7,8 @@ export interface ComponentInfo {
     displayName: string     // 显示名（如 Button）
     vuePath: string         // 源文件路径（/src/.../*.vue 或 .ts）
     docPath: string         // 文档路径（/docs/.../*.docs）
-    docContent: string      // 文档内容
     displayPath: string     // 显示路径（/display/...）
+    load: () => Promise<any>
 }
 
 const components = ref<ComponentInfo[]>([])
@@ -22,10 +22,16 @@ export function useComponentScanner() {
 
             const list: ComponentInfo[] = []
 
-            for (const [vuePath, _] of Object.entries(vueModules)) {
+            for (const [vuePath, importer] of Object.entries(vueModules)) {
                 // 跳过非实际模块或特殊文件
-                if (!vuePath || vuePath.endsWith('.d.ts')) continue
-                if (vuePath.includes('/src/display/')) continue
+                if (!vuePath
+                    || vuePath.endsWith('.d.ts')
+                    || vuePath.includes('App.vue')
+                    || vuePath.includes('main.ts')
+                    || vuePath.includes('index.ts')
+                ) {
+                    continue
+                }
                 // 示例：/src/components/basic/QButton.vue
                 // 或：/src/hooks/useModal.ts
 
@@ -43,15 +49,14 @@ export function useComponentScanner() {
                 const docPath = vuePath.replace(/^\/src/, '/docs').replace(/\.(vue|ts)$/, '.md')
                 const displayPath = vuePath.replace(/^\/src/, '/src/display').replace('.ts', '.vue');
 
-                let docContent = '> 暂无文档'
                 list.push({
                     category,
                     name,
                     displayName,
                     vuePath,
                     docPath,
-                    docContent,
                     displayPath,
+                    load: importer
                 })
             }
 

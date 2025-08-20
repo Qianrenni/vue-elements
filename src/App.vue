@@ -3,8 +3,8 @@
 <script lang="ts" setup>
 import {ref} from 'vue'
 import {ComponentInfo} from "@/utils/useComponentScanner";
-import ComponentList from "@/docs/ComponentList.vue";
-import ComponentDetail from "@/docs/ComponentDetail.vue";
+import ComponentList from "../docs/ComponentList.vue";
+import ComponentDetail from "../docs/ComponentDetail.vue";
 import ThemeToggle from "@/components/theme/ThemeToggle.vue";
 
 const selected = ref<ComponentInfo | null>(null)
