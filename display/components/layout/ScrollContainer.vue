@@ -1,9 +1,19 @@
 <script lang="ts" setup>
 import ScrollContainer from "@/components/layout/ScrollContainer.vue";
 import DemoBlock from "@/components/display/DemoBlock.vue";
+
+const code = `
+\`\`\`html
+<ScrollContainer scoll-y style="height: 400px;width: 400px;" @ended="console.log('end',new Date().getTime())">
+  <div class="bg-image-header" style="height: 600px;width: 400px;">
+
+  </div>
+</ScrollContainer>
+\`\`\`
+`
 </script>
 <template>
-  <DemoBlock>
+  <DemoBlock :code="code">
     <ScrollContainer scoll-y style="height: 400px;width: 400px;" @ended="console.log('end',new Date().getTime())">
       <div class="bg-image-header" style="height: 600px;width: 400px;">
 

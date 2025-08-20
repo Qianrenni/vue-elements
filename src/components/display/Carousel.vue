@@ -88,7 +88,7 @@
 
 <script lang="ts" setup>
 import {computed, onBeforeUnmount, onMounted, ref, useSlots, useTemplateRef} from 'vue'
-import Icon from "@/components/basic/icon.vue";
+import Icon from "@/components/basic/Icon.vue";
 
 defineOptions({
   name: 'Carousel'
