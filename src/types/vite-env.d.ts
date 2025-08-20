@@ -10,5 +10,5 @@ interface ImportMeta {
      * Vite-specific experimental feature.
      * @see https://vitejs.dev/guide/features.html#glob-import
      */
-    glob: (pattern: string, options?: { eager?: boolean; }) => Record<string, () => Promise<any>>;
+    glob: typeof import('vite').meta.glob;
 }

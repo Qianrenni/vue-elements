@@ -73,36 +73,12 @@ qyani-components/                     # 项目根目录，一个基于 Vue 的 U
 |       ├── useThrottle.ts           # 节流工具函数，控制函数执行频率
 |       └── useTime.ts               # 时间处理工具函数，如格式化、计算等
 ├── test/                             # 测试目录，存放组件演示和测试用例
-|   ├── display/                      # 展示类组件的测试页面
-|   |   ├── DisplayAvatar.vue         # Avatar 组件的测试/演示页面
-|   |   ├── DisplayBadge.vue          # Badge 组件的测试/演示页面
-|   |   ├── DisplayCard.vue           # Card 组件的测试/演示页面
-|   |   ├── DisplayCarousel.vue       # Carousel 组件的测试/演示页面
-|   |   ├── DisplayCollapsibleSection.vue # CollapsibleSection 组件测试页
-|   |   ├── DisplayDivider.vue        # Divider 组件的测试/演示页面
-|   |   ├── DisplayDragUtil.vue       # useDrag Hook 的测试页面
-|   |   ├── DisplayForm.vue           # 表单组件集成测试页面
-|   |   ├── DisplayIcon.vue           # Icon 组件的测试/演示页面
-|   |   ├── DisplayIconGroups.vue     # IconGroups 组件的测试/演示页面
-|   |   ├── DisplayMarkdownRender.vue # MarkdownRender 组件测试页
-|   |   ├── DisplayMobileFrame.vue    # MobileFrame 组件的测试/演示页面
-|   |   ├── DisplayNavSection.vue     # NavSection 组件的测试/演示页面
-|   |   ├── DisplayProgressBar.vue    # ProgressBar 组件的测试/演示页面
-|   |   ├── DisplayRainFigure.vue     # RainFigure 组件的测试/演示页面
-|   |   ├── DisplayScrollNotice.vue   # ScrollNotice 组件的测试/演示页面
-|   |   ├── DisplaySearch.vue         # Search 组件的测试/演示页面
-|   |   ├── DisplayTab.vue            # Tab 组件的测试/演示页面
-|   |   ├── DisplayTag.vue            # 可能遗漏定义的 Tag 组件测试页（项目中未见 Tag.vue）
-|   |   ├── DisplayThemeToggle.vue    # ThemeToggle 组件的测试/演示页面
-|   |   ├── DisplayTimeUtil.vue       # timeUtil 工具函数的测试演示
-|   |   ├── DisplayTypeText.vue       # 可能是打字动画组件的测试页（未在 src 中找到）
-|   |   └── DisplayUseMousePosition.vue # useMousePosition Hook 的测试页面
 |   ├── html/                         # 独立 HTML 测试页面，用于测试原生功能或 Canvas 动画
 |   |   ├── canvas.html               # Canvas 相关功能测试页面（如图形绘制）
 |   |   ├── form.html                 # 原生表单功能测试页面
 |   |   └── loading.html     # 加载动画测试页面（可能使用 CSS/JS 实现）
 |   ├── main.ts                       # 测试项目的入口 TypeScript 文件，用于挂载测试组件
-|   └── Docs.vue                      # 通用测试组件，可能用于集成多个组件测试
+|   └── App.vue                      # 通用测试组件，可能用于集成多个组件测试
 ├── tsconfig.json                     # TypeScript 配置文件，定义编译选项和路径别名
 ├── types/                            # 项目级类型定义目录（可能与 src/types 重复或用于全局声明）
 └── vite.config.ts                    # Vite 构建工具配置文件，定义开发服务器、插件、别名等
