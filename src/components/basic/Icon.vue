@@ -1,15 +1,15 @@
 <template>
-  <img
-      :src="src"
+  <div
       :style="{
         'width':`${props.size}px`,
         'height':`${props.size}px`,
       }"
-      alt="Unknown"
-  >
+      class="mouse-cursor user-select-none"
+      v-html="svgContent"
+  />
 </template>
 <script lang="ts" setup>
-import {computed, defineProps} from "vue";
+import {defineProps, onBeforeMount, ref, watch} from "vue";
 
 defineOptions({
   name: "Icon",
@@ -20,8 +20,19 @@ const props = withDefaults(defineProps<{
 }>(), {
   size: "32",
 })
-const src = computed(() => {
-  return `/assets/svg/${props.icon}.svg`
+const svgContent = ref('');
+const loadSvg = async (icon: string) => {
+  try {
+    svgContent.value = (await (await fetch(`assets/svg/${icon}.svg`)).text()).replace(/<svg/, `<svg width="${props.size}" height="${props.size}"`);
+  } catch (error) {
+    svgContent.value = '';
+  }
+}
+watch(() => props.icon, (icon) => {
+  loadSvg(icon)
+})
+onBeforeMount(() => {
+  loadSvg(props.icon)
 })
 </script>
 
