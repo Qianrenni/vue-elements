@@ -64,7 +64,7 @@
 
 <!--<script lang="ts" setup>-->
 <!--import {computed, reactive, ref} from 'vue';-->
-<!--import {Close, Refresh, Search} from '@element-plus/icons-vue';-->
+<!--import {Close, Refresh, Search} from '@element-plus/svg-vue';-->
 <!--import dayjs from 'dayjs';-->
 <!--import {ElButton, ElOption, ElSelect} from 'element-plus';-->
 

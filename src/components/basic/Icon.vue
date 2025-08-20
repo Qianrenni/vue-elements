@@ -1,15 +1,15 @@
 <template>
   <div
-      class="container-align-center container-center"
-      style="
-      width: min-content;
-      height: min-content;
-      cursor: pointer"
-      v-html="content"
+      :style="{
+        'width':`${props.size}px`,
+        'height':`${props.size}px`,
+      }"
+      class="mouse-cursor user-select-none"
+      v-html="svgContent"
   />
 </template>
 <script lang="ts" setup>
-import {computed, defineProps, onMounted, ref, watch} from "vue";
+import {defineProps, onBeforeMount, ref, watch} from "vue";
 
 defineOptions({
   name: "Icon",
@@ -20,36 +20,20 @@ const props = withDefaults(defineProps<{
 }>(), {
   size: "32",
 })
-
-const rawSvgContent = ref("");
-
-// 动态加载SVG内容
-const loadSvg = async () => {
+const svgContent = ref('');
+const loadSvg = async (icon: string) => {
   try {
-    const module = await import(`@/icons/${props.icon}.svg?raw`);
-    rawSvgContent.value = module.default;
+    svgContent.value = (await (await fetch(`assets/svg/${icon}.svg`)).text()).replace(/<svg/, `<svg width="${props.size}" height="${props.size}"`);
   } catch (error) {
-    console.error(`Failed to load SVG: ../icons/${props.icon}.svg`, error);
-    rawSvgContent.value = "";
+    svgContent.value = '';
   }
-};
-
-// 响应式计算属性，根据rawSvgContent和props.size生成最终SVG内容
-const content = computed(() => {
-  if (!rawSvgContent.value) return "";
-  return rawSvgContent.value.replace(
-      "<svg",
-      `<svg width="${props.size}" height="${props.size}"`,
-  );
-});
-
-// 监听props.icon的变化，重新加载SVG
-watch(() => props.icon, loadSvg);
-
-// 初始化加载SVG
-onMounted(() => {
-  loadSvg();
-});
+}
+watch(() => props.icon, (icon) => {
+  loadSvg(icon)
+})
+onBeforeMount(() => {
+  loadSvg(props.icon)
+})
 </script>
 
 <style scoped></style>
