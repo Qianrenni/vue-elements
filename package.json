@@ -1,6 +1,6 @@
 {
   "name": "qyani-components",
-  "version": "1.2.1",
+  "version": "1.2.4",
   "description": "a frontend components lib",
   "main": "dist/qyani-components.cjs.js",
   "module": "dist/qyani-components.es.js",
@@ -45,5 +45,13 @@
     "vue": "^3.5.17",
     "vue-router": "^4.5.1",
     "vue-tsc": "^3.0.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/qyani-components.es.js",
+      "require": "./dist/qyani-components.cjs.js"
+    },
+    "./dist/style.css": "./dist/style.css"
   }
 }
