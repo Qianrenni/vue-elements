@@ -1,20 +1,16 @@
 {
   "name": "qyani-components",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "a frontend components lib",
   "main": "dist/qyani-components.cjs.js",
   "module": "dist/qyani-components.es.js",
   "browser": "dist/qyani-components.umd.js",
   "packageManager": "pnpm@10.12.4",
-  "types": "types/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "type": "module",
   "scripts": {
     "type-check": "pnpm npx vue-tsc --build --declaration --clean",
-    "build": "pnpm vite build && tsc --declaration",
-    "test": "pnpm vite",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "build": "pnpm vite build && tsc --declaration"
   },
   "author": "qyaniwu",
   "license": "ISC",
@@ -31,8 +27,7 @@
     "dist",
     "README.md",
     "LICENSE",
-    "package.json",
-    "types"
+    "package.json"
   ],
   "devDependencies": {
     "@types/node": "^24.1.0",

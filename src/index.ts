@@ -1,6 +1,5 @@
 import "./style/common.css";
 import {default as QIcon} from './components/basic/Icon.vue'
-import {default as QIconGroups} from './components/basic/IconGroups.vue'
 import {default as QPagination} from './components/basic/Pagination.vue'
 import {default as QAvatar} from './components/display/Avatar.vue'
 import {default as QBadge} from './components/display/Badge.vue'
@@ -41,7 +40,6 @@ export * from "./types"
 export default {
     install(app: any) {
         app.component('QIcon', QIcon)
-        app.component('QIconGroups', QIconGroups)
         app.component('QPagination', QPagination)
         app.component('QAvatar', QAvatar)
         app.component('QBadge', QBadge)
@@ -80,7 +78,6 @@ export default {
 
 export {
     QIcon,
-    QIconGroups,
     QPagination,
     QAvatar,
     QBadge,

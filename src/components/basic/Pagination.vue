@@ -65,7 +65,7 @@
       </div>
       <div
           class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
-          @click="goToPage(jumpPage)"
+          @click="goToPage(<number>jumpPage)"
       >
         跳转
       </div>
@@ -74,7 +74,7 @@
 </template>
 
 <script lang="ts" setup>
-import {ref, computed, watch} from 'vue';
+import {computed, ref, watch} from 'vue';
 
 // 定义Props接口
 interface PaginationProps {

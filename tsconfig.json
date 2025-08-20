@@ -9,7 +9,7 @@
     // 模块解析策略（Node.js 风格）
     "declaration": true,
     // 生成 .d.ts 类型声明文件（关键！）
-    "declarationDir": "types",
+    "declarationDir": "dist/types",
     // 类型声明文件输出目录（与 Vite 的 dist 一致）
     "outDir": "dist",
     // 编译输出目录（与 Vite 一致）
