@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>白板 - 绘画功能</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+        #toolbar {
+            background: #eee;
+            padding: 12px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        #canvas {
+            background: white;
+            cursor: crosshair;
+            flex: 1;
+        }
+        button {
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button.active {
+            background-color: #007bff;
+            color: white;
+        }
+        input[type="color"], input[type="number"] {
+            height: 30px;
+            margin: 0;
+        }
+        label {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <!-- 工具栏 -->
+    <div id="toolbar">
+        <button data-tool="pencil">画笔</button>
+        <button data-tool="line">直线</button>
+        <button data-tool="rect">矩形</button>
+        <button data-tool="ellipse">椭圆</button>
+        <button data-tool="spray">喷枪</button>
+        <button data-tool="eraser">橡皮擦</button>
+        <input type="color" id="color-picker" value="#000000" />
+        <label>粗细:
+            <input type="number" id="stroke-width" value="3" min="1" max="20" />
+        </label>
+        <button id="fill-toggle">空心图形</button>
+        <button id="save-btn">💾 保存图片</button>
+    </div>
+    <!-- 画布 -->
+    <canvas id="canvas"></canvas>
+</div>
+
+<script>
+    // =============== 画布初始化 ===============
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // 设置画布大小
+    function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // =============== 状态变量 ===============
+    let isDrawing = false;
+    let lastX = 0, lastY = 0;
+    let startX = 0, startY = 0;
+    let currentTool = 'pencil';
+    let currentColor = '#000000';
+    let strokeWidth = 3;
+    let isFillMode = false;
+
+    // 双缓冲：用于拖拽预览
+    const offscreenCanvas = document.createElement('canvas');
+    const offCtx = offscreenCanvas.getContext('2d');
+
+    function syncOffscreen() {
+        offscreenCanvas.width = canvas.width;
+        offscreenCanvas.height = canvas.height;
+        offCtx.drawImage(canvas, 0, 0);
+    }
+
+    // =============== 工具栏事件 ===============
+    const buttons = document.querySelectorAll('[data-tool]');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentTool = btn.dataset.tool;
+        });
+    });
+
+    document.getElementById('color-picker').addEventListener('input', (e) => {
+        currentColor = e.target.value;
+        if (currentTool !== 'eraser') {
+            ctx.strokeStyle = currentColor;
+            ctx.fillStyle = currentColor;
+        }
+    });
+
+    document.getElementById('stroke-width').addEventListener('input', (e) => {
+        strokeWidth = parseFloat(e.target.value) || 1;
+        ctx.lineWidth = strokeWidth;
+    });
+
+    document.getElementById('fill-toggle').addEventListener('click', (e) => {
+        isFillMode = !isFillMode;
+        e.target.textContent = isFillMode ? '实心图形' : '空心图形';
+    });
+
+    // =============== 鼠标事件 ===============
+    canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+        [startX, startY] = [e.offsetX, e.offsetY];
+
+        ctx.lineWidth = strokeWidth;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        if (currentTool === 'eraser') {
+            ctx.strokeStyle = 'white';
+        } else {
+            ctx.strokeStyle = currentColor;
+            ctx.fillStyle = currentColor;
+        }
+
+        // 拖拽类图形：保存当前画布状态
+        if (['line', 'rect', 'ellipse'].includes(currentTool)) {
+            syncOffscreen();
+        }
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+        if (!isDrawing) return;
+        const x = e.offsetX, y = e.offsetY;
+
+        if (!['pencil','eraser','spray'].includes(currentTool)){
+            // 清除当前画布，重绘背景 + 预览
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(offscreenCanvas, 0, 0);
+        }
+
+        if (currentTool === 'pencil' || currentTool === 'curve') {
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            [lastX, lastY] = [x, y];
+
+        } else if (currentTool === 'line') {
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+        } else if (currentTool === 'rect') {
+            const w = x - startX, h = y - startY;
+            if (isFillMode) {
+                ctx.fillRect(startX, startY, w, h);
+            } else {
+                ctx.strokeRect(startX, startY, w, h);
+            }
+        } else if (currentTool === 'ellipse') {
+            const rx = Math.abs(x - startX) / 2;
+            const ry = Math.abs(y - startY) / 2;
+            const cx = startX + (x - startX) / 2;
+            const cy = startY + (y - startY) / 2;
+            ctx.beginPath();
+            ctx.ellipse(cx, cy, rx, ry, 0, 0, 2 * Math.PI);
+            if (isFillMode) ctx.fill();
+            else ctx.stroke();
+        } else if (currentTool === 'spray') {
+            for (let i = 0; i < 10; i++) {
+                const offsetX = (Math.random() - 0.5) * 10;
+                const offsetY = (Math.random() - 0.5) * 10;
+                ctx.fillRect(x + offsetX, y + offsetY, 1, 1);
+            }
+        } else if (currentTool === 'eraser') {
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            [lastX, lastY] = [x, y];
+        }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+        if (!isDrawing) return;
+        isDrawing = false;
+        // 将当前绘制结果“提交”到离屏画布
+        syncOffscreen();
+    });
+
+    canvas.addEventListener('mouseout', () => {
+        isDrawing = false;
+    });
+
+    // =============== 保存功能 ===============
+    document.getElementById('save-btn').addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.download = '白板绘画.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    });
+
+    // =============== 初始化 ===============
+    document.querySelector('[data-tool="pencil"]').click(); // 默认选中画笔
+</script>
+</body>
+</html>
