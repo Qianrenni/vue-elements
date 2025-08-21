@@ -22,6 +22,7 @@ import {default as QFormFileUpload} from './components/form/FormFileUpload.vue'
 import {default as QFormRadioGroup} from './components/form/FormRadioGroup.vue'
 import {default as QFormRangeSlider} from './components/form/FormRangeSlider.vue'
 import {default as QFormSelect} from './components/form/FormSelect.vue'
+import {default as QFormSwitch} from './components/form/FormSwitch.vue'
 import {default as QFormTable} from './components/form/FormTable.vue'
 import {default as QFormText} from './components/form/FormText.vue'
 import {default as QFormTextarea} from './components/form/FormTextarea.vue'
@@ -62,6 +63,7 @@ export default {
         app.component('QFormRadioGroup', QFormRadioGroup)
         app.component('QFormRangeSlider', QFormRangeSlider)
         app.component('QFormSelect', QFormSelect)
+        app.component('QFormSwitch', QFormSwitch)
         app.component('QFormTable', QFormTable)
         app.component('QFormText', QFormText)
         app.component('QFormTextarea', QFormTextarea)
@@ -100,6 +102,7 @@ export {
     QFormRadioGroup,
     QFormRangeSlider,
     QFormSelect,
+    QFormSwitch,
     QFormTable,
     QFormText,
     QFormTextarea,
