@@ -76,28 +76,24 @@ withDefaults(defineProps<FormDataListProps>(), {
 const emit = defineEmits<FormComponentEmits<string>>();
 
 // 使用统一的表单事件处理器
-const {handleInput, handleChange, handleFocus, handleBlur, handleClear} =
+const {handleInput, handleChange, handleFocus, handleBlur} =
     useFormEvents<string>(emit);
 
 // 事件绑定
 const onInput = (e: Event) => {
-  handleInput(e as InputEvent, (ev) => (ev.target as HTMLInputElement).value);
+  handleInput((e.target as HTMLInputElement).value);
 };
 
 const onChange = (e: Event) => {
-  handleChange(e, (ev) => (ev.target as HTMLInputElement).value);
+  handleChange((e.target as HTMLInputElement).value);
 };
 
-const onFocus = (e: FocusEvent) => {
-  handleFocus(e);
+const onFocus = () => {
+  handleFocus();
 };
 
-const onBlur = (e: FocusEvent) => {
-  handleBlur(e);
-};
-
-const onClear = () => {
-  handleClear('');
+const onBlur = () => {
+  handleBlur();
 };
 </script>
 

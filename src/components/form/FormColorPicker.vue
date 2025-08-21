@@ -82,7 +82,7 @@ const emit = defineEmits<FormComponentEmits<string>>()
 const {handleInput} = useFormEvents(emit);
 // 处理输入，确保输出为字符串
 const onInput = (e: Event) => {
-  handleInput(e, (e) => (e.target as HTMLInputElement).value)
+  handleInput((e.target as HTMLInputElement).value)
 };
 </script>
 

@@ -76,7 +76,7 @@ const props = withDefaults(defineProps<FormRadioGroupProps>(), {
 const emit = defineEmits<FormComponentEmits<string>>();
 const {handleInput} = useFormEvents<string>(emit);
 const onChange = (e: Event) => {
-  handleInput(e, (ev) => (ev.target as HTMLInputElement).value as string)
+  handleInput((e.target as HTMLInputElement).value as string)
 }
 </script>
 

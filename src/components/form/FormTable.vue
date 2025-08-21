@@ -243,7 +243,7 @@ const sortColumnOrder: SortOrder[] = props.columns.map(() => null);
 const emit = defineEmits<FormComponentEmits<(Record<string, any>)[]>>();
 
 // 使用通用表单事件
-const {handleInput, handleChange, handleFocus, handleBlur} = useFormEvents<(Record<string, any>)[]>(emit);
+const {handleInput, handleChange} = useFormEvents<(Record<string, any>)[]>(emit);
 
 // 本地选中值（v-model）
 const localValue = ref<Row[]>([]);
@@ -356,9 +356,8 @@ const onSelectRow = (row: Row) => {
   if (props.disabled) return;
   localValue.value = [row];
   const newValue = rowWithoutTdId([row]);
-  const event = new Event('change', {bubbles: true})
-  handleInput(event, () => newValue);
-  handleChange(event, () => newValue);
+  handleInput(newValue);
+  handleChange(newValue);
 };
 
 // 多选切换
@@ -372,10 +371,9 @@ const onToggleRowSelection = (row: Row) => {
     newValue.splice(index, 1);
   }
   localValue.value = newValue;
-  const event = new Event('change', {bubbles: true});
   const modelValue: FormTableModelValueType = rowWithoutTdId(newValue);
-  handleInput(event, () => modelValue);
-  handleChange(event, () => modelValue);
+  handleInput(modelValue);
+  handleChange(modelValue);
 };
 
 // 全选/取消全选
@@ -384,19 +382,9 @@ const onToggleAllSelection = (e: Event) => {
   const target = e.target as HTMLInputElement;
   const newValue = target.checked ? [...localData.value] : [];
   localValue.value = newValue;
-  const event = new Event('change', {bubbles: true});
   const modelValue: FormTableModelValueType = rowWithoutTdId(newValue);
-  handleInput(event, () => modelValue);
-  handleChange(event, () => modelValue);
-};
-
-// 聚焦和失焦（可用于校验）
-const onFocus = (e: FocusEvent) => {
-  handleFocus(e);
-};
-
-const onBlur = (e: FocusEvent) => {
-  handleBlur(e);
+  handleInput(modelValue);
+  handleChange(modelValue);
 };
 </script>
 

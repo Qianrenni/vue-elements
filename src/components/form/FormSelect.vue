@@ -95,6 +95,7 @@
 import {FormComponentEmits, FormComponentProps, Options} from '@/types'
 import {computed, ref} from "vue";
 import Icon from "@/components/basic/Icon.vue";
+import {useFormEvents} from "@/events";
 
 interface FormSelectProps extends FormComponentProps<string[]> {
   options: Options[],
@@ -107,6 +108,7 @@ defineOptions({
 })
 // Props
 const props = withDefaults(defineProps<FormSelectProps>(), {
+  modelValue: () => [],
   placeholder: '请选择',
   required: true,
   direction: 'horizontal',
@@ -118,7 +120,8 @@ const props = withDefaults(defineProps<FormSelectProps>(), {
   searchable: false,
   multiple: true
 })
-const emit = defineEmits<FormComponentEmits<string[]>>()
+const emit = defineEmits<FormComponentEmits<string[]>>();
+const {handleChange} = useFormEvents(emit);
 // 生成唯一 ID
 const showOptions = ref(false);
 
@@ -141,6 +144,8 @@ const swtichActiveIndex = (value: Options) => {
       activeIndexSet.value.add(value);
     }
   }
+
+  handleChange(selectResult.value.map(item => item.value));
 }
 
 </script>

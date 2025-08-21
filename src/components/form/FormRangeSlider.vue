@@ -125,20 +125,20 @@ const displayValue = computed(() => props.formatter!(props.modelValue ?? 0));
 // 事件绑定
 const onInput = (e: Event) => {
   const target = e.target as HTMLInputElement;
-  handleInput(e as InputEvent, () => target.valueAsNumber);
+  handleInput(target.valueAsNumber);
 };
 
 const onChange = (e: Event) => {
   const target = e.target as HTMLInputElement;
-  handleChange(e, () => target.valueAsNumber);
+  handleChange(target.valueAsNumber);
 };
 
-const onFocus = (e: FocusEvent) => {
-  handleFocus(e);
+const onFocus = () => {
+  handleFocus();
 };
 
-const onBlur = (e: FocusEvent) => {
-  handleBlur(e);
+const onBlur = () => {
+  handleBlur();
 };
 </script>
 

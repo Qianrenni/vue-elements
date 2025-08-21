@@ -845,6 +845,14 @@ input:-webkit-autofill:active {
     user-select: none;
 }
 
+.size-large {
+    transform: scale(1.2);
+}
+
+.size-small {
+    transform: scale(0.8);
+}
+
 /*响应式*/
 @media screen and (max-width: 768px) {
     .container-banner {

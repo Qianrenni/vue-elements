@@ -56,7 +56,7 @@ interface FormTextAreaProps extends FormComponentProps<string> {
   resizable?: boolean; // 是否允许拖拽调整大小，默认为true
 }
 
-const props = withDefaults(defineProps<FormTextAreaProps>(), {
+withDefaults(defineProps<FormTextAreaProps>(), {
   rows: 3,
   resizable: false,
   placeholder: '请输入内容',
@@ -72,7 +72,7 @@ const props = withDefaults(defineProps<FormTextAreaProps>(), {
 const emit = defineEmits<FormComponentEmits<string>>();
 const {handleInput} = useFormEvents(emit);
 const onInput = (e: Event) => {
-  handleInput(e as InputEvent, (ev) => (ev.target as HTMLInputElement).value as string)
+  handleInput((e.target as HTMLInputElement).value as string)
 };
 </script>
 

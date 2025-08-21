@@ -43,8 +43,8 @@
           class="file-list container-column gap-fourth margin-third-vetical"
       >
         <!-- 单文件显示 -->
-        <div 
-            v-if="fileList.length === 1" 
+        <div
+            v-if="fileList.length === 1"
             class="container-align-center gap-fourth"
         >
           <span
@@ -58,8 +58,8 @@
               class="file-item container-align-center padding-24rem bg-gray-100 radius-third-rem"
           >
             {{ fileList[0].name }}
-            <span 
-                v-if="!disabled && clearable" 
+            <span
+                v-if="!disabled && clearable"
                 class="file-remove mouse-cursor hover-red margin-half-horizontal"
                 @click.stop="removeFile(0)"
             >
@@ -67,10 +67,10 @@
             </span>
           </span>
         </div>
-        
+
         <!-- 多文件显示 -->
-        <div 
-            v-else 
+        <div
+            v-else
             class="container container-wrap gap-fourth"
         >
           <span
@@ -86,8 +86,8 @@
               class="file-item container-align-center padding-24rem bg-gray-100 radius-third-rem"
           >
             {{ file.name }}
-            <span 
-                v-if="!disabled && clearable" 
+            <span
+                v-if="!disabled && clearable"
                 class="file-remove mouse-cursor hover-red margin-half-horizontal"
                 @click.stop="removeFile(index)"
             >
@@ -122,6 +122,7 @@ const props = withDefaults(defineProps<FormFileUploadProps>(), {
   disabled: false,
   autofocus: false,
   readonly: false,
+  name: `files${Math.random() * 1000000}`,
   size: 'middle',
   placeholder: '选择文件',
   clearable: true,
@@ -161,11 +162,11 @@ const removeFile = (index: number) => {
     }
     return;
   }
-  
+
   // 多文件模式：从文件列表中移除指定文件
   const currentFiles = Array.from(props.modelValue as FileList);
   currentFiles.splice(index, 1);
-  
+
   if (currentFiles.length === 0) {
     // 如果删除后没有文件，则设置为null
     emit('update:modelValue', null);
@@ -175,7 +176,7 @@ const removeFile = (index: number) => {
     currentFiles.forEach(file => dataTransfer.items.add(file));
     emit('update:modelValue', dataTransfer.files);
   }
-  
+
   // 重置input元素的value，以便可以再次选择同一文件
   const inputElement = document.getElementById(props.name) as HTMLInputElement;
   if (inputElement) {

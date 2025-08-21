@@ -59,13 +59,13 @@ export interface FormComponentEmits<T> {
     (e: 'change', value: T): void
 
     // 聚焦
-    (e: 'focus', event: FocusEvent): void
+    (e: 'focus'): void
 
     // 失焦
-    (e: 'blur', event: FocusEvent): void
+    (e: 'blur'): void
 
     // 输入中（input 事件）
-    (e: 'input', value: T, event: InputEvent | Event): void
+    (e: 'input', value: T): void
 
     // 清空操作
     (e: 'clear'): void
