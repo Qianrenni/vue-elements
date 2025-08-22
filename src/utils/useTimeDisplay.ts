@@ -35,10 +35,6 @@ export interface UseTimeDisplayOptions {
  * @example
  * // 自动判断：未来 → 倒计时，过去 → 格式化
  * const time = useTimeDisplay('2025-12-31', '{DD}天{HH}小时{mm}分{ss}秒');
- *
- * // 强制格式化
- * const fixed = useTimeDisplay('2020-01-01', 'PPP', { mode: 'format' });
- *
  * // 实时时间
  * const now = useTimeDisplay(undefined, 'HH:mm:ss');
  */
