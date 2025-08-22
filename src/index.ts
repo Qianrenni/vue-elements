@@ -1,5 +1,6 @@
 import "./style/common.css";
 import {default as QIcon} from './components/basic/Icon.vue'
+import {default as QMessage} from './components/basic/Message.vue'
 import {default as QPagination} from './components/basic/Pagination.vue'
 import {default as QAvatar} from './components/display/Avatar.vue'
 import {default as QBadge} from './components/display/Badge.vue'
@@ -35,51 +36,55 @@ import {default as QTab} from './components/navigation/Tab.vue'
 import {default as QConditionSelect} from './components/Sql/ConditionSelect.vue'
 import {default as QThemeToggle} from './components/theme/ThemeToggle.vue'
 
+
 export * from "./events";
 export * from "./utils";
 export * from "./types"
 export default {
     install(app: any) {
-        app.component('QIcon', QIcon)
-        app.component('QPagination', QPagination)
-        app.component('QAvatar', QAvatar)
-        app.component('QBadge', QBadge)
-        app.component('QCarousel', QCarousel)
-        app.component('QCarouselItem', QCarouselItem)
-        app.component('QDemoBlock', QDemoBlock)
-        app.component('QDivider', QDivider)
-        app.component('QMarkdownRender', QMarkdownRender)
-        app.component('QMobileFrame', QMobileFrame)
-        app.component('QProgressBar', QProgressBar)
-        app.component('QRainFigure', QRainFigure)
-        app.component('QScrollNotice', QScrollNotice)
-        app.component('QFormButton', QFormButton)
-        app.component('QFormCheckboxGroup', QFormCheckboxGroup)
-        app.component('QFormColorPicker', QFormColorPicker)
-        app.component('QFormContainer', QFormContainer)
-        app.component('QFormDatalist', QFormDatalist)
-        app.component('QFormDatePicker', QFormDatePicker)
-        app.component('QFormFileUpload', QFormFileUpload)
-        app.component('QFormRadioGroup', QFormRadioGroup)
-        app.component('QFormRangeSlider', QFormRangeSlider)
-        app.component('QFormSelect', QFormSelect)
-        app.component('QFormSwitch', QFormSwitch)
-        app.component('QFormTable', QFormTable)
-        app.component('QFormText', QFormText)
-        app.component('QFormTextarea', QFormTextarea)
-        app.component('QSearch', QSearch)
-        app.component('QCard', QCard)
-        app.component('QCollapsibleSection', QCollapsibleSection)
-        app.component('QScrollContainer', QScrollContainer)
-        app.component('QNavSection', QNavSection)
-        app.component('QTab', QTab)
-        app.component('QConditionSelect', QConditionSelect)
-        app.component('QThemeToggle', QThemeToggle)
+        app.component('QIcon',QIcon)
+        app.component('QMessage',QMessage)
+        app.component('QPagination',QPagination)
+        app.component('QAvatar',QAvatar)
+        app.component('QBadge',QBadge)
+        app.component('QCarousel',QCarousel)
+        app.component('QCarouselItem',QCarouselItem)
+        app.component('QDemoBlock',QDemoBlock)
+        app.component('QDivider',QDivider)
+        app.component('QMarkdownRender',QMarkdownRender)
+        app.component('QMobileFrame',QMobileFrame)
+        app.component('QProgressBar',QProgressBar)
+        app.component('QRainFigure',QRainFigure)
+        app.component('QScrollNotice',QScrollNotice)
+        app.component('QFormButton',QFormButton)
+        app.component('QFormCheckboxGroup',QFormCheckboxGroup)
+        app.component('QFormColorPicker',QFormColorPicker)
+        app.component('QFormContainer',QFormContainer)
+        app.component('QFormDatalist',QFormDatalist)
+        app.component('QFormDatePicker',QFormDatePicker)
+        app.component('QFormFileUpload',QFormFileUpload)
+        app.component('QFormRadioGroup',QFormRadioGroup)
+        app.component('QFormRangeSlider',QFormRangeSlider)
+        app.component('QFormSelect',QFormSelect)
+        app.component('QFormSwitch',QFormSwitch)
+        app.component('QFormTable',QFormTable)
+        app.component('QFormText',QFormText)
+        app.component('QFormTextarea',QFormTextarea)
+        app.component('QSearch',QSearch)
+        app.component('QCard',QCard)
+        app.component('QCollapsibleSection',QCollapsibleSection)
+        app.component('QScrollContainer',QScrollContainer)
+        app.component('QNavSection',QNavSection)
+        app.component('QTab',QTab)
+        app.component('QConditionSelect',QConditionSelect)
+        app.component('QThemeToggle',QThemeToggle)
+
     },
 };
 
 export {
     QIcon,
+    QMessage,
     QPagination,
     QAvatar,
     QBadge,
