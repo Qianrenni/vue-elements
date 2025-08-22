@@ -4,9 +4,8 @@
       :class="
       [
         {
-          'form-switch--disabled': disabled,
+          'mouse-cursor-disable':disabled,
           'form-switch--checked': modelValue,
-          [`size-${size}`]: true
         }
       ]"
       class="form-switch"
@@ -26,9 +25,30 @@
                }
            ]"
            :for="id"
-           class="form-switch__label container-align-center">
-      <span class="form-switch__slider"></span>
-      <span v-if="label" class="form-switch__label-text">{{ label }}</span>
+           class="form-switch__label container-align-center mouse-cursor"
+    >
+      <span
+          :class="[
+              {
+                'mouse-cursor-disable':disabled,
+                 [`size-${size}`]:true,
+              }
+          ]"
+          class="form-switch__slider"
+      >
+
+      </span>
+      <span v-if="label"
+            :class="[
+                {
+                'mouse-cursor-disable':disabled,
+                'text-12rem':size==='large',
+                'text-08rem':size==='small'
+                }
+            ]"
+            class="form-switch__label-text">
+        {{ label }}
+      </span>
     </label>
   </div>
 </template>
@@ -64,13 +84,7 @@ async function toggle() {
 <style scoped>
 .form-switch {
   display: inline-block;
-  cursor: pointer;
   position: relative;
-}
-
-.form-switch--disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
 }
 
 .form-switch__input {
@@ -111,8 +125,35 @@ async function toggle() {
   transform: translateX(1.1rem);
 }
 
-/* 禁用状态 */
-.form-switch--disabled .form-switch__label {
-  cursor: not-allowed;
+.form-switch__slider.size-large {
+  width: 3.5rem;
+  height: 1.8rem;
+  border-radius: 0.9rem;
+  margin-right: 10px;
+}
+
+.form-switch__slider.size-large::before {
+  width: 1.5rem;
+  height: 1.6rem;
+}
+
+.form-switch--checked .form-switch__slider.size-large::before {
+  transform: translateX(1.8rem);
+}
+
+.form-switch__slider.size-small {
+  width: 2rem;
+  height: 1.2rem;
+  border-radius: 0.6rem;
+  margin-right: 6px;
+}
+
+.form-switch__slider.size-small::before {
+  width: 1rem;
+  height: 1rem;
+}
+
+.form-switch--checked .form-switch__slider.size-small::before {
+  transform: translateX(0.8rem);
 }
 </style>
