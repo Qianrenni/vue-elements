@@ -1,10 +1,6 @@
 <template>
   <div
-      :style="{
-        'width':`${props.size}px`,
-        'height':`${props.size}px`,
-      }"
-      class="mouse-cursor user-select-none"
+      class="mouse-cursor user-select-none container-align-center container-center"
       v-html="svgContent"
   />
 </template>

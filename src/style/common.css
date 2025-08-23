@@ -175,6 +175,10 @@ body {
     background-color: var(--button-hover);
 }
 
+body.dark-mode .button-primary {
+    border: none;
+}
+
 .button-outline {
     background-color: transparent;
     color: var(--primary-color);
@@ -214,7 +218,7 @@ body {
     opacity: 0.9;
 }
 
-.opacity-6 {
+.opacity-6-hover:hover {
     opacity: 0.6;
 }
 

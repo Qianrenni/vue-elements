@@ -1,25 +1,17 @@
-// src/lib/Message.ts
-import { MessageType } from "@/types";
-
-export interface MessageOptions {
-    message: string;
-    type?: MessageType;
-    duration?: number;
-    onClose?: () => void;
-}
-
-import { createVNode, render, VNode } from "vue";
+import {MessageOptions, MessageType} from "@/types";
+import {createVNode, render, VNode} from "vue";
 import Message from "@/components/basic/Message.vue";
+
 
 const instances: { vnode: VNode; timer: ReturnType<typeof setTimeout> | null }[] = [];
 
 export const useMessage = {
     show(options: string | MessageOptions) {
         const opts = typeof options === "string"
-            ? { message: options, type: "info" as MessageType }
-            : { type: "info", ...options };
+            ? {message: options, type: "info" as MessageType}
+            : {type: "info", ...options};
 
-        const { message, type, duration = 1500, onClose } = opts;
+        const {message, type, duration = 1500, onClose} = opts;
 
         const container = document.createElement("div");
         container.style.position = "fixed";
@@ -88,16 +80,16 @@ export const useMessage = {
     },
 
     info(msg: string | MessageOptions) {
-        return this.show({ ...(typeof msg === "string" ? { message: msg } : msg), type: "info" });
+        return this.show({...(typeof msg === "string" ? {message: msg} : msg), type: "info"});
     },
     success(msg: string | MessageOptions) {
-        return this.show({ ...(typeof msg === "string" ? { message: msg } : msg), type: "success" });
+        return this.show({...(typeof msg === "string" ? {message: msg} : msg), type: "success"});
     },
     warning(msg: string | MessageOptions) {
-        return this.show({ ...(typeof msg === "string" ? { message: msg } : msg), type: "warning" });
+        return this.show({...(typeof msg === "string" ? {message: msg} : msg), type: "warning"});
     },
     error(msg: string | MessageOptions) {
-        return this.show({ ...(typeof msg === "string" ? { message: msg } : msg), type: "error" });
+        return this.show({...(typeof msg === "string" ? {message: msg} : msg), type: "error"});
     },
 
     closeAll() {

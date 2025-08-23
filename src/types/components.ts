@@ -1,9 +1,17 @@
+export interface TreeNodeData {
+    id: string | number
+    label: string
+    children?: TreeNodeData[]
+    expanded?: boolean
+    selected?: boolean
+    disabled?: boolean
+}
+
 export interface Options {
     label: string;
     value: string;
 }
 
-// types/form.ts
 export type FormSize = 'small' | 'middle' | 'large'
 export type FormStatus = 'default' | 'success' | 'warning' | 'error'
 

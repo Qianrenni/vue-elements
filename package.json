@@ -11,7 +11,8 @@
   "scripts": {
     "type-check": "pnpm npx vue-tsc --build --declaration --clean",
     "build": "pnpm vite build && tsc --declaration",
-    "dev": "pnpm vite"
+    "dev": "pnpm vite",
+    "update index": "python scripts/index_python.py"
   },
   "author": "qyaniwu",
   "license": "ISC",
