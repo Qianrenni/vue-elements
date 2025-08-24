@@ -62,6 +62,7 @@
     --button-hover: var(--primary-hover);
     --button-disabled: #e9ecef;
 
+    --bg-overlay: rgba(0, 0, 0, 0.5);
     /* 🔗 链接样式 */
     --link-color: var(--primary-color);
     --link-hover: #6677ef; /* 和主色协调的悬停色 */
@@ -99,6 +100,8 @@ body.dark-mode {
     --button-text: #ffffff;
     --button-hover: var(--primary-hover);
     --button-disabled: #555555;
+
+    --bg-overlay: rgb(255, 255, 255, 0.2);
 }
 
 body {
@@ -850,12 +853,8 @@ input:-webkit-autofill:active {
     user-select: none;
 }
 
-.size-large {
-
-}
-
-.size-small {
-
+.overlay {
+    background-color: var(--bg-overlay);
 }
 
 /*响应式*/

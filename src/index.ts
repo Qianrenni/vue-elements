@@ -37,6 +37,7 @@ import {default as QCollapse} from './components/layout/Collapse.vue';
 import {default as QCollapseItem} from './components/layout/CollapseItem.vue';
 import {default as QCollapsibleSection} from './components/layout/CollapsibleSection.vue';
 import {default as QDialog} from './components/layout/Dialog.vue';
+import {default as QDrawer} from './components/layout/Drawer.vue';
 import {default as QScrollContainer} from './components/layout/ScrollContainer.vue';
 import {default as QTree} from './components/layout/Tree.vue';
 import {default as QTreeNode} from './components/layout/TreeNode.vue';
@@ -80,6 +81,7 @@ export default {
 		app.component('QCollapseItem',QCollapseItem);
 		app.component('QCollapsibleSection',QCollapsibleSection);
 		app.component('QDialog',QDialog);
+		app.component('QDrawer',QDrawer);
 		app.component('QScrollContainer',QScrollContainer);
 		app.component('QTree',QTree);
 		app.component('QTreeNode',QTreeNode);
@@ -125,6 +127,7 @@ export {
 		QCollapseItem,
 		QCollapsibleSection,
 		QDialog,
+		QDrawer,
 		QScrollContainer,
 		QTree,
 		QTreeNode,

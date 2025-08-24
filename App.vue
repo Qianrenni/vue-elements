@@ -1,112 +1,78 @@
 <template>
-  <div class="tree-test container-column padding-rem">
-    <theme-toggle size="32"/>
-    <h2 class="text-title margin-half-vetical">Tree 树形控件</h2>
-    <p class="text-description margin-half-vetical">
-      展示层级数据的树形控件，支持展开/收起、选中等交互操作。
-    </p>
-
-    <div class="container margin-vetical">
-      <Tree
-          ref="treeRef"
-          :data="treeData"
-          @nodeClick="node => console.log(node)"
-      />
-    </div>
-
-    <div class="container-column margin-vetical">
-      <h3 class="text-title margin-half-vetical">功能说明</h3>
-      <ul class="padding-half-rem">
-        <li class="margin-half-vetical">点击箭头图标可以展开/收起节点</li>
-        <li class="margin-half-vetical">点击节点文本可以选择/取消选择节点</li>
-        <li class="margin-half-vetical">选中的节点会高亮显示</li>
-        <li class="margin-half-vetical">支持多级嵌套结构</li>
-      </ul>
-    </div>
+  <div class="container-column container-align-center">
+    <FormSwitch v-model="showDrawer.right" label="右侧抽屉"/>
+    <FormSwitch v-model="showDrawer.left" label="左侧抽屉"/>
+    <FormSwitch v-model="showDrawer.top" label="顶部抽屉"/>
+    <FormSwitch v-model="showDrawer.bottom" label="底部抽屉"/>
+    <FormSwitch v-model="showDrawer.inner" label="内嵌抽屉"/>
   </div>
+  <div class="container-column" style="position: relative;width: 100%;height: 300px;">
+    <Drawer
+        v-model:visible="showDrawer.inner"
+        :append-to-body="false"
+        direction="right"
+        title="测试抽屉">
+      <div class="padding-24rem">
+        <p>这是抽屉的内容</p>
+        <p>这是抽屉的内容</p>
+        <p>这是抽屉的内容</p>
+      </div>
+    </Drawer>
+  </div>
+  <Drawer
+      v-model:visible="showDrawer.right"
+      direction="right"
+      title="测试抽屉">
+    <div class="padding-24rem">
+      <p>这是抽屉的内容</p>
+      <p>这是抽屉的内容</p>
+      <p>这是抽屉的内容</p>
+    </div>
+  </Drawer>
+  <Drawer
+      v-model:visible="showDrawer.left"
+      direction="left"
+      title="测试抽屉">
+    <div class="padding-24rem">
+      <p>这是抽屉的内容</p>
+      <p>这是抽屉的内容</p>
+      <p>这是抽屉的内容</p>
+    </div>
+  </Drawer>
+  <Drawer
+      v-model:visible="showDrawer.top"
+      direction="top"
+      title="测试抽屉">
+    <div class="padding-24rem">
+      <p>这是抽屉的内容</p>
+      <p>这是抽屉的内容</p>
+      <p>这是抽屉的内容</p>
+    </div>
+  </Drawer>
+  <Drawer
+      v-model:visible="showDrawer.bottom"
+      direction="bottom"
+      title="测试抽屉">
+    <div class="padding-24rem">
+      <p>这是抽屉的内容</p>
+      <p>这是抽屉的内容</p>
+      <p>这是抽屉的内容</p>
+    </div>
+  </Drawer>
 </template>
-
 <script lang="ts" setup>
-import {ref} from 'vue'
-import Tree from "@/components/layout/Tree.vue";
-import ThemeToggle from "@/components/theme/ThemeToggle.vue";
+import Drawer from "@/components/layout/Drawer.vue";
+import {ref} from "vue";
+import FormSwitch from "@/components/form/FormSwitch.vue";
 
-interface TreeNodeData {
-  id: string | number
-  label: string
-  children?: TreeNodeData[]
-  expanded?: boolean
-  selected?: boolean
-  disabled?: boolean
-}
-
-const treeData: TreeNodeData[] = [
-  {
-    id: 1,
-    label: '根节点 1',
-    expanded: true,
-    children: [
-      {
-        id: 2,
-        label: '子节点 1-1',
-        children: [
-          {
-            id: 3,
-            label: '子节点 1-1-1'
-          },
-          {
-            id: 4,
-            label: '子节点 1-1-2',
-            disabled: true
-          }
-        ]
-      },
-      {
-        id: 5,
-        label: '子节点 1-2'
-      }
-    ]
-  },
-  {
-    id: 6,
-    label: '根节点 2',
-    children: [
-      {
-        id: 7,
-        label: '子节点 2-1'
-      },
-      {
-        id: 8,
-        label: '子节点 2-2',
-        expanded: true,
-        children: [
-          {
-            id: 9,
-            label: '子节点 2-2-1'
-          },
-          {
-            id: 10,
-            label: '子节点 2-2-2'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 11,
-    label: '根节点 3 (无子节点)'
-  }
-]
-
-const treeRef = ref<InstanceType<typeof Tree> | null>(null)
+const showDrawer = ref({
+  left: false,
+  right: false,
+  top: false,
+  bottom: false,
+  inner: false
+});
 </script>
+<style lang="css" scoped>
 
-<style scoped>
-.test {
-  width: 100%;
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  padding: var(--half-distance);
-}
 </style>
