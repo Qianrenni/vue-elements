@@ -1,6 +1,6 @@
 {
   "name": "qyani-components",
-  "version": "1.2.5",
+  "version": "1.2.8",
   "description": "a frontend components lib",
   "main": "dist/qyani-components.cjs.js",
   "module": "dist/qyani-components.es.js",
@@ -10,7 +10,7 @@
   "type": "module",
   "scripts": {
     "type-check": "pnpm npx vue-tsc --build --declaration --clean",
-    "build": "pnpm vite build && tsc --declaration",
+    "build": "pnpm vite build && vue-tsc --build --declaration --emitDeclarationOnly",
     "dev": "pnpm vite",
     "update index": "python scripts/index_python.py"
   },
@@ -29,7 +29,8 @@
     "dist",
     "README.md",
     "LICENSE",
-    "package.json"
+    "package.json",
+    "global.d.ts"
   ],
   "devDependencies": {
     "@types/node": "^24.1.0",
@@ -54,6 +55,9 @@
       "import": "./dist/qyani-components.es.js",
       "require": "./dist/qyani-components.cjs.js"
     },
-    "./dist/style.css": "./dist/style.css"
+    "./dist/style.css": "./dist/style.css",
+    "./global": {
+      "types": "./global.d.ts"
+    }
   }
 }
