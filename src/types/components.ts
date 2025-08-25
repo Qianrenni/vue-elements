@@ -1,3 +1,7 @@
+export interface NavSectionProps {
+    title: string
+    children?: NavSectionProps[]
+}
 export interface TreeNodeData {
     id: string | number
     label: string
