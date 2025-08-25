@@ -42,30 +42,26 @@
 
 <script lang="ts" setup>
 import {computed, ref, watch} from 'vue'
+import {NavSectionProps} from "@/types";
 
 defineOptions({
   name: 'NavSection'
 })
 
-// 定义类型
-interface Section {
-  title: string
-  children?: Section[]
-}
 
 // props
 const props = defineProps<{
-  sections: Section[],
+  sections: NavSectionProps[],
   title: string,
 }>()
 
 // 事件定义
 const emit = defineEmits<{
-  (e: 'select', section: Section): void
+  (e: 'select', section: NavSectionProps): void
 }>()
 
 // 数据状态
-const stack = ref<Section[]>([
+const stack = ref<NavSectionProps[]>([
   {title: props.title, children: []}
 ])
 const activeId = ref<string | number | null>(null)
@@ -92,7 +88,7 @@ const currentLevelTitle = computed(() => {
 })
 
 // 方法
-function enterSubLevel(section: Section, index: number) {
+function enterSubLevel(section: NavSectionProps, index: number) {
   stack.value.push(section)
   activeId.value = index
 }
@@ -106,7 +102,7 @@ function goBack() {
   }
 }
 
-function markActive(section: Section, index: number) {
+function markActive(section: NavSectionProps, index: number) {
   activeId.value = index;
   // console.log(section);
   emit('select', section)
