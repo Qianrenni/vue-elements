@@ -17,7 +17,7 @@
         :class="{
           'mouse-cursor-disable':disabled,
           'text-12rem':size==='large',
-          'text-05rem':size==='small'
+          'text-08rem':size==='small'
         }"
         :for="name"
         class="label"
@@ -30,7 +30,7 @@
               {
                 'mouse-cursor-disable':disabled,
                 'text-12rem':size==='large',
-                'text-05rem':size==='small'
+                'text-08rem':size==='small'
               }
         ]"
         :disabled="disabled"
@@ -73,7 +73,7 @@ const emit = defineEmits<FormComponentEmits<string>>()
 const {handleInput} = useFormEvents(emit);
 // 处理输入，确保输出为字符串
 const onInput = (e: Event) => {
-  handleInput(e, (e) => (e.target as HTMLInputElement).value)
+  handleInput((e.target as HTMLInputElement).value)
 };
 
 </script>

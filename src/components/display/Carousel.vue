@@ -134,7 +134,7 @@ const items = computed(() => {
 const itemsCount = computed(() => items.value?.length as number ?? 0)
 
 //总轮播项数量
-const totalItemsCount = computed(() => items.value?.length as number ?? +2) // 前后各加一个复制项
+const totalItemsCount = computed(() => items.value?.length as number +2) // 前后各加一个复制项
 
 // 当前索引
 const currentIndex = ref(1)
@@ -151,7 +151,7 @@ const realIndex = computed(() => {
 //轮播容器引用
 const carousel = useTemplateRef<HTMLElement>('carousel')
 //计时器Id
-let intervalId: number | null = null
+let intervalId: ReturnType<typeof setInterval> | null = null
 
 // 计算 transform 样式
 const transformStyle = computed(() => {

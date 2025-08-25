@@ -6,10 +6,10 @@
 npm install qyani-components@latest
 ```
 
-**2.引入样式(任意.css结尾)**
+**2.引入样式**
 
 ```
-import 'qyani-components/dist/qyani-components.*.css';
+import 'qyani-components/dist/style.css';
 ```
 
 **3.引入组件**
@@ -18,16 +18,29 @@ import 'qyani-components/dist/qyani-components.*.css';
 import { the-components } from 'qyani-components';
 ```
 
-# 打开展示页面
+**4.全局安装**
 
-**1.注释掉Vite.config.json中的postcss**
+```
+import qyanicomponents from 'qyani-components
+app.use(qyanicomponents)
+```
 
-# 打包组件库
-
-**启用postcss插件**
-
-# 启动测试页面
+# 打包
 
 ```shell
-pnpm run test
+pnpm run build
 ```
+
+# 测试
+
+```shell
+pnpm run dev
+```
+
+# 文档地址
+
+[文档地址](https://qyani-ui.netlify.app/#)
+
+# 文档项目地址
+
+[文档项目地址](https://github.com/Qianrenni/qyani-ui-docs)

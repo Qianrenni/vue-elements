@@ -16,7 +16,7 @@
         :class="{
           'mouse-cursor-disable':disabled,
           'text-12rem':size==='large',
-          'text-05rem':size==='small'
+          'text-08rem':size==='small'
         }"
         class="label"
     >
@@ -35,7 +35,7 @@
               {
                 'mouse-cursor-disable':disabled,
                 'text-12rem':size==='large',
-                'text-05rem':size==='small'
+                'text-08rem':size==='small'
               }
             ]
             "
@@ -76,23 +76,20 @@ const props = withDefaults(defineProps<FormCheckboxGroupProps>(), {
 const emit = defineEmits<FormComponentEmits<string[]>>();
 const {handleInput} = useFormEvents<string[]>(emit)
 const onChange = (e: Event) => {
-  handleInput(e, (e: Event) => {
-        const target = e.target as HTMLInputElement;
-        const value = target.value;
-        const checked = target.checked;
-        const newValue = [...props.modelValue ?? []];
+  const target = e.target as HTMLInputElement;
+  const value = target.value;
+  const checked = target.checked;
+  const newValue = [...props.modelValue ?? []];
 
-        if (checked) {
-          newValue.push(value);
-        } else {
-          const index = newValue.indexOf(value);
-          if (index > -1) {
-            newValue.splice(index, 1);
-          }
-        }
-        return newValue;
-      }
-  )
+  if (checked) {
+    newValue.push(value);
+  } else {
+    const index = newValue.indexOf(value);
+    if (index > -1) {
+      newValue.splice(index, 1);
+    }
+  }
+  handleInput(newValue)
 }
 </script>
 

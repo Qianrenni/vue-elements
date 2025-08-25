@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>五种风格加载动画展示 - 简约现代篇</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 1.8em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .demo-box {
+            width: 280px;
+            height: 180px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .demo-box:hover {
+            transform: translateY(-6px);
+        }
+
+        .demo-title {
+            font-size: 1.15em;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 0.95em;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* ================== 1. 简约现代 - 旋转圆环 ================== */
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ================== 2. 简约现代 - 呼吸点 ================== */
+        .loader-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #555;
+            border-radius: 50%;
+            animation: pulse 1.2s ease-in-out infinite;
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        /* ================== 3. 简约现代 - 骨架屏 ================== */
+        .skeleton {
+            width: 200px;
+            height: 80px;
+            background: #e0e0e0;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skeleton::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #f0f0f0, transparent);
+            animation: shine 1.5s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            50% {
+                left: 20%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* ================== 4. 科技感 - 脉冲波 ================== */
+        .loader-tech {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #0d1b2a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader-tech::before,
+        .loader-tech::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid #00b4d8;
+            opacity: 0;
+            animation: pulse-tech 1.8s infinite;
+        }
+
+        .loader-tech::after {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes pulse-tech {
+            0% {
+                width: 40px;
+                opacity: 0.8;
+            }
+            100% {
+                width: 100px;
+                opacity: 0;
+            }
+        }
+
+        /* ================== 5. 卡通可爱 - 弹跳球 ================== */
+        .loader-cute {
+            display: flex;
+            gap: 8px;
+        }
+
+        .ball {
+            width: 15px;
+            height: 15px;
+            background: #e63946;
+            border-radius: 50%;
+            animation: bounce 0.6s ease-in-out infinite alternate;
+        }
+
+        .ball:nth-child(2) {
+            background: #f4a261;
+            animation-delay: 0.1s;
+        }
+
+        .ball:nth-child(3) {
+            background: #2a9d8f;
+            animation-delay: 0.2s;
+        }
+
+        @keyframes bounce {
+            to {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* ================== 6. 暗黑极客 - 二进制雨 ================== */
+        .loader-hacker {
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            color: #00ff41;
+            line-height: 1.2;
+            white-space: pre;
+            letter-spacing: 1px;
+            overflow: hidden;
+            width: 100px;
+            height: 60px;
+            text-align: center;
+        }
+
+        .rain {
+            animation: rain 2s infinite;
+        }
+
+        @keyframes rain {
+            0% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.2;
+            }
+        }
+
+        /* ================== 7. 清新自然 - 水波纹 ================== */
+        .loader-nature {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .ripple {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #2a9d8f;
+            opacity: 0;
+            animation: ripple-animation 1.5s ease-out infinite;
+        }
+
+        .ripple:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .ripple:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .ripple:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes ripple-animation {
+            0% {
+                transform: scale(0);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>🎯 五种风格 · 七款加载动画</h1>
+<p class="subtitle">简约现代 × 科技感 × 卡通可爱 × 暗黑极客 × 清新自然</p>
+
+<div class="container">
+
+    <!-- 1. 旋转圆环 -->
+    <div class="demo-box">
+        <div class="demo-title">🔄 旋转圆环</div>
+        <div class="loader-spinner"></div>
+        <p>经典简约，无限旋转</p>
+    </div>
+
+    <!-- 2. 呼吸点 -->
+    <div class="demo-box">
+        <div class="demo-title">💡 呼吸点</div>
+        <div class="loader-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <p>三点呼吸，柔和提示</p>
+    </div>
+
+    <!-- 3. 骨架屏 -->
+    <div class="demo-box">
+        <div class="demo-title">📄 骨架屏</div>
+        <div class="skeleton"></div>
+        <p>内容占位，体验更流畅</p>
+    </div>
+
+    <!-- 4. 脉冲波 -->
+    <div class="demo-box">
+        <div class="demo-title">🚀 脉冲波</div>
+        <div class="loader-tech"></div>
+        <p>科技感能量扩散</p>
+    </div>
+
+    <!-- 5. 弹跳球 -->
+    <div class="demo-box">
+        <div class="demo-title">🧸 弹跳球</div>
+        <div class="loader-cute">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+        <p>活泼跳跃，童趣十足</p>
+    </div>
+
+    <!-- 6. 二进制雨 -->
+    <div class="demo-box">
+        <div class="demo-title">💻 二进制雨</div>
+        <div class="loader-hacker">
+            <div class="rain">101101<br>010110<br>110010</div>
+        </div>
+        <p>绿色代码，极客氛围</p>
+    </div>
+
+    <!-- 7. 水波纹 -->
+    <div class="demo-box">
+        <div class="demo-title">💧 水波纹</div>
+        <div class="loader-nature">
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+        </div>
+        <p>如湖面涟漪般扩散</p>
+    </div>
+
+</div>
+
+</body>
+</html>

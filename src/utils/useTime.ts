@@ -1,6 +1,40 @@
+// ========================
+// 全局性能优化工具：避免重复创建
+// ========================
+
+/**
+ * 预生成 00-99 的补零字符串数组，实现 O(1) 查找
+ * 例如：_padd[5] = "05", _padd[12] = "12"
+ */
+export const _padd: string[] = Array.from({length: 100}, (_, i) => (i < 10 ? '0' + i : '' + i));
+
+/**
+ * 全局缓存 Intl.DateTimeFormat 实例（避免高成本重复创建）
+ * 多个类（UseTimeUtils / UTCTimeUtils）共享同一缓存
+ */
+const _formatterCache = new Map<string, Intl.DateTimeFormat>();
+
+/**
+ * 获取缓存的 Intl.DateTimeFormat 实例
+ * @param locales 语言环境，如 'zh-CN', 'en-US'
+ * @param options Intl.DateTimeFormatOptions 配置项
+ * @returns Intl.DateTimeFormat 实例
+ */
+function _getFormatter(locales: string, options: Intl.DateTimeFormatOptions): Intl.DateTimeFormat {
+    const key = `${locales}|${JSON.stringify(options)}`;
+    if (!_formatterCache.has(key)) {
+        _formatterCache.set(key, new Intl.DateTimeFormat(locales, options));
+    }
+    return _formatterCache.get(key)!;
+}
+
+// ========================
+// 主类：UseTimeUtils
+// ========================
+
 export class UseTimeUtils {
     private date: Date;
-    private locale: string;
+    private readonly locale: string;
 
     /**
      * 构造函数：初始化时间工具类
@@ -12,27 +46,30 @@ export class UseTimeUtils {
         input?: Date | number | string | null,
         locale: string = 'zh-CN' // 默认语言
     ) {
+        let parsed: Date;
+
         if (input === null || input === undefined) {
-            this.date = new Date();
+            parsed = new Date();
         } else if (input instanceof Date) {
-            this.date = new Date(input);
+            parsed = new Date(input.getTime()); // 避免引用污染
         } else if (typeof input === 'number') {
-            this.date = new Date(input);
+            parsed = new Date(input);
         } else {
-            this.date = new Date(input);
+            parsed = new Date(input);
         }
 
-        if (isNaN(this.date.getTime())) {
+        if (isNaN(parsed.getTime())) {
             throw new Error('Invalid date string or timestamp');
         }
 
+        this.date = parsed;
         this.locale = locale;
     }
 
     // ========================
-    // 格式化（本地时间）
-
+    // 工厂方法
     // ========================
+
     /**
      * 获取当前时间的TimeUtils实例
      * @param locale 可选参数，指定本地化语言，例如：'zh-CN'（中文）、'en-US'（英文）、'ja-JP'（日文）、'fr-FR'（法文）
@@ -41,9 +78,6 @@ export class UseTimeUtils {
     static now(locale?: string): UseTimeUtils {
         return new UseTimeUtils(undefined, locale);
     }
-
-    // ========================
-    // 国际化格式化（支持本地化名称）
 
     /**
      * 从输入创建TimeUtils实例
@@ -72,31 +106,27 @@ export class UseTimeUtils {
      * @returns 格式化后的日期字符串
      */
     format(format: string = 'YYYY-MM-DD HH:mm:ss'): string {
-        const pad = (n: number): string => n.toString().padStart(2, '0');
-        const year = this.date.getFullYear();
-        const month = this.date.getMonth() + 1;
-        const day = this.date.getDate();
-        const hours = this.date.getHours();
-        const minutes = this.date.getMinutes();
-        const seconds = this.date.getSeconds();
-        const milliseconds = this.date.getMilliseconds();
-        const dayOfWeek = this.date.getDay();
+        const d = this.date;
+        const year = d.getFullYear();
+        const month = d.getMonth() + 1;
+        const day = d.getDate();
+        const hours = d.getHours();
+        const minutes = d.getMinutes();
+        const seconds = d.getSeconds();
+        const milliseconds = d.getMilliseconds();
+        const dayOfWeek = d.getDay();
 
         return format
-            .replace(/YYYY/g, year.toString())
-            .replace(/MM/g, pad(month))
-            .replace(/DD/g, pad(day))
-            .replace(/HH/g, pad(hours))
-            .replace(/mm/g, pad(minutes))
-            .replace(/ss/g, pad(seconds))
-            .replace(/SSS/g, pad(milliseconds).padStart(3, '0'))
-            .replace(/ddd/g, dayOfWeek.toString());
+            .replace('YYYY', year.toString())
+            .replace('MM', _padd[month])
+            .replace('DD', _padd[day])
+            .replace('HH', _padd[hours])
+            .replace('mm', _padd[minutes])
+            .replace('ss', _padd[seconds])
+            .replace('SSS', milliseconds < 10 ? '00' + milliseconds : milliseconds < 100 ? '0' + milliseconds : '' + milliseconds)
+            .replace('ddd', dayOfWeek.toString());
     }
 
-    // ========================
-    // 基本获取（本地时间）
-
-    // ========================
     /**
      * 根据本地化设置格式化日期
      * @param format 格式字符串，默认为'PPP p'
@@ -105,54 +135,32 @@ export class UseTimeUtils {
      */
     formatLocale(format: string = 'PPP p', locales?: string): string {
         const usedLocales = locales || this.locale;
-        const options: Intl.DateTimeFormatOptions = {};
 
-        // 简单映射常见格式（可扩展）
-        switch (format) {
-            case 'PPPP':
-                // "2025年4月5日 星期五" 或 "Friday, April 5, 2025"
-                options.year = 'numeric';
-                options.month = 'long';
-                options.day = 'numeric';
-                options.weekday = 'long';
-                break;
-            case 'PPP':
-                // "2025年4月5日" 或 "April 5, 2025"
-                options.year = 'numeric';
-                options.month = 'long';
-                options.day = 'numeric';
-                break;
-            case 'PP':
-                // "Apr 5, 2025"
-                options.year = 'numeric';
-                options.month = 'short';
-                options.day = 'numeric';
-                break;
-            case 'pp':
-                // "14:30:25"
-                options.hour = '2-digit';
-                options.minute = '2-digit';
-                options.second = '2-digit';
-                options.hour12 = false;
-                break;
-            case 'PPP p':
-                // "April 5, 2025, 14:30"
-                options.year = 'numeric';
-                options.month = 'long';
-                options.day = 'numeric';
-                options.hour = '2-digit';
-                options.minute = '2-digit';
-                options.hour12 = false;
-                break;
-            default:
-                // 自定义格式支持 {month:long}, {weekday:short} 等
-                return this.customFormatLocale(format, usedLocales);
+        // 预定义格式映射（可扩展）
+        const optionsMap: Record<string, Intl.DateTimeFormatOptions> = {
+            'PPPP': {year: 'numeric', month: 'long', day: 'numeric', weekday: 'long'},
+            'PPP': {year: 'numeric', month: 'long', day: 'numeric'},
+            'PP': {year: 'numeric', month: 'short', day: 'numeric'},
+            'pp': {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false},
+            'PPP p': {
+                year: 'numeric', month: 'long', day: 'numeric',
+                hour: '2-digit', minute: '2-digit', hour12: false
+            }
+        };
+
+        const options = optionsMap[format];
+        if (options) {
+            const formatter = _getFormatter(usedLocales, options);
+            return formatter.format(this.date);
         }
 
-        return new Intl.DateTimeFormat(usedLocales, options).format(this.date);
+        return this.customFormatLocale(format, usedLocales);
     }
 
     // ========================
+    // 基本获取（本地时间）
+    // ========================
+
     /** 获取年份 */
     year(): number {
         return this.date.getFullYear();
@@ -188,18 +196,15 @@ export class UseTimeUtils {
         return this.date.getMilliseconds();
     }
 
-    // ========================
-    // UTC 支持
-
     /** 获取星期几（0-6，0表示星期日） */
     day(): number {
         return this.date.getDay();
     }
 
     // ========================
-    // 加减时间
-
+    // UTC 支持
     // ========================
+
     /**
      * 转换为UTC时间工具类
      * @returns UTCTimeUtils实例
@@ -209,6 +214,9 @@ export class UseTimeUtils {
     }
 
     // ========================
+    // 加减时间
+    // ========================
+
     /**
      * 增加时间
      * @param amount 数量
@@ -216,31 +224,29 @@ export class UseTimeUtils {
      * @returns 当前实例（支持链式调用）
      */
     add(amount: number, unit: 'year' | 'month' | 'day' | 'hour' | 'minute' | 'second'): this {
+        const d = this.date;
         switch (unit) {
             case 'year':
-                this.date.setFullYear(this.date.getFullYear() + amount);
+                d.setFullYear(d.getFullYear() + amount);
                 break;
             case 'month':
-                this.date.setMonth(this.date.getMonth() + amount);
+                d.setMonth(d.getMonth() + amount);
                 break;
             case 'day':
-                this.date.setDate(this.date.getDate() + amount);
+                d.setDate(d.getDate() + amount);
                 break;
             case 'hour':
-                this.date.setHours(this.date.getHours() + amount);
+                d.setHours(d.getHours() + amount);
                 break;
             case 'minute':
-                this.date.setMinutes(this.date.getMinutes() + amount);
+                d.setMinutes(d.getMinutes() + amount);
                 break;
             case 'second':
-                this.date.setSeconds(this.date.getSeconds() + amount);
+                d.setSeconds(d.getSeconds() + amount);
                 break;
         }
         return this;
     }
-
-    // ========================
-    // 其他方法
 
     /**
      * 减少时间
@@ -253,6 +259,9 @@ export class UseTimeUtils {
     }
 
     // ========================
+    // 其他方法
+    // ========================
+
     /** 转换为Date对象 */
     toDate(): Date {
         return new Date(this.date);
@@ -262,9 +271,6 @@ export class UseTimeUtils {
     valueOf(): number {
         return this.date.getTime();
     }
-
-    // ========================
-    // 静态工厂
 
     /** 转换为默认格式的字符串 */
     toString(): string {
@@ -278,31 +284,24 @@ export class UseTimeUtils {
      * @returns 自定义格式化后的日期字符串
      */
     private customFormatLocale(format: string, locales: string): string {
-        const weekday = new Intl.DateTimeFormat(locales, {weekday: 'long'}).format(this.date);
-        const weekdayShort = new Intl.DateTimeFormat(locales, {weekday: 'short'}).format(this.date);
-        const monthLong = new Intl.DateTimeFormat(locales, {month: 'long'}).format(this.date);
-        const monthShort = new Intl.DateTimeFormat(locales, {month: 'short'}).format(this.date);
+        const d = this.date;
+
+        const weekday = _getFormatter(locales, {weekday: 'long'}).format(d);
+        const weekdayShort = _getFormatter(locales, {weekday: 'short'}).format(d);
+        const monthLong = _getFormatter(locales, {month: 'long'}).format(d);
+        const monthShort = _getFormatter(locales, {month: 'short'}).format(d);
 
         return format
             .replace(/{weekday:long}/g, weekday)
             .replace(/{weekday:short}/g, weekdayShort)
             .replace(/{month:long}/g, monthLong)
             .replace(/{month:short}/g, monthShort)
-            .replace(/{YYYY}/g, this.date.getFullYear().toString())
-            .replace(/{MM}/g, this.pad(this.date.getMonth() + 1))
-            .replace(/{DD}/g, this.pad(this.date.getDate()))
-            .replace(/{HH}/g, this.pad(this.date.getHours()))
-            .replace(/{mm}/g, this.pad(this.date.getMinutes()))
-            .replace(/{ss}/g, this.pad(this.date.getSeconds()));
-    }
-
-    /**
-     * 补零函数
-     * @param n 数字
-     * @returns 补零后的字符串
-     */
-    private pad(n: number): string {
-        return n.toString().padStart(2, '0');
+            .replace(/{YYYY}/g, d.getFullYear().toString())
+            .replace(/{MM}/g, _padd[d.getMonth() + 1])
+            .replace(/{DD}/g, _padd[d.getDate()])
+            .replace(/{HH}/g, _padd[d.getHours()])
+            .replace(/{mm}/g, _padd[d.getMinutes()])
+            .replace(/{ss}/g, _padd[d.getSeconds()]);
     }
 }
 
@@ -311,7 +310,7 @@ export class UseTimeUtils {
 // ========================
 class UTCTimeUtils {
     private date: Date;
-    private locale: string;
+    private readonly locale: string;
 
     /**
      * 构造函数：初始化UTC时间工具类
@@ -320,10 +319,12 @@ class UTCTimeUtils {
      * @throws 如果输入无效，抛出错误
      */
     constructor(input?: Date | number | string | null, locale: string = 'en-US') {
+        let parsed: Date;
+
         if (input === null || input === undefined) {
-            this.date = new Date();
+            parsed = new Date();
         } else if (input instanceof Date) {
-            this.date = new Date(Date.UTC(
+            parsed = new Date(Date.UTC(
                 input.getUTCFullYear(),
                 input.getUTCMonth(),
                 input.getUTCDate(),
@@ -333,26 +334,26 @@ class UTCTimeUtils {
                 input.getUTCMilliseconds()
             ));
         } else if (typeof input === 'number') {
-            this.date = new Date(input);
+            parsed = new Date(input);
         } else {
-            {
-                const d = new Date(input);
-                this.date = new Date(Date.UTC(
-                    d.getUTCFullYear(),
-                    d.getUTCMonth(),
-                    d.getUTCDate(),
-                    d.getUTCHours(),
-                    d.getUTCMinutes(),
-                    d.getUTCSeconds(),
-                    d.getUTCMilliseconds()
-                ));
-            }
+            const d = new Date(input);
+            if (isNaN(d.getTime())) throw new Error('Invalid date');
+            parsed = new Date(Date.UTC(
+                d.getUTCFullYear(),
+                d.getUTCMonth(),
+                d.getUTCDate(),
+                d.getUTCHours(),
+                d.getUTCMinutes(),
+                d.getUTCSeconds(),
+                d.getUTCMilliseconds()
+            ));
         }
 
-        if (isNaN(this.date.getTime())) {
+        if (isNaN(parsed.getTime())) {
             throw new Error('Invalid date');
         }
 
+        this.date = parsed;
         this.locale = locale;
     }
 
@@ -362,16 +363,17 @@ class UTCTimeUtils {
      * @returns 格式化后的日期字符串
      */
     format(format: string = 'YYYY-MM-DD HH:mm:ss'): string {
-        const pad = (n: number) => n.toString().padStart(2, '0');
+        const d = this.date;
         return format
-            .replace(/YYYY/g, this.date.getUTCFullYear().toString())
-            .replace(/MM/g, pad(this.date.getUTCMonth() + 1))
-            .replace(/DD/g, pad(this.date.getUTCDate()))
-            .replace(/HH/g, pad(this.date.getUTCHours()))
-            .replace(/mm/g, pad(this.date.getUTCMinutes()))
-            .replace(/ss/g, pad(this.date.getUTCSeconds()))
-            .replace(/SSS/g, pad(this.date.getUTCMilliseconds()).padStart(3, '0'))
-            .replace(/ddd/g, this.date.getUTCDay().toString());
+            .replace('YYYY', d.getUTCFullYear().toString())
+            .replace('MM', _padd[d.getUTCMonth() + 1])
+            .replace('DD', _padd[d.getUTCDate()])
+            .replace('HH', _padd[d.getUTCHours()])
+            .replace('mm', _padd[d.getUTCMinutes()])
+            .replace('ss', _padd[d.getUTCSeconds()])
+            .replace('SSS', d.getUTCMilliseconds() < 10 ? '00' + d.getUTCMilliseconds() :
+                d.getUTCMilliseconds() < 100 ? '0' + d.getUTCMilliseconds() : '' + d.getUTCMilliseconds())
+            .replace('ddd', d.getUTCDay().toString());
     }
 
     /**
@@ -382,46 +384,27 @@ class UTCTimeUtils {
      */
     formatLocale(format: string = 'PPP p', locales?: string): string {
         const usedLocales = locales || this.locale;
-        const options: Intl.DateTimeFormatOptions = {};
 
-        switch (format) {
-            case 'PPPP':
-                options.year = 'numeric';
-                options.month = 'long';
-                options.day = 'numeric';
-                options.weekday = 'long';
-                break;
-            case 'PPP':
-                options.year = 'numeric';
-                options.month = 'long';
-                options.day = 'numeric';
-                break;
-            case 'PP':
-                options.year = 'numeric';
-                options.month = 'short';
-                options.day = 'numeric';
-                break;
-            case 'pp':
-                options.hour = '2-digit';
-                options.minute = '2-digit';
-                options.second = '2-digit';
-                options.hour12 = false;
-                break;
-            case 'PPP p':
-                options.year = 'numeric';
-                options.month = 'long';
-                options.day = 'numeric';
-                options.hour = '2-digit';
-                options.minute = '2-digit';
-                options.hour12 = false;
-                break;
-            default:
-                return this.customFormatLocale(format, usedLocales);
+        const optionsMap: Record<string, Intl.DateTimeFormatOptions> = {
+            'PPPP': {year: 'numeric', month: 'long', day: 'numeric', weekday: 'long'},
+            'PPP': {year: 'numeric', month: 'long', day: 'numeric'},
+            'PP': {year: 'numeric', month: 'short', day: 'numeric'},
+            'pp': {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false},
+            'PPP p': {
+                year: 'numeric', month: 'long', day: 'numeric',
+                hour: '2-digit', minute: '2-digit', hour12: false
+            }
+        };
+
+        const options = optionsMap[format];
+        if (options) {
+            const formatter = _getFormatter(usedLocales, options);
+            // 转为本地等效时间（用于正确显示 UTC 时间）
+            const utcTime = new Date(this.date.getTime() + this.date.getTimezoneOffset() * 60000);
+            return formatter.format(utcTime);
         }
 
-        // 使用 UTC 时间进行格式化
-        const utcDate = new Date(this.date.getTime() + this.date.getTimezoneOffset() * 60000);
-        return new Intl.DateTimeFormat(usedLocales, options).format(utcDate);
+        return this.customFormatLocale(format, usedLocales);
     }
 
     // 基本 UTC 获取
@@ -487,52 +470,48 @@ class UTCTimeUtils {
      * @returns 自定义格式化后的日期字符串
      */
     private customFormatLocale(format: string, locales: string): string {
-        const utcDate = new Date(this.date.getTime() + this.date.getTimezoneOffset() * 60000);
-        const weekday = new Intl.DateTimeFormat(locales, {weekday: 'long'}).format(utcDate);
-        const weekdayShort = new Intl.DateTimeFormat(locales, {weekday: 'short'}).format(utcDate);
-        const monthLong = new Intl.DateTimeFormat(locales, {month: 'long'}).format(utcDate);
-        const monthShort = new Intl.DateTimeFormat(locales, {month: 'short'}).format(utcDate);
+        const d = this.date;
+        const utcTime = new Date(d.getTime() + d.getTimezoneOffset() * 60000);
+
+        const weekday = _getFormatter(locales, {weekday: 'long'}).format(utcTime);
+        const weekdayShort = _getFormatter(locales, {weekday: 'short'}).format(utcTime);
+        const monthLong = _getFormatter(locales, {month: 'long'}).format(utcTime);
+        const monthShort = _getFormatter(locales, {month: 'short'}).format(utcTime);
 
         return format
             .replace(/{weekday:long}/g, weekday)
             .replace(/{weekday:short}/g, weekdayShort)
             .replace(/{month:long}/g, monthLong)
             .replace(/{month:short}/g, monthShort)
-            .replace(/{YYYY}/g, this.date.getUTCFullYear().toString())
-            .replace(/{MM}/g, this.pad(this.date.getUTCMonth() + 1))
-            .replace(/{DD}/g, this.pad(this.date.getUTCDate()))
-            .replace(/{HH}/g, this.pad(this.date.getUTCHours()))
-            .replace(/{mm}/g, this.pad(this.date.getUTCMinutes()))
-            .replace(/{ss}/g, this.pad(this.date.getUTCSeconds()));
-    }
-
-    /**
-     * 补零函数
-     * @param n 数字
-     * @returns 补零后的字符串
-     */
-    private pad(n: number): string {
-        return n.toString().padStart(2, '0');
+            .replace(/{YYYY}/g, d.getUTCFullYear().toString())
+            .replace(/{MM}/g, _padd[d.getUTCMonth() + 1])
+            .replace(/{DD}/g, _padd[d.getUTCDate()])
+            .replace(/{HH}/g, _padd[d.getUTCHours()])
+            .replace(/{mm}/g, _padd[d.getUTCMinutes()])
+            .replace(/{ss}/g, _padd[d.getUTCSeconds()]);
     }
 }
 
-//
-// // 本地时间 - 中文
-// const cn = TimeUtils.now('zh-CN');
+// ========================
+// 使用示例（保持不变）
+// ========================
+
+// 本地时间 - 中文
+// const cn = UseTimeUtils.now('zh-CN');
 // console.log(cn.formatLocale('PPP')); // 2025年4月5日
 // console.log(cn.formatLocale('PP'));  // 2025年4月5日
 // console.log(cn.formatLocale('{weekday:long}, {month:long} {DD}, {YYYY}', 'zh-CN')); // 星期六, 四月 05, 2025
 //
 // // 英文
-// const en = TimeUtils.now('zh-CN');
+// const en = UseTimeUtils.now('en-US');
 // console.log(en.formatLocale('PPP')); // April 5, 2025
 // console.log(en.formatLocale('PPP p')); // April 5, 2025, 14:30
-// console.log(en.formatLocale('PPPP'))
+// console.log(en.formatLocale('PPPP')); // Saturday, April 5, 2025
 //
 // // UTC 时间
-// const utc = TimeUtils.utc('2023-01-01T00:00:00Z');
-// console.log(utc.format()); // 2023-01-01 00:00:00 (UTC)
-// console.log(utc.formatLocale('PPP', 'zh-CN')); // 2023年1月1日 (UTC)
+// const utc = UseTimeUtils.utc('2023-01-01T00:00:00Z');
+// console.log(utc.format()); // 2023-01-01 00:00:00
+// console.log(utc.formatLocale('PPP', 'zh-CN')); // 2023年1月1日
 //
 // // 自定义格式
 // console.log(cn.formatLocale('{YYYY}年{MM}月{DD}日 {weekday:short}')); // 2025年04月05日 周六

@@ -18,7 +18,7 @@
         :class="{
           'mouse-cursor-disable':disabled,
           'text-12rem':size==='large',
-          'text-05rem':size==='small'
+          'text-08rem':size==='small'
         }"
         :for="name"
         class="label"
@@ -37,7 +37,7 @@
             {
               'mouse-cursor-disable':disabled,
               'text-12rem':size==='large',
-              'text-05rem':size==='small'
+              'text-08rem':size==='small'
             }
           ]
           "
@@ -109,23 +109,23 @@ const {handleInput, handleChange, handleFocus, handleBlur, handleClear} = useFor
 
 // 具体事件绑定
 const onInput = (e: Event) => {
-  handleInput(e as InputEvent, (ev) => (ev.target as HTMLInputElement).value as string)
+  handleInput((e.target as HTMLInputElement).value as string)
 }
 
 const onChange = (e: Event) => {
-  handleChange(e, (ev) => (ev.target as HTMLInputElement).value as string)
+  handleChange((e.target as HTMLInputElement).value as string)
 }
 
 const onFocus = (e: FocusEvent) => {
   showCloseIcon.value = true;
-  handleFocus(e)
+  handleFocus()
 }
 
 const onBlur = (e: FocusEvent) => {
   // 使用setTimeout延迟执行，避免点击closeIcon时立即触发blur事件
   setTimeout(() => {
     showCloseIcon.value = false;
-    handleBlur(e)
+    handleBlur()
   }, 200)
 }
 
