@@ -29,7 +29,8 @@
     "dist",
     "README.md",
     "LICENSE",
-    "package.json"
+    "package.json",
+    "global.d.ts"
   ],
   "devDependencies": {
     "@types/node": "^24.1.0",
@@ -54,6 +55,9 @@
       "import": "./dist/qyani-components.es.js",
       "require": "./dist/qyani-components.cjs.js"
     },
-    "./dist/style.css": "./dist/style.css"
+    "./dist/style.css": "./dist/style.css",
+    "./global": {
+      "types":"./global.d.ts"
+    }
   }
 }
