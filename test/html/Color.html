@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>双调色板 - 前景色 & 背景色 (RGB & HSL)</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .color-panel {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            background: #f9f9f9;
+        }
+
+        .mode-switch {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .mode-switch label {
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .color-slider {
+            display: flex;
+            align-items: center;
+            margin: 6px 0;
+            font-size: 14px;
+        }
+
+        .color-slider label {
+            width: 40px;
+            text-align: right;
+            margin-right: 10px;
+            color: #555;
+        }
+
+        .color-slider input[type="range"] {
+            flex-grow: 1;
+            margin: 0 10px;
+        }
+
+        .color-slider span {
+            width: 50px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .preview {
+            margin-top: 25px;
+            padding: 30px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            border: 1px dashed #aaa;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎨 双调色板</h1>
+    <p>分别调节前景色（文字）和背景色</p>
+
+    <!-- 背景色控制 -->
+    <div class="color-panel">
+        <h3>🎨 背景色</h3>
+        <div id="bg-mode" class="mode-switch">
+            <label><input checked name="bg-mode" type="radio" value="rgb"> RGB</label>
+            <label><input name="bg-mode" type="radio" value="hsl"> HSL</label>
+        </div>
+
+        <!-- RGB 滑块 -->
+        <div id="bg-rgb-sliders">
+            <div class="color-slider">
+                <label>R:</label>
+                <input id="bg-r" max="255" min="0" type="range" value="255">
+                <span id="bg-r-value">255</span>
+            </div>
+            <div class="color-slider">
+                <label>G:</label>
+                <input id="bg-g" max="255" min="0" type="range" value="0">
+                <span id="bg-g-value">0</span>
+            </div>
+            <div class="color-slider">
+                <label>B:</label>
+                <input id="bg-b" max="255" min="0" type="range" value="0">
+                <span id="bg-b-value">0</span>
+            </div>
+        </div>
+
+        <!-- HSL 滑块 -->
+        <div id="bg-hsl-sliders" style="display:none;">
+            <div class="color-slider">
+                <label>H:</label>
+                <input id="bg-h" max="360" min="0" type="range" value="0">
+                <span id="bg-h-value">0</span>
+            </div>
+            <div class="color-slider">
+                <label>S:</label>
+                <input id="bg-s" max="100" min="0" type="range" value="100">
+                <span id="bg-s-value">100%</span>
+            </div>
+            <div class="color-slider">
+                <label>L:</label>
+                <input id="bg-l" max="100" min="0" type="range" value="50">
+                <span id="bg-l-value">50%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 前景色控制 -->
+    <div class="color-panel">
+        <h3>🖌️ 前景色（文字）</h3>
+        <div id="fg-mode" class="mode-switch">
+            <label><input checked name="fg-mode" type="radio" value="rgb"> RGB</label>
+            <label><input name="fg-mode" type="radio" value="hsl"> HSL</label>
+        </div>
+
+        <!-- RGB 滑块 -->
+        <div id="fg-rgb-sliders">
+            <div class="color-slider">
+                <label>R:</label>
+                <input id="fg-r" max="255" min="0" type="range" value="0">
+                <span id="fg-r-value">0</span>
+            </div>
+            <div class="color-slider">
+                <label>G:</label>
+                <input id="fg-g" max="255" min="0" type="range" value="0">
+                <span id="fg-g-value">0</span>
+            </div>
+            <div class="color-slider">
+                <label>B:</label>
+                <input id="fg-b" max="255" min="0" type="range" value="0">
+                <span id="fg-b-value">0</span>
+            </div>
+        </div>
+
+        <!-- HSL 滑块 -->
+        <div id="fg-hsl-sliders" style="display:none;">
+            <div class="color-slider">
+                <label>H:</label>
+                <input id="fg-h" max="360" min="0" type="range" value="0">
+                <span id="fg-h-value">0</span>
+            </div>
+            <div class="color-slider">
+                <label>S:</label>
+                <input id="fg-s" max="100" min="0" type="range" value="100">
+                <span id="fg-s-value">100%</span>
+            </div>
+            <div class="color-slider">
+                <label>L:</label>
+                <input id="fg-l" max="100" min="0" type="range" value="50">
+                <span id="fg-l-value">50%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 预览区域 -->
+    <div class="preview">
+        这是一段预览文字，用于显示前景色和背景色效果。
+    </div>
+</div>
+
+<script>
+    // 工具函数：RGB ↔ HSL 转换
+    function rgbToHsl(r, g, b) {
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        const max = Math.max(r, g, b), min = Math.min(r, g, b);
+        let h, s, l = (max + min) / 2;
+
+        if (max === min) h = s = 0;
+        else {
+            const d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch (max) {
+                case r:
+                    h = (g - b) / d + (g < b ? 6 : 0);
+                    break;
+                case g:
+                    h = (b - r) / d + 2;
+                    break;
+                case b:
+                    h = (r - g) / d + 4;
+                    break;
+            }
+            h /= 6;
+        }
+        return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
+    }
+
+    function hslToRgb(h, s, l) {
+        s /= 100;
+        l /= 100;
+        const C = (1 - Math.abs(2 * l - 1)) * s;
+        const X = C * (1 - Math.abs((h / 60) % 2 - 1));
+        const m = l - C / 2;
+        let r, g, b;
+
+        if (h >= 0 && h < 60) [r, g, b] = [C, X, 0];
+        else if (h < 120) [r, g, b] = [X, C, 0];
+        else if (h < 180) [r, g, b] = [0, C, X];
+        else if (h < 240) [r, g, b] = [0, X, C];
+        else if (h < 300) [r, g, b] = [X, 0, C];
+        else if (h < 360) [r, g, b] = [C, 0, X];
+        else [r, g, b] = [0, 0, 0];
+
+        return [
+            Math.round((r + m) * 255),
+            Math.round((g + m) * 255),
+            Math.round((b + m) * 255)
+        ];
+    }
+
+    // 更新显示值
+    function updateValue(spanId, value, unit = '') {
+        document.getElementById(spanId).textContent = value + unit;
+    }
+
+    // 应用背景色和前景色
+    function applyColors() {
+        // 获取背景色
+        const bgMode = document.querySelector('input[name="bg-mode"]:checked').value;
+        let bgColor;
+        if (bgMode === 'rgb') {
+            const r = +document.getElementById('bg-r').value;
+            const g = +document.getElementById('bg-g').value;
+            const b = +document.getElementById('bg-b').value;
+            bgColor = `rgb(${r}, ${g}, ${b})`;
+        } else {
+            const h = +document.getElementById('bg-h').value;
+            const s = +document.getElementById('bg-s').value;
+            const l = +document.getElementById('bg-l').value;
+            bgColor = `hsl(${h}, ${s}%, ${l}%)`;
+        }
+
+        // 获取前景色
+        const fgMode = document.querySelector('input[name="fg-mode"]:checked').value;
+        let fgColor;
+        if (fgMode === 'rgb') {
+            const r = +document.getElementById('fg-r').value;
+            const g = +document.getElementById('fg-g').value;
+            const b = +document.getElementById('fg-b').value;
+            fgColor = `rgb(${r}, ${g}, ${b})`;
+        } else {
+            const h = +document.getElementById('fg-h').value;
+            const s = +document.getElementById('fg-s').value;
+            const l = +document.getElementById('fg-l').value;
+            fgColor = `hsl(${h}, ${s}%, ${l}%)`;
+        }
+
+        // 应用到页面
+        document.body.style.backgroundColor = bgColor;
+        document.body.style.color = fgColor;
+        document.querySelector('.preview').style.color = fgColor;
+    }
+
+    // 切换模式：背景色
+    document.querySelectorAll('input[name="bg-mode"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+            const isRgb = this.value === 'rgb';
+            document.getElementById('bg-rgb-sliders').style.display = isRgb ? 'block' : 'none';
+            document.getElementById('bg-hsl-sliders').style.display = isRgb ? 'none' : 'block';
+
+            if (this.value === 'hsl') {
+                // 从当前 RGB 转为 HSL
+                const r = +document.getElementById('bg-r').value;
+                const g = +document.getElementById('bg-g').value;
+                const b = +document.getElementById('bg-b').value;
+                const [h, s, l] = rgbToHsl(r, g, b);
+                document.getElementById('bg-h').value = h;
+                document.getElementById('bg-s').value = s;
+                document.getElementById('bg-l').value = l;
+                updateValue('bg-h-value', h);
+                updateValue('bg-s-value', s, '%');
+                updateValue('bg-l-value', l, '%');
+            } else {
+                // 从 HSL 转回 RGB
+                const h = +document.getElementById('bg-h').value;
+                const s = +document.getElementById('bg-s').value;
+                const l = +document.getElementById('bg-l').value;
+                const [r, g, b] = hslToRgb(h, s, l);
+                document.getElementById('bg-r').value = r;
+                document.getElementById('bg-g').value = g;
+                document.getElementById('bg-b').value = b;
+                updateValue('bg-r-value', r);
+                updateValue('bg-g-value', g);
+                updateValue('bg-b-value', b);
+            }
+            applyColors();
+        });
+    });
+
+    // 切换模式：前景色
+    document.querySelectorAll('input[name="fg-mode"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+            const isRgb = this.value === 'rgb';
+            document.getElementById('fg-rgb-sliders').style.display = isRgb ? 'block' : 'none';
+            document.getElementById('fg-hsl-sliders').style.display = isRgb ? 'none' : 'block';
+
+            if (this.value === 'hsl') {
+                const r = +document.getElementById('fg-r').value;
+                const g = +document.getElementById('fg-g').value;
+                const b = +document.getElementById('fg-b').value;
+                const [h, s, l] = rgbToHsl(r, g, b);
+                document.getElementById('fg-h').value = h;
+                document.getElementById('fg-s').value = s;
+                document.getElementById('fg-l').value = l;
+                updateValue('fg-h-value', h);
+                updateValue('fg-s-value', s, '%');
+                updateValue('fg-l-value', l, '%');
+            } else {
+                const h = +document.getElementById('fg-h').value;
+                const s = +document.getElementById('fg-s').value;
+                const l = +document.getElementById('fg-l').value;
+                const [r, g, b] = hslToRgb(h, s, l);
+                document.getElementById('fg-r').value = r;
+                document.getElementById('fg-g').value = g;
+                document.getElementById('fg-b').value = b;
+                updateValue('fg-r-value', r);
+                updateValue('fg-g-value', g);
+                updateValue('fg-b-value', b);
+            }
+            applyColors();
+        });
+    });
+
+    // 绑定所有滑块的 input 事件
+    const sliders = [
+        {slider: 'bg-r', value: 'bg-r-value'},
+        {slider: 'bg-g', value: 'bg-g-value'},
+        {slider: 'bg-b', value: 'bg-b-value'},
+        {slider: 'bg-h', value: 'bg-h-value'},
+        {slider: 'bg-s', value: 'bg-s-value', unit: '%'},
+        {slider: 'bg-l', value: 'bg-l-value', unit: '%'},
+        {slider: 'fg-r', value: 'fg-r-value'},
+        {slider: 'fg-g', value: 'fg-g-value'},
+        {slider: 'fg-b', value: 'fg-b-value'},
+        {slider: 'fg-h', value: 'fg-h-value'},
+        {slider: 'fg-s', value: 'fg-s-value', unit: '%'},
+        {slider: 'fg-l', value: 'fg-l-value', unit: '%'}
+    ];
+
+    sliders.forEach(({slider, value, unit = ''}) => {
+        document.getElementById(slider).addEventListener('input', function () {
+            updateValue(value, this.value, unit);
+            applyColors();
+        });
+    });
+
+    // 初始化显示
+    applyColors();
+</script>
+</body>
+</html>

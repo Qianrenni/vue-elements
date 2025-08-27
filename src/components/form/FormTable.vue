@@ -1,15 +1,7 @@
 <!-- components/form/FormTable.vue -->
 <template>
   <div
-      :class="[
-      'form-table-container',
-      // {
-      //   'container-column': direction === 'vertical',
-      //   'gap-half': direction === 'vertical',
-      //   'container-align-start': direction === 'vertical',
-      //   'container-align-center': direction !== 'vertical'
-      // }
-      ]"
+      class="form-table-container"
       role="none"
   >
     <!-- 标签 -->
@@ -128,9 +120,12 @@
               class="text-one-line"
           >
             <!-- 支持插槽自定义渲染 -->
-            <span>
+            <slot :column="col" :name="col.value" :row="row" :value="row[col.value]">
+              <span>
               {{ row[col.value] }}
-            </span>
+              </span>
+            </slot>
+
           </td>
         </tr>
         </tbody>

@@ -6,6 +6,13 @@ interface StorageData<T> {
     [key: string]: T;
 }
 
+/*
+ * 类型谓词，用于检查一个值是否为指定类型
+ * @param value 要检查的值
+ * @returns 是否为指定类型
+ */
+type TypeGuard<T> = (value: any) => value is T;
+
 /**
  * LRU（最近最少使用）缓存实现类
  * 使用localStorage进行持久化存储，通过两个键分别存储数据和访问顺序
@@ -20,13 +27,15 @@ export class UseLRUCache<T> {
 
     private data: StorageData<T>; // 存储缓存数据
     private order: string[]; // 存储键的访问顺序，按访问时间从早到晚排列
+    private typeGuard: TypeGuard<T>;
 
     /**
      * 创建一个LRUCache实例
      * @param name 缓存名称，用于在localStorage中区分不同的缓存
+     * @param typeGuard 类型谓词，用于检查数据是否为指定类型
      * @param maxSize 缓存的最大容量，默认10
      */
-    constructor(name: string, maxSize = 8) {
+    constructor(name: string, typeGuard: TypeGuard<T>, maxSize = 8) {
         this.name = name;
         this.maxSize = Math.max(1, maxSize); // 确保容量至少为1
 
@@ -37,6 +46,14 @@ export class UseLRUCache<T> {
         // 从localStorage加载已有数据
         this.data = this.loadFromStorage<StorageData<T>>(this.storageKey) || {};
         this.order = this.loadFromStorage<string[]>(this.orderKey) || [];
+        this.typeGuard = typeGuard;
+        for (const [key, value] of Object.entries(this.data)) {
+            if (!this.typeGuard(value)) {
+                this.clear();
+                console.error(`LRUCache: ${this.name} 数据类型错误，已清除缓存`);
+                break;
+            }
+        }
     }
 
     /**
