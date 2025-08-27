@@ -4,7 +4,7 @@
       :class="{
           'mouse-cursor-disable':disabled,
           'text-12rem':size==='large',
-          'text-05rem':size==='small'
+          'text-08rem':size==='small'
         }"
       :type="type"
       class="button-primary"
@@ -14,7 +14,7 @@
         :class="{
           'mouse-cursor-disable':disabled,
           'text-12rem':size==='large',
-          'text-05rem':size==='small'
+          'text-08rem':size==='small'
         }"
     />
   </button>

@@ -1,6 +1,6 @@
 {
   "name": "qyani-components",
-  "version": "1.2.1",
+  "version": "1.2.5",
   "description": "a frontend components lib",
   "main": "dist/qyani-components.cjs.js",
   "module": "dist/qyani-components.es.js",
@@ -10,7 +10,9 @@
   "type": "module",
   "scripts": {
     "type-check": "pnpm npx vue-tsc --build --declaration --clean",
-    "build": "pnpm vite build && tsc --declaration"
+    "build": "pnpm vite build && tsc --declaration",
+    "dev": "pnpm vite",
+    "update index": "python scripts/index_python.py"
   },
   "author": "qyaniwu",
   "license": "ISC",
@@ -48,6 +50,7 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/qyani-components.es.js",
       "require": "./dist/qyani-components.cjs.js"
     },

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>HTML 表单组件大全</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        fieldset {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        legend {
+            font-weight: bold;
+            color: #444;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
+        }
+        .checkbox-group, .radio-group {
+            display: flex;
+            gap: 15px;
+        }
+        .checkbox-group label, .radio-group label {
+            display: inline-flex;
+            align-items: center;
+            margin: 0;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .required {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>HTML 表单组件大全</h1>
+    <p>本页面展示了 HTML 中所有常见的表单元素及其用法。</p>
+
+    <form action="#" method="post" enctype="multipart/form-data">
+
+        <!-- 文本输入 -->
+        <fieldset>
+            <legend>1. 文本输入类</legend>
+            <label for="text">文本输入 (text):</label>
+            <input type="text" id="text" name="text" placeholder="请输入文本" />
+
+            <label for="password">密码输入 (password):</label>
+            <input type="password" id="password" name="password" placeholder="请输入密码" />
+
+            <label for="email">邮箱输入 (email):</label>
+            <input type="email" id="email" name="email" placeholder="example@example.com" required />
+
+            <label for="tel">电话号码 (tel):</label>
+            <input type="tel" id="tel" name="tel" placeholder="138-0000-0000" pattern="[0-9\-]+" />
+
+            <label for="url">网址 (url):</label>
+            <input type="url" id="url" name="url" placeholder="https://www.example.com" />
+
+            <label for="number">数字输入 (number):</label>
+            <input type="number" id="number" name="number" min="1" max="100" step="1" value="1" />
+
+            <label for="range">滑块输入 (range):</label>
+            <input type="range" id="range" name="range" min="0" max="10" value="5" />
+            <output id="rangeValue">5</output>
+            <script>
+                document.getElementById('range').oninput = function() {
+                    document.getElementById('rangeValue').textContent = this.value;
+                }
+            </script>
+        </fieldset>
+
+        <!-- 日期和时间 -->
+        <fieldset>
+            <legend>2. 日期与时间</legend>
+            <label for="date">日期 (date):</label>
+            <input type="date" id="date" name="date" />
+
+            <label for="time">时间 (time):</label>
+            <input type="time" id="time" name="time" />
+
+            <label for="datetime-local">日期时间 (datetime-local):</label>
+            <input type="datetime-local" id="datetime-local" name="datetime-local" />
+
+            <label for="month">月份 (month):</label>
+            <input type="month" id="month" name="month" />
+
+            <label for="week">周 (week):</label>
+            <input type="week" id="week" name="week" />
+        </fieldset>
+
+        <!-- 选择类 -->
+        <fieldset>
+            <legend>3. 选择控件</legend>
+            <label for="select">下拉选择 (select):</label>
+            <select id="select" name="select">
+                <option value="">请选择</option>
+                <option value="option1">选项 1</option>
+                <option value="option2">选项 2</option>
+                <option value="option3">选项 3</option>
+            </select>
+
+            <label>单选按钮 (radio): <span class="required">*</span></label>
+            <div class="radio-group">
+                <label><input type="radio" name="gender" value="male" required /> 男</label>
+                <label><input type="radio" name="gender" value="female" /> 女</label>
+                <label><input type="radio" name="gender" value="other" /> 其他</label>
+            </div>
+
+            <label>复选框 (checkbox):</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="hobby" value="reading" /> 阅读</label>
+                <label><input type="checkbox" name="hobby" value="sports" /> 运动</label>
+                <label><input type="checkbox" name="hobby" value="music" /> 音乐</label>
+            </div>
+
+            <label for="multiple-select">多选下拉 (multiple):</label>
+            <select id="multiple-select" name="interests[]" multiple size="3">
+                <option value="tech">科技</option>
+                <option value="art">艺术</option>
+                <option value="travel">旅行</option>
+                <option value="cooking">烹饪</option>
+            </select>
+        </fieldset>
+
+        <!-- 文件与颜色 -->
+        <fieldset>
+            <legend>4. 文件与颜色</legend>
+            <label for="file">文件上传 (file):</label>
+            <input type="file" id="file" name="file" accept="image/*, .pdf" multiple />
+
+            <label for="color">颜色选择 (color):</label>
+            <input type="color" id="color" name="color" value="#007BFF" />
+        </fieldset>
+
+        <!-- 其他输入类型 -->
+        <fieldset>
+            <legend>5. 其他输入类型</legend>
+            <label for="search">搜索框 (search):</label>
+            <input type="search" id="search" name="search" placeholder="搜索..." />
+
+            <label for="hidden">隐藏字段 (hidden):</label>
+            <input type="hidden" id="hidden" name="hidden" value="default_value" />
+
+            <label for="textarea">多行文本 (textarea):</label>
+            <textarea id="textarea" name="textarea" rows="4" placeholder="请输入详细信息..."></textarea>
+        </fieldset>
+
+        <!-- 表单按钮 -->
+        <fieldset>
+            <legend>6. 按钮控件</legend>
+            <button type="submit">提交 (submit)</button>
+            <button type="reset">重置 (reset)</button>
+            <button type="button" onclick="alert('普通按钮被点击！')">普通按钮 (button)</button>
+        </fieldset>
+
+        <!-- 数据列表（自动补全） -->
+        <fieldset>
+            <legend>7. 自动补全 (datalist)</legend>
+            <label for="browser">选择浏览器:</label>
+            <input type="text" list="browsers" id="browser" name="browser" />
+            <datalist id="browsers">
+                <option value="Chrome">
+                <option value="Firefox">
+                <option value="Safari">
+                <option value="Edge">
+                <option value="Opera">
+            </datalist>
+        </fieldset>
+
+        <!-- 输出结果 -->
+        <fieldset>
+            <legend>8. 输出元素 (output)</legend>
+            <label>计算结果:</label>
+            <output name="result" id="result">0</output>
+            <button type="button" onclick="document.getElementById('result').value = 5 + 3;">计算 5+3</button>
+        </fieldset>
+
+    </form>
+</div>
+
+</body>
+</html>

@@ -12,32 +12,31 @@ export function useFormEvents<T>(emit: FormComponentEmits<T>) {
         /**
          * 处理 input 事件（值变化 + emit）
          */
-        handleInput(event: InputEvent | Event, parse: (e: InputEvent | Event) => T) {
-            const value = parse(event)
-            emit('update:modelValue', value as T)
-            emit('input', value, event)
+        handleInput(value: T) {
+            emit('update:modelValue', value)
+            emit('input', value)
         },
 
         /**
          * 处理 change 事件
          */
-        handleChange(event: Event, parse: (e: Event) => T) {
-            const value = parse(event)
-            emit('change', value as T)
+        handleChange(value: T) {
+            emit('update:modelValue', value)
+            emit('change', value)
         },
 
         /**
          * 处理 focus
          */
-        handleFocus(event: FocusEvent) {
-            emit('focus', event)
+        handleFocus() {
+            emit('focus')
         },
 
         /**
          * 处理 blur
          */
-        handleBlur(event: FocusEvent) {
-            emit('blur', event)
+        handleBlur() {
+            emit('blur')
         },
 
         /**
