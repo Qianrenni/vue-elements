@@ -1,8 +1,7 @@
 <!-- Message.vue -->
 <script setup lang="ts">
 import { MessageType } from "@/types";
-import { onMounted, onUnmounted, ref } from "vue";
-import Icon from "@/components/basic/Icon.vue";
+import { onMounted, ref } from "vue";
 
 defineOptions({
   name: 'Message',

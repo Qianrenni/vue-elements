@@ -25,7 +25,7 @@
             v-if="page !== '...'"
             :class="page === currentPage ? 'button-primary' : 'button-outline'"
             class="pagination-item radius-third-rem padding-24rem mouse-cursor"
-            @click="goToPage(page)"
+            @click="goToPage(<number>page)"
         >
           {{ page }}
         </div>
