@@ -2,23 +2,23 @@
 <template>
   <div
       ref="containerRef"
-      class="virtual-list-container"
-      @scroll="handleScroll"
       :style="{ height: containerHeight + 'px' }"
+      class="virtual-list-container scroll-container"
+      @scroll="handleScroll"
   >
     <!-- 占位元素：撑起滚动条总高度 -->
-    <div class="virtual-list-phantom" :style="{ height: totalHeight + 'px' }"></div>
+    <div :style="{ height: totalHeight + 'px' }" class="virtual-list-phantom"></div>
 
     <!-- 可视区域内容（通过 translateY 定位） -->
-    <div class="virtual-list-content" :style="{ transform: `translateY(${offset}px)` }">
+    <div :style="{ transform: `translateY(${offset}px)` }" class="virtual-list-content">
       <div
           v-for="item in visibleItems"
           :key="item.key"
-          class="virtual-list-item"
           :style="{ height: itemSize + 'px', lineHeight: itemSize + 'px' }"
+          class="virtual-list-item"
       >
         <!-- 插槽：允许自定义内容 -->
-        <slot :item="item.data" :index="item.key">
+        <slot :index="item.key" :item="item.data">
           {{ item.data }}
         </slot>
       </div>
@@ -26,16 +26,16 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+<script lang="ts" setup>
+import {computed, onMounted, ref, watch} from 'vue'
 
 // ========== Props 定义 ==========
+
 const props = defineProps<{
-  data: Array<any>,
+  data: any[],
   itemSize: number,
   containerHeight: number
-}>()
-
+}>();
 // ========== 响应式状态 ==========
 const containerRef = ref(null)
 const scrollTop = ref(0) // 当前滚动位置
@@ -70,7 +70,7 @@ const visibleItems = computed(() => {
   for (let i = startIdx.value; i < endIdx.value; i++) {
     items.push({
       key: i,
-      props.data[i]
+      data: props.data[i]
     })
   }
   return items
@@ -99,7 +99,6 @@ watch(
 
 <style scoped>
 .virtual-list-container {
-  overflow-y: auto;
   position: relative;
   border: 1px solid #ddd;
   outline: none;

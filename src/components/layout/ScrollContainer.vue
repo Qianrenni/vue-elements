@@ -17,24 +17,25 @@ const props = withDefaults(defineProps<{
   emitInterval: 300
 })
 const emit = defineEmits<{
-  (e: 'ended'): void
+  (e: 'ended'): void,
+  (e: 'scroll', scroll: { x: number, y: number }): void
 }>()
 const refScrollContainer = useTemplateRef<HTMLElement>('scroll-container');
 let height = 0
 let width = 0
-const emitEnded = useThrottle(() => emit('ended'), props.emitInterval);
-const addScrolHandler = () => {
+const addScrolHandler = useThrottle(() => {
   const scroll = {
     x: refScrollContainer.value?.scrollLeft ?? 0,
     y: refScrollContainer.value?.scrollTop ?? 0
   }
   if (props.scollY && refScrollContainer.value && scroll.y + height >= (refScrollContainer.value.scrollHeight - props.threshold)) {
-    emitEnded();
+    emit('ended')
   }
   if (props.scollX && refScrollContainer.value && scroll.x + width >= (refScrollContainer.value.scrollWidth - props.threshold)) {
-    emitEnded();
+    emit('ended')
   }
-}
+  emit('scroll', scroll)
+}, props.emitInterval);
 onMounted(() => {
   nextTick(
       () => {

@@ -15,7 +15,7 @@
         }"
         :icon="indicatorPosition === 'center-bottom'?'Left':'Up'"
         class="opacity-2-9 carousel-indicators"
-        style="z-index: 1"
+        style="z-index: 1000"
         @click="prev"
     />
     <icon
@@ -26,7 +26,7 @@
         }"
         :icon="indicatorPosition === 'center-bottom'?'Right':'Down'"
         class="opacity-2-9 carousel-indicators"
-        style="z-index: 1"
+        style="z-index: 1000"
         @click="next"
     />
     <div
@@ -134,7 +134,7 @@ const items = computed(() => {
 const itemsCount = computed(() => items.value?.length as number ?? 0)
 
 //总轮播项数量
-const totalItemsCount = computed(() => items.value?.length as number +2) // 前后各加一个复制项
+const totalItemsCount = computed(() => items.value?.length as number + 2) // 前后各加一个复制项
 
 // 当前索引
 const currentIndex = ref(1)
