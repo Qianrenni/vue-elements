@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CSS 渐变完整用法演示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #2c3e50;
+            color: white;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section h2 {
+            padding: 1rem;
+            background: #3498db;
+            color: white;
+            margin: 0;
+        }
+
+        .demo {
+            padding: 2rem;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+        }
+
+        pre {
+            margin: 1rem;
+            padding: 1rem;
+            background: #333;
+            color: #f8f8f8;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+
+        /* 线性渐变示例 */
+        .linear-1 { background: linear-gradient(to right, red, blue); }
+        .linear-2 { background: linear-gradient(45deg, yellow, green, blue); }
+        .linear-3 { background: linear-gradient(to bottom, red 0%, orange 20%, yellow 40%, green 60%, blue 80%, indigo 90%, violet 100%); }
+        .linear-4 { background: linear-gradient(transparent, rgba(0,0,0,0.8)), url('https://picsum.photos/800/400'); background-size: cover; }
+
+        /* 径向渐变 */
+        .radial-1 { background: radial-gradient(circle, #ff6b6b, #c4456d); }
+        .radial-2 { background: radial-gradient(ellipse at top left, #a8edea, #fed6e3); }
+        .radial-3 { background: radial-gradient(closest-side, #fff , #000 ); }
+
+        /* 锥形渐变 */
+        .conic-1 { background: conic-gradient(red, yellow, lime, teal, blue, magenta, red); }
+        .conic-2 { background: conic-gradient(from 0deg at 50% 50%, hsl(0,100%,50%), hsl(60,100%,50%), hsl(120,100%,50%), hsl(180,100%,50%), hsl(240,100%,50%), hsl(300,100%,50%), hsl(0,100%,50%)); }
+
+        /* 重复渐变 */
+        .repeating-1 {
+            background: repeating-linear-gradient(
+                    45deg,
+                    #60a5fa,
+                    #60a5fa 10px,
+                    #3b82f6 10px,
+                    #3b82f6 20px
+            );
+        }
+
+        .repeating-2 {
+            background: repeating-radial-gradient(
+                    circle at 20px 20px,
+                    #ff6b6b,
+                    #ff6b6b 5px,
+                    #ff8e8e 5px,
+                    #ff8e8e 10px
+            );
+        }
+
+        /* 动画渐变 */
+        .animated-gradient {
+            background: linear-gradient(90deg, #ff8a00, #e52e71, #3498db, #2ecc71, #ff8a00);
+            background-size: 400% 100%;
+            animation: slideGradient 8s ease infinite;
+        }
+
+        @keyframes slideGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #2c3e50;
+            color: white;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🎨 CSS 渐变完整用法演示</h1>
+    <p>线性、径向、锥形、重复渐变 + 调色技巧 + 动画</p>
+</header>
+
+<main>
+
+    <!-- 线性渐变 -->
+    <div class="section">
+        <h2>1. 线性渐变（Linear Gradient）</h2>
+        <div class="demo linear-1">to right: red → blue</div>
+        <pre>background: linear-gradient(to right, red, blue);</pre>
+
+        <div class="demo linear-2">45deg: yellow → green → blue</div>
+        <pre>background: linear-gradient(45deg, yellow, green, blue);</pre>
+
+        <div class="demo linear-3">彩虹色谱（指定位置）</div>
+        <pre>background: linear-gradient(to bottom, red 0%, orange 20%, yellow 40%, green 60%, blue 80%, indigo 90%, violet 100%);</pre>
+
+        <div class="demo linear-4">渐变叠加图片（遮罩效果）</div>
+        <pre>background: linear-gradient(transparent, rgba(0,0,0,0.8)), url('...');<br>background-size: cover;</pre>
+    </div>
+
+    <!-- 径向渐变 -->
+    <div class="section">
+        <h2>2. 径向渐变（Radial Gradient）</h2>
+        <div class="demo radial-1">圆形：红粉渐变</div>
+        <pre>background: radial-gradient(circle, #ff6b6b, #c4456d);</pre>
+
+        <div class="demo radial-2">椭圆：左上角开始</div>
+        <pre>background: radial-gradient(ellipse at top left, #a8edea, #fed6e3);</pre>
+
+        <div class="demo radial-3">大小控制：closest-side</div>
+        <pre>background: radial-gradient(closest-side, #fff, #000);</pre>
+    </div>
+
+    <!-- 锥形渐变 -->
+    <div class="section">
+        <h2>3. 锥形渐变（Conic Gradient）</h2>
+        <div class="demo conic-1">彩色环（色相过渡）</div>
+        <pre>background: conic-gradient(red, yellow, lime, teal, blue, magenta, red);</pre>
+
+        <div class="demo conic-2">HSL 色相循环</div>
+        <pre>background: conic-gradient(from 0deg at 50% 50%, hsl(0,100%,50%), hsl(60,100%,50%), ..., hsl(300,100%,50%));</pre>
+    </div>
+
+    <!-- 重复渐变 -->
+    <div class="section">
+        <h2>4. 重复渐变（Repeating Gradients）</h2>
+        <div class="demo repeating-1">45° 条纹</div>
+        <pre>repeating-linear-gradient(45deg, #60a5fa, #60a5fa 10px, #3b82f6 10px, #3b82f6 20px)</pre>
+
+        <div class="demo repeating-2"
+        >同心圆点阵</div>
+        <pre>repeating-radial-gradient(circle at 20px 20px, #ff6b6b 0px, #ff6b6b 5px, #ff8e8e 5px, #ff8e8e 10px)</pre>
+    </div>
+
+    <!-- 动画渐变 -->
+    <div class="section">
+        <h2>5. 渐变动效</h2>
+        <div class="demo animated-gradient">流动渐变背景</div>
+        <pre>@keyframes slideGradient {<br>  0% { background-position: 0% 50%; }<br>  50% { background-position: 100% 50%; }<br>  100% { background-position: 0% 50%; }<br>}<br><br>background-size: 400% 100%;<br>animation: slideGradient 8s ease infinite;</pre>
+    </div>
+
+</main>
+
+<footer>
+    <p>✅ 支持现代浏览器（Chrome、Edge、Firefox、Safari）<br>
+        ⚠️ 锥形渐变在旧版浏览器中可能不支持</p>
+    <p>学习 CSS 渐变，打造绚丽 UI！</p>
+</footer>
+
+</body>
+</html>
