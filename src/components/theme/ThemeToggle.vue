@@ -12,7 +12,7 @@ defineOptions({
   name: 'ThemeToggle'
 })
 defineProps<{
-  size: string | number
+  size?: string | number
 }>()
 // 响应式状态：是否为暗黑模式
 const isDarkMode = ref<boolean>(false)

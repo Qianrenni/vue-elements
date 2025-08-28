@@ -265,57 +265,15 @@ body.dark-mode .button-primary {
     -ms-overflow-y: auto;
     -ms-overflow-style: auto;
 }
-
-/*.scroll-container:hover {*/
-/*    overflow-y: auto;*/
-/*    overflow-x: auto;*/
-/*    -ms-overflow-x: auto;*/
-/*    -ms-overflow-style: auto;*/
-/*}*/
-
-
-/* 水平滚动 */
-.scroll-container.scroll-x {
-    /*-ms-overflow-x: auto;*/
-    /*overflow-x: auto;*/
-    overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) var(--background-color);
-    -ms-scrollbar-color: var(--primary-color) var(--background-color);
-    -ms-scrollbar-width: thin;
-    -ms-overflow-style: auto;
-}
-
-/* 垂直滚动 */
-.scroll-container.scroll-y {
-    /*-ms-overflow-y: auto;*/
-    /*overflow-y: auto;*/
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) var(--background-color);
-    -ms-scrollbar-color: var(--primary-color) var(--background-color);
-    -ms-scrollbar-width: thin;
-    -ms-overflow-style: auto;
-}
-
-/* 滚动条滑块样式 (webkit 浏览器) */
-.scroll-container::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
-
-    border-radius: 8px;
-}
-
-/* 滚动条轨道样式 */
-.scroll-container::-webkit-scrollbar-track {
-    border-radius: 8px;
-}
-
 /* 滚动条整体样式 */
 .scroll-container::-webkit-scrollbar {
     width: 8px;
     height: 8px;
+   background-color: var(--background-color);
 }
-
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color:var(--primary-color);
+}
 /* 图片类 */
 .img-cover {
     object-fit: cover;
