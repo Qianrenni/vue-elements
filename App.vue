@@ -11,9 +11,9 @@
           @ended="add">
         <LazyImage
             v-for="item in photos"
-            :height="100"
+            :height="200"
             :src="item"
-            :width="100"
+            :width="200"
         />
       </ScrollContainer>
     </div>
@@ -28,9 +28,9 @@ import LazyImage from "@/components/display/LazyImage.vue";
 import {useFollowSystemTheme} from "@/utils/useFollowSystemTheme";
 
 useFollowSystemTheme();
-const photos = ref(Array.from({length: 100}, (_, i) => `https://picsum.photos/100/100?random=${i}`))
+const photos = ref(Array.from({length: 100}, (_, i) => `https://picsum.photos/200/200?random=${i}`))
 const add = useThrottle(() => {
-  photos.value.push(...Array.from({length: 10}, (_, i) => `https://picsum.photos/100/100?random=${i}`))
+  photos.value.push(...Array.from({length: 10}, (_, i) => `https://picsum.photos/200/200?random=${i}`))
 }, 100);
 </script>
 <style lang="css" scoped>

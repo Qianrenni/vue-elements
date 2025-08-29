@@ -7,13 +7,14 @@ import type {
 	QBadge,
 	QCarousel,
 	QCarouselItem,
-	QDemoBlock,
 	QDivider,
+	QLazyImage,
 	QMarkdownRender,
 	QMobileFrame,
 	QProgressBar,
 	QRainFigure,
 	QScrollNotice,
+	QVirtualList,
 	QFormButton,
 	QFormCheckboxGroup,
 	QFormColorPicker,
@@ -54,13 +55,14 @@ declare module 'vue' {
 		QBadge: typeof QBadge
 		QCarousel: typeof QCarousel
 		QCarouselItem: typeof QCarouselItem
-		QDemoBlock: typeof QDemoBlock
 		QDivider: typeof QDivider
+		QLazyImage: typeof QLazyImage
 		QMarkdownRender: typeof QMarkdownRender
 		QMobileFrame: typeof QMobileFrame
 		QProgressBar: typeof QProgressBar
 		QRainFigure: typeof QRainFigure
 		QScrollNotice: typeof QScrollNotice
+		QVirtualList: typeof QVirtualList
 		QFormButton: typeof QFormButton
 		QFormCheckboxGroup: typeof QFormCheckboxGroup
 		QFormColorPicker: typeof QFormColorPicker
