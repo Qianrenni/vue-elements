@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, onMounted, ref, watch} from 'vue'
+import {computed, onMounted, ref, useTemplateRef, watch} from 'vue'
 
 // ========== Props 定义 ==========
 
@@ -37,7 +37,7 @@ const props = defineProps<{
   containerHeight: number
 }>();
 // ========== 响应式状态 ==========
-const containerRef = ref(null)
+const containerRef = useTemplateRef<HTMLElement>('containerRef');
 const scrollTop = ref(0) // 当前滚动位置
 
 // ========== 计算属性 ==========
@@ -78,13 +78,13 @@ const visibleItems = computed(() => {
 
 // ========== 事件处理 ==========
 const handleScroll = () => {
-  scrollTop.value = containerRef.value.scrollTop
+  scrollTop.value = containerRef.value?.scrollTop || 0
 }
 
 // ========== 生命周期 ==========
 onMounted(() => {
   // 初始化滚动位置
-  scrollTop.value = containerRef.value.scrollTop || 0
+  scrollTop.value = containerRef.value?.scrollTop || 0
 })
 
 // 数据变化时，不需要特别处理，computed 会自动更新

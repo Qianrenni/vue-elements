@@ -23,19 +23,30 @@ const emit = defineEmits<{
 const refScrollContainer = useTemplateRef<HTMLElement>('scroll-container');
 let height = 0
 let width = 0
+let lastY = -1;
+let lastX = -1;
 const addScrolHandler = useThrottle(() => {
   const scroll = {
     x: refScrollContainer.value?.scrollLeft ?? 0,
     y: refScrollContainer.value?.scrollTop ?? 0
   }
-  if (props.scollY && refScrollContainer.value && scroll.y + height >= (refScrollContainer.value.scrollHeight - props.threshold)) {
+  if (props.scollY
+      && refScrollContainer.value
+      && scroll.y > lastY
+      && scroll.y + height >= (refScrollContainer.value.scrollHeight - props.threshold)
+  ) {
     emit('ended')
   }
-  if (props.scollX && refScrollContainer.value && scroll.x + width >= (refScrollContainer.value.scrollWidth - props.threshold)) {
+  if (props.scollX
+      && refScrollContainer.value
+      && scroll.x > lastX
+      && scroll.x + width >= (refScrollContainer.value.scrollWidth - props.threshold)) {
     emit('ended')
   }
   emit('scroll', scroll)
-}, props.emitInterval);
+  lastY = scroll.y
+  lastX = scroll.x
+});
 onMounted(() => {
   nextTick(
       () => {
