@@ -47,8 +47,8 @@ const addScrolHandler = useThrottle(() => {
   lastY = scroll.y
   lastX = scroll.x
 });
-onMounted(() => {
-  nextTick(
+onMounted(async () => {
+  await nextTick(
       () => {
         height = refScrollContainer.value?.offsetHeight ?? 0
         width = refScrollContainer.value?.offsetWidth ?? 0

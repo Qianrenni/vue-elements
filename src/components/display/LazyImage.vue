@@ -8,6 +8,10 @@
     <!-- 骨架屏占位 -->
     <div v-if="!loaded" class="lazy-image-skeleton"></div>
 
+    <!-- 加载失败提示 -->
+    <div v-else-if="loadError" class="lazy-image-error">
+      <span>加载失败</span>
+    </div>
     <!-- 实际图片 -->
     <img
         v-if="shouldRenderImage"
@@ -56,14 +60,17 @@ const imgRef = useTemplateRef<HTMLImageElement>('imgRef')
 // 状态
 const loaded = ref(false)
 const shouldRenderImage = ref(false) // 控制是否渲染 img 标签（懒加载）
+const loadError = ref(false) // 新增：标记是否加载失败
 
 // 事件处理
 const handleImageLoad = () => {
   loaded.value = true
+  loadError.value = false;
 }
 
 const handleImageError = () => {
-  loaded.value = true
+  loaded.value = true;
+  loadError.value = true;
   console.warn(`Image failed to load: ${props.src}`)
 }
 
@@ -129,6 +136,19 @@ onUnmounted(() => {
   100% {
     background-position: -200% 0;
   }
+}
+
+/* 加载失败提示 */
+.lazy-image-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--card-bg);
+  font-size: 0.8rem;
+  text-align: center;
+  border: 1px dashed var(--border-color);
 }
 
 /* 图片样式 */

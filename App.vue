@@ -11,9 +11,9 @@
           @ended="add">
         <LazyImage
             v-for="item in photos"
-            :height="200"
+            :height="100"
             :src="item"
-            :width="200"
+            :width="100"
         />
       </ScrollContainer>
     </div>
