@@ -2,10 +2,14 @@ import {MessageOptions, MessageType} from "@/types";
 import {createVNode, render, VNode} from "vue";
 import Message from "@/components/basic/Message.vue";
 
-
+// 创建实例数组
 const instances: { vnode: VNode; timer: ReturnType<typeof setTimeout> | null }[] = [];
 
 export const useMessage = {
+
+    /*
+     * @param options: string 消息内容 | MessageOptions 配置项
+     */
     show(options: string | MessageOptions) {
         const opts = typeof options === "string"
             ? {message: options, type: "info" as MessageType}
@@ -78,20 +82,32 @@ export const useMessage = {
             close: closeMessage
         };
     },
-
+    /*
+     * @param msg: string 消息内容 | MessageOptions 消息配置项
+     */
     info(msg: string | MessageOptions) {
         return this.show({...(typeof msg === "string" ? {message: msg} : msg), type: "info"});
     },
+    /*
+     * @param msg: string 消息内容 | MessageOptions 消息配置项
+     */
     success(msg: string | MessageOptions) {
         return this.show({...(typeof msg === "string" ? {message: msg} : msg), type: "success"});
     },
+    /*
+     * @param msg: string 消息内容 | MessageOptions 消息配置项
+     */
     warning(msg: string | MessageOptions) {
         return this.show({...(typeof msg === "string" ? {message: msg} : msg), type: "warning"});
     },
+    /*
+     * @param msg: string 消息内容 | MessageOptions 消息配置项
+     */
     error(msg: string | MessageOptions) {
         return this.show({...(typeof msg === "string" ? {message: msg} : msg), type: "error"});
     },
 
+    // 关闭所有消息
     closeAll() {
         [...instances].forEach(inst => {
             if (inst.timer) clearTimeout(inst.timer);
