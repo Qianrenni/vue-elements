@@ -22,7 +22,7 @@ export class AVLNode<T> {
  *
  * @template T 树中元素类型
  */
-export class AVLTree<T> {
+export class UseAVLTree<T> {
     private POOL_SIZE: number;
     // 节点池，用于复用节点
     private nodePool: AVLNode<T>[] = [];
