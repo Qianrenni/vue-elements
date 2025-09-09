@@ -201,14 +201,12 @@ export class UseAVLTree<T> {
      * @param node 节点
      */
     private releaseNode(node: AVLNode<T>): void {
+        // 清理引用，帮助 GC
+        node.left = null;
+        node.right = null;
+        node.value = undefined as unknown as T; // 清除业务数据引用
         if (this.nodePool.length < this.POOL_SIZE) {
             this.nodePool.push(node);
-        } else {
-            // 清理引用，帮助 GC
-            node.left = null;
-            node.right = null;
-            node.value = undefined as unknown as T; // 清除业务数据引用
-
         }
     }
 
