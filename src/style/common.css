@@ -20,7 +20,7 @@
     --color-white: #ffffff;
     --color-black: #000000;
     --color-inverse: #111;
-    --background-color: #fdfbfb;
+    --background-color: #f8f9fa;
     --secondary-background-color: #E8E8E8;
     --text-color: #333;
     --text-description: #565656;
@@ -265,15 +265,18 @@ body.dark-mode .button-primary {
     -ms-overflow-y: auto;
     -ms-overflow-style: auto;
 }
+
 /* 滚动条整体样式 */
 .scroll-container::-webkit-scrollbar {
     width: 8px;
     height: 8px;
-   background-color: var(--background-color);
+    background-color: var(--background-color);
 }
+
 .scroll-container::-webkit-scrollbar-thumb {
-    background-color:var(--primary-color);
+    background-color: var(--primary-color);
 }
+
 /* 图片类 */
 .img-cover {
     object-fit: cover;
@@ -827,5 +830,15 @@ input:-webkit-autofill:active {
 
     .container-768-row-column {
         flex-direction: column;
+    }
+}
+
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
     }
 }

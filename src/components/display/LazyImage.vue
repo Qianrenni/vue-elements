@@ -129,15 +129,6 @@ onUnmounted(() => {
   animation: shimmer 1.5s infinite linear;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
 /* 加载失败提示 */
 .lazy-image-error {
   display: flex;
