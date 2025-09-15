@@ -42,6 +42,10 @@ import {default as QDrawer} from './components/layout/Drawer.vue';
 import {default as QScrollContainer} from './components/layout/ScrollContainer.vue';
 import {default as QTree} from './components/layout/Tree.vue';
 import {default as QTreeNode} from './components/layout/TreeNode.vue';
+import {default as QLoading} from './components/loading/Loading.vue';
+import {default as QBreathing} from './components/loading/animations/Breathing.vue';
+import {default as QSkeleton} from './components/loading/animations/Skeleton.vue';
+import {default as QSpinner} from './components/loading/animations/Spinner.vue';
 import {default as QNavSection} from './components/navigation/NavSection.vue';
 import {default as QTab} from './components/navigation/Tab.vue';
 import {default as QConditionSelect} from './components/Sql/ConditionSelect.vue';
@@ -87,6 +91,10 @@ export default {
 		app.component('QScrollContainer',QScrollContainer);
 		app.component('QTree',QTree);
 		app.component('QTreeNode',QTreeNode);
+		app.component('QLoading',QLoading);
+		app.component('QBreathing',QBreathing);
+		app.component('QSkeleton',QSkeleton);
+		app.component('QSpinner',QSpinner);
 		app.component('QNavSection',QNavSection);
 		app.component('QTab',QTab);
 		app.component('QConditionSelect',QConditionSelect);
@@ -134,6 +142,10 @@ export {
 		QScrollContainer,
 		QTree,
 		QTreeNode,
+		QLoading,
+		QBreathing,
+		QSkeleton,
+		QSpinner,
 		QNavSection,
 		QTab,
 		QConditionSelect,

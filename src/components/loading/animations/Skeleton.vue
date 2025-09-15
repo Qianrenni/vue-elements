@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-
+defineOptions({
+  name: 'Skeleton'
+})
 </script>
 
 <template>

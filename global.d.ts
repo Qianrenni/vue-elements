@@ -39,6 +39,10 @@ import type {
 	QScrollContainer,
 	QTree,
 	QTreeNode,
+	QLoading,
+	QBreathing,
+	QSkeleton,
+	QSpinner,
 	QNavSection,
 	QTab,
 	QConditionSelect,
@@ -87,6 +91,10 @@ declare module 'vue' {
 		QScrollContainer: typeof QScrollContainer
 		QTree: typeof QTree
 		QTreeNode: typeof QTreeNode
+		QLoading: typeof QLoading
+		QBreathing: typeof QBreathing
+		QSkeleton: typeof QSkeleton
+		QSpinner: typeof QSpinner
 		QNavSection: typeof QNavSection
 		QTab: typeof QTab
 		QConditionSelect: typeof QConditionSelect

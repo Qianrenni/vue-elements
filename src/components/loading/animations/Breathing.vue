@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-
+defineOptions({
+  name: 'Breathing'
+})
 </script>
 
 <template>
