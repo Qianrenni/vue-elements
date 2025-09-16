@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<{
 
 <template>
   <div class="pop-container">
-    <slot name="default"/>
+    <slot/>
     <div :class="[
                {
                 'hover-show':hoverShow,
@@ -41,6 +41,8 @@ const props = withDefaults(defineProps<{
   display: block;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+  z-index: var(--z-index-level-3);
 }
 
 .pop-container:hover .pop-content.hover-show {
