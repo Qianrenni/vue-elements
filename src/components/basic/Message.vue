@@ -1,7 +1,7 @@
 <!-- Message.vue -->
-<script setup lang="ts">
-import { MessageType } from "@/types";
-import { onMounted, ref } from "vue";
+<script lang="ts" setup>
+import {MessageType} from "@/types";
+import {onMounted, ref} from "vue";
 
 defineOptions({
   name: 'Message',
@@ -32,13 +32,13 @@ onMounted(() => {
 
 <template>
   <div
-      class="mouse-cursor message-container container-center container-align-center radius-half-rem padding-24rem shadow-black animate-slide-in"
       :class="[{
       'text-success': type === 'success',
       'text-danger': type === 'error',
       'text-warning': type === 'warning',
       'text-gray': type === 'info',
     }]"
+      class="mouse-cursor message-container container-center container-align-center radius-half-rem padding-24rem shadow-black animate-slide-in"
       @click="onClose?.()"
   >
     <p>{{ message }}</p>
@@ -49,18 +49,20 @@ onMounted(() => {
 <style scoped>
 .message-container {
   position: relative;
-  z-index: 9999;
+  z-index: var(--z-index-level-3);
   min-height: 100px;
   min-width: 200px;
   max-width: 600px;
   /* 启用过渡 */
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.message-close{
+
+.message-close {
   position: absolute;
   top: 0.25rem;
   right: 0.25rem;
 }
+
 /* 动画：从上滑入 */
 .animate-slide-in {
   animation: slideInDown 0.3s ease forwards;

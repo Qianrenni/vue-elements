@@ -265,7 +265,7 @@ defineExpose({
   border-radius: 8px;
   box-shadow: 0 2px 10px var(--box-shadow);
   transition: all 0.3s ease;
-  z-index: 1000;
+  z-index: var(--z-index-level-2);
   max-width: 300px;
   max-height: 60vh;
   overflow: hidden;

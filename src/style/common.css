@@ -66,6 +66,10 @@
     /* 🔗 链接样式 */
     --link-color: var(--primary-color);
     --link-hover: #6677ef; /* 和主色协调的悬停色 */
+
+    --z-index-level-1: 1;
+    --z-index-level-2: 1000;
+    --z-index-level-3: 9999;
 }
 
 /* 🌑 暗黑模式样式 */

@@ -427,7 +427,7 @@ const onToggleAllSelection = (e: Event) => {
   position: sticky;
 
   top: 0;
-  z-index: 1;
+  z-index: var(--z-index-level-1);
 }
 
 .form-table th:last-child {

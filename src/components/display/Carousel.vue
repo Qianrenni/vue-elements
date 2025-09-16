@@ -306,7 +306,7 @@ defineExpose({
   position: absolute;
   display: flex;
   gap: 6px;
-  z-index: 1000;
+  z-index: var(--z-index-level-2);
 }
 
 .carousel-indicators.center-bottom {
