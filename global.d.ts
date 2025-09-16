@@ -14,6 +14,7 @@ import type {
 	QProgressBar,
 	QRainFigure,
 	QScrollNotice,
+	QVideoPlayer,
 	QVirtualList,
 	QFormButton,
 	QFormCheckboxGroup,
@@ -36,6 +37,7 @@ import type {
 	QCollapsibleSection,
 	QDialog,
 	QDrawer,
+	QPopContainer,
 	QScrollContainer,
 	QTree,
 	QTreeNode,
@@ -66,6 +68,7 @@ declare module 'vue' {
 		QProgressBar: typeof QProgressBar
 		QRainFigure: typeof QRainFigure
 		QScrollNotice: typeof QScrollNotice
+		QVideoPlayer: typeof QVideoPlayer
 		QVirtualList: typeof QVirtualList
 		QFormButton: typeof QFormButton
 		QFormCheckboxGroup: typeof QFormCheckboxGroup
@@ -88,6 +91,7 @@ declare module 'vue' {
 		QCollapsibleSection: typeof QCollapsibleSection
 		QDialog: typeof QDialog
 		QDrawer: typeof QDrawer
+		QPopContainer: typeof QPopContainer
 		QScrollContainer: typeof QScrollContainer
 		QTree: typeof QTree
 		QTreeNode: typeof QTreeNode

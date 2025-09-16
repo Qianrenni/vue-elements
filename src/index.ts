@@ -17,6 +17,7 @@ import {default as QMobileFrame} from './components/display/MobileFrame.vue';
 import {default as QProgressBar} from './components/display/ProgressBar.vue';
 import {default as QRainFigure} from './components/display/RainFigure.vue';
 import {default as QScrollNotice} from './components/display/ScrollNotice.vue';
+import {default as QVideoPlayer} from './components/display/VideoPlayer.vue';
 import {default as QVirtualList} from './components/display/VirtualList.vue';
 import {default as QFormButton} from './components/form/FormButton.vue';
 import {default as QFormCheckboxGroup} from './components/form/FormCheckboxGroup.vue';
@@ -39,6 +40,7 @@ import {default as QCollapseItem} from './components/layout/CollapseItem.vue';
 import {default as QCollapsibleSection} from './components/layout/CollapsibleSection.vue';
 import {default as QDialog} from './components/layout/Dialog.vue';
 import {default as QDrawer} from './components/layout/Drawer.vue';
+import {default as QPopContainer} from './components/layout/PopContainer.vue';
 import {default as QScrollContainer} from './components/layout/ScrollContainer.vue';
 import {default as QTree} from './components/layout/Tree.vue';
 import {default as QTreeNode} from './components/layout/TreeNode.vue';
@@ -66,6 +68,7 @@ export default {
 		app.component('QProgressBar',QProgressBar);
 		app.component('QRainFigure',QRainFigure);
 		app.component('QScrollNotice',QScrollNotice);
+		app.component('QVideoPlayer',QVideoPlayer);
 		app.component('QVirtualList',QVirtualList);
 		app.component('QFormButton',QFormButton);
 		app.component('QFormCheckboxGroup',QFormCheckboxGroup);
@@ -88,6 +91,7 @@ export default {
 		app.component('QCollapsibleSection',QCollapsibleSection);
 		app.component('QDialog',QDialog);
 		app.component('QDrawer',QDrawer);
+		app.component('QPopContainer',QPopContainer);
 		app.component('QScrollContainer',QScrollContainer);
 		app.component('QTree',QTree);
 		app.component('QTreeNode',QTreeNode);
@@ -117,6 +121,7 @@ export {
 		QProgressBar,
 		QRainFigure,
 		QScrollNotice,
+		QVideoPlayer,
 		QVirtualList,
 		QFormButton,
 		QFormCheckboxGroup,
@@ -139,6 +144,7 @@ export {
 		QCollapsibleSection,
 		QDialog,
 		QDrawer,
+		QPopContainer,
 		QScrollContainer,
 		QTree,
 		QTreeNode,
