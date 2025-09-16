@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {nextTick, onBeforeUnmount, onMounted, useTemplateRef} from "vue";
+import {onBeforeUnmount, onMounted, useTemplateRef} from "vue";
 import {useThrottle} from "@/utils";
 
 defineOptions({
@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<{
   scollX: false,
   scollY: false,
   threshold: 20,
-  emitInterval: 300
+  emitInterval: 16
 })
 const emit = defineEmits<{
   (e: 'ended'): void,
@@ -47,17 +47,16 @@ const addScrolHandler = useThrottle(() => {
   lastY = scroll.y
   lastX = scroll.x
 });
-onMounted(async () => {
-  await nextTick(
-      () => {
-        height = refScrollContainer.value?.offsetHeight ?? 0
-        width = refScrollContainer.value?.offsetWidth ?? 0
-        if (props.scollX || props.scollY) {
-          refScrollContainer.value?.addEventListener('scroll', addScrolHandler);
-        }
-
-      }
-  )
+onMounted(() => {
+  if (refScrollContainer.value) {
+    height = refScrollContainer.value?.offsetHeight ?? 0
+    width = refScrollContainer.value?.offsetWidth ?? 0
+    if (props.scollX || props.scollY) {
+      refScrollContainer.value?.addEventListener('scroll', addScrolHandler);
+    }
+  } else {
+    console.error('scroll-container ref is null')
+  }
 
 });
 onBeforeUnmount(() => {

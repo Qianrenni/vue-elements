@@ -87,7 +87,7 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, onBeforeUnmount, onMounted, ref, useSlots, useTemplateRef} from 'vue'
+import {computed, onBeforeUnmount, onMounted, ref, useSlots, useTemplateRef, watch} from 'vue'
 import Icon from "@/components/basic/Icon.vue";
 
 defineOptions({
@@ -114,6 +114,11 @@ const props = withDefaults(defineProps<{
   direction: 'next',
   showButton: true
 })
+
+// defineEmits
+const emit = defineEmits<{
+  (e: 'change', index: number): void
+}>()
 //使用插槽
 const slots = useSlots()
 
@@ -152,7 +157,8 @@ const realIndex = computed(() => {
 const carousel = useTemplateRef<HTMLElement>('carousel')
 //计时器Id
 let intervalId: ReturnType<typeof setInterval> | null = null
-
+// isAnimation
+let isAnimation = false;
 // 计算 transform 样式
 const transformStyle = computed(() => {
   const value = -currentIndex.value * (props.vertical ? props.height : props.width)
@@ -169,39 +175,48 @@ const transition = computed(() => {
 
 // 上一页
 function prev() {
+  if (isAnimation) {
+    return
+  }
+  isAnimation = true;
   if (currentIndex.value <= 0) {
     // 切换到复制项，关闭动画
     useTransition.value = false
-    currentIndex.value = totalItemsCount.value as number - 2
+    currentIndex.value = totalItemsCount.value as number - 2;
 
     // 下一帧恢复动画
     requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            useTransition.value = true
-          })
+          useTransition.value = true;
+          setTimeout(prev, 0);
         }
     )
   } else {
-    currentIndex.value -= 1
+    currentIndex.value -= 1;
   }
+  isAnimation = false;
 }
 
 // 下一页
 function next() {
+  if (isAnimation) {
+    return
+  }
+  isAnimation = true;
   if (currentIndex.value >= (totalItemsCount.value as number - 1)) {
     // 切换到复制项，关闭动画
     useTransition.value = false
     currentIndex.value = 1
     // 下一帧恢复动画
     requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            useTransition.value = true
-          })
+          useTransition.value = true;
+          setTimeout(next, 0);
         }
     );
   } else {
     currentIndex.value += 1
   }
+
+  isAnimation = false;
 }
 
 // 跳转到指定页
@@ -249,7 +264,14 @@ onBeforeUnmount(() => {
 onMounted(async () => {
   startAutoplay()
   addHoverListeners()
-})
+});
+
+watch(
+    () => realIndex.value,
+    (newVal) => {
+      emit('change', newVal);
+    }
+)
 </script>
 
 <style scoped>
