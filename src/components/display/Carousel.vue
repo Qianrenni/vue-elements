@@ -15,7 +15,6 @@
         }"
         :icon="indicatorPosition === 'center-bottom'?'Left':'Up'"
         class="opacity-2-9 carousel-indicators"
-        style="z-index: 1000"
         @click="prev"
     />
     <icon
@@ -26,11 +25,10 @@
         }"
         :icon="indicatorPosition === 'center-bottom'?'Right':'Down'"
         class="opacity-2-9 carousel-indicators"
-        style="z-index: 1000"
         @click="next"
     />
     <div
-
+        ref="containerInner"
         :class="{
          'container-wrap': vertical,
         }"
@@ -103,7 +101,9 @@ const props = withDefaults(defineProps<{
   height: number
   interval?: number
   direction?: 'next' | 'prev'
-  showButton?: boolean
+  showButton?: boolean,
+  loop?: boolean,
+  touchMove?: boolean
 }>(), {
   vertical: false,
   autoplay: true,
@@ -112,7 +112,9 @@ const props = withDefaults(defineProps<{
   indicatorPosition: 'center-bottom',
   interval: 1500,
   direction: 'next',
-  showButton: true
+  showButton: true,
+  loop: true,
+  touchMove: false
 })
 
 // defineEmits
@@ -155,6 +157,8 @@ const realIndex = computed(() => {
 })
 //轮播容器引用
 const carousel = useTemplateRef<HTMLElement>('carousel')
+// 容器内部引用
+const containerInner = useTemplateRef<HTMLElement>('containerInner')
 //计时器Id
 let intervalId: ReturnType<typeof setInterval> | null = null
 // isAnimation
@@ -175,6 +179,9 @@ const transition = computed(() => {
 
 // 上一页
 function prev() {
+  if (!props.loop && (currentIndex.value <= 1)) {
+    return
+  }
   if (isAnimation) {
     return
   }
@@ -198,6 +205,9 @@ function prev() {
 
 // 下一页
 function next() {
+  if (!props.loop && (currentIndex.value >= (totalItemsCount.value as number - 2))) {
+    return
+  }
   if (isAnimation) {
     return
   }
@@ -219,7 +229,7 @@ function next() {
   isAnimation = false;
 }
 
-// 跳转到指定页
+// 跳转到指定页 index from 0 to items.length - 1
 function goTo(index: number) {
   currentIndex.value = index + 1;
 }
@@ -251,6 +261,9 @@ function addHoverListeners() {
   carouselEl.addEventListener('mouseleave', startAutoplay)
 }
 
+//触摸滚动
+
+
 // 销毁监听
 onBeforeUnmount(() => {
   stopAutoplay()
@@ -271,7 +284,12 @@ watch(
     (newVal) => {
       emit('change', newVal);
     }
-)
+);
+defineExpose({
+  prev,
+  next,
+  goTo
+})
 </script>
 
 <style scoped>
@@ -288,6 +306,7 @@ watch(
   position: absolute;
   display: flex;
   gap: 6px;
+  z-index: 1000;
 }
 
 .carousel-indicators.center-bottom {
