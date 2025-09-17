@@ -846,3 +846,38 @@ input:-webkit-autofill:active {
         background-position: -200% 0;
     }
 }
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card-header {
+    flex: 0 0 auto;
+}
+
+.card-body {
+    flex: 1 1 auto;
+}
+
+.card-footer {
+    flex: 0 0 auto;
+}
+
+.card-animation:hover {
+    /*修改转动点为中心*/
+    animation-name: up-down;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes up-down {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px) rotateY(270deg);
+    }
+    100% {
+        transform: translateY(0) rotateY(360deg);
+    }
+}
