@@ -61,10 +61,10 @@ const handleOverlayClick = () => {
           :class="[`drawer-${props.direction}`]"
           class="drawer-container " @click.stop
       >
-        <div class="drawer-header container-space-between">
+        <div v-if="title" class="drawer-header container-space-between">
           <div class="container-align-center">
             <slot name="header">
-              <span v-if="title" class="drawer-title"><strong>{{ title }}</strong></span>
+              <span  class="drawer-title"><strong>{{ title }}</strong></span>
             </slot>
           </div>
           <FormButton
