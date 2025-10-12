@@ -39,6 +39,7 @@ import type {
 	QDrawer,
 	QPopContainer,
 	QScrollContainer,
+	QSwiperAction,
 	QTree,
 	QTreeNode,
 	QLoading,
@@ -93,6 +94,7 @@ declare module 'vue' {
 		QDrawer: typeof QDrawer
 		QPopContainer: typeof QPopContainer
 		QScrollContainer: typeof QScrollContainer
+		QSwiperAction: typeof QSwiperAction
 		QTree: typeof QTree
 		QTreeNode: typeof QTreeNode
 		QLoading: typeof QLoading

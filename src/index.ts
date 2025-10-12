@@ -42,6 +42,7 @@ import {default as QDialog} from './components/layout/Dialog.vue';
 import {default as QDrawer} from './components/layout/Drawer.vue';
 import {default as QPopContainer} from './components/layout/PopContainer.vue';
 import {default as QScrollContainer} from './components/layout/ScrollContainer.vue';
+import {default as QSwiperAction} from './components/layout/SwiperAction.vue';
 import {default as QTree} from './components/layout/Tree.vue';
 import {default as QTreeNode} from './components/layout/TreeNode.vue';
 import {default as QLoading} from './components/loading/Loading.vue';
@@ -93,6 +94,7 @@ export default {
 		app.component('QDrawer',QDrawer);
 		app.component('QPopContainer',QPopContainer);
 		app.component('QScrollContainer',QScrollContainer);
+		app.component('QSwiperAction',QSwiperAction);
 		app.component('QTree',QTree);
 		app.component('QTreeNode',QTreeNode);
 		app.component('QLoading',QLoading);
@@ -146,6 +148,7 @@ export {
 		QDrawer,
 		QPopContainer,
 		QScrollContainer,
+		QSwiperAction,
 		QTree,
 		QTreeNode,
 		QLoading,

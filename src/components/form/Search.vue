@@ -8,6 +8,9 @@ defineOptions({
 const emits = defineEmits<{
   (e: 'search', value: string): void
   (e: 'change', value: string): void
+  (e: 'reset', value: string): void
+  (e: 'focus', value: string): void
+  (e: 'blur', value: string): void
 }>()
 const props = defineProps({
   placeholder: {
@@ -43,6 +46,9 @@ const keyDownhandler = (e: KeyboardEvent) => {
         class="search-input padding-fourth-vetical"
         type="search"
         @keyup="keyDownhandler"
+        @focus="emits('focus', searchValue)"
+        @blur="emits('blur', searchValue)"
+        @reset="emits('reset', searchValue)"
     />
   </div>
 
