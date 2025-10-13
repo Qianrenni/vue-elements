@@ -127,3 +127,5 @@ export class UseMemoryCache {
         }
     }
 }
+
+export const shareMemoryCache =  new UseMemoryCache();
