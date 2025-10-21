@@ -7,7 +7,7 @@
           'text-08rem':size==='small'
         }"
       :type="type"
-      class="button-primary"
+      class="button"
       @click="onClick"
   >
     <slot

@@ -120,6 +120,18 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+pre {
+    width: 100%;
+    overflow: scroll;
+}
+pre::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+    background-color: var(--background-color);
+}
+pre::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+}
 
 /*自定义*/
 .dot {

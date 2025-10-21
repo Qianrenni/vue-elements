@@ -66,37 +66,6 @@
     font-weight: 600;
 }
 
-/*!* 行内代码 *!*/
-/*.markdown-body code {*/
-/*    font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;*/
-/*    font-size: 0.875em;*/
-/*    background-color: var(--gray-200);*/
-/*    border-radius: 3px;*/
-/*    padding: 0.2em 0.4em;*/
-/*    color: var(--primary-color); !* 或者可以设为更亮的灰：var(--gray-700) *!*/
-/*}*/
-
-/*!* 代码块 *!*/
-/*.markdown-body pre {*/
-/*    word-wrap: normal;*/
-/*    padding: 16px;*/
-/*    overflow: auto;*/
-/*    font-size: 0.85em;*/
-/*    line-height: 1.45;*/
-/*    background-color: var(--gray-100);*/
-/*    border-radius: 6px;*/
-/*    color: var(--text-color);*/
-/*}*/
-
-/*.markdown-body pre code {*/
-/*    display: inline;*/
-/*    padding: 0;*/
-/*    background-color: transparent;*/
-/*    border: 0;*/
-/*    color: inherit;*/
-/*    font-family: inherit;*/
-/*}*/
-
 /* 表格 */
 .markdown-body table {
     width: 100%;

@@ -7,7 +7,7 @@
         icon="Copy" size="16"></Icon></span>
     <!-- 悬浮目录 -->
     <div
-        v-if="toc.length>0"
+        v-if="showToc&&toc.length>0"
         :class="{ 'toc-collapsed': !tocExpanded }" class="floating-toc">
       <div class="toc-header" @click="toggleToc">
         <span v-if="tocExpanded">目录</span>
@@ -74,9 +74,11 @@ defineOptions({
 // props
 const props = withDefaults(defineProps<{
   content: string,
-  showCopy?: boolean
+  showCopy?: boolean,
+  showToc?: boolean
 }>(), {
-  showCopy: true
+  showCopy: true,
+  showToc: false
 })
 
 // 状态
