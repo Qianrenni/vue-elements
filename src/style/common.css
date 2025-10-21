@@ -133,6 +133,13 @@ pre::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
 }
 
+@media screen and (max-width: 768px){
+    pre::-webkit-scrollbar{
+        width: 0;
+        height: 0;
+    }
+    
+}
 /*自定义*/
 .dot {
     position: absolute;
@@ -293,6 +300,13 @@ body.dark-mode .button-primary {
     background-color: var(--primary-color);
 }
 
+@media screen and (max-width: 768px){
+    .scroll-container::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+    
+}
 /* 图片类 */
 .img-cover {
     object-fit: cover;
