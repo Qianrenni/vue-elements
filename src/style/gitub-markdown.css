@@ -105,7 +105,6 @@
     padding: 0 1em;
     border-left: 0.25em solid var(--border-color);
     color: var(--subtle-text-color);
-    background-color: var(--gray-100);
 }
 
 .markdown-body img {
