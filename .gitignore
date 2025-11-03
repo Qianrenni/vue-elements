@@ -36,3 +36,4 @@ coverage/
 # 缓存文件
 .vite/
 .cache/
+dist/
