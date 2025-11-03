@@ -2,9 +2,8 @@
   <div class="nav-section  text-secondary ">
     <!-- 返回按钮 -->
     <div v-if="stack.length > 1" class="back-button" @click="goBack">
-      ← 返回上一级
+      <Icon icon="Left" size="24"></Icon>返回
     </div>
-
     <!-- 当前层级标题 -->
     <h4 v-if="currentLevelTitle" class="current-title">
       {{ currentLevelTitle }}
@@ -20,7 +19,7 @@
         <a
             v-if="section.children?.length"
             :class="{ active: activeId === index }"
-            class="nav-link has-child hover-primary"
+            class="nav-link hover-primary"
             href="javascript:void(0)"
             @click="enterSubLevel(section,index)"
         >
@@ -43,6 +42,7 @@
 <script lang="ts" setup>
 import {computed, ref, watch} from 'vue'
 import {NavSectionProps} from "@/types";
+import Icon from '../basic/Icon.vue';
 
 defineOptions({
   name: 'NavSection'
@@ -110,46 +110,5 @@ function markActive(section: NavSectionProps, index: number) {
 </script>
 
 <style scoped>
-/* 这里保持原样式不变即可 */
-.back-button {
-  margin-bottom: 0.5rem;
-  cursor: pointer;
-  font-weight: bold;
-}
 
-.current-title {
-  padding-right: 1em;
-  font-size: 1.1rem;
-  font-weight: bold;
-}
-
-.section-nav {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.nav-link {
-  display: block;
-  text-decoration: none;
-  font-size: 0.95rem;
-  padding: 0.4rem 0.4rem;
-  transition: all 0.3s ease;
-}
-
-.nav-link.has-child::after {
-  content: '→';
-}
-
-.nav-link.active {
-  background-color: var(--primary-color);
-  color: var(--color-white);
-}
-
-@media screen and (max-width: 768px) {
-  .nav-section {
-    width: 100%;
-    max-width: 100vw;
-  }
-}
 </style>
