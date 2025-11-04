@@ -1,5 +1,5 @@
 import { createVNode, render, type VNode } from "vue";
-import QLoading from "@/components/Loading.vue";
+import Loading from "@/components/loading/Loading.vue";
 let instance: VNode | null = null;
 let container: HTMLDivElement | null = null; // 👈 新增
 
@@ -19,7 +19,7 @@ export const useShowLoading = {
     container.style.boxShadow = '0 0 0 10000px var(--shadow-common)'
     document.body.appendChild(container);
 
-    const vnode = createVNode(QLoading, {
+    const vnode = createVNode(Loading, {
       type: 'breathing',
     });
 
