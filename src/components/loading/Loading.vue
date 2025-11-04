@@ -1,6 +1,6 @@
 <template>
   <div v-if="show"
-       class="loading-content gap container-w100 container-h100
+       class=" gap container-w100 container-h100
               container-column container-align-center"
   >
     <component
