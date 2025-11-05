@@ -67,6 +67,10 @@
     --link-color: var(--primary-color);
     --link-hover: #6677ef; /* 和主色协调的悬停色 */
 
+    /* 阴影 */
+    --shadow-common:rgba(255,255,255,0.9);
+    --shadow-inverse: rgba(0,0,0,0.9);
+
     --z-index-level-1: 1;
     --z-index-level-2: 1000;
     --z-index-level-3: 9999;
@@ -106,6 +110,10 @@ body.dark-mode {
     --button-disabled: #555555;
 
     --bg-overlay: rgb(255, 255, 255, 0.2);
+    /* 阴影 */
+    --shadow-common: rgba(0,0,0,0.9);
+    --shadow-inverse: rgba(255,255,255,0.9);
+    
 }
 
 body {

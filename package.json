@@ -1,6 +1,6 @@
 {
   "name": "qyani-components",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "description": "a frontend components lib",
   "main": "dist/qyani-components.cjs.js",
   "module": "dist/qyani-components.es.js",

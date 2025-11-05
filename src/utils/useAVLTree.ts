@@ -60,10 +60,10 @@ export class UseAVLTree<T> {
         }
     }
 
-    // 元素总数
+    /**
+     * 元素总数（含重复）
+     */
     private _size: number = 0;
-
-    // ========== 工具方法 ==========
 
     /**
      * 获取元素总数（含重复）
@@ -119,8 +119,6 @@ export class UseAVLTree<T> {
         return this.find(value) !== null;
     }
 
-    // ========== 核心操作 ==========
-
     /**
      * 获取最小值
      */
@@ -137,29 +135,81 @@ export class UseAVLTree<T> {
 
     /**
      * 中序遍历（升序）
-     *
-     * @param callback 回调函数
+     * @param  ascending 是否升序,默认升序
+     * @yields {AVLNode<T>} 按升序返回 AVL 树中的节点
      */
-    public inOrder(callback: (value: T, count: number) => void): void {
-        const traverse = (node: AVLNode<T> | null) => {
-            if (!node) return;
-            traverse(node.left);
-            callback(node.value, node.count);
-            traverse(node.right);
-        };
-        traverse(this.root);
+    public* inOrder(ascending=true): Generator<AVLNode<T>> {
+        function* traverse(node: AVLNode<T> | null): Generator<AVLNode<T>> {
+            if (node === null) return;
+            if (ascending) {
+                yield* traverse(node.left);
+                yield node;
+                yield* traverse(node.right);
+            }else {
+                yield* traverse(node.right);
+                yield node;
+                yield* traverse(node.left);
+            }
+        }
+        yield* traverse(this.root);
     }
 
     /**
-     * 转换为数组（升序，重复值会展开）
+     * 前序遍历
+     * @param  leftPriority 是否优先访问左子树,默认左优先
+     * @yields {AVLNode<T>} 按升序返回 AVL 树中的节点
      */
-    public toArray(): T[] {
-        const result: T[] = [];
-        this.inOrder((value, count) => {
-            for (let i = 0; i < count; i++) {
-                result.push(value);
+    public* preOrder(leftPriority=true): Generator<AVLNode<T>> {
+        function* traverse(node: AVLNode<T> | null): Generator<AVLNode<T>> {
+            if (node === null) return;
+            if (leftPriority) {
+                yield node;
+                yield* traverse(node.left);
+                yield* traverse(node.right);
+            }else {
+                yield node;
+                yield* traverse(node.right);
+                yield* traverse(node.left);
             }
-        });
+        }
+        yield* traverse(this.root);
+    }
+
+    /**
+     * 后序遍历
+     * @param  leftPriority 是否优先访问左子树,默认左优先
+     * @yields {AVLNode<T>} 按升序返回 AVL 树中的节点
+     */
+    public* postOrder(leftPriority=true): Generator<AVLNode<T>> {
+        function* traverse(node: AVLNode<T> | null): Generator<AVLNode<T>> {
+            if (node === null) return;
+            if (leftPriority) {
+                yield* traverse(node.left);
+                yield* traverse(node.right);
+                yield node;
+            }else {
+                yield* traverse(node.right);
+                yield* traverse(node.left);
+                yield node;
+            }
+        }
+        yield* traverse(this.root);
+    }
+    /**
+     * 转换为数组升序
+     * @param  unique 是否去重,默认不去重
+     */
+    public toArray(unique=false): T[] {
+        const result: T[] = [];
+        for (const node of this.inOrder()) {
+            if (unique) {
+                result.push(node.value);
+            }else {
+                for (let i = 0; i < node.count; i++) {
+                    result.push(node.value);
+                }
+            }
+        }
         return result;
     }
 
