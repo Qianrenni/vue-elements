@@ -56,7 +56,6 @@
 <script lang="ts" setup>
 import {FormComponentEmits, FormComponentProps} from "@/types";
 import {useFormEvents} from "@/events";
-
 defineOptions({
   name: 'FormSwitch'
 })

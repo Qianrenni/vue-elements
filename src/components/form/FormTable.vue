@@ -148,28 +148,12 @@
 </template>
 
 <script lang="ts" setup>
-import {FormComponentEmits, FormComponentProps} from "@/types";
+import {FormComponentEmits, FormComponentProps, FormTableModelValueType, Row, SortOrder, TableColumn,SelectionMode} from "@/types";
 import {useFormEvents} from "@/events/useFormEvents";
 import {computed, ref, watch} from "vue";
 import Icon from "@/components/basic/Icon.vue";
 import Pagination from "@/components/basic/Pagination.vue";
 
-// 列定义
-interface TableColumn {
-  value: string;
-  label: string;
-  width?: string;
-}
-
-// 支持的 selection 模式
-type SelectionMode = "single" | "multiple" | null;
-type Row = {
-  tdId: number;
-  [key: string]: any;
-}
-type FormTableModelValueRowType = Record<string, any>;
-type FormTableModelValueType = FormTableModelValueRowType[];
-type SortOrder = "asc" | "desc" | null;
 const ICON_SIZE = {
   small: '14',
   middle: '18',
@@ -177,7 +161,7 @@ const ICON_SIZE = {
 }
 
 // Props 定义
-interface FormTableProps extends FormComponentProps<FormTableModelValueType> {
+export interface FormTableProps extends FormComponentProps<FormTableModelValueType> {
   /**
    * 表格数据
    */
@@ -389,7 +373,6 @@ const onToggleAllSelection = (e: Event) => {
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
-  border: 1px solid #ddd;
 }
 
 .form-table-container .label {

@@ -1,3 +1,21 @@
+
+// 列定义
+export interface TableColumn {
+  value: string;
+  label: string;
+  width?: string;
+}
+
+// 支持的 selection 模式
+export type SelectionMode = "single" | "multiple" | null;
+export type Row = {
+  tdId: number;
+  [key: string]: any;
+}
+export type FormTableModelValueRowType = Record<string, any>;
+export type FormTableModelValueType = FormTableModelValueRowType[];
+export type SortOrder = "asc" | "desc" | null;
+
 export interface NavSectionProps {
     title: string
     children?: NavSectionProps[]
