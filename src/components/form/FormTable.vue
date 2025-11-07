@@ -21,9 +21,8 @@
 
     <!-- 表格容器 -->
     <div
+        class=" scroll-container input-table-container"
         :class="[
-        'input-table-container',
-        'container',
         { 'mouse-cursor-disable': disabled }
       ]"
         :style="{ opacity: disabled ? 0.6 : 1 }"
@@ -58,9 +57,10 @@
           <th
               v-for=" (col,index) in columns"
               :key="col.value"
-              :style="{ width: col.width || 'auto' }"
+              :style="{ width: col.width || 'auto' ,paddingRight:sortable?`${ICON_SIZE[size]}px`:'auto'}"
+              class="form-table-header-item"
           >
-            {{ col.label }}
+          <span>{{ col.label }}</span>
             <icon
                 v-if="sortable"
                 :size="ICON_SIZE[size]"
@@ -69,12 +69,7 @@
                   rotateZ(90deg) translateX(-50%)`
                 }"
                 icon="Switch"
-                style="
-                transform-origin: center center;
-                position: absolute;
-                right: 0.1rem;
-                top: 50%;
-                "
+                class="sort-icon"
                 @click="sortByColumn(col.value,index)"
             />
           </th>
@@ -117,7 +112,6 @@
               v-for="col in columns"
               :key="col.value"
               :style="{ width: col.width || 'auto' }"
-              class="text-one-line"
           >
             <!-- 支持插槽自定义渲染 -->
             <slot :column="col" :name="col.value" :row="row" :value="row[col.value]">
@@ -141,6 +135,7 @@
       <Pagination
           :current-page="currentPage"
           :total-pages="totalPages"
+          :max-visible-pages="maxVisiblePages"
           @change="handlePageChange"
       />
     </div>
@@ -193,11 +188,10 @@ export interface FormTableProps extends FormComponentProps<FormTableModelValueTy
    * 每页显示的行数
    */
   pageSize?: number;
-
   /**
-   * 可选的每页行数选项
+   * 显示的页码数量
    */
-  pageSizeOptions?: number[];
+  maxVisiblePages?: number;
 }
 
 // 默认值
@@ -212,14 +206,17 @@ const props = withDefaults(defineProps<FormTableProps>(), {
   sortable: true,
   pagination: true,
   pageSize: 10,
-  pageSizeOptions: () => [5, 10, 20, 50, 100],
+  maxVisiblePages: 5
 });
-
+interface FormTableEmits extends FormComponentEmits<(Record<string, any>)[]> {
+  // 添加自定义事件
+  (e:'page-change',value:number): void;
+}
 // 记录每列倒序还是顺序
 const sortColumnOrder: SortOrder[] = props.columns.map(() => null);
 
 // 定义 emits
-const emit = defineEmits<FormComponentEmits<(Record<string, any>)[]>>();
+const emit = defineEmits<FormTableEmits>();
 
 // 使用通用表单事件
 const {handleInput, handleChange} = useFormEvents<(Record<string, any>)[]>(emit);
@@ -261,6 +258,7 @@ const totalPages = computed(() => {
 // 处理页码变化
 const handlePageChange = (page: number) => {
   currentPage.value = page;
+  emit('page-change', page);
 };
 // 计算分页后的数据
 const paginatedData = computed(() => {
@@ -372,12 +370,13 @@ const onToggleAllSelection = (e: Event) => {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .form-table-container .label {
   font-weight: 700;
-  transform: scale(1.2);
+
   margin: 0.2rem 0;
 }
 
@@ -386,21 +385,22 @@ const onToggleAllSelection = (e: Event) => {
   flex-direction: column;
   flex: 1;
   position: relative;
+  width: 100%;
 }
 
 .form-table {
-  width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
 }
-
 .form-table th,
 .form-table td {
   padding: 0.5rem 0.75rem;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-
+.form-table-header-item{
+  white-space: nowrap;
+}
 .form-table th {
   background-color: var(--primary-color);
   color: #fff;
@@ -441,14 +441,21 @@ const onToggleAllSelection = (e: Event) => {
 /* 无数据提示 */
 .table-empty {
   text-align: center;
-  padding: 20px;
+  padding: 1rem;
   color: #999;
   font-style: italic;
 }
 
 .form-table-pagination {
-  margin-top: 16px;
+  width: 100%;
+  margin-top: 0.5rem;
   display: flex;
   justify-content: flex-end;
+}
+.sort-icon { 
+  transform-origin: center center;
+  position: absolute;
+  right: 0.1rem;
+  top: 50%;
 }
 </style>

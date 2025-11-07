@@ -1,5 +1,5 @@
 <template>
-  <div class="container container-align-center container-center gap">
+  <div class="container-align-center  gap-half container-wrap">
     <!-- 首页按钮 -->
     <div
         :class="{ 'mouse-cursor-disable': currentPage === 1 }"
@@ -19,7 +19,7 @@
     </div>
 
     <!-- 页码列表 -->
-    <div class="container container-align-center gap-half">
+    <div class="container-align-center gap-half">
       <template v-for="(page, index) in displayedPages" :key="index">
         <div
             v-if="page !== '...'"
