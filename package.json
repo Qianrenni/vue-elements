@@ -1,6 +1,6 @@
 {
   "name": "qyani-components",
-  "version": "1.4.8",
+  "version": "1.5.1",
   "description": "a frontend components lib",
   "main": "dist/qyani-components.cjs.js",
   "module": "dist/qyani-components.es.js",
@@ -54,7 +54,17 @@
     "vitest": "^3.2.4",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1",
-    "vue-tsc": "^3.0.1"
+    "vue-tsc": "^3.0.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-vue": "^10.5.1",
+    "vue-eslint-parser": "^10.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
+    "globals": "^16.5.0",
+    "prettier": "^3.6.2",
+    "@eslint/js": "^9.39.1"
   },
   "exports": {
     ".": {

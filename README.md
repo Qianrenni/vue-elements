@@ -43,4 +43,4 @@ pnpm run dev
 
 # 文档项目地址
 
-[文档项目地址](https://github.com/Qianrenni/qyani-ui-docs)
+[文档项目地址](https://github.com/Qianrenni/qyani-ui)

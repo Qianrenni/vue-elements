@@ -1,20 +1,34 @@
 
 // 列定义
 export interface TableColumn {
+  /**
+   * 列元素变量key
+   * @description like {id:1}-value:'id'
+   */
   value: string;
+  /**
+   * 列标题
+   */
   label: string;
+  /**
+   * 列宽度
+   */
   width?: string;
+  /**
+   * 存在order字段表示可以排序
+   * @description true--升序,false--降序
+   */
+  order?: boolean;
 }
 
 // 支持的 selection 模式
 export type SelectionMode = "single" | "multiple" | null;
 export type Row = {
-  tdId: number;
+  isSelected: boolean;
   [key: string]: any;
 }
 export type FormTableModelValueRowType = Record<string, any>;
 export type FormTableModelValueType = FormTableModelValueRowType[];
-export type SortOrder = "asc" | "desc" | null;
 
 export interface NavSectionProps {
     title: string

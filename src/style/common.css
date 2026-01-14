@@ -939,3 +939,121 @@ input:-webkit-autofill:active {
     max-width: 100vw;
   }
 }
+
+
+.form-table-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+}
+
+.form-table-container .label {
+  font-weight: 700;
+
+  margin: 0.2rem 0;
+}
+.empty-select{
+  width: 0.75rem; 
+  height: 0.75rem; 
+  border: 0.125rem solid var(--primary-color);
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+.empty-select:hover{
+  background-color: var(--primary-color);
+}
+.selected{
+  background-color: var(--primary-color);
+}
+.empty-select.inverse{
+    background-color: var(--color-white);
+    border: 0.125rem solid var(--color-white);
+}
+.empty-select.inverse:hover{
+  background-color: var(--primary-color);
+}
+.empty-select.selected.inverse{
+  background-color: var(--primary-color);
+}
+
+
+.input-table-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  width: 100%;
+}
+
+.form-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.form-table th,
+.form-table td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.form-table-header-item{
+  white-space: nowrap;
+}
+.form-table th {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-right: 1px solid #fff;
+  border-bottom: none;
+  font-weight: 600;
+  position: sticky;
+
+  top: 0;
+  z-index: var(--z-index-level-1);
+}
+
+.form-table th:last-child {
+  border-right: none;
+}
+
+/* 尺寸适配 */
+
+.table-small th,
+.table-small td {
+  padding: 0.25rem 0.5rem;
+}
+
+.table-large th,
+.table-large td {
+  padding: 0.75rem 1rem;
+}
+
+/* 选中行样式 */
+.row-selected {
+  background-color: rgba(91, 104, 216, 0.05);
+}
+
+.row-disabled {
+  color: #999;
+}
+
+/* 无数据提示 */
+.table-empty {
+  text-align: center;
+  padding: 1rem;
+  color: #999;
+  font-style: italic;
+}
+
+.form-table-pagination {
+  width: 100%;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.sort-icon { 
+  transform-origin: center center;
+  position: absolute;
+  right: 0.1rem;
+  top: 50%;
+}
