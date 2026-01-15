@@ -48,7 +48,6 @@ import type {
 	QSpinner,
 	QNavSection,
 	QTab,
-	QConditionSelect,
 	QThemeToggle
 } from './dist/types/index';
 import type { Plugin } from 'vue'
@@ -103,7 +102,6 @@ declare module 'vue' {
 		QSpinner: typeof QSpinner
 		QNavSection: typeof QNavSection
 		QTab: typeof QTab
-		QConditionSelect: typeof QConditionSelect
 		QThemeToggle: typeof QThemeToggle
     }
 }

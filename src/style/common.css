@@ -166,13 +166,6 @@ pre::-webkit-scrollbar-thumb {
     box-shadow: 0 0 10px var(--box-shadow);
 }
 
-.gray-swatch,
-.color-block {
-    padding: 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-}
 
 /* 按钮类 */
 .button {
@@ -246,13 +239,13 @@ body.dark-mode .button-primary {
 /* 徽章类 */
 .badge {
     display: inline-block;
-    padding: 4px 8px;
+    padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
     font-weight: 600;
     line-height: 1;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: 4px;
+    border-radius: 0.25rem;
 }
 
 /* 链接类 */
@@ -362,11 +355,6 @@ input:-webkit-autofill:active {
     -webkit-text-fill-color: var(--text-color);
     box-shadow: 0 0 0 1000px var(--card-bg) inset; /* 如果你想要白色背景，改为 transparent 就是透明 */
 }
-
-/*响应式类*/
-.hidden-768 {
-}
-
 
 /*圆角类*/
 .radius-rem {

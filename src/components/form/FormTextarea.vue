@@ -1,44 +1,44 @@
 <!-- components/form/FormTextarea.vue -->
 <template>
   <div
-      :class="[
-          {
-            'container-column':direction === 'vertical',
-            'gap-fourth':direction==='vertical',
-            'container-align-center':direction!=='vertical'
+    :class="[
+      {
+        'container-column':direction === 'vertical',
+        'gap-fourth':direction==='vertical',
+        'container-align-center':direction!=='vertical'
 
-          }
-      ]"
-      class="form-text-area-container"
+      }
+    ]"
+    class="form-text-area-container"
   >
     <label
-        v-if="label"
-        :id="name"
-        :class="{
-          'mouse-cursor-disable':disabled,
-          'text-12rem':size==='large',
-          'text-08rem':size==='small'
-        }"
-        :for="name"
-        class="label"
+      v-if="label"
+      :id="name"
+      :class="{
+        'mouse-cursor-disable':disabled,
+        'text-12rem':size==='large',
+        'text-08rem':size==='small'
+      }"
+      :for="name"
+      class="label"
     >
       {{ label }}:
     </label>
     <textarea
-        :id="name"
-        :class="{
-          'mouse-cursor-disable':disabled,
-          'text-12rem':size==='large',
-          'text-08rem':size==='small'
-        }"
-        :disabled="disabled"
-        :name="name"
-        :placeholder="placeholder"
-        :required="required"
-        :rows="rows"
-        :style="{ resize: resizable ? 'both' : 'none' }"
-        :value="modelValue"
-        @input="onInput"
+      :id="name"
+      :class="{
+        'mouse-cursor-disable':disabled,
+        'text-12rem':size==='large',
+        'text-08rem':size==='small'
+      }"
+      :disabled="disabled"
+      :name="name"
+      :placeholder="placeholder"
+      :required="required"
+      :rows="rows"
+      :style="{ resize: resizable ? 'both' : 'none' }"
+      :value="modelValue"
+      @input="onInput"
     />
   </div>
 </template>
@@ -51,9 +51,11 @@ defineOptions({
   name: 'FormTextarea'
 });
 
-interface FormTextAreaProps extends FormComponentProps<string> {
+type FormTextAreaProps =FormComponentProps<string> & {
+  // 行数
   rows?: number;
-  resizable?: boolean; // 是否允许拖拽调整大小，默认为true
+  // 是否可拉伸
+  resizable?: boolean;
 }
 
 withDefaults(defineProps<FormTextAreaProps>(), {

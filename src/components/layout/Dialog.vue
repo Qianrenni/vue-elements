@@ -1,36 +1,53 @@
 <template>
   <teleport to="body">
-    <div v-if="visible" class="dialog-overlay" @click="handleOverlayClick">
-      <div :class="dialogClass" class="dialog-container " @click.stop>
+    <div
+      v-if="visible"
+      class="dialog-overlay"
+      @click="handleOverlayClick"
+    >
+      <div
+        :class="dialogClass"
+        class="dialog-container padding-rem radius-rem"
+        @click.stop
+      >
         <div class="dialog-header container-space-between">
           <div class="container-align-center">
             <slot name="header">
-              <span v-if="title" class="dialog-title">{{ title }}</span>
+              <span
+                v-if="title"
+                class="dialog-title"
+              >{{ title }}</span>
             </slot>
           </div>
           <FormButton
-              v-if="showClose"
-              size="small"
-              @click="close"
+            v-if="showClose"
+            size="small"
+            class=" button-primary"
+            @click="close"
           >
             ×
           </FormButton>
         </div>
 
         <div class="dialog-body">
-          <slot></slot>
+          <slot />
         </div>
 
-        <div v-if="showFooter" class="dialog-footer container-space-between">
+        <div
+          v-if="showFooter"
+          class="dialog-footer container-space-between"
+        >
           <slot name="footer">
             <FormButton
-                v-if="showCancel"
-                @click="handleCancel"
+              v-if="showCancel"
+              class=" button-primary"
+              @click="handleCancel"
             >
               {{ cancelText }}
             </FormButton>
             <FormButton
-                @click="handleConfirm"
+              class=" button-primary"
+              @click="handleConfirm"
             >
               {{ confirmText }}
             </FormButton>
@@ -42,7 +59,7 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, defineEmits, defineProps} from 'vue'
+import {computed} from 'vue'
 import FormButton from "@/components/form/FormButton.vue";
 
 interface DialogProps {
@@ -143,7 +160,6 @@ const handleCancel = () => {
 }
 
 .dialog-header {
-  padding: var(--half-distance);
 }
 
 .dialog-title {
@@ -156,7 +172,7 @@ const handleCancel = () => {
 }
 
 .dialog-footer {
-  padding: var(--half-distance);
+
 }
 
 /* 响应式设计 */

@@ -51,7 +51,6 @@ import {default as QSkeleton} from './components/loading/animations/Skeleton.vue
 import {default as QSpinner} from './components/loading/animations/Spinner.vue';
 import {default as QNavSection} from './components/navigation/NavSection.vue';
 import {default as QTab} from './components/navigation/Tab.vue';
-import {default as QConditionSelect} from './components/Sql/ConditionSelect.vue';
 import {default as QThemeToggle} from './components/theme/ThemeToggle.vue';
 export default {
     install(app: any) {
@@ -103,7 +102,6 @@ export default {
 		app.component('QSpinner',QSpinner);
 		app.component('QNavSection',QNavSection);
 		app.component('QTab',QTab);
-		app.component('QConditionSelect',QConditionSelect);
 		app.component('QThemeToggle',QThemeToggle);
     },
 };
@@ -157,6 +155,5 @@ export {
 		QSpinner,
 		QNavSection,
 		QTab,
-		QConditionSelect,
 		QThemeToggle
 }
