@@ -1,11 +1,11 @@
 <template>
   <div
-      class="mouse-cursor user-select-none container-align-center container-center"
-      v-html="svgContent"
+    class="mouse-cursor user-select-none icon-container"
+    v-html="svgContent"
   />
 </template>
 <script lang="ts" setup>
-import {defineProps, onBeforeMount, ref, watch} from "vue";
+import { onBeforeMount, ref, watch} from "vue";
 import { shareMemoryCache } from "@/utils";
 
 defineOptions({
@@ -42,4 +42,10 @@ onBeforeMount(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

@@ -4,25 +4,23 @@
     :class="[
       {
         'container-column':direction === 'vertical',
-        'gap-fourth':direction==='vertical',
-        'container-align-center':direction!=='vertical'
+        'container':direction === 'horizontal'
 
       }
     ]"
     class="form-text-area-container"
   >
-    <label
-      v-if="label"
+    <p
       :id="name"
       :class="{
         'mouse-cursor-disable':disabled,
         'text-12rem':size==='large',
         'text-08rem':size==='small'
       }"
-      :for="name"
+      class=" text-label"
     >
       {{ label }}:
-    </label>
+    </p>
     <textarea
       :id="name"
       :class="{
@@ -37,6 +35,7 @@
       :rows="rows"
       :style="{ resize: resizable ? 'both' : 'none' }"
       :value="modelValue"
+      class=" text-input scroll-container"
       @input="onInput"
     />
   </div>
@@ -58,7 +57,7 @@ type FormTextAreaProps =FormComponentProps<string> & {
 }
 
 withDefaults(defineProps<FormTextAreaProps>(), {
-  rows: 3,
+  rows: 5,
   resizable: false,
   placeholder: '请输入内容',
   required: true,

@@ -576,7 +576,6 @@ input:-webkit-autofill:active {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 100%;
     gap: 0.25rem;
     padding: 0.5rem;
 }
@@ -585,7 +584,6 @@ input:-webkit-autofill:active {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
     padding: 0.5rem;
     gap: 0.25rem;
 }

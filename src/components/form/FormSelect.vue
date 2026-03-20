@@ -7,7 +7,7 @@
         'container': direction === 'horizontal'
       }
     ]"
-    class=" padding-24rem bg-card"
+    class="bg-card"
     style="position: relative;"
   >
     <p class="text-label">
@@ -67,7 +67,7 @@ const props = withDefaults(defineProps<FormSelectProps>(), {
   modelValue: null,
   placeholder: '请选择',
   required: true,
-  direction: 'vertical',
+  direction: 'horizontal',
   disabled: false,
   autofocus: false,
   readonly: false,

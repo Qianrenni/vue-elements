@@ -5,54 +5,37 @@
 
       {
         'container-column':direction==='vertical',
-        'gap-half':direction==='vertical',
-        'container-align-center':direction!=='vertical'
+        'container':direction==='horizontal'
       }
     ]"
+    class="bg-card"
     role="none"
   >
-    <label
-      v-if="label"
-      :id="id"
-      :class="{
-        'mouse-cursor-disable':disabled,
-        'text-12rem':size==='large',
-        'text-08rem':size==='small'
-      }"
-      :for="name"
+    <p class=" text-label">
+      {{ label }}
+    </p>
+    <input
+      :class="[
+        {
+          'mouse-cursor-disable':disabled,
+          'text-12rem':size==='large',
+          'text-08rem':size==='small'
+        }
+      ]
+      "
+      class="text-input"
+      :disabled="disabled"
+      :name="name"
+      :pattern="pattern"
+      :placeholder="placeholder"
+      :required="required"
+      :type="type"
+      :value="modelValue"
+      @blur="onBlur"
+      @change="onChange"
+      @focus="onFocus"
+      @input="onInput"
     >
-      {{ label }}:
-    </label>
-    <div
-      class="
-        input-text-container
-        container
-        "
-    >
-      <input
-        :id="name"
-        :class="[
-          {
-            'mouse-cursor-disable':disabled,
-            'text-12rem':size==='large',
-            'text-08rem':size==='small'
-          }
-        ]
-        "
-        class="text-input"
-        :disabled="disabled"
-        :name="name"
-        :pattern="pattern"
-        :placeholder="placeholder"
-        :required="required"
-        :type="type"
-        :value="modelValue"
-        @blur="onBlur"
-        @change="onChange"
-        @focus="onFocus"
-        @input="onInput"
-      >
-    </div>
   </div>
 </template>
 
@@ -60,7 +43,6 @@
 
 import {FormComponentEmits, FormComponentProps} from "@/types";
 import {useFormEvents} from "@/events/useFormEvents";
-import {ref} from "vue";
 
 type TextType = `text` | `email` | `password` | `number` | `tel` | `url`
 

@@ -1,21 +1,21 @@
 <template>
   <button
-      :autofocus="autofocus"
-      :class="{
-          'mouse-cursor-disable':disabled,
-          'text-12rem':size==='large',
-          'text-08rem':size==='small'
-        }"
-      :type="type"
-      class="button"
-      @click="onClick"
+    :autofocus="autofocus"
+    :class="{
+      'mouse-cursor-disable':disabled,
+      'text-12rem':size==='large',
+      'text-08rem':size==='small'
+    }"
+    :type="type"
+    class="button"
+    @click="onClick"
   >
     <slot
-        :class="{
-          'mouse-cursor-disable':disabled,
-          'text-12rem':size==='large',
-          'text-08rem':size==='small'
-        }"
+      :class="{
+        'mouse-cursor-disable':disabled,
+        'text-12rem':size==='large',
+        'text-08rem':size==='small'
+      }"
     />
   </button>
 </template>

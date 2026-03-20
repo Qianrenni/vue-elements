@@ -1,6 +1,6 @@
 <template>
   <div>
-    <QFormSelect
+    <!-- <QFormSelect
       v-model="form.select"
       :options="[
         { value: 'option1', label: '选项 1' },
@@ -14,13 +14,30 @@
       name="select"
       placeholder="请选择"
       searchable
-      direction="horizontal"
     />
     <p>{{ form.select }}</p>
+    <QFormText
+      v-model="form.text"
+      label="输入框"
+      name="text"
+      placeholder="请输入内容"
+    />
+    <QFormTextarea
+      v-model="form.text"
+      label="文本域"
+      name="textarea"
+      placeholder="请输入内容"
+    /> -->
+    <QSearch
+      label="搜索框"
+      name="search"
+      placeholder="请输入内容"
+      @search="(value)=>console.log(value)"
+    />
   </div>
 </template>
 <script setup lang="ts">
-import { QFormSelect } from '@/index';
+import { QFormSelect, QFormText, QFormTextarea,QSearch } from '@/index';
 import { ref } from 'vue';
 const form = ref({
   select: 'option5',
