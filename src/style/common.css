@@ -5,6 +5,10 @@
     box-sizing: border-box;
     background-color: inherit;
     color: inherit;
+    transition: 
+        color 0.3s ease-in-out, 
+        background-color 0.3s ease-in-out,
+        transform 0.3s ease-in-out;
 }
 
 :root {
@@ -217,7 +221,9 @@ body.dark-mode .button-primary {
 .hover-red:hover {
     color: #f00;
 }
-
+.bg-hover-secondary:hover {
+    background-color: var(--secondary-background-color);
+}
 /*透明度类*/
 .opacity-2-9 {
     opacity: 0.2;
@@ -274,8 +280,8 @@ body.dark-mode .button-primary {
 
 /* 滚动条整体样式 */
 .scroll-container::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 4px;
+    height: 4px;
     background-color: var(--background-color);
 }
 
@@ -571,9 +577,7 @@ input:-webkit-autofill:active {
     flex-wrap: wrap;
     width: 100%;
     height: 100%;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.25rem;
     padding: 0.5rem;
 }
 
@@ -582,11 +586,8 @@ input:-webkit-autofill:active {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    gap: 0.5rem;
     padding: 0.5rem;
+    gap: 0.25rem;
 }
 
 .container-center {
@@ -595,7 +596,6 @@ input:-webkit-autofill:active {
     height: 100%;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
     padding: 0.5rem;
 }
 
@@ -765,7 +765,9 @@ input:-webkit-autofill:active {
 .text-08rem {
     font-size: 0.8rem;
 }
-
+.text-085rem {
+    font-size: 0.85rem;
+}
 .text-05rem {
     font-size: 0.5rem;
 }
@@ -802,7 +804,10 @@ input:-webkit-autofill:active {
     font-weight: 500;
     line-height: 1.2rem;
 }
-
+.text-label {
+    font-size: 0.85rem;
+    padding: 0.15rem;
+}
 .text-hover-gray {
     color: var(--subtle-text-color)
 }
@@ -883,6 +888,15 @@ input:-webkit-autofill:active {
     }
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 /* NavSection 样式 */
 .back-button {
   display: flex;

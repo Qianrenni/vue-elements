@@ -159,8 +159,6 @@ const handleCancel = () => {
   }
 }
 
-.dialog-header {
-}
 
 .dialog-title {
   font-size: 1.1rem;
@@ -171,9 +169,6 @@ const handleCancel = () => {
   flex: 1;
 }
 
-.dialog-footer {
-
-}
 
 /* 响应式设计 */
 @media screen and (max-width: 768px) {
