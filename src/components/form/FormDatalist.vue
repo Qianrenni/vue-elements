@@ -1,53 +1,56 @@
 <!-- components/form/FormDatalist.vue -->
 <template>
   <div
-      :class="[
-          {
-            'container-column': direction === 'vertical',
-            'gap-half': direction === 'vertical',
-            'container-align-center': direction !== 'vertical'
-          }
-      ]"
-      class="form-text-container"
+    :class="[
+      {
+        'container-column': direction === 'vertical',
+        'gap-half': direction === 'vertical',
+        'container-align-center': direction !== 'vertical'
+      }
+    ]"
+    class="form-text-container"
   >
     <label
-        v-if="label"
-        :id="id"
-        :class="{
-          'mouse-cursor-disable': disabled,
-          'text-12rem': size === 'large',
-          'text-08rem': size === 'small'
-        }"
-        :for="name"
-        class="label"
+      v-if="label"
+      :id="id"
+      :class="{
+        'mouse-cursor-disable': disabled,
+        'text-12rem': size === 'large',
+        'text-08rem': size === 'small'
+      }"
+      :for="name"
     >
       {{ label }}:
     </label>
     <div class="input-text-container container">
       <input
-          :id="name"
-          :class="[
-            {
-              'mouse-cursor-disable': disabled,
-              'text-12rem': size === 'large',
-              'text-08rem': size === 'small'
-            }
-          ]"
-          :disabled="disabled"
-          :list="name + '-list'"
-          :name="name"
-          :placeholder="placeholder"
-          :required="required"
-          :value="modelValue"
-          class=""
-          @blur="onBlur"
-          @change="onChange"
-          @focus="onFocus"
-          @input="onInput"
-      />
+        :id="name"
+        :class="[
+          {
+            'mouse-cursor-disable': disabled,
+            'text-12rem': size === 'large',
+            'text-08rem': size === 'small'
+          }
+        ]"
+        :disabled="disabled"
+        :list="name + '-list'"
+        :name="name"
+        :placeholder="placeholder"
+        :required="required"
+        :value="modelValue"
+        class=""
+        @blur="onBlur"
+        @change="onChange"
+        @focus="onFocus"
+        @input="onInput"
+      >
     </div>
     <datalist :id="name + '-list'">
-      <option v-for="option in options" :key="option" :value="option"/>
+      <option
+        v-for="option in options"
+        :key="option"
+        :value="option"
+      />
     </datalist>
   </div>
 </template>

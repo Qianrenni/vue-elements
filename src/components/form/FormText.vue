@@ -1,70 +1,57 @@
 <!-- components/form/FormText.vue -->
 <template>
   <div
-      :class="[
+    :class="[
 
-          {
-            'container-column':direction==='vertical',
-            'gap-half':direction==='vertical',
-            'container-align-center':direction!=='vertical'
-          }
-      ]"
-      class="form-text-container"
-      role="none"
+      {
+        'container-column':direction==='vertical',
+        'gap-half':direction==='vertical',
+        'container-align-center':direction!=='vertical'
+      }
+    ]"
+    role="none"
   >
     <label
-        v-if="label"
-        :id="id"
-        :class="{
-          'mouse-cursor-disable':disabled,
-          'text-12rem':size==='large',
-          'text-08rem':size==='small'
-        }"
-        :for="name"
-        class="label"
+      v-if="label"
+      :id="id"
+      :class="{
+        'mouse-cursor-disable':disabled,
+        'text-12rem':size==='large',
+        'text-08rem':size==='small'
+      }"
+      :for="name"
     >
       {{ label }}:
     </label>
     <div
-        class="
+      class="
         input-text-container
         container
         "
     >
       <input
-          :id="name"
-          :class="[
-            {
-              'mouse-cursor-disable':disabled,
-              'text-12rem':size==='large',
-              'text-08rem':size==='small'
-            }
-          ]
-          "
-          :disabled="disabled"
-          :name="name"
-          :pattern="pattern"
-          :placeholder="placeholder"
-          :required="required"
-          :type="type"
-          :value="modelValue"
-          @blur="onBlur"
-          @change="onChange"
-          @focus="onFocus"
-          @input="onInput"
-      />
-      <icon
-          v-show="
-                  type!=='password'
-                  &&showCloseIcon
-                  "
-          :size="iconSize[size]"
-          class="
-            close-icon
-          "
-          icon="Close"
-          @click="onClear"
-      />
+        :id="name"
+        :class="[
+          {
+            'mouse-cursor-disable':disabled,
+            'text-12rem':size==='large',
+            'text-08rem':size==='small'
+          }
+        ]
+        "
+        class="text-input"
+        :disabled="disabled"
+        :name="name"
+        :pattern="pattern"
+        :placeholder="placeholder"
+        :required="required"
+        :type="type"
+        :value="modelValue"
+        @blur="onBlur"
+        @change="onChange"
+        @focus="onFocus"
+        @input="onInput"
+      >
     </div>
   </div>
 </template>
@@ -73,14 +60,13 @@
 
 import {FormComponentEmits, FormComponentProps} from "@/types";
 import {useFormEvents} from "@/events/useFormEvents";
-import Icon from "@/components/basic/Icon.vue";
 import {ref} from "vue";
 
 type TextType = `text` | `email` | `password` | `number` | `tel` | `url`
 
 interface FormTextProps extends FormComponentProps<string> {
   type?: TextType,
-  pattern?: string
+  pattern?: string | undefined
 }
 
 defineOptions({
@@ -96,13 +82,8 @@ withDefaults(defineProps<FormTextProps>(), {
   size: 'middle',
   placeholder: '',
   clearable: true,
+  pattern: undefined
 })
-const showCloseIcon = ref(false);
-const iconSize = {
-  'small': 8,
-  'middle': 12,
-  'large': 24
-}
 const emit = defineEmits<FormComponentEmits<string>>()
 // 创建事件处理器
 const {handleInput, handleChange, handleFocus, handleBlur, handleClear} = useFormEvents<string>(emit)
@@ -117,14 +98,12 @@ const onChange = (e: Event) => {
 }
 
 const onFocus = (e: FocusEvent) => {
-  showCloseIcon.value = true;
   handleFocus()
 }
 
 const onBlur = (e: FocusEvent) => {
   // 使用setTimeout延迟执行，避免点击closeIcon时立即触发blur事件
   setTimeout(() => {
-    showCloseIcon.value = false;
     handleBlur()
   }, 200)
 }

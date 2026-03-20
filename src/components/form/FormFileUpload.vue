@@ -1,67 +1,66 @@
 <!-- components/form/FormFileUpload.vue -->
 <template>
   <div
-      :class="[
-          {
-            'container-column':direction === 'vertical',
-            'gap-fourth':direction==='vertical',
-            'container-align-center':direction!=='vertical'
+    :class="[
+      {
+        'container-column':direction === 'vertical',
+        'gap-fourth':direction==='vertical',
+        'container-align-center':direction!=='vertical'
 
-          }
-      ]"
-      class="form-file-upload-container"
+      }
+    ]"
+    class="form-file-upload-container"
   >
     <label
-        v-if="label"
-        :id="name"
-        :class="{
-          'mouse-cursor-disable':disabled,
-          'text-12rem':size==='large',
-          'text-08rem':size==='small'
-        }"
-        :for="name"
-        class="label"
+      v-if="label"
+      :id="name"
+      :class="{
+        'mouse-cursor-disable':disabled,
+        'text-12rem':size==='large',
+        'text-08rem':size==='small'
+      }"
+      :for="name"
     >
       {{ label }}
     </label>
     <div
-        class="container-column"
+      class="container-column"
     >
       <input
-          :id="name"
-          :accept="accept"
-          :disabled="disabled"
-          :multiple="multiple"
-          :name="name"
-          :required="required"
-          type="file"
-          @change="onChange"
-      />
+        :id="name"
+        :accept="accept"
+        :disabled="disabled"
+        :multiple="multiple"
+        :name="name"
+        :required="required"
+        type="file"
+        @change="onChange"
+      >
       <!-- 显示已选文件名 -->
       <div
-          v-if="fileList.length > 0"
-          class="file-list container-column gap-fourth margin-third-vetical"
+        v-if="fileList.length > 0"
+        class="file-list container-column gap-fourth margin-third-vetical"
       >
         <!-- 单文件显示 -->
         <div
-            v-if="fileList.length === 1"
-            class="container-align-center gap-fourth"
+          v-if="fileList.length === 1"
+          class="container-align-center gap-fourth"
         >
           <span
-              :class="[
-                {
-                  'mouse-cursor-disable': disabled,
-                  'text-12rem': size === 'large',
-                  'text-08rem': size === 'small'
-                }
-              ]"
-              class="file-item container-align-center padding-24rem bg-gray-100 radius-third-rem"
+            :class="[
+              {
+                'mouse-cursor-disable': disabled,
+                'text-12rem': size === 'large',
+                'text-08rem': size === 'small'
+              }
+            ]"
+            class="file-item container-align-center padding-24rem bg-gray-100 radius-third-rem"
           >
             {{ fileList[0].name }}
             <span
-                v-if="!disabled && clearable"
-                class="file-remove mouse-cursor hover-red margin-half-horizontal"
-                @click.stop="removeFile(0)"
+              v-if="!disabled && clearable"
+              class="file-remove mouse-cursor hover-red margin-half-horizontal"
+              @click.stop="removeFile(0)"
             >
               ×
             </span>
@@ -70,26 +69,26 @@
 
         <!-- 多文件显示 -->
         <div
-            v-else
-            class="container container-wrap gap-fourth"
+          v-else
+          class="container container-wrap gap-fourth"
         >
           <span
-              v-for="(file, index) in fileList"
-              :key="index"
-              :class="[
-                {
-                  'mouse-cursor-disable': disabled,
-                  'text-12rem': size === 'large',
-                  'text-08rem': size === 'small'
-                }
-              ]"
-              class="file-item container-align-center padding-24rem bg-gray-100 radius-third-rem"
+            v-for="(file, index) in fileList"
+            :key="index"
+            :class="[
+              {
+                'mouse-cursor-disable': disabled,
+                'text-12rem': size === 'large',
+                'text-08rem': size === 'small'
+              }
+            ]"
+            class="file-item container-align-center padding-24rem bg-gray-100 radius-third-rem"
           >
             {{ file.name }}
             <span
-                v-if="!disabled && clearable"
-                class="file-remove mouse-cursor hover-red margin-half-horizontal"
-                @click.stop="removeFile(index)"
+              v-if="!disabled && clearable"
+              class="file-remove mouse-cursor hover-red margin-half-horizontal"
+              @click.stop="removeFile(index)"
             >
               ×
             </span>

@@ -32,14 +32,14 @@ onMounted(() => {
 
 <template>
   <div
-      :class="[{
+    :class="[{
       'text-success': type === 'success',
       'text-danger': type === 'error',
       'text-warning': type === 'warning',
       'text-gray': type === 'info',
     }]"
-      class="mouse-cursor message-container container-center container-align-center radius-half-rem padding-24rem shadow-black animate-slide-in"
-      @click="onClose?.()"
+    class="mouse-cursor message-container container-center container-align-center radius-half-rem padding-24rem  shadow-common animate-slide-in"
+    @click="onClose?.()"
   >
     <p>{{ message }}</p>
     <!-- 可加关闭按钮 -->

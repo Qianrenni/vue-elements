@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import {computed, inject, Ref, ref} from 'vue'
-
 defineOptions({
   name: 'CollapseItem'
 })
@@ -36,18 +35,27 @@ const handleClick = () => {
 </script>
 
 <template>
-  <div :class="{ 'is-disabled': disabled }" class="collapse-item">
+  <div
+    :class="{ 'is-disabled': disabled }"
+    class="collapse-item"
+  >
     <div
-        :class="{ 'is-active': isActive }"
-        class="collapse-item__header"
-        @click="handleClick"
+      :class="{ 'is-active': isActive }"
+      class="collapse-item__header"
+      @click="handleClick"
     >
       <span class="collapse-item__title">{{ title || name }}</span>
-      <i :class="{ 'is-active': isActive }" class="collapse-item__arrow"></i>
+      <i
+        :class="{ 'is-active': isActive }"
+        class="collapse-item__arrow"
+      />
     </div>
-    <div :class="{ 'is-active': isActive }" class="collapse-item__content-wrapper">
+    <div
+      :class="{ 'is-active': isActive }"
+      class="collapse-item__content-wrapper"
+    >
       <div class="collapse-item__content">
-        <slot/>
+        <slot />
       </div>
     </div>
   </div>

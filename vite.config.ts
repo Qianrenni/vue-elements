@@ -1,14 +1,13 @@
 import {defineConfig} from 'vite'
-import {resolve} from 'path'
 import vue from '@vitejs/plugin-vue'
-
+import path from 'path'
 export default defineConfig({
     plugins: [
         vue()
     ],  // 启用 Vue 插件
     build: {
         lib: {  // 关键：启用库模式
-            entry: resolve(__dirname, 'src/index.ts'),  // 入口文件（你的组件库主入口）
+            entry: path.resolve(__dirname, 'src/index.ts'),  // 入口文件（你的组件库主入口）
             name: 'QyaniComponents',  // 库的全局变量名（UMD 格式时用到）
             formats: ['es', 'cjs', 'umd'],  // 输出格式：ESM + CommonJS + UMD
             fileName: (format) => `qyani-components.${format}.js`,  // 输出文件名
@@ -37,7 +36,7 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            '@': resolve(__dirname, 'src')
+            '@': path.resolve(__dirname, 'src')
         }
     }
 })

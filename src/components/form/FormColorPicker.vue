@@ -1,61 +1,59 @@
 <!-- components/form/FormColorPicker.vue -->
 <template>
   <div
-      :class="[
-          {
-            'container-column':direction === 'vertical',
-            'gap-fourth':direction==='vertical',
-            'container-align-center':direction!=='vertical'
+    :class="[
+      {
+        'container-column':direction === 'vertical',
+        'gap-fourth':direction==='vertical',
+        'container-align-center':direction!=='vertical'
 
-          }
-      ]"
-      class="form-color-picker"
+      }
+    ]"
+    class="form-color-picker"
   >
     <label
-        v-if="label"
-        :id="name"
-        :class="{
-          'mouse-cursor-disable':disabled,
-          'text-12rem':size==='large',
-          'text-08rem':size==='small'
-        }"
-        :for="name"
-        class="label"
+      v-if="label"
+      :id="name"
+      :class="{
+        'mouse-cursor-disable':disabled,
+        'text-12rem':size==='large',
+        'text-08rem':size==='small'
+      }"
+      :for="name"
     >
       {{ label }}
     </label>
     <div
-        class="container"
+      class="container"
     >
       <input
-          :id="name"
-          :class="[
-              {
-                'mouse-cursor-disable':disabled,
-              }
-          ]"
-          :disabled="disabled"
-          :name="name"
-          :value="modelValue"
-          class="border-primary"
-          type="color"
-          @input="onInput"
-      />
-      <span
-          :class="[
-              {
-                'mouse-cursor-disable':disabled,
-                'text-12rem':size==='large',
-                'text-08rem':size==='small'
-              }
-          ]"
-          :style="{
-            color: modelValue??'#fff',
-          }"
-          class="label"
+        :id="name"
+        :class="[
+          {
+            'mouse-cursor-disable':disabled,
+          }
+        ]"
+        :disabled="disabled"
+        :name="name"
+        :value="modelValue"
+        class="border-primary"
+        type="color"
+        @input="onInput"
       >
-      {{ modelValue }}
-    </span>
+      <span
+        :class="[
+          {
+            'mouse-cursor-disable':disabled,
+            'text-12rem':size==='large',
+            'text-08rem':size==='small'
+          }
+        ]"
+        :style="{
+          color: modelValue??'#fff',
+        }"
+      >
+        {{ modelValue }}
+      </span>
     </div>
   </div>
 </template>

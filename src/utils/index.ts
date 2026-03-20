@@ -1,5 +1,5 @@
 export * from './useDebounce';
-export * from './useTime'
+export * from './useTimeUtils'
 export * from './useThrottle'
 export * from './useLRUCache'
 export * from './useMemoryCache'

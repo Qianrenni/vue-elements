@@ -1,20 +1,10 @@
+import { Color, Comparator, UseRedBlackTree } from '@/utils';
 import {beforeEach, describe, expect, it} from 'vitest';
-import {Color, Comparator, UseRedBlackTree} from '../../src'; // 请根据实际路径调整
-
 // 辅助函数：获取树中所有值（含重复），按中序
 function getAllValues<T>(tree: UseRedBlackTree<T>): T[] {
     const result: T[] = [];
     tree.inorderTraversal(value => result.push(value));
     return result;
-}
-
-// 辅助函数：深比较两个数组（用于验证遍历结果）
-function arraysEqual<T>(a: T[], b: T[]): boolean {
-    if (a.length !== b.length) return false;
-    for (let i = 0; i < a.length; i++) {
-        if (a[i] !== b[i]) return false;
-    }
-    return true;
 }
 
 describe('RedBlackTree', () => {

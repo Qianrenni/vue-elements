@@ -1,4 +1,4 @@
-import {AVLNode, UseAVLTree} from "../../src";
+import {AVLNode, UseAVLTree} from "@/utils";
 import {beforeEach, describe, expect, it} from "vitest";
 
 describe('AVLTree', () => {

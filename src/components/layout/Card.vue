@@ -1,31 +1,29 @@
 <template>
-  <div :class="{
-        'card-animation': animation
-       }"
-       class="card container-column "
+  <div
+    :class="{
+      'card-animation': animation
+    }"
+    class="card container-column "
   >
-
     <div class="card-header container-space-between ">
-      <slot name="header"></slot>
+      <slot name="header" />
     </div>
 
     <div class="card-body container-space-between ">
-      <slot name="left"></slot>
+      <slot name="left" />
       <div class="container-flex-1">
-        <slot name="default"/>
+        <slot name="default" />
       </div>
-      <slot name="right"></slot>
+      <slot name="right" />
     </div>
 
     <div class="card-footer container-space-between ">
-      <slot name="footer"></slot>
+      <slot name="footer" />
     </div>
-
   </div>
 </template>
 
 <script lang="ts" setup>
-import {defineOptions} from 'vue'
 
 defineProps({
   animation: {

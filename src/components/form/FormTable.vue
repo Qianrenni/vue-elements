@@ -14,7 +14,6 @@
         'text-08rem': size === 'small'
       }"
       :for="name"
-      class="label"
     >
       {{ label }}:
     </label>

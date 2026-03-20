@@ -1,46 +1,45 @@
 <!-- components/form/FormDatePicker.vue -->
 <template>
   <div
-      :class="[
-          {
-            'container-column':direction === 'vertical',
-            'gap-fourth':direction==='vertical',
-            'container-align-center':direction!=='vertical'
+    :class="[
+      {
+        'container-column':direction === 'vertical',
+        'gap-fourth':direction==='vertical',
+        'container-align-center':direction!=='vertical'
 
-          }
-      ]"
-      class="form-text-container"
+      }
+    ]"
+    class="form-text-container"
   >
     <label
-        v-if="label"
-        :id="name"
-        :class="{
-          'mouse-cursor-disable':disabled,
-          'text-12rem':size==='large',
-          'text-08rem':size==='small'
-        }"
-        :for="name"
-        class="label"
+      v-if="label"
+      :id="name"
+      :class="{
+        'mouse-cursor-disable':disabled,
+        'text-12rem':size==='large',
+        'text-08rem':size==='small'
+      }"
+      :for="name"
     >
       {{ label }}:
     </label>
     <input
-        :id="name"
-        :class="[
-              {
-                'mouse-cursor-disable':disabled,
-                'text-12rem':size==='large',
-                'text-08rem':size==='small'
-              }
-        ]"
-        :disabled="disabled"
-        :name="name"
-        :placeholder="placeholder"
-        :required="required"
-        :type="type"
-        :value="modelValue"
-        @input="onInput"
-    />
+      :id="name"
+      :class="[
+        {
+          'mouse-cursor-disable':disabled,
+          'text-12rem':size==='large',
+          'text-08rem':size==='small'
+        }
+      ]"
+      :disabled="disabled"
+      :name="name"
+      :placeholder="placeholder"
+      :required="required"
+      :type="type"
+      :value="modelValue"
+      @input="onInput"
+    >
   </div>
 </template>
 

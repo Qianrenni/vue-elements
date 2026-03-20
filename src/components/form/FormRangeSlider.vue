@@ -1,7 +1,7 @@
 <!-- components/form/FormRangeSlider.vue -->
 <template>
   <div
-      :class="[
+    :class="[
       'range-slider',
       {
         'container-column': direction === 'vertical',
@@ -9,24 +9,23 @@
         'container-align-center': direction !== 'vertical'
       }
     ]"
-      role="none"
+    role="none"
   >
     <label
-        v-if="label"
-        :id="labelId"
-        :class="{
+      v-if="label"
+      :id="labelId"
+      :class="{
         'mouse-cursor-disable': disabled,
         'text-12rem': size === 'large',
         'text-08rem': size === 'small'
       }"
-        :for="name"
-        class="label"
+      :for="name"
     >
       {{ label }}:
     </label>
 
     <div
-        class="
+      class="
           container
           container-flex-1
           container-align-center
@@ -34,39 +33,39 @@
         "
     >
       <input
-          :id="name"
-          :aria-labelledby="labelId"
-          :aria-valuemax="max"
-          :aria-valuemin="min"
-          :aria-valuenow="modelValue as number"
-          :aria-valuetext="valueText || `${modelValue}`"
-          :class="{
+        :id="name"
+        :aria-labelledby="labelId"
+        :aria-valuemax="max"
+        :aria-valuemin="min"
+        :aria-valuenow="modelValue as number"
+        :aria-valuetext="valueText || `${modelValue}`"
+        :class="{
           'mouse-cursor-disable': disabled,
         }"
-          :disabled="disabled"
-          :max="max"
-          :min="min"
-          :name="name"
-          :readonly="readonly"
-          :required="required"
-          :step="step"
-          :value="modelValue"
-          type="range"
-          @blur="onBlur"
-          @change="onChange"
-          @focus="onFocus"
-          @input="onInput"
-      />
+        :disabled="disabled"
+        :max="max"
+        :min="min"
+        :name="name"
+        :readonly="readonly"
+        :required="required"
+        :step="step"
+        :value="modelValue"
+        type="range"
+        @blur="onBlur"
+        @change="onChange"
+        @focus="onFocus"
+        @input="onInput"
+      >
 
       <!-- 输出当前值，对屏幕阅读器友好 -->
       <output
-          :id="outputId"
-          :aria-live="!disabled ? 'polite' : undefined"
-          :class="{
+        :id="outputId"
+        :aria-live="!disabled ? 'polite' : undefined"
+        :class="{
           'mouse-cursor-disable': disabled,
           'text-12rem': size === 'large',
           'text-08rem': size === 'small'
-          }"
+        }"
       >
         {{ displayValue }}
       </output>

@@ -1,22 +1,25 @@
 <template>
   <div class="tree-node">
     <div
-        :class="{
-          'tree-node-selected': node.selected,
-          'mouse-cursor-disable': node.disabled,
-        }"
-        class="tree-node-content container-align-center mouse-cursor"
-        @click="handleNodeClick"
+      :class="{
+        'tree-node-selected': node.selected,
+        'mouse-cursor-disable': node.disabled,
+      }"
+      class="tree-node-content container-align-center mouse-cursor"
+      @click="handleNodeClick"
     >
       <div
-          v-if="hasChildren"
-          class="tree-node-toggle container-align-center mouse-cursor"
+        v-if="hasChildren"
+        class="tree-node-toggle container-align-center mouse-cursor"
       >
         <span
-            :class="{ 'rotate-90': node.expanded }"
-            class="toggle-icon"
+          :class="{ 'rotate-90': node.expanded }"
+          class="toggle-icon"
         >
-          <Icon icon="Right" size="24"/>
+          <Icon
+            icon="Right"
+            size="24"
+          />
         </span>
       </div>
 
@@ -26,16 +29,16 @@
     </div>
 
     <div
-        v-if="node.expanded && hasChildren"
-        class="tree-node-children padding-half-horizontal"
+      v-if="node.expanded && hasChildren"
+      class="tree-node-children padding-half-horizontal"
     >
       <TreeNode
-          v-for="child in node.children"
-          :key="child.id"
-          :level="level + 1"
-          :node="child"
-          @node-click="handleChildNodeClick"
-          @node-toggle="handleChildNodeToggle"
+        v-for="child in node.children"
+        :key="child.id"
+        :level="level + 1"
+        :node="child"
+        @node-click="handleChildNodeClick"
+        @node-toggle="handleChildNodeToggle"
       />
     </div>
   </div>
@@ -75,7 +78,7 @@ const hasChildren = computed(() => {
 const handleNodeClick = () => {
   if (props.node.disabled) return
   emit('node-click', props.node)
-  if (hasChildren) {
+  if (hasChildren.value) {
     handleToggle()
   }
 }

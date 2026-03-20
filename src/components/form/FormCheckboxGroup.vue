@@ -1,50 +1,49 @@
 <!-- components/form/FormCheckboxGroup.vue -->
 <template>
   <div
-      :class="[
-          {
-            'container-column':direction === 'vertical',
-            'gap-fourth':direction==='vertical',
-            'container-align-center':direction!=='vertical'
+    :class="[
+      {
+        'container-column':direction === 'vertical',
+        'gap-fourth':direction==='vertical',
+        'container-align-center':direction!=='vertical'
 
-          }
-      ]"
-      class="form-checkbox-group-container"
+      }
+    ]"
+    class="form-checkbox-group-container"
   >
     <label
-        v-if="label"
-        :class="{
-          'mouse-cursor-disable':disabled,
-          'text-12rem':size==='large',
-          'text-08rem':size==='small'
-        }"
-        class="label"
+      v-if="label"
+      :class="{
+        'mouse-cursor-disable':disabled,
+        'text-12rem':size==='large',
+        'text-08rem':size==='small'
+      }"
     >
       {{ label }}
     </label>
     <div>
       <label
-          v-for="opt in options"
-          :key="opt.value"
-          :for="opt.value"
-          class="margin-fourth-horizontal"
+        v-for="opt in options"
+        :key="opt.value"
+        :for="opt.value"
+        class="margin-fourth-horizontal"
       >
         <input
-            :checked="modelValue?.includes(opt.value)"
-            :class="[
-              {
-                'mouse-cursor-disable':disabled,
-                'text-12rem':size==='large',
-                'text-08rem':size==='small'
-              }
-            ]
-            "
-            :disabled="disabled"
-            :name="opt.value"
-            :value="opt.value"
-            type="checkbox"
-            @change="onChange"
-        />
+          :checked="modelValue?.includes(opt.value)"
+          :class="[
+            {
+              'mouse-cursor-disable':disabled,
+              'text-12rem':size==='large',
+              'text-08rem':size==='small'
+            }
+          ]
+          "
+          :disabled="disabled"
+          :name="opt.value"
+          :value="opt.value"
+          type="checkbox"
+          @change="onChange"
+        >
         {{ opt.label }}
       </label>
     </div>
