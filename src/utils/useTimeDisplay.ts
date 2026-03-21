@@ -59,7 +59,6 @@ export function useTimeDisplay(
     // 更新函数
     const update = () => {
         const nowUtils = new UseTimeUtils();
-        console.log('[useTimeDisplay] Updating time...',targetTime,nowUtils.valueOf());
         if (mode === 'realtime') {
             result.value = nowUtils.format(format);
         } else if (mode === 'countdown' && targetTime) {

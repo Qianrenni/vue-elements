@@ -1,5 +1,5 @@
 <template>
-  <div class="tablist container scroll-container">
+  <div class="tablist container">
     <span
       v-for="(item, index) in list"
       :key="index"
@@ -41,14 +41,6 @@ function clickHandler(index: number) {
 </script>
 
 <style scoped>
-.tablist {
-  overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-}
-
-.tablist::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
-}
 
 .tab-item {
   font-weight: bold;
