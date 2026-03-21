@@ -41,9 +41,9 @@
   "include": [
     "src",
     "types",
-    "test",
-    "main.ts",
-    "App.vue"
+    // "test",
+    // "main.ts",
+    // "App.vue"
   ],
   // 只编译 src 目录下的文件
   "exclude": [

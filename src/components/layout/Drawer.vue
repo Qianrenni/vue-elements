@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import {defineEmits, defineProps} from 'vue'
 import FormButton from "@/components/form/FormButton.vue";
 
 interface DrawerProps {
@@ -45,38 +44,48 @@ const handleOverlayClick = () => {
 </script>
 
 <template>
-  <teleport :disabled="!appendToBody" to="body">
-    <div v-if="visible"
-         :class="[
-             {
-               'overlay': overlay,
-               'bg-transparent': !overlay,
-             }
-         ]"
-         :style="{
-           'position': appendToBody ? 'fixed' : 'absolute',
-         }"
-         class="drawer-overlay" @click="handleOverlayClick">
+  <teleport
+    :disabled="!appendToBody"
+    to="body"
+  >
+    <div
+      v-if="visible"
+      :class="[
+        {
+          'overlay': overlay,
+          'bg-transparent': !overlay,
+        }
+      ]"
+      :style="{
+        'position': appendToBody ? 'fixed' : 'absolute',
+      }"
+      class="drawer-overlay"
+      @click="handleOverlayClick"
+    >
       <div
-          :class="[`drawer-${props.direction}`]"
-          class="drawer-container " @click.stop
+        :class="[`drawer-${props.direction}`]"
+        class="drawer-container "
+        @click.stop
       >
-        <div v-if="title" class="drawer-header container-space-between">
+        <div
+          v-if="title"
+          class="drawer-header container-space-between"
+        >
           <div class="container-align-center">
             <slot name="header">
-              <span  class="drawer-title"><strong>{{ title }}</strong></span>
+              <span class="drawer-title"><strong>{{ title }}</strong></span>
             </slot>
           </div>
           <FormButton
-              v-if="showClose"
-              @click="close"
+            v-if="showClose"
+            @click="close"
           >
             ×
           </FormButton>
         </div>
 
         <div class="drawer-body">
-          <slot></slot>
+          <slot />
         </div>
       </div>
     </div>
