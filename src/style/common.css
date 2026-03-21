@@ -170,6 +170,8 @@ pre::-webkit-scrollbar-thumb {
 .button {
     background-color: var(--background-color);
     color: var(--text-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.5rem;
     cursor: pointer;
 }
 
