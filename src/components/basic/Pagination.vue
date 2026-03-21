@@ -1,52 +1,60 @@
 <template>
-  <div class="container-align-center  gap-half container-wrap">
+  <div class=" container container-wrap">
     <!-- 首页按钮 -->
     <div
-        :class="{ 'mouse-cursor-disable': currentPage === 1 }"
-        class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
-        @click="goToPage(1)"
+      :class="{ 'mouse-cursor-disable': currentPage === 1 }"
+      class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
+      @click="goToPage(1)"
     >
       首页
     </div>
 
     <!-- 上一页按钮 -->
     <div
-        :class="{ 'mouse-cursor-disable': currentPage === 1 }"
-        class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
-        @click="goToPage(currentPage - 1)"
+      :class="{ 'mouse-cursor-disable': currentPage === 1 }"
+      class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
+      @click="goToPage(currentPage - 1)"
     >
       上一页
     </div>
 
     <!-- 页码列表 -->
     <div class="container-align-center gap-half">
-      <template v-for="(page, index) in displayedPages" :key="index">
+      <template
+        v-for="(page, index) in displayedPages"
+        :key="index"
+      >
         <div
-            v-if="page !== '...'"
-            :class="page === currentPage ? 'button-primary' : 'button-outline'"
-            class="pagination-item radius-third-rem padding-24rem mouse-cursor"
-            @click="goToPage(<number>page)"
+          v-if="page !== '...'"
+          :class="page === currentPage ? 'button-primary' : 'button-outline'"
+          class="pagination-item radius-third-rem padding-24rem mouse-cursor"
+          @click="goToPage(<number>page)"
         >
           {{ page }}
         </div>
-        <div v-else class="pagination-ellipsis">{{ page }}</div>
+        <div
+          v-else
+          class="pagination-ellipsis"
+        >
+          {{ page }}
+        </div>
       </template>
     </div>
 
     <!-- 下一页按钮 -->
     <div
-        :class="{ 'mouse-cursor-disable': currentPage === totalPages }"
-        class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
-        @click="goToPage(currentPage + 1)"
+      :class="{ 'mouse-cursor-disable': currentPage === totalPages }"
+      class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
+      @click="goToPage(currentPage + 1)"
     >
       下一页
     </div>
 
     <!-- 末页按钮 -->
     <div
-        :class="{ 'mouse-cursor-disable': currentPage === totalPages }"
-        class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
-        @click="goToPage(totalPages)"
+      :class="{ 'mouse-cursor-disable': currentPage === totalPages }"
+      class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
+      @click="goToPage(totalPages)"
     >
       末页
     </div>
@@ -56,16 +64,16 @@
       <span>跳至</span>
       <div class="form-text-container">
         <input
-            v-model="jumpPage"
-            :max="totalPages"
-            class="pagination-input"
-            min="1"
-            type="number"
-        />
+          v-model="jumpPage"
+          :max="totalPages"
+          class="pagination-input"
+          min="1"
+          type="number"
+        >
       </div>
       <div
-          class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
-          @click="goToPage(<number>jumpPage)"
+        class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
+        @click="goToPage(<number>jumpPage)"
       >
         跳转
       </div>

@@ -38,7 +38,7 @@ onMounted(() => {
       'text-warning': type === 'warning',
       'text-gray': type === 'info',
     }]"
-    class="mouse-cursor message-container container-center container-align-center radius-half-rem padding-24rem  shadow-common animate-slide-in"
+    class="mouse-cursor message-container shadow-common animate-slide-in"
     @click="onClose?.()"
   >
     <p>{{ message }}</p>
@@ -49,6 +49,11 @@ onMounted(() => {
 <style scoped>
 .message-container {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
   z-index: var(--z-index-level-3);
   min-height: 100px;
   min-width: 200px;

@@ -1,13 +1,13 @@
 <template>
-  <div class="tablist container container-wrap scroll-container scroll-x margin-half-vetical">
+  <div class="tablist container scroll-container">
     <span
-        v-for="(item, index) in list"
-        :key="index"
-        :class="{
+      v-for="(item, index) in list"
+      :key="index"
+      :class="{
         [activeClass]: index === activeCategory
       }"
-        class="tab-item padding-half-rem mouse-cursor radius-third-rem"
-        @click="clickHandler(index)"
+      class="tab-item padding-half-rem mouse-cursor radius-third-rem"
+      @click="clickHandler(index)"
     >
       {{ item }}
     </span>
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import {defineEmits, defineOptions, defineProps, ref} from 'vue'
+import { ref } from 'vue'
 
 defineOptions({
   name: 'Tab'

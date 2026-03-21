@@ -6,9 +6,9 @@ target_dir = root_dir / 'src' / 'components'
 out_path = root_dir / 'src' / 'index.ts'
 prefix_content = """
 import "./style/common.css";
-export * from "@/events";
-export * from "@/utils";
-export * from "@/types"
+export * from "./events";
+export * from "./utils";
+export * from "./types"
 """
 result = []
 install_list = []
@@ -19,7 +19,7 @@ for root, dirs, files in os.walk(target_dir):
         if file.endswith('.vue'):
             file_name = os.path.splitext(file)[0]
             import_dir = pattern.search(os.path.join(root, file)).group(1).replace('\\', '/')
-            result.append(f"import {{default as Q{file_name}}} from '@{import_dir}/{file}';")
+            result.append(f"import {{default as Q{file_name}}} from '.{import_dir}/{file}';")
             install_list.append(f"app.component('Q{file_name}',Q{file_name});")
             components.append(f"Q{file_name}")
 prefix_content += '\n'.join(result)
