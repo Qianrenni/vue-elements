@@ -59,14 +59,11 @@ provide('collapse', {
 </script>
 
 <template>
-  <div class="collapse">
-    <slot/>
+  <div>
+    <slot />
   </div>
 </template>
 
 <style scoped>
-.collapse {
-  border: 1px solid var(--border-color);
-  overflow: hidden;
-}
+
 </style>

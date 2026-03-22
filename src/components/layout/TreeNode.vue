@@ -18,7 +18,7 @@
         >
           <Icon
             icon="Right"
-            size="24"
+            size="16"
           />
         </span>
       </div>
@@ -130,7 +130,7 @@ const handleChildNodeToggle = (node: TreeNodeData) => {
 }
 
 .tree-node-children {
-  margin-left: var(--distance);
+  margin-left: 0.75rem;
   border-left: 1px dashed var(--border-color);
 }
 </style>

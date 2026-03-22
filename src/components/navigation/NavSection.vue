@@ -1,36 +1,46 @@
 <template>
   <div class="nav-section  text-secondary ">
     <!-- 返回按钮 -->
-    <div v-if="stack.length > 1" class="back-button" @click="goBack">
-      <Icon icon="Left" size="24"></Icon>返回
+    <div
+      v-if="stack.length > 1"
+      class="back-button"
+      @click="goBack"
+    >
+      <Icon
+        icon="Left"
+        size="24"
+      />返回
     </div>
     <!-- 当前层级标题 -->
-    <h4 v-if="currentLevelTitle" class="current-title">
+    <h4
+      v-if="currentLevelTitle"
+      class="current-title"
+    >
       {{ currentLevelTitle }}
     </h4>
 
     <!-- 导航列表 -->
     <ul class="section-nav">
       <li
-          v-for="(section,index) in currentSections"
-          :key="index"
-          class="nav-item"
+        v-for="(section,index) in currentSections"
+        :key="index"
+        class="nav-item"
       >
         <a
-            v-if="section.children?.length"
-            :class="{ active: activeId === index }"
-            class="nav-link hover-primary"
-            href="javascript:void(0)"
-            @click="enterSubLevel(section,index)"
+          v-if="section.children?.length"
+          :class="{ active: activeId === index }"
+          class="nav-link hover-primary"
+          href="javascript:void(0)"
+          @click="enterSubLevel(section,index)"
         >
           {{ section.title }}
         </a>
         <a
-            v-else
-            :class="{ active: activeId === index }"
-            class="nav-link hover-primary"
-            href="javascript:void(0)"
-            @click="markActive(section, index)"
+          v-else
+          :class="{ active: activeId === index }"
+          class="nav-link hover-primary"
+          href="javascript:void(0)"
+          @click="markActive(section, index)"
         >
           {{ section.title }}
         </a>

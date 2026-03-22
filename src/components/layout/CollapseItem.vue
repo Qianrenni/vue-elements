@@ -36,12 +36,12 @@ const handleClick = () => {
 
 <template>
   <div
-    :class="{ 'is-disabled': disabled }"
+    :class="{ 'mouse-cursor-disable': disabled }"
     class="collapse-item"
   >
     <div
       :class="{ 'is-active': isActive }"
-      class="collapse-item__header"
+      class="collapse-item__header bg-hover-secondary"
       @click="handleClick"
     >
       <span class="collapse-item__title">{{ title || name }}</span>
@@ -63,16 +63,11 @@ const handleClick = () => {
 
 <style scoped>
 .collapse-item {
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--primary-color);
 }
 
 .collapse-item:last-child {
   border-bottom: none;
-}
-
-.collapse-item.is-disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
 }
 
 .collapse-item__header {
@@ -83,10 +78,6 @@ const handleClick = () => {
   background-color: var(--card-bg);
   cursor: pointer;
   transition: all 0.3s ease;
-}
-
-.collapse-item__header:hover {
-  background-color: var(--secondary-background-color);
 }
 
 .collapse-item__header.is-active {
@@ -122,9 +113,5 @@ const handleClick = () => {
 
 .collapse-item__content-wrapper.is-active {
   height: min-content;
-}
-
-.collapse-item__content {
-  padding: 0.8rem;
 }
 </style>

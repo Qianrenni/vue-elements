@@ -1,12 +1,12 @@
 <template>
-  <div class="tree-container">
+  <div>
     <TreeNode
-        v-for="node in treeData"
-        :key="node.id"
-        :level="0"
-        :node="node"
-        @node-click="handleNodeClick"
-        @node-toggle="handleNodeToggle"
+      v-for="node in treeData"
+      :key="node.id"
+      :level="0"
+      :node="node"
+      @node-click="handleNodeClick"
+      @node-toggle="handleNodeToggle"
     />
   </div>
 </template>

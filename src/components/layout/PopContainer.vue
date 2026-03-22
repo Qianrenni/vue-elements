@@ -15,18 +15,18 @@ const props = withDefaults(defineProps<{
 
 <template>
   <div class="pop-container">
-    <slot/>
-    <div :class="[
-               {
-                'hover-show':hoverShow,
-                [position]:true,
-                'visible':visible,
-               }
-         ]"
-         class="pop-content"
-
+    <slot />
+    <div
+      :class="[
+        {
+          'hover-show':hoverShow,
+          [position]:true,
+          'visible':visible,
+        }
+      ]"
+      class="pop-content"
     >
-      <slot name="pop"/>
+      <slot name="pop" />
     </div>
   </div>
 </template>
@@ -57,55 +57,47 @@ const props = withDefaults(defineProps<{
   top: 0;
   left: 0;
   transform: translateY(-100%) translateX(-50%);
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 75% 90%, 50% 100%, 25% 90%, 0 90%);
 }
 
 .pop-content.top-center {
   top: 0;
   left: 50%;
   transform: translateY(-100%) translateX(-50%);
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 75% 90%, 50% 100%, 25% 90%, 0 90%);
 }
 
 .pop-content.top-right {
   top: 0;
   right: 0;
   transform: translateY(-100%) translateX(50%);
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 75% 90%, 50% 100%, 25% 90%, 0 90%);
 }
 
 .pop-content.bottom-left {
   bottom: 0;
   left: 0;
   transform: translateY(100%) translateX(-50%);
-  clip-path: polygon(0 10%, 25% 10%, 50% 0, 75% 10%, 100% 10%, 100% 100%, 0 100%);
 }
 
 .pop-content.bottom-center {
   bottom: 0;
   left: 50%;
   transform: translateY(100%) translateX(-50%);
-  clip-path: polygon(0 10%, 25% 10%, 50% 0, 75% 10%, 100% 10%, 100% 100%, 0 100%);
 }
 
 .pop-content.bottom-right {
   bottom: 0;
   right: 0;
   transform: translateY(100%) translateX(50%);
-  clip-path: polygon(0 10%, 25% 10%, 50% 0, 75% 10%, 100% 10%, 100% 100%, 0 100%);
 }
 
 .pop-content.left-center {
   top: 50%;
   left: 0;
   transform: translateY(-50%) translateX(-100%);
-  clip-path: polygon(0 0, 90% 0, 90% 25%, 100% 50%, 90% 75%, 90% 100%, 0 100%);
 }
 
 .pop-content.right-center {
   top: 50%;
   right: 0;
   transform: translateY(-50%) translateX(100%);
-  clip-path: polygon(10% 0, 10% 25%, 0 50%, 10% 75%, 10% 100%, 100% 100%, 100% 0);
 }
 </style>
