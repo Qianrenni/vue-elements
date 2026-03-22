@@ -53,12 +53,12 @@ const startAnimation = () => {
   if (animationFrameId) {
     cancelAnimationFrame(animationFrameId)
   }
-  textWidth = noticeRef.value?.offsetWidth || 0;
-  parentWidth = scrollRef.value?.offsetWidth || 0;
-  // 重置初始位置：从容器右侧外部开始
-  translateX = parentWidth;
-  // 启动新动画（确保尺寸更新后再开始）
   nextTick(() => {
+    textWidth = noticeRef.value?.offsetWidth || 0;
+    parentWidth = scrollRef.value?.offsetWidth || 0;
+    // 重置初始位置：从容器右侧外部开始
+    translateX = parentWidth;
+    // 启动新动画（确保尺寸更新后再开始）
     animationFrameId = requestAnimationFrame(animate)
   })
 }
