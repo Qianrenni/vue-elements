@@ -154,9 +154,10 @@ pre::-webkit-scrollbar-thumb {
     top: 0;
     right: 0;
     transform: translateX(50%) translateY(-50%);
-    width: 1rem;
-    height: 1rem;
+    min-width: 0.5rem;
+    min-height: 0.5rem;
     border-radius: 50%;
+    font-size: 0.65rem;
     background-color: var(--info-bg);
 
 }

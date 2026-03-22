@@ -1,21 +1,21 @@
 <template>
-  <img :src="$props.url" :style="{
-        width: props.size,
-        height: props.size,
-       }" alt="人像"
-       class="avatar"
+  <img
+    :src="$props.url"
+    :style="{
+      width: props.size,
+      height: props.size,
+    }"
+    alt="人像"
+    class="avatar"
   >
 </template>
 
 <script lang="ts" setup>
-import {defineOptions, defineProps} from 'vue'
-
 const props = withDefaults(defineProps<{
-  url?: string
+  url: string
   size?: string
 }>(), {
-  url: 'https://picsum.photos/200/',
-  size: '64px',
+  size: '2rem',
 })
 defineOptions({
   name: 'Avatar'
