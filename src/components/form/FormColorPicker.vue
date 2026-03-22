@@ -4,57 +4,37 @@
     :class="[
       {
         'container-column':direction === 'vertical',
-        'gap-fourth':direction==='vertical',
-        'container-align-center':direction!=='vertical'
-
-      }
-    ]"
-    class="form-color-picker"
-  >
-    <label
-      v-if="label"
-      :id="name"
-      :class="{
+        'container':direction!=='vertical',
         'mouse-cursor-disable':disabled,
         'text-12rem':size==='large',
         'text-08rem':size==='small'
-      }"
+      }
+    ]"
+  >
+    <p
+      v-if="label"
+      :id="name"
       :for="name"
+      class="text-label"
     >
       {{ label }}
-    </label>
-    <div
-      class="container"
+    </p>
+    <input
+      :id="name"
+      :disabled="disabled"
+      :name="name"
+      :value="modelValue"
+      class=" text-input"
+      type="color"
+      @input="onInput"
     >
-      <input
-        :id="name"
-        :class="[
-          {
-            'mouse-cursor-disable':disabled,
-          }
-        ]"
-        :disabled="disabled"
-        :name="name"
-        :value="modelValue"
-        class="border-primary"
-        type="color"
-        @input="onInput"
-      >
-      <span
-        :class="[
-          {
-            'mouse-cursor-disable':disabled,
-            'text-12rem':size==='large',
-            'text-08rem':size==='small'
-          }
-        ]"
-        :style="{
-          color: modelValue??'#fff',
-        }"
-      >
-        {{ modelValue }}
-      </span>
-    </div>
+    <span
+      :style="{
+        color: modelValue??'#fff',
+      }"
+    >
+      {{ modelValue }}
+    </span>
   </div>
 </template>
 
@@ -85,9 +65,4 @@ const onInput = (e: Event) => {
 </script>
 
 <style scoped>
-.form-color-picker input {
-  outline: none;
-  border-width: 1px;
-  cursor: pointer;
-}
 </style>

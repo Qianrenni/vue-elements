@@ -4,40 +4,28 @@
     :class="[
       {
         'container-column':direction === 'vertical',
-        'gap-fourth':direction==='vertical',
-        'container-align-center':direction!=='vertical'
-
-      }
-    ]"
-    class="form-checkbox-group-container"
-  >
-    <label
-      v-if="label"
-      :class="{
+        'container':direction!=='vertical',
         'mouse-cursor-disable':disabled,
         'text-12rem':size==='large',
-        'text-08rem':size==='small'
-      }"
+        'text-08rem':size==='small',
+        'container-align-center':direction!=='vertical'
+      }
+    ]"
+  >
+    <p
+      v-if="label"
+      class="text-label"
     >
       {{ label }}
-    </label>
-    <div>
+    </p>
+    <div class=" container">
       <label
         v-for="opt in options"
         :key="opt.value"
         :for="opt.value"
-        class="margin-fourth-horizontal"
       >
         <input
           :checked="modelValue?.includes(opt.value)"
-          :class="[
-            {
-              'mouse-cursor-disable':disabled,
-              'text-12rem':size==='large',
-              'text-08rem':size==='small'
-            }
-          ]
-          "
           :disabled="disabled"
           :name="opt.value"
           :value="opt.value"
@@ -93,7 +81,4 @@ const onChange = (e: Event) => {
 </script>
 
 <style scoped>
-.form-checkbox-group-container {
-  display: flex;
-}
 </style>

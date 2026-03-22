@@ -4,33 +4,23 @@
     :class="[
       {
         'container-column':direction === 'vertical',
-        'gap-fourth':direction==='vertical',
-        'container-align-center':direction!=='vertical'
-
-      }
-    ]"
-  >
-    <label
-      v-if="label"
-      :id="name"
-      :class="{
+        'container':direction!=='vertical',
+        'container-align-center':direction!=='vertical',
         'mouse-cursor-disable':disabled,
         'text-12rem':size==='large',
         'text-08rem':size==='small'
-      }"
-      :for="name"
+      }
+    ]"
+  >
+    <p
+      v-if="label"
+      class="text-label"
     >
       {{ label }}:
-    </label>
+    </p>
     <input
       :id="name"
-      :class="[
-        {
-          'mouse-cursor-disable':disabled,
-          'text-12rem':size==='large',
-          'text-08rem':size==='small'
-        }
-      ]"
+      class="text-input"
       :disabled="disabled"
       :name="name"
       :placeholder="placeholder"
