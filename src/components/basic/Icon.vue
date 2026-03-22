@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mouse-cursor user-select-none icon-container"
+    class="mouse-cursor user-select-none container-center"
     v-html="svgContent"
   />
 </template>
@@ -43,9 +43,5 @@ onBeforeMount(() => {
 </script>
 
 <style scoped>
-.icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 </style>

@@ -1,88 +1,82 @@
 <template>
-  <div class=" container container-wrap">
+  <div class="container  text-08rem text-one-line">
     <!-- 首页按钮 -->
-    <div
+    <FormButton
       :class="{ 'mouse-cursor-disable': currentPage === 1 }"
-      class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
       @click="goToPage(1)"
     >
       首页
-    </div>
+    </FormButton>
 
     <!-- 上一页按钮 -->
-    <div
+    <FormButton
       :class="{ 'mouse-cursor-disable': currentPage === 1 }"
-      class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
       @click="goToPage(currentPage - 1)"
     >
       上一页
-    </div>
+    </FormButton>
 
     <!-- 页码列表 -->
-    <div class="container-align-center gap-half">
+    <div class="container-center">
       <template
         v-for="(page, index) in displayedPages"
         :key="index"
       >
-        <div
+        <FormButton
           v-if="page !== '...'"
           :class="page === currentPage ? 'button-primary' : 'button-outline'"
-          class="pagination-item radius-third-rem padding-24rem mouse-cursor"
           @click="goToPage(<number>page)"
         >
           {{ page }}
-        </div>
-        <div
+        </FormButton>
+        <FormButton
           v-else
-          class="pagination-ellipsis"
         >
           {{ page }}
-        </div>
+        </FormButton>
       </template>
     </div>
 
     <!-- 下一页按钮 -->
-    <div
+    <FormButton
       :class="{ 'mouse-cursor-disable': currentPage === totalPages }"
-      class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
       @click="goToPage(currentPage + 1)"
     >
       下一页
-    </div>
+    </FormButton>
 
     <!-- 末页按钮 -->
-    <div
+    <FormButton
       :class="{ 'mouse-cursor-disable': currentPage === totalPages }"
-      class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
       @click="goToPage(totalPages)"
     >
       末页
-    </div>
+    </FormButton>
 
     <!-- 跳转到指定页 -->
-    <div class="container container-align-center gap-half margin-half-horizontal">
+    <div class=" container-center">
       <span>跳至</span>
       <div>
         <input
           v-model="jumpPage"
           :max="totalPages"
-          class="pagination-input"
+          class="text-input"
           min="1"
           type="number"
         >
       </div>
-      <div
-        class="pagination-item button-outline radius-third-rem padding-24rem mouse-cursor"
+      <FormButton
         @click="goToPage(<number>jumpPage)"
       >
         跳转
-      </div>
+      </FormButton>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import {computed, ref, watch} from 'vue';
+import FormButton from '../form/FormButton.vue';
 
 // 定义Props接口
 interface PaginationProps {
@@ -181,27 +175,5 @@ const goToPage = (page: number) => {
 </script>
 
 <style scoped>
-.pagination-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.pagination-ellipsis {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0.25rem;
-}
-
-.pagination-input {
-  width: 3rem;
-  text-align: center;
-}
-
-/* 禁用状态的样式 */
-.mouse-cursor-disable {
-  opacity: 0.6;
-  pointer-events: none;
-}
 </style>
