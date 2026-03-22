@@ -1,86 +1,90 @@
 <template>
-  <div :style="{'width': `${props.width}px`}"
-       class="container-flex-end "
-       style="overflow: hidden;"
+  <div
+    ref="scrollRef"
+    style="overflow: hidden;"
   >
     <div
-        ref="noticeRef"
-        :style="{ transform: `translateX(${translateX}px)`}"
+      ref="noticeRef"
+      class="scroll-text"
     >
-      {{ text }}
+      <slot />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {onBeforeUnmount, onMounted, ref, useTemplateRef, watch} from 'vue'
+import { useWindowResize } from '@/utils';
+import { onBeforeUnmount, onMounted, watch, nextTick, useTemplateRef} from 'vue'
 
-defineOptions({
-  name: 'ScrollNotice'
+defineOptions({ name: 'ScrollNotice' })
+
+const props = withDefaults(defineProps<{
+  speed?: number  // 像素/帧
+}>(), {
+  speed: 1
 })
-const props = defineProps<{
-  width: number
-  text: string
-}>();
+const scrollRef = useTemplateRef('scrollRef')
 
 const noticeRef = useTemplateRef('noticeRef')
-const textWidth = ref(0)
-const translateX = ref(0)
+let textWidth =  0;
+let translateX = 0;
 let animationFrameId: number | null = null
-let speed = 1 // 滚动速度，可以根据需要调整
-// 获取元素尺寸
-const updateDimensions = () => {
-  if (noticeRef.value) {
-    textWidth.value = (noticeRef.value as HTMLElement).offsetWidth;
-  }
-}
-
+let  parentWidth = 0;
 // 动画函数
 const animate = () => {
-  translateX.value -= speed;
-  // 如果文本完全移出左侧，则重置到右侧
-  if (translateX.value <= -props.width) {
-    translateX.value = textWidth.value;
+  translateX -= props.speed
+  
+  // 当文本完全移出左侧时，重置到右侧起点
+  if (translateX <= -textWidth) {
+    translateX = parentWidth
   }
-
+  
+  // 直接更新 transform，不要用 nextTick
+  if (noticeRef.value) {
+    noticeRef.value.style.transform = `translateX(${translateX}px)`
+  }
+  
   animationFrameId = requestAnimationFrame(animate)
 }
 
-// 初始化动画
+// 初始化/重启动画
 const startAnimation = () => {
-  updateDimensions()
-  cancelAnimationFrame(animationFrameId!)
-  animationFrameId = requestAnimationFrame(animate)
-}
-
-// 监听窗口大小变化以适配
-const handleResize = () => {
-  updateDimensions()
-}
-
-onMounted(() => {
-  updateDimensions()
-  window.addEventListener('resize', handleResize)
-  startAnimation()
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', handleResize)
+  // 清除旧动画
   if (animationFrameId) {
     cancelAnimationFrame(animationFrameId)
   }
+  textWidth = noticeRef.value?.offsetWidth || 0;
+  parentWidth = scrollRef.value?.offsetWidth || 0;
+  // 重置初始位置：从容器右侧外部开始
+  translateX = parentWidth;
+  // 启动新动画（确保尺寸更新后再开始）
+  nextTick(() => {
+    animationFrameId = requestAnimationFrame(animate)
+  })
+}
+
+onMounted(() => {
+  startAnimation();
+  useWindowResize.addHandler(startAnimation);
 })
 
-// 当 text 改变时，重新计算宽度
+onBeforeUnmount(() => {
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId)
+  };
+  useWindowResize.removeHandler(startAnimation);
+})
+
+// 文本或宽度变化时重启动画
 watch(
-    () => props.text,
-    () => {
-      setTimeout(() => {
-        updateDimensions()
-      }, 10)
-    }
+  () => [props.speed] as const,
+  () => {
+    startAnimation()
+  }
 )
 </script>
 
 <style scoped>
+
+
 </style>

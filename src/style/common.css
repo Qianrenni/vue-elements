@@ -7,8 +7,7 @@
     color: inherit;
     transition: 
         color 0.3s ease-in-out, 
-        background-color 0.3s ease-in-out,
-        transform 0.3s ease-in-out;
+        background-color 0.3s ease-in-out;
 }
 
 :root {
@@ -271,7 +270,11 @@ body.dark-mode .button-primary {
 .link-gray:hover {
     color: #eee;
 }
-
+.scroll-text {
+  display: inline-block;
+  white-space: nowrap;  /* 确保单行滚动 */
+  will-change: transform;  /* 性能优化 */
+}
 
 .scroll-container {
     overflow-y: auto;
