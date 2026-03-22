@@ -9,7 +9,6 @@
 
       }
     ]"
-    class="form-text-container"
   >
     <label
       v-if="label"

@@ -8,7 +8,6 @@
         'container-align-center': direction !== 'vertical'
       }
     ]"
-    class="form-text-container"
   >
     <label
       v-if="label"

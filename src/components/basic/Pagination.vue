@@ -62,7 +62,7 @@
     <!-- 跳转到指定页 -->
     <div class="container container-align-center gap-half margin-half-horizontal">
       <span>跳至</span>
-      <div class="form-text-container">
+      <div>
         <input
           v-model="jumpPage"
           :max="totalPages"
@@ -181,26 +181,22 @@ const goToPage = (page: number) => {
 </script>
 
 <style scoped>
-/* 使用common.css中的样式，这里只添加特定于分页器的样式 */
 .pagination-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 2rem;
-  height: 2rem;
 }
 
 .pagination-ellipsis {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0.5rem;
+  padding: 0 0.25rem;
 }
 
 .pagination-input {
   width: 3rem;
   text-align: center;
-  height: 2rem;
 }
 
 /* 禁用状态的样式 */
