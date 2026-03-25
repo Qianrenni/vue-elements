@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, useTemplateRef } from 'vue'
 defineOptions({
   name: 'SwiperAction'
 });
@@ -51,8 +51,8 @@ const emit = defineEmits<{
 }>()
 
 // refs
-const containerRef = ref<HTMLElement | null>(null)
-const innerRef = ref<HTMLElement | null>(null)
+const containerRef = useTemplateRef('containerRef');
+const innerRef = useTemplateRef('innerRef');
 
 // 状态
 const translateX = ref(0)
