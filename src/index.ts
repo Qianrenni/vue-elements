@@ -7,6 +7,7 @@ export * from "./types"
 import {default as QIcon} from './components/basic/Icon.vue';
 import {default as QMessage} from './components/basic/Message.vue';
 import {default as QPagination} from './components/basic/Pagination.vue';
+import {default as QTag} from './components/basic/Tag.vue';
 import {default as QAvatar} from './components/display/Avatar.vue';
 import {default as QBadge} from './components/display/Badge.vue';
 import {default as QCarousel} from './components/display/Carousel.vue';
@@ -58,6 +59,7 @@ export default {
     app.component('QIcon',QIcon);
 		app.component('QMessage',QMessage);
 		app.component('QPagination',QPagination);
+		app.component('QTag',QTag);
 		app.component('QAvatar',QAvatar);
 		app.component('QBadge',QBadge);
 		app.component('QCarousel',QCarousel);
@@ -111,6 +113,7 @@ export {
         QIcon,
 		QMessage,
 		QPagination,
+		QTag,
 		QAvatar,
 		QBadge,
 		QCarousel,

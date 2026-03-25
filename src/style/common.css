@@ -602,7 +602,6 @@ input:-webkit-autofill:active {
 /*容器类*/
 .container {
     display: flex;
-    align-items: center;
     gap: 0.25rem;
     padding: 0.25rem;
 }

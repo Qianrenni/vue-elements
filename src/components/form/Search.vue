@@ -60,6 +60,6 @@ const keyDownhandler = (e: KeyboardEvent) => {
 
 <style scoped>
 .search-input {
-  padding-left: 2rem;
+  padding-left: 1.5rem;
 }
 </style>

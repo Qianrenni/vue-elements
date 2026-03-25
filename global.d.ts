@@ -3,6 +3,7 @@ import type {
     QIcon,
 	QMessage,
 	QPagination,
+	QTag,
 	QAvatar,
 	QBadge,
 	QCarousel,
@@ -57,6 +58,7 @@ declare module 'vue' {
         QIcon: typeof QIcon
 		QMessage: typeof QMessage
 		QPagination: typeof QPagination
+		QTag: typeof QTag
 		QAvatar: typeof QAvatar
 		QBadge: typeof QBadge
 		QCarousel: typeof QCarousel
