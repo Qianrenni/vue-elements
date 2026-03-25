@@ -49,7 +49,7 @@ const keyDownhandler = (e: KeyboardEvent) => {
       size="16px"
       style="
         position: absolute;
-        left: 1rem;
+        left: 0.5rem;
         top: 50%;
         transform: translateY(-50%)
       "
