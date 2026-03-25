@@ -99,14 +99,12 @@ export function useTimeDisplay(
     // 控制方法
     const start = () => {
         if (timer) return;
-        console.log('[useTimeDisplay] Starting timer...')
         update();
         timer = setInterval(update, interval);
     };
 
     const stop = () => {
         if (timer) {
-            console.log('[useTimeDisplay] Stopping timer...')
             clearInterval(timer);
             timer = null;
         }
