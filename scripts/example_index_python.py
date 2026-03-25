@@ -6,6 +6,7 @@ target_dir = root_dir / 'src' / 'components'
 out_path = root_dir / 'src' / 'index.ts'
 prefix_content = """
 import "./style/common.css";
+import "./style/private.css";
 export * from "@/events";
 export * from "@/utils";
 export * from "@/types"

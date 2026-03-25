@@ -1,5 +1,6 @@
 
 import "./style/common.css";
+import "./style/private.css";
 export * from "./events";
 export * from "./utils";
 export * from "./types"

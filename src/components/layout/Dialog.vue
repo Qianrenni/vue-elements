@@ -29,7 +29,7 @@
           </FormButton>
         </div>
 
-        <div class="dialog-body">
+        <div class="dialog-body scroll-container">
           <slot />
         </div>
 

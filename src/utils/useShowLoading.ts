@@ -16,7 +16,7 @@ export const useShowLoading = {
     container.style.transform = 'translate(-50%, -50%)';
     container.style.zIndex = '9999';
     container.style.backgroundColor = 'transparent';
-    container.style.boxShadow = '0 0 0 10000px var(--box-shadow)'
+    container.style.boxShadow = '0 0 0 5000px var(--box-shadow)'
     document.body.appendChild(container);
 
     const vnode = createVNode(Loading, {
