@@ -92,4 +92,8 @@ export class UseTimeUtils extends Date {
         return this.add(-amount, unit);
     }
 
+    equals(date: UseTimeUtils): boolean {
+        return this.getTime() === date.getTime();
+    }
+
 }

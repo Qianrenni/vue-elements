@@ -1,11 +1,12 @@
 import { UseTimeUtils } from '@/utils';
-import { describe,it} from 'vitest';
+import { describe,expect,it} from 'vitest';
 describe(
     'useTimeUtils',
     () => {
-        it('返回正确的格式化时间',()=>{
-            const date = new UseTimeUtils();
-            console.log(date.format())
+        it('时间相同应该相等',()=>{
+            const date1 = new UseTimeUtils('2023-01-01');
+            const date2 = new UseTimeUtils('2023-01-01');
+            expect(date1.equals(date2)).toBe(true)
         })
     }
 )
