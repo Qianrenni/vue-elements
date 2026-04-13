@@ -204,7 +204,6 @@ pnpm run type-check
 ## 📖 文档
 
 - [在线文档](https://qyani-ui.netlify.app/#)
-- [文档源码](https://github.com/Qianrenni/qyani-ui)
 
 ## 📄 License
 
@@ -219,5 +218,3 @@ qianrenni
 欢迎提交 Issue 和 Pull Request！
 
 ---
-
-**注意**: 包名为 `qiannai-components`，
