@@ -898,3 +898,9 @@ input:-webkit-autofill:active {
     background-color: var(--tag-primary-color);
     color: white;
 }
+.required::before {
+  content: '*';
+  color: red;
+  margin-right: 2px;
+  font-weight: bold;
+}

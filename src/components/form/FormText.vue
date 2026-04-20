@@ -12,7 +12,12 @@
   >
     <p 
       v-if="label"
-      class=" text-label"
+      class="text-label"
+      :class="[
+        {
+          'required':required
+        }
+      ]"
     >
       {{ label }}
     </p>
@@ -85,10 +90,7 @@ const onFocus = (e: FocusEvent) => {
 }
 
 const onBlur = (e: FocusEvent) => {
-  // 使用setTimeout延迟执行，避免点击closeIcon时立即触发blur事件
-  setTimeout(() => {
-    handleBlur()
-  }, 200)
+  handleBlur()
 }
 
 const onClear = () => {
