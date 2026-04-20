@@ -6,9 +6,6 @@
         'container-column':direction === 'vertical',
         'container':direction!=='vertical',
         'container-align-center':direction!=='vertical',
-        'mouse-cursor-disable':disabled,
-        'text-12rem':size==='large',
-        'text-08rem':size==='small'
       }
     ]"
   >

@@ -4,40 +4,26 @@
     :class="[
       {
         'container-column':direction === 'vertical',
-        'gap-fourth':direction==='vertical',
-        'container-align-center':direction!=='vertical'
+        'container':direction!=='vertical'
 
       }
     ]"
-    class="form-radio-group-container"
   >
     <span
       v-if="label"
-      :class="{
-        'mouse-cursor-disable':disabled,
-        'text-12rem':size==='large',
-        'text-08rem':size==='small'
-      }"
+      class="text-label"
     >
       {{ label }}
     </span>
-    <div class="">
+    <div class="inner-container">
       <label
         v-for="opt in options"
         :key="opt.value"
         :for="opt.value"
-        class="margin-fourth-horizontal"
+        class="container-center"
       >
         <input
           :checked="modelValue === opt.value"
-          :class="[
-            {
-              'mouse-cursor-disable':disabled,
-              'text-12rem':size==='large',
-              'text-08rem':size==='small'
-            }
-          ]
-          "
           :disabled="disabled"
           :name="name"
           :required="required"
@@ -45,7 +31,9 @@
           type="radio"
           @change="onChange"
         >
-        {{ opt.label }}
+        <span class="text-085rem margin-fourth-horizontal">
+          {{ opt.label }}
+        </span>
       </label>
     </div>
   </div>
@@ -80,8 +68,4 @@ const onChange = (e: Event) => {
 </script>
 
 <style scoped>
-.form-radio-group-container {
-  display: flex;
-
-}
 </style>

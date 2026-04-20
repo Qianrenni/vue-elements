@@ -7,16 +7,24 @@
         'container': direction === 'horizontal'
       }
     ]"
-    class="bg-card"
     style="position: relative;"
   >
-    <p class="text-label">
+    <p 
+      v-if="label"
+      class="text-label"
+    >
       {{ label }}
     </p>
     <!-- 禁止input对输入有反应 -->
     <input
       ref="input-select"
+      :class="[
+        {
+          'uneditable':disabled,
+        }
+      ]"
       type="text"
+      :disabled="disabled"
       :placeholder="placeholder"
       class="input-text-container text-input"
       :name="props.name"
@@ -35,6 +43,9 @@
         <p
           v-for="option in options"
           :key="option.value"
+          :class="{
+            'bg-secondary':modelValue===option.value
+          }"
           class=" mouse-cursor text-085rem padding-fourth-rem radius-half-rem bg-hover-secondary"
           @click="() => {
             inputSelectRef!.value = option.label;

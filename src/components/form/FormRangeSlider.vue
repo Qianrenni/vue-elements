@@ -5,8 +5,7 @@
       'range-slider',
       {
         'container-column': direction === 'vertical',
-        'gap-fourth': direction === 'vertical',
-        'container-align-center': direction !== 'vertical'
+        'container': direction !== 'vertical'
       }
     ]"
     role="none"
@@ -14,23 +13,14 @@
     <label
       v-if="label"
       :id="labelId"
-      :class="{
-        'mouse-cursor-disable': disabled,
-        'text-12rem': size === 'large',
-        'text-08rem': size === 'small'
-      }"
+      class="text-label"
       :for="name"
     >
       {{ label }}:
     </label>
 
     <div
-      class="
-          container
-          container-flex-1
-          container-align-center
-          gap-half
-        "
+      class="inner-container"
     >
       <input
         :id="name"
@@ -39,9 +29,6 @@
         :aria-valuemin="min"
         :aria-valuenow="modelValue as number"
         :aria-valuetext="valueText || `${modelValue}`"
-        :class="{
-          'mouse-cursor-disable': disabled,
-        }"
         :disabled="disabled"
         :max="max"
         :min="min"
@@ -62,7 +49,6 @@
         :id="outputId"
         :aria-live="!disabled ? 'polite' : undefined"
         :class="{
-          'mouse-cursor-disable': disabled,
           'text-12rem': size === 'large',
           'text-08rem': size === 'small'
         }"

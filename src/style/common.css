@@ -326,7 +326,10 @@ body.dark-mode .button-primary {
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
     transition: border 0.3s ease;
 }
-
+.text-input.uneditable{
+    border: none;
+    box-shadow: none;
+}
 .text-input:focus {
     border-color: var(--primary-color);
 }
@@ -367,7 +370,6 @@ input:-webkit-autofill:active {
 
 .mouse-cursor-disable {
     cursor: not-allowed;
-    opacity: 0.6;
 }
 
 /*旋转类*/
@@ -440,7 +442,9 @@ input:-webkit-autofill:active {
 .bg-transparent {
     background-color: transparent;
 }
-
+.bg-secondary{
+    background-color: var(--secondary-background-color);
+}
 /* 边框类 */
 .border-gray {
     border: 1px solid var(--border-color);

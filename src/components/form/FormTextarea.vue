@@ -11,23 +11,18 @@
     class="form-text-area-container"
   >
     <p
-      :id="name"
-      :class="{
-        'mouse-cursor-disable':disabled,
-        'text-12rem':size==='large',
-        'text-08rem':size==='small'
-      }"
+      v-if="label"
       class=" text-label"
     >
-      {{ label }}:
+      {{ label }}
     </p>
     <textarea
       :id="name"
-      :class="{
-        'mouse-cursor-disable':disabled,
-        'text-12rem':size==='large',
-        'text-08rem':size==='small'
-      }"
+      :class="[
+        {
+          'uneditable':disabled
+        }
+      ]"
       :disabled="disabled"
       :name="name"
       :placeholder="placeholder"
@@ -76,19 +71,3 @@ const onInput = (e: Event) => {
 };
 </script>
 
-<style scoped>
-.form-text-area-container textarea {
-  width: 100%;
-  padding: 0.2rem 0.5rem;
-  border: 1px solid #ccc;
-}
-
-.form-text-area-container textarea:focus {
-  border-color: var(--primary-color);
-  outline: none;
-}
-
-.form-text-area-container label {
-  white-space: nowrap;
-}
-</style>

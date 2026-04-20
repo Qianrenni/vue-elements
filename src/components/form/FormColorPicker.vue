@@ -5,9 +5,6 @@
       {
         'container-column':direction === 'vertical',
         'container':direction!=='vertical',
-        'mouse-cursor-disable':disabled,
-        'text-12rem':size==='large',
-        'text-08rem':size==='small'
       }
     ]"
   >
@@ -32,6 +29,7 @@
       :style="{
         color: modelValue??'#fff',
       }"
+      class="text-085rem"
     >
       {{ modelValue }}
     </span>

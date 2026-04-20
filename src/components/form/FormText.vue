@@ -5,25 +5,24 @@
 
       {
         'container-column':direction==='vertical',
-        'container':direction==='horizontal'
+        'container':direction==='horizontal',
       }
     ]"
-    class="bg-card"
     role="none"
   >
-    <p class=" text-label">
+    <p 
+      v-if="label"
+      class=" text-label"
+    >
       {{ label }}
     </p>
     <input
+      class="text-input"
       :class="[
         {
-          'mouse-cursor-disable':disabled,
-          'text-12rem':size==='large',
-          'text-08rem':size==='small'
+          'uneditable':disabled
         }
-      ]
-      "
-      class="text-input"
+      ]"
       :disabled="disabled"
       :name="name"
       :pattern="pattern"
@@ -48,7 +47,8 @@ type TextType = `text` | `email` | `password` | `number` | `tel` | `url`
 
 interface FormTextProps extends FormComponentProps<string> {
   type?: TextType,
-  pattern?: string | undefined
+  pattern?: string | undefined,
+  editable?:boolean,
 }
 
 defineOptions({
@@ -64,7 +64,8 @@ withDefaults(defineProps<FormTextProps>(), {
   size: 'middle',
   placeholder: '',
   clearable: true,
-  pattern: undefined
+  pattern: undefined,
+  editable:true,
 })
 const emit = defineEmits<FormComponentEmits<string>>()
 // 创建事件处理器

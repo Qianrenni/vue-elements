@@ -5,9 +5,6 @@
       {
         'container-column':direction === 'vertical',
         'container':direction!=='vertical',
-        'mouse-cursor-disable':disabled,
-        'text-12rem':size==='large',
-        'text-08rem':size==='small',
         'container-align-center':direction!=='vertical'
       }
     ]"
@@ -18,11 +15,12 @@
     >
       {{ label }}
     </p>
-    <div class=" container">
+    <div class="inner-container">
       <label
         v-for="opt in options"
         :key="opt.value"
         :for="opt.value"
+        class="container-center gap-fourth"
       >
         <input
           :checked="modelValue?.includes(opt.value)"
@@ -32,7 +30,9 @@
           type="checkbox"
           @change="onChange"
         >
-        {{ opt.label }}
+        <span class="text-085rem">
+          {{ opt.label }}
+        </span>
       </label>
     </div>
   </div>
