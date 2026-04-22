@@ -35,7 +35,7 @@ export class UseSegmentTree<T = number, Lazy = number> {
         data: T[],
         rootFunc: (left: number, right: number, lazyValue: Lazy, oldValue: T) => T,
         mergeFunc: (a: T, b: T) => T = ((a: number, b: number) => (a as number) + (b as number)) as any,
-        defaultVal: T = 0 as unknown as T
+        defaultVal: T = 0 as T
     ) {
         this.n = data.length;
         this.merge = mergeFunc;
@@ -50,7 +50,7 @@ export class UseSegmentTree<T = number, Lazy = number> {
 
         // 初始化线段树和懒标记数组（1-based，索引从 1 开始）
         this.tree = Array(2 * this.size).fill(this.defaultVal);
-        this.lazy = Array(2 * this.size).fill(0 as unknown as Lazy); // 默认无懒标记
+        this.lazy = Array(2 * this.size).fill(null); // 默认无懒标记
 
         // 叶子节点赋值：原始数据放在 [size, size + n - 1]
         for (let i = 0; i < this.n; i++) {
@@ -95,7 +95,7 @@ export class UseSegmentTree<T = number, Lazy = number> {
      * @param right - 当前节点管理的右边界（逻辑索引）
      */
     private _push(root: number, left: number, right: number): void {
-        if (this.lazy[root] !== (0 as unknown as Lazy)) { // 有懒标记需要下推
+        if (this.lazy[root] !== null) { // 有懒标记需要下推
             if (left !== right) { // 不是叶子节点 → 需要推给左右子树
                 const mid = Math.floor((left + right) / 2);
 
@@ -109,7 +109,7 @@ export class UseSegmentTree<T = number, Lazy = number> {
             }
 
             // 清空当前节点的 lazy 标记
-            this.lazy[root] = 0 as unknown as Lazy;
+            this.lazy[root] = null as Lazy;
         }
     }
 
