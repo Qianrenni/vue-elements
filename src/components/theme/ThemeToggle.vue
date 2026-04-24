@@ -18,7 +18,7 @@
 </template>
 <script lang="ts" setup>
 import Icon from '../basic/Icon.vue'
-import {useFollowSystemTheme} from "@/utils/useFollowSystemTheme";
+import {useFollowSystemTheme} from "@/utils";
 
 const {isDark, toggle} = useFollowSystemTheme();
 defineOptions({

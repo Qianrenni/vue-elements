@@ -12,6 +12,11 @@
     <p
       v-if="label"
       class="text-label"
+      :class="[
+        {
+          'required':required
+        }
+      ]"
     >
       {{ label }}
     </p>
@@ -31,6 +36,7 @@
 
 <script lang="ts" setup>
 import {FormComponentProps} from "@/types";
+
 defineOptions({
   name: 'FormFileUpload',
 })

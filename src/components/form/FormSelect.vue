@@ -12,6 +12,11 @@
     <p 
       v-if="label"
       class="text-label"
+      :class="[
+        {
+          'required':required
+        }
+      ]"
     >
       {{ label }}
     </p>
@@ -62,7 +67,7 @@
 <script lang="ts" setup>
 import {FormComponentEmits, FormComponentProps, Options} from '@/types'
 import {computed, nextTick, onBeforeUnmount, onMounted, ref, useTemplateRef} from "vue";
-import { useWindowResize } from '@/utils';
+import {useWindowResize} from '@/utils';
 
 interface FormSelectProps extends FormComponentProps<string> {
   options: Options[],

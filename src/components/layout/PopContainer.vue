@@ -7,7 +7,7 @@ const props = withDefaults(defineProps<{
   hoverShow?: boolean;
   position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right' | 'left-center' | 'right-center';
 }>(), {
-  hoverShow: true,
+  hoverShow: false,
   position: 'bottom-center',
   visible: false
 })
@@ -49,10 +49,9 @@ const props = withDefaults(defineProps<{
   opacity: 1;
 }
 
-.pop-container:hover .pop-content.visible {
+.pop-content.visible {
   opacity: 1;
 }
-
 .pop-content.top-left {
   top: 0;
   left: 0;

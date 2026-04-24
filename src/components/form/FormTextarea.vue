@@ -13,6 +13,11 @@
     <p
       v-if="label"
       class=" text-label"
+      :class="[
+        {
+          'required':required
+        }
+      ]"
     >
       {{ label }}
     </p>
