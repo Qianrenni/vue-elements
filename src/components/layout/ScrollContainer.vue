@@ -71,16 +71,16 @@ defineExpose({
 
 <template>
   <div
-      ref="scroll-container"
-      :class="[
-          {
-            'scroll-x': scrollX,
-            'scroll-y': scrollY
-          }
-      ]"
-      class="scroll-container"
+    ref="scroll-container"
+    :class="[
+      {
+        'scroll-x': scrollX,
+        'scroll-y': scrollY
+      }
+    ]"
+    class="scroll-container"
   >
-    <slot/>
+    <slot />
   </div>
 </template>
 

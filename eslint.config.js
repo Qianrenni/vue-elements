@@ -1,76 +1,63 @@
-// eslint.config.js
-import eslintJs from '@eslint/js'
-import vuePlugin from 'eslint-plugin-vue'
-import vueParser from 'vue-eslint-parser'
-import tsParser from '@typescript-eslint/parser'
-import tsPlugin from '@typescript-eslint/eslint-plugin'
-import globals from 'globals'
-export default [
-  // 忽略文件（必须是独立对象，不含其他字段）
+import js from '@eslint/js';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+import pluginVue from 'eslint-plugin-vue';
+import vueParser from 'vue-eslint-parser';
+
+export default tseslint.config(
   {
-    ignores: [
-      'dist/**',
-      'node_modules/**',
-      'public/**',
-      '*.d.ts',
-      '.vscode/**',
-      '.git/**',
-    ],
+    // 忽略文件
+    ignores: ['node_modules', 'dist', '.vscode', '*.config.js'],
   },
-
-  // 基础 JS 规则（@eslint/js 导出的是单个对象或数组）
-  eslintJs.configs.recommended,
-
-  // Vue 规则（eslint-plugin-vue 的 flat/recommended 是一个数组）
-  // 直接放入，不要展开！
-  ...vuePlugin.configs['flat/recommended'],
-
-  // TypeScript + Vue 支持
-  {
-    files: ['**/*.ts', '**/*.tsx'],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 2022,
-        sourceType: 'module',
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-        ...globals.es2022,
-      },
-    },
-    plugins: {
-      '@typescript-eslint': tsPlugin,
-    },
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
-    },
-  },
-  // Vue 文件支持
+  // 基础 JS 推荐规则
+  js.configs.recommended,
+  // TypeScript 推荐规则
+  ...tseslint.configs.recommended,
+  // Vue 推荐规则
+  ...pluginVue.configs['flat/recommended'],
   {
     files: ['**/*.vue'],
     languageOptions: {
       parser: vueParser,
       parserOptions: {
-        ecmaVersion: 2022,
+        parser: tseslint.parser,
+        ecmaVersion: 'latest',
         sourceType: 'module',
-        extraFileExtensions: ['.vue'],
-        parser: tsParser,
       },
+    },
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
+    rules: {
+      // 在这里添加你的 TypeScript 规则
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
+    },
+  },
+  {
+    files: ['**/*.js'],
+    languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.node,
-        ...globals.es2022,
       },
     },
-    plugins: {
-      '@typescript-eslint': tsPlugin,
-    },
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
-    },
   },
-]
+  {
+    rules: {
+      // 在这里添加全局规则
+      'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    },
+  }
+);

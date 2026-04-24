@@ -1,5 +1,5 @@
 <template>
-  <div class="container  text-08rem text-one-line">
+  <div class="container text-08rem text-one-line">
     <!-- 首页按钮 -->
     <FormButton
       :class="{ 'mouse-cursor-disable': currentPage === 1 }"
@@ -29,9 +29,7 @@
         >
           {{ page }}
         </FormButton>
-        <FormButton
-          v-else
-        >
+        <FormButton v-else>
           {{ page }}
         </FormButton>
       </template>
@@ -54,7 +52,7 @@
     </FormButton>
 
     <!-- 跳转到指定页 -->
-    <div class=" container-center">
+    <div class="container-center">
       <span>跳至</span>
       <div>
         <input
@@ -65,9 +63,7 @@
           type="number"
         >
       </div>
-      <FormButton
-        @click="goToPage(<number>jumpPage)"
-      >
+      <FormButton @click="goToPage(<number>jumpPage)">
         跳转
       </FormButton>
     </div>
@@ -75,7 +71,7 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, ref, watch} from 'vue';
+import { computed, ref, watch } from 'vue';
 import FormButton from '../form/FormButton.vue';
 
 // 定义Props接口
@@ -89,11 +85,11 @@ interface PaginationProps {
 }
 
 defineOptions({
-  name: 'Pagination'
+  name: 'Pagination',
 });
 // 使用defineProps和withDefaults定义props
 const props = withDefaults(defineProps<PaginationProps>(), {
-  maxVisiblePages: 5
+  maxVisiblePages: 5,
 });
 
 // 使用defineEmits定义事件
@@ -108,7 +104,7 @@ const jumpPage = ref<number | string>(props.currentPage);
 const displayedPages = computed(() => {
   if (props.totalPages <= props.maxVisiblePages) {
     // 如果总页数小于等于最大可见页数，则显示所有页码
-    return Array.from({length: props.totalPages}, (_, i) => i + 1);
+    return Array.from({ length: props.totalPages }, (_, i) => i + 1);
   }
 
   // 计算显示的页码范围
@@ -149,10 +145,10 @@ const displayedPages = computed(() => {
 
 // 使用watch监听currentPage变化
 watch(
-    () => props.currentPage,
-    (newVal) => {
-      jumpPage.value = newVal;
-    }
+  () => props.currentPage,
+  (newVal) => {
+    jumpPage.value = newVal;
+  }
 );
 
 // 实现goToPage方法
@@ -161,11 +157,6 @@ const goToPage = (page: number) => {
   if (page < 1 || page > props.totalPages || page === props.currentPage) {
     return;
   }
-  // 验证页码是否有效
-  if (page < 1 || page > props.totalPages || page === props.currentPage) {
-    return;
-  }
-
   // 更新jumpPage
   jumpPage.value = page;
 
@@ -174,6 +165,4 @@ const goToPage = (page: number) => {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

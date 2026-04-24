@@ -5,7 +5,7 @@ defineOptions({
 </script>
 
 <template>
-  <div class="loader-spinner"/>
+  <div class="loader-spinner" />
 </template>
 
 <style scoped>

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach,afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { useDebounce } from '@/utils';
 
 describe('useDebounce', () => {
@@ -60,7 +60,7 @@ describe('useDebounce', () => {
 
     debouncedFunc('first', 'call');
     vi.advanceTimersByTime(25);
-    
+
     debouncedFunc('second', 'call');
     vi.advanceTimersByTime(50);
 

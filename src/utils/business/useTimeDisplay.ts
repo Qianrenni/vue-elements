@@ -1,15 +1,14 @@
 // composables/useTimeDisplay.ts
 
-import {ref} from 'vue';
-import {handleDateFormat, UseTimeUtils} from './useTimeUtils';
-
+import { ref } from 'vue';
+import { handleDateFormat, UseTimeUtils } from './useTimeUtils';
 
 // 配置选项
 export interface UseTimeDisplayOptions {
-    autoStart?: boolean;       // 是否自动启动，默认 true
-    interval?: number;         // 更新间隔，默认 1000ms
-    onFinish?: () => void;     // 倒计时结束回调
-    mode?: 'countdown'| 'realtime'; // 模式控制
+  autoStart?: boolean; // 是否自动启动，默认 true
+  interval?: number; // 更新间隔，默认 1000ms
+  onFinish?: () => void; // 倒计时结束回调
+  mode?: 'countdown' | 'realtime'; // 模式控制
 }
 
 /**
@@ -32,86 +31,82 @@ export interface UseTimeDisplayOptions {
  * const now = useTimeDisplay(undefined, 'HH:mm:ss');
  */
 export function useTimeDisplay(
-    source?: Date | string | number,
-    format: string = 'YYYY-MM-DD HH:mm:ss',
-    options: UseTimeDisplayOptions = {}
-){
-    const {
-        interval = 1000,
-        onFinish,
-        mode ='realtime',
-    } = options;
+  source?: Date | string | number,
+  format: string = 'YYYY-MM-DD HH:mm:ss',
+  options: UseTimeDisplayOptions = {}
+) {
+  const { interval = 1000, onFinish, mode = 'realtime' } = options;
 
-    const result = ref<string>(format);
-    let timer: ReturnType<typeof setInterval> | null = null;
-    const {temp,p} = handleDateFormat(format, 'DHms');
-    // 解析目标时间（如果 source 存在）
-    let targetTime: number | null = null;
+  const result = ref<string>(format);
+  let timer: ReturnType<typeof setInterval> | null = null;
+  const { temp, p } = handleDateFormat(format, 'DHms');
+  // 解析目标时间（如果 source 存在）
+  let targetTime: number | null = null;
 
-    if (source !== undefined) {
-        const utils = new UseTimeUtils(source);
-        targetTime = utils.valueOf();
-        if (isNaN(targetTime)) {
-            console.error('[useTimeDisplay] Invalid source time:', source);
-            targetTime = null;
-        }
+  if (source !== undefined) {
+    const utils = new UseTimeUtils(source);
+    targetTime = utils.valueOf();
+    if (isNaN(targetTime)) {
+      console.error('[useTimeDisplay] Invalid source time:', source);
+      targetTime = null;
     }
-    // 更新函数
-    const update = () => {
-        const nowUtils = new UseTimeUtils();
-        if (mode === 'realtime') {
-            result.value = nowUtils.format(format);
-        } else if (mode === 'countdown' && targetTime) {
-            let remaining = targetTime - nowUtils.valueOf();
-            if (remaining <= 0) {
-                result.value = format.replace(/(Y|M|D|H|h|m|s|S|d)+/g, '0');
-                stop();
-                onFinish?.();
-            } else {
-                let seconds = 0;
-                let minutes = 0;
-                let hours = 0;
-                let days = 0;
-                if(format.includes('D')){
-                    days = Math.floor(remaining / (1000 * 60 * 60 * 24));
-                    remaining = remaining % (1000 * 60 * 60 * 24);
-                }
-                if(format.includes('H')){
-                    hours = Math.floor(remaining / (1000 * 60 * 60));
-                    remaining = remaining % (1000 * 60 * 60);
-                }
-                if(format.includes('m')){
-                    minutes = Math.floor(remaining / (1000 * 60));
-                    remaining = remaining % (1000 * 60);
-                }
-                if(format.includes('s')){
-                    seconds = Math.floor(remaining / 1000);
-                }
-                result.value = temp
-                    .replace('D', days.toString().padStart(p.get('D') || 0, '0'))
-                    .replace('H', hours.toString().padStart(p.get('H') || 0, '0'))
-                    .replace('m', minutes.toString().padStart(p.get('m') || 0, '0'))
-                    .replace('s', seconds.toString().padStart(p.get('s') || 0, '0'));
-            }
+  }
+  // 更新函数
+  const update = () => {
+    const nowUtils = new UseTimeUtils();
+    if (mode === 'realtime') {
+      result.value = nowUtils.format(format);
+    } else if (mode === 'countdown' && targetTime) {
+      let remaining = targetTime - nowUtils.valueOf();
+      if (remaining <= 0) {
+        result.value = format.replace(/(Y|M|D|H|h|m|s|S|d)+/g, '0');
+        stop();
+        onFinish?.();
+      } else {
+        let seconds = 0;
+        let minutes = 0;
+        let hours = 0;
+        let days = 0;
+        if (format.includes('D')) {
+          days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+          remaining = remaining % (1000 * 60 * 60 * 24);
         }
-    };
-
-    // 控制方法
-    const start = () => {
-        if (timer) return;
-        update();
-        timer = setInterval(update, interval);
-    };
-
-    const stop = () => {
-        if (timer) {
-            clearInterval(timer);
-            timer = null;
+        if (format.includes('H')) {
+          hours = Math.floor(remaining / (1000 * 60 * 60));
+          remaining = remaining % (1000 * 60 * 60);
         }
-    };
-    return {
-        value:result,
-        start,
-        stop,
+        if (format.includes('m')) {
+          minutes = Math.floor(remaining / (1000 * 60));
+          remaining = remaining % (1000 * 60);
+        }
+        if (format.includes('s')) {
+          seconds = Math.floor(remaining / 1000);
+        }
+        result.value = temp
+          .replace('D', days.toString().padStart(p.get('D') || 0, '0'))
+          .replace('H', hours.toString().padStart(p.get('H') || 0, '0'))
+          .replace('m', minutes.toString().padStart(p.get('m') || 0, '0'))
+          .replace('s', seconds.toString().padStart(p.get('s') || 0, '0'));
+      }
     }
+  };
+
+  // 控制方法
+  const start = () => {
+    if (timer) return;
+    update();
+    timer = setInterval(update, interval);
+  };
+
+  const stop = () => {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  };
+  return {
+    value: result,
+    start,
+    stop,
+  };
 }

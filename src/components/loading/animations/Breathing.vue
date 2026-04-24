@@ -6,9 +6,9 @@ defineOptions({
 
 <template>
   <div class="loader-dots">
-    <span class="loader-dot"></span>
-    <span class="loader-dot"></span>
-    <span class="loader-dot"></span>
+    <span class="loader-dot" />
+    <span class="loader-dot" />
+    <span class="loader-dot" />
   </div>
 </template>
 

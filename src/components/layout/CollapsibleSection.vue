@@ -2,55 +2,58 @@
   <div class="collapsible-section">
     <!-- 向上箭头 -->
     <div
-        v-if="isShowArrow && direction === 'up'"
-        class="toggle-button-up"
-        @click="toggle"
-    ></div>
+      v-if="isShowArrow && direction === 'up'"
+      class="toggle-button-up"
+      @click="toggle"
+    />
 
     <div
-        :style="{ justifyContent: direction === 'left' ? 'flex-start' : 'flex-end' }"
-        class="content-container"
+      :style="{ justifyContent: direction === 'left' ? 'flex-start' : 'flex-end' }"
+      class="content-container"
     >
       <!-- 左侧箭头 -->
       <div
-          v-if="isShowArrow && direction === 'left'"
-          :style="{
+        v-if="isShowArrow && direction === 'left'"
+        :style="{
           height:
             isShowArrow && direction === 'left' && isExpanded
               ? 'auto'
               : '40px',
         }"
-          class="toggle-button-left"
-          @click="toggle"
-      ></div>
+        class="toggle-button-left"
+        @click="toggle"
+      />
 
       <!-- 可折叠内容 -->
       <transition :name="transitionName">
-        <div v-show="isExpanded" class="content">
-          <slot></slot>
+        <div
+          v-show="isExpanded"
+          class="content"
+        >
+          <slot />
         </div>
       </transition>
 
       <!-- 右侧箭头 -->
       <div
-          v-if="isShowArrow && direction === 'right'"
-          :style="{
+        v-if="isShowArrow && direction === 'right'"
+        :style="{
           height:
             isShowArrow && direction === 'right' && isExpanded
               ? 'auto'
               : '40px',
         }"
-          class="toggle-button-right"
-          @click="toggle"
-      ></div>
+        class="toggle-button-right"
+        @click="toggle"
+      />
     </div>
 
     <!-- 向下箭头 -->
     <div
-        v-if="isShowArrow && direction === 'down'"
-        class="toggle-button-down"
-        @click="toggle"
-    ></div>
+      v-if="isShowArrow && direction === 'down'"
+      class="toggle-button-down"
+      @click="toggle"
+    />
   </div>
 </template>
 

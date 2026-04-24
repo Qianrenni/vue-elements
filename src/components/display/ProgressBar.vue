@@ -1,14 +1,15 @@
 <template>
-  <div :class="{
+  <div
+    :class="{
       'container-column': direction === 'vertical'
-      }"
-       class="container-w100 container-h100 bg-gray-300"
+    }"
+    class="container-w100 container-h100 bg-gray-300"
   >
     <div
-        :style="{ width: direction === 'horizontal' ? percent : '100%',
-        height: direction === 'vertical' ? percent : '100%',
-        backgroundColor: color }"
-    ></div>
+      :style="{ width: direction === 'horizontal' ? percent : '100%',
+                height: direction === 'vertical' ? percent : '100%',
+                backgroundColor: color }"
+    />
   </div>
 </template>
 

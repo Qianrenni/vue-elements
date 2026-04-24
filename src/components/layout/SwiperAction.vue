@@ -18,12 +18,12 @@
     >
       <!-- 主内容 -->
       <div class="swiper-action__content">
-        <slot></slot>
+        <slot />
       </div>
 
       <!-- 右侧操作区（始终存在） -->
       <div class="swiper-action__action">
-        <slot name="action"></slot>
+        <slot name="action" />
       </div>
     </div>
   </div>

@@ -13,7 +13,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       );
 
       expect(tree.query(0, 4)).toBe(15); // 1+2+3+4+5
-      expect(tree.query(0, 2)).toBe(6);  // 1+2+3
+      expect(tree.query(0, 2)).toBe(6); // 1+2+3
       expect(tree.query(2, 4)).toBe(12); // 3+4+5
     });
 
@@ -28,11 +28,11 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
 
       // 将区间 [1, 3] 的值都设为 10
       tree.update(1, 3, 10);
-      
-      expect(tree.query(0, 0)).toBe(1);   // 未改变
-      expect(tree.query(1, 3)).toBe(30);  // 10+10+10
-      expect(tree.query(4, 4)).toBe(5);   // 未改变
-      expect(tree.query(0, 4)).toBe(36);  // 1+10+10+10+5
+
+      expect(tree.query(0, 0)).toBe(1); // 未改变
+      expect(tree.query(1, 3)).toBe(30); // 10+10+10
+      expect(tree.query(4, 4)).toBe(5); // 未改变
+      expect(tree.query(0, 4)).toBe(36); // 1+10+10+10+5
     });
 
     it('should handle single element update', () => {
@@ -68,7 +68,8 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [1, 2, 3, 4, 5];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => oldValue + lazyValue * (right - left + 1), // 增量型
+        (left, right, lazyValue, oldValue) =>
+          oldValue + lazyValue * (right - left + 1), // 增量型
         (a, b) => a + b,
         0
       );
@@ -77,27 +78,28 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
 
       // 区间 [1, 3] 每个元素加 10
       tree.update(1, 3, 10);
-      
-      expect(tree.query(0, 0)).toBe(1);   // 未改变
-      expect(tree.query(1, 1)).toBe(12);  // 2+10
-      expect(tree.query(2, 2)).toBe(13);  // 3+10
-      expect(tree.query(3, 3)).toBe(14);  // 4+10
-      expect(tree.query(4, 4)).toBe(5);   // 未改变
-      expect(tree.query(0, 4)).toBe(45);  // 1+12+13+14+5
+
+      expect(tree.query(0, 0)).toBe(1); // 未改变
+      expect(tree.query(1, 1)).toBe(12); // 2+10
+      expect(tree.query(2, 2)).toBe(13); // 3+10
+      expect(tree.query(3, 3)).toBe(14); // 4+10
+      expect(tree.query(4, 4)).toBe(5); // 未改变
+      expect(tree.query(0, 4)).toBe(45); // 1+12+13+14+5
     });
 
     it('should handle multiple range add operations', () => {
       const data = [0, 0, 0, 0, 0];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => oldValue + lazyValue * (right - left + 1),
+        (left, right, lazyValue, oldValue) =>
+          oldValue + lazyValue * (right - left + 1),
         (a, b) => a + b,
         0
       );
 
-      tree.update(0, 2, 5);  // [5, 5, 5, 0, 0]
-      tree.update(2, 4, 3);  // [5, 5, 8, 3, 3]
-      
+      tree.update(0, 2, 5); // [5, 5, 5, 0, 0]
+      tree.update(2, 4, 3); // [5, 5, 8, 3, 3]
+
       expect(tree.query(0, 0)).toBe(5);
       expect(tree.query(1, 1)).toBe(5);
       expect(tree.query(2, 2)).toBe(8);
@@ -145,7 +147,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       );
 
       tree.update(1, 3, 10);
-      
+
       expect(tree.query(0, 4)).toBe(10);
       expect(tree.query(0, 0)).toBe(1);
       expect(tree.query(1, 3)).toBe(10);
@@ -191,7 +193,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       );
 
       expect(tree.query(0, size - 1)).toBe((size * (size + 1)) / 2);
-      
+
       tree.update(0, size - 1, 1);
       expect(tree.query(0, size - 1)).toBe(size);
     });
@@ -205,11 +207,10 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
         0
       );
 
-      tree.update(0, 3, 10);  // [10, 10, 10, 10, 5]
-    //   tree.update(2, 4, 20);  // [10, 10, 20, 20, 20]
-      
-      expect(tree.query(0, 2)).toBe(20);
+      tree.update(0, 3, 10); // [10, 10, 10, 10, 5]
+      //   tree.update(2, 4, 20);  // [10, 10, 20, 20, 20]
 
+      expect(tree.query(0, 2)).toBe(20);
     });
   });
 
@@ -238,7 +239,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
 
       expect(tree.query(0, 3)).toBe('abcd');
       expect(tree.query(1, 2)).toBe('bc');
-      
+
       tree.update(1, 2, 'X');
       expect(tree.query(0, 3)).toBe('aXXd');
     });
@@ -261,25 +262,26 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       expect(tree.query(0, 7)).toBe(80);
       // 更新子范围，应该正确覆盖
       tree.update(2, 5, 20);
-      expect(tree.query(0, 1)).toBe(20);  // 10+10
-      expect(tree.query(2, 5)).toBe(80);  // 20*4
-      expect(tree.query(6, 7)).toBe(20);  // 10+10
+      expect(tree.query(0, 1)).toBe(20); // 10+10
+      expect(tree.query(2, 5)).toBe(80); // 20*4
+      expect(tree.query(6, 7)).toBe(20); // 10+10
     });
 
     it('should handle interleaved queries and updates', () => {
       const data = [1, 2, 3, 4, 5];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => oldValue + lazyValue * (right - left + 1),
+        (left, right, lazyValue, oldValue) =>
+          oldValue + lazyValue * (right - left + 1),
         (a, b) => a + b,
         0
       );
 
       expect(tree.query(0, 4)).toBe(15);
-      
+
       tree.update(1, 3, 5);
       expect(tree.query(0, 4)).toBe(30); // 1+(2+5)+(3+5)+(4+5)+5
-      
+
       tree.update(0, 2, 3);
       expect(tree.query(0, 4)).toBe(39); // (1+3)+(7+3)+(8+3)+9+5
     });

@@ -1,29 +1,35 @@
 <template>
   <div
-      ref="containerRef"
-      :class="{ 'lazy-image-container--loaded': loaded }"
-      :style="{ width: width, height: height }"
-      class="lazy-image-container"
+    ref="containerRef"
+    :class="{ 'lazy-image-container--loaded': loaded }"
+    :style="{ width: width, height: height }"
+    class="lazy-image-container"
   >
     <!-- 骨架屏占位 -->
-    <div v-if="!loaded" class="lazy-image-skeleton"></div>
+    <div
+      v-if="!loaded"
+      class="lazy-image-skeleton"
+    />
 
     <!-- 加载失败提示 -->
-    <div v-else-if="loadError" class="lazy-image-error">
+    <div
+      v-else-if="loadError"
+      class="lazy-image-error"
+    >
       <span>加载失败</span>
     </div>
     <!-- 实际图片 -->
     <img
-        v-if="shouldRenderImage"
-        ref="imgRef"
-        :alt="alt"
-        :height="parseSize(height)"
-        :src="src"
-        :width="parseSize(width)"
-        class="lazy-image"
-        @error="handleImageError"
-        @load="handleImageLoad"
-    />
+      v-if="shouldRenderImage"
+      ref="imgRef"
+      :alt="alt"
+      :height="parseSize(height)"
+      :src="src"
+      :width="parseSize(width)"
+      class="lazy-image"
+      @error="handleImageError"
+      @load="handleImageLoad"
+    >
   </div>
 </template>
 

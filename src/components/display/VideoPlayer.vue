@@ -2,12 +2,12 @@
   <div class="video-player">
     <!-- 视频元素 -->
     <video
-        ref="videoRef"
-        :autoplay="autoPlay"
-        :controls="controls"
-        :muted="muted"
-        :src="source"
-    ></video>
+      ref="videoRef"
+      :autoplay="autoPlay"
+      :controls="controls"
+      :muted="muted"
+      :src="source"
+    />
   </div>
 </template>
 

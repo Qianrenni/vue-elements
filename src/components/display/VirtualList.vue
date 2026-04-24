@@ -1,24 +1,33 @@
 <!-- VirtualList.vue -->
 <template>
   <div
-      ref="containerRef"
-      :style="{ height: containerHeight + 'px' }"
-      class="virtual-list-container scroll-container"
-      @scroll="handleScroll"
+    ref="containerRef"
+    :style="{ height: containerHeight + 'px' }"
+    class="virtual-list-container scroll-container"
+    @scroll="handleScroll"
   >
     <!-- 占位元素：撑起滚动条总高度 -->
-    <div :style="{ height: totalHeight + 'px' }" class="virtual-list-phantom"></div>
+    <div
+      :style="{ height: totalHeight + 'px' }"
+      class="virtual-list-phantom"
+    />
 
     <!-- 可视区域内容（通过 translateY 定位） -->
-    <div :style="{ transform: `translateY(${offset}px)` }" class="virtual-list-content">
+    <div
+      :style="{ transform: `translateY(${offset}px)` }"
+      class="virtual-list-content"
+    >
       <div
-          v-for="item in visibleItems"
-          :key="item.key"
-          :style="{ height: itemSize + 'px', lineHeight: itemSize + 'px' }"
-          class="virtual-list-item"
+        v-for="item in visibleItems"
+        :key="item.key"
+        :style="{ height: itemSize + 'px', lineHeight: itemSize + 'px' }"
+        class="virtual-list-item"
       >
         <!-- 插槽：允许自定义内容 -->
-        <slot :index="item.key" :item="item.data">
+        <slot
+          :index="item.key"
+          :item="item.data"
+        >
           {{ item.data }}
         </slot>
       </div>

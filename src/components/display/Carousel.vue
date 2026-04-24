@@ -1,85 +1,86 @@
 <template>
-  <div ref="carousel"
-       :style="{
-        width: `${props.width}px`,
-        height: `${props.height}px`
-      }"
-       class="carousel"
+  <div
+    ref="carousel"
+    :style="{
+      width: `${props.width}px`,
+      height: `${props.height}px`
+    }"
+    class="carousel"
   >
-
     <icon
-        v-if="showButton"
-        :class="{
-          'left-center':indicatorPosition === 'center-bottom',
-          'center-top':indicatorPosition !== 'center-top'&&indicatorPosition !== 'center-bottom'
-        }"
-        :icon="indicatorPosition === 'center-bottom'?'Left':'Up'"
-        class="opacity-2-9 carousel-indicators"
-        @click="prev"
+      v-if="showButton"
+      :class="{
+        'left-center':indicatorPosition === 'center-bottom',
+        'center-top':indicatorPosition !== 'center-top'&&indicatorPosition !== 'center-bottom'
+      }"
+      :icon="indicatorPosition === 'center-bottom'?'Left':'Up'"
+      class="opacity-2-9 carousel-indicators"
+      @click="prev"
     />
     <icon
-        v-if="showButton"
-        :class="{
-          'right-center':indicatorPosition === 'center-bottom',
-          'center-bottom':indicatorPosition !== 'center-top'&&indicatorPosition !== 'center-bottom'
-        }"
-        :icon="indicatorPosition === 'center-bottom'?'Right':'Down'"
-        class="opacity-2-9 carousel-indicators"
-        @click="next"
+      v-if="showButton"
+      :class="{
+        'right-center':indicatorPosition === 'center-bottom',
+        'center-bottom':indicatorPosition !== 'center-top'&&indicatorPosition !== 'center-bottom'
+      }"
+      :icon="indicatorPosition === 'center-bottom'?'Right':'Down'"
+      class="opacity-2-9 carousel-indicators"
+      @click="next"
     />
     <div
-        ref="containerInner"
-        :class="{
-         'container-wrap': vertical,
-        }"
-        :style="{
-          transform: transformStyle,
-          transition: transition,
-          width: `${props.width*(vertical?1:totalItemsCount)}px`,
-          height: `${props.height*(vertical?totalItemsCount:1)}px`
-        }"
-        class="carousel-inner container-flex-start"
+      ref="containerInner"
+      :class="{
+        'container-wrap': vertical,
+      }"
+      :style="{
+        transform: transformStyle,
+        transition: transition,
+        width: `${props.width*(vertical?1:totalItemsCount)}px`,
+        height: `${props.height*(vertical?totalItemsCount:1)}px`
+      }"
+      class="carousel-inner container-flex-start"
     >
       <!-- 复制最后一项到最前 -->
       <div v-if="itemsCount > 0">
-        <component :is="items[items.length - 1]"/>
+        <component :is="items[items.length - 1]" />
       </div>
 
       <!-- 正常显示所有 item -->
       <div
-          v-for="(item, index) in items"
-          :key="index"
+        v-for="(item, index) in items"
+        :key="index"
       >
-        <component :is="item"/>
+        <component :is="item" />
       </div>
       <!-- 复制第一项到最后 -->
       <div v-if="itemsCount > 0">
-        <component :is="items[0]"/>
+        <component :is="items[0]" />
       </div>
     </div>
     <!-- 左/上按钮 -->
 
     <!-- 指示器 -->
-    <div v-if="indicator"
-         :class="{
-          'center-bottom':indicatorPosition === 'center-bottom',
-          'center-top':indicatorPosition === 'center-top',
-          'left-bottom':indicatorPosition === 'left-bottom',
-          'left-top':indicatorPosition === 'left-top',
-          'left-center':indicatorPosition === 'left-center',
-          'right-bottom':indicatorPosition === 'right-bottom',
-          'right-top':indicatorPosition === 'right-top',
-          'right-center':indicatorPosition === 'right-center'
-         }"
-         class="carousel-indicators  bg-transparent"
+    <div
+      v-if="indicator"
+      :class="{
+        'center-bottom':indicatorPosition === 'center-bottom',
+        'center-top':indicatorPosition === 'center-top',
+        'left-bottom':indicatorPosition === 'left-bottom',
+        'left-top':indicatorPosition === 'left-top',
+        'left-center':indicatorPosition === 'left-center',
+        'right-bottom':indicatorPosition === 'right-bottom',
+        'right-top':indicatorPosition === 'right-top',
+        'right-center':indicatorPosition === 'right-center'
+      }"
+      class="carousel-indicators  bg-transparent"
     >
       <span
-          v-for="(_, i) in itemsCount"
-          :key="i"
-          :class="{ active: i === realIndex }"
-          class="indicator "
-          @click="goTo(i)"
-      ></span>
+        v-for="(_, i) in itemsCount"
+        :key="i"
+        :class="{ active: i === realIndex }"
+        class="indicator "
+        @click="goTo(i)"
+      />
     </div>
   </div>
 </template>

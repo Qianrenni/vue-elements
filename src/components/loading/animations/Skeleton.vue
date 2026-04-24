@@ -5,9 +5,7 @@ defineOptions({
 </script>
 
 <template>
-  <div class="loader-skeleton">
-
-  </div>
+  <div class="loader-skeleton" />
 </template>
 
 <style scoped>

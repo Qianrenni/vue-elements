@@ -1,5 +1,5 @@
-import { createVNode, render, type VNode } from "vue";
-import Loading from "@/components/loading/Loading.vue";
+import { createVNode, render, type VNode } from 'vue';
+import Loading from '@/components/loading/Loading.vue';
 let instance: VNode | null = null;
 let container: HTMLDivElement | null = null; // 👈 新增
 
@@ -16,7 +16,7 @@ export const useShowLoading = {
     container.style.transform = 'translate(-50%, -50%)';
     container.style.zIndex = '9999';
     container.style.backgroundColor = 'transparent';
-    container.style.boxShadow = '0 0 0 5000px var(--box-shadow)'
+    container.style.boxShadow = '0 0 0 5000px var(--box-shadow)';
     document.body.appendChild(container);
 
     const vnode = createVNode(Loading, {
@@ -30,11 +30,11 @@ export const useShowLoading = {
   hide() {
     if (instance && container) {
       render(null, container); // 卸载 vnode
-      document.body.removeChild(container); // 
+      document.body.removeChild(container); //
 
       // 清理引用
       instance = null;
       container = null;
     }
-  }
+  },
 };

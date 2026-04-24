@@ -5,15 +5,15 @@
  * @returns 返回一个防抖后的函数
  */
 export const useDebounce = <T extends (...args: any[]) => any>(
-    func: T,
-    delay: number
-): (...args: Parameters<T>) => void => {
-    let timeoutId: ReturnType<typeof setTimeout>;
+  func: T,
+  delay: number
+): ((...args: Parameters<T>) => void) => {
+  let timeoutId: ReturnType<typeof setTimeout>;
 
-    return function (this: any, ...args: Parameters<T>) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-            func.apply(this, args);
-        }, delay);
-    };
-}
+  return function (this: any, ...args: Parameters<T>) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+};

@@ -1,52 +1,53 @@
 <!-- components/FormSwitch.vue -->
 <template>
   <div
-      :class="
+    :class="
       [
         {
           'mouse-cursor-disable':disabled,
           'form-switch--checked': modelValue,
         }
       ]"
-      class="form-switch"
-      @click="toggle"
+    class="form-switch"
+    @click="toggle"
   >
     <input
-        :id="id"
-        :checked="modelValue!"
-        :disabled="disabled"
-        :name="name"
-        class="form-switch__input"
-        type="checkbox"
-    />
-    <label :class="[
-               {
-                 'container-column':direction==='vertical'
-               }
-           ]"
-           :for="id"
-           class="form-switch__label container-align-center mouse-cursor"
+      :id="id"
+      :checked="modelValue!"
+      :disabled="disabled"
+      :name="name"
+      class="form-switch__input"
+      type="checkbox"
+    >
+    <label
+      :class="[
+        {
+          'container-column':direction==='vertical'
+        }
+      ]"
+      :for="id"
+      class="form-switch__label container-align-center mouse-cursor"
     >
       <span
-          :class="[
-              {
-                'mouse-cursor-disable':disabled,
-                 [`size-${size}`]:true,
-              }
-          ]"
-          class="form-switch__slider"
+        :class="[
+          {
+            'mouse-cursor-disable':disabled,
+            [`size-${size}`]:true,
+          }
+        ]"
+        class="form-switch__slider"
+      />
+      <span
+        v-if="label"
+        :class="[
+          {
+            'mouse-cursor-disable':disabled,
+            'text-12rem':size==='large',
+            'text-08rem':size==='small'
+          }
+        ]"
+        class="form-switch__label-text"
       >
-
-      </span>
-      <span v-if="label"
-            :class="[
-                {
-                'mouse-cursor-disable':disabled,
-                'text-12rem':size==='large',
-                'text-08rem':size==='small'
-                }
-            ]"
-            class="form-switch__label-text">
         {{ label }}
       </span>
     </label>

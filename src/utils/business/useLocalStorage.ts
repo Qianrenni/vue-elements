@@ -5,13 +5,13 @@ interface StorageItem<T> {
 export type TypeGuard<T> = (value: any) => value is T;
 export class UseLocalStorage<T> {
   private readonly prefix: string;
-  private readonly typeGuard: TypeGuard<T>|undefined;
+  private readonly typeGuard: TypeGuard<T> | undefined;
 
   /*
    * @param prefix 存储键前缀
    * @param typeGuard 类型守卫函数，用于检查存储值是否符合预期类型
    */
-  constructor(prefix: string = '',typeGuard?:TypeGuard<T>){
+  constructor(prefix: string = '', typeGuard?: TypeGuard<T>) {
     this.prefix = prefix;
     this.typeGuard = typeGuard;
   }
@@ -24,13 +24,13 @@ export class UseLocalStorage<T> {
    */
   setItem(key: string, value: T, expires?: number): void {
     try {
-      if(this.typeGuard&&!this.typeGuard(value)){
+      if (this.typeGuard && !this.typeGuard(value)) {
         throw new Error('value is not a valid type');
       }
       const storageKey = this.getStorageKey(key);
       const item: StorageItem<T> = {
         value,
-        expires: expires ? Date.now() + expires : undefined
+        expires: expires ? Date.now() + expires : undefined,
       };
 
       localStorage.setItem(storageKey, JSON.stringify(item));
@@ -49,7 +49,7 @@ export class UseLocalStorage<T> {
     try {
       const storageKey = this.getStorageKey(key);
       const itemStr = localStorage.getItem(storageKey);
-      
+
       if (itemStr === null) {
         return null;
       }
@@ -99,15 +99,15 @@ export class UseLocalStorage<T> {
   clear(): void {
     try {
       const keysToRemove: string[] = [];
-      
+
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key && key.startsWith(this.prefix)) {
           keysToRemove.push(key);
         }
       }
-      
-      keysToRemove.forEach(key => localStorage.removeItem(key));
+
+      keysToRemove.forEach((key) => localStorage.removeItem(key));
     } catch (error) {
       console.error('LocalStorage clear error:', error);
     }
@@ -130,7 +130,7 @@ export class UseLocalStorage<T> {
   getKeys(): string[] {
     try {
       const keys: string[] = [];
-      
+
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key && key.startsWith(this.prefix)) {
@@ -138,7 +138,7 @@ export class UseLocalStorage<T> {
           keys.push(key.slice(this.prefix.length));
         }
       }
-      
+
       return keys;
     } catch (error) {
       console.error('LocalStorage getKeys error:', error);
@@ -154,4 +154,4 @@ export class UseLocalStorage<T> {
   private getStorageKey(key: string): string {
     return `${this.prefix}${key}`;
   }
-};
+}

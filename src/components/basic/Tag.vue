@@ -7,6 +7,7 @@
   </span>
 </template>
 <script lang="ts" setup>
+defineOptions({ name: 'Tag' });
 const props = withDefaults(defineProps<{ 
     color?: string; 
     background?: string; 

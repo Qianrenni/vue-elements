@@ -34,11 +34,15 @@ describe('UseSkipList', () => {
     });
 
     it('应该支持自定义比较函数', () => {
-      const customSkipList = new UseSkipList<{ value: number }>(undefined, 32, (a, b) => a.value - b.value);
+      const customSkipList = new UseSkipList<{ value: number }>(
+        undefined,
+        32,
+        (a, b) => a.value - b.value
+      );
       customSkipList.insert({ value: 5 });
       customSkipList.insert({ value: 3 });
       customSkipList.insert({ value: 8 });
-      
+
       expect(customSkipList.get_first()).toEqual({ value: 3 });
       expect(customSkipList.get_last()).toEqual({ value: 8 });
     });
@@ -50,7 +54,7 @@ describe('UseSkipList', () => {
       expect(skipList.insert(3)).toBe(true);
       expect(skipList.insert(8)).toBe(true);
       expect(skipList.insert(1)).toBe(true);
-      
+
       expect(skipList.length).toBe(4);
       expect(skipList.get_first()).toBe(1);
       expect(skipList.get_last()).toBe(8);
@@ -60,14 +64,14 @@ describe('UseSkipList', () => {
       expect(skipList.insert(5)).toBe(true);
       expect(skipList.insert(3)).toBe(true);
       expect(skipList.insert(5)).toBe(false); // 重复插入应返回 false
-      
+
       expect(skipList.length).toBe(2);
     });
 
     it('应该保持插入后元素有序', () => {
       const values = [5, 3, 8, 1, 9, 2, 7, 4, 6];
-      values.forEach(v => skipList.insert(v));
-      
+      values.forEach((v) => skipList.insert(v));
+
       expect(skipList.length).toBe(values.length);
       expect(skipList.get_first()).toBe(1);
       expect(skipList.get_last()).toBe(9);
@@ -102,7 +106,7 @@ describe('UseSkipList', () => {
       expect(skipList.delete(5)).toBe(true);
       expect(skipList.delete(8)).toBe(true);
       expect(skipList.delete(9)).toBe(true);
-      
+
       expect(skipList.length).toBe(0);
       expect(skipList.get_first()).toBeNull();
       expect(skipList.get_last()).toBeNull();
@@ -141,7 +145,7 @@ describe('UseSkipList', () => {
     it('应该获取第一个和最后一个元素', () => {
       expect(skipList.get_first()).toBe(1);
       expect(skipList.get_last()).toBe(9);
-      
+
       const emptyList = new UseSkipList<number>();
       expect(emptyList.get_first()).toBeNull();
       expect(emptyList.get_last()).toBeNull();
@@ -188,16 +192,20 @@ describe('UseSkipList', () => {
         name: string;
         age: number;
       }
-      
-      const personSkipList = new UseSkipList<Person>(undefined, 32, (a, b) => a.age - b.age);
-      
+
+      const personSkipList = new UseSkipList<Person>(
+        undefined,
+        32,
+        (a, b) => a.age - b.age
+      );
+
       personSkipList.insert({ name: 'Alice', age: 30 });
       personSkipList.insert({ name: 'Bob', age: 25 });
       personSkipList.insert({ name: 'Charlie', age: 35 });
-      
+
       expect(personSkipList.get_first()).toEqual({ name: 'Bob', age: 25 });
       expect(personSkipList.get_last()).toEqual({ name: 'Charlie', age: 35 });
-      
+
       expect(personSkipList.get_by_rank(1)).toEqual({ name: 'Alice', age: 30 });
       expect(personSkipList.get_rank({ name: 'Alice', age: 30 })).toBe(1);
     });
@@ -209,7 +217,7 @@ describe('UseSkipList', () => {
       expect(skipList.insert(3)).toBe(true);
       expect(skipList.insert(3)).toBe(false); // 插入重复元素应失败
       expect(skipList.insert(8)).toBe(true);
-      
+
       expect(skipList.length).toBe(3);
       expect(skipList.get_first()).toBe(3);
       expect(skipList.get_last()).toBe(8);
@@ -222,7 +230,7 @@ describe('UseSkipList', () => {
       expect(skipList.get_last()).toBe(42);
       expect(skipList.get_by_rank(0)).toBe(42);
       expect(skipList.get_rank(42)).toBe(0);
-      
+
       expect(skipList.delete(42)).toBe(true);
       expect(skipList.length).toBe(0);
       expect(skipList.get_first()).toBeNull();
@@ -238,35 +246,37 @@ describe('UseSkipList', () => {
           values.push(value);
         }
       }
-      
+
       // 插入所有值
-      values.forEach(v => skipList.insert(v));
-      
+      values.forEach((v) => skipList.insert(v));
+
       expect(skipList.length).toBe(values.length);
-      
+
       // 验证元素有序
       const sortedValues = [...values].sort((a, b) => a - b);
       for (let i = 0; i < sortedValues.length; i++) {
         expect(skipList.get_by_rank(i)).toBe(sortedValues[i]);
         expect(skipList.get_rank(sortedValues[i])).toBe(i);
       }
-      
+
       // 验证首尾元素
       expect(skipList.get_first()).toBe(sortedValues[0]);
       expect(skipList.get_last()).toBe(sortedValues[sortedValues.length - 1]);
     });
-    it('不传入比较函数应抛出错误',()=>{
-      expect(()=>{
+    it('不传入比较函数应抛出错误', () => {
+      expect(() => {
         const skipList = new UseSkipList<object>();
         skipList.insert({ name: 'Alice', age: 30 });
         skipList.insert({ name: 'Bob', age: 25 });
-      }).throws('Default compare only supports number/string. Please provide custom compare function.')
-    })
-    it('删除末尾节点,尾指针需指向前一个节点',()=>{
+      }).throws(
+        'Default compare only supports number/string. Please provide custom compare function.'
+      );
+    });
+    it('删除末尾节点,尾指针需指向前一个节点', () => {
       skipList.insert(1);
       skipList.insert(2);
       skipList.delete(2);
       expect(skipList.get_last()).toBe(1);
-    })
+    });
   });
 });

@@ -153,7 +153,7 @@ describe('useArray - Binary Search Functions', () => {
         { age: 20, name: 'Alice' },
         { age: 25, name: 'Bob' },
         { age: 30, name: 'Charlie' },
-        { age: 35, name: 'David' }
+        { age: 35, name: 'David' },
       ];
 
       const compareByAge = (a: Person, b: Person): number => {

@@ -1,45 +1,29 @@
 <!-- Message.vue -->
 <script lang="ts" setup>
-import {MessageType} from "@/types";
-import {onMounted, ref} from "vue";
+import { MessageType } from '@/types';
 
 defineOptions({
   name: 'Message',
-})
+});
 
 defineProps<{
   message: string;
-  type: MessageType,
-  onClose?: () => void;
-}>()
+  type: MessageType;
+}>();
 
-// 控制动画类
-const isVisible = ref(true);
-
-// 派发关闭事件（供父级调用）
-const emit = defineEmits<{
-  close: []
-}>()
-
-// 自动设置关闭（由外部控制 duration）
-onMounted(() => {
-  // 触发下一帧添加 enter 类（避免初始就动画）
-  requestAnimationFrame(() => {
-    // 可在这里加 enter 动画类（可选）
-  })
-})
 </script>
 
 <template>
   <div
-    :class="[{
-      'text-success': type === 'success',
-      'text-danger': type === 'error',
-      'text-warning': type === 'warning',
-      'text-gray': type === 'info',
-    }]"
+    :class="[
+      {
+        'text-success': type === 'success',
+        'text-danger': type === 'error',
+        'text-warning': type === 'warning',
+        'text-gray': type === 'info',
+      },
+    ]"
     class="mouse-cursor message-container shadow-common animate-slide-in"
-    @click="onClose?.()"
   >
     <p>{{ message }}</p>
     <!-- 可加关闭按钮 -->
@@ -59,7 +43,9 @@ onMounted(() => {
   min-width: 200px;
   max-width: 600px;
   /* 启用过渡 */
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .message-close {

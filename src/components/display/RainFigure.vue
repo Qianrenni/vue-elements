@@ -1,8 +1,17 @@
 <template>
   <div class="rain-figure-container container-center">
     <div style="position: relative">
-      <img ref="rainFigure" :src="imageUrl" alt="" class="rain-image" @load="resizeCanvas"/>
-      <canvas ref="rainCanvas" class="rain-canvas"></canvas>
+      <img
+        ref="rainFigure"
+        :src="imageUrl"
+        alt=""
+        class="rain-image"
+        @load="resizeCanvas"
+      >
+      <canvas
+        ref="rainCanvas"
+        class="rain-canvas"
+      />
     </div>
   </div>
 </template>

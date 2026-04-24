@@ -31,7 +31,10 @@ class SkipListNode<T> {
   constructor(member: T, level: number) {
     this.member = member;
     this.backward = null;
-    this.levels = Array.from({ length: level }, () => ({ forward: null, span: 0 }));
+    this.levels = Array.from({ length: level }, () => ({
+      forward: null,
+      span: 0,
+    }));
   }
 }
 
@@ -84,7 +87,9 @@ export class UseSkipList<T> {
         } else if (typeof a === 'string' && typeof b === 'string') {
           return a.localeCompare(b);
         }
-        throw new Error('Default compare only supports number/string. Please provide custom compare function.');
+        throw new Error(
+          'Default compare only supports number/string. Please provide custom compare function.'
+        );
       };
     }
   }
@@ -109,7 +114,9 @@ export class UseSkipList<T> {
    */
   insert(member: T): boolean {
     // update 数组记录每一层需要更新的节点（即新节点各层的前驱节点）
-    const update: (SkipListNode<T> | null)[] = new Array(this._MAX_LEVEL).fill(this._header);
+    const update: (SkipListNode<T> | null)[] = new Array(this._MAX_LEVEL).fill(
+      this._header
+    );
     // rank 数组记录遍历过程中每一层已走过的节点数
     const rank: number[] = new Array(this._MAX_LEVEL).fill(0);
 
@@ -192,7 +199,9 @@ export class UseSkipList<T> {
    */
   delete(member: T): boolean {
     // update 数组记录每一层需要更新的节点（即被删除节点各层的前驱节点）
-    const update: (SkipListNode<T> | null)[] = new Array(this._MAX_LEVEL).fill(null);
+    const update: (SkipListNode<T> | null)[] = new Array(this._MAX_LEVEL).fill(
+      null
+    );
     let x: SkipListNode<T> | null = this._header;
 
     // 从最高层开始向下查找待删除节点
@@ -237,7 +246,10 @@ export class UseSkipList<T> {
     }
 
     // 更新跳表最大层级
-    while (this._maxLevel > 1 && this._header.levels[this._maxLevel - 1].forward === null) {
+    while (
+      this._maxLevel > 1 &&
+      this._header.levels[this._maxLevel - 1].forward === null
+    ) {
       this._maxLevel--;
     }
 
@@ -366,7 +378,10 @@ export class UseSkipList<T> {
     let x = this._header;
     // 从最高层开始向下定位起始位置
     for (let i = this._maxLevel - 1; i >= 0; i--) {
-      while (x.levels[i].forward && traversed + x.levels[i].span <= forwardRank + 1) {
+      while (
+        x.levels[i].forward &&
+        traversed + x.levels[i].span <= forwardRank + 1
+      ) {
         traversed += x.levels[i].span;
         x = x.levels[i].forward!;
       }

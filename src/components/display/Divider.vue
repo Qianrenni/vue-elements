@@ -1,5 +1,5 @@
 <template>
-  <div class="divider"></div>
+  <div class="divider" />
 </template>
 
 <script lang="ts" setup>

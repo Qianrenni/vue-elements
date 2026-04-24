@@ -39,7 +39,7 @@ describe('UseHeap', () => {
       minHeap.add(3);
       minHeap.add(8);
       minHeap.add(1);
-      
+
       expect(minHeap.size).toBe(4);
       expect(minHeap.isEmpty()).toBe(false);
     });
@@ -49,7 +49,7 @@ describe('UseHeap', () => {
       minHeap.add(3);
       minHeap.add(8);
       minHeap.add(1);
-      
+
       expect(minHeap.pop()).toBe(1);
       expect(minHeap.pop()).toBe(3);
       expect(minHeap.pop()).toBe(5);
@@ -62,7 +62,7 @@ describe('UseHeap', () => {
       maxHeap.add(3);
       maxHeap.add(8);
       maxHeap.add(1);
-      
+
       expect(maxHeap.pop()).toBe(8);
       expect(maxHeap.pop()).toBe(5);
       expect(maxHeap.pop()).toBe(3);
@@ -74,7 +74,7 @@ describe('UseHeap', () => {
       minHeap.add(5);
       minHeap.add(3);
       minHeap.add(8);
-      
+
       expect(minHeap.peek()).toBe(3);
       expect(minHeap.size).toBe(3); // 确保元素未被删除
     });
@@ -88,7 +88,7 @@ describe('UseHeap', () => {
     it('应该正确堆化数组', () => {
       const arr = [5, 3, 8, 1, 9];
       UseHeap.heaplify(arr, (a, b) => a < b);
-      
+
       // 验证堆性质：父节点 <= 子节点
       expect(arr[0]).toBe(1); // 根节点是最小值
       expect(arr[1]).toBe(3);
@@ -100,14 +100,14 @@ describe('UseHeap', () => {
       UseHeap.heapPush(arr, 5, (a, b) => a < b);
       UseHeap.heapPush(arr, 3, (a, b) => a < b);
       UseHeap.heapPush(arr, 8, (a, b) => a < b);
-      
+
       expect(arr[0]).toBe(3); // 最小值在堆顶
     });
 
     it('应该正确使用heapPop弹出元素', () => {
       const arr = [1, 3, 8, 5, 9];
       const popped = UseHeap.heapPop(arr, (a, b) => a < b);
-      
+
       expect(popped).toBe(1);
       expect(arr.length).toBe(4);
       expect(arr[0]).toBe(3); // 新的最小值在堆顶
@@ -116,7 +116,7 @@ describe('UseHeap', () => {
     it('应该正确处理空数组的heapPop', () => {
       const arr: number[] = [];
       const popped = UseHeap.heapPop(arr, (a, b) => a < b);
-      
+
       expect(popped).toBeUndefined();
       expect(arr.length).toBe(0);
     });
@@ -126,21 +126,21 @@ describe('UseHeap', () => {
     it('应该正确对数字数组进行升序排序（最小堆）', () => {
       const arr = [5, 3, 8, 1, 9, 2];
       UseHeap.heapSort(arr, (a, b) => a < b);
-      
+
       expect(arr).toEqual([1, 2, 3, 5, 8, 9]);
     });
 
     it('应该正确对数字数组进行降序排序（最大堆）', () => {
       const arr = [5, 3, 8, 1, 9, 2];
       UseHeap.heapSort(arr, (a, b) => a > b);
-      
+
       expect(arr).toEqual([9, 8, 5, 3, 2, 1]);
     });
 
     it('应该正确对字符串数组排序', () => {
       const arr = ['banana', 'apple', 'cherry', 'date'];
       UseHeap.heapSort(arr, (a, b) => a < b);
-      
+
       expect(arr).toEqual(['apple', 'banana', 'cherry', 'date']);
     });
 
@@ -149,15 +149,15 @@ describe('UseHeap', () => {
       minHeap.add(3);
       minHeap.add(8);
       minHeap.add(1);
-      
+
       minHeap.sort();
-      expect(minHeap.toArray()).toEqual([1,3,5,8]); // 由于是最小堆，排序后是降序
+      expect(minHeap.toArray()).toEqual([1, 3, 5, 8]); // 由于是最小堆，排序后是降序
       maxHeap.add(1);
       maxHeap.add(3);
       maxHeap.add(8);
       maxHeap.add(5);
       maxHeap.sort();
-      expect(maxHeap.toArray()).toEqual([8,5,3,1]);
+      expect(maxHeap.toArray()).toEqual([8, 5, 3, 1]);
     });
   });
 
@@ -166,10 +166,10 @@ describe('UseHeap', () => {
       minHeap.add(5);
       minHeap.add(3);
       minHeap.add(8);
-      
+
       const arr = minHeap.toArray();
       expect(arr).toEqual([3, 5, 8]); // 堆数组的当前状态
-      
+
       // 修改返回的数组不应影响堆
       arr.push(10);
       expect(minHeap.toArray()).toEqual([3, 5, 8]);
@@ -179,7 +179,7 @@ describe('UseHeap', () => {
       minHeap.add(5);
       minHeap.add(3);
       minHeap.add(8);
-      
+
       minHeap.clear();
       expect(minHeap.size).toBe(0);
       expect(minHeap.isEmpty()).toBe(true);
@@ -193,13 +193,13 @@ describe('UseHeap', () => {
         name: string;
         age: number;
       }
-      
+
       const personHeap = new UseHeap<Person>((a, b) => a.age < b.age);
-      
+
       personHeap.add({ name: 'Alice', age: 30 });
       personHeap.add({ name: 'Bob', age: 25 });
       personHeap.add({ name: 'Charlie', age: 35 });
-      
+
       const youngest = personHeap.pop();
       expect(youngest).toEqual({ name: 'Bob', age: 25 });
     });
@@ -211,7 +211,7 @@ describe('UseHeap', () => {
       minHeap.add(3);
       minHeap.add(3);
       minHeap.add(8);
-      
+
       expect(minHeap.pop()).toBe(3);
       expect(minHeap.pop()).toBe(3);
       expect(minHeap.pop()).toBe(5);
@@ -232,15 +232,15 @@ describe('UseHeap', () => {
       for (let i = 0; i < count; i++) {
         minHeap.add(Math.floor(Math.random() * 1000));
       }
-      
+
       expect(minHeap.size).toBe(count);
-      
+
       // 连续弹出所有元素，确保是有序的
       const result: number[] = [];
       while (!minHeap.isEmpty()) {
         result.push(minHeap.pop()!);
       }
-      
+
       // 验证结果是有序的
       for (let i = 1; i < result.length; i++) {
         expect(result[i]).toBeGreaterThanOrEqual(result[i - 1]);

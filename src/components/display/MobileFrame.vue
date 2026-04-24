@@ -2,7 +2,7 @@
   <!-- 手机外形的div -->
   <div class="phone-frame">
     <!-- 加载你的uni-app应用 -->
-    <iframe :src="props.src"></iframe>
+    <iframe :src="props.src" />
   </div>
 </template>
 
