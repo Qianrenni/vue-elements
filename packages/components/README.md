@@ -15,11 +15,11 @@
 ## 📦 安装
 
 ```bash
-npm install qiannai-components@latest
+npm install qyani-components@latest
 # 或
-pnpm add qiannai-components
+pnpm add qyani-components
 # 或
-yarn add qiannai-components
+yarn add qyani-components
 ```
 
 ## 🚀 快速开始
@@ -27,13 +27,13 @@ yarn add qiannai-components
 ### 1. 引入样式
 
 ```typescript
-import 'qiannai-components/dist/style.css';
+import 'qyani-components/dist/style.css';
 ```
 
 ### 2. 按需引入组件
 
 ```typescript
-import { QIcon, QButton, QFormContainer } from 'qiannai-components';
+import { QIcon, QButton, QFormContainer } from 'qyani-components';
 ```
 
 ### 3. 全局安装
@@ -41,8 +41,8 @@ import { QIcon, QButton, QFormContainer } from 'qiannai-components';
 ```typescript
 import { createApp } from 'vue'
 import App from './App.vue'
-import qiannaicomponents from 'qiannai-components'
-import 'qiannai-components/dist/style.css'
+import qiannaicomponents from 'qyani-components'
+import 'qyani-components/dist/style.css'
 
 const app = createApp(App)
 app.use(qiannaicomponents)
@@ -62,7 +62,7 @@ app.mount('#app')
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { QAvatar, QFormContainer, QButton } from 'qiannai-components'
+import { QAvatar, QFormContainer, QButton } from 'qyani-components'
 
 const username = ref('')
 </script>

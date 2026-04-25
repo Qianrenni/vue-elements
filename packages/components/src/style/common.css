@@ -4,9 +4,6 @@
   box-sizing: border-box;
   background-color: inherit;
   color: inherit;
-  transition:
-    color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out;
 }
 
 :root {
@@ -140,9 +137,6 @@ body {
     Arial, sans-serif;
   color: var(--text-color);
   background-color: var(--background-color);
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
 }
 
 pre {
