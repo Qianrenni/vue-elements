@@ -6,7 +6,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "npx prettier --write \"packages/**/*.{js,ts,vue,css}\"",
-    "build:components":"pnpm run --filter qyani-components build"
+    "build:components":"pnpm run --filter qyani-components build",
+    "docs:dev":"pnpm run --filter @qyani-components/docs dev",
+    "docs:update":"pnpm run --filter @qyani-components/docs update"
   },
   "keywords": [],
   "author": "",
