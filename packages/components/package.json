@@ -1,0 +1,65 @@
+{
+  "name": "qyani-components",
+  "version": "1.5.6",
+  "description": "a frontend components lib",
+  "main": "dist/qyani-components.cjs.js",
+  "module": "dist/qyani-components.es.js",
+  "browser": "dist/qyani-components.umd.js",
+  "packageManager": "pnpm@10.12.4",
+  "types": "dist/types/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "type-check": "pnpm npx vue-tsc --build --declaration --clean",
+    "build": "python scripts/index_python.py && python scripts/global.d.ts.py && pnpm vite build && vue-tsc --build --declaration --emitDeclarationOnly",
+    "dev": "pnpm vite",
+    "update index": "python scripts/index_python.py",
+    "update global": "python scripts/global.d.ts.py",
+    "test": "vitest",
+    "test:ui": "vitest ui",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage"
+  },
+  "author": "qyaniwu",
+  "license": "ISC",
+  "keywords": [
+    "vue",
+    "components",
+    "typescript",
+    "library"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "global.d.ts"
+  ],
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vue/compiler-sfc": "^3.5.17",
+    "autoprefixer": "^10.4.21",
+    "highlight.js": "latest",
+    "json5": "^2.2.3",
+    "marked": "^15.0.11",
+    "marked-katex-extension": "^5.1.4",
+    "pinyin-pro": "^3.26.0",
+    "typescript": "^5.8.3",
+    "vite": "7.1.5",
+    "vitest": "^3.2.4",
+    "vue": "^3.5.18",
+    "vue-tsc": "^3.0.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/qyani-components.es.js",
+      "require": "./dist/qyani-components.cjs.js"
+    },
+    "./dist/style.css": "./dist/style.css",
+    "./global": {
+      "types": "./global.d.ts"
+    }
+  }
+}
