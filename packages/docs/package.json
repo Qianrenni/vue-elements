@@ -1,0 +1,26 @@
+{
+  "name": "@qyani-components/docs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "update": "python scripts/init.py && python scripts/index_python.py && python scripts/get_component_info.py"
+  },
+  "dependencies": {
+    "qyani-components": "workspace:*",
+    "vue": "^3.5.18",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/compiler-sfc": "^3.5.17",
+    "@vue/tsconfig": "^0.7.0",
+    "typescript": "^5.8.3",
+    "vite": "7.1.5",
+    "vue-tsc": "^3.0.1"
+  }
+}
