@@ -84,7 +84,7 @@ const copy = (value: string) => {
 
 <template>
   <DemoBlock :code="code">
-    <div class="container">
+    <div class="container container-wrap">
       <div
         v-for="value in icons"
         :key="value"

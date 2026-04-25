@@ -25,7 +25,7 @@ watch(
 </script>
 
 <template>
-  <div class="app-layout">
+  <div>
     <header class="bg-card container" style="justify-content: space-between">
       <QThemeToggle :size="24" :title="'主题变换'" />
       <QIcon
@@ -53,9 +53,4 @@ watch(
   </div>
 </template>
 
-<style>
-.app-layout {
-  width: 100vw;
-  height: 100vh;
-}
-</style>
+<style></style>

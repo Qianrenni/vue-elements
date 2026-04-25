@@ -48,7 +48,6 @@ import python from 'highlight.js/lib/languages/python';
 import javascript from 'highlight.js/lib/languages/javascript';
 import xml from 'highlight.js/lib/languages/xml';
 import css from 'highlight.js/lib/languages/css';
-import html from 'highlight.js/lib/languages/vbscript-html';
 import typescript from 'highlight.js/lib/languages/typescript';
 import kotlin from 'highlight.js/lib/languages/kotlin';
 import cplus from 'highlight.js/lib/languages/cpp';
@@ -63,7 +62,7 @@ hljs.registerLanguage('python', python);
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('css', css);
-hljs.registerLanguage('html', html);
+hljs.registerLanguage('html', xml);
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('kotlin', kotlin);
 hljs.registerLanguage('c++', cplus);
@@ -118,6 +117,42 @@ function slugify(text: string) {
 // 自定义 renderer
 const renderer = new marked.Renderer();
 
+renderer.code = function ({
+  text: code,
+  lang: infoString,
+}: {
+  text: string;
+  lang?: string;
+}) {
+  // 提取语言：```html → lang = 'html'
+  const lang = (infoString || '').split(/\s+/)[0] || 'plaintext';
+  // 语言别名映射
+  const langAlias: Record<string, string> = {
+    html: 'xml',
+    vue: 'xml',
+    jsx: 'javascript',
+    tsx: 'typescript',
+  };
+  const resolvedLang = langAlias[lang.toLowerCase()] || lang;
+
+  // 高亮处理
+  let highlighted: string;
+  if (!resolvedLang || !hljs.getLanguage(resolvedLang)) {
+    highlighted = hljs.highlight(code, { language: 'plaintext' }).value;
+  } else {
+    try {
+      highlighted = hljs.highlight(code, { language: resolvedLang }).value;
+    } catch (e) {
+      console.warn(
+        `Highlight.js 无法识别语言：${lang}，已降级为 plaintext ${e}`,
+      );
+      highlighted = hljs.highlight(code, { language: 'plaintext' }).value;
+    }
+  }
+
+  // 返回带高亮类的 HTML
+  return `<pre><code class="hljs language-${resolvedLang}">${highlighted}</code></pre>`;
+};
 // 图片渲染
 renderer.image = function ({ href, title, text }) {
   let finalHref = href;
@@ -150,22 +185,10 @@ marked.use(
   markedKatex({ output: 'mathml', strict: false, throwOnError: false }),
 );
 marked.setOptions({
-  highlight: function (code: string, lang: string) {
-    if (!lang) return hljs.highlight(code, { language: 'plaintext' }).value;
-    try {
-      return hljs.highlight(code, { language: lang }).value;
-    } catch (e) {
-      console.warn(
-        `Highlight.js 无法识别语言：${lang}，已自动降级为 plaintext`,
-      );
-      return hljs.highlight(code, { language: 'plaintext' }).value;
-    }
-  },
   renderer,
   gfm: true,
   breaks: false,
   pedantic: false,
-  langPrefix: 'language-',
 });
 
 // 解析 Markdown
@@ -174,17 +197,7 @@ async function parseMarkdown(content: string) {
   toc.value = [];
   htmlContent.value = await marked.parse(content);
   nextTick(() => {
-    highlightCode();
     bindAnchorEvents();
-  });
-}
-
-// 高亮代码块v
-function highlightCode() {
-  document.querySelectorAll('pre code').forEach((block) => {
-    if (!block.hasAttribute('data-highlighted')) {
-      hljs.highlightElement(<HTMLElement>block);
-    }
   });
 }
 

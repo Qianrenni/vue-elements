@@ -16,6 +16,7 @@ let grouped: Map<string, ComponentInfo[]> | null = null;
 onBeforeMount(() => {
   const map = new Map<string, ComponentInfo[]>();
   useComponentInfo.forEach((comp: ComponentInfo) => {
+    console.log(comp.category.split('/').filter((el) => el != ''));
     if (!map.has(comp.category)) {
       map.set(comp.category, []);
     }
@@ -63,7 +64,7 @@ onBeforeMount(() => {
 .component-list {
   width: 260px;
   border-right: 1px solid var(--primary-color);
-  height: calc(100vh - 3.5rem);
+  height: calc(100vh - 2.5rem);
 }
 
 /* 组件项样式 */
