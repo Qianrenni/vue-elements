@@ -48,6 +48,7 @@ import { default as QNavSection } from './components/navigation/NavSection.vue';
 import { default as QTab } from './components/navigation/Tab.vue';
 import { default as QThemeToggle } from './components/theme/ThemeToggle.vue';
 export default {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   install(app: any) {
     app.component('QIcon', QIcon);
     app.component('QMessage', QMessage);
