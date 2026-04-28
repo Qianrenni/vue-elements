@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, useTemplateRef } from 'vue';
-import { useThrottle } from '@/utils';
+import { useThrottle, useWindowResize } from '@/utils';
 
 defineOptions({
   name: 'ScrollContainer',
@@ -53,6 +53,13 @@ const addScrolHandler = useThrottle(() => {
   lastY = scroll.y;
   lastX = scroll.x;
 }, props.emitInterval);
+
+const resizeHandler = () => {
+  if (refScrollContainer.value) {
+    height = refScrollContainer.value?.offsetHeight ?? 0;
+    width = refScrollContainer.value?.offsetWidth ?? 0;
+  }
+};
 onMounted(() => {
   if (refScrollContainer.value) {
     height = refScrollContainer.value?.offsetHeight ?? 0;
@@ -60,15 +67,21 @@ onMounted(() => {
     if (props.scrollX || props.scrollY) {
       refScrollContainer.value?.addEventListener('scroll', addScrolHandler);
     }
+    useWindowResize.addHandler(resizeHandler);
   } else {
     console.error('scroll-container ref is null');
   }
 });
 onBeforeUnmount(() => {
   refScrollContainer.value?.removeEventListener('scroll', addScrolHandler);
+  useWindowResize.removeHandler(resizeHandler);
 });
 defineExpose({
-  scrollTo(options: ScrollToOptions) {
+  scrollTo(options: {
+    left?: number;
+    top?: number;
+    behavior?: 'smooth' | 'auto' | 'instant';
+  }) {
     refScrollContainer.value?.scrollTo(options);
   },
 });
