@@ -108,7 +108,7 @@ const formSelectOptionsRef = useTemplateRef('input-select-options');
 const isShowOptions = ref(false);
 const emit = defineEmits<FormComponentEmits<string>>();
 const selectedLabel = computed(() => {
-  if (!props.modelValue) return '';
+  if (props.modelValue === null) return '';
   const option = props.options.find((opt) => opt.value === props.modelValue);
   return option?.label || '';
 });

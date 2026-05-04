@@ -30,14 +30,14 @@ const currentPage = ref(1);
 const handleChange = (page) => {
   currentPage.value = page;
 };
-<\/script>
+<\\/script>
 \`\`\`
 `;
 </script>
 
 <template>
   <DemoBlock :code="code">
-    <div class="container-column gap-4">
+    <div class="inner-container-column">
       <QPagination
         :current-page="currentPage"
         :total-pages="totalPages"

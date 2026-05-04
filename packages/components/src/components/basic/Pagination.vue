@@ -1,11 +1,11 @@
 <template>
-  <div class="container text-08rem text-one-line">
+  <div class="container text-08rem container-wrap">
     <!-- 首页按钮 -->
     <FormButton
       :class="{ 'mouse-cursor-disable': currentPage === 1 }"
       @click="goToPage(1)"
     >
-      首页
+      <span class="text-one-line">首页</span>
     </FormButton>
 
     <!-- 上一页按钮 -->
@@ -13,7 +13,7 @@
       :class="{ 'mouse-cursor-disable': currentPage === 1 }"
       @click="goToPage(currentPage - 1)"
     >
-      上一页
+      <span class="text-one-line">上一页</span>
     </FormButton>
 
     <!-- 页码列表 -->
@@ -24,10 +24,10 @@
           :class="page === currentPage ? 'button-primary' : 'button-outline'"
           @click="goToPage(<number>page)"
         >
-          {{ page }}
+          <span class="text-one-line">{{ page }}</span>
         </FormButton>
         <FormButton v-else>
-          {{ page }}
+          <span class="text-one-line">{{ page }}</span>
         </FormButton>
       </template>
     </div>
@@ -37,7 +37,7 @@
       :class="{ 'mouse-cursor-disable': currentPage === totalPages }"
       @click="goToPage(currentPage + 1)"
     >
-      下一页
+      <span class="text-one-line">下一页</span>
     </FormButton>
 
     <!-- 末页按钮 -->
@@ -45,12 +45,12 @@
       :class="{ 'mouse-cursor-disable': currentPage === totalPages }"
       @click="goToPage(totalPages)"
     >
-      末页
+      <span class="text-one-line">末页</span>
     </FormButton>
 
     <!-- 跳转到指定页 -->
     <div class="container-center">
-      <span>跳至</span>
+      <span class="text-one-line">跳至</span>
       <div>
         <input
           v-model="jumpPage"
@@ -60,7 +60,9 @@
           type="number"
         />
       </div>
-      <FormButton @click="goToPage(<number>jumpPage)"> 跳转 </FormButton>
+      <FormButton @click="goToPage(<number>jumpPage)">
+        <span class="text-one-line">跳转</span>
+      </FormButton>
     </div>
   </div>
 </template>
