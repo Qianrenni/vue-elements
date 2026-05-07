@@ -1,8 +1,9 @@
 <!-- src/docs/ComponentList.vue -->
 <script lang="ts" setup>
-import { onBeforeMount } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useComponentInfo } from '@/utils/useComponentInfo.ts';
 import type { ComponentInfo } from '@/utils/useComponentInfo.ts';
+import type { TreeNodeData } from 'qyani-components';
 defineProps<{
   selected: ComponentInfo | null;
 }>();
@@ -10,19 +11,30 @@ defineProps<{
 const emit = defineEmits<{
   (e: 'select', comp: ComponentInfo): void;
 }>();
-// ✅ 按 category 分组
-let grouped: Map<string, ComponentInfo[]> | null = null;
-
+const trees = ref<TreeNodeData[]>([]);
+const p = new Map<number, ComponentInfo>();
 onBeforeMount(() => {
-  const map = new Map<string, ComponentInfo[]>();
+  let id = 1;
+  const src: TreeNodeData[] = [];
   useComponentInfo.forEach((comp: ComponentInfo) => {
-    console.log(comp.category.split('/').filter((el) => el != ''));
-    if (!map.has(comp.category)) {
-      map.set(comp.category, []);
+    const levels = comp.category.split('/').filter((el) => el != '');
+    let temp = src;
+    for (const level of levels) {
+      const index = temp.find((item) => item.label === level);
+      if (!index) {
+        const newNode = { id: id, label: level, children: [] };
+        id += 1;
+        temp.push(newNode);
+        temp = newNode.children;
+      } else {
+        temp = index.children!;
+      }
     }
-    map.get(comp.category)!.push(comp);
+    temp.push({ id: id, label: comp.name });
+    p.set(id, comp);
+    id += 1;
   });
-  grouped = map;
+  trees.value = src;
 });
 </script>
 
@@ -34,29 +46,16 @@ onBeforeMount(() => {
     >
       组件列表
     </h2>
-
-    <div
-      v-for="[category, list] in grouped"
-      :key="category"
-      class="category margin-half-vetical"
-    >
-      <div class="text-12rem text-muted padding-half-rem radius-third-rem">
-        <strong
-          ><em>{{ category }}</em></strong
-        >
-      </div>
-      <div class="container-column padding-half-rem">
-        <span
-          v-for="comp in list"
-          :key="comp.name"
-          :class="{ 'component-active': selected?.name === comp.name }"
-          class="component-item padding-24rem margin-fourth-vetical radius-third-rem"
-          @click="emit('select', comp)"
-        >
-          {{ comp.displayName }}
-        </span>
-      </div>
-    </div>
+    <QTree
+      :data="trees"
+      @node-click="
+        (v) => {
+          if (!v.children) {
+            emit('select', p.get(v.id)!);
+          }
+        }
+      "
+    />
   </div>
 </template>
 
@@ -65,26 +64,6 @@ onBeforeMount(() => {
   width: 260px;
   border-right: 1px solid var(--primary-color);
   height: calc(100vh - 2.5rem);
-}
-
-/* 组件项样式 */
-.component-item {
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border-left: 3px solid transparent;
-}
-
-.component-item:hover {
-  background-color: var(--gray-200);
-  transform: translateX(5px);
-  border-left: 3px solid var(--primary-light);
-}
-
-.component-active {
-  background-color: var(--primary-color);
-  color: white;
-  border-left: 3px solid var(--primary-light);
-  font-weight: bold;
 }
 
 /* 添加进入和离开动画 */
