@@ -1,7 +1,7 @@
 <template>
   <div>
     <TreeNode
-      v-for="node in treeData"
+      v-for="node in props.data"
       :key="node.id"
       :level="0"
       :node="node"
@@ -12,7 +12,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
 import TreeNode from '@/components/layout/TreeNode.vue';
 import { TreeNodeData } from '@/types';
 
@@ -26,11 +25,10 @@ const props = defineProps<{
 const emit = defineEmits<{
   (event: 'node-click', node: TreeNodeData): void;
 }>();
-const treeData = ref<TreeNodeData[]>(props.data);
 
 const handleNodeClick = (node: TreeNodeData) => {
   // 选择节点逻辑
-  treeData.value.forEach((n) => traverseAndSelect(n, node.id));
+  props.data.forEach((n) => traverseAndSelect(n, node.id));
 };
 
 const handleNodeToggle = (node: TreeNodeData) => {
