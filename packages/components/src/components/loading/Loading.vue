@@ -4,7 +4,7 @@
     class="gap container-w100 container-h100 container-column container-align-center"
   >
     <component :is="animationComponent" />
-    <p v-if="text" class="text-description text-08rem">
+    <p v-if="text" class="text-description text-08rem pulse">
       {{ text }}
     </p>
   </div>
