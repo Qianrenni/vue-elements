@@ -1,3 +1,4 @@
+/* eslint-disable css/use-baseline */
 * {
   margin: 0;
   padding: 0;
@@ -939,4 +940,37 @@ input:-webkit-autofill:active {
   color: red;
   margin-right: 2px;
   font-weight: bold;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 20, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 200, 200;
+    stroke-dashoffset: 100px;
+  }
+  100% {
+    stroke-dasharray: 20, 200;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

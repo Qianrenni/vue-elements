@@ -5,31 +5,27 @@ defineOptions({
 </script>
 
 <template>
-  <div class="loader-spinner" />
+  <svg
+    class="spinner"
+    viewBox="0 0 100 100"
+    fill="transparent"
+    stroke="currentColor"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <circle class="spinner-circle" cx="50" cy="50" r="40"></circle>
+  </svg>
 </template>
 
 <style scoped>
-.loader-spinner {
-  width: 25px;
+.spinner {
+  animation: rotate 0.75s linear infinite;
   height: 25px;
-  border: 2px solid var(--color-inverse);
-  border-top: 2px solid var(--background-color);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+  width: 25px;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    border-top-color: var(--color-inverse);
-    border-left-color: var(--background-color);
-    border-right-color: var(--background-color);
-    border-bottom-color: var(--background-color);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.spinner-circle {
+  animation: dash 1.5s ease-in-out infinite;
 }
 </style>
