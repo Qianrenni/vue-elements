@@ -10,6 +10,7 @@ import "./style/private.css";
 export * from "@/events";
 export * from "@/utils";
 export * from "@/types"
+export * from '@/config';
 """
 result = []
 install_list = []

@@ -7,6 +7,7 @@
 <script lang="ts" setup>
 import { onBeforeMount, ref, watch } from 'vue';
 import { shareMemoryCache } from '@/utils';
+import { IconConfig } from '@/config';
 
 defineOptions({
   name: 'Icon',
@@ -32,7 +33,9 @@ const loadSvg = async (icon: string) => {
     return;
   }
   try {
-    const rawContent = await (await fetch(`/assets/svg/${icon}.svg`)).text();
+    const rawContent = await (
+      await fetch(`${IconConfig.base}/assets/svg/${icon}.svg`)
+    ).text();
     const content = rawContent.replace(
       /<svg/,
       `<svg width="${props.size}" height="${props.size}"`,
