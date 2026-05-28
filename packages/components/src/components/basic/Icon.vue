@@ -32,14 +32,15 @@ const loadSvg = async (icon: string) => {
     return;
   }
   try {
-    const rawContent = await (await fetch(`assets/svg/${icon}.svg`)).text();
+    const rawContent = await (await fetch(`/assets/svg/${icon}.svg`)).text();
     const content = rawContent.replace(
       /<svg/,
       `<svg width="${props.size}" height="${props.size}"`,
     );
     svgContent.value = content;
     shareMemoryCache.set<string>(key, rawContent);
-  } catch (_) {
+  } catch (e) {
+    console.error(e);
     svgContent.value = '';
   }
 };
