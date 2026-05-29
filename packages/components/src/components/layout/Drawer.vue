@@ -63,16 +63,12 @@ const handleOverlayClick = () => {
         class="drawer-container"
         @click.stop
       >
-        <div v-if="title" class="drawer-header container-space-between">
-          <div class="container-align-center">
-            <slot name="header">
-              <span class="drawer-title"
-                ><strong>{{ title }}</strong></span
-              >
-            </slot>
+        <slot name="header">
+          <div class="container-space-between">
+            <strong>{{ title || '' }}</strong>
+            <FormButton v-if="showClose" @click="close"> × </FormButton>
           </div>
-          <FormButton v-if="showClose" @click="close"> × </FormButton>
-        </div>
+        </slot>
 
         <div class="drawer-body">
           <slot />
@@ -167,12 +163,6 @@ const handleOverlayClick = () => {
     transform: translateX(0);
   }
 }
-
-.drawer-header {
-  padding: 0.2rem 0.4rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
 .drawer-body {
   flex: 1;
 }
