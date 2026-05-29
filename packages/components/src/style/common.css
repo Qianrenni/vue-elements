@@ -393,11 +393,6 @@ input:-webkit-autofill:active {
   cursor: not-allowed;
 }
 
-/*旋转类*/
-.rotate-90 {
-  transform: rotateZ(90deg);
-}
-
 /* 背景颜色类 */
 .bg-white {
   background-color: var(--color-white);

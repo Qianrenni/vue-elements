@@ -12,11 +12,11 @@
         v-if="hasChildren"
         class="tree-node-toggle container-align-center mouse-cursor"
       >
-        <span :class="{ 'rotate-90': node.expanded }" class="toggle-icon">
-          <Icon icon="Right" size="16" />
-        </span>
+        <Icon icon="Folder" size="16" />
       </div>
-
+      <div v-else class="tree-node-toggle container-align-center mouse-cursor">
+        <Icon icon="File" size="16" />
+      </div>
       <div class="tree-node-label container-align-center">
         {{ node.label }}
       </div>
@@ -112,11 +112,6 @@ const handleChildNodeToggle = (node: TreeNodeData) => {
 
 .tree-node-toggle {
   margin-right: var(--fourth-distance);
-  transition: transform 0.2s;
-}
-
-.toggle-icon {
-  transition: transform 0.2s;
 }
 
 .tree-node-label {
