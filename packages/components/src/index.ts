@@ -3,6 +3,7 @@ import './style/private.css';
 export * from './events';
 export * from './utils';
 export * from './types';
+export * from './config';
 import { default as QIcon } from './components/basic/Icon.vue';
 import { default as QMessage } from './components/basic/Message.vue';
 import { default as QPagination } from './components/basic/Pagination.vue';
