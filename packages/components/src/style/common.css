@@ -340,7 +340,6 @@ body.dark-mode .button-primary {
   padding: 0.25rem 0.5rem;
   outline: none;
   border: 1px solid #ccc;
-  border-radius: 0.3rem;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   transition: border 0.3s ease;
 }
@@ -353,7 +352,22 @@ body.dark-mode .button-primary {
 .text-input:focus {
   border-color: var(--primary-color);
 }
-
+.text-input.error {
+  border-color: var(--danger-border);
+}
+.text-hint {
+  color: var(--danger-bg);
+  font-size: 0.75rem;
+}
+.text-input-icon {
+  position: absolute;
+  left: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.text-left-padding {
+  padding-left: 1.5rem;
+}
 .input-text-container .close-icon {
   position: absolute;
   right: 0.5rem;
@@ -970,4 +984,11 @@ input:-webkit-autofill:active {
   50% {
     opacity: 0.5;
   }
+}
+
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
 }
