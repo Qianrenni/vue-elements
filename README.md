@@ -1,58 +1,60 @@
 # QYani Components
 
-一个基于 Vue 3 + TypeScript 开发的现代化前端组件库项目，包含丰富的 UI 组件、文档系统和共享的 ESLint 配置。
+A modern front-end component library developed with Vue 3 + TypeScript, featuring a rich collection of UI components, a documentation system, and shared ESLint configurations.
 
-## 📁 项目结构
+[中文版](./README.zh-CN.md)
+
+## 📁 Project Structure
 
 ```
 qyani-components/
 ├── packages/
-│   ├── components/     # 核心组件库 (qyani-components)
-│   ├── docs/          # 文档站点 (@qyani-components/docs)
-│   └── eslint/        # 共享 ESLint 配置 (@qyani/eslint-config)
-├── package.json       # 根目录配置
-└── pnpm-workspace.yaml # pnpm 工作区配置
+│   ├── components/     # Core Component Library (qyani-components)
+│   ├── docs/          # Documentation Site (@qyani-components/docs)
+│   └── eslint/        # Shared ESLint Config (@qyani/eslint-config)
+├── package.json       # Root Configuration
+└── pnpm-workspace.yaml # pnpm Workspace Configuration
 ```
 
-## ✨ 特性
+## ✨ Features
 
-- 🎨 **丰富的组件**：涵盖基础组件、展示组件、表单组件、布局组件、加载动画等 50+ 组件
-- 🔧 **TypeScript 支持**：完整的类型定义，良好的开发体验
-- 📦 **按需引入**：支持按需加载，减小项目体积
-- 🌈 **主题定制**：支持主题切换和样式定制
-- 🚀 **性能优化**：虚拟列表、懒加载等性能优化组件
-- 📝 **Markdown 渲染**：内置 Markdown 渲染组件
-- 🎯 **工具函数**：提供多种常用工具函数（数据结构、缓存、时间处理等）
-- 📚 **完整文档**：独立的文档站点，方便查阅和使用
-- 🛠️ **统一规范**：共享的 ESLint 配置，保证代码质量
+- 🎨 **Rich Components**: Over 50+ components covering basics, displays, forms, layouts, loading animations, and more.
+- 🔧 **TypeScript Support**: Complete type definitions for an excellent development experience.
+- 📦 **On-demand Import**: Supports on-demand loading to reduce project bundle size.
+- 🌈 **Theme Customization**: Supports theme switching and style customization.
+- 🚀 **Performance Optimized**: Includes performance-optimized components like virtual lists and lazy loading.
+- 📝 **Markdown Rendering**: Built-in Markdown rendering component.
+- 🎯 **Utility Functions**: Provides various common utility functions (data structures, caching, time processing, etc.).
+- 📚 **Comprehensive Docs**: A standalone documentation site for easy reference and usage.
+- 🛠️ **Unified Standards**: Shared ESLint configuration to ensure code quality.
 
-## 📦 安装与使用
+## 📦 Installation & Usage
 
-### 安装组件库
+### Install the Component Library
 
 ```bash
 npm install qyani-components@latest
-# 或
+# or
 pnpm add qyani-components
-# 或
+# or
 yarn add qyani-components
 ```
 
-### 快速开始
+### Quick Start
 
-#### 1. 引入样式
+#### 1. Import Styles
 
 ```typescript
 import 'qyani-components/dist/style.css';
 ```
 
-#### 2. 按需引入组件
+#### 2. Import Components On-demand
 
 ```typescript
 import { QIcon, QButton, QFormContainer } from 'qyani-components';
 ```
 
-#### 3. 全局安装
+#### 3. Global Registration
 
 ```typescript
 import { createApp } from 'vue';
@@ -65,197 +67,195 @@ app.use(qiannaicomponents);
 app.mount('#app');
 ```
 
-#### 4. 使用组件
+#### 4. Use Components
 
 ```vue
-<template>
-  <div>
-    <QAvatar src="avatar.jpg" size="large" />
-    <QFormContainer label="用户名" v-model="username" />
-    <QButton type="primary">提交</QButton>
-  </div>
-</template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-import { QAvatar, QFormContainer, QButton } from 'qyani-components';
-
-const username = ref('');
-</script>
 ```
 
-## 📚 组件分类
+## 📚 Component Categories
 
-### 基础组件 (Basic)
-- `QIcon` - 图标组件
-- `QMessage` - 消息提示
-- `QPagination` - 分页组件
+### Basic Components
 
-### 展示组件 (Display)
-- `QAvatar` - 头像组件
-- `QBadge` - 徽章组件
-- `QCarousel` / `QCarouselItem` - 轮播图
-- `QDivider` - 分割线
-- `QLazyImage` - 懒加载图片
-- `QMarkdownRender` - Markdown 渲染
-- `QMobileFrame` - 手机框架
-- `QProgressBar` - 进度条
-- `QRainFigure` - 雨图
-- `QScrollNotice` - 滚动公告
-- `QVideoPlayer` - 视频播放器
-- `QVirtualList` - 虚拟列表
+- `QIcon` - Icon component
+- `QMessage` - Message prompt
+- `QPagination` - Pagination component
 
-### 表单组件 (Form)
-- `QFormButton` - 表单按钮
-- `QFormCheckboxGroup` - 复选框组
-- `QFormColorPicker` - 颜色选择器
-- `QFormContainer` - 表单容器
-- `QFormDatalist` - 数据列表
-- `QFormDatePicker` - 日期选择器
-- `QFormFileUpload` - 文件上传
-- `QFormRadioGroup` - 单选框组
-- `QFormRangeSlider` - 范围滑块
-- `QFormSelect` - 选择器
-- `QFormSwitch` - 开关
-- `QFormTable` - 表单表格
-- `QFormText` - 文本输入框
-- `QFormTextarea` - 多行文本框
-- `QSearch` - 搜索框
+### Display Components
 
-### 布局组件 (Layout)
-- `QCard` - 卡片
-- `QCollapse` / `QCollapseItem` - 折叠面板
-- `QCollapsibleSection` - 可折叠区域
-- `QDialog` - 对话框
-- `QDrawer` - 抽屉
-- `QPopContainer` - 弹出容器
-- `QScrollContainer` - 滚动容器
-- `QSwiperAction` - 滑动操作
-- `QTree` / `QTreeNode` - 树形控件
+- `QAvatar` - Avatar component
+- `QBadge` - Badge component
+- `QCarousel` / `QCarouselItem` - Carousel
+- `QDivider` - Divider
+- `QLazyImage` - Lazy load image
+- `QMarkdownRender` - Markdown renderer
+- `QMobileFrame` - Mobile phone frame
+- `QProgressBar` - Progress bar
+- `QRainFigure` - Rain figure effect
+- `QScrollNotice` - Scrolling notice
+- `QVideoPlayer` - Video player
+- `QVirtualList` - Virtual list
 
-### 加载组件 (Loading)
-- `QLoading` - 加载组件
-- `QBreathing` - 呼吸动画
-- `QSkeleton` - 骨架屏
-- `QSpinner` - 旋转加载器
+### Form Components
 
-### 导航组件 (Navigation)
-- `QNavSection` - 导航区域
-- `QTab` - 标签页
+- `QFormButton` - Form button
+- `QFormCheckboxGroup` - Checkbox group
+- `QFormColorPicker` - Color picker
+- `QFormContainer` - Form container
+- `QFormDatalist` - Data list
+- `QFormDatePicker` - Date picker
+- `QFormFileUpload` - File upload
+- `QFormRadioGroup` - Radio group
+- `QFormRangeSlider` - Range slider
+- `QFormSelect` - Select
+- `QFormSwitch` - Switch
+- `QFormTable` - Form table
+- `QFormText` - Text input
+- `QFormTextarea` - Textarea
+- `QSearch` - Search box
 
-### 主题组件 (Theme)
-- `QThemeToggle` - 主题切换
+### Layout Components
 
-## 🛠️ 工具函数
+- `QCard` - Card
+- `QCollapse` / `QCollapseItem` - Collapse panel
+- `QCollapsibleSection` - Collapsible section
+- `QDialog` - Dialog
+- `QDrawer` - Drawer
+- `QPopContainer` - Pop-up container
+- `QScrollContainer` - Scroll container
+- `QSwiperAction` - Swipe action
+- `QTree` / `QTreeNode` - Tree control
 
-组件库还提供了丰富的工具函数：
+### Loading Components
 
-### 数据结构
-- `useAVLTree` - AVL 树
-- `useRedBlackTree` - 红黑树
-- `useSkipList` - 跳表
-- `useHeap` - 堆
-- `useSegmentTree` - 线段树
+- `QLoading` - Loading component
+- `QBreathing` - Breathing animation
+- `QSkeleton` - Skeleton screen
+- `QSpinner` - Spinner loader
 
-### 缓存
-- `useLRUCache` - LRU 缓存
-- `useMemoryCache` - 内存缓存
-- `useLocalStorage` - 本地存储
+### Navigation Components
 
-### 事件处理
-- `useDebounce` - 防抖
-- `useThrottle` - 节流
-- `useDrag` - 拖拽
-- `useMousePosition` - 鼠标位置
+- `QNavSection` - Navigation section
+- `QTab` - Tabs
 
-### 其他工具
-- `useClip` - 剪贴板
-- `useScreenSize` - 屏幕尺寸
-- `useTimeUtils` - 时间工具
-- `useNullHandel` - 空值处理
-- `useFollowSystemTheme` - 跟随系统主题
+### Theme Components
 
-## 🔧 开发指南
+- `QThemeToggle` - Theme toggle
 
-### 环境准备
+## 🛠️ Utility Functions
+
+The library also provides a rich set of utility functions:
+
+### Data Structures
+
+- `useAVLTree` - AVL Tree
+- `useRedBlackTree` - Red-Black Tree
+- `useSkipList` - Skip List
+- `useHeap` - Heap
+- `useSegmentTree` - Segment Tree
+
+### Caching
+
+- `useLRUCache` - LRU Cache
+- `useMemoryCache` - Memory Cache
+- `useLocalStorage` - Local Storage
+
+### Event Handling
+
+- `useDebounce` - Debounce
+- `useThrottle` - Throttle
+- `useDrag` - Drag
+- `useMousePosition` - Mouse position
+
+### Other Utilities
+
+- `useClip` - Clipboard
+- `useScreenSize` - Screen size
+- `useTimeUtils` - Time utilities
+- `useNullHandel` - Null value handling
+- `useFollowSystemTheme` - Follow system theme
+
+## 🔧 Development Guide
+
+### Environment Setup
 
 ```bash
-# 安装依赖（在项目根目录执行）
+# Install dependencies (run in the project root)
 pnpm install
 ```
 
-### 可用脚本命令
+### Available Scripts
 
 ```bash
-# 代码检查
-pnpm run lint              # 检查代码规范
-pnpm run lint:fix          # 自动修复代码规范问题
+# Code Linting
+pnpm run lint              # Check code standards
+pnpm run lint:fix          # Auto-fix code standard issues
 
-# 代码格式化
-pnpm run prettier          # 格式化所有相关文件
+# Code Formatting
+pnpm run prettier          # Format all relevant files
 
-# 组件库构建
-pnpm run build:components  # 构建组件库
+# Component Library Build
+pnpm run build:components  # Build the component library
 
-# 文档相关
-pnpm run docs:dev          # 启动文档开发服务器
-pnpm run docs:update       # 更新文档内容
-pnpm run docs:build        # 构建文档站点（先构建组件再构建文档）
+# Documentation
+pnpm run docs:dev          # Start the documentation dev server
+pnpm run docs:update       # Update documentation content
+pnpm run docs:build        # Build the documentation site (builds components first)
 ```
 
-### 组件库开发（packages/components）
+### Component Library Development (packages/components)
 
 ```bash
 cd packages/components
 
-# 启动开发服务器
+# Start dev server
 pnpm run dev
 
-# 构建组件库
+# Build the component library
 pnpm run build
 
-# 类型检查
+# Type checking
 pnpm run type-check
 
-# 运行测试
+# Run tests
 pnpm run test
-pnpm run test:watch        # 监听模式
-pnpm run test:coverage     # 生成覆盖率报告
+pnpm run test:watch        # Watch mode
+pnpm run test:coverage     # Generate coverage report
 ```
 
-### 文档开发（packages/docs）
+### Documentation Development (packages/docs)
 
 ```bash
 cd packages/docs
 
-# 启动文档开发服务器
+# Start documentation dev server
 pnpm run dev
 
-# 构建文档站点
+# Build the documentation site
 pnpm run build
 
-# 预览构建结果
+# Preview the build result
 pnpm run preview
 
-# 更新文档内容（从组件源码自动生成）
+# Update documentation content (auto-generated from component source)
 pnpm run update
 ```
 
-## 📖 文档
+## 📖 Documentation
 
-- [在线文档](https://qyani-ui.netlify.app/#)
+- [Online Documentation](https://qyani-ui.netlify.app/#)
 
 ## 📄 License
 
 ISC
 
-## 👨‍💻 作者
+## 👨‍💻 Author
 
 qianrenni
 
-## 🤝 贡献
+## 🤝 Contributing
 
-欢迎提交 Issue 和 Pull Request！
+Issues and Pull Requests are welcome!
 
 ---
 
