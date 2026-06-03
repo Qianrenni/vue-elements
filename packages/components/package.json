@@ -10,10 +10,9 @@
   "type": "module",
   "scripts": {
     "type-check": "pnpm npx vue-tsc --build --declaration --clean",
-    "build": "python scripts/index_python.local.py && python scripts/global.d.ts.local.py && pnpm vite build && vue-tsc --build --declaration --emitDeclarationOnly",
+    "build": "pnpm vite build && vue-tsc --build --declaration --emitDeclarationOnly",
     "dev": "pnpm vite",
-    "update index": "python scripts/index_python.local.py",
-    "update global": "python scripts/global.d.ts.local.py",
+    "update":"python scripts/index_python.local.py && python scripts/global.d.ts.local.py",
     "test": "vitest",
     "test:ui": "vitest ui",
     "test:watch": "vitest watch",
