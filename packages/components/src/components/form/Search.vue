@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { FormComponentEmits, FormComponentProps } from '@/types';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { QIcon } from '@/index';
 defineOptions({
   name: 'Search',
@@ -18,8 +18,7 @@ const props = withDefaults(defineProps<FormComponentProps<string>>(), {
   clearable: true,
 });
 
-const searchValue = ref('');
-
+const searchValue = ref(props.modelValue || '');
 const keyDownhandler = (e: KeyboardEvent) => {
   if (e.key === 'Enter') {
     emits('search', searchValue.value);
@@ -27,6 +26,13 @@ const keyDownhandler = (e: KeyboardEvent) => {
     emits('change', searchValue.value);
   }
 };
+watch(
+  () => searchValue.value,
+  (newValue) => {
+    emits('update:modelValue', newValue);
+    emits('change', newValue);
+  },
+);
 </script>
 
 <template>
