@@ -53,6 +53,13 @@ watch(
     loadSvg(icon);
   },
 );
+watch(
+  () => props.size,
+  () => {
+    loadSvg(props.icon);
+  },
+);
+
 onBeforeMount(() => {
   loadSvg(props.icon);
 });
