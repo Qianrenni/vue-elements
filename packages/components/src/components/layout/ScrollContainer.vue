@@ -11,12 +11,15 @@ const props = withDefaults(
     scrollY?: boolean;
     threshold?: number;
     emitInterval?: number;
+    recoverable?: boolean;
+    name?: string;
   }>(),
   {
     scrollX: false,
     scrollY: false,
     threshold: 20,
     emitInterval: 16,
+    recoverable: false,
   },
 );
 const emit = defineEmits<{
@@ -52,6 +55,15 @@ const addScrolHandler = useThrottle(() => {
   emit('scroll', scroll);
   lastY = scroll.y;
   lastX = scroll.x;
+  if (props.name && props.recoverable) {
+    sessionStorage.setItem(
+      props.name,
+      JSON.stringify({
+        left: lastX,
+        top: lastY,
+      }),
+    );
+  }
 }, props.emitInterval);
 
 const resizeHandler = () => {
@@ -68,6 +80,14 @@ onMounted(() => {
       refScrollContainer.value?.addEventListener('scroll', addScrolHandler);
     }
     useWindowResize.addHandler(resizeHandler);
+    if (props.name && props.recoverable) {
+      const item = sessionStorage.getItem(props.name);
+      if (item != null) {
+        refScrollContainer.value.scrollTo({
+          ...JSON.parse(item),
+        });
+      }
+    }
   } else {
     console.error('scroll-container ref is null');
   }
