@@ -1,5 +1,5 @@
 <template>
-  <div class="markdown-container">
+  <div class="markdown-container" ref="markdownContainer">
     <div class="markdown-body" v-html="htmlContent" />
     <span
       v-if="showCopy && props.content.trim() !== ''"
@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, onBeforeMount, ref, watch } from 'vue';
+import { nextTick, onBeforeMount, ref, useTemplateRef, watch } from 'vue';
 import { marked } from 'marked';
 import markedKatex from 'marked-katex-extension';
 import hljs from 'highlight.js';
@@ -92,7 +92,7 @@ const htmlContent = ref('');
 const toc = ref<{ id: string; text: string; level: number }[]>([]);
 // 目录展开状态
 const tocExpanded = ref(false);
-
+const refMarkdownContainer = useTemplateRef('markdownContainer');
 // 切换目录展开/收起
 function toggleToc() {
   tocExpanded.value = !tocExpanded.value;
@@ -258,10 +258,19 @@ defineExpose({
    * 滚动到指定标题 ID
    * @param id 标题的 ID（不含 #）
    */
-  scrollTo(id: string) {
+  scrollToById(id: string) {
     scrollToId(id);
   },
-
+  /**
+   *
+   */
+  scrollTo(options: {
+    left?: number;
+    top?: number;
+    behavior?: 'smooth' | 'auto' | 'instant';
+  }) {
+    refMarkdownContainer.value?.scrollTo(options);
+  },
   /**
    * 获取原始内容
    */
