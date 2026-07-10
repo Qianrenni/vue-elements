@@ -12,3 +12,4 @@ export * from './useLocalStorage';
 export * from './useShowLoading';
 export * from './useClip';
 export * from './useNullHandel';
+export * from './useObject';
