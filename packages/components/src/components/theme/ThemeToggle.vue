@@ -1,7 +1,7 @@
 <template>
   <div aria-label="切换主题" class="theme-toggle" @click="toggle">
-    <icon v-if="isDark" :size="size" icon="Moon" />
-    <icon v-else :size="size" icon="Sun" />
+    <icon v-if="isDark" :size="size" :icon="nightIcon" />
+    <icon v-else :size="size" :icon="dayIcon" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -12,9 +12,18 @@ const { isDark, toggle } = useFollowSystemTheme();
 defineOptions({
   name: 'ThemeToggle',
 });
-defineProps<{
-  size?: string | number;
-}>();
+withDefaults(
+  defineProps<{
+    size?: string | number;
+    dayIcon?: string;
+    nightIcon?: string;
+  }>(),
+  {
+    size: 20,
+    dayIcon: 'Sun',
+    nightIcon: 'Moon',
+  },
+);
 </script>
 
 <style scoped>
@@ -24,6 +33,5 @@ defineProps<{
   justify-content: center;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 </style>
