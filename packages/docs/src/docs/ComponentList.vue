@@ -4,6 +4,7 @@ import { onBeforeMount, ref } from 'vue';
 import { useComponentInfo } from '@/utils/useComponentInfo.ts';
 import type { ComponentInfo } from '@/utils/useComponentInfo.ts';
 import type { TreeNodeData } from 'qyani-components';
+import { QTree } from 'qyani-components';
 defineProps<{
   selected: ComponentInfo | null;
 }>();
