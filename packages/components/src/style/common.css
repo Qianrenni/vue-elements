@@ -101,12 +101,14 @@ body.dark-mode {
   --card-bg: #232323;
   --box-shadow: rgba(255, 255, 255, 0.5);
 
-  /* 🔵 主色系（按钮/链接/强调） */
-  --primary-color: #5a67d8;
-  /* 更现代的亮紫蓝主色 */
-  --primary-hover: #4f5cce;
-  /* 悬停稍加深 */
-  --primary-light: #764ba2;
+  /* 主色系 */
+  --primary-color: #ffc300; /* 保持不变，深色背景上足够醒目 */
+  --primary-hover: #ffd94d; /* 悬停时大幅提亮，带有发光感，改善交互反馈 */
+  --primary-light: #fff1b8; /* 极亮米黄，适合做卡片背景、选中状态或分割线 */
+
+  /* 链接样式 */
+  --link-color: #ffd94d; /* 深色背景上链接使用明亮黄，确保清晰 */
+  --link-hover: #ffe88a; /* 悬停再提亮，或可设为白色，但保留黄色调更统一 */
 
   /* 🧱 中性灰色系 */
   --gray-100: #202020;
