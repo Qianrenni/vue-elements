@@ -1,21 +1,18 @@
+<!--
+ * @component QBadge
+ * @description 徽章组件，用于在元素右上角展示徽标数字或小圆点
+ -->
 <script lang="ts" setup>
-defineOptions({
-  name: 'Badge',
+import { BadgeProps } from './type';
+
+defineOptions({ name: 'QBadge' });
+
+withDefaults(defineProps<BadgeProps>(), {
+  type: 'info',
+  value: 1,
+  max: 99,
+  dot: false,
 });
-withDefaults(
-  defineProps<{
-    type?: 'primary' | 'success' | 'warning' | 'danger' | 'gray' | 'info';
-    value?: number | string;
-    max?: number;
-    dot?: boolean;
-  }>(),
-  {
-    type: 'info',
-    value: 1,
-    max: 99,
-    dot: false,
-  },
-);
 </script>
 
 <template>
