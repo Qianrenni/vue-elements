@@ -1,3 +1,7 @@
+<!--
+ * @component QPagination
+ * @description 分页组件，提供上一页/下一页翻页和指定页码跳转功能
+ -->
 <template>
   <div class="container container-center container-wrap">
     <!-- 上一页按钮 -->
@@ -31,7 +35,7 @@
         min="1"
         type="number"
       />
-      <button @click="goToPage(<number>jumpPage)" class="button">
+      <button @click="goToPage(Number(jumpPage))" class="button">
         <span class="text-one-line">跳转</span>
       </button>
     </div>
@@ -39,53 +43,18 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
 import { QIcon } from '@/components/basic/Icon';
-
-// 定义Props接口
-interface PaginationProps {
-  // 当前页码
-  currentPage: number;
-  // 总页数
-  totalPages: number;
-}
+import { PaginationProps, PaginationEmits } from './type';
+import { usePagination } from './composable';
 
 defineOptions({
-  name: 'Pagination',
+  name: 'QPagination',
 });
-// 使用defineProps和withDefaults定义props
+
 const props = defineProps<PaginationProps>();
+const emit = defineEmits<PaginationEmits>();
 
-// 使用defineEmits定义事件
-const emit = defineEmits<{
-  (e: 'change', page: number): void;
-  (e: 'update:currentPage', value: number): void;
-}>();
-
-// 使用ref创建响应式变量jumpPage
-const jumpPage = ref<number | string>(props.currentPage);
-
-// 使用watch监听currentPage变化
-watch(
-  () => props.currentPage,
-  (newVal) => {
-    jumpPage.value = newVal;
-  },
-);
-
-// 实现goToPage方法
-const goToPage = (page: number) => {
-  // 验证页码是否有效
-  if (page < 1 || page > props.totalPages || page === props.currentPage) {
-    return;
-  }
-  // 更新jumpPage
-  jumpPage.value = page;
-
-  // 触发页码变化事件
-  emit('change', page);
-  emit('update:currentPage', page);
-};
+const { jumpPage, goToPage } = usePagination(props, emit);
 </script>
 
 <style scoped></style>

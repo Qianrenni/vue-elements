@@ -7,7 +7,7 @@ description: Provide a universal migration methodology for component upgrades ac
 
 ## 概述
 
-本技能提供一套**通用的组件迁移方法论**，基于对 Icon、Form、Search 等组件实际迁移经验的提炼总结，适用于组件库中任何组件的版本升级与结构改造场景。
+本技能提供一套**通用的组件迁移方法论**，基于对 Icon、Message、Pagination、Form、Search 等组件实际迁移经验的提炼总结，适用于组件库中任何组件的版本升级与结构改造场景。
 
 ## 迁移分析维度
 
@@ -24,6 +24,21 @@ description: Provide a universal migration methodology for component upgrades ac
 | 合并 → 拆分     | 多个功能合并的组件拆分为子组件                                         | 关注点分离，提升可维护性         |
 | 内联 → 抽取     | 内联 Props/逻辑抽取为独立文件                                          | 类型复用，逻辑共享               |
 
+**标准模块化目录结构（4 文件模式）：**
+
+```
+[ComponentName]/
+├── index.ts          # 统一导出入口，导出组件、类型、composable
+├── type.ts           # Props + Emits + 相关类型/接口定义
+├── composable.ts     # use[Name] 组合式函数，封装核心状态与逻辑
+└── [ComponentName].vue  # 纯视图层，最小化 script 逻辑
+```
+
+- `type.ts`：存放 `Props` 接口 + `Emits` 接口，必要时包含辅助类型（枚举、联合类型等）
+- `composable.ts`：导出 `use[Name](props, emit)` 函数，返回响应式状态和操作方法
+- `[ComponentName].vue`：仅保留模板、`defineOptions`、`defineProps`/`defineEmits`、composable 调用
+- `index.ts`：`export *` 导出类型和 composable，`export { default as Q[Name] }` 导出组件
+
 **方法：** 追踪文件路径和结构变化，对比各版本的文件列表和目录结构
 
 ### 2. 组件 API 变更
@@ -32,6 +47,7 @@ description: Provide a universal migration methodology for component upgrades ac
 
 - **Props：** 新增/废弃/重命名的属性，默认值变化，类型变化
 - **Emits：** 新增事件，事件签名变化，事件命名规范变化
+  - **Emits 类型化：** 将内联 `defineEmits<{ (e: 'change', ...) }>()` 提取为独立的 `XxxEmits` 接口（存放于 `type.ts`），提升可读性与复用性
 - **Expose：** 暴露的方法变化，返回值变化
 - **Slots：** 插槽名称/作用域变化
 
@@ -45,8 +61,9 @@ description: Provide a universal migration methodology for component upgrades ac
 - **工具函数替换：** 替换底层工具库（如 `shareMemoryCache` → `pendingRequests`）
 - **依赖移除：** 去除不再需要的导入引用
 - **新增依赖：** 引入新的工具函数或库
+- **上游消费方追溯：** 迁移前必须扫描 monorepo 中所有引用该组件的文件（包括内部消费组件、docs 演示页、入口 `index.ts`、全局类型声明等），逐一定位导入路径和模板标签引用
 
-**方法：** 对比各版本的 `import` 语句变化
+**方法：** 对比各版本的 `import` 语句变化；使用全局搜索工具（grep）定位所有引用点
 
 ### 4. 核心逻辑演进
 
@@ -56,6 +73,7 @@ description: Provide a universal migration methodology for component upgrades ac
 - **错误处理增强：** 增加校验、降级策略、错误日志
 - **异步模式变化：** 回调 → Promise → async/await
 - **响应式机制：** watch 深度/范围变化、computed 添加/移除
+- **逻辑抽取模式：** 将原 `.vue` 中的响应式状态（`ref`/`reactive`）、副作用（`watch`/`watchEffect`）和业务方法提取为 `use[Name](props, emit)` composable，视图层仅通过解构获取状态和操作方法
 
 **方法：** 对比核心函数签名、执行流程、错误处理路径
 
@@ -64,9 +82,12 @@ description: Provide a universal migration methodology for component upgrades ac
 分析代码风格和规范的提升：
 
 - **TypeScript 类型强化：** 内联类型 → 接口/类型别名 → 泛型约束
-- **命名规范：** 组件名、CSS 类名、事件名、key 前缀的规范化
-- **注释完善：** JSDoc 文档的添加，`@param`/`@return`/`@throws` 标注
-- **导出策略：** 最小暴露原则，公共类型统一导出
+- **命名规范：**
+  - 组件名统一添加 `Q` 前缀（`Pagination` → `QPagination`）
+  - composable 函数统一 `use[Name]` 命名（`usePagination`）
+  - Emits 类型统一命名为 `[Name]Emits` 接口
+- **注释完善：** JSDoc 文档的添加，`@param`/`@return`/`@throws`/`@component`/`@description` 标注
+- **导出策略：** 最小暴露原则，公共类型统一导出；`index.ts` 同时使用 `export *` 和命名导出
 
 **方法：** 检查类型定义、命名风格、注释覆盖率和导出列表
 
@@ -95,11 +116,15 @@ description: Provide a universal migration methodology for component upgrades ac
 
 ```
 Task:
+0. [ ] 【前置】全局搜索组件引用：使用 grep 扫描 monorepo 中所有引用点
+     - 搜索组件名（含新旧命名）+ 文件路径关键词
+     - 记录所有引用位置：入口 index.ts、内部消费组件、docs 演示页、全局类型声明
+     - 区分「需要修改」和「无需修改」的引用（如 docs 通过 npm 包名导入则无需修改）
 1. [ ] 收集组件的所有可用版本（来自 VCS 历史、备份文件或新旧两份源码）
 2. [ ] 对每个版本，分析以下信息：
      - 文件路径和结构
-     - Props/Emits/Expose API
-     - 核心函数签名
+     - Props/Emits/Expose API（含内联类型是否需要提取）
+     - 核心函数签名（可抽取为 composable 的逻辑块）
      - import/export 依赖
      - 配置/默认值
 3. [ ] 使用 diff 工具（如 Beyond Compare、diff、IDE 内置对比功能）逐文件对比各版本差异
@@ -122,16 +147,31 @@ Task:
 
 ### Phase 3: 迁移执行
 
-按以下优先级顺序执行迁移：
+按以下优先级顺序执行迁移，每步完成后立即进行类型检查：
 
 1. **创建目录结构** — 建立目标文件结构，迁移类型定义
-2. **提取公共逻辑** — 抽取 composable/style 等独立模块
+   - 创建 `[ComponentName]/` 目录
+   - 编写 `type.ts`：提取 `Props` 接口 + `Emits` 接口（含 JSDoc 注释）
+2. **提取公共逻辑** — 抽取 composable 等独立模块
+   - 编写 `composable.ts`：导出 `use[Name](props, emit)` 函数
+   - 将原 `.vue` 中的 `ref`、`watch`、业务方法迁移到 composable
+   - 返回响应式状态和操作方法，供视图层解构使用
 3. **迁移核心视图** — 改造 `.vue` 文件主体
-4. **更新导入导出** — 修正 `index.ts` 和外部引用
-5. **适配 API 变化** — 处理 Props/Emits 变更
-6. **调整默认值** — 更新 `withDefaults`
-7. **更新测试** — 适配测试用例
-8. **更新文档** — 更新 API 文档和示例
+   - 仅保留模板、`defineOptions({ name: 'Q[Name]' })`、`defineProps`/`defineEmits`
+   - 调用 composable 获取状态和方法
+   - 检查模板中的类型断言语法（如 `<number>x` → `Number(x)`）
+4. **编写 index.ts** — 统一导出入口
+   - `export * from './composable'` + `export * from './type'`
+   - `export { default as Q[Name] } from './[ComponentName].vue'`
+5. **更新导入导出** — 修正入口 `index.ts` 和所有消费方引用
+   - 入口文件：新增 `export * from './components/xxx/[Name]'`，修改 `import` 为目录路径
+   - 内部消费组件：修改 import 路径 + 模板标签名
+   - 每改一处立即确认一致性
+6. **删除旧文件** — 确认所有引用已更新后，删除旧的单文件
+7. **适配 API 变化** — 处理 Props/Emits 变更
+8. **调整默认值** — 更新 `withDefaults`（如需要）
+9. **更新测试** — 适配测试用例
+10. **更新文档** — 更新 API 文档和示例
 
 ### Phase 4: 验证确认
 
@@ -141,16 +181,18 @@ Task:
 文件结构:
 - [ ] 新目录结构已建立，旧文件已删除
 - [ ] 模块入口 index.ts 正确导出所有公共类型和组件
+- [ ] 旧文件路径在 monorepo 中无残留引用（grep 确认）
 
 API:
 - [ ] Props 定义完整，默认值正确
-- [ ] Emits 事件签名正确
+- [ ] Emits 事件签名正确（已提取为独立接口）
 - [ ] Expose 最小暴露原则
 
 依赖:
 - [ ] 所有 import 路径正确
 - [ ] 旧的外部依赖引用已移除
 - [ ] 循环依赖检测通过
+- [ ] 入口 index.ts 同时包含 `export *` 和命名导入
 
 功能:
 - [ ] 组件渲染正常，无控制台错误
@@ -158,10 +200,10 @@ API:
 - [ ] 事件触发/冒泡正常
 - [ ] 边界情况（空数据、错误状态）处理正常
 
-构建:
-- [ ] TypeScript 编译无错误
-- [ ] 构建产物正确
-- [ ] 类型声明文件正确导出
+构建（执行以下命令验证）：
+- [ ] `vue-tsc --build --declaration --clean` — TypeScript 类型检查零错误
+- [ ] `pnpm vite build` — 构建产物正确
+- [ ] 类型声明文件（dist/types/）正确导出新增类型
 ```
 
 ## 迁移文档模板
@@ -219,6 +261,13 @@ description: <1-2句话描述该组件的迁移内容>
 ## 实际案例参考
 
 本技能基于以下组件的实际迁移经验提炼：
+
+- **Pagination 组件**（单文件 `Pagination.vue` → `Pagination/` 目录，含 `type.ts`/`composable.ts`/`Pagination.vue`/`index.ts`）
+  - 组件名：`Pagination` → `QPagination`
+  - 类型提取：内联 `interface PaginationProps` + 内联 `defineEmits` → `type.ts` 中的 `PaginationProps` + `PaginationEmits` 独立接口
+  - 逻辑抽取：`goToPage` 方法 + `jumpPage` ref + `watch` → `usePagination(props, emit)` composable
+  - 引用点更新：入口 `index.ts`（新增 `export *` + 修改命名导入）、内部消费组件 `FormTable.vue`（import 路径 + 模板标签名同步修改）
+  - 模板修复：`<number>jumpPage` → `Number(jumpPage)`
 
 - **Icon 组件**（单文件 `Icon.vue` → `Icon/` 目录，含 `type.ts`/`composable.ts`/`index.ts`/`Icon.vue`）
   - 组件名：`Icon` → `QIcon`

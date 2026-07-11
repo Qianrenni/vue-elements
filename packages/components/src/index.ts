@@ -4,9 +4,11 @@ export * from './events';
 export * from './utils';
 export * from './types';
 export * from './components/basic/Icon';
+export * from './components/basic/Message';
+export * from './components/basic/Pagination';
 import { QIcon } from './components/basic/Icon';
 import { QMessage } from './components/basic/Message';
-import { default as QPagination } from './components/basic/Pagination.vue';
+import { QPagination } from './components/basic/Pagination';
 import { default as QTag } from './components/basic/Tag.vue';
 import { default as QAvatar } from './components/display/Avatar.vue';
 import { default as QBadge } from './components/display/Badge.vue';
@@ -99,7 +101,6 @@ export default {
 };
 
 export {
-  QPagination,
   QTag,
   QAvatar,
   QBadge,

@@ -120,7 +120,7 @@
     </div>
     <!-- 在表格后添加这段代码 -->
     <div v-if="pagination" class="form-table-pagination">
-      <Pagination
+      <QPagination
         :current-page="currentPage"
         :total-pages="totalPages"
         :max-visible-pages="maxVisiblePages"
@@ -141,7 +141,7 @@ import {
 } from '@/types';
 import { useFormEvents } from '@/events/useFormEvents';
 import { computed, reactive, ref, watch } from 'vue';
-import Pagination from '@/components/basic/Pagination.vue';
+import { QPagination } from '@/components/basic/Pagination';
 const ICON_SIZE = {
   small: '14',
   middle: '18',
