@@ -5,7 +5,7 @@ export * from './utils';
 export * from './types';
 export * from './components/basic/Icon';
 import { QIcon } from './components/basic/Icon';
-import { default as QMessage } from './components/basic/Message.vue';
+import { QMessage } from './components/basic/Message';
 import { default as QPagination } from './components/basic/Pagination.vue';
 import { default as QTag } from './components/basic/Tag.vue';
 import { default as QAvatar } from './components/display/Avatar.vue';
@@ -99,7 +99,6 @@ export default {
 };
 
 export {
-  QMessage,
   QPagination,
   QTag,
   QAvatar,

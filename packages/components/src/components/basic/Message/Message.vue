@@ -1,15 +1,15 @@
-<!-- Message.vue -->
+<!--
+ * @component QMessage
+ * @description 消息提示组件，用于展示成功、错误、警告、信息等类型的消息
+ -->
 <script lang="ts" setup>
-import { MessageType } from '@/types';
+import { MessageProps } from './type';
 
 defineOptions({
-  name: 'Message',
+  name: 'QMessage',
 });
 
-defineProps<{
-  message: string;
-  type: MessageType;
-}>();
+defineProps<MessageProps>();
 </script>
 
 <template>
@@ -25,7 +25,6 @@ defineProps<{
     class="mouse-cursor message-container shadow-common animate-slide-in"
   >
     <p>{{ message }}</p>
-    <!-- 可加关闭按钮 -->
   </div>
 </template>
 
@@ -41,7 +40,6 @@ defineProps<{
   min-height: 100px;
   min-width: 200px;
   max-width: 600px;
-  /* 启用过渡 */
   transition:
     transform 0.3s ease,
     opacity 0.3s ease;

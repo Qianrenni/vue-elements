@@ -1,7 +1,16 @@
-import { MessageOptions, MessageType } from '@/types';
 import { createVNode, render, VNode } from 'vue';
-import Message from '@/components/basic/Message.vue';
+import { MessageType, QMessage } from '@/components/basic/Message';
 
+export interface MessageOptions {
+  // 消息内容
+  message: string;
+  // 消息类型
+  type?: MessageType;
+  // 显示时间
+  duration?: number;
+  // 关闭回调函数
+  onClose?: () => void;
+}
 // 创建实例数组
 const instances: {
   vnode: VNode;
@@ -62,7 +71,7 @@ export const useMessage = {
     };
 
     // 👇 创建 vnode
-    const vnode = createVNode(Message, {
+    const vnode = createVNode(QMessage, {
       message,
       type,
     });
