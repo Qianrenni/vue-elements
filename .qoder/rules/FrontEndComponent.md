@@ -1,6 +1,6 @@
 ---
 trigger: model_decision
-description: 前端组件开发时采用
+description: vue3+typescript前端组件开发时采用
 ---
 
 ## 前端组件开发规范
