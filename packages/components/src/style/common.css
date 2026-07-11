@@ -27,11 +27,19 @@
   --border-color: #686c71;
   --card-bg: #ffffff;
   --box-shadow: rgba(255, 255, 255, 0.5);
-  --tag-primary-color: #a7a1fd;
-  --primary-color: #5a67d8;
-  /* 深紫蓝色 */
-  --primary-hover: #434fd9;
-  --primary-light: #764ba2;
+  /* 标签/浅色背景色：柔和的浅黄 */
+  --tag-primary-color: #fff5cc;
+
+  /* 主色：美团品牌黄 */
+  --primary-color: #ffc300;
+
+  /* 悬停/按压态：加深的黄色（增强交互反馈） */
+  --primary-hover: #dca000;
+
+  /* 浅色辅助色：明亮的淡黄（可用于按钮浅底或高亮背景） */
+  --primary-light: #ffe680;
+  --link-color: #333333; /* 常规状态下用深灰色，确保清晰 */
+  --link-hover: #ffc300; /* 悬停时切换为美团黄，醒目且品牌感强 */
 
   --success-color: #28a745;
   --success-bg: #e6f9f0;
@@ -63,9 +71,7 @@
   --button-disabled: #e9ecef;
 
   --bg-overlay: rgba(0, 0, 0, 0.5);
-  /* 🔗 链接样式 */
-  --link-color: var(--primary-color);
-  --link-hover: #6677ef;
+
   /* 和主色协调的悬停色 */
 
   --shadow-inverse: rgba(0, 0, 0, 0.9);
