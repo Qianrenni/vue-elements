@@ -54,7 +54,7 @@ interface FormRadioGroupProps extends FormComponentProps<string> {
 defineOptions({
   name: 'FormRadioGroup',
 });
-const props = withDefaults(defineProps<FormRadioGroupProps>(), {
+withDefaults(defineProps<FormRadioGroupProps>(), {
   required: true,
   direction: 'horizontal',
   disabled: false,

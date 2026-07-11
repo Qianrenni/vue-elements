@@ -42,6 +42,7 @@ watch(
       :placeholder="props.placeholder"
       class="search-input text-input padding-fourth-vetical"
       type="search"
+      :disabled="props.disabled"
       :name="props.name"
       @keyup="keyDownhandler"
       @focus="emits('focus')"
