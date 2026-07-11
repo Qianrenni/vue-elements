@@ -1,6 +1,10 @@
+<!--
+ * @component QAvatar
+ * @description 头像组件，用于展示用户头像图片
+ -->
 <template>
   <img
-    :src="$props.url"
+    :src="props.url"
     :style="{
       width: props.size,
       height: props.size,
@@ -11,17 +15,12 @@
 </template>
 
 <script lang="ts" setup>
-const props = withDefaults(
-  defineProps<{
-    url: string;
-    size?: string;
-  }>(),
-  {
-    size: '2rem',
-  },
-);
-defineOptions({
-  name: 'Avatar',
+import { AvatarProps } from './type';
+
+defineOptions({ name: 'QAvatar' });
+
+const props = withDefaults(defineProps<AvatarProps>(), {
+  size: '2rem',
 });
 </script>
 
