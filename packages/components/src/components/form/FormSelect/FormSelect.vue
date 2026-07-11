@@ -1,4 +1,7 @@
-<!-- components/form/FormSelectMultiple.vue -->
+<!--
+ * @component QFormSelect
+ * @description 下拉选择表单组件，支持自定义下拉高度
+ -->
 <template>
   <div
     :class="[
@@ -20,7 +23,6 @@
     >
       {{ label }}
     </p>
-    <!-- 禁止input对输入有反应 -->
     <input
       ref="input-select"
       :class="[
@@ -34,11 +36,9 @@
       class="input-text-container text-input"
       :name="props.name"
       :value="selectedLabel"
-      @focus="isShowOptions = true"
-      @blur="isShowOptions = false"
-      @input="
-        (event) => ((event.target as HTMLInputElement).value = selectedLabel)
-      "
+      @focus="handleFocus"
+      @blur="handleBlur"
+      @input="preventInput"
     />
     <Transition name="fade">
       <div
@@ -54,12 +54,7 @@
             'bg-secondary': modelValue === option.value,
           }"
           class="mouse-cursor text-085rem padding-fourth-rem radius-half-rem bg-hover-secondary"
-          @click="
-            () => {
-              inputSelectRef!.value = option.label;
-              emit('update:modelValue', option.value);
-            }
-          "
+          @click="selectOption(option)"
         >
           {{ option.label }}
         </p>
@@ -69,27 +64,14 @@
 </template>
 
 <script lang="ts" setup>
-import { FormComponentEmits, FormComponentProps, Options } from '@/types';
-import {
-  computed,
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-  useTemplateRef,
-} from 'vue';
-import { useWindowResize } from '@/utils';
-
-interface FormSelectProps extends FormComponentProps<string> {
-  options: Options[];
-  searchable?: boolean;
-  optionsHeight?: string;
-}
+import type { FormComponentEmits } from '@/types';
+import type { FormSelectProps } from './type';
+import { useFormSelect } from './composable';
 
 defineOptions({
-  name: 'FormSelect',
+  name: 'QFormSelect',
 });
-// Props
+
 const props = withDefaults(defineProps<FormSelectProps>(), {
   modelValue: null,
   placeholder: '请选择',
@@ -103,40 +85,16 @@ const props = withDefaults(defineProps<FormSelectProps>(), {
   searchable: false,
   optionsHeight: 'auto',
 });
-const inputSelectRef = useTemplateRef('input-select');
-const formSelectOptionsRef = useTemplateRef('input-select-options');
-const isShowOptions = ref(false);
+
 const emit = defineEmits<FormComponentEmits<string>>();
-const selectedLabel = computed(() => {
-  if (props.modelValue === null) return '';
-  const option = props.options.find((opt) => opt.value === props.modelValue);
-  return option?.label || '';
-});
-const handler = () => {
-  if (inputSelectRef.value && formSelectOptionsRef.value) {
-    formSelectOptionsRef.value.style.width =
-      inputSelectRef.value.offsetWidth + 'px';
-    formSelectOptionsRef.value.style.height = 'auto';
-  }
-};
-onMounted(async () => {
-  nextTick(() => {
-    handler();
-    if (
-      inputSelectRef.value &&
-      props.options
-        .map((option) => option.value)
-        .includes(props.modelValue || '')
-    ) {
-      // Set the input text content to the selected option label
-      inputSelectRef.value!.textContent = props.modelValue;
-    }
-  });
-  useWindowResize.addHandler(handler);
-});
-onBeforeUnmount(() => {
-  useWindowResize.removeHandler(handler);
-});
+const {
+  isShowOptions,
+  selectedLabel,
+  selectOption,
+  preventInput,
+  handleFocus,
+  handleBlur,
+} = useFormSelect(props, emit);
 </script>
 
 <style lang="css" scoped>

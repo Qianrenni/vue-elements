@@ -12,14 +12,14 @@
               <span v-if="title" class="dialog-title">{{ title }}</span>
             </slot>
           </div>
-          <FormButton
+          <QFormButton
             v-if="showClose"
             size="small"
             class="button-primary"
             @click="close"
           >
             ×
-          </FormButton>
+          </QFormButton>
         </div>
 
         <div class="dialog-body scroll-container">
@@ -28,16 +28,16 @@
 
         <div v-if="showFooter" class="dialog-footer container-space-between">
           <slot name="footer">
-            <FormButton
+            <QFormButton
               v-if="showCancel"
               class="button-primary"
               @click="handleCancel"
             >
               {{ cancelText }}
-            </FormButton>
-            <FormButton class="button-primary" @click="handleConfirm">
+            </QFormButton>
+            <QFormButton class="button-primary" @click="handleConfirm">
               {{ confirmText }}
-            </FormButton>
+            </QFormButton>
           </slot>
         </div>
       </div>
@@ -47,7 +47,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import FormButton from '@/components/form/FormButton.vue';
+import { QFormButton } from '@/components/form/FormButton';
 
 interface DialogProps {
   visible?: boolean;

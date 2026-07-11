@@ -1,57 +1,61 @@
-<!-- components/form/FormDatePicker.vue -->
+<!--
+ * @component QFormColorPicker
+ * @description 颜色选择器表单组件
+ -->
 <template>
   <div
     :class="[
       {
         'container-column': direction === 'vertical',
         container: direction !== 'vertical',
-        'container-align-center': direction !== 'vertical',
       },
     ]"
   >
-    <p v-if="label" class="text-label">{{ label }}:</p>
+    <p v-if="label" :id="name" :for="name" class="text-label">
+      {{ label }}
+    </p>
     <input
       :id="name"
-      class="text-input"
       :disabled="disabled"
       :name="name"
-      :placeholder="placeholder"
-      :required="required"
-      :type="type"
       :value="modelValue"
+      class="text-input"
+      type="color"
       @input="onInput"
     />
+    <span
+      :style="{
+        color: modelValue ?? '#fff',
+      }"
+      class="text-085rem"
+    >
+      {{ modelValue }}
+    </span>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { FormComponentEmits, FormComponentProps } from '@/types';
+import type { FormComponentEmits } from '@/types';
+import type { FormColorPickerProps } from './type';
 import { useFormEvents } from '@/events';
-// 支持的日期类型
-type DateType = 'date' | 'time' | 'datetime-local' | 'month' | 'week';
-
-interface FormDatePickerProps extends FormComponentProps<string> {
-  type?: DateType;
-}
 
 defineOptions({
-  name: 'FormDatePicker',
+  name: 'QFormColorPicker',
 });
-withDefaults(defineProps<FormDatePickerProps>(), {
-  type: 'date',
+withDefaults(defineProps<FormColorPickerProps>(), {
   required: true,
   direction: 'horizontal',
   disabled: false,
   autofocus: false,
   readonly: false,
   size: 'middle',
-  placeholder: '请选择日期',
+  placeholder: '请选择颜色',
   clearable: true,
+  modelValue: '#fff',
 });
-
 const emit = defineEmits<FormComponentEmits<string>>();
 const { handleInput } = useFormEvents(emit);
-// 处理输入，确保输出为字符串
+/** 处理输入，确保输出为字符串 */
 const onInput = (e: Event) => {
   handleInput((e.target as HTMLInputElement).value);
 };

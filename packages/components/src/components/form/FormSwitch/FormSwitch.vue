@@ -1,4 +1,7 @@
-<!-- components/FormSwitch.vue -->
+<!--
+ * @component QFormSwitch
+ * @description 开关切换表单组件
+ -->
 <template>
   <div
     :class="[
@@ -54,14 +57,15 @@
 </template>
 
 <script lang="ts" setup>
-import { FormComponentEmits, FormComponentProps } from '@/types';
-import { useFormEvents } from '@/events';
+import type { FormComponentEmits } from '@/types';
+import type { FormSwitchProps } from './type';
+import { useFormSwitch } from './composable';
+
 defineOptions({
-  name: 'FormSwitch',
+  name: 'QFormSwitch',
 });
 
-// 接收 props
-const props = withDefaults(defineProps<FormComponentProps<boolean>>(), {
+const props = withDefaults(defineProps<FormSwitchProps>(), {
   modelValue: false,
   label: '',
   disabled: false,
@@ -71,13 +75,7 @@ const props = withDefaults(defineProps<FormComponentProps<boolean>>(), {
 });
 
 const emit = defineEmits<FormComponentEmits<boolean>>();
-const { handleChange } = useFormEvents(emit);
-
-async function toggle() {
-  if (!props.disabled) {
-    handleChange(!props.modelValue);
-  }
-}
+const { toggle } = useFormSwitch(props, emit);
 </script>
 
 <style scoped>

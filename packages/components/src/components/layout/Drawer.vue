@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import FormButton from '@/components/form/FormButton.vue';
+import { QFormButton } from '@/components/form/FormButton';
 
 interface DrawerProps {
   visible?: boolean;
@@ -66,7 +66,7 @@ const handleOverlayClick = () => {
         <slot name="header">
           <div class="container-space-between">
             <strong>{{ title || '' }}</strong>
-            <FormButton v-if="showClose" @click="close"> × </FormButton>
+            <QFormButton v-if="showClose" @click="close"> × </QFormButton>
           </div>
         </slot>
 

@@ -1,4 +1,7 @@
-<!-- components/form/FormRadioGroup.vue -->
+<!--
+ * @component QFormRadioGroup
+ * @description 单选框组表单组件
+ -->
 <template>
   <div
     :class="[
@@ -44,15 +47,12 @@
 </template>
 
 <script lang="ts" setup>
-import { FormComponentEmits, FormComponentProps, Options } from '@/types';
+import type { FormComponentEmits } from '@/types';
+import type { FormRadioGroupProps } from './type';
 import { useFormEvents } from '@/events';
 
-interface FormRadioGroupProps extends FormComponentProps<string> {
-  options: Options[];
-}
-
 defineOptions({
-  name: 'FormRadioGroup',
+  name: 'QFormRadioGroup',
 });
 withDefaults(defineProps<FormRadioGroupProps>(), {
   required: true,

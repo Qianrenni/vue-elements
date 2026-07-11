@@ -1,4 +1,7 @@
-<!-- components/form/FormText.vue -->
+<!--
+ * @component QFormText
+ * @description 文本输入表单组件，支持多种输入类型、前缀图标和自定义校验
+ -->
 <template>
   <div
     :class="[
@@ -54,24 +57,13 @@
 </template>
 
 <script lang="ts" setup>
-import { FormComponentEmits, FormComponentProps } from '@/types';
-import { useFormEvents } from '@/events/useFormEvents';
+import type { FormComponentEmits } from '@/types';
+import type { FormTextProps } from './type';
+import { useFormText } from './composable';
 import { QIcon } from '@/components/basic/Icon';
-import { ref } from 'vue';
-
-type TextType = `text` | `email` | `password` | `number` | `tel` | `url`;
-
-interface FormTextProps extends FormComponentProps<string> {
-  type?: TextType;
-  pattern?: string | undefined;
-  editable?: boolean;
-  prefixIcon?: string;
-  validate?: (value: string) => boolean;
-  hint?: string;
-}
 
 defineOptions({
-  name: 'FormText',
+  name: 'QFormText',
 });
 const props = withDefaults(defineProps<FormTextProps>(), {
   type: 'text',
@@ -86,30 +78,10 @@ const props = withDefaults(defineProps<FormTextProps>(), {
   pattern: undefined,
   editable: true,
 });
-const showHint = ref(false);
+
 const emit = defineEmits<FormComponentEmits<string>>();
-// 创建事件处理器
-const { handleInput, handleChange, handleFocus, handleBlur } =
-  useFormEvents<string>(emit);
-
-// 具体事件绑定
-const onInput = (e: Event) => {
-  handleInput((e.target as HTMLInputElement).value as string);
-};
-
-const onChange = (e: Event) => {
-  handleChange((e.target as HTMLInputElement).value as string);
-};
-
-const onFocus = () => {
-  showHint.value = false;
-  handleFocus();
-};
-
-const onBlur = () => {
-  if (props.required && !props.validate?.((props.modelValue as string) || '')) {
-    showHint.value = true;
-  }
-  handleBlur();
-};
+const { showHint, onInput, onChange, onFocus, onBlur } = useFormText(
+  props,
+  emit,
+);
 </script>

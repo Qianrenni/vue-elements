@@ -1,57 +1,55 @@
-<!-- components/form/FormColorPicker.vue -->
+<!--
+ * @component QFormDatePicker
+ * @description 日期选择器表单组件，支持 date/time/datetime-local/month/week 五种类型
+ -->
 <template>
   <div
     :class="[
       {
         'container-column': direction === 'vertical',
         container: direction !== 'vertical',
+        'container-align-center': direction !== 'vertical',
       },
     ]"
   >
-    <p v-if="label" :id="name" :for="name" class="text-label">
-      {{ label }}
-    </p>
+    <p v-if="label" class="text-label">{{ label }}:</p>
     <input
       :id="name"
+      class="text-input"
       :disabled="disabled"
       :name="name"
+      :placeholder="placeholder"
+      :required="required"
+      :type="type"
       :value="modelValue"
-      class="text-input"
-      type="color"
       @input="onInput"
     />
-    <span
-      :style="{
-        color: modelValue ?? '#fff',
-      }"
-      class="text-085rem"
-    >
-      {{ modelValue }}
-    </span>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { FormComponentEmits, FormComponentProps } from '@/types';
+import type { FormComponentEmits } from '@/types';
+import type { FormDatePickerProps } from './type';
 import { useFormEvents } from '@/events';
 
 defineOptions({
-  name: 'FormColorPicker',
+  name: 'QFormDatePicker',
 });
-withDefaults(defineProps<FormComponentProps<string>>(), {
+withDefaults(defineProps<FormDatePickerProps>(), {
+  type: 'date',
   required: true,
   direction: 'horizontal',
   disabled: false,
   autofocus: false,
   readonly: false,
   size: 'middle',
-  placeholder: '请选择颜色',
+  placeholder: '请选择日期',
   clearable: true,
-  modelValue: '#fff',
 });
+
 const emit = defineEmits<FormComponentEmits<string>>();
 const { handleInput } = useFormEvents(emit);
-// 处理输入，确保输出为字符串
+/** 处理输入，确保输出为字符串 */
 const onInput = (e: Event) => {
   handleInput((e.target as HTMLInputElement).value);
 };

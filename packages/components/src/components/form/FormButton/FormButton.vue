@@ -1,3 +1,7 @@
+<!--
+ * @component QFormButton
+ * @description 表单按钮组件，支持 button/submit/reset 三种类型
+ -->
 <template>
   <button
     :autofocus="autofocus"
@@ -22,14 +26,10 @@
 </template>
 
 <script lang="ts" setup>
-import { FormComponentProps } from '@/types';
-
-interface FormButtonProps extends FormComponentProps<null> {
-  type?: 'button' | 'submit' | 'reset';
-}
+import type { FormButtonProps } from './type';
 
 defineOptions({
-  name: 'FormButton',
+  name: 'QFormButton',
 });
 withDefaults(defineProps<FormButtonProps>(), {
   type: 'button',

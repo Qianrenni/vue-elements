@@ -1,4 +1,7 @@
-<!-- components/form/FormCheckboxGroup.vue -->
+<!--
+ * @component QFormCheckboxGroup
+ * @description 多选框组表单组件，支持横向/纵向排列
+ -->
 <template>
   <div
     :class="[
@@ -44,15 +47,12 @@
 </template>
 
 <script lang="ts" setup>
-import { FormComponentEmits, FormComponentProps, Options } from '@/types';
-import { useFormEvents } from '@/events';
-
-interface FormCheckboxGroupProps extends FormComponentProps<string[]> {
-  options: Options[];
-}
+import type { FormComponentEmits } from '@/types';
+import type { FormCheckboxGroupProps } from './type';
+import { useFormCheckboxGroup } from './composable';
 
 defineOptions({
-  name: 'FormCheckboxGroup',
+  name: 'QFormCheckboxGroup',
 });
 const props = withDefaults(defineProps<FormCheckboxGroupProps>(), {
   required: true,
@@ -66,23 +66,7 @@ const props = withDefaults(defineProps<FormCheckboxGroupProps>(), {
 });
 
 const emit = defineEmits<FormComponentEmits<string[]>>();
-const { handleInput } = useFormEvents<string[]>(emit);
-const onChange = (e: Event) => {
-  const target = e.target as HTMLInputElement;
-  const value = target.value;
-  const checked = target.checked;
-  const newValue = [...(props.modelValue ?? [])];
-
-  if (checked) {
-    newValue.push(value);
-  } else {
-    const index = newValue.indexOf(value);
-    if (index > -1) {
-      newValue.splice(index, 1);
-    }
-  }
-  handleInput(newValue);
-};
+const { onChange } = useFormCheckboxGroup(props, emit);
 </script>
 
 <style scoped></style>

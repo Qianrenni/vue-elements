@@ -1,4 +1,7 @@
-<!-- components/form/FormFileUpload.vue -->
+<!--
+ * @component QFormFileUpload
+ * @description 文件上传表单组件，支持单选/多选文件
+ -->
 <template>
   <div
     :class="[
@@ -35,17 +38,11 @@
 </template>
 
 <script lang="ts" setup>
-import { FormComponentProps } from '@/types';
+import type { FormFileUploadProps, FileType } from './type';
 
 defineOptions({
-  name: 'FormFileUpload',
+  name: 'QFormFileUpload',
 });
-type FileType = File | FileList | null;
-
-interface FormFileUploadProps extends FormComponentProps<FileType> {
-  multiple?: boolean;
-  accept?: string;
-}
 
 const props = withDefaults(defineProps<FormFileUploadProps>(), {
   multiple: false,
@@ -62,7 +59,7 @@ const props = withDefaults(defineProps<FormFileUploadProps>(), {
 });
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: File | FileList | null): void;
+  (e: 'update:modelValue', value: FileType): void;
 }>();
 
 const onChange = (e: Event) => {
@@ -78,7 +75,7 @@ const onChange = (e: Event) => {
   if (!props.multiple) {
     emit('update:modelValue', files[0]);
   } else {
-    // 多文件：返回 FileList（或可转为数组）
+    // 多文件：返回 FileList
     emit('update:modelValue', files);
   }
 };

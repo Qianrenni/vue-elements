@@ -1,4 +1,7 @@
-<!-- components/form/FormTextarea.vue -->
+<!--
+ * @component QFormTextarea
+ * @description 多行文本输入表单组件
+ -->
 <template>
   <div
     :class="[
@@ -41,21 +44,15 @@
 </template>
 
 <script lang="ts" setup>
-import { FormComponentEmits, FormComponentProps } from '@/types';
+import type { FormComponentEmits } from '@/types';
+import type { FormTextareaProps } from './type';
 import { useFormEvents } from '@/events';
 
 defineOptions({
-  name: 'FormTextarea',
+  name: 'QFormTextarea',
 });
 
-type FormTextAreaProps = FormComponentProps<string> & {
-  // 行数
-  rows?: number;
-  // 是否可拉伸
-  resizable?: boolean;
-};
-
-withDefaults(defineProps<FormTextAreaProps>(), {
+withDefaults(defineProps<FormTextareaProps>(), {
   rows: 5,
   resizable: false,
   placeholder: '请输入内容',
