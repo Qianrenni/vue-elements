@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import { QFormButton } from 'qyani-components';
+import { QFormButton, useMessage } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
 
 defineOptions({
   name: 'DisplayFormButton',
 });
-
+const handleClick = (name: string) => {
+  useMessage.info(`点击了${name}`);
+};
 const code = `
 \`\`\`html
 <!-- 基础按钮 -->
@@ -27,30 +29,30 @@ const code = `
 
 <template>
   <DemoBlock :code="code">
-    <div class="container-column gap-6">
-      <div class="container gap-4 flex-wrap">
-        <QFormButton>默认按钮</QFormButton>
-        <QFormButton size="small">小按钮</QFormButton>
-        <QFormButton size="middle">中按钮</QFormButton>
-        <QFormButton size="large">大按钮</QFormButton>
+    <div class="container-column">
+      <div class="container flex-wrap">
+        <QFormButton @click="handleClick('默认按钮')">默认按钮</QFormButton>
+        <QFormButton size="small" @click="handleClick('小按钮')"
+          >小按钮</QFormButton
+        >
+        <QFormButton size="middle" @click="handleClick('中按钮')"
+          >中按钮</QFormButton
+        >
+        <QFormButton size="large" @click="handleClick('大按钮')"
+          >大按钮</QFormButton
+        >
       </div>
-      <div class="container gap-4 flex-wrap">
-        <QFormButton disabled>禁用按钮</QFormButton>
-        <QFormButton type="submit">提交按钮</QFormButton>
-        <QFormButton type="reset">重置按钮</QFormButton>
+      <div class="container flex-wrap">
+        <QFormButton disabled @click="handleClick('禁用按钮')"
+          >禁用按钮</QFormButton
+        >
+        <QFormButton type="submit" @click="handleClick('提交按钮')"
+          >提交按钮</QFormButton
+        >
+        <QFormButton type="reset" @click="handleClick('重置按钮')"
+          >重置按钮</QFormButton
+        >
       </div>
     </div>
   </DemoBlock>
 </template>
-
-<style scoped>
-.gap-4 {
-  gap: 1rem;
-}
-.gap-6 {
-  gap: 1.5rem;
-}
-.flex-wrap {
-  flex-wrap: wrap;
-}
-</style>

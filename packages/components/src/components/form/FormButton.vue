@@ -6,9 +6,9 @@
       'text-12rem': size === 'large',
       'text-08rem': size === 'small',
     }"
+    :disabled="disabled"
     :type="type"
     class="button"
-    @click="onClick"
   >
     <slot
       :class="{
@@ -16,6 +16,7 @@
         'text-12rem': size === 'large',
         'text-08rem': size === 'small',
       }"
+      :disabled="disabled"
     />
   </button>
 </template>
@@ -30,18 +31,12 @@ interface FormButtonProps extends FormComponentProps<null> {
 defineOptions({
   name: 'FormButton',
 });
-const props = withDefaults(defineProps<FormButtonProps>(), {
+withDefaults(defineProps<FormButtonProps>(), {
   type: 'button',
   disabled: false,
   autofocus: false,
   size: 'middle',
 });
-const onClick = (e: Event) => {
-  if (props.disabled) {
-    e.preventDefault();
-    return;
-  }
-};
 </script>
 
 <style scoped></style>
