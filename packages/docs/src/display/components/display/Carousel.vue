@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { QCarousel, QCarouselItem } from 'qyani-components';
+import { QCarousel, QCarouselItem, QLazyImage } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { ref } from 'vue';
 
 defineOptions({
   name: 'DisplayCarousel',
 });
-
+const currentIndex = ref(0);
 const code = `
 \`\`\`html
 <template>
@@ -22,14 +23,18 @@ const code = `
 <template>
   <DemoBlock :code="code">
     <div class="container-column gap-8">
-      <QCarousel :width="600" :height="300">
+      <p>Current Index: {{ currentIndex }}</p>
+      <QCarousel
+        :width="600"
+        :height="300"
+        @change="(index: number) => (currentIndex = index)"
+      >
         <QCarouselItem v-for="i in 4" :key="i">
-          <div
-            class="carousel-item"
-            :style="{ background: `hsl(${i * 60}, 70%, 60%)` }"
-          >
-            Slide {{ i }}
-          </div>
+          <QLazyImage
+            src="https://picsum.photos/600/300?random={{ i }}"
+            :width="600"
+            :height="300"
+          />
         </QCarouselItem>
       </QCarousel>
     </div>

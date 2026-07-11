@@ -1,3 +1,7 @@
+<!--
+ * @component QCarouselItem
+ * @description 轮播项组件，仅作为容器使用
+ -->
 <template>
   <div class="carousel-item">
     <slot />
@@ -5,9 +9,8 @@
 </template>
 
 <script setup lang="ts">
-// 仅作为容器，无需逻辑
 defineOptions({
-  name: 'CarouselItem',
+  name: 'QCarouselItem',
 });
 </script>
 
