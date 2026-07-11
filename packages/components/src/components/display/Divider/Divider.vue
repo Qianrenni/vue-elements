@@ -1,10 +1,14 @@
+<!--
+ * @component QDivider
+ * @description 分割线组件，用于在页面中分隔不同内容区域
+ -->
 <template>
   <div class="divider" />
 </template>
 
 <script lang="ts" setup>
 defineOptions({
-  name: 'Divider',
+  name: 'QDivider',
 });
 </script>
 

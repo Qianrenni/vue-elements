@@ -1,3 +1,7 @@
+<!--
+ * @component QLazyImage
+ * @description 懒加载图片组件，支持骨架屏占位和 IntersectionObserver 懒加载
+ -->
 <template>
   <div
     ref="containerRef"
@@ -28,82 +32,32 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue';
+import { useLazyImage } from './composable';
+import type { LazyImageProps } from './type';
 
-// Props 定义
-interface Props {
-  src: string;
-  alt?: string;
-  width?: string | number;
-  height?: string | number;
-}
+defineOptions({ name: 'QLazyImage' });
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<LazyImageProps>(), {
   alt: '',
   width: '100%',
   height: '100%',
 });
 
-// 解析 width/height 为带单位的字符串
+const {
+  width,
+  height,
+  loaded,
+  shouldRenderImage,
+  loadError,
+  containerRef,
+  imgRef,
+  handleImageLoad,
+  handleImageError,
+} = useLazyImage(props);
+
 const parseSize = (size: string | number): string => {
   return typeof size === 'number' ? `${size}px` : size;
 };
-
-// 样式用的字符串
-const width = computed(() => parseSize(props.width));
-const height = computed(() => parseSize(props.height));
-
-// 引用
-const containerRef = useTemplateRef<HTMLElement>('containerRef');
-const imgRef = useTemplateRef<HTMLImageElement>('imgRef');
-
-// 状态
-const loaded = ref(false);
-const shouldRenderImage = ref(false); // 控制是否渲染 img 标签（懒加载）
-const loadError = ref(false); // 新增：标记是否加载失败
-
-// 事件处理
-const handleImageLoad = () => {
-  loaded.value = true;
-  loadError.value = false;
-};
-
-const handleImageError = () => {
-  loaded.value = true;
-  loadError.value = true;
-  console.warn(`Image failed to load: ${props.src}`);
-};
-
-// IntersectionObserver 相关
-let observer: IntersectionObserver | null = null;
-
-const loadImage = () => {
-  shouldRenderImage.value = true;
-};
-
-onMounted(() => {
-  const container = containerRef.value;
-  if (!container) return;
-
-  // 创建 IntersectionObserver
-  observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        loadImage();
-        observer?.unobserve(container);
-      }
-    });
-  });
-
-  observer.observe(container);
-});
-
-onUnmounted(() => {
-  if (observer) {
-    observer.disconnect();
-    observer = null;
-  }
-});
 </script>
 
 <style scoped>
