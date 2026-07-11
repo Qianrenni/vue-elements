@@ -8,7 +8,7 @@
       @click="goToPage(currentPage - 1)"
     >
       <span class="text-one-line hidden-768">上一页</span>
-      <Icon icon="Left" size="18" class="show-768" />
+      <QIcon icon="Left" size="18" class="show-768" />
     </button>
     <!-- 页码列表 -->
     <span>{{ currentPage }} / {{ totalPages }}</span>
@@ -20,7 +20,7 @@
       class="button"
     >
       <span class="text-one-line hidden-768">下一页</span>
-      <Icon icon="Right" size="18" class="show-768" />
+      <QIcon icon="Right" size="18" class="show-768" />
     </button>
     <!-- 跳转到指定页 -->
     <div class="container-center">
@@ -40,7 +40,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
-import Icon from './Icon.vue';
+import { QIcon } from '@/components/basic/Icon';
 
 // 定义Props接口
 interface PaginationProps {

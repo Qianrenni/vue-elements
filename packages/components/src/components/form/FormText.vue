@@ -56,7 +56,7 @@
 <script lang="ts" setup>
 import { FormComponentEmits, FormComponentProps } from '@/types';
 import { useFormEvents } from '@/events/useFormEvents';
-import { QIcon } from '@/index';
+import { QIcon } from '@/components/basic/Icon';
 import { ref } from 'vue';
 
 type TextType = `text` | `email` | `password` | `number` | `tel` | `url`;

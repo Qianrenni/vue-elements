@@ -5,7 +5,7 @@
       v-if="showCopy && props.content.trim() !== ''"
       class="copy"
       @click.prevent="copyHandler"
-      ><Icon icon="Copy" size="16"
+      ><QIcon icon="Copy" size="16"
     /></span>
     <!-- 悬浮目录 -->
     <div
@@ -16,7 +16,7 @@
       <div class="toc-header" @click="toggleToc">
         <span v-if="tocExpanded">目录</span>
         <div v-else class="toc-icon">
-          <Icon icon="Minus" />
+          <QIcon icon="Minus" />
         </div>
       </div>
       <div v-show="tocExpanded" class="toc-content scroll-container scroll-y">
@@ -54,7 +54,7 @@ import cplus from 'highlight.js/lib/languages/cpp';
 import c from 'highlight.js/lib/languages/c';
 import json from 'highlight.js/lib/languages/json';
 import yaml from 'highlight.js/lib/languages/yaml';
-import Icon from '@/components/basic/Icon.vue';
+import { QIcon } from '@/components/basic/Icon';
 
 hljs.registerLanguage('java', java);
 // 注册语言

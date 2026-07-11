@@ -2,7 +2,7 @@
   <div class="nav-section text-secondary">
     <!-- 返回按钮 -->
     <div v-if="stack.length > 1" class="back-button" @click="goBack">
-      <Icon icon="Left" size="24" />返回
+      <QIcon icon="Left" size="24" />返回
     </div>
     <!-- 当前层级标题 -->
     <h4 v-if="currentLevelTitle" class="current-title">
@@ -42,7 +42,7 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
 import { NavSectionProps } from '@/types';
-import Icon from '../basic/Icon.vue';
+import { QIcon } from '@/components/basic/Icon';
 
 defineOptions({
   name: 'NavSection',

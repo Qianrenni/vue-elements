@@ -7,7 +7,7 @@
     }"
     class="carousel"
   >
-    <icon
+    <QIcon
       v-if="showButton"
       :class="{
         'left-center': indicatorPosition === 'center-bottom',
@@ -19,7 +19,7 @@
       class="opacity-2-9 carousel-indicators"
       @click="prev"
     />
-    <icon
+    <QIcon
       v-if="showButton"
       :class="{
         'right-center': indicatorPosition === 'center-bottom',
@@ -96,7 +96,7 @@ import {
   useTemplateRef,
   watch,
 } from 'vue';
-import Icon from '@/components/basic/Icon.vue';
+import { QIcon } from '@/components/basic/Icon';
 
 defineOptions({
   name: 'Carousel',
@@ -151,8 +151,7 @@ const items = computed(() => {
   if (!slots.default) return [];
   //如果是用v-for渲染的要进行判断而后获取子节点
   if (slots.default()[0].type === Symbol.for('v-fgt')) {
-    console.log('carousel use v-for');
-    return (slots.default()[0] as { children: any[] }).children;
+    return (slots.default()[0] as { children: unknown[] }).children;
   }
   //以上都不是则按照增长逻辑进行
   return slots

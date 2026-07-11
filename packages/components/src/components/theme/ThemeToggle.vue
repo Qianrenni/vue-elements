@@ -1,11 +1,11 @@
 <template>
   <div aria-label="切换主题" class="theme-toggle" @click="toggle">
-    <icon v-if="isDark" :size="size" :icon="nightIcon" />
-    <icon v-else :size="size" :icon="dayIcon" />
+    <QIcon v-if="isDark" :size="size" :icon="nightIcon" />
+    <QIcon v-else :size="size" :icon="dayIcon" />
   </div>
 </template>
 <script lang="ts" setup>
-import Icon from '../basic/Icon.vue';
+import { QIcon } from '@/components/basic/Icon';
 import { useFollowSystemTheme } from '@/utils';
 
 const { isDark, toggle } = useFollowSystemTheme();

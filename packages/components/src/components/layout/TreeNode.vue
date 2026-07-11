@@ -12,10 +12,10 @@
         v-if="hasChildren"
         class="tree-node-toggle container-align-center mouse-cursor"
       >
-        <Icon icon="Folder" size="16" />
+        <QIcon icon="Folder" size="16" />
       </div>
       <div v-else class="tree-node-toggle container-align-center mouse-cursor">
-        <Icon icon="File" size="16" />
+        <QIcon icon="File" size="16" />
       </div>
       <div class="tree-node-label container-align-center">
         {{ node.label }}
@@ -40,7 +40,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import Icon from '@/components/basic/Icon.vue';
+import { QIcon } from '@/components/basic/Icon';
 
 defineOptions({
   name: 'TreeNode',

@@ -141,7 +141,6 @@ import {
 } from '@/types';
 import { useFormEvents } from '@/events/useFormEvents';
 import { computed, reactive, ref, watch } from 'vue';
-import Icon from '@/components/basic/Icon.vue';
 import Pagination from '@/components/basic/Pagination.vue';
 const ICON_SIZE = {
   small: '14',
@@ -154,7 +153,7 @@ export interface FormTableProps extends FormComponentProps<FormTableModelValueTy
   /**
    * 表格数据
    */
-  data: Record<string, any>[];
+  data: Record<string, unknown>[];
   /**
    * 列配置
    */
@@ -195,7 +194,7 @@ const props = withDefaults(defineProps<FormTableProps>(), {
   pageSize: 10,
   maxVisiblePages: 5,
 });
-interface FormTableEmits extends FormComponentEmits<Record<string, any>[]> {
+interface FormTableEmits extends FormComponentEmits<Record<string, unknown>[]> {
   // 添加自定义事件
   (e: 'page-change', value: number): void;
   (e: 'update:columns', value: TableColumn[]): void;
@@ -205,7 +204,7 @@ const emit = defineEmits<FormTableEmits>();
 
 // 使用通用表单事件
 const { handleInput, handleChange } =
-  useFormEvents<Record<string, any>[]>(emit);
+  useFormEvents<Record<string, unknown>[]>(emit);
 
 // 本地选中值（v-model）
 const localValue = ref<Omit<Row, 'isSelected'>[]>([]);

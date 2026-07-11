@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { FormComponentEmits, FormComponentProps } from '@/types';
 import { ref, watch } from 'vue';
-import { QIcon } from '@/index';
+import { QIcon } from '@/components/basic/Icon';
 defineOptions({
   name: 'Search',
 });
