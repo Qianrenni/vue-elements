@@ -1,4 +1,9 @@
-import type { FormComponentProps, Options } from '@/types';
+import type { FormComponentProps } from '@/types';
+
+export interface Options {
+  label: string;
+  value: string;
+}
 
 /**
  * FormSelect 组件 Props

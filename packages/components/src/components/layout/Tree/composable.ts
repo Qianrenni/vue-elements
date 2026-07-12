@@ -1,5 +1,4 @@
-import type { TreeNodeData } from '@/types';
-import type { TreeProps, TreeEmits } from './type';
+import type { TreeNodeData, TreeProps, TreeEmits } from './type';
 
 /**
  * Tree 组件核心逻辑

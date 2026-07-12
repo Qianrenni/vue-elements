@@ -6,8 +6,7 @@ import {
   type ComputedRef,
   type Ref,
 } from 'vue';
-import type { Row } from '@/types';
-import type { FormTableProps, FormTableEmits } from './type';
+import type { FormTableProps, FormTableEmits, Row } from './type';
 import { useFormEvents } from '@/events';
 
 /**

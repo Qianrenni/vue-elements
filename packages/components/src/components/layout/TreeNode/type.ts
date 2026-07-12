@@ -1,4 +1,4 @@
-import type { TreeNodeData } from '@/types';
+import type { TreeNodeData } from '../Tree/type';
 
 /**
  * TreeNode 组件 Props

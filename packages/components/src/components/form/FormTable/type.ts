@@ -1,10 +1,35 @@
-import type {
-  FormComponentProps,
-  FormComponentEmits,
-  FormTableModelValueType,
-  TableColumn,
-  SelectionMode,
-} from '@/types';
+import type { FormComponentProps, FormComponentEmits } from '@/types';
+
+// 列定义
+export interface TableColumn {
+  /**
+   * 列元素变量key
+   * @description like {id:1}-value:'id'
+   */
+  value: string;
+  /**
+   * 列标题
+   */
+  label: string;
+  /**
+   * 列宽度
+   */
+  width?: string;
+  /**
+   * 存在order字段表示可以排序
+   * @description true--升序,false--降序
+   */
+  order?: boolean;
+}
+
+// 支持的 selection 模式
+export type SelectionMode = 'single' | 'multiple' | null;
+export type Row = {
+  isSelected: boolean;
+  [key: string]: unknown;
+};
+export type FormTableModelValueRowType = Record<string, unknown>;
+export type FormTableModelValueType = FormTableModelValueRowType[];
 
 /**
  * FormTable 组件 Props

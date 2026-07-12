@@ -1,5 +1,5 @@
 import { computed, type ComputedRef } from 'vue';
-import type { TreeNodeData } from '@/types';
+import type { TreeNodeData } from '../Tree/type';
 import type { TreeNodeProps, TreeNodeEmits } from './type';
 
 /**

@@ -1,4 +1,11 @@
-import type { TreeNodeData } from '@/types';
+export interface TreeNodeData {
+  id: string | number;
+  label: string;
+  children?: TreeNodeData[];
+  expanded?: boolean;
+  selected?: boolean;
+  disabled?: boolean;
+}
 
 /**
  * Tree 组件 Props

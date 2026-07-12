@@ -8,8 +8,8 @@ import {
   type ComputedRef,
   type Ref,
 } from 'vue';
-import type { FormComponentEmits, Options } from '@/types';
-import type { FormSelectProps } from './type';
+import type { FormComponentEmits } from '@/types';
+import type { FormSelectProps, Options } from './type';
 import { useWindowResize } from '@/utils';
 
 /**

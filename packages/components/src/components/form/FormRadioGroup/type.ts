@@ -1,4 +1,5 @@
-import type { FormComponentProps, Options } from '@/types';
+import type { FormComponentProps } from '@/types';
+import type { Options } from '../FormSelect/type';
 
 /**
  * FormRadioGroup 组件 Props
