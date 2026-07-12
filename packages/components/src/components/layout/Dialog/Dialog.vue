@@ -46,21 +46,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
 import { QFormButton } from '@/components/form/FormButton';
+import type { DialogProps, DialogEmits } from './type';
+import { useDialog } from './composable';
 
-interface DialogProps {
-  visible?: boolean;
-  title?: string;
-  showClose?: boolean;
-  showFooter?: boolean;
-  showCancel?: boolean;
-  confirmText?: string;
-  cancelText?: string;
-  closeOnClickOverlay?: boolean;
-  width?: string;
-  customClass?: string;
-}
+defineOptions({
+  name: 'QDialog',
+});
 
 const props = withDefaults(defineProps<DialogProps>(), {
   visible: false,
@@ -74,37 +66,10 @@ const props = withDefaults(defineProps<DialogProps>(), {
   customClass: '',
 });
 
-const emit = defineEmits<{
-  (e: 'update:visible', value: boolean): void;
-  (e: 'confirm'): void;
-  (e: 'cancel'): void;
-  (e: 'close'): void;
-}>();
+const emit = defineEmits<DialogEmits>();
 
-const dialogClass = computed(() => {
-  return ['dialog-wrapper', props.customClass];
-});
-
-const close = () => {
-  emit('update:visible', false);
-  emit('close');
-};
-
-const handleOverlayClick = () => {
-  if (props.closeOnClickOverlay) {
-    close();
-  }
-};
-
-const handleConfirm = () => {
-  emit('confirm');
-  close();
-};
-
-const handleCancel = () => {
-  emit('cancel');
-  close();
-};
+const { dialogClass, close, handleOverlayClick, handleConfirm, handleCancel } =
+  useDialog(props, emit);
 </script>
 
 <style scoped>

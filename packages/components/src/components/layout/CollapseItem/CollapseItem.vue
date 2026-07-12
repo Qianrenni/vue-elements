@@ -1,41 +1,3 @@
-<script lang="ts" setup>
-import { computed, inject, Ref, ref } from 'vue';
-defineOptions({
-  name: 'CollapseItem',
-});
-
-interface Props {
-  name: string;
-  title?: string;
-  disabled?: boolean;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  title: '',
-  disabled: false,
-});
-
-// 从父组件获取状态和方法
-const collapse: {
-  activeNames: Ref<string[]>;
-  handleItemClick: (name: string) => void;
-} = inject('collapse', {
-  activeNames: ref([]),
-  handleItemClick: () => {},
-});
-
-// 判断当前项是否激活
-const isActive = computed(() => {
-  return collapse ? collapse.activeNames.value.includes(props.name) : false;
-});
-
-// 处理点击事件
-const handleClick = () => {
-  if (props.disabled) return;
-  collapse && collapse.handleItemClick(props.name);
-};
-</script>
-
 <template>
   <div :class="{ 'mouse-cursor-disable': disabled }" class="collapse-item">
     <div
@@ -56,6 +18,19 @@ const handleClick = () => {
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { CollapseItemProps } from './type';
+import { useCollapseItem } from './composable';
+
+defineOptions({
+  name: 'QCollapseItem',
+});
+
+const props = defineProps<CollapseItemProps>();
+
+const { isActive, handleClick } = useCollapseItem(props);
+</script>
 
 <style scoped>
 .collapse-item {

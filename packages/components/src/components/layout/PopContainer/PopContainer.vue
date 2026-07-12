@@ -1,29 +1,3 @@
-<script lang="ts" setup>
-defineOptions({
-  name: 'PopContainer',
-});
-const props = withDefaults(
-  defineProps<{
-    visible?: boolean;
-    hoverShow?: boolean;
-    position?:
-      | 'top-left'
-      | 'top-center'
-      | 'top-right'
-      | 'bottom-left'
-      | 'bottom-center'
-      | 'bottom-right'
-      | 'left-center'
-      | 'right-center';
-  }>(),
-  {
-    hoverShow: false,
-    position: 'bottom-center',
-    visible: false,
-  },
-);
-</script>
-
 <template>
   <div class="pop-container">
     <slot />
@@ -31,7 +5,7 @@ const props = withDefaults(
       :class="[
         {
           'hover-show': hoverShow,
-          [position]: true,
+          [position as string]: true,
           visible: visible,
         },
       ]"
@@ -41,6 +15,16 @@ const props = withDefaults(
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { PopContainerProps } from './type';
+
+defineOptions({
+  name: 'QPopContainer',
+});
+
+defineProps<PopContainerProps>();
+</script>
 
 <style scoped>
 .pop-container {

@@ -1,47 +1,3 @@
-<script lang="ts" setup>
-import { QFormButton } from '@/components/form/FormButton';
-
-interface DrawerProps {
-  visible?: boolean;
-  title?: string;
-  direction?: 'top' | 'right' | 'bottom' | 'left';
-  showClose?: boolean;
-  closeOnClickOverlay?: boolean;
-  overlay?: boolean;
-  appendToBody?: boolean;
-}
-
-defineOptions({
-  name: 'Drawer',
-});
-
-const props = withDefaults(defineProps<DrawerProps>(), {
-  visible: false,
-  title: '',
-  direction: 'right',
-  showClose: true,
-  closeOnClickOverlay: true,
-  overlay: true,
-  appendToBody: true,
-});
-
-const emit = defineEmits<{
-  (e: 'update:visible', value: boolean): void;
-  (e: 'close'): void;
-}>();
-
-const close = () => {
-  emit('update:visible', false);
-  emit('close');
-};
-
-const handleOverlayClick = () => {
-  if (props.closeOnClickOverlay) {
-    close();
-  }
-};
-</script>
-
 <template>
   <teleport :disabled="!appendToBody" to="body">
     <div
@@ -59,7 +15,7 @@ const handleOverlayClick = () => {
       @click="handleOverlayClick"
     >
       <div
-        :class="[`drawer-${props.direction}`]"
+        :class="[`drawer-${direction}`]"
         class="drawer-container"
         @click.stop
       >
@@ -77,6 +33,30 @@ const handleOverlayClick = () => {
     </div>
   </teleport>
 </template>
+
+<script lang="ts" setup>
+import { QFormButton } from '@/components/form/FormButton';
+import type { DrawerProps, DrawerEmits } from './type';
+import { useDrawer } from './composable';
+
+defineOptions({
+  name: 'QDrawer',
+});
+
+const props = withDefaults(defineProps<DrawerProps>(), {
+  visible: false,
+  title: '',
+  direction: 'right',
+  showClose: true,
+  closeOnClickOverlay: true,
+  overlay: true,
+  appendToBody: true,
+});
+
+const emit = defineEmits<DrawerEmits>();
+
+const { close, handleOverlayClick } = useDrawer(props, emit);
+</script>
 
 <style scoped>
 .drawer-overlay {

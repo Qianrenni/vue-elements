@@ -24,15 +24,13 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
-  animation: {
-    type: Boolean,
-    default: false,
-  },
-});
+import { CardProps } from './type';
+
 defineOptions({
-  name: 'Card',
+  name: 'QCard',
 });
+
+defineProps<CardProps>();
 </script>
 
 <style scoped></style>

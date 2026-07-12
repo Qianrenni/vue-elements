@@ -26,7 +26,7 @@
       v-if="node.expanded && hasChildren"
       class="tree-node-children padding-half-horizontal"
     >
-      <TreeNode
+      <QTreeNode
         v-for="child in node.children"
         :key="child.id"
         :level="level + 1"
@@ -39,56 +39,23 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
 import { QIcon } from '@/components/basic/Icon';
+import type { TreeNodeProps, TreeNodeEmits } from './type';
+import { useTreeNode } from './composable';
 
 defineOptions({
-  name: 'TreeNode',
+  name: 'QTreeNode',
 });
 
-interface TreeNodeData {
-  id: string | number;
-  label: string;
-  children?: TreeNodeData[];
-  expanded?: boolean;
-  selected?: boolean;
-  disabled?: boolean;
-}
+const props = defineProps<TreeNodeProps>();
+const emit = defineEmits<TreeNodeEmits>();
 
-const props = defineProps<{
-  node: TreeNodeData;
-  level: number;
-}>();
-
-const emit = defineEmits<{
-  (e: 'node-click', node: TreeNodeData): void;
-  (e: 'node-toggle', node: TreeNodeData): void;
-}>();
-
-const hasChildren = computed(() => {
-  return props.node.children && props.node.children.length > 0;
-});
-
-const handleNodeClick = () => {
-  if (props.node.disabled) return;
-  emit('node-click', props.node);
-  if (hasChildren.value) {
-    handleToggle();
-  }
-};
-
-const handleToggle = () => {
-  if (props.node.disabled) return;
-  emit('node-toggle', props.node);
-};
-
-const handleChildNodeClick = (node: TreeNodeData) => {
-  emit('node-click', node);
-};
-
-const handleChildNodeToggle = (node: TreeNodeData) => {
-  emit('node-toggle', node);
-};
+const {
+  hasChildren,
+  handleNodeClick,
+  handleChildNodeClick,
+  handleChildNodeToggle,
+} = useTreeNode(props, emit);
 </script>
 
 <style scoped>

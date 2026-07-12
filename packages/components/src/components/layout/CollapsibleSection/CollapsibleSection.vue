@@ -17,8 +17,7 @@
       <div
         v-if="isShowArrow && direction === 'left'"
         :style="{
-          height:
-            isShowArrow && direction === 'left' && isExpanded ? 'auto' : '40px',
+          height: isExpanded ? 'auto' : '40px',
         }"
         class="toggle-button-left"
         @click="toggle"
@@ -35,10 +34,7 @@
       <div
         v-if="isShowArrow && direction === 'right'"
         :style="{
-          height:
-            isShowArrow && direction === 'right' && isExpanded
-              ? 'auto'
-              : '40px',
+          height: isExpanded ? 'auto' : '40px',
         }"
         class="toggle-button-right"
         @click="toggle"
@@ -55,54 +51,25 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import type { CollapsibleSectionProps } from './type';
+import { useCollapsibleSection } from './composable';
 
 defineOptions({
-  name: 'CollapsibleSection',
+  name: 'QCollapsibleSection',
 });
-// 定义 props
-const props = withDefaults(
-  defineProps<{
-    isShowArrow?: boolean;
-    initialExpanded?: boolean;
-    direction?: 'up' | 'down' | 'left' | 'right';
-  }>(),
-  {
-    isShowArrow: true,
-    initialExpanded: true,
-    direction: 'down',
-  },
-);
 
-// 控制展开/收起状态
-const isExpanded = ref(props.initialExpanded);
+const props = withDefaults(defineProps<CollapsibleSectionProps>(), {
+  isShowArrow: true,
+  initialExpanded: true,
+  direction: 'down',
+});
 
-// 暴露方法给父组件调用
-function toggle() {
-  isExpanded.value = !isExpanded.value;
-}
-
-function close() {
-  isExpanded.value = false;
-}
-
-function open() {
-  isExpanded.value = true;
-}
+const { isExpanded, toggle, close, open, transitionName } =
+  useCollapsibleSection(props);
 
 defineExpose({ toggle, close, open });
-
-// 根据方向计算过渡动画名称
-const transitionName = computed(() => {
-  const map = {
-    up: 'slide-up',
-    down: 'slide-down',
-    left: 'slide-left',
-    right: 'slide-right',
-  };
-  return map[props.direction];
-});
 </script>
+
 <style scoped>
 .collapsible-section {
   display: flex;
