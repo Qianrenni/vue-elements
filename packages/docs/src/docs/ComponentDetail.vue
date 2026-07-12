@@ -1,8 +1,9 @@
 <!-- src/docs/ComponentDetail.vue -->
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
-import { QMarkdownRender, QTab } from 'qyani-components';
 import type { ComponentInfo } from '@/utils/useComponentInfo.ts';
+import { QMarkdownRender, QTab } from 'qyani-components';
+import { ref, watch } from 'vue';
+
 import Icon from '../display/components/basic/Icon.vue';
 import Message from '../display/components/basic/Message.vue';
 import Pagination from '../display/components/basic/Pagination.vue';
@@ -40,10 +41,10 @@ import ScrollContainer from '../display/components/layout/ScrollContainer.vue';
 import SwiperAction from '../display/components/layout/SwiperAction.vue';
 import Tree from '../display/components/layout/Tree.vue';
 import TreeNode from '../display/components/layout/TreeNode.vue';
-import Loading from '../display/components/loading/Loading.vue';
 import Breathing from '../display/components/loading/animations/Breathing.vue';
 import Skeleton from '../display/components/loading/animations/Skeleton.vue';
 import Spinner from '../display/components/loading/animations/Spinner.vue';
+import Loading from '../display/components/loading/Loading.vue';
 import NavSection from '../display/components/navigation/NavSection.vue';
 import Tab from '../display/components/navigation/Tab.vue';
 import ThemeToggle from '../display/components/theme/ThemeToggle.vue';
@@ -66,12 +67,14 @@ import useLRUCache from '../display/utils/business/useLRUCache.vue';
 import useMemoryCache from '../display/utils/business/useMemoryCache.vue';
 import useMessage from '../display/utils/business/useMessage.vue';
 import useNullHandel from '../display/utils/business/useNullHandel.vue';
+import useObject from '../display/utils/business/useObject.vue';
 import useScreenSize from '../display/utils/business/useScreenSize.vue';
 import useShowLoading from '../display/utils/business/useShowLoading.vue';
 import useThrottle from '../display/utils/business/useThrottle.vue';
 import useTimeDisplay from '../display/utils/business/useTimeDisplay.vue';
 import useTimeUtils from '../display/utils/business/useTimeUtils.vue';
 import useWindowResize from '../display/utils/business/useWindowResize.vue';
+
 const componentMap = {
   Icon: Icon,
   Message: Message,
@@ -120,8 +123,8 @@ const componentMap = {
   useDrag: useDrag,
   useFormEvents: useFormEvents,
   useMousePosition: useMousePosition,
-  useArray: useArray,
   useAVLTree: useAVLTree,
+  useArray: useArray,
   useGraph: useGraph,
   useHeap: useHeap,
   useRedBlackTree: useRedBlackTree,
@@ -131,11 +134,12 @@ const componentMap = {
   useClip: useClip,
   useDebounce: useDebounce,
   useFollowSystemTheme: useFollowSystemTheme,
-  useLocalStorage: useLocalStorage,
   useLRUCache: useLRUCache,
+  useLocalStorage: useLocalStorage,
   useMemoryCache: useMemoryCache,
   useMessage: useMessage,
   useNullHandel: useNullHandel,
+  useObject: useObject,
   useScreenSize: useScreenSize,
   useShowLoading: useShowLoading,
   useThrottle: useThrottle,
@@ -143,7 +147,6 @@ const componentMap = {
   useTimeUtils: useTimeUtils,
   useWindowResize: useWindowResize,
 };
-
 defineOptions({
   name: 'ComponentDetail',
 });
