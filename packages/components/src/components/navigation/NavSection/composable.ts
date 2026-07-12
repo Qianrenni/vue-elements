@@ -1,5 +1,6 @@
 import { computed, ref, watch } from 'vue';
-import type { NavSectionProps, NavSectionEmits } from './type';
+
+import type { NavSectionEmits, NavSectionProps } from './type';
 
 /**
  * NavSection 组合式函数

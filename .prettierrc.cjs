@@ -39,4 +39,21 @@ module.exports = {
   endOfLine: 'crlf',
   // 格式化嵌入的内容
   embeddedLanguageFormatting: 'auto',
+
+  // Import 排序插件 —— 自动按规则整理 import/export 语句
+  plugins: ['@trivago/prettier-plugin-sort-imports'],
+  // 导入分组顺序（按正则匹配，不匹配的分组内按字母排序）
+  importOrder: [
+    '<THIRD_PARTY_MODULES>', // 第三方依赖（node_modules）
+    '^@qyani/', // 内部 workspace 包
+    '^[.]', // 相对路径导入
+  ],
+  // 不同分组之间用空行分隔
+  importOrderSeparation: true,
+  // 对每个 import 内的具名导入进行排序
+  importOrderSortSpecifiers: true,
+  // 将命名空间导入（import * as）放到分组顶部
+  importOrderGroupNamespaceSpecifiers: true,
+  // 分组内大小写不敏感排序
+  importOrderCaseInsensitive: true,
 };

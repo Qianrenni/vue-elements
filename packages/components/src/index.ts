@@ -1,5 +1,52 @@
+import { QIcon } from './components/basic/Icon';
+import { QMessage } from './components/basic/Message';
+import { QPagination } from './components/basic/Pagination';
+import { QTag } from './components/basic/Tag';
+import { QAvatar } from './components/display/Avatar';
+import { QBadge } from './components/display/Badge';
+import { QCarousel } from './components/display/Carousel';
+import { QCarouselItem } from './components/display/CarouselItem';
+import { QDivider } from './components/display/Divider';
+import { QLazyImage } from './components/display/LazyImage';
+import { QMarkdownRender } from './components/display/MarkdownRender';
+import { QProgressBar } from './components/display/ProgressBar';
+import { QScrollNotice } from './components/display/ScrollNotice';
+import { QFormButton } from './components/form/FormButton';
+import { QFormCheckboxGroup } from './components/form/FormCheckboxGroup';
+import { QFormColorPicker } from './components/form/FormColorPicker';
+import { QFormDatePicker } from './components/form/FormDatePicker';
+import { QFormFileUpload } from './components/form/FormFileUpload';
+import { QFormRadioGroup } from './components/form/FormRadioGroup';
+import { QFormRangeSlider } from './components/form/FormRangeSlider';
+import { QFormSelect } from './components/form/FormSelect';
+import { QFormSwitch } from './components/form/FormSwitch';
+import { QFormTable } from './components/form/FormTable';
+import { QFormText } from './components/form/FormText';
+import { QFormTextarea } from './components/form/FormTextarea';
+import { QSearch } from './components/form/Search';
+import { QCard } from './components/layout/Card';
+import { QCollapse } from './components/layout/Collapse';
+import { QCollapseItem } from './components/layout/CollapseItem';
+import { QCollapsibleSection } from './components/layout/CollapsibleSection';
+import { QDialog } from './components/layout/Dialog';
+import { QDrawer } from './components/layout/Drawer';
+import { QPopContainer } from './components/layout/PopContainer';
+import { QScrollContainer } from './components/layout/ScrollContainer';
+import { QSwiperAction } from './components/layout/SwiperAction';
+import { QTree } from './components/layout/Tree';
+import { QTreeNode } from './components/layout/TreeNode';
+import {
+  QBreathing,
+  QSkeleton,
+  QSpinner,
+} from './components/loading/animations';
+import { QLoading } from './components/loading/Loading';
+import { QNavSection } from './components/navigation/NavSection';
+import { QTab } from './components/navigation/Tab';
+import { QThemeToggle } from './components/theme/ThemeToggle';
 import './style/common.css';
 import './style/private.css';
+
 export * from './events';
 export * from './utils';
 export * from './types';
@@ -28,19 +75,7 @@ export * from './components/layout/TreeNode';
 export * from './components/navigation/NavSection';
 export * from './components/navigation/Tab';
 export * from './components/theme/ThemeToggle';
-import { QIcon } from './components/basic/Icon';
-import { QMessage } from './components/basic/Message';
-import { QPagination } from './components/basic/Pagination';
-import { QTag } from './components/basic/Tag';
-import { QAvatar } from './components/display/Avatar';
-import { QBadge } from './components/display/Badge';
-import { QCarousel } from './components/display/Carousel';
-import { QCarouselItem } from './components/display/CarouselItem';
-import { QDivider } from './components/display/Divider';
-import { QLazyImage } from './components/display/LazyImage';
-import { QMarkdownRender } from './components/display/MarkdownRender';
-import { QProgressBar } from './components/display/ProgressBar';
-import { QScrollNotice } from './components/display/ScrollNotice';
+
 export * from './components/form/FormButton';
 export * from './components/form/FormCheckboxGroup';
 export * from './components/form/FormColorPicker';
@@ -54,39 +89,7 @@ export * from './components/form/FormTable';
 export * from './components/form/FormText';
 export * from './components/form/FormTextarea';
 export * from './components/form/Search';
-import { QFormButton } from './components/form/FormButton';
-import { QFormCheckboxGroup } from './components/form/FormCheckboxGroup';
-import { QFormColorPicker } from './components/form/FormColorPicker';
-import { QFormDatePicker } from './components/form/FormDatePicker';
-import { QFormFileUpload } from './components/form/FormFileUpload';
-import { QFormRadioGroup } from './components/form/FormRadioGroup';
-import { QFormRangeSlider } from './components/form/FormRangeSlider';
-import { QFormSelect } from './components/form/FormSelect';
-import { QFormSwitch } from './components/form/FormSwitch';
-import { QFormTable } from './components/form/FormTable';
-import { QFormText } from './components/form/FormText';
-import { QFormTextarea } from './components/form/FormTextarea';
-import { QSearch } from './components/form/Search';
-import { QCard } from './components/layout/Card';
-import { QCollapse } from './components/layout/Collapse';
-import { QCollapseItem } from './components/layout/CollapseItem';
-import { QCollapsibleSection } from './components/layout/CollapsibleSection';
-import { QDialog } from './components/layout/Dialog';
-import { QDrawer } from './components/layout/Drawer';
-import { QPopContainer } from './components/layout/PopContainer';
-import { QScrollContainer } from './components/layout/ScrollContainer';
-import { QSwiperAction } from './components/layout/SwiperAction';
-import { QTree } from './components/layout/Tree';
-import { QTreeNode } from './components/layout/TreeNode';
-import { QLoading } from './components/loading/Loading';
-import {
-  QBreathing,
-  QSkeleton,
-  QSpinner,
-} from './components/loading/animations';
-import { QNavSection } from './components/navigation/NavSection';
-import { QTab } from './components/navigation/Tab';
-import { QThemeToggle } from './components/theme/ThemeToggle';
+
 export default {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   install(app: any) {
