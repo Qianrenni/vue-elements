@@ -5,7 +5,6 @@ from pathlib import Path
 dir_path = Path(__file__).parent.parent / 'src' / 'display'
 out_path = Path(__file__).parent.parent / 'src' / 'docs' / 'ComponentDetail.vue'
 
-result = []
 components = []
 pattern = re.compile(r'[/\\]src(.*)[/\\](.*)\.vue')
 
@@ -18,19 +17,24 @@ for root, _dirs, files in sorted(os.walk(dir_path)):
         match = pattern.search(os.path.join(root, file))
         if match:
             import_dir = match.group(1).replace('\\', '/')
-            result.append(f"import {file_name} from '..{import_dir}/{file}'")
-            components.append(f"  {file_name}: {file_name}")
+            components.append(
+                f"  {file_name}: defineAsyncComponent(\n"
+                f"    () => import('..{import_dir}/{file}'),\n"
+                f"  )"
+            )
 
 prefix = """\
 <!-- src/docs/ComponentDetail.vue -->
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
-import { QMarkdownRender, QTab } from 'qyani-components';
 import type { ComponentInfo } from '@/utils/useComponentInfo.ts';
+import { QMarkdownRender, QTab } from 'qyani-components';
+import { defineAsyncComponent, ref, watch } from 'vue';
+
+const componentMap: Record<string, ReturnType<typeof defineAsyncComponent>> = {
 """
 
-prefix += '\n'.join(result)
-prefix += f'\n\nconst componentMap = {{\n{",\n".join(components)},\n}}'
+prefix += ',\n'.join(components)
+prefix += ',\n};\n'
 
 prefix += """
 defineOptions({
