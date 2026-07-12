@@ -1,16 +1,23 @@
 <script lang="ts" setup>
-import { QNavSection } from 'qyani-components';
+import { QNavSection, type NavSectionProps } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
 
 defineOptions({ name: 'DisplayNavigationNavSection' });
 
-const sections = [
-  { label: '首页', value: 'home' },
-  { label: '产品', value: 'products' },
-  { label: '关于', value: 'about' },
+const sections: NavSectionProps[] = [
+  {
+    title: '首页',
+    value: 'home',
+    children: [
+      { title: '首页1', value: 'home1' },
+      { title: '首页2', value: 'home2' },
+    ],
+  },
+  { title: '产品', value: 'products' },
+  { title: '关于', value: 'about' },
 ];
 
-const handleSelect = (section: any) => {
+const handleSelect = (section: NavSectionProps) => {
   console.log('选中:', section);
 };
 
@@ -26,10 +33,10 @@ const code = `
 
 <script setup>
 const sections = [
-  { label: '首页', value: 'home' },
-  { label: '产品', value: 'products' },
+  { title: '首页', value: 'home' },
+  { title: '产品', value: 'products' },
 ];
-<\/script>
+<\\/script>
 \`\`\`
 `;
 </script>

@@ -25,6 +25,8 @@ export * from './components/layout/ScrollContainer';
 export * from './components/layout/SwiperAction';
 export * from './components/layout/Tree';
 export * from './components/layout/TreeNode';
+export * from './components/navigation/NavSection';
+export * from './components/navigation/Tab';
 import { QIcon } from './components/basic/Icon';
 import { QMessage } from './components/basic/Message';
 import { QPagination } from './components/basic/Pagination';
@@ -79,8 +81,8 @@ import { QLoading } from './components/loading/Loading';
 import { default as QBreathing } from './components/loading/animations/Breathing.vue';
 import { default as QSkeleton } from './components/loading/animations/Skeleton.vue';
 import { default as QSpinner } from './components/loading/animations/Spinner.vue';
-import { default as QNavSection } from './components/navigation/NavSection.vue';
-import { default as QTab } from './components/navigation/Tab.vue';
+import { QNavSection } from './components/navigation/NavSection';
+import { QTab } from './components/navigation/Tab';
 import { default as QThemeToggle } from './components/theme/ThemeToggle.vue';
 export default {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

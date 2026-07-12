@@ -24,15 +24,10 @@ export interface TableColumn {
 export type SelectionMode = 'single' | 'multiple' | null;
 export type Row = {
   isSelected: boolean;
-  [key: string]: any;
+  [key: string]: unknown;
 };
-export type FormTableModelValueRowType = Record<string, any>;
+export type FormTableModelValueRowType = Record<string, unknown>;
 export type FormTableModelValueType = FormTableModelValueRowType[];
-
-export interface NavSectionProps {
-  title: string;
-  children?: NavSectionProps[];
-}
 
 export interface TreeNodeData {
   id: string | number;
@@ -113,22 +108,4 @@ export interface FormComponentEmits<T> {
 
   // 清空操作
   (e: 'clear'): void;
-}
-
-// 所有表单组件支持的插槽
-export interface FormComponentSlots<T> {
-  // 前缀图标/文本
-  prefix?: (props: { value: T }) => any;
-
-  // 后缀图标/文本
-  suffix?: (props: { value: T }) => any;
-
-  // 清空按钮（可自定义）
-  clear?: () => any;
-
-  // 错误信息区域
-  error?: (props: { error: string }) => any;
-
-  // 默认插槽（用于复杂内容）
-  default?: () => any;
 }

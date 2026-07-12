@@ -1,3 +1,7 @@
+<!--
+ * @component QTab
+ * @description 标签页组件，支持标签列表展示和切换，激活项可自定义 class 名称
+ -->
 <template>
   <div class="tablist container">
     <span
@@ -15,32 +19,20 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { useTab } from './composable';
+import type { TabProps } from './type';
 
-defineOptions({
-  name: 'Tab',
+defineOptions({ name: 'QTab' });
+
+const props = withDefaults(defineProps<TabProps>(), {
+  activeClass: 'active',
 });
-
-const props = withDefaults(
-  defineProps<{
-    list: string[];
-    activeClass?: string;
-  }>(),
-  {
-    activeClass: 'active',
-  },
-);
 
 const emit = defineEmits<{
   (e: 'select', index: number): void;
 }>();
 
-const activeCategory = ref<number | null>(props.list.length > 0 ? 0 : null);
-
-function clickHandler(index: number) {
-  activeCategory.value = index;
-  emit('select', index);
-}
+const { activeCategory, clickHandler } = useTab(props, emit);
 </script>
 
 <style scoped>
