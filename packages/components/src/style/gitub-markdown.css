@@ -1,3 +1,5 @@
+/* eslint-disable css/font-family-fallbacks */
+/* eslint-disable css/no-invalid-properties */
 /* GitHub Markdown 样式 */
 .markdown-body {
   -webkit-text-size-adjust: 100%;
@@ -70,12 +72,13 @@
 
 /* 表格 */
 .markdown-body table {
+  display: block;
   width: 100%;
-  overflow: auto;
+  max-width: 100%;
+  overflow: scroll;
   margin: 1rem 0;
   border-collapse: collapse;
 }
-
 .markdown-body table th,
 .markdown-body table td {
   padding: 6px 13px;
