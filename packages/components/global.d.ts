@@ -1,17 +1,18 @@
+import type { Plugin } from 'vue';
+
 import type {
-  QIcon,
-  QMessage,
-  QPagination,
-  QTag,
   QAvatar,
   QBadge,
+  QBreathing,
+  QCard,
   QCarousel,
   QCarouselItem,
+  QCollapse,
+  QCollapseItem,
+  QCollapsibleSection,
+  QDialog,
   QDivider,
-  QLazyImage,
-  QMarkdownRender,
-  QProgressBar,
-  QScrollNotice,
+  QDrawer,
   QFormButton,
   QFormCheckboxGroup,
   QFormColorPicker,
@@ -24,43 +25,42 @@ import type {
   QFormTable,
   QFormText,
   QFormTextarea,
-  QSearch,
-  QCard,
-  QCollapse,
-  QCollapseItem,
-  QCollapsibleSection,
-  QDialog,
-  QDrawer,
-  QPopContainer,
-  QScrollContainer,
-  QSwiperAction,
-  QTree,
-  QTreeNode,
+  QIcon,
+  QLazyImage,
   QLoading,
-  QBreathing,
+  QMarkdownRender,
+  QMessage,
+  QNavSection,
+  QPagination,
+  QPopContainer,
+  QProgressBar,
+  QScrollContainer,
+  QScrollNotice,
+  QSearch,
   QSkeleton,
   QSpinner,
-  QNavSection,
+  QSwiperAction,
   QTab,
+  QTag,
   QThemeToggle,
+  QTree,
+  QTreeNode,
 } from './dist/types/index';
-import type { Plugin } from 'vue';
 
 declare module 'vue' {
   export interface GlobalComponents {
-    QIcon: typeof QIcon;
-    QMessage: typeof QMessage;
-    QPagination: typeof QPagination;
-    QTag: typeof QTag;
     QAvatar: typeof QAvatar;
     QBadge: typeof QBadge;
+    QBreathing: typeof QBreathing;
+    QCard: typeof QCard;
     QCarousel: typeof QCarousel;
     QCarouselItem: typeof QCarouselItem;
+    QCollapse: typeof QCollapse;
+    QCollapseItem: typeof QCollapseItem;
+    QCollapsibleSection: typeof QCollapsibleSection;
+    QDialog: typeof QDialog;
     QDivider: typeof QDivider;
-    QLazyImage: typeof QLazyImage;
-    QMarkdownRender: typeof QMarkdownRender;
-    QProgressBar: typeof QProgressBar;
-    QScrollNotice: typeof QScrollNotice;
+    QDrawer: typeof QDrawer;
     QFormButton: typeof QFormButton;
     QFormCheckboxGroup: typeof QFormCheckboxGroup;
     QFormColorPicker: typeof QFormColorPicker;
@@ -73,25 +73,26 @@ declare module 'vue' {
     QFormTable: typeof QFormTable;
     QFormText: typeof QFormText;
     QFormTextarea: typeof QFormTextarea;
-    QSearch: typeof QSearch;
-    QCard: typeof QCard;
-    QCollapse: typeof QCollapse;
-    QCollapseItem: typeof QCollapseItem;
-    QCollapsibleSection: typeof QCollapsibleSection;
-    QDialog: typeof QDialog;
-    QDrawer: typeof QDrawer;
-    QPopContainer: typeof QPopContainer;
-    QScrollContainer: typeof QScrollContainer;
-    QSwiperAction: typeof QSwiperAction;
-    QTree: typeof QTree;
-    QTreeNode: typeof QTreeNode;
+    QIcon: typeof QIcon;
+    QLazyImage: typeof QLazyImage;
     QLoading: typeof QLoading;
-    QBreathing: typeof QBreathing;
+    QMarkdownRender: typeof QMarkdownRender;
+    QMessage: typeof QMessage;
+    QNavSection: typeof QNavSection;
+    QPagination: typeof QPagination;
+    QPopContainer: typeof QPopContainer;
+    QProgressBar: typeof QProgressBar;
+    QScrollContainer: typeof QScrollContainer;
+    QScrollNotice: typeof QScrollNotice;
+    QSearch: typeof QSearch;
     QSkeleton: typeof QSkeleton;
     QSpinner: typeof QSpinner;
-    QNavSection: typeof QNavSection;
+    QSwiperAction: typeof QSwiperAction;
     QTab: typeof QTab;
+    QTag: typeof QTag;
     QThemeToggle: typeof QThemeToggle;
+    QTree: typeof QTree;
+    QTreeNode: typeof QTreeNode;
   }
 }
 declare const QyaniComponents: Plugin;

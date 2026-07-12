@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 import  os
-input_dir_path = r'D:\webstorm\workdir\vue-elements\src\components'
-output_dir_path = r'D:\webstorm\workdir\vue-elements\global.d.ts'
+from pathlib import Path
+root_dir = Path(__file__).parent.parent
+input_dir_path = root_dir / 'src' / 'components'
+output_path = root_dir / 'global.d.ts'
 
 result = []
 for root, dirs, files in os.walk(input_dir_path):
     for file in files:
-        if 'index' in file:
+        if not file.endswith('.vue'):
             continue
-        file_without_extension = file.split('.')[0]
+        file_without_extension = os.path.splitext(file)[0]
         result.append(f'Q{file_without_extension}')
+result = sorted(set(result))
 declare_result = [f'{i}: typeof {i}' for i in result]
 prefix = f"""
 import type {{
@@ -25,5 +28,4 @@ declare module 'vue' {{
 declare const QyaniComponents: Plugin
 export default QyaniComponents
 """
-with open(output_dir_path, 'w') as f:
-    f.write(prefix)
+output_path.write_text(prefix, encoding='utf-8')
