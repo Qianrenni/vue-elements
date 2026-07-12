@@ -79,9 +79,11 @@ import { QSwiperAction } from './components/layout/SwiperAction';
 import { QTree } from './components/layout/Tree';
 import { QTreeNode } from './components/layout/TreeNode';
 import { QLoading } from './components/loading/Loading';
-import { default as QBreathing } from './components/loading/animations/Breathing.vue';
-import { default as QSkeleton } from './components/loading/animations/Skeleton.vue';
-import { default as QSpinner } from './components/loading/animations/Spinner.vue';
+import {
+  QBreathing,
+  QSkeleton,
+  QSpinner,
+} from './components/loading/animations';
 import { QNavSection } from './components/navigation/NavSection';
 import { QTab } from './components/navigation/Tab';
 import { QThemeToggle } from './components/theme/ThemeToggle';

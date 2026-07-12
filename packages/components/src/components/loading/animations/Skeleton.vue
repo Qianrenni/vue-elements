@@ -1,6 +1,10 @@
+<!--
+ * @component QSkeleton
+ * @description 骨架屏加载动画，显示渐变扫光效果
+ -->
 <script lang="ts" setup>
 defineOptions({
-  name: 'Skeleton',
+  name: 'QSkeleton',
 });
 </script>
 

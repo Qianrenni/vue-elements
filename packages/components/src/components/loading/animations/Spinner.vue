@@ -1,6 +1,10 @@
+<!--
+ * @component QSpinner
+ * @description 圆形加载旋转动画，显示 SVG 圆环旋转效果
+ -->
 <script lang="ts" setup>
 defineOptions({
-  name: 'Spinner',
+  name: 'QSpinner',
 });
 </script>
 

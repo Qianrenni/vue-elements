@@ -1,6 +1,10 @@
+<!--
+ * @component QBreathing
+ * @description 呼吸点加载动画，显示三个圆点依次脉冲闪烁
+ -->
 <script lang="ts" setup>
 defineOptions({
-  name: 'Breathing',
+  name: 'QBreathing',
 });
 </script>
 
