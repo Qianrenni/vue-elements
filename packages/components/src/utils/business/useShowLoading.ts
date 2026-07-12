@@ -1,5 +1,5 @@
 import { createVNode, render, type VNode } from 'vue';
-import Loading from '@/components/loading/Loading.vue';
+import { QLoading } from '@/components/loading/Loading';
 let instance: VNode | null = null;
 let container: HTMLDivElement | null = null; // 👈 新增
 
@@ -22,7 +22,7 @@ export const useShowLoading = {
     container.style.zIndex = '9999';
     document.body.appendChild(container);
 
-    const vnode = createVNode(Loading, {
+    const vnode = createVNode(QLoading, {
       type: 'skeleton',
     });
 
