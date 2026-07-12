@@ -27,6 +27,7 @@ export * from './components/layout/Tree';
 export * from './components/layout/TreeNode';
 export * from './components/navigation/NavSection';
 export * from './components/navigation/Tab';
+export * from './components/theme/ThemeToggle';
 import { QIcon } from './components/basic/Icon';
 import { QMessage } from './components/basic/Message';
 import { QPagination } from './components/basic/Pagination';
@@ -83,7 +84,7 @@ import { default as QSkeleton } from './components/loading/animations/Skeleton.v
 import { default as QSpinner } from './components/loading/animations/Spinner.vue';
 import { QNavSection } from './components/navigation/NavSection';
 import { QTab } from './components/navigation/Tab';
-import { default as QThemeToggle } from './components/theme/ThemeToggle.vue';
+import { QThemeToggle } from './components/theme/ThemeToggle';
 export default {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   install(app: any) {
@@ -132,48 +133,4 @@ export default {
     app.component('QTab', QTab);
     app.component('QThemeToggle', QThemeToggle);
   },
-};
-
-export {
-  QTag,
-  QAvatar,
-  QBadge,
-  QCarousel,
-  QCarouselItem,
-  QDivider,
-  QLazyImage,
-  QMarkdownRender,
-  QProgressBar,
-  QScrollNotice,
-  QFormButton,
-  QFormCheckboxGroup,
-  QFormColorPicker,
-  QFormDatePicker,
-  QFormFileUpload,
-  QFormRadioGroup,
-  QFormRangeSlider,
-  QFormSelect,
-  QFormSwitch,
-  QFormTable,
-  QFormText,
-  QFormTextarea,
-  QSearch,
-  QCard,
-  QCollapse,
-  QCollapseItem,
-  QCollapsibleSection,
-  QDialog,
-  QDrawer,
-  QPopContainer,
-  QScrollContainer,
-  QSwiperAction,
-  QTree,
-  QTreeNode,
-  QLoading,
-  QBreathing,
-  QSkeleton,
-  QSpinner,
-  QNavSection,
-  QTab,
-  QThemeToggle,
 };
