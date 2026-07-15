@@ -6,4 +6,6 @@ export interface AvatarProps {
   url: string;
   /** 头像尺寸，默认 2rem */
   size?: string;
+  /** 图片替代文本 */
+  alt?: string;
 }
