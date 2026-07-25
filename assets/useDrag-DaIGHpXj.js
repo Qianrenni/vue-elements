@@ -1,0 +1,1 @@
+import{D as a}from"./DemoBlock-LSQ-hQJK.js";import{d as o,o as s,c as t,w as r,a as n}from"./index-BoF7aBxI.js";const m="\n```html\n<!-- useDrag Demo -->\n```\n",D=o({name:"DisplayEventuseDrag",__name:"useDrag",setup(p){return(u,e)=>(s(),t(a,{code:m},{default:r(()=>[...e[0]||(e[0]=[n("p",null,"useDrag 文档待完善",-1)])]),_:1}))}});export{D as default};
