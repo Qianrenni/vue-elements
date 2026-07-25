@@ -158,4 +158,33 @@ describe('useDrag', () => {
       expect.any(Function),
     );
   });
+
+  it('destroy 时若正在拖拽应额外移除 pointermove 并尝试释放指针捕获', () => {
+    const { destroy } = useDrag(element);
+
+    // 触发 startDrag 进入拖拽态，注册 pointermove
+    const startDrag = getHandler('pointerdown')!;
+    startDrag(createPointerEvent({ clientX: 100, clientY: 200 }));
+
+    destroy();
+
+    const mockRemove = element.removeEventListener as ReturnType<typeof vi.fn>;
+    expect(mockRemove).toHaveBeenCalledWith(
+      'pointermove',
+      expect.any(Function),
+    );
+    expect(element.releasePointerCapture).toHaveBeenCalled();
+  });
+
+  it('stopDrag 时若释放指针捕获抛错应被捕获且不中断', () => {
+    const { destroy } = useDrag(element);
+    // 让 releasePointerCapture 在 destroy 内抛错
+    (
+      element.releasePointerCapture as ReturnType<typeof vi.fn>
+    ).mockImplementationOnce(() => {
+      throw new Error('capture error');
+    });
+
+    expect(() => destroy()).not.toThrow();
+  });
 });

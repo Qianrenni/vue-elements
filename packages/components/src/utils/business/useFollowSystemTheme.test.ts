@@ -103,4 +103,92 @@ describe('useFollowSystemTheme', () => {
       false,
     );
   });
+
+  it('首次挂载且跟随系统时应注册 matchMedia change 监听', async () => {
+    const addSpy = vi.fn();
+    const global = globalThis as unknown as Record<string, unknown>;
+    global.window = {
+      matchMedia: () => ({
+        matches: false,
+        addEventListener: addSpy,
+        removeEventListener: vi.fn(),
+      }),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+    };
+    // 清空 localStorage 以确保模块初始化进入"跟随系统"分支
+    localStorageStore.clear();
+    hoisted.mountedHooks.length = 0;
+    hoisted.unmountedHooks.length = 0;
+
+    // 用隔离模块重新加载，获得干净的单例状态（shouldFollowSystem=true）
+    vi.resetModules();
+    const { useFollowSystemTheme: freshFn } =
+      await import('./useFollowSystemTheme');
+    freshFn();
+    hoisted.mountedHooks.forEach((fn) => fn());
+    await nextTick();
+
+    expect(addSpy).toHaveBeenCalledWith('change', expect.any(Function));
+  });
+
+  it('最后一个实例卸载且仍跟随系统时应移除监听', async () => {
+    const removeSpy = vi.fn();
+    const global = globalThis as unknown as Record<string, unknown>;
+    global.window = {
+      matchMedia: () => ({
+        matches: false,
+        addEventListener: vi.fn(),
+        removeEventListener: removeSpy,
+      }),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+    };
+    localStorageStore.clear();
+    hoisted.mountedHooks.length = 0;
+    hoisted.unmountedHooks.length = 0;
+
+    vi.resetModules();
+    const { useFollowSystemTheme: freshFn } =
+      await import('./useFollowSystemTheme');
+    freshFn();
+    hoisted.mountedHooks.forEach((fn) => fn());
+    await nextTick();
+    hoisted.unmountedHooks.forEach((fn) => fn());
+
+    expect(removeSpy).toHaveBeenCalledWith('change', expect.any(Function));
+  });
+
+  it('系统主题变化时应更新 isDark（updateTheme 接收事件分支）', async () => {
+    let listener: ((e: { matches: boolean }) => void) | undefined;
+    const global = globalThis as unknown as Record<string, unknown>;
+    global.window = {
+      matchMedia: () => ({
+        matches: false,
+        addEventListener: (
+          _: string,
+          fn: (e: { matches: boolean }) => void,
+        ) => {
+          listener = fn;
+        },
+        removeEventListener: vi.fn(),
+      }),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+    };
+    localStorageStore.clear();
+    hoisted.mountedHooks.length = 0;
+    hoisted.unmountedHooks.length = 0;
+
+    vi.resetModules();
+    const { useFollowSystemTheme: freshFn } =
+      await import('./useFollowSystemTheme');
+    const { isDark } = freshFn() as ReturnType;
+    hoisted.mountedHooks.forEach((fn) => fn());
+    // startListening 在 nextTick 内执行，需等待微任务刷新
+    await nextTick();
+    // 模拟系统切换到深色
+    listener!({ matches: true });
+    expect(isDark.value).toBe(true);
+  });
 });

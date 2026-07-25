@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
+import { defineConfig } from 'vite';
+
 export default defineConfig({
   plugins: [vue()], // 启用 Vue 插件
   build: {
@@ -37,5 +38,49 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
+  },
+  test: {
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html'],
+      exclude: [
+        'coverage/**',
+        'dist/**',
+        'src/**/*.test.ts',
+        'src/**/index.ts',
+        'src/types/**',
+      ],
+    },
+    // 通过 projects 分离两套测试环境：
+    // - node：纯逻辑测试（默认），部分文件用 `// @vitest-environment jsdom` 注解切换
+    // - browser：组件渲染测试，跑在真实浏览器（Playwright），使用 vitest-browser-vue
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: 'node',
+          environment: 'node',
+          setupFiles: ['./test/setup.ts'],
+          exclude: [
+            '**/node_modules/**',
+            '**/dist/**',
+            'src/components/**/*.render.test.ts',
+          ],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: 'browser',
+          environment: 'browser',
+          include: ['src/components/**/*.render.test.ts'],
+          browser: {
+            enabled: true,
+            provider: 'playwright',
+            instances: [{ browser: 'chromium' }],
+          },
+        },
+      },
+    ],
   },
 });
