@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { UseSegmentTree } from '@/utils';
+import { UseSegmentTree } from '@/utils/algorithm/useSegmentTree';
+import { describe, expect, it } from 'vitest';
 
 describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
   describe('Basic Operations - Range Sum', () => {
@@ -7,7 +7,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [1, 2, 3, 4, 5];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue * (right - left + 1), // 覆盖型
+        (left, right, lazyValue) => lazyValue * (right - left + 1), // 覆盖型
         (a, b) => a + b, // 求和
         0,
       );
@@ -21,7 +21,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [1, 2, 3, 4, 5];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue * (right - left + 1), // 覆盖型
+        (left, right, lazyValue) => lazyValue * (right - left + 1), // 覆盖型
         (a, b) => a + b,
         0,
       );
@@ -39,7 +39,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [1, 2, 3, 4, 5];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue * (right - left + 1),
+        (left, right, lazyValue) => lazyValue * (right - left + 1),
         (a, b) => a + b,
         0,
       );
@@ -53,7 +53,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [1, 2, 3, 4, 5];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue * (right - left + 1),
+        (left, right, lazyValue) => lazyValue * (right - left + 1),
         (a, b) => a + b,
         0,
       );
@@ -113,7 +113,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [1, 5, 3, 8, 2];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue, // 覆盖型
+        (left, right, lazyValue) => lazyValue, // 覆盖型
         (a, b) => Math.max(a, b), // 最大值
         -Infinity,
       );
@@ -127,7 +127,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [5, 2, 8, 1, 9];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue,
+        (left, right, lazyValue) => lazyValue,
         (a, b) => Math.min(a, b), // 最小值
         Infinity,
       );
@@ -141,7 +141,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [1, 5, 3, 8, 2];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue,
+        (left, right, lazyValue) => lazyValue,
         (a, b) => Math.max(a, b),
         -Infinity,
       );
@@ -159,7 +159,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [42];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue,
+        (left, right, lazyValue) => lazyValue,
         (a, b) => a + b,
         0,
       );
@@ -173,7 +173,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [1, 2, 3];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue,
+        (left, right, lazyValue) => lazyValue,
         (a, b) => a + b,
         0,
       );
@@ -187,7 +187,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = Array.from({ length: size }, (_, i) => i + 1);
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue * (right - left + 1),
+        (left, right, lazyValue) => lazyValue * (right - left + 1),
         (a, b) => a + b,
         0,
       );
@@ -202,7 +202,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [1, 2, 3, 4, 5];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue,
+        (left, right, lazyValue) => lazyValue,
         (a, b) => a + b,
         0,
       );
@@ -219,7 +219,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [10, 20, 30, 40, 50];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue,
+        (left, right, lazyValue) => lazyValue,
         (a, b) => a * b, // 乘积
         1,
       );
@@ -232,7 +232,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = ['a', 'b', 'c', 'd'];
       const tree = new UseSegmentTree<string, string>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue,
+        (left, right, lazyValue) => lazyValue,
         (a, b) => a + b, // 字符串拼接
         '',
       );
@@ -250,7 +250,7 @@ describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
       const data = [1, 2, 3, 4, 5, 6, 7, 8];
       const tree = new UseSegmentTree<number, number>(
         data,
-        (left, right, lazyValue, oldValue) => lazyValue * (right - left + 1),
+        (left, right, lazyValue) => lazyValue * (right - left + 1),
         (a, b) => a + b,
         0,
       );

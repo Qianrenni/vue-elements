@@ -1,11 +1,12 @@
-import { describe, it, expect } from 'vitest';
-import { isPlainObject, deepMerge } from '@/utils/business/useObject';
+import type { DeepPartial } from '@/types';
+import { deepMerge, isPlainObject } from '@/utils/business/useObject';
+import { describe, expect, it } from 'vitest';
 
 describe('isPlainObject', () => {
   it('应识别普通对象为 true', () => {
     expect(isPlainObject({})).toBe(true);
     expect(isPlainObject({ a: 1 })).toBe(true);
-    expect(isPlainObject(new Object())).toBe(true);  
+    expect(isPlainObject(new Object())).toBe(true);
   });
 
   it('应识别数组为 false', () => {
@@ -27,7 +28,7 @@ describe('isPlainObject', () => {
 
   it('应识别函数为 false', () => {
     expect(isPlainObject(() => {})).toBe(false);
-    expect(isPlainObject(function () {})).toBe(false);  
+    expect(isPlainObject(function () {})).toBe(false);
   });
 
   it('应识别内置对象为 false', () => {
@@ -69,7 +70,8 @@ describe('deepMerge', () => {
 
   it('应使用 override 覆盖 null 值', () => {
     const base = { a: { nested: 'value' } };
-    const override = { a: null };
+    // 刻意传入超出 DeepPartial 契约的 null，验证运行时覆盖行为
+    const override = { a: null } as unknown as DeepPartial<typeof base>;
     const result = deepMerge(base, override);
     expect(result).toEqual({ a: null });
   });
@@ -99,7 +101,8 @@ describe('deepMerge', () => {
     const base = { a: { x: 1 } };
     const override = { a: { y: 2 }, b: 3 };
     const frozenOverride = JSON.parse(JSON.stringify(override));
-    deepMerge(base, override);
+    // override 形状与 base 不一致，属于刻意越界的运行时行为验证
+    deepMerge(base, override as unknown as DeepPartial<typeof base>);
     expect(override).toEqual(frozenOverride);
   });
 
@@ -170,7 +173,10 @@ describe('deepMerge', () => {
 
   it('override 新增 base 中没有的键时应追加', () => {
     const base = { a: 1 };
-    const override = { b: 2, c: { d: 3 } };
+    // 刻意传入 base 中不存在的键，验证运行时追加行为
+    const override = { b: 2, c: { d: 3 } } as unknown as DeepPartial<
+      typeof base
+    >;
     const result = deepMerge(base, override);
     expect(result).toEqual({ a: 1, b: 2, c: { d: 3 } });
   });

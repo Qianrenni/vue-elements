@@ -1,5 +1,27 @@
-import { Color, Comparator, UseRedBlackTree } from '@/utils';
+import {
+  Color,
+  Comparator,
+  RBTreeNode,
+  UseRedBlackTree,
+} from '@/utils/algorithm/useRedBlackTree';
 import { beforeEach, describe, expect, it } from 'vitest';
+
+// 测试专用白盒视图：描述 UseRedBlackTree 需要断言的私有成员
+interface RBTreeInternals<T> {
+  root: RBTreeNode<T>;
+  pool: RBTreeNode<T>[];
+  NIL: RBTreeNode<T>;
+}
+
+/**
+ * 获取红黑树实例的私有内部视图（仅供测试白盒断言使用）
+ * @param tree {UseRedBlackTree<T>} 待检测的红黑树实例
+ * @return {RBTreeInternals<T>} 暴露私有成员的内部视图
+ */
+function internalsOf<T>(tree: UseRedBlackTree<T>): RBTreeInternals<T> {
+  return tree as unknown as RBTreeInternals<T>;
+}
+
 // 辅助函数：获取树中所有值（含重复），按中序
 function getAllValues<T>(tree: UseRedBlackTree<T>): T[] {
   const result: T[] = [];
@@ -279,21 +301,21 @@ describe('RedBlackTree', () => {
       tree.insert(20);
       expect(tree.getNodeCount()).toBe(2);
 
-      const poolBefore = (tree as any).pool.length; // 0
+      const poolBefore = internalsOf(tree).pool.length; // 0
       expect(tree.delete(10)).toBe(true); // 物理删除
-      const poolAfter = (tree as any).pool.length;
+      const poolAfter = internalsOf(tree).pool.length;
       expect(poolAfter).toBe(poolBefore + 1); // 池中多一个节点
     });
 
     it('插入时应优先复用池中节点', () => {
       tree.insert(10);
       tree.delete(10); // 节点进入池
-      expect((tree as any).pool.length).toBe(1);
+      expect(internalsOf(tree).pool.length).toBe(1);
 
       // 插入新值，应复用池中节点
-      const beforePoolLength = (tree as any).pool.length;
+      const beforePoolLength = internalsOf(tree).pool.length;
       tree.insert(999);
-      const afterPoolLength = (tree as any).pool.length;
+      const afterPoolLength = internalsOf(tree).pool.length;
 
       expect(afterPoolLength).toBe(beforePoolLength - 1); // 池中少一个
     });
@@ -307,25 +329,25 @@ describe('RedBlackTree', () => {
         tree.delete(i);
       }
 
-      expect((tree as any).pool.length).toBe(3); // 最大为 3
+      expect(internalsOf(tree).pool.length).toBe(3); // 最大为 3
     });
 
     it('复用节点时属性应被正确重置', () => {
       tree.insert(100);
-      const nodeAddr = (tree as any).root; // 记录地址
+      const nodeAddr = internalsOf(tree).root; // 记录地址
 
       tree.delete(100); // 回收
       tree.insert(200); // 复用
 
-      const reusedNode = (tree as any).root;
+      const reusedNode = internalsOf(tree).root;
       expect(reusedNode).toBe(nodeAddr); // 同一个对象（地址相同）
 
       // 验证属性被重置
       expect(reusedNode.value).toBe(200);
       expect(reusedNode.count).toBe(1);
-      expect(reusedNode.left === (tree as any).NIL).toBe(true);
-      expect(reusedNode.right === (tree as any).NIL).toBe(true);
-      expect(reusedNode.parent === (tree as any).NIL).toBe(true);
+      expect(reusedNode.left === internalsOf(tree).NIL).toBe(true);
+      expect(reusedNode.right === internalsOf(tree).NIL).toBe(true);
+      expect(reusedNode.parent === internalsOf(tree).NIL).toBe(true);
     });
 
     it('复用节点不应影响树结构和性质', () => {
@@ -354,7 +376,7 @@ describe('RedBlackTree', () => {
       tree.delete(1);
       tree.delete(2);
 
-      expect((tree as any).pool.length).toBeGreaterThan(0);
+      expect(internalsOf(tree).pool.length).toBeGreaterThan(0);
 
       tree.clear();
 
@@ -363,30 +385,30 @@ describe('RedBlackTree', () => {
       // 目前你的 clear() 只重置 root/nodeCount/totalCount
 
       // 如果你希望测试“clear 后池清空”，请取消下面注释并修改实现
-      // expect((tree as any).pool.length).toBe(0);
+      // expect(internalsOf(tree).pool.length).toBe(0);
 
       // 目前行为：池不清空 —— 也是合理的（保留池供下次使用）
-      expect((tree as any).pool.length).toBeGreaterThan(0);
+      expect(internalsOf(tree).pool.length).toBeGreaterThan(0);
     });
 
     // 可选：测试池中节点不会被外部修改影响
     it('池中节点隔离性测试（高级）', () => {
       tree.insert(10);
-      const originalNode = (tree as any).root;
+      const originalNode = internalsOf(tree).root;
       tree.delete(10);
 
       // 尝试修改池中节点（模拟污染）
       originalNode.value = 999;
       originalNode.color = Color.BLACK;
-      originalNode.left = null as any;
+      originalNode.left = null as unknown as RBTreeNode<number>;
 
       // 重新插入
       tree.insert(50);
-      const reusedNode = (tree as any).root;
+      const reusedNode = internalsOf(tree).root;
 
       // 即使之前被污染，插入时应被重置！
       expect(reusedNode.value).toBe(50); // 不是 999
-      expect(reusedNode.left === (tree as any).NIL).toBe(true); // 不是 null
+      expect(reusedNode.left === internalsOf(tree).NIL).toBe(true); // 不是 null
       expect(tree.validate()).toBe(true);
     });
   });

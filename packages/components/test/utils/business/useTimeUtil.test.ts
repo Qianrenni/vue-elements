@@ -1,5 +1,6 @@
-import { UseTimeUtils } from '@/utils';
+import { UseTimeUtils } from '@/utils/business/useTimeUtils';
 import { describe, expect, it } from 'vitest';
+
 describe('useTimeUtils', () => {
   it('时间相同应该相等', () => {
     const date1 = new UseTimeUtils('2023-01-01');

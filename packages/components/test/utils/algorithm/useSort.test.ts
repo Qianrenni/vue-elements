@@ -1,15 +1,15 @@
-import { describe, it, expect } from 'vitest';
 import {
   BubbleSort,
-  SelectionSort,
-  InsertionSort,
+  BucketSort,
+  CountingSort,
   HeapSort,
+  InsertionSort,
   MergeSort,
   QuickSort,
-  CountingSort,
   RadixSort,
-  BucketSort,
-} from '@/utils';
+  SelectionSort,
+} from '@/utils/algorithm/useSort';
+import { describe, expect, it } from 'vitest';
 
 describe('Sorting Algorithms', () => {
   // 通用比较函数 - 升序排列

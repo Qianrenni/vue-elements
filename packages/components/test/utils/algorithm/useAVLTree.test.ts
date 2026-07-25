@@ -1,5 +1,24 @@
-import { AVLNode, UseAVLTree } from '@/utils';
+import { AVLNode, UseAVLTree } from '@/utils/algorithm/useAVLTree';
 import { beforeEach, describe, expect, it } from 'vitest';
+
+// 测试专用白盒视图：描述 UseAVLTree 需要断言的私有成员
+interface AVLTreeInternals<T> {
+  root: AVLNode<T> | null;
+  nodePool: AVLNode<T>[];
+  getHeight(): number;
+  isBalanced(): boolean;
+  getNodeHeight(node: AVLNode<T> | null): number;
+  getBalanceFactor(node: AVLNode<T> | null): number;
+}
+
+/**
+ * 获取 AVL 树实例的私有内部视图（仅供测试白盒断言使用）
+ * @param tree {UseAVLTree<T>} 待检测的 AVL 树实例
+ * @return {AVLTreeInternals<T>} 暴露私有成员的内部视图
+ */
+function internalsOf<T>(tree: UseAVLTree<T>): AVLTreeInternals<T> {
+  return tree as unknown as AVLTreeInternals<T>;
+}
 
 describe('AVLTree', () => {
   let tree: UseAVLTree<number>;
@@ -216,7 +235,7 @@ describe('AVLTree', () => {
       // 或者：你可以在测试时临时暴露它，或写一个测试专用子类
 
       // 方法一：反射（不推荐用于生产，但测试可用）
-      const isBalanced = (tree as any).isBalanced();
+      const isBalanced = internalsOf(tree).isBalanced();
       expect(isBalanced).toBe(true);
 
       // 方法二（推荐）：在 AVLTree 类中加一个仅供测试的方法
@@ -228,7 +247,7 @@ describe('AVLTree', () => {
       const values = [10, 20, 30, 40, 50, 25];
       values.forEach((v) => tree.insert(v));
       tree.delete(30);
-      const isBalanced = (tree as any).isBalanced();
+      const isBalanced = internalsOf(tree).isBalanced();
       expect(isBalanced).toBe(true);
     });
 
@@ -238,7 +257,7 @@ describe('AVLTree', () => {
         tree.insert(i);
       }
 
-      const isBalanced = (tree as any).isBalanced();
+      const isBalanced = internalsOf(tree).isBalanced();
       expect(isBalanced).toBe(true);
       expect(tree.size).toBe(100);
     });
@@ -296,7 +315,7 @@ describe('AVLTree', () => {
       tree.insert(7);
 
       // 反射获取私有方法 getHeight
-      const getHeight = (tree as any).getHeight.bind(tree);
+      const getHeight = internalsOf(tree).getHeight.bind(tree);
       const height = getHeight();
       expect(height).toBeGreaterThanOrEqual(3); // 至少3层高度
     });
@@ -345,7 +364,7 @@ describe('AVLTree', () => {
       poolTree.delete(2);
 
       // 反射访问私有属性测试
-      const pool = (poolTree as any).nodePool as AVLNode<number>[];
+      const pool = internalsOf(poolTree).nodePool;
       expect(pool.length).toBe(2);
     });
   });
@@ -432,17 +451,17 @@ describe('AVLTree', () => {
       const tree = new UseAVLTree<number>();
 
       // 空树的高度为0
-      const emptyHeight = (tree as any).getHeight();
+      const emptyHeight = internalsOf(tree).getHeight();
       expect(emptyHeight).toBe(0);
 
       // 插入节点后检查高度
       tree.insert(10);
-      const height1 = (tree as any).getHeight();
+      const height1 = internalsOf(tree).getHeight();
       expect(height1).toBe(1);
 
       tree.insert(5);
       tree.insert(15);
-      const height2 = (tree as any).getHeight();
+      const height2 = internalsOf(tree).getHeight();
       expect(height2).toBe(2);
     });
 
@@ -450,44 +469,44 @@ describe('AVLTree', () => {
       const tree = new UseAVLTree<number>();
 
       // 空树是平衡的
-      expect((tree as any).isBalanced()).toBe(true);
+      expect(internalsOf(tree).isBalanced()).toBe(true);
 
       // 插入一些节点并检查平衡性
       tree.insert(10);
       tree.insert(5);
       tree.insert(15);
-      expect((tree as any).isBalanced()).toBe(true);
+      expect(internalsOf(tree).isBalanced()).toBe(true);
 
       // 插入更多节点触发旋转
       tree.insert(3);
       tree.insert(7);
       tree.insert(12);
       tree.insert(17);
-      expect((tree as any).isBalanced()).toBe(true);
+      expect(internalsOf(tree).isBalanced()).toBe(true);
     });
 
     it('应该测试 getNodeHeight 方法', () => {
       const tree = new UseAVLTree<number>();
 
       // null 节点的高度为 0
-      expect((tree as any).getNodeHeight(null)).toBe(0);
+      expect(internalsOf(tree).getNodeHeight(null)).toBe(0);
 
       // 插入节点并检查高度
       tree.insert(10);
-      const root = (tree as any).root;
-      expect((tree as any).getNodeHeight(root)).toBe(1);
+      const root = internalsOf(tree).root;
+      expect(internalsOf(tree).getNodeHeight(root)).toBe(1);
     });
 
     it('应该测试 getBalanceFactor 方法', () => {
       const tree = new UseAVLTree<number>();
 
       // null 节点的平衡因子为 0
-      expect((tree as any).getBalanceFactor(null)).toBe(0);
+      expect(internalsOf(tree).getBalanceFactor(null)).toBe(0);
 
       // 插入节点并检查平衡因子
       tree.insert(10);
-      const root = (tree as any).root;
-      expect((tree as any).getBalanceFactor(root)).toBe(0);
+      const root = internalsOf(tree).root;
+      expect(internalsOf(tree).getBalanceFactor(root)).toBe(0);
     });
   });
 });

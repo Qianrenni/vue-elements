@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { UseHeap } from '@/utils';
+import { UseHeap } from '@/utils/algorithm/useHeap';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 describe('UseHeap', () => {
   let minHeap: UseHeap<number>;
