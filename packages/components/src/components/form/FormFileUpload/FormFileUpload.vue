@@ -38,7 +38,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { FormFileUploadProps, FileType } from './type';
+import { useFormFileUpload } from './composable';
+import type { FileType, FormFileUploadProps } from './type';
 
 defineOptions({
   name: 'QFormFileUpload',
@@ -62,23 +63,7 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: FileType): void;
 }>();
 
-const onChange = (e: Event) => {
-  const target = e.target as HTMLInputElement;
-  const files = target.files;
-
-  if (!files || files.length === 0) {
-    emit('update:modelValue', null);
-    return;
-  }
-
-  // 单文件：返回 File
-  if (!props.multiple) {
-    emit('update:modelValue', files[0]);
-  } else {
-    // 多文件：返回 FileList
-    emit('update:modelValue', files);
-  }
-};
+const { onChange } = useFormFileUpload(props, emit);
 </script>
 
 <style scoped></style>

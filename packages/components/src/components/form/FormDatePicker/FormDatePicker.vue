@@ -29,13 +29,14 @@
 
 <script lang="ts" setup>
 import type { FormComponentEmits } from '@/types';
+
+import { useFormDatePicker } from './composable';
 import type { FormDatePickerProps } from './type';
-import { useFormEvents } from '@/events';
 
 defineOptions({
   name: 'QFormDatePicker',
 });
-withDefaults(defineProps<FormDatePickerProps>(), {
+const props = withDefaults(defineProps<FormDatePickerProps>(), {
   type: 'date',
   required: true,
   direction: 'horizontal',
@@ -48,11 +49,7 @@ withDefaults(defineProps<FormDatePickerProps>(), {
 });
 
 const emit = defineEmits<FormComponentEmits<string>>();
-const { handleInput } = useFormEvents(emit);
-/** 处理输入，确保输出为字符串 */
-const onInput = (e: Event) => {
-  handleInput((e.target as HTMLInputElement).value);
-};
+const { onInput } = useFormDatePicker(props, emit);
 </script>
 
 <style scoped></style>

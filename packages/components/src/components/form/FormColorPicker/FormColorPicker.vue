@@ -36,13 +36,14 @@
 
 <script lang="ts" setup>
 import type { FormComponentEmits } from '@/types';
+
+import { useFormColorPicker } from './composable';
 import type { FormColorPickerProps } from './type';
-import { useFormEvents } from '@/events';
 
 defineOptions({
   name: 'QFormColorPicker',
 });
-withDefaults(defineProps<FormColorPickerProps>(), {
+const props = withDefaults(defineProps<FormColorPickerProps>(), {
   required: true,
   direction: 'horizontal',
   disabled: false,
@@ -54,11 +55,7 @@ withDefaults(defineProps<FormColorPickerProps>(), {
   modelValue: '#fff',
 });
 const emit = defineEmits<FormComponentEmits<string>>();
-const { handleInput } = useFormEvents(emit);
-/** 处理输入，确保输出为字符串 */
-const onInput = (e: Event) => {
-  handleInput((e.target as HTMLInputElement).value);
-};
+const { onInput } = useFormColorPicker(props, emit);
 </script>
 
 <style scoped></style>

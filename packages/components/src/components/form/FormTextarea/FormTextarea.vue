@@ -45,14 +45,15 @@
 
 <script lang="ts" setup>
 import type { FormComponentEmits } from '@/types';
+
+import { useFormTextarea } from './composable';
 import type { FormTextareaProps } from './type';
-import { useFormEvents } from '@/events';
 
 defineOptions({
   name: 'QFormTextarea',
 });
 
-withDefaults(defineProps<FormTextareaProps>(), {
+const props = withDefaults(defineProps<FormTextareaProps>(), {
   rows: 5,
   resizable: false,
   placeholder: '请输入内容',
@@ -66,8 +67,5 @@ withDefaults(defineProps<FormTextareaProps>(), {
 });
 
 const emit = defineEmits<FormComponentEmits<string>>();
-const { handleInput } = useFormEvents(emit);
-const onInput = (e: Event) => {
-  handleInput((e.target as HTMLInputElement).value as string);
-};
+const { onInput } = useFormTextarea(props, emit);
 </script>

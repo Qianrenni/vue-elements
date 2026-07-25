@@ -48,13 +48,14 @@
 
 <script lang="ts" setup>
 import type { FormComponentEmits } from '@/types';
+
+import { useFormRadioGroup } from './composable';
 import type { FormRadioGroupProps } from './type';
-import { useFormEvents } from '@/events';
 
 defineOptions({
   name: 'QFormRadioGroup',
 });
-withDefaults(defineProps<FormRadioGroupProps>(), {
+const props = withDefaults(defineProps<FormRadioGroupProps>(), {
   required: true,
   direction: 'horizontal',
   disabled: false,
@@ -65,10 +66,7 @@ withDefaults(defineProps<FormRadioGroupProps>(), {
   clearable: true,
 });
 const emit = defineEmits<FormComponentEmits<string>>();
-const { handleInput } = useFormEvents<string>(emit);
-const onChange = (e: Event) => {
-  handleInput((e.target as HTMLInputElement).value as string);
-};
+const { onChange } = useFormRadioGroup(props, emit);
 </script>
 
 <style scoped></style>
