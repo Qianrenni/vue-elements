@@ -48,7 +48,12 @@ export default defineConfig({
         'dist/**',
         'src/**/*.test.ts',
         'src/**/index.ts',
+        'src/**/type.ts',
         'src/types/**',
+        'src/**/*.d.ts',
+        '**/*.d.ts',
+        'vite.config.ts',
+        'test/**',
       ],
     },
     // 通过 projects 分离两套测试环境：
