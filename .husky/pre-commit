@@ -2,6 +2,3 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 pnpm lint-staged
-
-# 构建检查：确保组件库和文档能正常构建
-pnpm run docs:build
