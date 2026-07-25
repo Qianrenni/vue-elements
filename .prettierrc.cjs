@@ -41,7 +41,7 @@ module.exports = {
   embeddedLanguageFormatting: 'auto',
 
   // Import 排序插件 —— 自动按规则整理 import/export 语句
-  plugins: ['@trivago/prettier-plugin-sort-imports'],
+  plugins: ['@trivago/prettier-plugin-sort-imports', '@prettier/plugin-xml'],
   // 导入分组顺序（按正则匹配，不匹配的分组内按字母排序）
   importOrder: [
     '<THIRD_PARTY_MODULES>', // 第三方依赖（node_modules）

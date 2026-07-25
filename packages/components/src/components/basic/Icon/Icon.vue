@@ -6,8 +6,9 @@
 </template>
 <script lang="ts" setup>
 import { onBeforeMount, ref, watch } from 'vue';
-import { IconProps } from './type';
+
 import { loadSvg } from './composable';
+import { IconProps } from './type';
 
 defineOptions({
   name: 'QIcon',

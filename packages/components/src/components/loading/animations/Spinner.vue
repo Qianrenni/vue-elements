@@ -14,7 +14,7 @@ defineOptions({
     viewBox="0 0 100 100"
     fill="transparent"
     stroke="currentColor"
-    stroke-width="5"
+    stroke-width="10"
     stroke-linecap="round"
     stroke-linejoin="round"
   >
