@@ -37,5 +37,5 @@ coverage/
 .vite/
 .cache/
 dist/
-*cache/
+cache/
 .*cache
