@@ -1,115 +1,334 @@
-/* GitHub Markdown 样式 */
+/* Markdown 内容排版：适配组件库主题变量与明暗模式。 */
 .markdown-body {
   -webkit-text-size-adjust: 100%;
-  line-height: 1.5;
   color: var(--text-color);
-  /*background-color: var(--background-color);*/
   font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji';
-  font-size: 16px;
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-size: 14px;
+  line-height: 1.75;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
-/* 基础排版 */
-.markdown-body details,
-.markdown-body figcaption,
-.markdown-body figure {
-  display: block;
+.markdown-body > :first-child {
+  margin-top: 0;
 }
 
-/* 标题 */
+.markdown-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* 标题层级清晰，并为锚点跳转保留安全滚动距离。 */
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  margin-top: 24px;
-  margin-bottom: 16px;
-  font-weight: 600;
-  line-height: 1.25;
+  margin: 32px 0 16px;
   color: var(--text-color);
+  font-weight: 600;
+  line-height: 1.35;
+  scroll-margin-top: 24px;
 }
 
 .markdown-body h1 {
-  font-size: 2em;
+  padding-bottom: 12px;
+  font-size: 28px;
   border-bottom: 1px solid var(--border-color);
 }
 
 .markdown-body h2 {
-  font-size: 1.5em;
+  padding-bottom: 8px;
+  font-size: 22px;
   border-bottom: 1px solid var(--border-color);
 }
 
 .markdown-body h3 {
-  font-size: 1.25em;
+  font-size: 18px;
 }
 
-/* 段落 */
-.markdown-body p {
-  margin-top: 0;
-  margin-bottom: 1rem;
+.markdown-body h4 {
+  font-size: 16px;
 }
 
-/* 链接 */
+.markdown-body h5 {
+  font-size: 14px;
+}
+
+.markdown-body h6 {
+  color: var(--subtle-text-color);
+  font-size: 13px;
+}
+
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body blockquote,
+.markdown-body pre,
+.markdown-body .markdown-table-wrapper,
+.markdown-body figure {
+  margin: 0 0 16px;
+}
+
 .markdown-body a {
   color: var(--link-color);
-  text-decoration: none;
-  transition: color var(--transition-speed);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
 }
 
 .markdown-body a:hover {
-  text-decoration: underline;
   color: var(--link-hover);
+  text-decoration-color: currentColor;
 }
 
-/* 强调文本 */
+.markdown-body a:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .markdown-body strong {
-  font-weight: 600;
-}
-
-/* 表格 */
-.markdown-body table {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  overflow: auto;
-  margin: 1rem 0;
-  border-collapse: collapse;
-}
-.markdown-body table th,
-.markdown-body table td {
-  padding: 6px 13px;
-  border: 1px solid var(--border-color);
   color: var(--text-color);
-}
-
-.markdown-body table th {
   font-weight: 600;
-  background-color: var(--primary-color);
-  color: var(--color-white);
-  border-color: var(--color-white);
 }
 
-/* 列表 */
-.markdown-body ul,
-.markdown-body ol {
-  padding-left: 20px;
+.markdown-body em {
+  color: var(--text-description);
 }
 
-.markdown-body ul li,
-.markdown-body ol li {
-  margin-bottom: 0.5rem;
-}
-
-/* 引用 */
-.markdown-body blockquote {
-  margin: 1em 0;
-  padding: 0 1em;
-  border-left: 0.25em solid var(--border-color);
+.markdown-body del {
   color: var(--subtle-text-color);
 }
 
-.markdown-body img {
+.markdown-body hr {
+  height: 1px;
+  margin: 24px 0;
+  border: 0;
+  background-color: var(--border-color);
+  opacity: 0.5;
+}
+
+/* 列表支持多层嵌套与任务项。 */
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 24px;
+}
+
+.markdown-body li + li {
+  margin-top: 6px;
+}
+
+.markdown-body li > p {
+  margin: 8px 0;
+}
+
+.markdown-body li > ul,
+.markdown-body li > ol {
+  margin: 6px 0 0;
+}
+
+.markdown-body .task-list-item {
+  list-style: none;
+}
+
+.markdown-body .task-list-item input[type='checkbox'] {
+  width: 14px;
+  height: 14px;
+  margin: 0 8px 0 -20px;
+  vertical-align: -2px;
+}
+
+/* 引用、代码和键盘按键采用克制的企业文档视觉。 */
+.markdown-body blockquote {
+  padding: 12px 16px;
+  color: var(--text-description);
+  background-color: var(--gray-100);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 0 4px 4px 0;
+}
+
+.markdown-body blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body code,
+.markdown-body kbd {
+  padding: 2px 5px;
+  color: var(--text-color);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.875em;
+  line-height: 1.5;
+  background-color: var(--gray-100);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.markdown-body kbd {
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: inset 0 -1px 0 var(--gray-300);
+}
+
+.markdown-body pre {
   max-width: 100%;
+  padding: 16px;
+  overflow: auto;
+  color: #c9d1d9;
+  line-height: 1.55;
+  background-color: #0d1117;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.markdown-body pre code {
+  display: block;
+  min-width: max-content;
+  padding: 0;
+  color: inherit;
+  font-size: 13px;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+/* 由渲染器注入容器：仅容器滚动，table 始终保留原生列宽计算。 */
+.markdown-body .markdown-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.markdown-body table {
+  width: max-content;
+  min-width: 100%;
+  table-layout: auto;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+.markdown-body th,
+.markdown-body td {
+  min-width: 112px;
+  padding: 10px 12px;
+  color: var(--text-color);
+  text-align: left;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.markdown-body th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-weight: 600;
+  white-space: nowrap;
+  background-color: var(--gray-100);
+}
+
+.markdown-body tr:nth-child(even) td {
+  background-color: var(--secondary-background-color);
+}
+
+.markdown-body tr > :last-child {
+  border-right: 0;
+}
+
+.markdown-body tr:last-child > * {
+  border-bottom: 0;
+}
+
+.markdown-body .markdown-table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.markdown-body .markdown-table-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--gray-400);
+  border-radius: 999px;
+}
+
+.markdown-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 16px auto;
+  border-radius: 6px;
+}
+
+.markdown-body figure {
+  text-align: center;
+}
+
+.markdown-body figcaption {
+  margin-top: 8px;
+  color: var(--subtle-text-color);
+  font-size: 13px;
+}
+
+.markdown-body details {
+  padding: 12px 16px;
+  background-color: var(--gray-100);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.markdown-body summary {
+  color: var(--text-color);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.markdown-body details[open] summary {
+  margin-bottom: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .markdown-body {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .markdown-body h1 {
+    font-size: 24px;
+  }
+
+  .markdown-body h2 {
+    font-size: 20px;
+  }
+
+  .markdown-body h3 {
+    font-size: 17px;
+  }
+
+  .markdown-body pre {
+    padding: 12px;
+    border-radius: 4px;
+  }
+
+  .markdown-body .markdown-table-wrapper {
+    margin-right: -4px;
+    border-radius: 4px;
+  }
+
+  .markdown-body table {
+    font-size: 13px;
+  }
+
+  .markdown-body th,
+  .markdown-body td {
+    min-width: 96px;
+    padding: 8px 10px;
+  }
 }

@@ -75,6 +75,7 @@ export default defineConfig(({ command }) => {
         ],
       },
       server: {
+        host: '0.0.0.0',
         fs: {
           allow: [resolve(__dirname, '..')],
         },

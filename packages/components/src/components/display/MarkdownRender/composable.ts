@@ -1,22 +1,23 @@
-import { nextTick, onBeforeMount, ref, useTemplateRef, watch } from 'vue';
+import '@/style/gitub-markdown.css';
+import '@/style/katex.css';
+import hljs from 'highlight.js';
+import c from 'highlight.js/lib/languages/c';
+import cplus from 'highlight.js/lib/languages/cpp';
+import css from 'highlight.js/lib/languages/css';
+import java from 'highlight.js/lib/languages/java';
+import javascript from 'highlight.js/lib/languages/javascript';
+import json from 'highlight.js/lib/languages/json';
+import kotlin from 'highlight.js/lib/languages/kotlin';
+import python from 'highlight.js/lib/languages/python';
+import typescript from 'highlight.js/lib/languages/typescript';
+import xml from 'highlight.js/lib/languages/xml';
+import yaml from 'highlight.js/lib/languages/yaml';
+import 'highlight.js/styles/github-dark.css';
 import { marked } from 'marked';
 import markedKatex from 'marked-katex-extension';
-import hljs from 'highlight.js';
-import '@/style/gitub-markdown.css';
-import 'highlight.js/styles/github-dark.css';
-import '@/style/katex.css';
 import { pinyin } from 'pinyin-pro';
-import java from 'highlight.js/lib/languages/java';
-import python from 'highlight.js/lib/languages/python';
-import javascript from 'highlight.js/lib/languages/javascript';
-import xml from 'highlight.js/lib/languages/xml';
-import css from 'highlight.js/lib/languages/css';
-import typescript from 'highlight.js/lib/languages/typescript';
-import kotlin from 'highlight.js/lib/languages/kotlin';
-import cplus from 'highlight.js/lib/languages/cpp';
-import c from 'highlight.js/lib/languages/c';
-import json from 'highlight.js/lib/languages/json';
-import yaml from 'highlight.js/lib/languages/yaml';
+import { nextTick, onBeforeMount, ref, useTemplateRef, watch } from 'vue';
+
 import type { MarkdownRenderProps, TocItem } from './type';
 
 // 注册 highlight.js 语言
@@ -151,9 +152,18 @@ export function useMarkdownRender(props: MarkdownRenderProps) {
   }
 
   // 解析 Markdown
-  async function parseMarkdown(content: string) {
+  /**
+   * 解析 Markdown 文本，并为表格提供可横向滚动的容器。
+   * @param content - 待解析的 Markdown 原文。
+   * @returns Promise<void>，解析结果会写入 htmlContent。
+   * @throws 当 Markdown 解析器无法处理输入内容时抛出异常。
+   */
+  async function parseMarkdown(content: string): Promise<void> {
     toc.value = [];
-    htmlContent.value = await marked.parse(content);
+    const parsedContent = await marked.parse(content);
+    htmlContent.value = parsedContent
+      .replace(/<table>/g, '<div class="markdown-table-wrapper"><table>')
+      .replace(/<\/table>/g, '</table></div>');
     nextTick(() => {
       bindAnchorEvents();
     });

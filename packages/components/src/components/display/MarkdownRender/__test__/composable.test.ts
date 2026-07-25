@@ -95,6 +95,17 @@ describe('useMarkdownRender', () => {
     expect(htmlContent.value).toContain('src="https://example.com/p.png"');
   });
 
+  it('应该为表格添加横向滚动容器', async () => {
+    const { htmlContent } = await createRender(
+      '| 参数 | 类型 |\n| --- | --- |\n| color | string |',
+    );
+
+    expect(htmlContent.value).toContain(
+      '<div class="markdown-table-wrapper"><table>',
+    );
+    expect(htmlContent.value).toContain('</table></div>');
+  });
+
   it('应该为外部链接添加 target="_blank"', async () => {
     const { htmlContent } = await createRender('[site](https://example.com)');
 
