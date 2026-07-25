@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 pnpm lint-staged
 
 # 构建检查：仅当 JS/TS/Vue 文件变更时执行
