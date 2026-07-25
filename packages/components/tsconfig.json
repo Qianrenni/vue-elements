@@ -48,7 +48,9 @@
   // 只编译 src 目录下的文件
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    // 排除组件内联测试文件，避免测试声明混入 dist/types（类型检查由 test/tsconfig.json 负责）
+    "src/**/*.test.ts"
   ]
   // 排除 node_modules 和 dist 目录
 }

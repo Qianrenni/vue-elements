@@ -1,0 +1,18 @@
+{
+  // 内联测试专用 tsconfig：继承主配置以复用 "@/*" 路径别名与严格检查，
+  // 但独立于构建（主 tsconfig 的 exclude 已排除 src/**/*.test.ts，避免测试声明混入 dist/types）
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    // 测试代码不产出任何编译结果
+    "declaration": false,
+    "declarationDir": null,
+    "emitDeclarationOnly": false
+  },
+  "include": [
+    // 源码目录内联的测试文件（组件 __test__ 目录与工具函数目录）
+    "src/**/*.test.ts",
+    // 引入 *.vue 模块的环境声明，保证 CLI 下 tsc 也能解析 .vue 导入
+    "src/types/**/*.d.ts"
+  ]
+}

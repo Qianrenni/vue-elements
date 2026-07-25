@@ -35,7 +35,7 @@ export class UseSegmentTree<T = number, Lazy = number> {
     data: T[],
     rootFunc: (left: number, right: number, lazyValue: Lazy, oldValue: T) => T,
     mergeFunc: (a: T, b: T) => T = ((a: number, b: number) =>
-      (a as number) + (b as number)) as any,
+      a + b) as unknown as (a: T, b: T) => T,
     defaultVal: T = 0 as T,
   ) {
     this.n = data.length;

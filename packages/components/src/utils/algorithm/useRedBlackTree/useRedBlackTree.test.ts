@@ -1,10 +1,11 @@
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import {
   Color,
   Comparator,
   RBTreeNode,
   UseRedBlackTree,
-} from '@/utils/algorithm/useRedBlackTree';
-import { beforeEach, describe, expect, it } from 'vitest';
+} from './useRedBlackTree';
 
 // 测试专用白盒视图：描述 UseRedBlackTree 需要断言的私有成员
 interface RBTreeInternals<T> {

@@ -1,5 +1,6 @@
-import { UseSegmentTree } from '@/utils/algorithm/useSegmentTree';
 import { describe, expect, it } from 'vitest';
+
+import { UseSegmentTree } from './useSegmentTree';
 
 describe('UseSegmentTree - Segment Tree with Lazy Propagation', () => {
   describe('Basic Operations - Range Sum', () => {

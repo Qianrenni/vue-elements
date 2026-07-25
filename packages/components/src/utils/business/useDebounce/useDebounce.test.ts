@@ -1,5 +1,6 @@
-import { useDebounce } from '@/utils/business/useDebounce';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { useDebounce } from './useDebounce';
 
 describe('useDebounce', () => {
   beforeEach(() => {
