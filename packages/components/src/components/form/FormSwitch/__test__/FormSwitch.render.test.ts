@@ -23,7 +23,7 @@ describe('QFormSwitch 渲染', () => {
     const { container, emitted } = render(QFormSwitch, {
       props: { modelValue: false },
     });
-    container.querySelector('.form-switch')!.click();
+    (container.querySelector('.form-switch') as HTMLElement).click();
 
     expect(emitted('update:modelValue')).toBeTruthy();
     expect(emitted('update:modelValue')![0]).toEqual([true]);
@@ -36,7 +36,7 @@ describe('QFormSwitch 渲染', () => {
       props: { modelValue: false, disabled: true },
     });
     // 直接派发 click 事件，组件内部 disabled 逻辑应阻止事件触发
-    container.querySelector('.form-switch')!.click();
+    (container.querySelector('.form-switch') as HTMLElement).click();
 
     expect(emitted('update:modelValue')).toBeFalsy();
     expect(emitted('change')).toBeFalsy();
