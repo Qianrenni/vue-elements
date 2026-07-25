@@ -1,0 +1,18 @@
+
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 100 100"
+    width="100"
+    height="100"
+    fill="transparent"
+    stroke="currentColor"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+>
+    <!-- 文件主体 -->
+    <path d="M 20 15 L 65 15 L 80 30 L 80 85 C 80 90 75 90 70 90 L 30 90 C 25 90 20 85 20 80 Z" />
+    <!-- 折叠角 -->
+    <path d="M 65 15 L 65 30 L 80 30" />
+</svg>
+
