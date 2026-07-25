@@ -11,7 +11,7 @@ interface StorageData<T> {
  * @param value 要检查的值
  * @returns 是否为指定类型
  */
-type TypeGuard<T> = (value: any) => value is T;
+type TypeGuard<T> = (value: unknown) => value is T;
 
 /**
  * LRU（最近最少使用）缓存实现类
@@ -47,7 +47,7 @@ export class UseLRUCache<T> {
     this.data = this.loadFromStorage<StorageData<T>>(this.storageKey) || {};
     this.order = this.loadFromStorage<string[]>(this.orderKey) || [];
     this.typeGuard = typeGuard;
-    for (const [key, value] of Object.entries(this.data)) {
+    for (const value of Object.values(this.data)) {
       if (!this.typeGuard(value)) {
         this.clear();
         console.error(`LRUCache: ${this.name} 数据类型错误，已清除缓存`);

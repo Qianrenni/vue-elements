@@ -34,17 +34,21 @@ export class UseTimeUtils extends Date {
     const year = this.getFullYear().toString();
     const month = (this.getMonth() + 1).toString();
     const day = this.getDate().toString();
-    const hours = this.getHours().toString();
+    const hours24 = this.getHours();
+    const hours = hours24.toString();
+    const hours12 = ((hours24 + 11) % 12) + 1;
+    const h12 = hours12.toString();
     const minutes = this.getMinutes().toString();
     const seconds = this.getSeconds().toString();
     const milliseconds = this.getMilliseconds().toString();
     const dayOfWeek = this.getDay().toString();
-    const { temp, p } = handleDateFormat(format, 'YMDHmsSd');
+    const { temp, p } = handleDateFormat(format, 'YMDHhmsSd');
     return temp
       .replace('Y', year.padStart(p.get('Y') || 0, padChar))
       .replace('M', month.padStart(p.get('M') || 0, padChar))
       .replace('D', day.padStart(p.get('D') || 0, padChar))
       .replace('H', hours.padStart(p.get('H') || 0, padChar))
+      .replace('h', h12.padStart(p.get('h') || 0, padChar))
       .replace('m', minutes.padStart(p.get('m') || 0, padChar))
       .replace('s', seconds.padStart(p.get('s') || 0, padChar))
       .replace('S', milliseconds.padStart(p.get('S') || 0, padChar))
@@ -102,7 +106,14 @@ export class UseTimeUtils extends Date {
    */
   subtract(
     amount: number,
-    unit: 'year' | 'month' | 'day' | 'hour' | 'minute' | 'second',
+    unit:
+      | 'year'
+      | 'month'
+      | 'day'
+      | 'hour'
+      | 'minute'
+      | 'second'
+      | 'millisecond',
   ): this {
     return this.add(-amount, unit);
   }

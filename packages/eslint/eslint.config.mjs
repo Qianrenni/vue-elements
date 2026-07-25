@@ -12,6 +12,7 @@ export default defineConfig([
     ignores: [
       '**/node_modules/**',
       '**/dist/**',
+      '**/coverage/**',
       '**/.vscode/**',
       '**/*.lock',
       '**/pnpm-lock.yaml',
@@ -24,6 +25,14 @@ export default defineConfig([
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
   },
   tseslint.configs.recommended,
+  {
+    // Vue SFC 内嵌字符串中的 <\/script> 转义是必需的（否则 SFC 解析器会提前结束 script 块），
+    // js/recommended 的 no-useless-escape 对 .vue 误报，这里关闭它。
+    files: ['**/*.vue'],
+    rules: {
+      'no-useless-escape': 'off',
+    },
+  },
   {
     files: ['**/*.vue'],
     ...pluginVue.configs['flat/essential'][0],
@@ -39,6 +48,7 @@ export default defineConfig([
   },
   {
     files: ['**/*.json'],
+    ignores: ['**/tsconfig*.json', '**/jsconfig*.json'],
     plugins: { json },
     language: 'json/json',
     extends: ['json/recommended'],
@@ -60,6 +70,14 @@ export default defineConfig([
     plugins: { css },
     language: 'css/css',
     extends: ['css/recommended'],
+    rules: {
+      // 组件库样式有意使用 !important 覆盖使用者样式，且大量引用自定义 CSS 变量，
+      // css/recommended 的这两条规则在此场景下误报，关闭它们。
+      'css/no-important': 'off',
+      'css/no-invalid-properties': 'off',
+      'css/no-empty-blocks': 'off',
+      'css/font-family-fallbacks': 'off',
+    },
   },
 ]);
 

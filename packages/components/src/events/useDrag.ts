@@ -120,7 +120,8 @@ export const useDrag = (
         elementRef.removeEventListener('pointermove', rawDrag);
         try {
           elementRef.releasePointerCapture(
-            (elementRef as any).__activePointerId || 0,
+            (elementRef as HTMLElement & { __activePointerId?: number })
+              .__activePointerId || 0,
           );
         } catch (error) {
           console.error('Failed to release pointer capture:', error);

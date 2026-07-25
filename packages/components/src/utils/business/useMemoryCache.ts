@@ -38,7 +38,7 @@ class CacheItem<T> {
  * 内存缓存类，提供缓存的设置、获取、删除等功能
  */
 export class UseMemoryCache {
-  private cache = new Map<string, CacheItem<any>>(); // 缓存存储
+  private cache = new Map<string, CacheItem<unknown>>(); // 缓存存储
   private ttl: number = 5 * 60 * 1000; // 默认存活时间：5分钟（毫秒）
 
   /**

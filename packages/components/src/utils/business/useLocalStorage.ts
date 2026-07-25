@@ -2,7 +2,7 @@ interface StorageItem<T> {
   value: T;
   expires?: number; // 过期时间戳（毫秒）
 }
-export type TypeGuard<T> = (value: any) => value is T;
+export type TypeGuard<T> = (value: unknown) => value is T;
 export class UseLocalStorage<T> {
   private readonly prefix: string;
   private readonly typeGuard: TypeGuard<T> | undefined;

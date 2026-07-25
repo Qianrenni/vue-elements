@@ -1,7 +1,7 @@
 // src/types/vite-env.d.ts
 
 interface ImportMetaEnv {
-  [key: string]: any;
+  readonly [key: string]: unknown;
 }
 
 interface ImportMeta {
