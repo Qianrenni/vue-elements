@@ -1,10 +1,11 @@
 <!-- src/docs/ComponentList.vue -->
 <script lang="ts" setup>
-import { onBeforeMount, ref } from 'vue';
 import { useComponentInfo } from '@/utils/useComponentInfo.ts';
 import type { ComponentInfo } from '@/utils/useComponentInfo.ts';
 import type { TreeNodeData } from 'qyani-components';
 import { QTree } from 'qyani-components';
+import { onBeforeMount, ref } from 'vue';
+
 defineProps<{
   selected: ComponentInfo | null;
 }>();
@@ -52,7 +53,7 @@ onBeforeMount(() => {
       @node-click="
         (v) => {
           if (!v.children) {
-            emit('select', p.get(v.id)!);
+            emit('select', p.get(v.id as number)!);
           }
         }
       "
