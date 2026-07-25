@@ -29,9 +29,6 @@
     "*.{js,ts,vue,css,md}": [
       "prettier --write",
       "eslint --cache --fix"
-    ],
-    "*.{js,ts,vue}": [
-      "pnpm run docs:build"
     ]
   }
 }

@@ -2,3 +2,8 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 pnpm lint-staged
+
+# 构建检查：仅当 JS/TS/Vue 文件变更时执行
+if git diff --cached --name-only --diff-filter=ACMR | grep -qE '\.(js|ts|vue)$'; then
+  pnpm run docs:build
+fi
