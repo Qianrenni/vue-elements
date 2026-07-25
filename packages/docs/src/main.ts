@@ -7,7 +7,12 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import './private.css';
 
-IconConfig.setBase(import.meta.env.BASE_URL.replace(/\/$/, ''));
+IconConfig.setBase(
+  (() => {
+    const segs = window.location.pathname.split('/').filter(Boolean);
+    return segs.length > 0 ? '/' + segs[0] : '';
+  })(),
+);
 
 const app = createApp(App);
 app.mount('#app');

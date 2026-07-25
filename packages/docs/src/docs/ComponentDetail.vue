@@ -223,11 +223,22 @@ const props = defineProps<{
 }>();
 const currentTabIndex = ref<number>(0);
 const currentCotent = ref('');
+
+// 从 window.location 动态检测部署基础路径
+// GitHub Pages 项目站点格式: https://user.github.io/repo-name/... → /repo-name
+// 本地开发: http://localhost:5173/... → ''
+const baseUrl = (() => {
+  const segs = window.location.pathname.split('/').filter(Boolean);
+  return segs.length > 0 ? '/' + segs[0] : '';
+})();
+
 watch(
   () => props.component,
   async (newComponent: ComponentInfo | null) => {
     if (newComponent) {
-      currentCotent.value = await (await fetch(newComponent.docPath)).text();
+      currentCotent.value = await (
+        await fetch(baseUrl + newComponent.docPath)
+      ).text();
     }
   },
 );
