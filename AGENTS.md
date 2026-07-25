@@ -150,6 +150,42 @@ When running `docs:dev`, the Vite config maps `qyani-components` to the source e
 
 `global.d.ts` provides Vue module augmentation (`declare module 'vue'`) for all Q-prefixed components, enabling type-safe usage without explicit imports in consuming projects.
 
+## GitHub Pages Deployment
+
+The docs site can be deployed to GitHub Pages at `https://qianrenni.github.io/vue-elements/`.
+
+### Production Build (Local Preview)
+
+```bash
+pnpm run docs:build          # Builds components first, then builds docs
+```
+
+The static site is output to `packages/docs/dist/`. The production build uses `base: '/vue-elements/'` so all asset paths are correct under the subdirectory.
+
+### Automated Deployment via GitHub Actions
+
+A workflow is configured at `.github/workflows/deploy.yml`:
+
+- **Trigger**: Push to `main` or `master` branch, or manual dispatch via GitHub Actions UI
+- **Steps**: Checkout → pnpm setup → Install deps → Build components → Build docs → Deploy to `gh-pages` branch using `peaceiris/actions-gh-pages`
+- **Permissions**: `contents: read`, `pages: write`, `id-token: write`
+- **Concurrency**: Only one deployment runs at a time
+
+### Manual Setup (One-Time Only)
+
+1. Go to repo **Settings → Pages** on GitHub
+2. Under **Build and deployment**, select **Deploy from a branch**
+3. Set branch to `gh-pages` and folder to `/ (root)`
+4. Save — GitHub will automatically serve the site
+
+### Manual Deploy (Alternative)
+
+```bash
+pnpm run components:build
+pnpm run docs:build
+npx gh-pages -d packages/docs/dist -b gh-pages
+```
+
 ## Important Constraints
 
 - Always use `pnpm` (not npm/yarn) for dependency management

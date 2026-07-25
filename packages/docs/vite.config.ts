@@ -1,6 +1,6 @@
-import { defineConfig, type Plugin } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { resolve, dirname, relative } from 'path';
+import { dirname, relative, resolve } from 'path';
+import { defineConfig, type Plugin } from 'vite';
 
 /**
  * 自定义 Vite 插件：将组件库源码中的 @/ 别名替换为相对路径
@@ -87,6 +87,7 @@ export default defineConfig(({ command }) => {
 
   // 生产构建：使用预构建的组件库产物（dist/）
   return {
+    base: '/vue-elements/',
     plugins: [vue()],
     resolve: {
       alias: {
