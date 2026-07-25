@@ -1,7 +1,7 @@
 <template>
   <teleport :disabled="!appendToBody" to="body">
     <div
-      v-if="visible"
+      v-show="visible"
       :class="[
         {
           overlay: overlay,
@@ -36,8 +36,9 @@
 
 <script lang="ts" setup>
 import { QFormButton } from '@/components/form/FormButton';
-import type { DrawerProps, DrawerEmits } from './type';
+
 import { useDrawer } from './composable';
+import type { DrawerEmits, DrawerProps } from './type';
 
 defineOptions({
   name: 'QDrawer',
