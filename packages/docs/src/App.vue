@@ -1,16 +1,23 @@
 <!-- App.vue -->
 <!-- src/docs/App.vue -->
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
-import ComponentList from '@/docs/ComponentList.vue';
 import ComponentDetail from '@/docs/ComponentDetail.vue';
-import { QThemeToggle, useScreenSize, QIcon, QDrawer } from 'qyani-components';
-import type { ComponentInfo } from '@/utils/useComponentInfo.ts';
+import ComponentList from '@/docs/ComponentList.vue';
+import type { DocsEntry } from '@/utils/useComponentInfo.ts';
+import { QDrawer, QIcon, QThemeToggle, useScreenSize } from 'qyani-components';
 import { useFollowSystemTheme } from 'qyani-components';
+import { ref, watch } from 'vue';
+
 useFollowSystemTheme();
-const selected = ref<ComponentInfo | null>(null);
-const updateSelected = (comp: ComponentInfo) => {
-  selected.value = comp;
+const selected = ref<DocsEntry | null>(null);
+
+/**
+ * Select a documentation entry from the navigation tree.
+ * @param entry Generated documentation metadata for the selected item.
+ * @returns Nothing.
+ */
+const updateSelected = (entry: DocsEntry) => {
+  selected.value = entry;
 };
 const showMenu = useScreenSize.getWidth(768);
 const showDrawer = ref(false);

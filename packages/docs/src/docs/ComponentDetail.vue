@@ -1,252 +1,51 @@
-<!-- src/docs/ComponentDetail.vue -->
 <script lang="ts" setup>
-import type { ComponentInfo } from '@/utils/useComponentInfo.ts';
+import type { DocsEntry } from '@/utils/useComponentInfo.ts';
 import { QMarkdownRender, QTab } from 'qyani-components';
-import { defineAsyncComponent, ref, watch } from 'vue';
+import { computed, defineAsyncComponent, ref, watch } from 'vue';
+import type { Component } from 'vue';
 
-const componentMap: Record<string, ReturnType<typeof defineAsyncComponent>> = {
-  Icon: defineAsyncComponent(
-    () => import('../display/components/basic/Icon.vue'),
-  ),
-  Message: defineAsyncComponent(
-    () => import('../display/components/basic/Message.vue'),
-  ),
-  Pagination: defineAsyncComponent(
-    () => import('../display/components/basic/Pagination.vue'),
-  ),
-  Tag: defineAsyncComponent(
-    () => import('../display/components/basic/Tag.vue'),
-  ),
-  Avatar: defineAsyncComponent(
-    () => import('../display/components/display/Avatar.vue'),
-  ),
-  Badge: defineAsyncComponent(
-    () => import('../display/components/display/Badge.vue'),
-  ),
-  Carousel: defineAsyncComponent(
-    () => import('../display/components/display/Carousel.vue'),
-  ),
-  CarouselItem: defineAsyncComponent(
-    () => import('../display/components/display/CarouselItem.vue'),
-  ),
-  Divider: defineAsyncComponent(
-    () => import('../display/components/display/Divider.vue'),
-  ),
-  LazyImage: defineAsyncComponent(
-    () => import('../display/components/display/LazyImage.vue'),
-  ),
-  MarkdownRender: defineAsyncComponent(
-    () => import('../display/components/display/MarkdownRender.vue'),
-  ),
-  ProgressBar: defineAsyncComponent(
-    () => import('../display/components/display/ProgressBar.vue'),
-  ),
-  ScrollNotice: defineAsyncComponent(
-    () => import('../display/components/display/ScrollNotice.vue'),
-  ),
-  FormButton: defineAsyncComponent(
-    () => import('../display/components/form/FormButton.vue'),
-  ),
-  FormCheckboxGroup: defineAsyncComponent(
-    () => import('../display/components/form/FormCheckboxGroup.vue'),
-  ),
-  FormColorPicker: defineAsyncComponent(
-    () => import('../display/components/form/FormColorPicker.vue'),
-  ),
-  FormDatePicker: defineAsyncComponent(
-    () => import('../display/components/form/FormDatePicker.vue'),
-  ),
-  FormFileUpload: defineAsyncComponent(
-    () => import('../display/components/form/FormFileUpload.vue'),
-  ),
-  FormRadioGroup: defineAsyncComponent(
-    () => import('../display/components/form/FormRadioGroup.vue'),
-  ),
-  FormRangeSlider: defineAsyncComponent(
-    () => import('../display/components/form/FormRangeSlider.vue'),
-  ),
-  FormSelect: defineAsyncComponent(
-    () => import('../display/components/form/FormSelect.vue'),
-  ),
-  FormSwitch: defineAsyncComponent(
-    () => import('../display/components/form/FormSwitch.vue'),
-  ),
-  FormTable: defineAsyncComponent(
-    () => import('../display/components/form/FormTable.vue'),
-  ),
-  FormText: defineAsyncComponent(
-    () => import('../display/components/form/FormText.vue'),
-  ),
-  FormTextarea: defineAsyncComponent(
-    () => import('../display/components/form/FormTextarea.vue'),
-  ),
-  Search: defineAsyncComponent(
-    () => import('../display/components/form/Search.vue'),
-  ),
-  Card: defineAsyncComponent(
-    () => import('../display/components/layout/Card.vue'),
-  ),
-  Collapse: defineAsyncComponent(
-    () => import('../display/components/layout/Collapse.vue'),
-  ),
-  CollapseItem: defineAsyncComponent(
-    () => import('../display/components/layout/CollapseItem.vue'),
-  ),
-  CollapsibleSection: defineAsyncComponent(
-    () => import('../display/components/layout/CollapsibleSection.vue'),
-  ),
-  Dialog: defineAsyncComponent(
-    () => import('../display/components/layout/Dialog.vue'),
-  ),
-  Drawer: defineAsyncComponent(
-    () => import('../display/components/layout/Drawer.vue'),
-  ),
-  PopContainer: defineAsyncComponent(
-    () => import('../display/components/layout/PopContainer.vue'),
-  ),
-  ScrollContainer: defineAsyncComponent(
-    () => import('../display/components/layout/ScrollContainer.vue'),
-  ),
-  SwiperAction: defineAsyncComponent(
-    () => import('../display/components/layout/SwiperAction.vue'),
-  ),
-  Tree: defineAsyncComponent(
-    () => import('../display/components/layout/Tree.vue'),
-  ),
-  TreeNode: defineAsyncComponent(
-    () => import('../display/components/layout/TreeNode.vue'),
-  ),
-  Loading: defineAsyncComponent(
-    () => import('../display/components/loading/Loading.vue'),
-  ),
-  Breathing: defineAsyncComponent(
-    () => import('../display/components/loading/animations/Breathing.vue'),
-  ),
-  Skeleton: defineAsyncComponent(
-    () => import('../display/components/loading/animations/Skeleton.vue'),
-  ),
-  Spinner: defineAsyncComponent(
-    () => import('../display/components/loading/animations/Spinner.vue'),
-  ),
-  NavSection: defineAsyncComponent(
-    () => import('../display/components/navigation/NavSection.vue'),
-  ),
-  Tab: defineAsyncComponent(
-    () => import('../display/components/navigation/Tab.vue'),
-  ),
-  ThemeToggle: defineAsyncComponent(
-    () => import('../display/components/theme/ThemeToggle.vue'),
-  ),
-  useDrag: defineAsyncComponent(() => import('../display/events/useDrag.vue')),
-  useFormEvents: defineAsyncComponent(
-    () => import('../display/events/useFormEvents.vue'),
-  ),
-  useMousePosition: defineAsyncComponent(
-    () => import('../display/events/useMousePosition.vue'),
-  ),
-  useAVLTree: defineAsyncComponent(
-    () => import('../display/utils/algorithm/useAVLTree.vue'),
-  ),
-  useArray: defineAsyncComponent(
-    () => import('../display/utils/algorithm/useArray.vue'),
-  ),
-  useGraph: defineAsyncComponent(
-    () => import('../display/utils/algorithm/useGraph.vue'),
-  ),
-  useHeap: defineAsyncComponent(
-    () => import('../display/utils/algorithm/useHeap.vue'),
-  ),
-  useRedBlackTree: defineAsyncComponent(
-    () => import('../display/utils/algorithm/useRedBlackTree.vue'),
-  ),
-  useSegmentTree: defineAsyncComponent(
-    () => import('../display/utils/algorithm/useSegmentTree.vue'),
-  ),
-  useSkipList: defineAsyncComponent(
-    () => import('../display/utils/algorithm/useSkipList.vue'),
-  ),
-  useSort: defineAsyncComponent(
-    () => import('../display/utils/algorithm/useSort.vue'),
-  ),
-  useClip: defineAsyncComponent(
-    () => import('../display/utils/business/useClip.vue'),
-  ),
-  useDebounce: defineAsyncComponent(
-    () => import('../display/utils/business/useDebounce.vue'),
-  ),
-  useFollowSystemTheme: defineAsyncComponent(
-    () => import('../display/utils/business/useFollowSystemTheme.vue'),
-  ),
-  useLRUCache: defineAsyncComponent(
-    () => import('../display/utils/business/useLRUCache.vue'),
-  ),
-  useLocalStorage: defineAsyncComponent(
-    () => import('../display/utils/business/useLocalStorage.vue'),
-  ),
-  useMemoryCache: defineAsyncComponent(
-    () => import('../display/utils/business/useMemoryCache.vue'),
-  ),
-  useMessage: defineAsyncComponent(
-    () => import('../display/utils/business/useMessage.vue'),
-  ),
-  useNullHandel: defineAsyncComponent(
-    () => import('../display/utils/business/useNullHandel.vue'),
-  ),
-  useObject: defineAsyncComponent(
-    () => import('../display/utils/business/useObject.vue'),
-  ),
-  useScreenSize: defineAsyncComponent(
-    () => import('../display/utils/business/useScreenSize.vue'),
-  ),
-  useShowLoading: defineAsyncComponent(
-    () => import('../display/utils/business/useShowLoading.vue'),
-  ),
-  useThrottle: defineAsyncComponent(
-    () => import('../display/utils/business/useThrottle.vue'),
-  ),
-  useTimeDisplay: defineAsyncComponent(
-    () => import('../display/utils/business/useTimeDisplay.vue'),
-  ),
-  useTimeUtils: defineAsyncComponent(
-    () => import('../display/utils/business/useTimeUtils.vue'),
-  ),
-  useWindowResize: defineAsyncComponent(
-    () => import('../display/utils/business/useWindowResize.vue'),
-  ),
-};
-
-defineOptions({
-  name: 'ComponentDetail',
-});
+const demoModules = import.meta.glob<{ default: Component }>(
+  '../display/**/*.vue',
+);
 const props = defineProps<{
-  component: ComponentInfo | null;
+  component: DocsEntry | null;
 }>();
-const currentTabIndex = ref<number>(0);
-const currentCotent = ref('');
 
-// 从 window.location 动态检测部署基础路径
-// GitHub Pages 项目站点格式: https://user.github.io/repo-name/... → /repo-name
-// 本地开发: http://localhost:5173/... → ''
-const baseUrl = (() => {
-  const segs = window.location.pathname.split('/').filter(Boolean);
-  return segs.length > 0 ? '/' + segs[0] : '';
-})();
+const currentContent = ref('');
+const currentTabIndex = ref(0);
+const currentDemo = ref<Component | null>(null);
+const tabs = computed(() =>
+  props.component?.demoPath ? ['文档说明', '组件展示'] : ['文档说明'],
+);
+
+/**
+ * Load the optional demo module referenced by a documentation manifest entry.
+ * @param demoPath Display path without extension from the generated manifest.
+ * @returns An async Vue component, or null when the entry has no demo.
+ */
+const loadDemo = (demoPath: string | undefined) => {
+  if (!demoPath) return null;
+  const loader = demoModules[`../display/${demoPath}.vue`];
+  return loader ? defineAsyncComponent(loader) : null;
+};
 
 watch(
   () => props.component,
-  async (newComponent: ComponentInfo | null) => {
-    if (newComponent) {
-      currentCotent.value = await (
-        await fetch(baseUrl + newComponent.docPath)
-      ).text();
+  async (entry) => {
+    currentTabIndex.value = 0;
+    currentContent.value = '';
+    currentDemo.value = loadDemo(entry?.demoPath);
+    if (entry) {
+      currentContent.value = await (await fetch(entry.docPath)).text();
     }
   },
+  { immediate: true },
 );
 </script>
 
 <template>
   <div v-if="!component" class="placeholder bg-card component-detail">
-    请选择一个组件
+    请选择一个文档条目
   </div>
 
   <div
@@ -254,26 +53,26 @@ watch(
     class="bg-card component-detail container-column scroll-container scroll-y"
   >
     <div class="container-column padding-rem container-flex-1">
-      <!-- 右侧标题 -->
       <h2
         class="text-primary text-center padding-half-rem margin-half-vetical border-horizontal-gray"
       >
-        {{ component.displayName }} 组件
+        {{ component.displayName }}
       </h2>
+      <p class="package-name">{{ component.packageName }}</p>
       <QTab
-        :list="['文档说明', '组件展示']"
+        v-if="tabs.length > 1"
+        :list="tabs"
         @select="(index: number) => (currentTabIndex = index)"
       />
-      <!-- 组件展示区 -->
       <div
         v-show="currentTabIndex === 0"
         class="component-display padding-rem radius-half-rem shadow-black"
       >
-        <!-- Markdown 文档 -->
-        <QMarkdownRender :content="currentCotent" />
+        <QMarkdownRender :content="currentContent" />
       </div>
       <component
-        :is="componentMap[props.component?.name as keyof typeof componentMap]"
+        :is="currentDemo"
+        v-if="currentDemo"
         v-show="currentTabIndex === 1"
       />
     </div>
@@ -291,6 +90,13 @@ watch(
   transition: all 0.5s ease;
 }
 
+.package-name {
+  margin: 0 0 1rem;
+  color: #666;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
 .placeholder {
   flex: 1;
   display: flex;
@@ -299,16 +105,5 @@ watch(
   height: 100%;
   color: #666;
   font-size: 1.2em;
-}
-
-/* 添加进入和离开动画 */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>
