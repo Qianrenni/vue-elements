@@ -1,1 +1,0 @@
-import{D as s}from"./DemoBlock-C0d0BQpt.js";import{d as t,o,c as a,w as i,a as p}from"./index-ylzpC7RR.js";const r="\n```html\n<!-- useSkipList Demo -->\n```\n",c=t({name:"DisplayUtilsAlgorithmuseSkipList",__name:"useSkipList",setup(m){return(n,e)=>(o(),a(s,{code:r},{default:i(()=>[...e[0]||(e[0]=[p("p",null,"useSkipList 文档待完善",-1)])]),_:1}))}});export{c as default};
