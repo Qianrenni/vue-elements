@@ -1,0 +1,50 @@
+{
+  "name": "@qyani/core",
+  "version": "1.0.0",
+  "description": "Framework-agnostic utilities and data structures for qyani packages",
+  "main": "dist/qyani-core.cjs.js",
+  "module": "dist/qyani-core.es.js",
+  "types": "dist/declarations/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {
+    "type-check": "pnpm exec tsc --noEmit",
+    "type-check:test": "pnpm exec tsc --project tsconfig.test.json",
+    "build": "pnpm vite build && pnpm exec tsc --emitDeclarationOnly && pnpm exec tsc-alias -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "tsc-alias": "^1.9.1",
+    "typescript": "^5.8.3",
+    "vite": "^7.1.5",
+    "vitest": "^3.2.4"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/declarations/index.d.ts",
+      "import": "./dist/qyani-core.es.js",
+      "require": "./dist/qyani-core.cjs.js"
+    },
+    "./algorithm": {
+      "types": "./dist/declarations/algorithm/index.d.ts",
+      "import": "./dist/qyani-core.es.js",
+      "require": "./dist/qyani-core.cjs.js"
+    },
+    "./business": {
+      "types": "./dist/declarations/business/index.d.ts",
+      "import": "./dist/qyani-core.es.js",
+      "require": "./dist/qyani-core.cjs.js"
+    },
+    "./types": {
+      "types": "./dist/declarations/types/index.d.ts"
+    }
+  }
+}

@@ -23,9 +23,12 @@ vi.mock('vue', async (importOriginal) => {
   };
 });
 
-// mock utils 桶导出：节流直通执行，窗口尺寸监听用 stub
-vi.mock('@/utils', () => ({
+vi.mock('@qyani/core', () => ({
   useThrottle: (fn: (...args: unknown[]) => void) => fn,
+}));
+
+// mock components 工具桶中的浏览器尺寸监听实现。
+vi.mock('@/utils', () => ({
   useWindowResize: hoisted.windowResize,
 }));
 

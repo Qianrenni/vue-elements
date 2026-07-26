@@ -1,7 +1,7 @@
 // composables/useTimeDisplay.ts
 import { ref } from 'vue';
 
-import { handleDateFormat, UseTimeUtils } from '../useTimeUtils';
+import { handleDateFormat, UseTimeUtils } from '@qyani/core';
 
 // 配置选项
 export interface UseTimeDisplayOptions {

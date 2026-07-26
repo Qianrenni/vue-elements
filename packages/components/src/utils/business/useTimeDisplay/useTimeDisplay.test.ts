@@ -23,7 +23,7 @@ const hoisted = vi.hoisted(() => {
   };
 });
 
-vi.mock('../useTimeUtils', () => ({
+vi.mock('@qyani/core', () => ({
   handleDateFormat: (format: string, keyWords: string) => {
     const s = new Set(keyWords);
     const p = new Map<string, number>();

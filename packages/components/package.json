@@ -32,6 +32,9 @@
     "package.json",
     "global.d.ts"
   ],
+  "dependencies": {
+    "@qyani/core": "workspace:*"
+  },
   "devDependencies": {
     "@types/node": "^24.1.0",
     "@vitejs/plugin-vue": "^6.0.0",
