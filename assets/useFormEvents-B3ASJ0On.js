@@ -1,1 +1,0 @@
-import{D as o}from"./DemoBlock-FYipY6ND.js";import{d as s,o as t,c as n,w as a,a as r}from"./index-70o3v1oX.js";const m="\n```html\n<!-- useFormEvents Demo -->\n```\n",_=s({name:"DisplayEventuseFormEvents",__name:"useFormEvents",setup(p){return(u,e)=>(t(),n(o,{code:m},{default:a(()=>[...e[0]||(e[0]=[r("p",null,"useFormEvents 文档待完善",-1)])]),_:1}))}});export{_ as default};

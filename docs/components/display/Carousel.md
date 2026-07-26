@@ -1,42 +1,51 @@
-# Props 参数
+# QCarousel
 
-| 参数                | 类型                                                                                                                                 | 默认值            | 必填 | 说明             |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ---- | ---------------- |
-| `vertical`          | `boolean`                                                                                                                            | `false`           | 否   | 是否垂直方向     |
-| `autoplay`          | `boolean`                                                                                                                            | `true`            | 否   | 是否自动播放     |
-| `duration`          | `number`                                                                                                                             | `500`             | 否   | 动画持续时间     |
-| `indicator`         | `boolean`                                                                                                                            | `true`            | 否   | 是否显示指示器   |
-| `indicatorPosition` | `'center-bottom' \| 'center-top' \| 'left-bottom' \| 'left-top' \| 'left-center' \| 'right-bottom' \| 'right-top' \| 'right-center'` | `'center-bottom'` | 否   | 指示器位置       |
-| `width`             | `number`                                                                                                                             | —                 | 是   | 轮播宽度         |
-| `height`            | `number`                                                                                                                             | —                 | 是   | 轮播高度         |
-| `interval`          | `number`                                                                                                                             | `1500`            | 否   | 自动播放间隔     |
-| `direction`         | `'next' \| 'prev'`                                                                                                                   | `'next'`          | 否   | 播放方向         |
-| `showButton`        | `boolean`                                                                                                                            | `true`            | 否   | 是否显示按钮     |
-| `loop`              | `boolean`                                                                                                                            | `true`            | 否   | 是否循环播放     |
-| `touchMove`         | `boolean`                                                                                                                            | `false`           | 否   | 是否支持触摸滑动 |
+## 用途
 
----
+基于 `QCarouselItem` 默认插槽构建的轮播容器，支持横向或纵向展示、自动播放、指示器、切换按钮和循环播放。
 
-# Events 事件
+## 基本用法
 
-| 事件名   | 回调参数        | 说明           |
-| -------- | --------------- | -------------- |
-| `change` | `index: number` | 页码变化时触发 |
+```vue
+<QCarousel :width="320" :height="180" @change="handleChange">
+  <QCarouselItem>第一项</QCarouselItem>
+  <QCarouselItem>第二项</QCarouselItem>
+</QCarousel>
+```
 
----
+## Props
 
-# Slots 插槽
+| 名称                | 类型                                                                                                                                 | 必填 | 默认值            | 说明                                       |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---- | ----------------- | ------------------------------------------ |
+| `width`             | `number`                                                                                                                             | 是   | 无                | 轮播区域宽度，单位为 px。                  |
+| `height`            | `number`                                                                                                                             | 是   | 无                | 轮播区域高度，单位为 px。                  |
+| `vertical`          | `boolean`                                                                                                                            | 否   | `false`           | 是否使用纵向轮播。                         |
+| `autoplay`          | `boolean`                                                                                                                            | 否   | `true`            | 是否自动播放；仅在轮播项多于一项时生效。   |
+| `duration`          | `number`                                                                                                                             | 否   | `500`             | 切换过渡持续时间，单位为 ms。              |
+| `indicator`         | `boolean`                                                                                                                            | 否   | `true`            | 是否显示指示器。                           |
+| `indicatorPosition` | `'center-bottom' \| 'center-top' \| 'left-bottom' \| 'left-top' \| 'left-center' \| 'right-bottom' \| 'right-top' \| 'right-center'` | 否   | `'center-bottom'` | 指示器位置。                               |
+| `interval`          | `number`                                                                                                                             | 否   | `1500`            | 自动播放间隔，单位为 ms。                  |
+| `direction`         | `'next' \| 'prev'`                                                                                                                   | 否   | `'next'`          | 自动播放方向。                             |
+| `showButton`        | `boolean`                                                                                                                            | 否   | `true`            | 是否显示前后切换按钮。                     |
+| `loop`              | `boolean`                                                                                                                            | 否   | `true`            | 是否允许从首尾继续循环切换。               |
+| `touchMove`         | `boolean`                                                                                                                            | 否   | `false`           | 触摸滑动开关；当前组件未绑定触摸滑动行为。 |
 
-| 插槽名    | 说明       | 示例                                                     |
-| --------- | ---------- | -------------------------------------------------------- |
-| `default` | 轮播项内容 | `<Carousel><CarouselItem>内容</CarouselItem></Carousel>` |
+## Emits
 
----
+| 事件名   | 参数类型        | 触发时机                                            |
+| -------- | --------------- | --------------------------------------------------- |
+| `change` | `index: number` | 当前实际轮播项索引发生变化时触发，索引从 `0` 开始。 |
 
-# Expose 方法
+## Slots
 
-| 方法名 | 参数            | 返回值 | 说明         |
-| ------ | --------------- | ------ | ------------ |
-| `prev` | —               | —      | 上一页       |
-| `next` | —               | —      | 下一页       |
-| `goTo` | `index: number` | —      | 跳转到指定页 |
+| 名称     | 作用域参数 | 说明                                       |
+| -------- | ---------- | ------------------------------------------ |
+| 默认插槽 | 无         | 放置 `QCarouselItem`；未提供时没有轮播项。 |
+
+## Exposes
+
+| 方法   | 类型                      | 说明                                       |
+| ------ | ------------------------- | ------------------------------------------ |
+| `prev` | `() => void`              | 切换到上一项；非循环模式位于首项时不执行。 |
+| `next` | `() => void`              | 切换到下一项；非循环模式位于末项时不执行。 |
+| `goTo` | `(index: number) => void` | 跳转到从 `0` 开始的指定轮播项索引。        |

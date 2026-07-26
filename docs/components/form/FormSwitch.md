@@ -1,34 +1,43 @@
-# Props 参数
+# QFormSwitch
 
-| 参数         | 类型                             | 默认值         | 必填 | 说明     |
-| ------------ | -------------------------------- | -------------- | ---- | -------- |
-| `modelValue` | `boolean`                        | `false`        | 否   | 开关状态 |
-| `label`      | `string`                         | `''`           | 否   | 标签文本 |
-| `disabled`   | `boolean`                        | `false`        | 否   | 是否禁用 |
-| `name`       | `string`                         | `''`           | 否   | 名称     |
-| `direction`  | `'horizontal' \| 'vertical'`     | `'horizontal'` | 否   | 排列方向 |
-| `size`       | `'large' \| 'middle' \| 'small'` | `'middle'`     | 否   | 开关大小 |
+## 用途
 
----
+切换布尔状态的开关控件。
 
-# Events 事件
+## 基本用法
 
-| 事件名              | 回调参数         | 说明         |
-| ------------------- | ---------------- | ------------ |
-| `update:modelValue` | `value: boolean` | 值变化时触发 |
-| `input`             | `value: boolean` | 输入时触发   |
-| `change`            | `value: boolean` | 改变时触发   |
+```vue
+<QFormSwitch v-model="enabled" label="启用功能" />
+```
 
----
+## Props
 
-# Slots 插槽
+继承 `FormComponentProps<boolean>`：`modelValue?: boolean | null`、`name?: string`、`label?: string`、`disabled?: boolean`、`readonly?: boolean`、`size?: FormSize`、`status?: FormStatus`、`required?: boolean`、`placeholder?: string`、`clearable?: boolean`、`autofocus?: boolean`、`id?: string`、`direction?: 'vertical' | 'horizontal'`、`errorMessage?: string`。
 
-| 插槽名 | 说明 | 示例 |
-| ------ | ---- | ---- |
+| 属性         | 类型                         | 必填 | 默认值         | 说明                   |
+| ------------ | ---------------------------- | ---- | -------------- | ---------------------- |
+| `modelValue` | `boolean \| null`            | 否   | `false`        | 开关状态。             |
+| `label`      | `string`                     | 否   | `''`           | 开关旁的文本。         |
+| `disabled`   | `boolean`                    | 否   | `false`        | 禁用后点击不会切换。   |
+| `name`       | `string`                     | 否   | `''`           | 原生复选框名称。       |
+| `direction`  | `'vertical' \| 'horizontal'` | 否   | `'horizontal'` | 标签和开关的排列方向。 |
+| `size`       | `FormSize`                   | 否   | `'middle'`     | 影响开关与标签尺寸。   |
 
----
+其他继承属性没有组件默认值，且当前不影响渲染；`id` 会关联内部标签与复选框。
 
-# Expose 方法
+## Emits
 
-| 方法名 | 参数 | 返回值 | 说明 |
-| ------ | ---- | ------ | ---- |
+| 事件                | 参数      | 触发时机             |
+| ------------------- | --------- | -------------------- |
+| `update:modelValue` | `boolean` | 点击未禁用的开关时。 |
+| `change`            | `boolean` | 同上。               |
+
+类型声明继承了 `input`、`focus`、`blur`、`clear`，但当前组件不会触发它们。
+
+## Slots
+
+无。
+
+## Exposes
+
+无。

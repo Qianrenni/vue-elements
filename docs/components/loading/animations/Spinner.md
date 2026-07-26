@@ -1,25 +1,33 @@
-# Props 参数
+# QSpinner
 
-| 参数 | 类型 | 默认值 | 必填 | 说明 |
-| ---- | ---- | ------ | ---- | ---- |
+## 用途
 
----
+`QSpinner` 显示持续旋转的 SVG 圆环加载动画。
 
-# Events 事件
+## 基本用法
 
-| 事件名 | 回调参数 | 说明 |
-| ------ | -------- | ---- |
+```vue
+<script setup lang="ts">
+import { QSpinner } from 'qyani-components';
+</script>
 
----
+<template>
+  <QSpinner />
+</template>
+```
 
-# Slots 插槽
+## Props
 
-| 插槽名 | 说明 | 示例 |
-| ------ | ---- | ---- |
+无。
 
----
+## Emits
 
-# Expose 方法
+无。
 
-| 方法名 | 参数 | 返回值 | 说明 |
-| ------ | ---- | ------ | ---- |
+## Slots
+
+无。
+
+## Exposes
+
+无。

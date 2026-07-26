@@ -1,0 +1,1 @@
+import{D as s}from"./DemoBlock-BhWeZx4P.js";import{d as o,o as t,c as n,w as a,a as r}from"./index-ugmjvJmX.js";const c="\n```html\n<!-- useScreenSize Demo -->\n```\n",p=o({name:"DisplayUtilsBusinessuseScreenSize",__name:"useScreenSize",setup(i){return(m,e)=>(t(),n(s,{code:c},{default:a(()=>[...e[0]||(e[0]=[r("p",null,"useScreenSize 文档待完善",-1)])]),_:1}))}});export{p as default};

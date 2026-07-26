@@ -1,44 +1,58 @@
-# Props 参数
+# QFormText
 
-| 参数          | 类型                                                            | 默认值         | 必填 | 说明         |
-| ------------- | --------------------------------------------------------------- | -------------- | ---- | ------------ |
-| `modelValue`  | `string`                                                        | —              | 否   | 输入值       |
-| `label`       | `string`                                                        | —              | 否   | 标签文本     |
-| `type`        | `'text' \| 'email' \| 'password' \| 'number' \| 'tel' \| 'url'` | `'text'`       | 否   | 输入类型     |
-| `pattern`     | `string`                                                        | `undefined`    | 否   | 正则表达式   |
-| `placeholder` | `string`                                                        | `''`           | 否   | 占位文本     |
-| `required`    | `boolean`                                                       | `true`         | 否   | 是否必填     |
-| `direction`   | `'horizontal' \| 'vertical'`                                    | `'horizontal'` | 否   | 排列方向     |
-| `disabled`    | `boolean`                                                       | `false`        | 否   | 是否禁用     |
-| `autofocus`   | `boolean`                                                       | `false`        | 否   | 是否自动聚焦 |
-| `readonly`    | `boolean`                                                       | `false`        | 否   | 是否只读     |
-| `size`        | `'large' \| 'middle' \| 'small'`                                | `'middle'`     | 否   | 输入框大小   |
-| `clearable`   | `boolean`                                                       | `true`         | 否   | 是否可清空   |
-| `editable`    | `boolean`                                                       | `true`         | 否   | 是否可编辑   |
+## 用途
 
----
+输入单行文本，支持输入类型、前缀图标与失焦校验提示。
 
-# Events 事件
+## 基本用法
 
-| 事件名              | 回调参数        | 说明         |
-| ------------------- | --------------- | ------------ |
-| `update:modelValue` | `value: string` | 值变化时触发 |
-| `input`             | `value: string` | 输入时触发   |
-| `change`            | `value: string` | 改变时触发   |
-| `focus`             | —               | 聚焦时触发   |
-| `blur`              | —               | 失焦时触发   |
-| `clear`             | —               | 清空时触发   |
+```vue
+<QFormText
+  v-model="email"
+  type="email"
+  :validate="isValidEmail"
+  hint="邮箱格式不正确"
+/>
+```
 
----
+## Props
 
-# Slots 插槽
+继承 `FormComponentProps<string>`：`modelValue?: string | null`、`name?: string`、`label?: string`、`disabled?: boolean`、`readonly?: boolean`、`size?: FormSize`、`status?: FormStatus`、`required?: boolean`、`placeholder?: string`、`clearable?: boolean`、`autofocus?: boolean`、`id?: string`、`direction?: 'vertical' | 'horizontal'`、`errorMessage?: string`。
 
-| 插槽名 | 说明 | 示例 |
-| ------ | ---- | ---- |
+| 属性                     | 类型                                                            | 必填 | 默认值         | 说明                                                  |
+| ------------------------ | --------------------------------------------------------------- | ---- | -------------- | ----------------------------------------------------- |
+| `type`                   | `'text' \| 'email' \| 'password' \| 'number' \| 'tel' \| 'url'` | 否   | `'text'`       | 原生输入框类型。                                      |
+| `pattern`                | `string \| undefined`                                           | 否   | `undefined`    | 传递给原生输入框的校验正则。                          |
+| `editable`               | `boolean`                                                       | 否   | `true`         | 当前不影响渲染。                                      |
+| `prefixIcon`             | `string`                                                        | 否   | 无             | 要显示的前缀图标名称。                                |
+| `validate`               | `(value: string) => boolean`                                    | 否   | 无             | 失焦时使用的校验函数。                                |
+| `hint`                   | `string`                                                        | 否   | 无             | 校验失败时显示的提示文本。                            |
+| `required`               | `boolean`                                                       | 否   | `false`        | 传递给原生输入框；同时决定失焦时是否执行 `validate`。 |
+| `direction`              | `'vertical' \| 'horizontal'`                                    | 否   | `'horizontal'` | 布局方向。                                            |
+| `disabled`               | `boolean`                                                       | 否   | `false`        | 禁用输入框。                                          |
+| `autofocus` / `readonly` | `boolean`                                                       | 否   | `false`        | 当前未绑定到原生控件。                                |
+| `size`                   | `FormSize`                                                      | 否   | `'middle'`     | 当前不影响渲染。                                      |
+| `placeholder`            | `string`                                                        | 否   | `''`           | 输入框占位文本。                                      |
+| `clearable`              | `boolean`                                                       | 否   | `true`         | 当前不影响渲染。                                      |
 
----
+其余继承属性没有组件默认值；`name`、`label` 会传递或显示。
 
-# Expose 方法
+## Emits
 
-| 方法名 | 参数 | 返回值 | 说明 |
-| ------ | ---- | ------ | ---- |
+| 事件                | 参数     | 触发时机                   |
+| ------------------- | -------- | -------------------------- |
+| `update:modelValue` | `string` | 原生输入发生 `input` 时。  |
+| `input`             | `string` | 同上。                     |
+| `change`            | `string` | 原生输入发生 `change` 时。 |
+| `focus`             | 无       | 输入框获得焦点时。         |
+| `blur`              | 无       | 输入框失去焦点时。         |
+
+继承的 `clear` 当前不会触发。
+
+## Slots
+
+无。
+
+## Exposes
+
+无。

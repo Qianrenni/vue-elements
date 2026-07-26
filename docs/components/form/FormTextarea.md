@@ -1,39 +1,46 @@
-# Props 参数
+# QFormTextarea
 
-| 参数          | 类型                             | 默认值         | 必填 | 说明         |
-| ------------- | -------------------------------- | -------------- | ---- | ------------ |
-| `modelValue`  | `string`                         | —              | 否   | 输入值       |
-| `label`       | `string`                         | —              | 否   | 标签文本     |
-| `placeholder` | `string`                         | `'请输入内容'` | 否   | 占位文本     |
-| `rows`        | `number`                         | `5`            | 否   | 行数         |
-| `resizable`   | `boolean`                        | `false`        | 否   | 是否可拉伸   |
-| `required`    | `boolean`                        | `true`         | 否   | 是否必填     |
-| `direction`   | `'horizontal' \| 'vertical'`     | `'vertical'`   | 否   | 排列方向     |
-| `disabled`    | `boolean`                        | `false`        | 否   | 是否禁用     |
-| `autofocus`   | `boolean`                        | `false`        | 否   | 是否自动聚焦 |
-| `readonly`    | `boolean`                        | `false`        | 否   | 是否只读     |
-| `size`        | `'large' \| 'middle' \| 'small'` | `'middle'`     | 否   | 输入框大小   |
-| `clearable`   | `boolean`                        | `false`        | 否   | 是否可清空   |
+## 用途
 
----
+输入多行文本，并以字符串同步输入内容。
 
-# Events 事件
+## 基本用法
 
-| 事件名              | 回调参数        | 说明         |
-| ------------------- | --------------- | ------------ |
-| `update:modelValue` | `value: string` | 值变化时触发 |
-| `input`             | `value: string` | 输入时触发   |
+```vue
+<QFormTextarea v-model="content" :rows="6" />
+```
 
----
+## Props
 
-# Slots 插槽
+继承 `FormComponentProps<string>`：`modelValue?: string | null`、`name?: string`、`label?: string`、`disabled?: boolean`、`readonly?: boolean`、`size?: FormSize`、`status?: FormStatus`、`required?: boolean`、`placeholder?: string`、`clearable?: boolean`、`autofocus?: boolean`、`id?: string`、`direction?: 'vertical' | 'horizontal'`、`errorMessage?: string`。
 
-| 插槽名 | 说明 | 示例 |
-| ------ | ---- | ---- |
+| 属性                     | 类型                         | 必填 | 默认值         | 说明                     |
+| ------------------------ | ---------------------------- | ---- | -------------- | ------------------------ |
+| `rows`                   | `number`                     | 否   | `5`            | 文本域可见行数。         |
+| `resizable`              | `boolean`                    | 否   | `false`        | 是否允许调整文本域大小。 |
+| `placeholder`            | `string`                     | 否   | `'请输入内容'` | 文本域占位文本。         |
+| `required`               | `boolean`                    | 否   | `true`         | 传递给原生文本域。       |
+| `direction`              | `'vertical' \| 'horizontal'` | 否   | `'vertical'`   | 布局方向。               |
+| `disabled`               | `boolean`                    | 否   | `false`        | 禁用文本域。             |
+| `autofocus` / `readonly` | `boolean`                    | 否   | `false`        | 当前未绑定到原生控件。   |
+| `size`                   | `FormSize`                   | 否   | `'middle'`     | 当前不影响渲染。         |
+| `clearable`              | `boolean`                    | 否   | `false`        | 当前不影响渲染。         |
 
----
+其余继承属性没有组件默认值；`name`、`label` 会传递或显示。
 
-# Expose 方法
+## Emits
 
-| 方法名 | 参数 | 返回值 | 说明 |
-| ------ | ---- | ------ | ---- |
+| 事件                | 参数     | 触发时机                    |
+| ------------------- | -------- | --------------------------- |
+| `update:modelValue` | `string` | 原生文本域发生 `input` 时。 |
+| `input`             | `string` | 同上。                      |
+
+继承声明的 `change`、`focus`、`blur`、`clear` 当前不会触发。
+
+## Slots
+
+无。
+
+## Exposes
+
+无。
