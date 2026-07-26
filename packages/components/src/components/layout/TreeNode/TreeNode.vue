@@ -9,12 +9,15 @@
       @click="handleNodeClick"
     >
       <div
-        v-if="hasChildren"
+        v-show="hasChildren"
         class="tree-node-toggle container-align-center mouse-cursor"
       >
         <QIcon icon="Folder" size="16" />
       </div>
-      <div v-else class="tree-node-toggle container-align-center mouse-cursor">
+      <div
+        v-show="!hasChildren"
+        class="tree-node-toggle container-align-center mouse-cursor"
+      >
         <QIcon icon="File" size="16" />
       </div>
       <div class="tree-node-label container-align-center">
@@ -23,7 +26,7 @@
     </div>
 
     <div
-      v-if="node.expanded && hasChildren"
+      v-show="node.expanded && hasChildren"
       class="tree-node-children padding-half-horizontal"
     >
       <QTreeNode
@@ -40,8 +43,9 @@
 
 <script lang="ts" setup>
 import { QIcon } from '@/components/basic/Icon';
-import type { TreeNodeProps, TreeNodeEmits } from './type';
+
 import { useTreeNode } from './composable';
+import type { TreeNodeEmits, TreeNodeProps } from './type';
 
 defineOptions({
   name: 'QTreeNode',
