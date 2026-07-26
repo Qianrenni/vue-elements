@@ -27,24 +27,13 @@
     /* 路径解析（可选，如果使用路径别名） */
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
     /* 依赖处理 */
-    "lib": [
-      "esnext",
-      "dom"
-    ]
+    "lib": ["esnext", "dom"]
     // 包含的库声明文件（ESNext + DOM API）
   },
-  "include": [
-    "src",
-    "types",
-    // "test",
-    // "main.ts",
-    // "App.vue"
-  ],
+  "include": ["src", "types"],
   // 只编译 src 目录下的文件
   "exclude": [
     "node_modules",
