@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { DocsEntry } from '@/utils/useComponentInfo.ts';
 import { QMarkdownRender, QTab } from 'qyani-components';
-import { computed, defineAsyncComponent, ref, watch } from 'vue';
+import { computed, defineAsyncComponent, ref, shallowRef, watch } from 'vue';
 import type { Component } from 'vue';
 
 const demoModules = import.meta.glob<{ default: Component }>(
@@ -13,7 +13,7 @@ const props = defineProps<{
 
 const currentContent = ref('');
 const currentTabIndex = ref(0);
-const currentDemo = ref<Component | null>(null);
+const currentDemo = shallowRef<Component | null>(null);
 let activeRequestId = 0;
 const tabs = computed(() =>
   props.component?.demoPath ? ['文档说明', '组件展示'] : ['文档说明'],
