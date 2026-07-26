@@ -1,0 +1,18 @@
+/**
+ * Border Radius Design Tokens
+ * ------------------------------------------------------------------
+ * 圆角阶梯，从无圆角到全圆。
+ *
+ * 命名约定：--q-radius-{size}
+ */
+
+:root {
+  --q-radius-none: 0;
+  --q-radius-xs: 0.125rem; /* 2px */
+  --q-radius-sm: 0.25rem; /* 4px */
+  --q-radius-md: 0.5rem; /* 8px */
+  --q-radius-lg: 0.75rem; /* 12px */
+  --q-radius-xl: 1rem; /* 16px */
+  --q-radius-2xl: 1.5rem; /* 24px */
+  --q-radius-full: 9999px; /* 圆形 */
+}

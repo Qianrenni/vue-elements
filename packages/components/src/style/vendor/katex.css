@@ -1,0 +1,21 @@
+/**
+ * KaTeX Vendor Overrides
+ * ------------------------------------------------------------------
+ * 自定义 katex 样式：只启用 MathML 渲染。
+ */
+
+math {
+  font-size: 1.2em;
+  vertical-align: middle;
+  display: inline-block !important;
+}
+
+.katex-display {
+  text-align: center;
+  margin: 1em 0;
+}
+
+.katex-display math {
+  display: block;
+  margin: 0 auto;
+}

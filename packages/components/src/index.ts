@@ -44,8 +44,7 @@ import { QLoading } from './components/loading/Loading';
 import { QNavSection } from './components/navigation/NavSection';
 import { QTab } from './components/navigation/Tab';
 import { QThemeToggle } from './components/theme/ThemeToggle';
-import './style/common.css';
-import './style/private.css';
+import './style/index.css';
 
 export * from './events';
 export * from './utils';

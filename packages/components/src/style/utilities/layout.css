@@ -1,0 +1,376 @@
+/**
+ * Layout Utilities — Flexbox & Grid
+ * ------------------------------------------------------------------
+ * 布局工具类，覆盖 display、direction、justify、align、wrap、gap。
+ * 同时保留旧版 `.container-*` / `.inner-container-*` 别名。
+ */
+
+/* — Flex 基础 — */
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col,
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.flex-col-reverse,
+.flex-column-reverse {
+  flex-direction: column-reverse;
+}
+
+/* — Justify Content — */
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+/* — Align Items — */
+.items-start {
+  align-items: flex-start;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-stretch {
+  align-items: stretch;
+}
+
+.items-baseline {
+  align-items: baseline;
+}
+
+/* — Align Content — */
+.content-center {
+  align-content: center;
+}
+
+.content-start {
+  align-content: flex-start;
+}
+
+.content-end {
+  align-content: flex-end;
+}
+
+.content-between {
+  align-content: space-between;
+}
+
+.content-around {
+  align-content: space-around;
+}
+
+/* — Flex Wrap — */
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+/* — Flex Grow / Shrink — */
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-grow-0 {
+  flex-grow: 0;
+}
+
+.flex-shrink {
+  flex-shrink: 1;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+/* — 尺寸 — */
+.w-full,
+.w-100 {
+  width: 100%;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.h-full,
+.h-100 {
+  height: 100%;
+}
+
+.h-auto {
+  height: auto;
+}
+
+/* — Gap — */
+.gap-0 {
+  gap: 0;
+}
+
+.gap-1 {
+  gap: var(--q-space-1);
+}
+
+.gap-2 {
+  gap: var(--q-space-2);
+}
+
+.gap-3 {
+  gap: var(--q-space-3);
+}
+
+.gap-4 {
+  gap: var(--q-space-4);
+}
+
+.gap-5 {
+  gap: var(--q-space-5);
+}
+
+.gap-6 {
+  gap: var(--q-space-6);
+}
+
+/* — Grid — */
+.grid {
+  display: grid;
+}
+
+.inline-grid {
+  display: inline-grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.col-span-full {
+  grid-column: 1 / -1;
+}
+
+/* ============================================================
+ * 向后兼容：旧版 container / inner-container 类名
+ * ========================================================== */
+
+.inner-container {
+  display: flex;
+  gap: var(--q-space-2);
+  align-items: center;
+}
+
+.inner-container-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--q-space-2);
+}
+
+.container {
+  display: flex;
+  gap: var(--q-space-2);
+  padding: var(--q-space-2);
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+  padding: var(--q-space-2);
+  gap: var(--q-space-2);
+}
+
+.container-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.container-align-content {
+  display: flex;
+  align-content: center;
+}
+
+.container-flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.container-flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-space-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.container-space-evenly {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.container-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container-nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.container-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.container-column-reverse {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.container-row-768-column {
+  display: flex;
+}
+
+.container-flex-1 {
+  flex: 1;
+}
+
+.container-flex-2 {
+  flex: 2;
+}
+
+.container-flex-3 {
+  flex: 3;
+}
+
+.container-w100 {
+  width: 100%;
+}
+
+.container-h100 {
+  height: 100%;
+}
+
+/* — 向后兼容：旧版 gap 类名 — */
+.gap {
+  gap: var(--q-space-6);
+}
+
+.gap-half {
+  gap: var(--q-space-4);
+}
+
+.gap-third {
+  gap: var(--q-space-3);
+}
+
+.gap-fourth {
+  gap: var(--q-space-2);
+}
+
+@media screen and (max-width: 768px) {
+  .container-row-768-column {
+    flex-direction: column;
+  }
+}

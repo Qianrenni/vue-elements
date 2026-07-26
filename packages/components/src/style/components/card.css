@@ -1,0 +1,27 @@
+/**
+ * Component Styles — Card
+ * ------------------------------------------------------------------
+ * 卡片样式类与翻转动画。
+ */
+
+.card {
+  transition: transform var(--q-duration-fast) var(--q-easing-ease-in-out);
+}
+
+.card-header {
+  flex: 0 0 auto;
+}
+
+.card-body {
+  flex: 1 1 auto;
+}
+
+.card-footer {
+  flex: 0 0 auto;
+}
+
+.card-animation:hover {
+  animation-name: q-up-down;
+  animation-duration: var(--q-duration-slow);
+  animation-timing-function: var(--q-easing-ease-in-out);
+}

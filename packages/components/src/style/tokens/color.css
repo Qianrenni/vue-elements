@@ -1,0 +1,215 @@
+/**
+ * Color Design Tokens
+ * ------------------------------------------------------------------
+ * 三层颜色架构：
+ *   1. Palette  — 原始调色板（50–900），不随主题变化
+ *   2. Semantic — 语义化颜色，映射 palette 到业务含义
+ *   3. Alias    — 向后兼容别名，保持旧变量名可用
+ *
+ * 命名约定：--q-color-{role}-{shade}
+ *           --q-color-{semantic-role}
+ */
+
+:root {
+  /* ============================================================
+   * 1. 原始调色板 (Palette)
+   * ========================================================== */
+
+  /* — 灰色 (Gray) — */
+  --q-color-gray-50: #f8f9fa;
+  --q-color-gray-100: #f1f1f1;
+  --q-color-gray-200: #e9ecef;
+  --q-color-gray-300: #dee2e6;
+  --q-color-gray-400: #ced4da;
+  --q-color-gray-500: #adb5bd;
+  --q-color-gray-600: #868e96;
+  --q-color-gray-700: #495057;
+  --q-color-gray-800: #343a40;
+  --q-color-gray-900: #212529;
+
+  /* — 黄色 (Yellow / 品牌主色) — */
+  --q-color-yellow-50: #fffbeb;
+  --q-color-yellow-100: #fff5cc;
+  --q-color-yellow-200: #ffe680;
+  --q-color-yellow-300: #ffc300;
+  --q-color-yellow-400: #ffd94d;
+  --q-color-yellow-500: #dca000;
+  --q-color-yellow-600: #b38600;
+  --q-color-yellow-700: #806100;
+
+  /* — 红色 (Red / Danger) — */
+  --q-color-red-50: #fff0f1;
+  --q-color-red-100: #ffcccc;
+  --q-color-red-200: #f5a3a3;
+  --q-color-red-300: #e74c4c;
+  --q-color-red-400: #dc3545;
+  --q-color-red-500: #c82333;
+  --q-color-red-600: #a71d2a;
+  --q-color-red-700: #871718;
+
+  /* — 绿色 (Green / Success) — */
+  --q-color-green-50: #e6f9f0;
+  --q-color-green-100: #b2f2cc;
+  --q-color-green-200: #7fe0a8;
+  --q-color-green-300: #4cae5f;
+  --q-color-green-400: #28a745;
+  --q-color-green-500: #1e8438;
+  --q-color-green-600: #176b2c;
+  --q-color-green-700: #0f5221;
+
+  /* — 蓝色 (Blue / Info) — */
+  --q-color-blue-50: #e8f4fd;
+  --q-color-blue-100: #c8e9e5;
+  --q-color-blue-200: #8fcae8;
+  --q-color-blue-300: #4aa3ed;
+  --q-color-blue-400: #2189e0;
+  --q-color-blue-500: #0d6efd;
+  --q-color-blue-600: #0a58ca;
+  --q-color-blue-700: #084298;
+
+  /* — 橙色 (Orange / Warning) — */
+  --q-color-orange-50: #fff8e1;
+  --q-color-orange-100: #ffeac2;
+  --q-color-orange-200: #ffd180;
+  --q-color-orange-300: #ffc107;
+  --q-color-orange-400: #ffa000;
+  --q-color-orange-500: #e69500;
+  --q-color-orange-600: #b37800;
+
+  /* — 纯黑纯白 — */
+  --q-color-white: #ffffff;
+  --q-color-black: #000000;
+
+  /* ============================================================
+   * 2. 语义化颜色 (Semantic)
+   * ========================================================== */
+
+  /* — 品牌主色 — */
+  --q-color-primary: var(--q-color-yellow-300);
+  --q-color-primary-hover: var(--q-color-yellow-500);
+  --q-color-primary-active: var(--q-color-yellow-600);
+  --q-color-primary-light: var(--q-color-yellow-200);
+  --q-color-primary-lighter: var(--q-color-yellow-50);
+
+  /* — 功能色 — */
+  --q-color-success: var(--q-color-green-400);
+  --q-color-success-bg: var(--q-color-green-50);
+  --q-color-success-border: var(--q-color-green-100);
+
+  --q-color-warning: var(--q-color-white);
+  --q-color-warning-bg: var(--q-color-orange-300);
+  --q-color-warning-border: var(--q-color-orange-100);
+
+  --q-color-danger: var(--q-color-white);
+  --q-color-danger-bg: var(--q-color-red-400);
+  --q-color-danger-border: var(--q-color-red-100);
+
+  --q-color-info: var(--q-color-white);
+  --q-color-info-bg: var(--q-color-blue-500);
+  --q-color-info-border: var(--q-color-blue-100);
+
+  /* — 中性语义色 — */
+  --q-color-text: #333333;
+  --q-color-text-description: #565656;
+  --q-color-text-muted: #6c757d;
+  --q-color-text-secondary: #868e96;
+  --q-color-text-inverse: #111111;
+
+  --q-color-bg: var(--q-color-gray-50);
+  --q-color-bg-secondary: #e8e8e8;
+  --q-color-bg-card: var(--q-color-white);
+
+  --q-color-border: #686c71;
+  --q-color-border-light: var(--q-color-gray-300);
+
+  --q-color-link: #333333;
+  --q-color-link-hover: var(--q-color-primary);
+
+  /* — 标签/标记色 — */
+  --q-color-tag: var(--q-color-yellow-100);
+
+  /* — 按钮 — */
+  --q-color-button-bg: var(--q-color-primary);
+  --q-color-button-text: var(--q-color-white);
+  --q-color-button-hover: var(--q-color-primary-hover);
+  --q-color-button-disabled: var(--q-color-gray-200);
+
+  /* — 遮罩层 — */
+  --q-color-overlay: rgba(0, 0, 0, 0.5);
+
+  /* — 阴影反色 — */
+  --q-color-shadow-inverse: rgba(0, 0, 0, 0.9);
+
+  /* ============================================================
+   * 3. 向后兼容别名 (Legacy Aliases)
+   *    保持旧变量名可用，内部引用新 token，零破坏性迁移。
+   * ========================================================== */
+
+  /* 纯色 */
+  --color-white: var(--q-color-white);
+  --color-black: var(--q-color-black);
+  --color-inverse: var(--q-color-text-inverse);
+
+  /* 背景 */
+  --background-color: var(--q-color-bg);
+  --secondary-background-color: var(--q-color-bg-secondary);
+  --card-bg: var(--q-color-bg-card);
+
+  /* 文字 */
+  --text-color: var(--q-color-text);
+  --text-description: var(--q-color-text-description);
+  --text-color-secondary: var(--q-color-text-secondary);
+  --subtle-text-color: var(--q-color-text-muted);
+
+  /* 边框 */
+  --border-color: var(--q-color-border);
+
+  /* 阴影色 */
+  --box-shadow: rgba(255, 255, 255, 0.5);
+  --shadow-inverse: var(--q-color-shadow-inverse);
+
+  /* 主色 */
+  --primary-color: var(--q-color-primary);
+  --primary-hover: var(--q-color-primary-hover);
+  --primary-light: var(--q-color-primary-light);
+  --tag-primary-color: var(--q-color-tag);
+
+  /* 链接 */
+  --link-color: var(--q-color-link);
+  --link-hover: var(--q-color-link-hover);
+
+  /* 功能色 */
+  --success-color: var(--q-color-success);
+  --success-bg: var(--q-color-success-bg);
+  --success-border: var(--q-color-success-border);
+
+  --warning-color: var(--q-color-warning);
+  --warning-bg: var(--q-color-warning-bg);
+  --warning-border: var(--q-color-warning-border);
+
+  --danger-color: var(--q-color-danger);
+  --danger-bg: var(--q-color-danger-bg);
+  --danger-border: var(--q-color-danger-border);
+
+  --info-color: var(--q-color-info);
+  --info-bg: var(--q-color-info-bg);
+  --info-border: var(--q-color-info-border);
+
+  /* 灰阶 */
+  --gray-100: var(--q-color-gray-100);
+  --gray-200: var(--q-color-gray-200);
+  --gray-300: var(--q-color-gray-300);
+  --gray-400: var(--q-color-gray-400);
+  --gray-500: var(--q-color-gray-500);
+  --gray-600: var(--q-color-gray-600);
+  --gray-700: var(--q-color-gray-700);
+
+  /* 按钮 */
+  --button-bg: var(--q-color-button-bg);
+  --button-text: var(--q-color-button-text);
+  --button-hover: var(--q-color-button-hover);
+  --button-disabled: var(--q-color-button-disabled);
+
+  /* 遮罩 */
+  --bg-overlay: var(--q-color-overlay);
+}

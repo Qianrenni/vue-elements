@@ -1,0 +1,33 @@
+/**
+ * Spacing Design Tokens
+ * ------------------------------------------------------------------
+ * 基于 4px 基础单位的间距阶梯，共 12 档（0 → 48px）。
+ *
+ * 命名约定：--q-space-{n}     → 通用间距
+ *           --q-space-{n}x    → 行列间距（gap）
+ *
+ * 向后兼容别名保留旧的 --distance / --half-distance 等。
+ */
+
+:root {
+  /* — 间距阶梯 (4px base) — */
+  --q-space-0: 0;
+  --q-space-1: 0.125rem; /* 2px */
+  --q-space-2: 0.25rem; /* 4px */
+  --q-space-3: 0.375rem; /* 6px */
+  --q-space-4: 0.5rem; /* 8px */
+  --q-space-5: 0.75rem; /* 12px */
+  --q-space-6: 1rem; /* 16px */
+  --q-space-7: 1.25rem; /* 20px */
+  --q-space-8: 1.5rem; /* 24px */
+  --q-space-9: 2rem; /* 32px */
+  --q-space-10: 2.5rem; /* 40px */
+  --q-space-11: 3rem; /* 48px */
+  --q-space-12: 4rem; /* 64px */
+
+  /* — 向后兼容别名 — */
+  --distance: var(--q-space-6);
+  --half-distance: var(--q-space-4);
+  --third-distance: var(--q-space-3);
+  --fourth-distance: var(--q-space-2);
+}

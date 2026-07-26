@@ -1,0 +1,21 @@
+/**
+ * Opacity Design Tokens
+ * ------------------------------------------------------------------
+ * 透明度阶梯，0% → 100%，每 10% 一档。
+ *
+ * 命名约定：--q-opacity-{n}
+ */
+
+:root {
+  --q-opacity-0: 0;
+  --q-opacity-10: 0.1;
+  --q-opacity-20: 0.2;
+  --q-opacity-30: 0.3;
+  --q-opacity-40: 0.4;
+  --q-opacity-50: 0.5;
+  --q-opacity-60: 0.6;
+  --q-opacity-70: 0.7;
+  --q-opacity-80: 0.8;
+  --q-opacity-90: 0.9;
+  --q-opacity-100: 1;
+}

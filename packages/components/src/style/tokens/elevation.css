@@ -1,0 +1,35 @@
+/**
+ * Elevation & Shadow Design Tokens
+ * ------------------------------------------------------------------
+ * 五级阴影体系，从扁平到浮层逐级加深。
+ *
+ * 命名约定：--q-shadow-{level}
+ *           --q-z-index-{layer}
+ */
+
+:root {
+  /* — 阴影阶梯 — */
+  --q-shadow-none: none;
+  --q-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --q-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --q-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --q-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.16);
+  --q-shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.2);
+
+  /* — 阴影色（向后兼容） — */
+  --q-color-shadow: rgba(255, 255, 255, 0.5);
+
+  /* — Z-index 层级 — */
+  --q-z-index-base: 1;
+  --q-z-index-dropdown: 100;
+  --q-z-index-sticky: 200;
+  --q-z-index-fixed: 300;
+  --q-z-index-overlay: 800;
+  --q-z-index-modal: 1000;
+  --q-z-index-popover: 9999;
+
+  /* — 向后兼容别名 — */
+  --z-index-level-1: var(--q-z-index-base);
+  --z-index-level-2: var(--q-z-index-modal);
+  --z-index-level-3: var(--q-z-index-popover);
+}

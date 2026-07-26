@@ -1,0 +1,47 @@
+/**
+ * Design System Entry Point
+ * ==================================================================
+ * qyani-components 企业级 CSS 设计系统入口。
+ *
+ * 加载顺序（CSS 层叠优先级从低到高）：
+ *   1. Tokens   — 设计变量（颜色、阴影、间距、圆角、排版、动画）
+ *   2. Theme    — 暗色主题覆盖
+ *   3. Base     — 重置与基础元素样式
+ *   4. Utilities— 工具类（布局、间距、颜色、排版、显示、响应式）
+ *   5. Components— 组件级共享样式类
+ *
+ * 使用 @import 确保构建时正确合并到 dist/style.css。
+ */
+
+/* — 1. Tokens — */
+@import './tokens/color.css';
+@import './tokens/spacing.css';
+@import './tokens/elevation.css';
+@import './tokens/opacity.css';
+@import './tokens/radius.css';
+@import './tokens/typography.css';
+@import './tokens/motion.css';
+
+/* — 2. Theme — */
+@import './theme/dark.css';
+
+/* — 3. Base — */
+@import './base/reset.css';
+@import './base/base.css';
+
+/* — 4. Utilities — */
+@import './utilities/layout.css';
+@import './utilities/spacing.css';
+@import './utilities/color.css';
+@import './utilities/typography.css';
+@import './utilities/display.css';
+@import './utilities/responsive.css';
+
+/* — 5. Components — */
+@import './components/button.css';
+@import './components/badge.css';
+@import './components/card.css';
+@import './components/input.css';
+@import './components/tag.css';
+@import './components/form-table.css';
+@import './components/nav-section.css';

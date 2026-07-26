@@ -1,0 +1,54 @@
+/**
+ * Typography Design Tokens
+ * ------------------------------------------------------------------
+ * 字体族、字号、字重、行高与排版阶梯。
+ *
+ * 命名约定：--q-font-{property}-{value}
+ */
+
+:root {
+  /* — 字体族 — */
+  --q-font-family-base:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --q-font-family-mono:
+    'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  --q-font-family-markdown:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+
+  /* — 基础字号 — */
+  --q-font-size-base: 1rem; /* 16px */
+  --q-font-size-sm: 0.875rem; /* 14px */
+  --q-font-size-xs: 0.75rem; /* 12px */
+  --q-font-size-lg: 1.125rem; /* 18px */
+  --q-font-size-xl: 1.25rem; /* 20px */
+  --q-font-size-2xl: 1.5rem; /* 24px */
+  --q-font-size-3xl: 2rem; /* 32px */
+
+  /* — 文字阶梯（旧版 rem 简写） — */
+  --q-font-size-03: 0.3rem;
+  --q-font-size-05: 0.5rem;
+  --q-font-size-08: 0.8rem;
+  --q-font-size-085: 0.85rem;
+  --q-font-size-12: 1.2rem;
+  --q-font-size-15: 1.5rem;
+  --q-font-size-2: 2rem;
+
+  /* — 字重 — */
+  --q-font-weight-light: 300;
+  --q-font-weight-normal: 400;
+  --q-font-weight-medium: 500;
+  --q-font-weight-semibold: 600;
+  --q-font-weight-bold: 700;
+
+  /* — 行高 — */
+  --q-line-height-tight: 1.2;
+  --q-line-height-normal: 1.5;
+  --q-line-height-relaxed: 1.75;
+
+  /* — 字间距 — */
+  --q-letter-spacing-normal: normal;
+  --q-letter-spacing-wide: 0.025em;
+  --q-letter-spacing-wider: 0.05em;
+}

@@ -1,0 +1,70 @@
+/**
+ * Component Styles — Button
+ * ------------------------------------------------------------------
+ * 通用按钮样式类（非 SFC 内联样式），供文档与布局复用。
+ */
+
+.button {
+  background-color: var(--q-color-bg);
+  color: var(--q-color-text);
+  padding: var(--q-space-2) var(--q-space-3);
+  border-radius: var(--q-radius-md);
+  cursor: pointer;
+  transition: var(--q-transition-background);
+}
+
+.button:hover {
+  background-color: var(--q-color-bg-secondary);
+}
+
+.button-primary {
+  padding: var(--q-space-3) var(--q-space-5);
+  background-color: var(--q-color-button-bg);
+  color: var(--q-color-button-text);
+  cursor: pointer;
+  border: 1px solid var(--q-color-white);
+  border-radius: var(--q-radius-md);
+  transition: var(--q-transition-background);
+}
+
+.button-primary:hover {
+  background-color: var(--q-color-button-hover);
+}
+
+body.dark-mode .button-primary,
+[data-theme='dark'] .button-primary {
+  border: none;
+}
+
+.button-outline {
+  background-color: transparent;
+  color: var(--q-color-primary);
+  border: 2px solid var(--q-color-primary);
+  cursor: pointer;
+  transition: var(--q-transition-color), var(--q-transition-background);
+}
+
+.button-outline:hover {
+  background-color: var(--q-color-primary);
+  color: var(--q-color-button-text);
+}
+
+/* — 悬停态 — */
+.hover-primary {
+  background-color: var(--q-color-bg);
+  color: var(--q-color-text);
+  transition: var(--q-transition-color), var(--q-transition-background);
+}
+
+.hover-primary:hover {
+  background-color: var(--q-color-primary);
+  color: var(--q-color-white);
+}
+
+.hover-red:hover {
+  color: var(--q-color-red-400);
+}
+
+.bg-hover-secondary:hover {
+  background-color: var(--q-color-bg-secondary);
+}

@@ -1,5 +1,5 @@
-import '@/style/gitub-markdown.css';
-import '@/style/katex.css';
+import '@/style/markdown.css';
+import '@/style/vendor/katex.css';
 import hljs from 'highlight.js';
 import c from 'highlight.js/lib/languages/c';
 import cplus from 'highlight.js/lib/languages/cpp';

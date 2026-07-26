@@ -1,0 +1,230 @@
+/**
+ * Motion Design Tokens
+ * ------------------------------------------------------------------
+ * 动画时长、缓动函数与关键帧定义。
+ *
+ * 命名约定：--q-duration-{speed}
+ *           --q-easing-{type}
+ *           --q-transition-{property}
+ */
+
+:root {
+  /* — 时长 — */
+  --q-duration-instant: 0ms;
+  --q-duration-fast: 150ms;
+  --q-duration-normal: 300ms;
+  --q-duration-slow: 500ms;
+  --q-duration-slower: 800ms;
+
+  /* — 缋动函数 — */
+  --q-easing-linear: linear;
+  --q-easing-ease: ease;
+  --q-easing-ease-in: ease-in;
+  --q-easing-ease-out: ease-out;
+  --q-easing-ease-in-out: ease-in-out;
+
+  /* — Material 风格缓动 — */
+  --q-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --q-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --q-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --q-easing-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+
+  /* — 复合过渡 — */
+  --q-transition-color: color var(--q-duration-normal)
+    var(--q-easing-ease-in-out);
+  --q-transition-background: background-color var(--q-duration-normal)
+    var(--q-easing-ease-in-out);
+  --q-transition-border: border-color var(--q-duration-normal)
+    var(--q-easing-ease-in-out);
+  --q-transition-opacity: opacity var(--q-duration-normal) var(--q-easing-ease);
+  --q-transition-transform: transform var(--q-duration-normal)
+    var(--q-easing-ease-in-out);
+  --q-transition-shadow: box-shadow var(--q-duration-normal)
+    var(--q-easing-ease-in-out);
+  --q-transition-all: all var(--q-duration-normal) var(--q-easing-ease-in-out);
+
+  /* — 骨架屏渐变背景 — */
+  --q-skeleton-gradient: linear-gradient(
+    90deg,
+    var(--q-color-gray-100) 25%,
+    var(--q-color-gray-200) 50%,
+    var(--q-color-gray-100) 75%
+  );
+
+  /* — 向后兼容别名 — */
+  --skeleton-linear-gradient: var(--q-skeleton-gradient);
+}
+
+/* — 关键帧动画（必须在 :root 外部定义） — */
+
+/* 旋转 */
+@keyframes q-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 脉冲（呼吸灯） */
+@keyframes q-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* 骨架屏光泽流动 */
+@keyframes q-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* 虚线路径动画 */
+@keyframes q-dash {
+  0% {
+    stroke-dasharray: 20, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 200, 200;
+    stroke-dashoffset: 100px;
+  }
+  100% {
+    stroke-dasharray: 20, 200;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 卡片翻转 */
+@keyframes q-up-down {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px) rotateY(270deg);
+  }
+  100% {
+    transform: translateY(0) rotateY(360deg);
+  }
+}
+
+/* 向上淡入 */
+@keyframes q-fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 向下淡入 */
+@keyframes q-fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 淡入 */
+@keyframes q-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 淡出 */
+@keyframes q-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 缩放淡入 */
+@keyframes q-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* — 向后兼容：旧版关键帧名称 — */
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 20, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 200, 200;
+    stroke-dashoffset: 100px;
+  }
+  100% {
+    stroke-dasharray: 20, 200;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px) rotateY(270deg);
+  }
+  100% {
+    transform: translateY(0) rotateY(360deg);
+  }
+}

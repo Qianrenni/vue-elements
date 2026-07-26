@@ -1,0 +1,296 @@
+/**
+ * Display, Position & Visibility Utilities
+ * ------------------------------------------------------------------
+ * display、position、cursor、opacity、border、radius 等工具类。
+ * 同时保留旧版类名。
+ */
+
+/* ============================================================
+ * Display
+ * ========================================================== */
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.d-inline-grid {
+  display: inline-grid;
+}
+
+/* ============================================================
+ * Position
+ * ========================================================== */
+
+.position-static {
+  position: static;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.position-sticky {
+  position: sticky;
+}
+
+/* ============================================================
+ * Cursor
+ * ========================================================== */
+
+.mouse-cursor,
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.mouse-cursor-disable,
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+/* ============================================================
+ * Opacity
+ * ========================================================== */
+
+.opacity-0 {
+  opacity: var(--q-opacity-0);
+}
+.opacity-10 {
+  opacity: var(--q-opacity-10);
+}
+.opacity-20 {
+  opacity: var(--q-opacity-20);
+}
+.opacity-30 {
+  opacity: var(--q-opacity-30);
+}
+.opacity-40 {
+  opacity: var(--q-opacity-40);
+}
+.opacity-50 {
+  opacity: var(--q-opacity-50);
+}
+.opacity-60 {
+  opacity: var(--q-opacity-60);
+}
+.opacity-70 {
+  opacity: var(--q-opacity-70);
+}
+.opacity-80 {
+  opacity: var(--q-opacity-80);
+}
+.opacity-90 {
+  opacity: var(--q-opacity-90);
+}
+.opacity-100 {
+  opacity: var(--q-opacity-100);
+}
+
+/* — 交互态透明度 — */
+.opacity-2-9 {
+  opacity: var(--q-opacity-20);
+}
+
+.opacity-2-9:hover {
+  opacity: var(--q-opacity-90);
+}
+
+.opacity-6-hover:hover {
+  opacity: var(--q-opacity-60);
+}
+
+/* ============================================================
+ * Border
+ * ========================================================== */
+
+.border-gray {
+  border: 1px solid var(--q-color-border);
+}
+
+.border-vetical-gray {
+  border-left: 1px solid var(--q-color-border);
+  border-right: 1px solid var(--q-color-border);
+}
+
+.border-horizontal-gray {
+  border-top: 1px solid var(--q-color-border);
+  border-bottom: 1px solid var(--q-color-border);
+}
+
+.border-primary {
+  border: 2px solid var(--q-color-primary);
+}
+
+.border-none {
+  border: none;
+}
+
+/* ============================================================
+ * Border Radius
+ * ========================================================== */
+
+.radius-none {
+  border-radius: var(--q-radius-none);
+}
+
+.radius-xs {
+  border-radius: var(--q-radius-xs);
+}
+
+.radius-sm {
+  border-radius: var(--q-radius-sm);
+}
+
+.radius-md {
+  border-radius: var(--q-radius-md);
+}
+
+.radius-lg {
+  border-radius: var(--q-radius-lg);
+}
+
+.radius-xl {
+  border-radius: var(--q-radius-xl);
+}
+
+.radius-full {
+  border-radius: var(--q-radius-full);
+}
+
+/* — 向后兼容：旧版圆角类名 — */
+.radius-rem {
+  border-radius: var(--q-radius-xl);
+}
+
+.radius-half-rem {
+  border-radius: var(--q-radius-md);
+}
+
+.radius-third-rem {
+  border-radius: var(--q-space-3);
+}
+
+/* ============================================================
+ * Shadow
+ * ========================================================== */
+
+.shadow-none {
+  box-shadow: var(--q-shadow-none);
+}
+
+.shadow-xs {
+  box-shadow: var(--q-shadow-xs);
+}
+
+.shadow-sm {
+  box-shadow: var(--q-shadow-sm);
+}
+
+.shadow-md {
+  box-shadow: var(--q-shadow-md);
+}
+
+.shadow-lg {
+  box-shadow: var(--q-shadow-lg);
+}
+
+.shadow-xl {
+  box-shadow: var(--q-shadow-xl);
+}
+
+/* — 向后兼容：旧版阴影类名 — */
+.shadow-common {
+  box-shadow: 0 0 10px var(--q-color-shadow);
+}
+
+/* ============================================================
+ * Overflow
+ * ========================================================== */
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+
+/* ============================================================
+ * Misc
+ * ========================================================== */
+
+.active-common {
+  color: var(--q-color-bg);
+  background-color: var(--q-color-text-inverse);
+}
+
+.dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(50%) translateY(-50%);
+  min-width: var(--q-space-4);
+  min-height: var(--q-space-4);
+  border-radius: var(--q-radius-full);
+  font-size: var(--q-font-size-xs);
+  background-color: var(--q-color-info-bg);
+}
+
+.required::before {
+  content: '*';
+  color: red;
+  margin-right: 2px;
+  font-weight: bold;
+}
+
+/* — 动画工具类 — */
+.animation-pulse {
+  animation: q-pulse var(--q-duration-slow) var(--q-easing-linear) infinite;
+}
+
+.animation-rotate {
+  animation: q-rotate 1s var(--q-easing-linear) infinite;
+}
+
+.animation-shimmer {
+  animation: q-shimmer var(--q-duration-slow) var(--q-easing-linear) infinite;
+}

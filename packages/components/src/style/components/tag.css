@@ -1,0 +1,14 @@
+/**
+ * Component Styles — Tag
+ * ------------------------------------------------------------------
+ * 标签样式类。
+ */
+
+.tag {
+  font-size: var(--q-font-size-xs);
+  padding: var(--q-space-2) var(--q-space-3);
+  border-radius: var(--q-radius-md);
+  font-weight: var(--q-font-weight-light);
+  background-color: var(--q-color-tag);
+  color: var(--q-color-white);
+}

@@ -1,0 +1,66 @@
+/**
+ * Base Element Styles
+ * ------------------------------------------------------------------
+ * body、pre、code、滚动条等基础元素样式。
+ */
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--q-font-family-base);
+  color: var(--q-color-text);
+  background-color: var(--q-color-bg);
+  /* 向后兼容 */
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+/* — pre / code 滚动条 — */
+pre {
+  width: 100%;
+  overflow: scroll;
+}
+
+pre::-webkit-scrollbar,
+code::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: var(--q-color-bg);
+}
+
+pre::-webkit-scrollbar-thumb,
+code::-webkit-scrollbar-thumb {
+  background-color: var(--q-color-primary);
+}
+
+@media screen and (max-width: 768px) {
+  pre::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+/* — 自动填充覆盖 — */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--q-color-text);
+  box-shadow: 0 0 0 1000px var(--q-color-bg-card) inset;
+}
+
+/* — Vue 过渡动画 — */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var(--q-duration-normal) var(--q-easing-ease);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

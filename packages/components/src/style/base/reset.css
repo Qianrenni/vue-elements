@@ -1,0 +1,14 @@
+/**
+ * CSS Reset
+ * ------------------------------------------------------------------
+ * 统一盒模型、清除默认 margin/padding、继承颜色与背景。
+ * 保持与旧版 `* {}` 重置行为一致，零破坏性迁移。
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: inherit;
+  color: inherit;
+}

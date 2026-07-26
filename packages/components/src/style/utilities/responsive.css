@@ -1,0 +1,62 @@
+/**
+ * Responsive Utilities
+ * ------------------------------------------------------------------
+ * 响应式工具类，断点 768px（移动端 / 桌面端切换）。
+ *
+ * 格式：.hidden-{bp}   在断点以下隐藏
+ *       .show-{bp}     仅在断点以下显示
+ */
+
+/* — 移动端隐藏/显示 — */
+.show-768 {
+  display: none;
+}
+
+/* — 滚动容器 — */
+.scroll-text {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.scroll-container {
+  overflow-y: auto;
+  overflow-x: auto;
+  -ms-overflow-x: auto;
+  -ms-overflow-y: auto;
+  -ms-overflow-style: auto;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: var(--q-color-bg);
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: var(--q-color-primary);
+}
+
+/* — 遮罩层 — */
+.overlay {
+  background-color: var(--q-color-overlay);
+}
+
+@media screen and (max-width: 768px) {
+  .hidden-768 {
+    display: none;
+  }
+
+  .show-768 {
+    display: flex;
+  }
+
+  .container-768-w100 {
+    width: 100%;
+  }
+
+  .scroll-container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}

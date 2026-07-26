@@ -1,0 +1,16 @@
+/**
+ * Component Styles — Badge
+ * ------------------------------------------------------------------
+ * 徽章样式类。
+ */
+
+.badge {
+  display: inline-block;
+  padding: var(--q-space-2) var(--q-space-4);
+  font-size: var(--q-font-size-xs);
+  font-weight: var(--q-font-weight-semibold);
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: var(--q-radius-sm);
+}

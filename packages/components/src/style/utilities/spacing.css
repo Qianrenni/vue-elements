@@ -1,0 +1,305 @@
+/**
+ * Spacing Utilities — Margin & Padding
+ * ------------------------------------------------------------------
+ * 间距工具类，基于 --q-space-{n} 阶梯。
+ *
+ * 格式：.{m|p}{direction?}-{n}
+ *   m = margin, p = padding
+ *   direction: t(top) r(right) b(bottom) l(left) x(horizontal) y(vertical)
+ *   n = 0–12
+ *
+ * 同时保留旧版 .margin-* / .padding-* 别名。
+ */
+
+/* — Margin — */
+.m-0 {
+  margin: 0;
+}
+.m-1 {
+  margin: var(--q-space-1);
+}
+.m-2 {
+  margin: var(--q-space-2);
+}
+.m-3 {
+  margin: var(--q-space-3);
+}
+.m-4 {
+  margin: var(--q-space-4);
+}
+.m-5 {
+  margin: var(--q-space-5);
+}
+.m-6 {
+  margin: var(--q-space-6);
+}
+.m-8 {
+  margin: var(--q-space-8);
+}
+.m-auto {
+  margin: 0 auto;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+.mt-2 {
+  margin-top: var(--q-space-2);
+}
+.mt-4 {
+  margin-top: var(--q-space-4);
+}
+.mt-6 {
+  margin-top: var(--q-space-6);
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+.mb-2 {
+  margin-bottom: var(--q-space-2);
+}
+.mb-4 {
+  margin-bottom: var(--q-space-4);
+}
+.mb-6 {
+  margin-bottom: var(--q-space-6);
+}
+
+.mx-0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+.mx-2 {
+  margin-left: var(--q-space-2);
+  margin-right: var(--q-space-2);
+}
+.mx-4 {
+  margin-left: var(--q-space-4);
+  margin-right: var(--q-space-4);
+}
+.mx-6 {
+  margin-left: var(--q-space-6);
+  margin-right: var(--q-space-6);
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.my-2 {
+  margin-top: var(--q-space-2);
+  margin-bottom: var(--q-space-2);
+}
+.my-4 {
+  margin-top: var(--q-space-4);
+  margin-bottom: var(--q-space-4);
+}
+.my-6 {
+  margin-top: var(--q-space-6);
+  margin-bottom: var(--q-space-6);
+}
+
+/* — Padding — */
+.p-0 {
+  padding: 0;
+}
+.p-1 {
+  padding: var(--q-space-1);
+}
+.p-2 {
+  padding: var(--q-space-2);
+}
+.p-3 {
+  padding: var(--q-space-3);
+}
+.p-4 {
+  padding: var(--q-space-4);
+}
+.p-5 {
+  padding: var(--q-space-5);
+}
+.p-6 {
+  padding: var(--q-space-6);
+}
+
+.pt-0 {
+  padding-top: 0;
+}
+.pt-2 {
+  padding-top: var(--q-space-2);
+}
+.pt-4 {
+  padding-top: var(--q-space-4);
+}
+.pt-6 {
+  padding-top: var(--q-space-6);
+}
+
+.pb-0 {
+  padding-bottom: 0;
+}
+.pb-2 {
+  padding-bottom: var(--q-space-2);
+}
+.pb-4 {
+  padding-bottom: var(--q-space-4);
+}
+.pb-6 {
+  padding-bottom: var(--q-space-6);
+}
+
+.px-0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+.px-2 {
+  padding-left: var(--q-space-2);
+  padding-right: var(--q-space-2);
+}
+.px-4 {
+  padding-left: var(--q-space-4);
+  padding-right: var(--q-space-4);
+}
+.px-6 {
+  padding-left: var(--q-space-6);
+  padding-right: var(--q-space-6);
+}
+
+.py-0 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.py-2 {
+  padding-top: var(--q-space-2);
+  padding-bottom: var(--q-space-2);
+}
+.py-4 {
+  padding-top: var(--q-space-4);
+  padding-bottom: var(--q-space-4);
+}
+.py-6 {
+  padding-top: var(--q-space-6);
+  padding-bottom: var(--q-space-6);
+}
+
+/* ============================================================
+ * 向后兼容：旧版 margin / padding 类名
+ * ========================================================== */
+
+.margin-auto {
+  margin: 0 auto;
+}
+
+.margin-rem {
+  margin: var(--distance);
+}
+
+.margin-half-rem {
+  margin: var(--half-distance);
+}
+
+.margin-third-rem {
+  margin: var(--third-distance);
+}
+
+.margin-fourth-rem {
+  margin: var(--fourth-distance);
+}
+
+.margin-vetical {
+  margin: var(--distance) 0;
+}
+
+.margin-half-vetical {
+  margin: var(--half-distance) 0;
+}
+
+.margin-third-vetical {
+  margin: var(--third-distance) 0;
+}
+
+.margin-fourth-vetical {
+  margin: var(--fourth-distance) 0;
+}
+
+.margin-horizontal {
+  margin: 0 var(--distance);
+}
+
+.margin-half-horizontal {
+  margin: 0 var(--half-distance);
+}
+
+.margin-third-horizontal {
+  margin: 0 var(--third-distance);
+}
+
+.margin-fourth-horizontal {
+  margin: 0 var(--fourth-distance);
+}
+
+/* — 旧版 padding — */
+.padding-24rem {
+  padding: 0.2rem 0.4rem;
+}
+
+.padding-28rem {
+  padding: 0.2rem 0.8rem;
+}
+
+.padding-46rem {
+  padding: 0.4rem 0.6rem;
+}
+
+.padding-rem {
+  padding: var(--distance);
+}
+
+.padding-half-rem {
+  padding: var(--half-distance);
+}
+
+.padding-third-rem {
+  padding: var(--third-distance);
+}
+
+.padding-fourth-rem {
+  padding: var(--fourth-distance);
+}
+
+.padding-vetical {
+  padding: var(--distance) 0;
+}
+
+.padding-half-vetical {
+  padding: var(--half-distance) 0;
+}
+
+.padding-third-vetical {
+  padding: var(--third-distance) 0;
+}
+
+.padding-fourth-vetical {
+  padding: var(--fourth-distance) 0;
+}
+
+.padding-horizontal {
+  padding: 0 var(--distance);
+}
+
+.padding-half-horizontal {
+  padding: 0 var(--half-distance);
+}
+
+.padding-third-horizontal {
+  padding: 0 var(--third-distance);
+}
+
+.padding-fourth-horizontal {
+  padding: 0 var(--fourth-distance);
+}

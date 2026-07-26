@@ -1,0 +1,108 @@
+/**
+ * Dark Theme Overrides
+ * ------------------------------------------------------------------
+ * 通过 `body.dark-mode` 或 `[data-theme="dark"]` 切换暗色主题。
+ * 仅覆盖语义化 token，原始调色板不变。
+ */
+
+body.dark-mode,
+[data-theme='dark'] {
+  /* — 品牌主色：暗色背景上提亮，增强交互反馈 — */
+  --q-color-primary: var(--q-color-yellow-300);
+  --q-color-primary-hover: var(--q-color-yellow-400);
+  --q-color-primary-active: var(--q-color-yellow-200);
+  --q-color-primary-light: var(--q-color-yellow-100);
+  --q-color-primary-lighter: var(--q-color-yellow-50);
+
+  /* — 中性语义色 — */
+  --q-color-text: #f0f0f0;
+  --q-color-text-description: #b0b0b0;
+  --q-color-text-muted: #999999;
+  --q-color-text-secondary: #888888;
+  --q-color-text-inverse: #ffffff;
+
+  --q-color-bg: #121212;
+  --q-color-bg-secondary: #3f3f3f;
+  --q-color-bg-card: #232323;
+
+  --q-color-border: #c5bebe;
+  --q-color-border-light: #555555;
+
+  --q-color-link: var(--q-color-yellow-400);
+  --q-color-link-hover: var(--q-color-yellow-100);
+
+  --q-color-tag: var(--q-color-yellow-100);
+
+  /* — 按钮 — */
+  --q-color-button-bg: var(--q-color-primary);
+  --q-color-button-text: #ffffff;
+  --q-color-button-hover: var(--q-color-primary-hover);
+  --q-color-button-disabled: #555555;
+
+  /* — 遮罩层 — */
+  --q-color-overlay: rgba(255, 255, 255, 0.2);
+
+  /* — 阴影色 — */
+  --q-color-shadow: rgba(255, 255, 255, 0.5);
+  --q-color-shadow-inverse: rgba(255, 255, 255, 0.9);
+
+  /* — 灰阶反转 — */
+  --q-color-gray-50: #202020;
+  --q-color-gray-100: #202020;
+  --q-color-gray-200: #2a2a2a;
+  --q-color-gray-300: #333333;
+  --q-color-gray-400: #444444;
+  --q-color-gray-500: #555555;
+  --q-color-gray-600: #666666;
+  --q-color-gray-700: #888888;
+  --q-color-gray-800: #aaaaaa;
+  --q-color-gray-900: #cccccc;
+
+  /* — 骨架屏渐变 — */
+  --q-skeleton-gradient: linear-gradient(
+    90deg,
+    #202020 25%,
+    #101010 50%,
+    #202020 75%
+  );
+
+  /* ============================================================
+   * 向后兼容别名（暗色模式覆盖）
+   * ========================================================== */
+  --color-inverse: var(--q-color-text-inverse);
+  --background-color: var(--q-color-bg);
+  --secondary-background-color: var(--q-color-bg-secondary);
+  --text-color: var(--q-color-text);
+  --text-description: var(--q-color-text-description);
+  --text-color-secondary: var(--q-color-text-secondary);
+  --subtle-text-color: var(--q-color-text-muted);
+  --border-color: var(--q-color-border);
+  --card-bg: var(--q-color-bg-card);
+  --box-shadow: var(--q-color-shadow);
+
+  --primary-color: var(--q-color-primary);
+  --primary-hover: var(--q-color-primary-hover);
+  --primary-light: var(--q-color-primary-light);
+  --tag-primary-color: var(--q-color-tag);
+
+  --link-color: var(--q-color-link);
+  --link-hover: var(--q-color-link-hover);
+
+  --button-bg: var(--q-color-button-bg);
+  --button-text: var(--q-color-button-text);
+  --button-hover: var(--q-color-button-hover);
+  --button-disabled: var(--q-color-button-disabled);
+
+  --bg-overlay: var(--q-color-overlay);
+  --shadow-inverse: var(--q-color-shadow-inverse);
+
+  --gray-100: var(--q-color-gray-100);
+  --gray-200: var(--q-color-gray-200);
+  --gray-300: var(--q-color-gray-300);
+  --gray-400: var(--q-color-gray-400);
+  --gray-500: var(--q-color-gray-500);
+  --gray-600: var(--q-color-gray-600);
+  --gray-700: var(--q-color-gray-700);
+
+  --skeleton-linear-gradient: var(--q-skeleton-gradient);
+}

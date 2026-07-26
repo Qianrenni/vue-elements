@@ -1,0 +1,43 @@
+/**
+ * Component Styles — NavSection
+ * ------------------------------------------------------------------
+ * 导航区段样式类。
+ */
+
+.current-title {
+  font-size: 1.1rem;
+  font-weight: var(--q-font-weight-bold);
+}
+
+.back-button {
+  display: flex;
+  margin-bottom: var(--q-space-4);
+  cursor: pointer;
+  font-weight: var(--q-font-weight-bold);
+}
+
+.section-nav {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.nav-link {
+  display: block;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: var(--q-space-3) var(--q-space-3);
+  transition: var(--q-transition-all);
+}
+
+.nav-link.active {
+  background-color: var(--q-color-primary);
+  color: var(--q-color-white);
+}
+
+@media screen and (max-width: 768px) {
+  .nav-section {
+    width: 100%;
+    max-width: 100vw;
+  }
+}

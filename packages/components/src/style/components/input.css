@@ -1,0 +1,75 @@
+/**
+ * Component Styles — Input / Form Elements
+ * ------------------------------------------------------------------
+ * 文本输入、表单表格等通用样式类。
+ */
+
+.input-text-container {
+  position: relative;
+  flex: 1;
+}
+
+.text-input {
+  flex: 1;
+  padding: var(--q-space-2) var(--q-space-4);
+  outline: none;
+  border: 1px solid var(--q-color-gray-400);
+  box-shadow: var(--q-shadow-xs);
+  transition: var(--q-transition-border);
+}
+
+.text-input.uneditable {
+  border: none;
+  box-shadow: none;
+}
+
+.text-input:focus {
+  border-color: var(--q-color-primary);
+}
+
+.text-input.error {
+  border-color: var(--q-color-danger-border);
+}
+
+.text-hint {
+  color: var(--q-color-danger-bg);
+  font-size: var(--q-font-size-xs);
+}
+
+.text-input-icon {
+  position: absolute;
+  left: var(--q-space-2);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.text-left-padding {
+  padding-left: var(--q-space-8);
+}
+
+.input-text-container .close-icon {
+  position: absolute;
+  right: var(--q-space-4);
+  bottom: 50%;
+  transform: translateY(50%);
+}
+
+/* — 链接类 — */
+.link-primary {
+  color: var(--q-color-link);
+  text-decoration: none;
+  transition: var(--q-transition-color);
+}
+
+.link-primary:hover {
+  color: var(--q-color-link-hover);
+}
+
+.link-gray {
+  color: var(--q-color-gray-400);
+  text-decoration: none;
+}
+
+.link-gray:hover {
+  color: var(--q-color-gray-200);
+}

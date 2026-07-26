@@ -7,8 +7,7 @@ root_dir = Path(__file__).parent.parent
 target_dir = root_dir / 'src' / 'components'
 out_path = root_dir / 'src' / 'index.ts'
 
-static_prefix = """import "./style/common.css";
-import "./style/private.css";
+static_prefix = """import "./style/index.css";
 export * from "./events";
 export * from "./utils";
 export * from "./types"
