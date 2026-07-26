@@ -14,6 +14,7 @@ const props = defineProps<{
 const currentContent = ref('');
 const currentTabIndex = ref(0);
 const currentDemo = ref<Component | null>(null);
+let activeRequestId = 0;
 const tabs = computed(() =>
   props.component?.demoPath ? ['文档说明', '组件展示'] : ['文档说明'],
 );
@@ -32,11 +33,16 @@ const loadDemo = (demoPath: string | undefined) => {
 watch(
   () => props.component,
   async (entry) => {
+    const requestId = ++activeRequestId;
     currentTabIndex.value = 0;
     currentContent.value = '';
     currentDemo.value = loadDemo(entry?.demoPath);
-    if (entry) {
-      currentContent.value = await (await fetch(entry.docPath)).text();
+    if (!entry) return;
+
+    const response = await fetch(entry.docPath);
+    const content = await response.text();
+    if (requestId === activeRequestId) {
+      currentContent.value = content;
     }
   },
   { immediate: true },
@@ -68,7 +74,12 @@ watch(
         v-show="currentTabIndex === 0"
         class="component-display padding-rem radius-half-rem shadow-black"
       >
-        <QMarkdownRender :content="currentContent" show-toc />
+        <QMarkdownRender
+          v-if="currentContent"
+          :key="component.docPath"
+          :content="currentContent"
+          show-toc
+        />
       </div>
       <component
         :is="currentDemo"
