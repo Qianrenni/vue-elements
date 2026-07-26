@@ -1,1 +1,0 @@
-import{D as o}from"./DemoBlock-CfyZZ50f.js";import{d as s,o as t,c as n,w as a,a as u}from"./index-DLDfS7fg.js";const c="\n```html\n<!-- useDebounce Demo -->\n```\n",i=s({name:"DisplayUtilsBusinessuseDebounce",__name:"useDebounce",setup(r){return(m,e)=>(t(),n(o,{code:c},{default:a(()=>[...e[0]||(e[0]=[u("p",null,"useDebounce 文档待完善",-1)])]),_:1}))}});export{i as default};

@@ -1,0 +1,1 @@
+import{D as e}from"./DemoBlock-B_3PK6W_.js";import{d as t,o as n,c as a,w as r,a as p}from"./index-uHcb5N9X.js";const i="\n```html\n<!-- SwiperAction Component Demo -->\n```\n",u=t({name:"DisplayLayoutSwiperAction",__name:"SwiperAction",setup(s){return(c,o)=>(n(),a(e,{code:i},{default:r(()=>[...o[0]||(o[0]=[p("p",null,"SwiperAction 组件文档待完善",-1)])]),_:1}))}});export{u as default};
