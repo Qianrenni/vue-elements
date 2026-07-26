@@ -29,7 +29,7 @@ const createTree = (): TreeNodeData[] => {
     for (const label of entry.category) {
       let node = currentLevel.find((item) => item.label === label);
       if (!node) {
-        node = { id: nextId, label, children: [] };
+        node = { id: nextId, label, children: [], expanded: true };
         nextId += 1;
         currentLevel.push(node);
       }

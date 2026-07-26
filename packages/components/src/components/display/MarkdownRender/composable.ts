@@ -57,7 +57,7 @@ function scrollToIdFn(id: string) {
 export function useMarkdownRender(props: MarkdownRenderProps) {
   const htmlContent = ref('');
   const toc = ref<TocItem[]>([]);
-  const tocExpanded = ref(false);
+  const tocExpanded = ref(props.showToc ?? false);
   const refMarkdownContainer = useTemplateRef<HTMLElement>('markdownContainer');
 
   // 自定义 renderer

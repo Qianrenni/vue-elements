@@ -3,7 +3,11 @@
  * @description Markdown 渲染组件，支持代码高亮、数学公式、悬浮目录等功能
  -->
 <template>
-  <div class="markdown-container" ref="refMarkdownContainer">
+  <div
+    ref="refMarkdownContainer"
+    :class="{ 'markdown-with-toc': props.showToc && toc.length > 0 }"
+    class="markdown-container"
+  >
     <div class="markdown-body" v-html="htmlContent" />
     <span
       v-if="props.showCopy && props.content.trim() !== ''"
@@ -40,9 +44,10 @@
 </template>
 
 <script lang="ts" setup>
+import { QIcon } from '@/components/basic/Icon';
+
 import { useMarkdownRender } from './composable';
 import type { MarkdownRenderProps } from './type';
-import { QIcon } from '@/components/basic/Icon';
 
 defineOptions({ name: 'QMarkdownRender' });
 
@@ -78,76 +83,69 @@ defineExpose({
 </script>
 
 <style scoped>
-.markdown-container {
-  position: relative;
-}
-
 .copy {
   display: flex;
   justify-content: flex-end;
 }
 
+.markdown-container {
+  position: relative;
+}
+
+.markdown-with-toc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 16rem);
+  column-gap: 1.5rem;
+}
+
+.markdown-with-toc .markdown-body {
+  min-width: 0;
+}
+
 .floating-toc {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: var(--card-bg);
-  border-radius: 8px;
-  box-shadow: 0 2px 10px var(--box-shadow);
-  transition: all 0.3s ease;
-  z-index: var(--z-index-level-2);
-  max-width: 300px;
-  max-height: 60vh;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
+  position: sticky;
+  top: 1rem;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  max-height: calc(100vh - 2rem);
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border-color);
 }
 
 .toc-collapsed {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
+  width: auto;
+  max-height: none;
 }
 
 .toc-header {
-  padding: 8px 12px;
-  background-color: var(--primary-color);
-  color: white;
-  font-weight: bold;
+  padding: 0 0 0.75rem;
+  color: var(--text-color);
+  font-size: 0.875rem;
+  font-weight: 600;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .toc-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: var(--primary-color);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
+  display: none;
 }
 
 .toc-content {
-  max-height: calc(60vh - 40px);
+  max-height: calc(100vh - 5rem);
   overflow-y: auto;
 }
 
 .toc-item {
-  padding: 4px 0;
+  padding: 0.25rem 0;
+  color: var(--subtle-text-color);
   cursor: pointer;
-  white-space: nowrap;
+  line-height: 1.5;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: background-color 0.2s;
+  transition: color 0.2s ease;
 }
 
 .toc-item:hover {
-  background-color: var(--gray-100);
   color: var(--primary-color);
 }
 
@@ -175,15 +173,25 @@ defineExpose({
 
 /* 响应式设计 */
 @media screen and (max-width: 768px) {
-  .floating-toc {
-    top: 10px;
-    right: 10px;
-    max-width: 250px;
+  .markdown-with-toc {
+    display: flex;
+    flex-direction: column;
   }
 
-  .toc-collapsed {
-    width: 32px;
-    height: 32px;
+  .floating-toc {
+    position: relative;
+    top: auto;
+    order: -1;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    padding-left: 0;
+    border-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    border-left: 0;
+  }
+
+  .toc-header {
+    padding: 0 0 0.75rem;
   }
 }
 </style>

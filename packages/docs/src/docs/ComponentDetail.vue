@@ -68,7 +68,7 @@ watch(
         v-show="currentTabIndex === 0"
         class="component-display padding-rem radius-half-rem shadow-black"
       >
-        <QMarkdownRender :content="currentContent" />
+        <QMarkdownRender :content="currentContent" show-toc />
       </div>
       <component
         :is="currentDemo"
