@@ -1,1 +1,0 @@
-import{D as r}from"./DemoBlock-B_3PK6W_.js";import{d as a,o,c as s,w as t,a as m}from"./index-uHcb5N9X.js";const n="\n```html\n<!-- useArray Demo -->\n```\n",i=a({name:"DisplayUtilsAlgorithmuseArray",__name:"useArray",setup(l){return(p,e)=>(o(),s(r,{code:n},{default:t(()=>[...e[0]||(e[0]=[m("p",null,"useArray 文档待完善",-1)])]),_:1}))}});export{i as default};
