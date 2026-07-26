@@ -1,8 +1,6 @@
-import {
-  binarySearchLeft,
-  binarySearchRight,
-} from '@/algorithm/useArray/useArray';
 import { describe, expect, it } from 'vitest';
+
+import { binarySearchLeft, binarySearchRight } from './useArray';
 
 describe('useArray - Binary Search Functions', () => {
   // 比较函数：用于数字比较

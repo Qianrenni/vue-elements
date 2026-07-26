@@ -1,1 +1,1 @@
-export * from '@/business/useThrottle/useThrottle';
+export * from './useThrottle';

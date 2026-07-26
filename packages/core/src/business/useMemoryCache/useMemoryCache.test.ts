@@ -1,8 +1,6 @@
-import {
-  shareMemoryCache,
-  UseMemoryCache,
-} from '@/business/useMemoryCache/useMemoryCache';
 import { describe, expect, it, vi } from 'vitest';
+
+import { shareMemoryCache, UseMemoryCache } from './useMemoryCache';
 
 describe('UseMemoryCache', () => {
   it('应该设置并获取缓存值', () => {

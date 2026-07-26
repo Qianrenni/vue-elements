@@ -1,5 +1,6 @@
-import { clipString } from '@/business/useClip/useClip';
 import { describe, expect, it } from 'vitest';
+
+import { clipString } from './useClip';
 
 describe('clipString', () => {
   it('应该在文本长度超过限制时截断并添加省略号', () => {

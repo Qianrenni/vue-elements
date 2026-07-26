@@ -1,1 +1,1 @@
-export * from '@/business/useNullHandel/useNullHandel';
+export * from './useNullHandel';

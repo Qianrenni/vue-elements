@@ -1,1 +1,1 @@
-export * from '@/business/useTimeUtils/useTimeUtils';
+export * from './useTimeUtils';

@@ -1,5 +1,6 @@
-import { UseTimeUtils } from '@/business/useTimeUtils/useTimeUtils';
 import { describe, expect, it } from 'vitest';
+
+import { UseTimeUtils } from './useTimeUtils';
 
 describe('useTimeUtils', () => {
   it('时间相同应该相等', () => {

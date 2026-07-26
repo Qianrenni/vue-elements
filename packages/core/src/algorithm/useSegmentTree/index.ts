@@ -1,2 +1,2 @@
-export * from '@/algorithm/useSegmentTree/useSegmentTree';
-export { default } from '@/algorithm/useSegmentTree/useSegmentTree';
+export * from './useSegmentTree';
+export { default } from './useSegmentTree';

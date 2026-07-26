@@ -1,1 +1,1 @@
-export * from '@/algorithm/useSort/useSort';
+export * from './useSort';

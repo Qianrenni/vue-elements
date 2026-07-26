@@ -1,6 +1,7 @@
-import { deepMerge, isPlainObject } from '@/business/useObject/useObject';
-import type { DeepPartial } from '@/types';
 import { describe, expect, it } from 'vitest';
+
+import type { DeepPartial } from '../../types';
+import { deepMerge, isPlainObject } from './useObject';
 
 describe('isPlainObject', () => {
   it('应识别普通对象为 true', () => {

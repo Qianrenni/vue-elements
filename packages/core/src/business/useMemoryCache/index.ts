@@ -1,1 +1,1 @@
-export * from '@/business/useMemoryCache/useMemoryCache';
+export * from './useMemoryCache';

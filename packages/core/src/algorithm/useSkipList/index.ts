@@ -1,1 +1,1 @@
-export * from '@/algorithm/useSkipList/useSkipList';
+export * from './useSkipList';

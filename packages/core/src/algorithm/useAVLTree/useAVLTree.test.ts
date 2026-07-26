@@ -1,5 +1,6 @@
-import { AVLNode, UseAVLTree } from '@/algorithm/useAVLTree/useAVLTree';
 import { beforeEach, describe, expect, it } from 'vitest';
+
+import { AVLNode, UseAVLTree } from './useAVLTree';
 
 // 测试专用白盒视图：描述 UseAVLTree 需要断言的私有成员
 interface AVLTreeInternals<T> {

@@ -1,1 +1,1 @@
-export * from '@/algorithm/useRedBlackTree/useRedBlackTree';
+export * from './useRedBlackTree';

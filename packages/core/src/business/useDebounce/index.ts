@@ -1,1 +1,1 @@
-export * from '@/business/useDebounce/useDebounce';
+export * from './useDebounce';

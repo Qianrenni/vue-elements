@@ -1,4 +1,4 @@
-import { UseHeap } from '@/algorithm/useHeap';
+import { UseHeap } from '../useHeap';
 
 /**
  * 冒泡排序

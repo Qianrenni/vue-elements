@@ -1,1 +1,1 @@
-export * from '@/algorithm/useArray/useArray';
+export * from './useArray';

@@ -1,5 +1,6 @@
-import { UseSkipList } from '@/algorithm/useSkipList/useSkipList';
 import { beforeEach, describe, expect, it } from 'vitest';
+
+import { UseSkipList } from './useSkipList';
 
 describe('UseSkipList', () => {
   let skipList: UseSkipList<number>;

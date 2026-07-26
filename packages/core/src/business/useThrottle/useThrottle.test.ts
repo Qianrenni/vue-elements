@@ -1,5 +1,6 @@
-import { useThrottle } from '@/business/useThrottle/useThrottle';
 import { describe, expect, it, vi } from 'vitest';
+
+import { useThrottle } from './useThrottle';
 
 describe('useThrottle', () => {
   it('应该在间隔内执行一次节流函数', () => {

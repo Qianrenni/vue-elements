@@ -1,5 +1,6 @@
-import { letIfNotNull } from '@/business/useNullHandel/useNullHandel';
 import { describe, expect, it } from 'vitest';
+
+import { letIfNotNull } from './useNullHandel';
 
 describe('letIfNotNull', () => {
   it('应该在值非空时执行回调函数', () => {

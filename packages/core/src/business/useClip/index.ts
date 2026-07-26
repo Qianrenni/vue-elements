@@ -1,1 +1,1 @@
-export * from '@/business/useClip/useClip';
+export * from './useClip';

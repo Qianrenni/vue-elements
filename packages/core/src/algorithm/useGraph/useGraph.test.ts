@@ -1,5 +1,6 @@
-import { BFS, DFS } from '@/algorithm/useGraph/useGraph';
 import { describe, expect, it } from 'vitest';
+
+import { BFS, DFS } from './useGraph';
 
 /** 创建一个简单的图：0-1-2-3 链式图 */
 const createChainGraph = () => {

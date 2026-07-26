@@ -1,4 +1,4 @@
-import type { DeepPartial } from '@/types';
+import type { DeepPartial } from '../../types';
 
 export function isPlainObject(
   value: unknown,

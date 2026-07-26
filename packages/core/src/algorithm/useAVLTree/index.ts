@@ -1,1 +1,1 @@
-export * from '@/algorithm/useAVLTree/useAVLTree';
+export * from './useAVLTree';

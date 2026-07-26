@@ -1,1 +1,1 @@
-export * from '@/algorithm/useGraph/useGraph';
+export * from './useGraph';

@@ -1,1 +1,1 @@
-export * from '@/algorithm/useHeap/useHeap';
+export * from './useHeap';

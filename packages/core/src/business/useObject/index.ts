@@ -1,1 +1,1 @@
-export * from '@/business/useObject/useObject';
+export * from './useObject';
