@@ -1,31 +1,36 @@
-# Props 参数
+# QFormButton
 
-| 参数        | 类型                              | 默认值     | 必填 | 说明         |
-| ----------- | --------------------------------- | ---------- | ---- | ------------ |
-| `type`      | `'button' \| 'submit' \| 'reset'` | `'button'` | 否   | 按钮类型     |
-| `disabled`  | `boolean`                         | `false`    | 否   | 是否禁用     |
-| `autofocus` | `boolean`                         | `false`    | 否   | 是否自动聚焦 |
-| `size`      | `'large' \| 'middle' \| 'small'`  | `'middle'` | 否   | 按钮大小     |
+## 用途
 
----
+表单按钮，渲染原生 `<button>`，支持普通、提交和重置类型。
 
-# Events 事件
+## 基本用法
 
-| 事件名  | 回调参数   | 说明       |
-| ------- | ---------- | ---------- |
-| `click` | `e: Event` | 点击时触发 |
+```vue
+<QFormButton type="submit">提交</QFormButton>
+```
 
----
+## Props
 
-# Slots 插槽
+继承 `FormComponentProps<null>`。除下表项外，`modelValue`、`name`、`label`、`readonly`、`status`、`required`、`placeholder`、`clearable`、`id`、`direction`、`errorMessage` 均可传入，类型分别为 `null | undefined`、`string`、`string`、`boolean`、`'default' | 'success' | 'warning' | 'error'`、`boolean`、`string`、`boolean`、`string`、`'vertical' | 'horizontal'`、`string`；组件当前不使用这些属性。
 
-| 插槽名    | 说明     | 示例                                |
-| --------- | -------- | ----------------------------------- |
-| `default` | 按钮内容 | `<FormButton>按钮文本</FormButton>` |
+| 属性        | 类型                              | 必填 | 默认值     | 说明                     |
+| ----------- | --------------------------------- | ---- | ---------- | ------------------------ |
+| `type`      | `'button' \| 'submit' \| 'reset'` | 否   | `'button'` | 原生按钮类型。           |
+| `disabled`  | `boolean`                         | 否   | `false`    | 是否禁用按钮。           |
+| `autofocus` | `boolean`                         | 否   | `false`    | 是否自动聚焦。           |
+| `size`      | `'small' \| 'middle' \| 'large'`  | 否   | `'middle'` | 影响插槽内容的文字尺寸。 |
 
----
+## Emits
 
-# Expose 方法
+无。
 
-| 方法名 | 参数 | 返回值 | 说明 |
-| ------ | ---- | ------ | ---- |
+## Slots
+
+| 插槽     | 作用域参数                             | 回退内容 |
+| -------- | -------------------------------------- | -------- |
+| 默认插槽 | `{ disabled: boolean, class: object }` | 无。     |
+
+## Exposes
+
+无。

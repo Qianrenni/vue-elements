@@ -1,35 +1,45 @@
-# Props 参数
+# QFormRadioGroup
 
-| 参数         | 类型                         | 默认值         | 必填 | 说明     |
-| ------------ | ---------------------------- | -------------- | ---- | -------- |
-| `modelValue` | `string`                     | —              | 否   | 选中值   |
-| `options`    | `Options[]`                  | —              | 是   | 选项列表 |
-| `label`      | `string`                     | —              | 否   | 标签文本 |
-| `name`       | `string`                     | —              | 否   | 名称     |
-| `required`   | `boolean`                    | `true`         | 否   | 是否必填 |
-| `direction`  | `'horizontal' \| 'vertical'` | `'horizontal'` | 否   | 排列方向 |
-| `disabled`   | `boolean`                    | `false`        | 否   | 是否禁用 |
+## 用途
 
----
+按选项列表渲染单选框组，并以字符串维护选中值。
 
-# Events 事件
+## 基本用法
 
-| 事件名              | 回调参数        | 说明         |
-| ------------------- | --------------- | ------------ |
-| `update:modelValue` | `value: string` | 值变化时触发 |
-| `input`             | `value: string` | 输入时触发   |
-| `change`            | `value: string` | 改变时触发   |
+```vue
+<QFormRadioGroup v-model="value" :options="[{ label: '是', value: 'yes' }]" />
+```
 
----
+## Props
 
-# Slots 插槽
+继承 `FormComponentProps<string>`：`modelValue?: string | null`、`name?: string`、`label?: string`、`disabled?: boolean`、`readonly?: boolean`、`size?: FormSize`、`status?: FormStatus`、`required?: boolean`、`placeholder?: string`、`clearable?: boolean`、`autofocus?: boolean`、`id?: string`、`direction?: 'vertical' | 'horizontal'`、`errorMessage?: string`。
 
-| 插槽名 | 说明 | 示例 |
-| ------ | ---- | ---- |
+| 属性                     | 类型                         | 必填 | 默认值         | 说明                                                    |
+| ------------------------ | ---------------------------- | ---- | -------------- | ------------------------------------------------------- |
+| `options`                | `Options[]`                  | 是   | —              | 选项；`Options` 为 `{ label: string; value: string }`。 |
+| `required`               | `boolean`                    | 否   | `true`         | 标记标签并传递给每个原生单选框。                        |
+| `direction`              | `'vertical' \| 'horizontal'` | 否   | `'horizontal'` | 布局方向。                                              |
+| `disabled`               | `boolean`                    | 否   | `false`        | 禁用所有选项。                                          |
+| `autofocus` / `readonly` | `boolean`                    | 否   | `false`        | 当前未绑定到原生控件。                                  |
+| `size`                   | `FormSize`                   | 否   | `'middle'`     | 当前不影响渲染。                                        |
+| `placeholder`            | `string`                     | 否   | `''`           | 当前不影响渲染。                                        |
+| `clearable`              | `boolean`                    | 否   | `true`         | 当前不影响渲染。                                        |
 
----
+其余继承属性没有组件默认值；`modelValue`、`name`、`label` 用于选中状态、原生名称和显示。
 
-# Expose 方法
+## Emits
 
-| 方法名 | 参数 | 返回值 | 说明 |
-| ------ | ---- | ------ | ---- |
+| 事件                | 参数     | 触发时机                         |
+| ------------------- | -------- | -------------------------------- |
+| `update:modelValue` | `string` | 所选原生单选框发生 `change` 时。 |
+| `input`             | `string` | 同上。                           |
+
+声明继承的 `change`、`focus`、`blur`、`clear`，但当前不会触发。
+
+## Slots
+
+无。
+
+## Exposes
+
+无。

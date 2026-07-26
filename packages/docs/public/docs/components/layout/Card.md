@@ -1,31 +1,41 @@
-# Props 参数
+# QCard
 
-| 参数        | 类型      | 默认值  | 必填 | 说明         |
-| ----------- | --------- | ------- | ---- | ------------ |
-| `animation` | `boolean` | `false` | 否   | 是否开启动画 |
+## 用途
 
----
+用于组织卡片的头部、主体两侧区域与底部区域；可选启用 `card-animation` 入场动画类。
 
-# Events 事件
+## 基本用法
 
-| 事件名 | 回调参数 | 说明 |
-| ------ | -------- | ---- |
+```vue
+<QCard :animation="true">
+  <template #header>标题</template>
+  <template #left>左侧内容</template>
+  主体内容
+  <template #right>右侧内容</template>
+  <template #footer>底部内容</template>
+</QCard>
+```
 
----
+## Props
 
-# Slots 插槽
+| 名称        | 类型      | 必填 | 默认值           | 说明                                           |
+| ----------- | --------- | ---- | ---------------- | ---------------------------------------------- |
+| `animation` | `boolean` | 否   | 无（源码未设置） | 为 `true` 时为根元素添加 `card-animation` 类。 |
 
-| 插槽名    | 说明     | 示例                                    |
-| --------- | -------- | --------------------------------------- |
-| `header`  | 卡片头部 | `<template #header>头部内容</template>` |
-| `left`    | 卡片左侧 | `<template #left>左侧内容</template>`   |
-| `default` | 卡片主体 | `<Card>主体内容</Card>`                 |
-| `right`   | 卡片右侧 | `<template #right>右侧内容</template>`  |
-| `footer`  | 卡片底部 | `<template #footer>底部内容</template>` |
+## Emits
 
----
+无。
 
-# Expose 方法
+## Slots
 
-| 方法名 | 参数 | 返回值 | 说明 |
-| ------ | ---- | ------ | ---- |
+| 名称      | 作用域参数 | 后备内容 |
+| --------- | ---------- | -------- |
+| `header`  | 无         | 无。     |
+| `default` | 无         | 无。     |
+| `left`    | 无         | 无。     |
+| `right`   | 无         | 无。     |
+| `footer`  | 无         | 无。     |
+
+## Exposes
+
+无。

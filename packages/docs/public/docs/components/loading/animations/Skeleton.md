@@ -1,25 +1,35 @@
-# Props 参数
+# QSkeleton
 
-| 参数 | 类型 | 默认值 | 必填 | 说明 |
-| ---- | ---- | ------ | ---- | ---- |
+## 用途
 
----
+`QSkeleton` 显示带渐变扫光效果的骨架屏占位区域；其宽度和高度随父容器撑满，最小高度为 `20px`。
 
-# Events 事件
+## 基本用法
 
-| 事件名 | 回调参数 | 说明 |
-| ------ | -------- | ---- |
+```vue
+<script setup lang="ts">
+import { QSkeleton } from 'qyani-components';
+</script>
 
----
+<template>
+  <div style="height: 80px">
+    <QSkeleton />
+  </div>
+</template>
+```
 
-# Slots 插槽
+## Props
 
-| 插槽名 | 说明 | 示例 |
-| ------ | ---- | ---- |
+无。
 
----
+## Emits
 
-# Expose 方法
+无。
 
-| 方法名 | 参数 | 返回值 | 说明 |
-| ------ | ---- | ------ | ---- |
+## Slots
+
+无。
+
+## Exposes
+
+无。

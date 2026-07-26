@@ -1,25 +1,33 @@
-# Props 参数
+# QBreathing
 
-| 参数 | 类型 | 默认值 | 必填 | 说明 |
-| ---- | ---- | ------ | ---- | ---- |
+## 用途
 
----
+`QBreathing` 显示三个依次脉冲变化的圆点，适合表示轻量的等待状态。
 
-# Events 事件
+## 基本用法
 
-| 事件名 | 回调参数 | 说明 |
-| ------ | -------- | ---- |
+```vue
+<script setup lang="ts">
+import { QBreathing } from 'qyani-components';
+</script>
 
----
+<template>
+  <QBreathing />
+</template>
+```
 
-# Slots 插槽
+## Props
 
-| 插槽名 | 说明 | 示例 |
-| ------ | ---- | ---- |
+无。
 
----
+## Emits
 
-# Expose 方法
+无。
 
-| 方法名 | 参数 | 返回值 | 说明 |
-| ------ | ---- | ------ | ---- |
+## Slots
+
+无。
+
+## Exposes
+
+无。
