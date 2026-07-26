@@ -1,1 +1,0 @@
-import{D as e}from"./DemoBlock-Ct33r_AN.js";import{d as t,o as n,c as a,w as r,a as p}from"./index-zY1AF0ER.js";const s="\n```html\n<!-- PopContainer Component Demo -->\n```\n",u=t({name:"DisplayLayoutPopContainer",__name:"PopContainer",setup(m){return(i,o)=>(n(),a(e,{code:s},{default:r(()=>[...o[0]||(o[0]=[p("p",null,"PopContainer 组件文档待完善",-1)])]),_:1}))}});export{u as default};

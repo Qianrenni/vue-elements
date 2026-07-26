@@ -1,0 +1,1 @@
+import{D as a}from"./DemoBlock-CfyZZ50f.js";import{d as o,o as s,c as t,w as r,a as p}from"./index-DLDfS7fg.js";const m="\n```html\n<!-- useGraph Demo -->\n```\n",i=o({name:"DisplayUtilsAlgorithmuseGraph",__name:"useGraph",setup(n){return(l,e)=>(s(),t(a,{code:m},{default:r(()=>[...e[0]||(e[0]=[p("p",null,"useGraph 文档待完善",-1)])]),_:1}))}});export{i as default};
