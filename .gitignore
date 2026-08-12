@@ -13,7 +13,6 @@ yarn-error.log*
 
 # 编辑器/IDE 临时文件
 .idea/
-.vscode/
 *.suo
 *.ntvs*
 *.njsproj
