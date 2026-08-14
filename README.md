@@ -51,16 +51,17 @@ import 'qyani-components/dist/style.css';
 #### 2. Import Components On-demand
 
 ```typescript
-import { QIcon, QButton, QFormContainer } from 'qyani-components';
+import { QButton, QFormContainer, QIcon } from 'qyani-components';
 ```
 
 #### 3. Global Registration
 
 ```typescript
-import { createApp } from 'vue';
-import App from './App.vue';
 import qiannaicomponents from 'qyani-components';
 import 'qyani-components/dist/style.css';
+import { createApp } from 'vue';
+
+import App from './App.vue';
 
 const app = createApp(App);
 app.use(qiannaicomponents);
@@ -244,6 +245,7 @@ pnpm run update
 ## 📖 Documentation
 
 - [Online Documentation](https://qyani-ui.netlify.app/#)
+- [Changelog (更新日志)](./CHANGELOG.md)
 
 ## 📄 License
 

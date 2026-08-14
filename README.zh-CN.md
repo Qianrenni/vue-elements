@@ -49,16 +49,17 @@ import 'qyani-components/dist/style.css';
 #### 2. 按需引入组件
 
 ```typescript
-import { QIcon, QButton, QFormContainer } from 'qyani-components';
+import { QButton, QFormContainer, QIcon } from 'qyani-components';
 ```
 
 #### 3. 全局安装
 
 ```typescript
-import { createApp } from 'vue';
-import App from './App.vue';
 import qiannaicomponents from 'qyani-components';
 import 'qyani-components/dist/style.css';
+import { createApp } from 'vue';
+
+import App from './App.vue';
 
 const app = createApp(App);
 app.use(qiannaicomponents);
@@ -77,8 +78,8 @@ app.mount('#app');
 </template>
 
 <script setup lang="ts">
+import { QAvatar, QButton, QFormContainer } from 'qyani-components';
 import { ref } from 'vue';
-import { QAvatar, QFormContainer, QButton } from 'qyani-components';
 
 const username = ref('');
 </script>
@@ -255,6 +256,7 @@ pnpm run update
 ## 📖 文档
 
 - [在线文档](https://qyani-ui.netlify.app/#)
+- [更新日志 (Changelog)](./CHANGELOG.md)
 
 ## 📄 License
 
