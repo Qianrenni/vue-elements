@@ -146,6 +146,48 @@ When running `docs:dev`, the Vite config maps `qyani-components` to the source e
 | `index_python.local.py` | `packages/components/scripts/` | `src/index.ts` with imports, exports, and `app.component()` registrations       |
 | `global.d.ts.local.py`  | `packages/components/scripts/` | `global.d.ts` with Vue module augmentation for all components                   |
 
+### Docs ↔ Components Relationship & Sync Obligation
+
+> AI agents modifying component code must keep docs in sync with source. The **single source of truth** for a component's API docs is the `README.md` sitting next to its source; the docs site renders generated copies of it.
+
+**Relationship:**
+
+| Side                    | Location                                                         | Purpose                                                                              |
+| ----------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **components (source)** | `packages/components/src/components/{category}/{Name}/`          | Component implementation: `{Name}.vue`, `type.ts` (props), `composable.ts`           |
+| **Canonical docs**      | `packages/components/src/components/{category}/{Name}/README.md` | ★ Component API docs (Props / Emits / Slots / Exposes tables) — **always edit this** |
+| **Generated docs**      | `packages/docs/public/docs/components/{category}/{Name}.md`      | Copied from canonical docs by script; rendered by the docs site                      |
+| **Navigation manifest** | `packages/docs/src/utils/useComponentInfo.ts`                    | Auto-generated; drives the docs site sidebar                                         |
+
+Sync flow:
+
+```
+component README.md ── pnpm run docs:update (sync_docs.py) ──► public/docs/components/**/*.md
+packages/components/src/components/...                        packages/docs/public/docs/...
+        │
+        └─ also regenerates useComponentInfo.ts (navigation manifest)
+```
+
+> Note: `loading/animations/` is a flat directory — `QBreathing`, `QSkeleton` and `QSpinner` share a single canonical `animations/README.md`, but each gets its own generated doc under `public/docs/components/loading/animations/`.
+
+**⚠️ Component prop changes must be synced to docs**
+
+When you change a component's `props` (the `XxxProps` interface in `type.ts`, or `withDefaults` defaults in `{Name}.vue`), you **must** also update that component's docs, otherwise the docs site shows an API that no longer matches the source.
+
+Steps:
+
+1. Edit source: `packages/components/src/components/{category}/{Name}/type.ts` (props) and `{Name}.vue` (defaults / logic).
+2. Update the canonical doc: the sibling `README.md` `## Props` table (name / type / required / default / description); do the same for `Emits` / `Slots` / `Exposes` changes.
+3. Sync with the script:
+
+   ```bash
+   pnpm run docs:update
+   ```
+
+   This runs `packages/docs/scripts/sync_docs.py`: clears and rebuilds `public/docs/components/**`, copies each component's sibling `README.md` to its generated doc, and regenerates `useComponentInfo.ts`.
+
+> **Adding a new component**: create its `README.md` (with Props / Emits / Slots / Exposes tables) first, then run `pnpm run docs:update`; also run the components package `pnpm run update` to regenerate `src/index.ts` and `global.d.ts`.
+
 ### Global Type Augmentations
 
 `global.d.ts` provides Vue module augmentation (`declare module 'vue'`) for all Q-prefixed components, enabling type-safe usage without explicit imports in consuming projects.
