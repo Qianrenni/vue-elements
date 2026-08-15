@@ -1,24 +1,40 @@
 <!-- App.vue -->
-<!-- src/docs/App.vue -->
 <script lang="ts" setup>
+import SearchBar from '@/components/SearchBar.vue';
 import ComponentDetail from '@/docs/ComponentDetail.vue';
 import ComponentList from '@/docs/ComponentList.vue';
-import type { DocsEntry } from '@/utils/useComponentInfo.ts';
-import { QDrawer, QIcon, QThemeToggle, useScreenSize } from 'qyani-components';
-import { useFollowSystemTheme } from 'qyani-components';
-import { ref, watch } from 'vue';
+import { docsEntries, type DocsEntry } from '@/utils/useComponentInfo.ts';
+import {
+  QDrawer,
+  QIcon,
+  QThemeToggle,
+  useFollowSystemTheme,
+  useScreenSize,
+} from 'qyani-components';
+import { computed, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 useFollowSystemTheme();
-const selected = ref<DocsEntry | null>(null);
+
+const route = useRoute();
+const router = useRouter();
 
 /**
- * Select a documentation entry from the navigation tree.
- * @param entry Generated documentation metadata for the selected item.
- * @returns Nothing.
+ * 由 URL 参数 /c/:name 推导当前选中的文档条目：
+ * - 支持直接访问组件页、刷新不丢失状态、浏览器前进后退
+ * - 未匹配或处于首页时返回 null，展示占位提示
  */
-const updateSelected = (entry: DocsEntry) => {
-  selected.value = entry;
+const selected = computed<DocsEntry | null>(() => {
+  const name = route.params.name as string | undefined;
+  if (!name) return null;
+  return docsEntries.find((entry) => entry.name === name) ?? null;
+});
+
+/** 导航/搜索选中某条目时更新 URL */
+const onSelect = (entry: DocsEntry) => {
+  router.push({ name: 'component', params: { name: entry.name } });
 };
+
 const showMenu = useScreenSize.getWidth(768);
 const showDrawer = ref(false);
 watch(
@@ -29,12 +45,20 @@ watch(
     }
   },
 );
+// 路由变化（选中其他组件）时关闭移动端抽屉
+watch(
+  () => route.fullPath,
+  () => {
+    showDrawer.value = false;
+  },
+);
 </script>
 
 <template>
   <div>
     <header class="bg-card container" style="justify-content: space-between">
       <QThemeToggle :size="24" :title="'主题变换'" />
+      <SearchBar class="search-bar" />
       <QIcon
         v-show="showMenu"
         icon="Menu"
@@ -46,7 +70,7 @@ watch(
       <ComponentList
         :selected="selected"
         class="hidden-768"
-        @select="updateSelected"
+        @select="onSelect"
       />
       <ComponentDetail :component="selected" />
     </main>
@@ -54,10 +78,16 @@ watch(
       <ComponentList
         :selected="selected"
         style="height: 100vh"
-        @select="updateSelected"
+        @select="onSelect"
       />
     </QDrawer>
   </div>
 </template>
 
-<style></style>
+<style>
+.search-bar {
+  flex: 1;
+  max-width: 20rem;
+  margin: 0 1rem;
+}
+</style>

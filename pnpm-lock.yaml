@@ -122,6 +122,9 @@ importers:
 
   packages/docs:
     dependencies:
+      pinyin-pro:
+        specifier: ^3.26.0
+        version: 3.28.1
       qyani-components:
         specifier: workspace:*
         version: link:../components

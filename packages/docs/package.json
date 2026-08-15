@@ -11,6 +11,7 @@
     "update:index": "python3 scripts/sync_docs.py"
   },
   "dependencies": {
+    "pinyin-pro": "^3.26.0",
     "qyani-components": "workspace:*",
     "vue": "^3.5.18",
     "vue-router": "^4.6.4"
