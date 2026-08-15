@@ -1,1 +1,0 @@
-import{D as a}from"./DemoBlock-Bin6DJpm.js";import{d as o,o as s,c as t,w as p,a as r}from"./index-BWAGKIrk.js";const m="\n```html\n<!-- useHeap Demo -->\n```\n",i=o({name:"DisplayUtilsAlgorithmuseHeap",__name:"useHeap",setup(n){return(l,e)=>(s(),t(a,{code:m},{default:p(()=>[...e[0]||(e[0]=[r("p",null,"useHeap 文档待完善",-1)])]),_:1}))}});export{i as default};

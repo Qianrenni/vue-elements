@@ -1,0 +1,1 @@
+import{D as s}from"./DemoBlock-B7uW5Cjn.js";import{d as a,o,c as t,w as c,a as n}from"./index-C4FdPvsf.js";const r="\n```html\n<!-- useLRUCache Demo -->\n```\n",i=a({name:"DisplayUtilsBusinessuseLRUCache",__name:"useLRUCache",setup(m){return(u,e)=>(o(),t(s,{code:r},{default:c(()=>[...e[0]||(e[0]=[n("p",null,"useLRUCache 文档待完善",-1)])]),_:1}))}});export{i as default};
