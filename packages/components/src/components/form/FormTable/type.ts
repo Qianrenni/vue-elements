@@ -1,4 +1,4 @@
-import type { FormComponentProps, FormComponentEmits } from '@/types';
+import type { FormComponentEmits, FormComponentProps } from '@/types';
 
 // 列定义
 export interface TableColumn {
@@ -24,21 +24,38 @@ export interface TableColumn {
 
 // 支持的 selection 模式
 export type SelectionMode = 'single' | 'multiple' | null;
-export type Row = {
+
+/**
+ * 表格行类型：外部数据行 T 附加内部选中状态 isSelected
+ * @typeParam T 外部传入的数据行类型，默认 Record<string, unknown>
+ */
+export type Row<T = Record<string, unknown>> = T & {
   isSelected: boolean;
-  [key: string]: unknown;
 };
-export type FormTableModelValueRowType = Record<string, unknown>;
-export type FormTableModelValueType = FormTableModelValueRowType[];
+
+/**
+ * 表格数据行类型
+ * @typeParam T 外部传入的数据行类型，默认 Record<string, unknown>
+ */
+export type FormTableModelValueRowType<T = Record<string, unknown>> = T;
+
+/**
+ * 表格数据 / 选中值类型（行数组）
+ * @typeParam T 外部传入的数据行类型，默认 Record<string, unknown>
+ */
+export type FormTableModelValueType<T = Record<string, unknown>> = T[];
 
 /**
  * FormTable 组件 Props
+ * @typeParam T 外部传入的数据行类型，通过 data 推断，默认 Record<string, unknown>
  */
-export interface FormTableProps extends FormComponentProps<FormTableModelValueType> {
+export interface FormTableProps<
+  T = Record<string, unknown>,
+> extends FormComponentProps<FormTableModelValueType<T>> {
   /**
    * 表格数据
    */
-  data: Record<string, unknown>[];
+  data: T[];
   /**
    * 列配置
    */
@@ -67,10 +84,11 @@ export interface FormTableProps extends FormComponentProps<FormTableModelValueTy
 
 /**
  * FormTable 组件 Emits
+ * @typeParam T 外部传入的数据行类型，默认 Record<string, unknown>
  */
-export interface FormTableEmits extends FormComponentEmits<
-  Record<string, unknown>[]
-> {
+export interface FormTableEmits<
+  T = Record<string, unknown>,
+> extends FormComponentEmits<FormTableModelValueType<T>> {
   /** 页码变化时触发 */
   (e: 'page-change', value: number): void;
   /** 列排序配置变化时触发 */

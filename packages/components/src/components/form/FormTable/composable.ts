@@ -1,42 +1,53 @@
+import { useFormEvents } from '@/events';
 import {
   computed,
+  type ComputedRef,
   reactive,
   ref,
-  watch,
-  type ComputedRef,
   type Ref,
+  shallowRef,
+  watch,
 } from 'vue';
-import type { FormTableProps, FormTableEmits, Row } from './type';
-import { useFormEvents } from '@/events';
+
+import type { FormTableEmits, FormTableProps, Row } from './type';
 
 /**
  * FormTable 组件核心逻辑
+ * @typeParam T 外部传入的数据行类型，默认 Record<string, unknown>
  * @param props 组件 Props
  * @param emit 组件 Emits
  * @returns 响应式状态和操作方法
  */
-export const useFormTable = (
-  props: FormTableProps,
-  emit: FormTableEmits,
+export const useFormTable = <T = Record<string, unknown>>(
+  props: FormTableProps<T>,
+  emit: FormTableEmits<T>,
 ): {
-  localData: Row[];
-  localValue: Ref<Omit<Row, 'isSelected'>[]>;
+  localData: Row<T>[];
+  localValue: Ref<T[]>;
   currentPage: Ref<number>;
   totalPages: ComputedRef<number>;
-  paginatedData: ComputedRef<Row[]>;
+  paginatedData: ComputedRef<Row<T>[]>;
   isAllSelected: ComputedRef<boolean>;
   sortChange: (columnIndex: number) => void;
   handlePageChange: (page: number) => void;
-  onSelectRow: (row: Row) => void;
+  onSelectRow: (row: Row<T>) => void;
   onToggleAllSelection: () => void;
 } => {
-  const { handleInput, handleChange } =
-    useFormEvents<Record<string, unknown>[]>(emit);
+  const { handleInput, handleChange } = useFormEvents<T[]>(emit);
 
-  /** 本地选中值（v-model） */
-  const localValue = ref<Omit<Row, 'isSelected'>[]>([]);
-  /** 本地数据（避免直接修改 props） */
-  const localData = reactive<Row[]>([]);
+  /**
+   * 本地选中值（v-model）
+   * @description 使用 shallowRef 而非 ref，避免泛型数组被 UnwrapRef 递归转换，
+   * 保证 localValue.value 的类型与 T[] 严格一致
+   */
+  const localValue = shallowRef<T[]>([]);
+  /**
+   * 本地数据（避免直接修改 props）
+   * @description 保持 reactive 深度响应式（row.isSelected 变更需驱动 UI 高亮），
+   * 但通过类型断言固定公开类型为 Row<T>[]，规避泛型数组被 UnwrapRef 递归转换后
+   * UnwrapRefSimple<Row<T>> 与 Row<T> 不兼容的问题
+   */
+  const localData = reactive<Row<T>[]>([]) as Row<T>[];
   /** 当前页码 */
   const currentPage = ref(1);
   /** 每页行数 */
@@ -49,7 +60,7 @@ export const useFormTable = (
       localData.splice(0, localData.length);
       localData.push(
         ...props.data.map(
-          (item) => ({ ...item, isSelected: false }) satisfies Row,
+          (item) => ({ ...item, isSelected: false }) satisfies Row<T>,
         ),
       );
     },
@@ -103,7 +114,7 @@ export const useFormTable = (
   };
 
   /** 多选切换 */
-  const onToggleRowSelection = (row: Row) => {
+  const onToggleRowSelection = (row: Row<T>) => {
     if (row.isSelected) {
       row.isSelected = false;
       const index = localValue.value.indexOf(row);
@@ -137,7 +148,7 @@ export const useFormTable = (
   };
 
   /** 行选择（路由单选/多选） */
-  const onSelectRow = (row: Row) => {
+  const onSelectRow = (row: Row<T>) => {
     if (props.disabled) return;
     if (props.selectionMode === 'multiple') {
       onToggleRowSelection(row);

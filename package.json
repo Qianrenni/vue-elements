@@ -33,9 +33,7 @@
   "lint-staged": {
     "*.{js,ts,vue,tsx,jsx}": [
       "prettier --write",
-      "eslint --cache --fix",
-      "pnpm run --filter @qianrenni/core test ",
-      "pnpm run --filter qyani-components test "
+      "eslint --cache --fix"
     ],
     "*.{css,md,svg,less,scss}": [
       "prettier --write"

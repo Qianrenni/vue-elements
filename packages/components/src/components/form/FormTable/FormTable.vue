@@ -102,10 +102,10 @@
                 :column="col"
                 :name="col.value"
                 :row="row"
-                :value="row[col.value]"
+                :value="getCellValue(row, col.value)"
               >
                 <span>
-                  {{ row[col.value] }}
+                  {{ getCellValue(row, col.value) }}
                 </span>
               </slot>
             </td>
@@ -127,18 +127,19 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import type { FormTableProps, FormTableEmits } from './type';
-import { ICON_SIZE } from './type';
-import { useFormTable } from './composable';
-import { QPagination } from '@/components/basic/Pagination';
+<script lang="ts" setup generic="T">
 import { QIcon } from '@/components/basic/Icon';
+import { QPagination } from '@/components/basic/Pagination';
+
+import { useFormTable } from './composable';
+import type { FormTableEmits, FormTableProps } from './type';
+import { ICON_SIZE } from './type';
 
 defineOptions({
   name: 'QFormTable',
 });
 
-const props = withDefaults(defineProps<FormTableProps>(), {
+const props = withDefaults(defineProps<FormTableProps<T>>(), {
   required: false,
   direction: 'horizontal',
   disabled: false,
@@ -151,7 +152,17 @@ const props = withDefaults(defineProps<FormTableProps>(), {
   maxVisiblePages: 5,
 });
 
-const emit = defineEmits<FormTableEmits>();
+const emit = defineEmits<FormTableEmits<T>>();
+
+/**
+ * 获取单元格值
+ * @description 将类型断言收拢到 script 中，避免在模板里书写带尖括号的类型断言
+ * @param row 当前行数据
+ * @param key 列字段名
+ * @returns 单元格值
+ */
+const getCellValue = (row: T, key: string): unknown =>
+  (row as Record<string, unknown>)[key];
 
 const {
   localData,
@@ -163,7 +174,7 @@ const {
   handlePageChange,
   onSelectRow,
   onToggleAllSelection,
-} = useFormTable(props, emit);
+} = useFormTable<T>(props, emit);
 </script>
 
 <style lang="css" scoped></style>

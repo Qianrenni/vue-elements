@@ -1,3 +1,5 @@
+pnpm run --filter @qianrenni/core test
+pnpm run --filter qyani-components test 
 pnpm lint-staged
 
 # 构建检查：仅当 JS/TS/Vue 文件变更时执行
