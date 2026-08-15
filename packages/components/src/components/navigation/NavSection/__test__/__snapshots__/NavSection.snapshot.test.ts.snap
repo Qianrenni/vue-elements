@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QNavSection 快照测试 > 初始层级渲染 1`] = `
+"<div class="nav-section text-secondary">
+  <!-- 返回按钮 -->
+  <!--v-if-->
+  <!-- 当前层级标题 -->
+  <h4 class="current-title">导航</h4><!-- 导航列表 -->
+  <ul class="section-nav">
+    <li class="nav-item"><a class="nav-link hover-primary" href="javascript:void(0)">首页</a></li>
+    <li class="nav-item"><a class="nav-link hover-primary" href="javascript:void(0)">产品</a></li>
+    <li class="nav-item"><a class="nav-link hover-primary" href="javascript:void(0)">关于</a></li>
+  </ul>
+</div>"
+`;
+
+exports[`QNavSection 快照测试 > 空导航列表渲染 1`] = `
+"<div class="nav-section text-secondary">
+  <!-- 返回按钮 -->
+  <!--v-if-->
+  <!-- 当前层级标题 -->
+  <h4 class="current-title">导航</h4><!-- 导航列表 -->
+  <ul class="section-nav"></ul>
+</div>"
+`;

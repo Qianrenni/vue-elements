@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QCarousel 快照测试 > 空内容静态帧渲染 1`] = `
+"<div data-v-d8647bc6="" style="width: 300px; height: 200px;" class="carousel">
+  <!--v-if-->
+  <!--v-if-->
+  <div data-v-d8647bc6="" class="carousel-inner container-flex-start" style="transform: translateX(-300px); transition: 500ms ease-in-out; width: 600px; height: 200px;">
+    <!-- 复制最后一项到最前 -->
+    <!--v-if-->
+    <!-- 正常显示所有 item -->
+    <!-- 复制第一项到最后 -->
+    <!--v-if-->
+  </div><!-- 指示器 -->
+  <!--v-if-->
+</div>"
+`;

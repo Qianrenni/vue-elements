@@ -1,0 +1,58 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QCollapsibleSection 快照测试 > 初始收起渲染 1`] = `
+"<div data-v-b5b124ca="" class="collapsible-section">
+  <!-- 向上箭头 -->
+  <!--v-if-->
+  <div data-v-b5b124ca="" style="justify-content: flex-end;" class="content-container">
+    <!-- 左侧箭头 -->
+    <!--v-if-->
+    <!-- 可折叠内容 -->
+    <transition-stub data-v-b5b124ca="" name="slide-down" appear="false" persisted="true" css="true">
+      <div data-v-b5b124ca="" class="content" style="display: none;">
+        <p>可折叠内容</p>
+      </div>
+    </transition-stub><!-- 右侧箭头 -->
+    <!--v-if-->
+  </div><!-- 向下箭头 -->
+  <div data-v-b5b124ca="" class="toggle-button-down"></div>
+</div>"
+`;
+
+exports[`QCollapsibleSection 快照测试 > 隐藏箭头渲染 1`] = `
+"<div data-v-b5b124ca="" class="collapsible-section">
+  <!-- 向上箭头 -->
+  <!--v-if-->
+  <div data-v-b5b124ca="" style="justify-content: flex-end;" class="content-container">
+    <!-- 左侧箭头 -->
+    <!--v-if-->
+    <!-- 可折叠内容 -->
+    <transition-stub data-v-b5b124ca="" name="slide-down" appear="false" persisted="true" css="true">
+      <div data-v-b5b124ca="" class="content">
+        <p>内容</p>
+      </div>
+    </transition-stub><!-- 右侧箭头 -->
+    <!--v-if-->
+  </div><!-- 向下箭头 -->
+  <!--v-if-->
+</div>"
+`;
+
+exports[`QCollapsibleSection 快照测试 > 默认展开渲染 1`] = `
+"<div data-v-b5b124ca="" class="collapsible-section">
+  <!-- 向上箭头 -->
+  <!--v-if-->
+  <div data-v-b5b124ca="" style="justify-content: flex-end;" class="content-container">
+    <!-- 左侧箭头 -->
+    <!--v-if-->
+    <!-- 可折叠内容 -->
+    <transition-stub data-v-b5b124ca="" name="slide-down" appear="false" persisted="true" css="true">
+      <div data-v-b5b124ca="" class="content">
+        <p>可折叠内容</p>
+      </div>
+    </transition-stub><!-- 右侧箭头 -->
+    <!--v-if-->
+  </div><!-- 向下箭头 -->
+  <div data-v-b5b124ca="" class="toggle-button-down"></div>
+</div>"
+`;

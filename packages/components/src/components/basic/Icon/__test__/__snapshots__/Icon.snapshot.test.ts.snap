@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QIcon 快照测试 > 加载 SVG 后应渲染带尺寸的图标 1`] = `"<div class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>"`;
+
+exports[`QIcon 快照测试 > 加载失败时应降级为空 div 1`] = `"<div class="mouse-cursor user-select-none container-center"></div>"`;

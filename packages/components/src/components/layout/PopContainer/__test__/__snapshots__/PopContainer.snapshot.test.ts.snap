@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QPopContainer 快照测试 > 可见 + 指定位置渲染 1`] = `
+"<div data-v-d592bd86="" class="pop-container"><button>触发</button>
+  <div data-v-d592bd86="" class="bottom-center visible pop-content">
+    <div>弹层内容</div>
+  </div>
+</div>"
+`;
+
+exports[`QPopContainer 快照测试 > 默认渲染 1`] = `
+"<div data-v-d592bd86="" class="pop-container"><button>触发</button>
+  <div data-v-d592bd86="" class="undefined pop-content">
+    <div>弹层内容</div>
+  </div>
+</div>"
+`;

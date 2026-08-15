@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QFormSelect 快照测试 > 已选中渲染 1`] = `
+"<div data-v-422e9577="" class="container" style="position: relative;">
+  <p data-v-422e9577="" class="text-label required">分类</p><input data-v-422e9577="" class="input-text-container text-input" type="text" placeholder="请选择" name="sel" value="选项二">
+  <transition-stub data-v-422e9577="" name="fade" appear="false" persisted="true" css="true">
+    <div data-v-422e9577="" class="container-column form-select-options bg-card shadow-common scroll-container" style="display: none;">
+      <p data-v-422e9577="" class="mouse-cursor text-085rem padding-fourth-rem radius-half-rem bg-hover-secondary">选项一</p>
+      <p data-v-422e9577="" class="bg-secondary mouse-cursor text-085rem padding-fourth-rem radius-half-rem bg-hover-secondary">选项二</p>
+    </div>
+  </transition-stub>
+</div>"
+`;
+
+exports[`QFormSelect 快照测试 > 未选中渲染 1`] = `
+"<div data-v-422e9577="" class="container" style="position: relative;">
+  <!--v-if--><input data-v-422e9577="" class="input-text-container text-input" type="text" placeholder="请选择" name="sel" value="">
+  <transition-stub data-v-422e9577="" name="fade" appear="false" persisted="true" css="true">
+    <div data-v-422e9577="" class="container-column form-select-options bg-card shadow-common scroll-container" style="display: none;">
+      <p data-v-422e9577="" class="mouse-cursor text-085rem padding-fourth-rem radius-half-rem bg-hover-secondary">选项一</p>
+      <p data-v-422e9577="" class="mouse-cursor text-085rem padding-fourth-rem radius-half-rem bg-hover-secondary">选项二</p>
+    </div>
+  </transition-stub>
+</div>"
+`;

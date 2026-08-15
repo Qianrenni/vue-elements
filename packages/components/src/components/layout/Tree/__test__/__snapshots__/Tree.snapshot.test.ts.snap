@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QTree 快照测试 > 含展开子节点的树渲染 1`] = `
+"<div>
+  <div data-v-ffe6d941="" class="tree-node">
+    <div data-v-ffe6d941="" class="tree-node-content container-align-center mouse-cursor">
+      <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor">
+        <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
+      </div>
+      <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor" style="display: none;">
+        <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
+      </div>
+      <div data-v-ffe6d941="" class="tree-node-label container-align-center">根节点</div>
+    </div>
+    <div data-v-ffe6d941="" class="tree-node-children padding-half-horizontal">
+      <div data-v-ffe6d941="" class="tree-node">
+        <div data-v-ffe6d941="" class="tree-node-content container-align-center mouse-cursor">
+          <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor" style="display: none;">
+            <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
+          </div>
+          <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor">
+            <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
+          </div>
+          <div data-v-ffe6d941="" class="tree-node-label container-align-center">子节点</div>
+        </div>
+        <div data-v-ffe6d941="" class="tree-node-children padding-half-horizontal" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+  <div data-v-ffe6d941="" class="tree-node">
+    <div data-v-ffe6d941="" class="tree-node-content container-align-center mouse-cursor">
+      <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor" style="display: none;">
+        <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
+      </div>
+      <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor">
+        <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
+      </div>
+      <div data-v-ffe6d941="" class="tree-node-label container-align-center">独立节点</div>
+    </div>
+    <div data-v-ffe6d941="" class="tree-node-children padding-half-horizontal" style="display: none;"></div>
+  </div>
+</div>"
+`;

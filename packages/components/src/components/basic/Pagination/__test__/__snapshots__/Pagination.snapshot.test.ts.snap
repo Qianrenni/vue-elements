@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QPagination 快照测试 > 中间页码渲染 1`] = `
+"<div class="container container-center container-wrap">
+  <!-- 上一页按钮 --><button class="button"><span class="text-one-line hidden-768">上一页</span>
+    <div class="mouse-cursor user-select-none container-center show-768"><svg width="18" height="18" viewBox="0 0 24 24"></svg></div>
+  </button><!-- 页码列表 --><span>3 / 10</span><!-- 下一页按钮 --><button class="button"><span class="text-one-line hidden-768">下一页</span>
+    <div class="mouse-cursor user-select-none container-center show-768"><svg width="18" height="18" viewBox="0 0 24 24"></svg></div>
+  </button><!-- 跳转到指定页 -->
+  <div class="container-center"><input max="10" class="text-input" min="1" type="number"><button class="button"><span class="text-one-line">跳转</span></button></div>
+</div>"
+`;
+
+exports[`QPagination 快照测试 > 第一页渲染(上一页禁用) 1`] = `
+"<div class="container container-center container-wrap">
+  <!-- 上一页按钮 --><button class="mouse-cursor-disable button" disabled=""><span class="text-one-line hidden-768">上一页</span>
+    <div class="mouse-cursor user-select-none container-center show-768"><svg width="18" height="18" viewBox="0 0 24 24"></svg></div>
+  </button><!-- 页码列表 --><span>1 / 10</span><!-- 下一页按钮 --><button class="button"><span class="text-one-line hidden-768">下一页</span>
+    <div class="mouse-cursor user-select-none container-center show-768"><svg width="18" height="18" viewBox="0 0 24 24"></svg></div>
+  </button><!-- 跳转到指定页 -->
+  <div class="container-center"><input max="10" class="text-input" min="1" type="number"><button class="button"><span class="text-one-line">跳转</span></button></div>
+</div>"
+`;

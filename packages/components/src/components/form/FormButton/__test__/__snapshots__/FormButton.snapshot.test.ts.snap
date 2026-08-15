@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QFormButton 快照测试 > disabled + size=large 渲染 1`] = `"<button class="mouse-cursor-disable text-12rem button" disabled="" type="button">禁用</button>"`;
+
+exports[`QFormButton 快照测试 > type=submit 渲染 1`] = `"<button class="button" type="submit">保存</button>"`;
+
+exports[`QFormButton 快照测试 > 默认渲染 1`] = `"<button class="button" type="button">提交</button>"`;

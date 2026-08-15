@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QFormRangeSlider 快照测试 > 垂直方向渲染 1`] = `
+"<div data-v-b017ced8="" class="range-slider container-column" role="none">
+  <!--v-if-->
+  <div data-v-b017ced8="" class="inner-container"><input data-v-b017ced8="" aria-labelledby="undefined-label" aria-valuemax="200" aria-valuemin="0" aria-valuenow="80" aria-valuetext="80" max="200" min="0" required="" step="10" type="range" value="80"><output data-v-b017ced8="" id="undefined-output" aria-live="polite" class="">80</output></div>
+</div>"
+`;
+
+exports[`QFormRangeSlider 快照测试 > 水平方向渲染 1`] = `
+"<div data-v-b017ced8="" class="range-slider container" role="none"><label data-v-b017ced8="" id="volume-label" class="text-label" for="volume">音量: </label>
+  <div data-v-b017ced8="" class="inner-container"><input data-v-b017ced8="" id="volume" aria-labelledby="volume-label" aria-valuemax="100" aria-valuemin="0" aria-valuenow="30" aria-valuetext="30" max="100" min="0" name="volume" required="" step="1" type="range" value="30"><output data-v-b017ced8="" id="volume-output" aria-live="polite" class="">30</output></div>
+</div>"
+`;

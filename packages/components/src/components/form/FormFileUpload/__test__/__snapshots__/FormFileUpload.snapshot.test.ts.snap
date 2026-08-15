@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QFormFileUpload 快照测试 > 单选文件渲染 1`] = `
+"<div class="container-column">
+  <p class="text-label required">上传附件</p><input id="file1" accept="*" name="file1" required="" type="file" class="text-input">
+</div>"
+`;
+
+exports[`QFormFileUpload 快照测试 > 多选文件渲染 1`] = `
+"<div class="container-column">
+  <!--v-if--><input id="file2" accept=".png,.jpg" multiple="" name="file2" required="" type="file" class="text-input">
+</div>"
+`;

@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QSearch 快照测试 > 带占位符 + 禁用渲染 1`] = `
+"<div data-v-0ff8a0a1="" class="container" style="position: relative;"><input data-v-0ff8a0a1="" placeholder="搜索关键词" class="search-input text-input padding-fourth-vetical" type="search" disabled="" name="q">
+  <div data-v-0ff8a0a1="" class="mouse-cursor user-select-none container-center" style="position: absolute; left: 0.5rem; top: 50%; transform: translateY(-50%);"><svg width="16px" height="16px" viewBox="0 0 24 24"></svg></div>
+</div>"
+`;
+
+exports[`QSearch 快照测试 > 默认搜索框渲染 1`] = `
+"<div data-v-0ff8a0a1="" class="container" style="position: relative;"><input data-v-0ff8a0a1="" placeholder="" class="search-input text-input padding-fourth-vetical" type="search">
+  <div data-v-0ff8a0a1="" class="mouse-cursor user-select-none container-center" style="position: absolute; left: 0.5rem; top: 50%; transform: translateY(-50%);"><svg width="16px" height="16px" viewBox="0 0 24 24"></svg></div>
+</div>"
+`;

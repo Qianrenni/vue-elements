@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QScrollNotice 快照测试 > 默认插槽渲染 1`] = `
+"<div style="overflow: hidden;">
+  <div class="scroll-text"><span>最新公告：系统升级通知</span></div>
+</div>"
+`;

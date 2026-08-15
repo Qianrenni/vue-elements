@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QBadge 快照测试 > dot 小圆点模式渲染 1`] = `"<div class="container" style="position: relative;"><span>通知</span><span class="dot"></span></div>"`;
+
+exports[`QBadge 快照测试 > 超过 max 显示 99+ 1`] = `"<div class="container" style="position: relative;"><span>通知</span><span class="text-info dot padding-fourth-rem">99+</span></div>"`;
+
+exports[`QBadge 快照测试 > 默认数字徽章渲染 1`] = `"<div class="container" style="position: relative;"><span>通知</span><span class="text-info dot padding-fourth-rem">5</span></div>"`;

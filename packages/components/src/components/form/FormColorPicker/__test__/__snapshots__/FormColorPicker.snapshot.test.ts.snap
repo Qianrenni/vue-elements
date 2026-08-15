@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QFormColorPicker 快照测试 > 带标签 + 自定义颜色渲染 1`] = `
+"<div class="container">
+  <p id="color" for="color" class="text-label">主题色</p><input id="color" name="color" class="text-input" type="color" value="#f60"><span style="color: rgb(255, 102, 0);" class="text-085rem">#f60</span>
+</div>"
+`;
+
+exports[`QFormColorPicker 快照测试 > 默认颜色渲染 1`] = `
+"<div class="container">
+  <!--v-if--><input class="text-input" type="color" value="#fff"><span style="color: rgb(255, 255, 255);" class="text-085rem">#fff</span>
+</div>"
+`;

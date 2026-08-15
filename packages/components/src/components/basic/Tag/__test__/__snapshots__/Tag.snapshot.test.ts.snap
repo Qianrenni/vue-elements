@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QTag 快照测试 > 自定义颜色与背景渲染 1`] = `"<span class="tag" style="color: rgb(255, 102, 0); background: rgb(255, 255, 221);">自定义</span>"`;
+
+exports[`QTag 快照测试 > 默认属性渲染 1`] = `"<span class="tag" style="color: white; background: var(--tag-primary-color);">默认标签</span>"`;

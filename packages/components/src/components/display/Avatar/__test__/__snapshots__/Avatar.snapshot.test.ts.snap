@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QAvatar 快照测试 > 未加载时渲染骨架屏占位 1`] = `
+"<div data-v-d9ab47eb="" class="avatar-container" style="width: 2rem; height: 2rem;">
+  <!-- 骨架屏占位 -->
+  <div data-v-d9ab47eb="" class="avatar-skeleton"></div><!-- 实际图片 -->
+  <!--v-if-->
+</div>"
+`;
+
+exports[`QAvatar 快照测试 > 自定义尺寸渲染 1`] = `
+"<div data-v-d9ab47eb="" class="avatar-container" style="width: 3rem; height: 3rem;">
+  <!-- 骨架屏占位 -->
+  <div data-v-d9ab47eb="" class="avatar-skeleton"></div><!-- 实际图片 -->
+  <!--v-if-->
+</div>"
+`;

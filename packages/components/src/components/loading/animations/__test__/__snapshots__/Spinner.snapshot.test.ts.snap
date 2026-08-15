@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QSpinner 快照测试 > 默认渲染旋转圆环 1`] = `
+"<svg data-v-7dd96680="" class="spinner" viewBox="0 0 100 100" fill="transparent" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+  <circle data-v-7dd96680="" class="spinner-circle" cx="50" cy="50" r="40"></circle>
+</svg>"
+`;

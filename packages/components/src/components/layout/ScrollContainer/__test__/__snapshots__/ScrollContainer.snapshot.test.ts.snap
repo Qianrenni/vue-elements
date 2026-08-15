@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QScrollContainer 快照测试 > 默认插槽渲染 1`] = `
+"<div class="scroll-container">
+  <p>滚动内容</p>
+</div>"
+`;

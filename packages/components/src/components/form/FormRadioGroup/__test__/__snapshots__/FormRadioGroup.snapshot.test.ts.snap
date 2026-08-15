@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QFormRadioGroup 快照测试 > 横向选中渲染 1`] = `
+"<div class="container"><span class="text-label required">性别</span>
+  <div class="inner-container"><label for="male" class="container-center"><input checked="" name="gender" required="" type="radio" value="male"><span class="text-085rem margin-fourth-horizontal">男</span></label><label for="female" class="container-center"><input name="gender" required="" type="radio" value="female"><span class="text-085rem margin-fourth-horizontal">女</span></label></div>
+</div>"
+`;
+
+exports[`QFormRadioGroup 快照测试 > 纵向排列渲染 1`] = `
+"<div class="container-column">
+  <!--v-if-->
+  <div class="inner-container"><label for="male" class="container-center"><input name="g" required="" type="radio" value="male"><span class="text-085rem margin-fourth-horizontal">男</span></label><label for="female" class="container-center"><input checked="" name="g" required="" type="radio" value="female"><span class="text-085rem margin-fourth-horizontal">女</span></label></div>
+</div>"
+`;

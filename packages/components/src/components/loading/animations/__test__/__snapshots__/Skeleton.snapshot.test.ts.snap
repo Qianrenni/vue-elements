@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QSkeleton 快照测试 > 默认渲染骨架屏 1`] = `"<div data-v-d9f3248b="" class="loader-skeleton"></div>"`;

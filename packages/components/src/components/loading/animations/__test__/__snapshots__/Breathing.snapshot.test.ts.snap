@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QBreathing 快照测试 > 默认渲染三个呼吸点 1`] = `"<div data-v-aea69047="" class="loader-dots"><span data-v-aea69047="" class="loader-dot"></span><span data-v-aea69047="" class="loader-dot"></span><span data-v-aea69047="" class="loader-dot"></span></div>"`;

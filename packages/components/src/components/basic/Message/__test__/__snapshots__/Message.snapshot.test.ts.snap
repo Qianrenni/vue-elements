@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QMessage 快照测试 > error 类型渲染 1`] = `
+"<div data-v-a0628624="" class="text-danger mouse-cursor message-container shadow-common animate-slide-in">
+  <p data-v-a0628624="">操作失败</p>
+</div>"
+`;
+
+exports[`QMessage 快照测试 > success 类型渲染 1`] = `
+"<div data-v-a0628624="" class="text-success mouse-cursor message-container shadow-common animate-slide-in">
+  <p data-v-a0628624="">操作成功</p>
+</div>"
+`;
+
+exports[`QMessage 快照测试 > warning 类型渲染 1`] = `
+"<div data-v-a0628624="" class="text-warning mouse-cursor message-container shadow-common animate-slide-in">
+  <p data-v-a0628624="">请检查输入</p>
+</div>"
+`;

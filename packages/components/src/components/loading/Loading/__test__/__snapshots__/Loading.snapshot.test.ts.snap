@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QLoading 快照测试 > breathing 类型渲染 1`] = `
+"<div class="gap container-w100 container-h100 container-column container-align-center">
+  <!---->
+  <!--v-if-->
+</div>"
+`;
+
+exports[`QLoading 快照测试 > show=false 不渲染内容 1`] = `"<!--v-if-->"`;
+
+exports[`QLoading 快照测试 > skeleton 类型渲染 1`] = `
+"<div class="gap container-w100 container-h100 container-column container-align-center">
+  <!---->
+  <!--v-if-->
+</div>"
+`;
+
+exports[`QLoading 快照测试 > spinner 类型带文字渲染 1`] = `
+"<div class="gap container-w100 container-h100 container-column container-align-center">
+  <!---->
+  <p class="text-description text-08rem animation-pulse">加载中...</p>
+</div>"
+`;

@@ -1,0 +1,68 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QFormTable 快照测试 > 空数据渲染占位 1`] = `
+"<div class="form-table-container" role="none">
+  <!--v-if-->
+  <div class="scroll-container input-table-container" style="opacity: 1;">
+    <table class="form-table">
+      <thead>
+        <tr>
+          <!--v-if-->
+          <th style="width: auto;" class="form-table-header-item"><span>ID</span>
+            <!--v-if-->
+          </th>
+          <th style="width: auto;" class="form-table-header-item"><span>姓名</span>
+            <!--v-if-->
+          </th>
+          <th style="width: auto;" class="form-table-header-item"><span>年龄</span>
+            <!--v-if-->
+          </th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div class="table-empty">暂无数据</div>
+  </div>
+  <!--v-if-->
+</div>"
+`;
+
+exports[`QFormTable 快照测试 > 静态表格渲染 1`] = `
+"<div class="form-table-container" role="none">
+  <!--v-if-->
+  <div class="scroll-container input-table-container" style="opacity: 1;">
+    <table class="form-table">
+      <thead>
+        <tr>
+          <!--v-if-->
+          <th style="width: auto;" class="form-table-header-item"><span>ID</span>
+            <!--v-if-->
+          </th>
+          <th style="width: auto;" class="form-table-header-item"><span>姓名</span>
+            <!--v-if-->
+          </th>
+          <th style="width: auto;" class="form-table-header-item"><span>年龄</span>
+            <!--v-if-->
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="">
+          <!--v-if-->
+          <td style="width: auto;"><span>1</span></td>
+          <td style="width: auto;"><span>张三</span></td>
+          <td style="width: auto;"><span>20</span></td>
+        </tr>
+        <tr class="">
+          <!--v-if-->
+          <td style="width: auto;"><span>2</span></td>
+          <td style="width: auto;"><span>李四</span></td>
+          <td style="width: auto;"><span>25</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <!--v-if-->
+  </div>
+  <!--v-if-->
+</div>"
+`;

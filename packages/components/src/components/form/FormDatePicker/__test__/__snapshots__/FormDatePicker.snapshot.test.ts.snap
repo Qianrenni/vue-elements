@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QFormDatePicker 快照测试 > datetime-local 类型 + 标签渲染 1`] = `
+"<div class="container container-align-center">
+  <p class="text-label">开始时间:</p><input id="start" class="text-input" name="start" placeholder="请选择日期" required="" type="datetime-local" value="2026-08-15T10:00">
+</div>"
+`;
+
+exports[`QFormDatePicker 快照测试 > 默认 date 类型渲染 1`] = `
+"<div class="container container-align-center">
+  <!--v-if--><input class="text-input" placeholder="请选择日期" required="" type="date" value="2026-08-15">
+</div>"
+`;

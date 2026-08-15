@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QDivider 快照测试 > 默认渲染分割线 1`] = `"<div data-v-4a98734f="" class="divider"></div>"`;

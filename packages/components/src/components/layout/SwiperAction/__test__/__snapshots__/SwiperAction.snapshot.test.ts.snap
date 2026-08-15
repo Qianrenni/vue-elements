@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QSwiperAction 快照测试 > 默认内容与操作区渲染 1`] = `
+"<div data-v-7892902b="" class="swiper-action">
+  <!-- 单层滑动容器 -->
+  <div data-v-7892902b="" class="swiper-action__inner" style="transform: translateX(0px);">
+    <!-- 主内容 -->
+    <div data-v-7892902b="" class="swiper-action__content">
+      <div>列表项</div>
+    </div><!-- 右侧操作区（始终存在） -->
+    <div data-v-7892902b="" class="swiper-action__action"><button>删除</button></div>
+  </div>
+</div>"
+`;

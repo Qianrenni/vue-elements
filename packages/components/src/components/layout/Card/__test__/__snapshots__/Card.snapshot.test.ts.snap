@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QCard 快照测试 > 完整插槽 + 动画渲染 1`] = `
+"<div class="card-animation card container-column">
+  <div class="card-header container-space-between">
+    <h3>标题</h3>
+  </div>
+  <div class="card-body container-space-between"><span>左</span>
+    <div class="container-flex-1">
+      <p>内容</p>
+    </div><span>右</span>
+  </div>
+  <div class="card-footer container-space-between"><button>操作</button></div>
+</div>"
+`;
+
+exports[`QCard 快照测试 > 默认插槽渲染 1`] = `
+"<div class="card container-column">
+  <div class="card-header container-space-between"></div>
+  <div class="card-body container-space-between">
+    <div class="container-flex-1">
+      <p>卡片内容</p>
+    </div>
+  </div>
+  <div class="card-footer container-space-between"></div>
+</div>"
+`;

@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QProgressBar 快照测试 > 垂直方向 + 自定义颜色渲染 1`] = `
+"<div class="container-column container-w100 container-h100 bg-gray-300">
+  <div style="width: 100%; height: 70%; background-color: rgb(255, 102, 0);"></div>
+</div>"
+`;
+
+exports[`QProgressBar 快照测试 > 水平方向渲染 1`] = `
+"<div class="container-w100 container-h100 bg-gray-300">
+  <div style="width: 30%; height: 100%; background-color: var(--primary-color);"></div>
+</div>"
+`;

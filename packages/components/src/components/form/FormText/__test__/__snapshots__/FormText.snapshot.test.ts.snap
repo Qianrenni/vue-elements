@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QFormText 快照测试 > 带前缀图标渲染 1`] = `
+"<div class="container" role="none">
+  <!--v-if-->
+  <div class="inner-container-column container-flex-1">
+    <div class="position-relative">
+      <div class="mouse-cursor user-select-none container-center text-input-icon"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div><input class="text-input container-w100 text-left-padding" name="username" placeholder="" type="text" value="admin">
+    </div>
+    <!--v-if-->
+  </div>
+</div>"
+`;
+
+exports[`QFormText 快照测试 > 默认文本输入渲染 1`] = `
+"<div class="container" role="none">
+  <p class="text-label">用户名</p>
+  <div class="inner-container-column container-flex-1">
+    <div class="">
+      <!--v-if--><input class="text-input container-w100" name="username" placeholder="请输入用户名" type="text" value="">
+    </div>
+    <!--v-if-->
+  </div>
+</div>"
+`;

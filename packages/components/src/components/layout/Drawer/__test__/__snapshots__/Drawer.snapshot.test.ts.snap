@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QDrawer 快照测试 > 右方向抽屉渲染 1`] = `
+"<!--teleport start-->
+<div data-v-9e7730e3="" class="overlay drawer-overlay" style="position: absolute;">
+  <div data-v-9e7730e3="" class="drawer-right drawer-container">
+    <div data-v-9e7730e3="" class="container-space-between"><strong data-v-9e7730e3="">抽屉标题</strong><button data-v-9e7730e3="" class="button" type="button"> × </button></div>
+    <div data-v-9e7730e3="" class="drawer-body">
+      <p>抽屉内容</p>
+    </div>
+  </div>
+</div>
+<!--teleport end-->"
+`;
+
+exports[`QDrawer 快照测试 > 隐藏关闭按钮 + 底部方向渲染 1`] = `
+"<!--teleport start-->
+<div data-v-9e7730e3="" class="overlay drawer-overlay" style="position: absolute;">
+  <div data-v-9e7730e3="" class="drawer-bottom drawer-container">
+    <div data-v-9e7730e3="" class="container-space-between"><strong data-v-9e7730e3="">底部抽屉</strong>
+      <!--v-if-->
+    </div>
+    <div data-v-9e7730e3="" class="drawer-body">
+      <p>内容</p>
+    </div>
+  </div>
+</div>
+<!--teleport end-->"
+`;

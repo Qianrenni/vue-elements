@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QFormTextarea 快照测试 > 带标签 + 必填 + 自定义行数渲染 1`] = `
+"<div class="container-column form-text-area-container">
+  <p class="text-label required">备注</p><textarea id="remark" class="text-input scroll-container" name="remark" placeholder="请输入备注" required="" rows="3" style="resize: none;" value=""></textarea>
+</div>"
+`;
+
+exports[`QFormTextarea 快照测试 > 默认渲染 1`] = `
+"<div class="container-column form-text-area-container">
+  <!--v-if--><textarea class="text-input scroll-container" placeholder="请输入内容" required="" rows="5" style="resize: none;" value="初始内容"></textarea>
+</div>"
+`;

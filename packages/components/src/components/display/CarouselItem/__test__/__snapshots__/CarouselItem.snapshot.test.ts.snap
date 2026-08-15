@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QCarouselItem 快照测试 > 默认插槽渲染 1`] = `
+"<div data-v-b4203678="" class="carousel-item">
+  <div>内容项</div>
+</div>"
+`;
