@@ -160,7 +160,13 @@ The docs site can be deployed to GitHub Pages at `https://qianrenni.github.io/vu
 pnpm run docs:build          # Builds components first, then builds docs
 ```
 
-The static site is output to `packages/docs/dist/`. The production build uses `base: '/vue-elements/'` so all asset paths are correct under the subdirectory.
+The static site is output to `packages/docs/dist/`. The production build's `base` is **platform-aware** (see `packages/docs/vite.config.ts`):
+
+- **GitHub Pages** (default): `base: '/vue-elements/'` so all asset paths are correct under the subdirectory
+- **Netlify** (auto-detects `NETLIFY=true` env): `base: '/'` for root deployment
+- **Override**: set `VITE_BASE` env var to force any base (e.g. `VITE_BASE=/some/path/`)
+
+Runtime paths adapt automatically: `import.meta.env.BASE_URL` drives the hash router base and the markdown `fetch` URL, and `IconConfig.setBase` derives the SVG base from `location.pathname`.
 
 ### Automated Deployment via GitHub Actions
 
@@ -185,6 +191,17 @@ pnpm run components:build
 pnpm run docs:build
 npx gh-pages -d packages/docs/dist -b gh-pages
 ```
+
+## Netlify Deployment
+
+The same code can be deployed to Netlify (root path). Configuration lives in `netlify.toml`:
+
+- **Build command**: `pnpm run docs:build`
+- **Publish directory**: `packages/docs/dist`
+- **Node version**: `20` (set in `[build.environment]`)
+- Netlify injects `NETLIFY=true` during builds, so the docs `vite.config.ts` automatically switches `base` to `'/'`.
+
+Connect the repo in Netlify (Site → Deploys) or via the CLI: `npx netlify deploy --prod`.
 
 ## Important Constraints
 

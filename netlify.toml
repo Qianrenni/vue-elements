@@ -1,0 +1,9 @@
+# Netlify 部署配置
+# 同一套代码同时部署到 GitHub Pages（子路径 /vue-elements/）与 Netlify（根路径 /）
+# base 由 packages/docs/vite.config.ts 自动判断：Netlify 构建时注入 NETLIFY=true → base 为 '/'
+[build]
+  command = "pnpm run docs:build"
+  publish = "packages/docs/dist"
+
+[build.environment]
+  NODE_VERSION = "20"

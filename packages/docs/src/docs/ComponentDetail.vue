@@ -20,6 +20,14 @@ const tabs = computed(() =>
 );
 
 /**
+ * 将生成的绝对文档路径（如 /docs/components/basic/Icon.md）拼上 Vite base。
+ * 生产部署于 GitHub Pages 子路径 /vue-elements/ 下，直接 fetch 绝对路径会打到站根导致 404。
+ * import.meta.env.BASE_URL 在开发环境为 '/'、生产构建为 '/vue-elements/'。
+ */
+const resolveDocUrl = (docPath: string) =>
+  `${import.meta.env.BASE_URL}${docPath.replace(/^\//, '')}`;
+
+/**
  * Load the optional demo module referenced by a documentation manifest entry.
  * @param demoPath Display path without extension from the generated manifest.
  * @returns An async Vue component, or null when the entry has no demo.
@@ -39,7 +47,13 @@ watch(
     currentDemo.value = loadDemo(entry?.demoPath);
     if (!entry) return;
 
-    const response = await fetch(entry.docPath);
+    const response = await fetch(resolveDocUrl(entry.docPath));
+    if (!response.ok) {
+      if (requestId === activeRequestId) {
+        currentContent.value = `> ⚠️ 文档加载失败（${response.status} ${response.statusText}）`;
+      }
+      return;
+    }
     const content = await response.text();
     if (requestId === activeRequestId) {
       currentContent.value = content;

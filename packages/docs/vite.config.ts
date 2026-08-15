@@ -87,8 +87,14 @@ export default defineConfig(({ command }) => {
   }
 
   // 生产构建：使用预构建的组件库产物（dist/）
+  // base 按部署平台区分（同一套代码多平台部署）：
+  // - GitHub Pages：子路径 /vue-elements/
+  // - Netlify（构建时自动注入 NETLIFY=true）：站点根路径 /
+  // - 可用环境变量 VITE_BASE 显式覆盖，例如 VITE_BASE=/some/path/
+  const isNetlify = process.env.NETLIFY === 'true';
+  const base = process.env.VITE_BASE ?? (isNetlify ? '/' : '/vue-elements/');
   return {
-    base: '/vue-elements/',
+    base,
     plugins: [vue()],
     resolve: {
       alias: {
