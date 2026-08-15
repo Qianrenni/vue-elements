@@ -33,7 +33,7 @@
     "global.d.ts"
   ],
   "dependencies": {
-    "@qyani/core": "workspace:*"
+    "@qyani/core": "workspace:^"
   },
   "devDependencies": {
     "@types/node": "^24.1.0",

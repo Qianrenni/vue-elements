@@ -8,6 +8,7 @@
     "prettier": "npx prettier --write \"packages/**/*.{js,ts,vue,css,md}\"",
     "core:build": "pnpm run --filter @qyani/core build",
     "components:build": "pnpm run core:build && pnpm run --filter qyani-components build",
+    "release": "pnpm run components:build && pnpm publish -r --access public",
     "dev": "pnpm run docs:dev",
     "docs:dev": "pnpm run --filter @qyani-components/docs dev",
     "docs:update": "pnpm run --filter @qyani-components/docs update",

@@ -11,6 +11,9 @@
     "README.md",
     "package.json"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "type-check": "pnpm exec tsc --noEmit",
     "type-check:test": "pnpm exec tsc --project tsconfig.test.json",
