@@ -15,13 +15,50 @@
 />
 ```
 
+## 泛型（类型推断）
+
+`QFormTable` 是泛型组件，`data` 使用 `T[]`。当传入有类型的数组时，`T` 会从 `data` 自动推断，插槽作用域中的 `row`、`v-model` 的 `modelValue` 以及 `change`/`input` 事件参数都会获得对应的类型提示：
+
+```vue
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+interface User {
+  id: number;
+  name: string;
+  age: number;
+}
+
+const rows = ref<User[]>([
+  { id: 1, name: '张三', age: 25 },
+  { id: 2, name: '李四', age: 30 },
+]);
+const columns = [
+  { label: 'ID', value: 'id' },
+  { label: '姓名', value: 'name' },
+  { label: '年龄', value: 'age' },
+];
+</script>
+
+<template>
+  <!-- row 会被推断为 User & { isSelected: boolean }，可访问 row.name 等属性 -->
+  <QFormTable :data="rows" :columns="columns" selectable>
+    <template #name="{ row }">
+      <span>{{ row.name }}</span>
+    </template>
+  </QFormTable>
+</template>
+```
+
+未传入有类型数据（或使用普通对象数组）时，`T` 默认回退为 `Record<string, unknown>`。
+
 ## Props
 
-继承 `FormComponentProps<FormTableModelValueType>`，其中 `FormTableModelValueType = Record<string, unknown>[]`。公共 `modelValue` 类型为 `FormTableModelValueType | null`，其他公共属性包括 `name`、`label`、`disabled`、`readonly`、`size`、`status`、`required`、`placeholder`、`clearable`、`autofocus`、`id`、`direction`、`errorMessage`。
+继承 `FormComponentProps<FormTableModelValueType<T>>`，其中 `FormTableModelValueType<T> = T[]`（`T` 从 `data` 推断，默认 `Record<string, unknown>`）。公共 `modelValue` 类型为 `T[] | null`，其他公共属性包括 `name`、`label`、`disabled`、`readonly`、`size`、`status`、`required`、`placeholder`、`clearable`、`autofocus`、`id`、`direction`、`errorMessage`。
 
 | 属性                    | 类型                             | 必填 | 默认值         | 说明                                                                                                                        |
 | ----------------------- | -------------------------------- | ---- | -------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `data`                  | `Record<string, unknown>[]`      | 是   | —              | 表格行数据。                                                                                                                |
+| `data`                  | `T[]`                            | 是   | —              | 表格行数据；`T` 为数据行类型，默认 `Record<string, unknown>`。                                                              |
 | `columns`               | `TableColumn[]`                  | 是   | —              | 列配置；`TableColumn` 为 `{ value: string; label: string; width?: string; order?: boolean }`。存在 `order` 即显示排序图标。 |
 | `selectable`            | `boolean`                        | 否   | `false`        | 是否显示选择列。                                                                                                            |
 | `selectionMode`         | `'single' \| 'multiple' \| null` | 否   | `'multiple'`   | 行选择模式。                                                                                                                |
@@ -37,23 +74,23 @@
 
 ## Emits
 
-| 事件                | 参数                        | 触发时机                        |
-| ------------------- | --------------------------- | ------------------------------- |
-| `update:modelValue` | `Record<string, unknown>[]` | 行选择或全选状态变化时。        |
-| `input`             | `Record<string, unknown>[]` | 同上。                          |
-| `change`            | `Record<string, unknown>[]` | 同上。                          |
-| `page-change`       | `number`                    | 内部分页组件切换页码时。        |
-| `update:columns`    | `TableColumn[]`             | 点击带 `order` 的列排序图标时。 |
+| 事件                | 参数            | 触发时机                        |
+| ------------------- | --------------- | ------------------------------- |
+| `update:modelValue` | `T[]`           | 行选择或全选状态变化时。        |
+| `input`             | `T[]`           | 同上。                          |
+| `change`            | `T[]`           | 同上。                          |
+| `page-change`       | `number`        | 内部分页组件切换页码时。        |
+| `update:columns`    | `TableColumn[]` | 点击带 `order` 的列排序图标时。 |
 
 继承的 `focus`、`blur`、`clear` 当前不会触发。
 
 ## Slots
 
-| 插槽                         | 作用域参数                                          | 回退内容                   |
-| ---------------------------- | --------------------------------------------------- | -------------------------- |
-| 以 `column.value` 命名的插槽 | `{ row: Row, column: TableColumn, value: unknown }` | 显示 `row[column.value]`。 |
+| 插槽                         | 作用域参数                                             | 回退内容                   |
+| ---------------------------- | ------------------------------------------------------ | -------------------------- |
+| 以 `column.value` 命名的插槽 | `{ row: Row<T>, column: TableColumn, value: unknown }` | 显示 `row[column.value]`。 |
 
-`Row` 为包含 `isSelected: boolean` 的行对象。
+`Row<T>` 为 `T & { isSelected: boolean }` 的行对象。
 
 ## Exposes
 
