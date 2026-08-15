@@ -33,19 +33,22 @@ import 'qyani-components/dist/style.css';
 ### 2. 按需引入组件
 
 ```typescript
-import { QIcon, QButton, QFormContainer } from 'qyani-components';
+import { QButton, QFormContainer, QIcon } from 'qyani-components';
 ```
 
 ### 3. 全局安装
 
+> 主入口 `qyani-components` 仅提供具名导出（按需 tree-shaking）。如需全局注册全部组件，请使用独立入口 `qyani-components/install`（不含体积较大的 `QMarkdownRender`，该组件请按需引入）。
+
 ```typescript
-import { createApp } from 'vue';
-import App from './App.vue';
-import qiannaicomponents from 'qyani-components';
 import 'qyani-components/dist/style.css';
+import install from 'qyani-components/install';
+import { createApp } from 'vue';
+
+import App from './App.vue';
 
 const app = createApp(App);
-app.use(qiannaicomponents);
+app.use(install);
 app.mount('#app');
 ```
 
@@ -61,8 +64,8 @@ app.mount('#app');
 </template>
 
 <script setup lang="ts">
+import { QAvatar, QButton, QFormContainer } from 'qyani-components';
 import { ref } from 'vue';
-import { QAvatar, QFormContainer, QButton } from 'qyani-components';
 
 const username = ref('');
 </script>

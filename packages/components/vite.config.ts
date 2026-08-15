@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [vue()], // 启用 Vue 插件
   build: {
     lib: {
-      // 关键：启用库模式
+      // 关键：启用库模式（主入口，纯具名导出；install 由 vite.install.config.ts 单独构建）
       entry: path.resolve(__dirname, 'src/index.ts'), // 入口文件（你的组件库主入口）
       name: 'QyaniComponents', // 库的全局变量名（UMD 格式时用到）
       formats: ['es', 'cjs', 'umd'], // 输出格式：ESM + CommonJS + UMD

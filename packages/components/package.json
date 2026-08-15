@@ -10,7 +10,7 @@
   "type": "module",
   "scripts": {
     "type-check": "pnpm npx vue-tsc --build --declaration --clean",
-    "build": "pnpm vite build && vue-tsc --build --declaration --emitDeclarationOnly",
+    "build": "pnpm vite build && pnpm vite build --config vite.install.config.ts && vue-tsc --build --declaration --emitDeclarationOnly",
     "update": "python scripts/index_python.local.py && python scripts/global.d.ts.local.py",
     "test": "vitest run",
     "test:ui": "vitest ui",
@@ -61,6 +61,11 @@
       "types": "./dist/types/index.d.ts",
       "import": "./dist/qyani-components.es.js",
       "require": "./dist/qyani-components.cjs.js"
+    },
+    "./install": {
+      "types": "./dist/types/install.d.ts",
+      "import": "./dist/qyani-components.install.es.js",
+      "require": "./dist/qyani-components.install.cjs.js"
     },
     "./dist/style.css": "./dist/style.css",
     "./global": {
