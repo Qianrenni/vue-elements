@@ -22,7 +22,8 @@ let katexConfigured = false;
 function loadHeavyDeps(): Promise<HeavyDeps> {
   heavyReady ??= (async () => {
     const [hlMod, mdMod, mkMod, pyMod] = await Promise.all([
-      import('highlight.js'),
+      // 使用 core 而非全量入口：避免打包全部 190+ 语言，仅保留核心 API + 下方动态注册的语言
+      import('highlight.js/lib/core'),
       import('marked'),
       import('marked-katex-extension'),
       import('pinyin-pro'),
@@ -86,6 +87,16 @@ function scrollToIdFn(id: string) {
   }
 }
 
+/** HTML 转义（highlight.js core 无内置 plaintext 语言，纯文本降级时手动转义） */
+function escapeHtml(code: string): string {
+  return code
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export function useMarkdownRender(props: MarkdownRenderProps) {
   const htmlContent = ref('');
   const toc = ref<TocItem[]>([]);
@@ -118,15 +129,15 @@ export function useMarkdownRender(props: MarkdownRenderProps) {
 
       let highlighted: string;
       if (!resolvedLang || !hljs.getLanguage(resolvedLang)) {
-        highlighted = hljs.highlight(code, { language: 'plaintext' }).value;
+        highlighted = escapeHtml(code);
       } else {
         try {
           highlighted = hljs.highlight(code, { language: resolvedLang }).value;
         } catch (e) {
           console.warn(
-            `Highlight.js 无法识别语言：${lang}，已降级为 plaintext ${e}`,
+            `Highlight.js 无法识别语言：${lang}，已降级为纯文本 ${e}`,
           );
-          highlighted = hljs.highlight(code, { language: 'plaintext' }).value;
+          highlighted = escapeHtml(code);
         }
       }
 
