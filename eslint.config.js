@@ -1,3 +1,3 @@
-import qyaniConfig from '@qyani/eslint-config';
+import qyaniConfig from '@qianrenni/eslint-config';
 
 export default [...qyaniConfig];

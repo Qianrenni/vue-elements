@@ -1,7 +1,7 @@
 import { useWindowResize } from '@/utils';
 import { onBeforeUnmount, onMounted, type Ref } from 'vue';
 
-import { useThrottle } from '@qyani/core';
+import { useThrottle } from '@qianrenni/core';
 
 import type {
   ScrollContainerEmits,

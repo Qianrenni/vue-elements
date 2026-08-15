@@ -101,7 +101,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useAVLTree',
     category: ['Core', 'algorithm'],
     docPath: '/docs/core/algorithm/useAVLTree.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -109,7 +109,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useArray',
     category: ['Core', 'algorithm'],
     docPath: '/docs/core/algorithm/useArray.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -117,7 +117,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useGraph',
     category: ['Core', 'algorithm'],
     docPath: '/docs/core/algorithm/useGraph.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -125,7 +125,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useHeap',
     category: ['Core', 'algorithm'],
     docPath: '/docs/core/algorithm/useHeap.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -133,7 +133,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useRedBlackTree',
     category: ['Core', 'algorithm'],
     docPath: '/docs/core/algorithm/useRedBlackTree.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -141,7 +141,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useSegmentTree',
     category: ['Core', 'algorithm'],
     docPath: '/docs/core/algorithm/useSegmentTree.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -149,7 +149,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useSkipList',
     category: ['Core', 'algorithm'],
     docPath: '/docs/core/algorithm/useSkipList.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -157,7 +157,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useSort',
     category: ['Core', 'algorithm'],
     docPath: '/docs/core/algorithm/useSort.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -165,7 +165,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useClip',
     category: ['Core', 'business'],
     docPath: '/docs/core/business/useClip.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -173,7 +173,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useDebounce',
     category: ['Core', 'business'],
     docPath: '/docs/core/business/useDebounce.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -181,7 +181,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useMemoryCache',
     category: ['Core', 'business'],
     docPath: '/docs/core/business/useMemoryCache.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -189,7 +189,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useNullHandel',
     category: ['Core', 'business'],
     docPath: '/docs/core/business/useNullHandel.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -197,7 +197,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useObject',
     category: ['Core', 'business'],
     docPath: '/docs/core/business/useObject.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -205,7 +205,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useThrottle',
     category: ['Core', 'business'],
     docPath: '/docs/core/business/useThrottle.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {
@@ -213,7 +213,7 @@ export const docsEntries: DocsEntry[] = [
     displayName: 'useTimeUtils',
     category: ['Core', 'business'],
     docPath: '/docs/core/business/useTimeUtils.md',
-    packageName: '@qyani/core',
+    packageName: '@qianrenni/core',
     demoPath: null,
   },
   {

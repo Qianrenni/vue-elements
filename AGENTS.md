@@ -8,11 +8,11 @@ This file provides guidance to Qoder (qoder.com) when working with code in this 
 
 **3 packages under `packages/`:**
 
-| Package                | Name                     | Purpose                                    |
-| ---------------------- | ------------------------ | ------------------------------------------ |
-| `packages/components/` | `qyani-components`       | Core component library (Vite library mode) |
-| `packages/docs/`       | `@qyani-components/docs` | Documentation site (Vite app)              |
-| `packages/eslint/`     | `@qyani/eslint-config`   | Shared ESLint flat config                  |
+| Package                | Name                         | Purpose                                    |
+| ---------------------- | ---------------------------- | ------------------------------------------ |
+| `packages/components/` | `qyani-components`           | Core component library (Vite library mode) |
+| `packages/docs/`       | `@qianrenni-components/docs` | Documentation site (Vite app)              |
+| `packages/eslint/`     | `@qianrenni/eslint-config`   | Shared ESLint flat config                  |
 
 ### Component Categories
 
@@ -108,8 +108,8 @@ pnpm run test -- useObject   # Runs tests matching "useObject"
 ### Formatting & Linting
 
 - **Prettier** (`.prettierrc.cjs`): 80 char width, 2-space indent, single quotes, trailing commas, CRLF line endings
-- **Import sorting** (`@trivago/prettier-plugin-sort-imports`): third-party → `@qyani/` workspace packages → relative paths (groups separated by blank lines)
-- **ESLint**: Flat config via `@qyani/eslint-config` (eslint.config.mjs), supports JS/TS/Vue/JSON/CSS
+- **Import sorting** (`@trivago/prettier-plugin-sort-imports`): third-party → `@qianrenni/` workspace packages → relative paths (groups separated by blank lines)
+- **ESLint**: Flat config via `@qianrenni/eslint-config` (eslint.config.mjs), supports JS/TS/Vue/JSON/CSS
 - **Husky + lint-staged**: Pre-commit hook runs `prettier --write` then `eslint --cache --fix`
 
 ### TypeScript

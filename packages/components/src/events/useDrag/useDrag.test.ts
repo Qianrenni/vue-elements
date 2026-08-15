@@ -6,7 +6,7 @@ const hoisted = vi.hoisted(() => ({
   mockThrottle: vi.fn((fn: (...args: unknown[]) => void) => fn),
 }));
 
-vi.mock('@qyani/core', () => ({
+vi.mock('@qianrenni/core', () => ({
   useThrottle: hoisted.mockThrottle,
 }));
 

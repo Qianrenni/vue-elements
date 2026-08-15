@@ -1,5 +1,5 @@
 {
-  "name": "@qyani/eslint-config",
+  "name": "@qianrenni/eslint-config",
   "version": "1.0.0",
   "description": "Shared ESLint configuration for QYani projects",
   "main": "eslint.config.mjs",

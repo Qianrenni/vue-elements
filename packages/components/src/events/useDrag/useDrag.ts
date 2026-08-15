@@ -1,4 +1,4 @@
-import { useThrottle } from '@qyani/core';
+import { useThrottle } from '@qianrenni/core';
 
 /**
  * @param elementRef 目标元素的引用

@@ -45,7 +45,7 @@ module.exports = {
   // 导入分组顺序（按正则匹配，不匹配的分组内按字母排序）
   importOrder: [
     '<THIRD_PARTY_MODULES>', // 第三方依赖（node_modules）
-    '^@qyani/', // 内部 workspace 包
+    '^@qianrenni/', // 内部 workspace 包
     '^[.]', // 相对路径导入
   ],
   // 不同分组之间用空行分隔

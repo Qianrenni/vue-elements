@@ -10,8 +10,8 @@ A modern front-end component library developed with Vue 3 + TypeScript, featurin
 qyani-components/
 ├── packages/
 │   ├── components/     # Core Component Library (qyani-components)
-│   ├── docs/          # Documentation Site (@qyani-components/docs)
-│   └── eslint/        # Shared ESLint Config (@qyani/eslint-config)
+│   ├── docs/          # Documentation Site (@qianrenni-components/docs)
+│   └── eslint/        # Shared ESLint Config (@qianrenni/eslint-config)
 ├── package.json       # Root Configuration
 └── pnpm-workspace.yaml # pnpm Workspace Configuration
 ```

@@ -242,7 +242,7 @@ def main() -> None:
             PACKAGES_ROOT / 'core' / 'src',
             Path('core'),
             ('Core',),
-            '@qyani/core',
+            '@qianrenni/core',
         ),
     )
     write_manifest(entries)

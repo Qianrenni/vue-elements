@@ -10,7 +10,7 @@ importers:
       '@prettier/plugin-xml':
         specifier: ^3.4.2
         version: 3.4.2(prettier@3.8.3)
-      '@qyani/eslint-config':
+      '@qianrenni/eslint-config':
         specifier: workspace:*
         version: link:packages/eslint
       '@trivago/prettier-plugin-sort-imports':
@@ -31,8 +31,8 @@ importers:
 
   packages/components:
     dependencies:
-      '@qyani/core':
-        specifier: workspace:*
+      '@qianrenni/core':
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@types/node':

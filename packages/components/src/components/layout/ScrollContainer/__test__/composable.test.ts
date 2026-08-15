@@ -23,7 +23,7 @@ vi.mock('vue', async (importOriginal) => {
   };
 });
 
-vi.mock('@qyani/core', () => ({
+vi.mock('@qianrenni/core', () => ({
   useThrottle: (fn: (...args: unknown[]) => void) => fn,
 }));
 

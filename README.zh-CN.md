@@ -8,8 +8,8 @@
 qyani-components/
 ├── packages/
 │   ├── components/     # 核心组件库 (qyani-components)
-│   ├── docs/          # 文档站点 (@qyani-components/docs)
-│   └── eslint/        # 共享 ESLint 配置 (@qyani/eslint-config)
+│   ├── docs/          # 文档站点 (@qianrenni-components/docs)
+│   └── eslint/        # 共享 ESLint 配置 (@qianrenni/eslint-config)
 ├── package.json       # 根目录配置
 └── pnpm-workspace.yaml # pnpm 工作区配置
 ```

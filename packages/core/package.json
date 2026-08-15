@@ -1,5 +1,5 @@
 {
-  "name": "@qyani/core",
+  "name": "@qianrenni/core",
   "version": "1.0.0",
   "description": "Framework-agnostic utilities and data structures for qyani packages",
   "main": "dist/qyani-core.cjs.js",

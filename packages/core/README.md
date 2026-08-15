@@ -1,13 +1,13 @@
-# @qyani/core
+# @qianrenni/core
 
 ## Purpose
 
-`@qyani/core` 提供仅依赖 Node 通用环境的数据结构、算法、业务工具和通用类型，不依赖 Vue、DOM、浏览器存储或 `qyani-components`。所有 API 均从包根路径导出。
+`@qianrenni/core` 提供仅依赖 Node 通用环境的数据结构、算法、业务工具和通用类型，不依赖 Vue、DOM、浏览器存储或 `qyani-components`。所有 API 均从包根路径导出。
 
 ## Usage
 
 ```ts
-import { deepMerge, useDebounce, UseHeap } from '@qyani/core';
+import { deepMerge, useDebounce, UseHeap } from '@qianrenni/core';
 
 const heap = new UseHeap<number>();
 heap.add(2);
@@ -17,7 +17,7 @@ const debounced = useDebounce(() => console.log(settings.enabled), 100);
 
 ## Tests
 
-纯函数和无框架实现的单元测试归属 `packages/core/src`，使用 `pnpm run --filter @qyani/core test` 在 Node 环境运行；依赖 Vue、DOM 或浏览器能力的工具测试继续归属 `qyani-components`。
+纯函数和无框架实现的单元测试归属 `packages/core/src`，使用 `pnpm run --filter @qianrenni/core test` 在 Node 环境运行；依赖 Vue、DOM 或浏览器能力的工具测试继续归属 `qyani-components`。
 
 ## API
 
