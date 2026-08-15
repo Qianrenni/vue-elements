@@ -42,7 +42,7 @@ describe('QTreeNode 渲染', () => {
     expect(container.querySelector('.tree-node-children')).toBeTruthy();
   });
 
-  it('expanded=false 且有 children 时不应渲染子节点区域', () => {
+  it('expanded=false 且有 children 时子节点区域应隐藏', () => {
     const { container } = render(QTreeNode, {
       props: {
         node: {
@@ -54,7 +54,11 @@ describe('QTreeNode 渲染', () => {
         level: 0,
       },
     });
-    expect(container.querySelector('.tree-node-children')).toBeNull();
+    const children = container.querySelector<HTMLElement>(
+      '.tree-node-children',
+    );
+    expect(children).toBeTruthy();
+    expect(children!.style.display).toBe('none');
   });
 
   it('selected=true 应附加 tree-node-selected 类', () => {

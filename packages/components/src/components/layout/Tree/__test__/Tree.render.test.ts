@@ -31,7 +31,7 @@ describe('QTree 渲染', () => {
     expect(getByText('子节点2')).toBeTruthy();
   });
 
-  it('expanded=false 的父节点不应渲染子节点', () => {
+  it('expanded=false 的父节点子节点应隐藏', () => {
     const { container } = render(QTree, {
       props: {
         data: [
@@ -44,7 +44,11 @@ describe('QTree 渲染', () => {
         ],
       },
     });
-    expect(container.querySelector('.tree-node-children')).toBeNull();
+    const children = container.querySelector<HTMLElement>(
+      '.tree-node-children',
+    );
+    expect(children).toBeTruthy();
+    expect(children!.style.display).toBe('none');
   });
 
   it('selected=true 的节点应附加 tree-node-selected 类', () => {

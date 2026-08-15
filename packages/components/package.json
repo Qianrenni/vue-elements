@@ -12,7 +12,7 @@
     "type-check": "pnpm npx vue-tsc --build --declaration --clean",
     "build": "pnpm vite build && vue-tsc --build --declaration --emitDeclarationOnly",
     "update": "python scripts/index_python.local.py && python scripts/global.d.ts.local.py",
-    "test": "vitest",
+    "test": "vitest run",
     "test:ui": "vitest ui",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage"
