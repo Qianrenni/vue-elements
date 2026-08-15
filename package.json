@@ -8,10 +8,11 @@
     "prettier": "npx prettier --write \"packages/**/*.{js,ts,vue,css,md}\"",
     "core:build": "pnpm run --filter @qianrenni/core build",
     "components:build": "pnpm run core:build && pnpm run --filter qyani-components build",
+    "mcp:update": "pnpm run --filter @qianrenni/mcp build && pnpm run --filter @qianrenni/mcp build:index",
     "release": "pnpm run components:build && pnpm publish -r --access public",
     "dev": "pnpm run docs:dev",
     "docs:dev": "pnpm run --filter @qianrenni-components/docs dev",
-    "docs:update": "pnpm run --filter @qianrenni-components/docs update",
+    "docs:update": "pnpm run --filter @qianrenni-components/docs update && pnpm run mcp:update",
     "docs:build": "pnpm run core:build && pnpm run --filter qyani-components build && pnpm run --filter @qianrenni-components/docs build",
     "prepare": "husky install "
   },

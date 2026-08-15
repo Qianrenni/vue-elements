@@ -184,9 +184,52 @@ Steps:
    pnpm run docs:update
    ```
 
-   This runs `packages/docs/scripts/sync_docs.py`: clears and rebuilds `public/docs/components/**`, copies each component's sibling `README.md` to its generated doc, and regenerates `useComponentInfo.ts`.
+   This runs `packages/docs/scripts/sync_docs.py`: clears and rebuilds `public/docs/components/**`, copies each component's sibling `README.md` to its generated doc, and regenerates `useComponentInfo.ts`. It then **also rebuilds the MCP knowledge-base index** (`pnpm run mcp:update`) so the docs and the MCP server stay in sync in one step.
 
 > **Adding a new component**: create its `README.md` (with Props / Emits / Slots / Exposes tables) first, then run `pnpm run docs:update`; also run the components package `pnpm run update` to regenerate `src/index.ts` and `global.d.ts`.
+
+### MCP Knowledge Base Sync Obligation
+
+> The `packages/mcp/` knowledge-base MCP server reads a **generated** index file (`packages/mcp/data/index.json`). Any change to component / util / style source or docs **must** be reflected in that index, otherwise MCP queries return stale data.
+
+**Relationship:**
+
+| Side                      | Location                                                                                                     | Purpose                                                                                      |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| **Source of truth**       | `packages/components/src/...` + `packages/core/src/...` (README.md / type.ts / composable.ts / style/\*.css) | What MCP should answer about                                                                 |
+| **MCP index (generated)** | `packages/mcp/data/index.json`                                                                               | Built by `packages/mcp/src/build-index.ts`; loaded in memory by the MCP server               |
+| **MCP server**            | `packages/mcp/src/index.ts`                                                                                  | Serves `search` / `get_doc` / `get_component_api` / `get_source` / `list_entries` over stdio |
+
+Sync flow:
+
+```
+component README / type.ts / style/*.css
+  └─ pnpm run mcp:update (build-index) ──► packages/mcp/data/index.json ──► MCP server (memory)
+```
+
+Steps (run after ANY of the following changes):
+
+1. **Component changes** — new component, `README.md` (Props/Emits/Slots/Exposes), `type.ts`, `composable.ts`, `{Name}.vue` logic.
+2. **Util changes** — `@qianrenni/core` (`useXxx.ts` + README) or `packages/components/src/utils/**`.
+3. **Event util changes** — `packages/components/src/events/**`.
+4. **Style changes** — `packages/components/src/style/**` (tokens / utilities / base / theme / components).
+
+Then rebuild the index (also rebuilds TS first):
+
+```bash
+pnpm --filter @qianrenni/mcp build     # tsc → dist/
+pnpm --filter @qianrenni/mcp build:index   # scan sources → data/index.json
+```
+
+Or one-shot from repo root:
+
+```bash
+pnpm run mcp:update    # build + build:index
+```
+
+> **Auto-synced by `docs:update`**: since `docs:update` now runs `mcp:update` automatically, **component README / prop / style changes synced via `docs:update` need no separate MCP rebuild**. Run `mcp:update` manually only for changes that `docs:update` does not cover (e.g. `@qianrenni/core` utils or `packages/components/src/utils/**` / `events/**` not tied to docs).
+
+> **New component or style file**: create/edit the source + README first, then run `docs:update` (or `build:index`); the index is regenerated deterministically (sorted), so running it again is safe. The MCP server reads the index once at startup, so restart the server (or reload VS Code window) after rebuilding to pick up new data.
 
 ### Global Type Augmentations
 
