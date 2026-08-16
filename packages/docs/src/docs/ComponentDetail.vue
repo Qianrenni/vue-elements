@@ -81,6 +81,7 @@ watch(
       <p class="package-name">{{ component.packageName }}</p>
       <QTab
         v-if="tabs.length > 1"
+        :key="component.name"
         :list="tabs"
         @select="(index: number) => (currentTabIndex = index)"
       />
@@ -108,7 +109,7 @@ watch(
 .component-detail {
   flex: 1;
   overflow-y: auto;
-  height: calc(100vh - 2.5rem);
+  height: calc(100vh - 3.5rem);
 }
 
 .component-display {

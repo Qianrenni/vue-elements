@@ -24,6 +24,17 @@ class DocsEntry:
     demo_path: str | None = None
 
 
+# 通用样式系统分组：src/style/ 下的子目录 → 文档展示名
+STYLE_SECTIONS: dict[str, str] = {
+    'tokens': '设计变量 (Tokens)',
+    'utilities': '工具类 (Utilities)',
+    'base': '基础样式 (Base)',
+    'theme': '主题 (Theme)',
+    'components': '组件样式 (Components)',
+    'vendor': '第三方样式 (Vendor)',
+}
+
+
 def copy_readme(source: Path, target: Path) -> None:
     """Copy one source README to its generated documentation destination.
 
@@ -167,8 +178,62 @@ def clear_generated_api_docs() -> None:
     Raises:
         OSError: If a managed generated directory cannot be removed.
     """
-    for name in ('components', 'events', 'utils', 'core'):
+    for name in ('components', 'events', 'utils', 'core', 'styles'):
         shutil.rmtree(PUBLIC_DOCS_ROOT / name, ignore_errors=True)
+
+
+def sync_style_system() -> list[DocsEntry]:
+    """Synchronize the component library's shared style system docs.
+
+    The style system (packages/components/src/style) is the canonical CSS
+    design system: tokens, utilities, base and theme. Its root README.md
+    becomes the overview page; each group keeps a sibling README.md synced
+    under public/docs/styles/. Demo pages (if any) under the docs display
+    directory are attached so entries gain a live preview tab.
+
+    Returns:
+        Sorted navigation entries for the style system documentation.
+
+    Raises:
+        OSError: If source READMEs, generated docs, or the manifest cannot be accessed.
+    """
+    source_root = PACKAGES_ROOT / 'components' / 'src' / 'style'
+    entries: list[DocsEntry] = []
+
+    # 根 README.md → 设计系统总览（styles/overview.md）
+    root_readme = source_root / 'README.md'
+    if root_readme.is_file():
+        copy_readme(root_readme, PUBLIC_DOCS_ROOT / 'styles' / 'overview.md')
+        entries.append(
+            DocsEntry(
+                name='style-overview',
+                display_name='设计系统总览',
+                category=('Design System',),
+                doc_path='/docs/styles/overview.md',
+                package_name='qyani-components',
+                demo_path=None,
+            ),
+        )
+
+    # 各分组 README.md → styles/{key}.md
+    for key, display_name in STYLE_SECTIONS.items():
+        readme = source_root / key / 'README.md'
+        if not readme.is_file():
+            continue
+        docs_relative = Path('styles') / f'{key}.md'
+        copy_readme(readme, PUBLIC_DOCS_ROOT / docs_relative)
+        doc_without_suffix = docs_relative.with_suffix('')
+        entries.append(
+            DocsEntry(
+                name=f'style-{key}',
+                display_name=display_name,
+                category=('Design System',),
+                doc_path=f'/docs/{docs_relative.as_posix()}',
+                package_name='qyani-components',
+                demo_path=get_demo_path(doc_without_suffix),
+            ),
+        )
+    return entries
 
 
 def write_manifest(entries: list[DocsEntry]) -> None:
@@ -221,6 +286,7 @@ def main() -> None:
     """
     clear_generated_api_docs()
     entries = sync_vue_components()
+    entries.extend(sync_style_system())
     entries.extend(
         sync_readme_directory(
             PACKAGES_ROOT / 'components' / 'src' / 'events',

@@ -73,6 +73,6 @@ onBeforeMount(() => {
 .component-list {
   width: 260px;
   border-right: 1px solid var(--primary-color);
-  height: calc(100vh - 2.5rem);
+  height: calc(100vh - 3.5rem);
 }
 </style>
