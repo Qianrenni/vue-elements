@@ -1,1 +1,0 @@
-import{D as s}from"./DemoBlock-B7uW5Cjn.js";import{d as o,o as t,c as a,w as l,a as p}from"./index-C4FdPvsf.js";const n="\n```html\n<!-- useClip Demo -->\n```\n",c=o({name:"DisplayUtilsBusinessuseClip",__name:"useClip",setup(i){return(r,e)=>(t(),a(s,{code:n},{default:l(()=>[...e[0]||(e[0]=[p("p",null,"useClip 文档待完善",-1)])]),_:1}))}});export{c as default};

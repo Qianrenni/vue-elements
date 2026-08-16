@@ -1,1 +1,0 @@
-import{D as o}from"./DemoBlock-B7uW5Cjn.js";import{d as t,o as a,c as r,w as n,a as s}from"./index-C4FdPvsf.js";const m="\n```html\n<!-- Tree Component Demo -->\n```\n",_=t({name:"DisplayLayoutTree",__name:"Tree",setup(p){return(c,e)=>(a(),r(o,{code:m},{default:n(()=>[...e[0]||(e[0]=[s("p",null,"Tree 组件文档待完善",-1)])]),_:1}))}});export{_ as default};
