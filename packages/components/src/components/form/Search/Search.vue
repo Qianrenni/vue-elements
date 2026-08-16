@@ -16,7 +16,10 @@
       @blur="handleBlur"
     />
     <QIcon
+      :aria-label="'搜索'"
+      :tabindex="0"
       icon="Search"
+      role="button"
       size="16px"
       style="
         position: absolute;
@@ -24,15 +27,19 @@
         top: 50%;
         transform: translateY(-50%);
       "
+      title="搜索"
       @click="handleSearchClick"
+      @keydown.enter.prevent="handleSearchClick"
+      @keydown.space.prevent="handleSearchClick"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { SearchProps, SearchEmits } from './type';
-import { useSearch } from './composable';
 import { QIcon } from '@/components/basic/Icon';
+
+import { useSearch } from './composable';
+import type { SearchEmits, SearchProps } from './type';
 
 defineOptions({
   name: 'QSearch',

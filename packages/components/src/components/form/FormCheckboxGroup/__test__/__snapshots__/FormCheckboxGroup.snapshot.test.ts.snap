@@ -3,13 +3,13 @@
 exports[`QFormCheckboxGroup 快照测试 > 横向排列渲染 1`] = `
 "<div class="container container-align-center">
   <p class="text-label required">框架</p>
-  <div class="inner-container"><label for="vue" class="container-center gap-fourth"><input checked="" name="vue" type="checkbox" value="vue"><span class="text-085rem">Vue</span></label><label for="react" class="container-center gap-fourth"><input name="react" type="checkbox" value="react"><span class="text-085rem">React</span></label><label for="angular" class="container-center gap-fourth"><input name="angular" type="checkbox" value="angular"><span class="text-085rem">Angular</span></label></div>
+  <div class="inner-container"><label for="vue" class="container-center gap-fourth"><input checked="" id="vue" name="vue" type="checkbox" value="vue"><span class="text-085rem">Vue</span></label><label for="react" class="container-center gap-fourth"><input id="react" name="react" type="checkbox" value="react"><span class="text-085rem">React</span></label><label for="angular" class="container-center gap-fourth"><input id="angular" name="angular" type="checkbox" value="angular"><span class="text-085rem">Angular</span></label></div>
 </div>"
 `;
 
 exports[`QFormCheckboxGroup 快照测试 > 纵向排列渲染 1`] = `
 "<div class="container-column">
   <!--v-if-->
-  <div class="inner-container"><label for="vue" class="container-center gap-fourth"><input name="vue" type="checkbox" value="vue"><span class="text-085rem">Vue</span></label><label for="react" class="container-center gap-fourth"><input name="react" type="checkbox" value="react"><span class="text-085rem">React</span></label><label for="angular" class="container-center gap-fourth"><input name="angular" type="checkbox" value="angular"><span class="text-085rem">Angular</span></label></div>
+  <div class="inner-container"><label for="vue" class="container-center gap-fourth"><input id="vue" name="vue" type="checkbox" value="vue"><span class="text-085rem">Vue</span></label><label for="react" class="container-center gap-fourth"><input id="react" name="react" type="checkbox" value="react"><span class="text-085rem">React</span></label><label for="angular" class="container-center gap-fourth"><input id="angular" name="angular" type="checkbox" value="angular"><span class="text-085rem">Angular</span></label></div>
 </div>"
 `;

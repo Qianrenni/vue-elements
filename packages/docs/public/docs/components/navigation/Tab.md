@@ -37,6 +37,10 @@ function handleSelect(index: number) {
 
 无。
 
+## 可访问性（Accessibility）
+
+- 容器为 `role="tablist"`，每个标签为 `role="tab"` 并带 `aria-selected`；激活项在 Tab 序内，支持 Enter / Space 切换。
+
 ## Exposes
 
 无。

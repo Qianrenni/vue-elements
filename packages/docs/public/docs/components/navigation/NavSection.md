@@ -45,6 +45,11 @@ function handleSelect(section: NavSectionProps) {
 
 无。
 
+## 可访问性（Accessibility）
+
+- 返回按钮带 `role="button"` 与 `title`，支持 Enter / Space 返回上一级。
+- 当前激活导航项带 `aria-current="page"`。
+
 ## Exposes
 
 无。

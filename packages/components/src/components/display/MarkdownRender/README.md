@@ -26,6 +26,11 @@
 
 无。
 
+## 可访问性（Accessibility）
+
+- 复制按钮带 `role="button"`、`title="复制"` 与 `aria-label`，支持 Enter / Space 触发。
+- 悬浮目录折叠头带 `role="button"` 与 `aria-expanded`；目录项带 `role="link"`、`title`（超长省略时悬停显示全文）与键盘支持。
+
 ## Exposes
 
 | 方法           | 类型                                                                                             | 说明                                                                                   |

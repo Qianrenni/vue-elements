@@ -1,13 +1,13 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`QThemeToggle 快照测试 > 自定义尺寸渲染 1`] = `
-"<div data-v-850bb1a3="" aria-label="切换主题" class="theme-toggle">
+"<div data-v-850bb1a3="" aria-pressed="false" tabindex="0" aria-label="切换主题" class="theme-toggle" role="button">
   <div data-v-850bb1a3="" class="mouse-cursor user-select-none container-center"><svg width="32" height="32" viewBox="0 0 24 24"></svg></div>
 </div>"
 `;
 
 exports[`QThemeToggle 快照测试 > 默认尺寸渲染 1`] = `
-"<div data-v-850bb1a3="" aria-label="切换主题" class="theme-toggle">
+"<div data-v-850bb1a3="" aria-pressed="false" tabindex="0" aria-label="切换主题" class="theme-toggle" role="button">
   <div data-v-850bb1a3="" class="mouse-cursor user-select-none container-center"><svg width="20" height="20" viewBox="0 0 24 24"></svg></div>
 </div>"
 `;

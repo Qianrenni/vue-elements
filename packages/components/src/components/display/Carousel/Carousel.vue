@@ -13,6 +13,7 @@
   >
     <QIcon
       v-if="props.showButton"
+      :aria-label="'上一张'"
       :class="{
         'left-center': props.indicatorPosition === 'center-bottom',
         'center-top':
@@ -20,11 +21,17 @@
           props.indicatorPosition !== 'center-bottom',
       }"
       :icon="props.indicatorPosition === 'center-bottom' ? 'Left' : 'Up'"
+      :tabindex="0"
       class="opacity-2-9 carousel-indicators"
+      role="button"
+      title="上一张"
       @click="prev"
+      @keydown.enter.prevent="prev"
+      @keydown.space.prevent="prev"
     />
     <QIcon
       v-if="props.showButton"
+      :aria-label="'下一张'"
       :class="{
         'right-center': props.indicatorPosition === 'center-bottom',
         'center-bottom':
@@ -32,8 +39,13 @@
           props.indicatorPosition !== 'center-bottom',
       }"
       :icon="props.indicatorPosition === 'center-bottom' ? 'Right' : 'Down'"
+      :tabindex="0"
       class="opacity-2-9 carousel-indicators"
+      role="button"
+      title="下一张"
       @click="next"
+      @keydown.enter.prevent="next"
+      @keydown.space.prevent="next"
     />
     <div
       ref="containerInner"
@@ -81,18 +93,25 @@
       <span
         v-for="(_, i) in itemsCount"
         :key="i"
+        :aria-label="`跳转到第 ${i + 1} 张`"
         :class="{ active: i === realIndex }"
+        :tabindex="0"
+        :title="`第 ${i + 1} 张`"
         class="indicator"
+        role="button"
         @click="goTo(i)"
+        @keydown.enter.prevent="goTo(i)"
+        @keydown.space.prevent="goTo(i)"
       />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { QIcon } from '@/components/basic/Icon';
+
 import { useCarousel } from './composable';
 import type { CarouselEmits, CarouselProps } from './type';
-import { QIcon } from '@/components/basic/Icon';
 
 defineOptions({ name: 'QCarousel' });
 

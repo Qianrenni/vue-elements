@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div role="tree">
     <QTreeNode
       v-for="node in props.data"
       :key="node.id"
@@ -13,8 +13,9 @@
 
 <script lang="ts" setup>
 import { QTreeNode } from '@/components/layout/TreeNode';
-import type { TreeProps, TreeEmits } from './type';
+
 import { useTree } from './composable';
+import type { TreeEmits, TreeProps } from './type';
 
 defineOptions({
   name: 'QTree',

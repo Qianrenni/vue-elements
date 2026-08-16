@@ -3,7 +3,7 @@
 exports[`QCollapse 快照测试 > 含激活项的折叠面板渲染 1`] = `
 "<div>
   <div data-v-3242604d="" class="collapse-item">
-    <div data-v-3242604d="" class="is-active collapse-item__header bg-hover-secondary"><span data-v-3242604d="" class="collapse-item__title">面板一</span><i data-v-3242604d="" class="is-active collapse-item__arrow"></i></div>
+    <div data-v-3242604d="" aria-expanded="true" class="is-active collapse-item__header bg-hover-secondary" tabindex="0" role="button"><span data-v-3242604d="" class="collapse-item__title">面板一</span><i data-v-3242604d="" class="is-active collapse-item__arrow"></i></div>
     <div data-v-3242604d="" class="is-active collapse-item__content-wrapper">
       <div data-v-3242604d="" class="collapse-item__content">
         <p>内容一</p>
@@ -11,7 +11,7 @@ exports[`QCollapse 快照测试 > 含激活项的折叠面板渲染 1`] = `
     </div>
   </div>
   <div data-v-3242604d="" class="collapse-item">
-    <div data-v-3242604d="" class="collapse-item__header bg-hover-secondary"><span data-v-3242604d="" class="collapse-item__title">面板二</span><i data-v-3242604d="" class="collapse-item__arrow"></i></div>
+    <div data-v-3242604d="" aria-expanded="false" class="collapse-item__header bg-hover-secondary" tabindex="0" role="button"><span data-v-3242604d="" class="collapse-item__title">面板二</span><i data-v-3242604d="" class="collapse-item__arrow"></i></div>
     <div data-v-3242604d="" class="collapse-item__content-wrapper">
       <div data-v-3242604d="" class="collapse-item__content">
         <p>内容二</p>

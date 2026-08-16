@@ -2,42 +2,42 @@
 
 exports[`QTreeNode 快照测试 > 叶子节点渲染 1`] = `
 "<div data-v-ffe6d941="" class="tree-node">
-  <div data-v-ffe6d941="" class="tree-node-content container-align-center mouse-cursor">
-    <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor" style="display: none;">
+  <div data-v-ffe6d941="" aria-level="1" class="tree-node-content container-align-center mouse-cursor" tabindex="0" role="treeitem">
+    <div data-v-ffe6d941="" aria-hidden="true" class="tree-node-toggle container-align-center mouse-cursor" style="display: none;">
       <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
     </div>
-    <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor">
+    <div data-v-ffe6d941="" aria-hidden="true" class="tree-node-toggle container-align-center mouse-cursor">
       <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
     </div>
     <div data-v-ffe6d941="" class="tree-node-label container-align-center">叶子节点</div>
   </div>
-  <div data-v-ffe6d941="" class="tree-node-children padding-half-horizontal" style="display: none;"></div>
+  <div data-v-ffe6d941="" role="group" class="tree-node-children padding-half-horizontal" style="display: none;"></div>
 </div>"
 `;
 
 exports[`QTreeNode 快照测试 > 选中状态渲染 1`] = `
 "<div data-v-ffe6d941="" class="tree-node">
-  <div data-v-ffe6d941="" class="tree-node-selected tree-node-content container-align-center mouse-cursor">
-    <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor">
+  <div data-v-ffe6d941="" aria-expanded="true" aria-level="1" aria-selected="true" class="tree-node-selected tree-node-content container-align-center mouse-cursor" tabindex="0" role="treeitem">
+    <div data-v-ffe6d941="" aria-hidden="true" class="tree-node-toggle container-align-center mouse-cursor">
       <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
     </div>
-    <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor" style="display: none;">
+    <div data-v-ffe6d941="" aria-hidden="true" class="tree-node-toggle container-align-center mouse-cursor" style="display: none;">
       <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
     </div>
     <div data-v-ffe6d941="" class="tree-node-label container-align-center">选中节点</div>
   </div>
-  <div data-v-ffe6d941="" class="tree-node-children padding-half-horizontal">
+  <div data-v-ffe6d941="" role="group" class="tree-node-children padding-half-horizontal">
     <div data-v-ffe6d941="" class="tree-node">
-      <div data-v-ffe6d941="" class="tree-node-content container-align-center mouse-cursor">
-        <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor" style="display: none;">
+      <div data-v-ffe6d941="" aria-level="2" class="tree-node-content container-align-center mouse-cursor" tabindex="0" role="treeitem">
+        <div data-v-ffe6d941="" aria-hidden="true" class="tree-node-toggle container-align-center mouse-cursor" style="display: none;">
           <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
         </div>
-        <div data-v-ffe6d941="" class="tree-node-toggle container-align-center mouse-cursor">
+        <div data-v-ffe6d941="" aria-hidden="true" class="tree-node-toggle container-align-center mouse-cursor">
           <div data-v-ffe6d941="" class="mouse-cursor user-select-none container-center"><svg width="16" height="16" viewBox="0 0 24 24"></svg></div>
         </div>
         <div data-v-ffe6d941="" class="tree-node-label container-align-center">子节点</div>
       </div>
-      <div data-v-ffe6d941="" class="tree-node-children padding-half-horizontal" style="display: none;"></div>
+      <div data-v-ffe6d941="" role="group" class="tree-node-children padding-half-horizontal" style="display: none;"></div>
     </div>
   </div>
 </div>"

@@ -32,6 +32,10 @@
 | --------- | ---------- | -------- |
 | `default` | 无         | 无。     |
 
+## 可访问性（Accessibility）
+
+- 箭头切换区带 `role="button"`、`aria-expanded`、`title` 与 `aria-label`，支持 Enter / Space 切换。
+
 ## Exposes
 
 | 方法     | 参数 | 返回值 | 说明                       |

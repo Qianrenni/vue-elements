@@ -11,8 +11,14 @@
     <div class="markdown-body" v-html="htmlContent" />
     <span
       v-if="props.showCopy && props.content.trim() !== ''"
+      :aria-label="'复制'"
+      :tabindex="0"
       class="copy"
+      role="button"
+      title="复制"
       @click.prevent="copyHandler"
+      @keydown.enter.prevent="copyHandler"
+      @keydown.space.prevent="copyHandler"
     >
       <QIcon icon="Copy" size="16" />
     </span>
@@ -22,7 +28,15 @@
       :class="{ 'toc-collapsed': !tocExpanded }"
       class="floating-toc"
     >
-      <div class="toc-header" @click="toggleToc">
+      <div
+        :aria-expanded="tocExpanded"
+        :tabindex="0"
+        class="toc-header"
+        role="button"
+        @click="toggleToc"
+        @keydown.enter.prevent="toggleToc"
+        @keydown.space.prevent="toggleToc"
+      >
         <span v-if="tocExpanded">目录</span>
         <div v-else class="toc-icon">
           <QIcon icon="Minus" />
@@ -33,8 +47,12 @@
           v-for="item in toc"
           :key="item.id"
           :class="{ [`level-${item.level}`]: true }"
+          :tabindex="0"
+          :title="item.text"
           class="toc-item"
+          role="link"
           @click="scrollToHeading(item.id)"
+          @keydown.enter.prevent="scrollToHeading(item.id)"
         >
           {{ item.text }}
         </div>

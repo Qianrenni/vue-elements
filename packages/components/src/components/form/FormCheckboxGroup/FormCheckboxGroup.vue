@@ -33,6 +33,7 @@
         <input
           :checked="modelValue?.includes(opt.value)"
           :disabled="disabled"
+          :id="opt.value"
           :name="opt.value"
           :value="opt.value"
           type="checkbox"
@@ -48,8 +49,9 @@
 
 <script lang="ts" setup>
 import type { FormComponentEmits } from '@/types';
-import type { FormCheckboxGroupProps } from './type';
+
 import { useFormCheckboxGroup } from './composable';
+import type { FormCheckboxGroupProps } from './type';
 
 defineOptions({
   name: 'QFormCheckboxGroup',

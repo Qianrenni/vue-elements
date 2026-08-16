@@ -3,8 +3,15 @@
     <!-- 向上箭头 -->
     <div
       v-if="isShowArrow && direction === 'up'"
+      :aria-expanded="isExpanded"
+      :aria-label="isExpanded ? '收起' : '展开'"
+      :tabindex="0"
+      :title="isExpanded ? '收起' : '展开'"
       class="toggle-button-up"
+      role="button"
       @click="toggle"
+      @keydown.enter.prevent="toggle"
+      @keydown.space.prevent="toggle"
     />
 
     <div
@@ -16,11 +23,18 @@
       <!-- 左侧箭头 -->
       <div
         v-if="isShowArrow && direction === 'left'"
+        :aria-expanded="isExpanded"
+        :aria-label="isExpanded ? '收起' : '展开'"
         :style="{
           height: isExpanded ? 'auto' : '40px',
         }"
+        :tabindex="0"
+        :title="isExpanded ? '收起' : '展开'"
         class="toggle-button-left"
+        role="button"
         @click="toggle"
+        @keydown.enter.prevent="toggle"
+        @keydown.space.prevent="toggle"
       />
 
       <!-- 可折叠内容 -->
@@ -33,26 +47,40 @@
       <!-- 右侧箭头 -->
       <div
         v-if="isShowArrow && direction === 'right'"
+        :aria-expanded="isExpanded"
+        :aria-label="isExpanded ? '收起' : '展开'"
         :style="{
           height: isExpanded ? 'auto' : '40px',
         }"
+        :tabindex="0"
+        :title="isExpanded ? '收起' : '展开'"
         class="toggle-button-right"
+        role="button"
         @click="toggle"
+        @keydown.enter.prevent="toggle"
+        @keydown.space.prevent="toggle"
       />
     </div>
 
     <!-- 向下箭头 -->
     <div
       v-if="isShowArrow && direction === 'down'"
+      :aria-expanded="isExpanded"
+      :aria-label="isExpanded ? '收起' : '展开'"
+      :tabindex="0"
+      :title="isExpanded ? '收起' : '展开'"
       class="toggle-button-down"
+      role="button"
       @click="toggle"
+      @keydown.enter.prevent="toggle"
+      @keydown.space.prevent="toggle"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { CollapsibleSectionProps } from './type';
 import { useCollapsibleSection } from './composable';
+import type { CollapsibleSectionProps } from './type';
 
 defineOptions({
   name: 'QCollapsibleSection',

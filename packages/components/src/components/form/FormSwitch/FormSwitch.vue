@@ -4,14 +4,20 @@
  -->
 <template>
   <div
+    :aria-checked="modelValue ?? false"
+    :aria-label="label"
     :class="[
       {
         'mouse-cursor-disable': disabled,
         'form-switch--checked': modelValue,
       },
     ]"
+    :tabindex="disabled ? -1 : 0"
     class="form-switch"
+    role="switch"
     @click="toggle"
+    @keydown.enter.prevent="toggle"
+    @keydown.space.prevent="toggle"
   >
     <input
       :id="id"
@@ -58,8 +64,9 @@
 
 <script lang="ts" setup>
 import type { FormComponentEmits } from '@/types';
-import type { FormSwitchProps } from './type';
+
 import { useFormSwitch } from './composable';
+import type { FormSwitchProps } from './type';
 
 defineOptions({
   name: 'QFormSwitch',

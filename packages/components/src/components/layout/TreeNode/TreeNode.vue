@@ -1,21 +1,30 @@
 <template>
   <div class="tree-node">
     <div
+      :aria-expanded="hasChildren ? node.expanded : undefined"
+      :aria-level="level + 1"
+      :aria-selected="node.selected"
       :class="{
         'tree-node-selected': node.selected,
         'mouse-cursor-disable': node.disabled,
       }"
+      :tabindex="node.disabled ? -1 : 0"
       class="tree-node-content container-align-center mouse-cursor"
+      role="treeitem"
       @click="handleNodeClick"
+      @keydown.enter.prevent="handleNodeClick"
+      @keydown.space.prevent="handleNodeClick"
     >
       <div
         v-show="hasChildren"
+        aria-hidden="true"
         class="tree-node-toggle container-align-center mouse-cursor"
       >
         <QIcon icon="Folder" size="16" />
       </div>
       <div
         v-show="!hasChildren"
+        aria-hidden="true"
         class="tree-node-toggle container-align-center mouse-cursor"
       >
         <QIcon icon="File" size="16" />
@@ -27,6 +36,7 @@
 
     <div
       v-show="node.expanded && hasChildren"
+      role="group"
       class="tree-node-children padding-half-horizontal"
     >
       <QTreeNode

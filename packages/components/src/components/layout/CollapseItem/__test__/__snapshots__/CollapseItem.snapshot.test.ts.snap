@@ -2,7 +2,7 @@
 
 exports[`QCollapseItem 快照测试 > 禁用状态渲染 1`] = `
 "<div data-v-3242604d="" class="mouse-cursor-disable collapse-item">
-  <div data-v-3242604d="" class="collapse-item__header bg-hover-secondary"><span data-v-3242604d="" class="collapse-item__title">禁用面板</span><i data-v-3242604d="" class="collapse-item__arrow"></i></div>
+  <div data-v-3242604d="" aria-expanded="false" class="collapse-item__header bg-hover-secondary" tabindex="0" role="button"><span data-v-3242604d="" class="collapse-item__title">禁用面板</span><i data-v-3242604d="" class="collapse-item__arrow"></i></div>
   <div data-v-3242604d="" class="collapse-item__content-wrapper">
     <div data-v-3242604d="" class="collapse-item__content">
       <p>内容</p>
@@ -13,7 +13,7 @@ exports[`QCollapseItem 快照测试 > 禁用状态渲染 1`] = `
 
 exports[`QCollapseItem 快照测试 > 默认状态渲染 1`] = `
 "<div data-v-3242604d="" class="collapse-item">
-  <div data-v-3242604d="" class="collapse-item__header bg-hover-secondary"><span data-v-3242604d="" class="collapse-item__title">面板标题</span><i data-v-3242604d="" class="collapse-item__arrow"></i></div>
+  <div data-v-3242604d="" aria-expanded="false" class="collapse-item__header bg-hover-secondary" tabindex="0" role="button"><span data-v-3242604d="" class="collapse-item__title">面板标题</span><i data-v-3242604d="" class="collapse-item__arrow"></i></div>
   <div data-v-3242604d="" class="collapse-item__content-wrapper">
     <div data-v-3242604d="" class="collapse-item__content">
       <p>折叠内容</p>

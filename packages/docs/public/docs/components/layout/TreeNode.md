@@ -36,6 +36,11 @@ const node: TreeNodeData = { id: '1', label: '节点' };
 
 无。
 
+## 可访问性（Accessibility）
+
+- 节点使用 `role="treeitem"`，带 `aria-level`、`aria-expanded`（有子节点时）与 `aria-selected`；支持 Enter / Space 触发。
+- 文件夹 / 文件图标为纯装饰，标记 `aria-hidden`。
+
 ## Exposes
 
 无。

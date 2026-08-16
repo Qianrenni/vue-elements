@@ -1,9 +1,14 @@
 <template>
   <div :class="{ 'mouse-cursor-disable': disabled }" class="collapse-item">
     <div
+      :aria-expanded="isActive"
       :class="{ 'is-active': isActive }"
+      :tabindex="0"
       class="collapse-item__header bg-hover-secondary"
+      role="button"
       @click="handleClick"
+      @keydown.enter.prevent="handleClick"
+      @keydown.space.prevent="handleClick"
     >
       <span class="collapse-item__title">{{ title || name }}</span>
       <i :class="{ 'is-active': isActive }" class="collapse-item__arrow" />
@@ -20,8 +25,8 @@
 </template>
 
 <script lang="ts" setup>
-import { CollapseItemProps } from './type';
 import { useCollapseItem } from './composable';
+import { CollapseItemProps } from './type';
 
 defineOptions({
   name: 'QCollapseItem',

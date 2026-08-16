@@ -32,6 +32,7 @@
         <input
           :checked="modelValue === opt.value"
           :disabled="disabled"
+          :id="opt.value"
           :name="name"
           :required="required"
           :value="opt.value"

@@ -11,9 +11,9 @@
       },
     ]"
   >
-    <p v-if="label" :id="name" :for="name" class="text-label">
+    <label v-if="label" :for="name" class="text-label">
       {{ label }}
-    </p>
+    </label>
     <input
       :id="name"
       :disabled="disabled"

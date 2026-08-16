@@ -37,13 +37,19 @@
           <tr>
             <th v-if="selectable">
               <div
-                class="empty-select inverse"
+                :aria-checked="isAllSelected"
+                :aria-label="'全选'"
                 :class="[
                   {
                     selected: isAllSelected,
                   },
                 ]"
+                :tabindex="disabled ? -1 : 0"
+                class="empty-select inverse"
+                role="checkbox"
                 @click="onToggleAllSelection()"
+                @keydown.enter.prevent="onToggleAllSelection()"
+                @keydown.space.prevent="onToggleAllSelection()"
               />
             </th>
             <th
@@ -59,14 +65,20 @@
               <span>{{ col.label }}</span>
               <QIcon
                 v-if="'order' in columns[index]"
+                :aria-label="`排序：${columns[index].order ? '降序' : '升序'}`"
                 :size="ICON_SIZE[size]"
                 :style="{
                   transform: `${columns[index].order ? 'rotateY(180deg)' : 'rotateY(0deg)'}
                   rotateZ(90deg) translateX(-50%)`,
                 }"
-                icon="Switch"
+                :tabindex="disabled ? -1 : 0"
+                :title="columns[index].order ? '降序' : '升序'"
                 class="sort-icon"
+                icon="Switch"
+                role="button"
                 @click="sortChange(index)"
+                @keydown.enter.prevent="sortChange(index)"
+                @keydown.space.prevent="sortChange(index)"
               />
             </th>
           </tr>
@@ -84,13 +96,19 @@
           >
             <td v-if="selectable">
               <div
-                class="empty-select"
+                :aria-checked="row.isSelected"
+                :aria-label="`选择第 ${index + 1} 行`"
                 :class="[
                   {
                     selected: row.isSelected,
                   },
                 ]"
+                :tabindex="disabled ? -1 : 0"
+                class="empty-select"
+                role="checkbox"
                 @click="onSelectRow(row)"
+                @keydown.enter.prevent="onSelectRow(row)"
+                @keydown.space.prevent="onSelectRow(row)"
               />
             </td>
             <td

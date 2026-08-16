@@ -32,6 +32,12 @@
 
 无。
 
+## 可访问性（Accessibility）
+
+- 上一页 / 下一页按钮带 `title` 与 `aria-label`（小屏仅显示图标时读屏仍可识别）。
+- 页码区 `role="status"`，页码变化时读屏会播报当前页与总页数。
+- 跳转页码输入框带 `aria-label`。
+
 ## Exposes
 
 无。

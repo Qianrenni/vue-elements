@@ -3,15 +3,20 @@
  * @description 标签页组件，支持标签列表展示和切换，激活项可自定义 class 名称
  -->
 <template>
-  <div class="tablist container">
+  <div class="tablist container" role="tablist">
     <span
       v-for="(item, index) in list"
       :key="index"
+      :aria-selected="index === activeCategory"
       :class="{
         [activeClass]: index === activeCategory,
       }"
+      :tabindex="index === activeCategory ? 0 : -1"
       class="tab-item padding-half-rem mouse-cursor radius-third-rem"
+      role="tab"
       @click="clickHandler(index)"
+      @keydown.enter.prevent="clickHandler(index)"
+      @keydown.space.prevent="clickHandler(index)"
     >
       {{ item }}
     </span>

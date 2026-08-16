@@ -3,7 +3,16 @@
  * @description 主题切换组件，支持日间/夜间模式切换
 -->
 <template>
-  <div aria-label="切换主题" class="theme-toggle" @click="toggle">
+  <div
+    :aria-pressed="isDark"
+    :tabindex="0"
+    aria-label="切换主题"
+    class="theme-toggle"
+    role="button"
+    @click="toggle"
+    @keydown.enter.prevent="toggle"
+    @keydown.space.prevent="toggle"
+  >
     <QIcon v-if="isDark" :size="size" :icon="nightIcon" />
     <QIcon v-else :size="size" :icon="dayIcon" />
   </div>
@@ -11,6 +20,7 @@
 <script lang="ts" setup>
 import { QIcon } from '@/components/basic/Icon';
 import { useFollowSystemTheme } from '@/utils';
+
 import type { ThemeToggleProps } from './type';
 
 const { isDark, toggle } = useFollowSystemTheme();

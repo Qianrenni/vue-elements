@@ -40,6 +40,10 @@ const data: TreeNodeData[] = [
 
 无。
 
+## 可访问性（Accessibility）
+
+- 外层容器为 `role="tree"`，子节点由 `QTreeNode` 提供 `role="treeitem"` 语义。
+
 ## Exposes
 
 无。

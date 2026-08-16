@@ -40,6 +40,10 @@
 
 无。
 
+## 可访问性（Accessibility）
+
+- 标签使用原生 `<label>` 并通过 `for` 关联颜色输入框。
+
 ## Exposes
 
 无。

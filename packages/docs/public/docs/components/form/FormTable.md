@@ -109,6 +109,11 @@ const columns = [
 
 `Row<T>` 为 `T & { isSelected: boolean }` 的行对象。
 
+## 可访问性（Accessibility）
+
+- 全选与行选择框使用 `role="checkbox"` 与 `aria-checked`，禁用时移出 Tab 序；支持 Enter / Space 切换。
+- 排序图标带 `role="button"`、`title` 与 `aria-label`（显示当前升降序），禁用时移出 Tab 序。
+
 ## Exposes
 
 无。

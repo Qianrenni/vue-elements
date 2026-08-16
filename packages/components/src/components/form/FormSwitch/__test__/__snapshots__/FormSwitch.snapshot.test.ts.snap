@@ -1,15 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`QFormSwitch 快照测试 > 关闭状态渲染 1`] = `
-"<div data-v-d186db08="" class="form-switch"><input data-v-d186db08="" name="sw" class="form-switch__input" type="checkbox"><label data-v-d186db08="" class="form-switch__label container-align-center mouse-cursor"><span data-v-d186db08="" class="size-middle form-switch__slider"></span>
+"<div data-v-d186db08="" aria-checked="false" aria-label="" class="form-switch" tabindex="0" role="switch"><input data-v-d186db08="" name="sw" class="form-switch__input" type="checkbox"><label data-v-d186db08="" class="form-switch__label container-align-center mouse-cursor"><span data-v-d186db08="" class="size-middle form-switch__slider"></span>
     <!--v-if-->
   </label></div>"
 `;
 
 exports[`QFormSwitch 快照测试 > 大尺寸渲染 1`] = `
-"<div data-v-d186db08="" class="form-switch--checked form-switch"><input data-v-d186db08="" checked="" name="sw" class="form-switch__input" type="checkbox"><label data-v-d186db08="" class="form-switch__label container-align-center mouse-cursor"><span data-v-d186db08="" class="size-large form-switch__slider"></span>
+"<div data-v-d186db08="" aria-checked="true" aria-label="" class="form-switch--checked form-switch" tabindex="0" role="switch"><input data-v-d186db08="" checked="" name="sw" class="form-switch__input" type="checkbox"><label data-v-d186db08="" class="form-switch__label container-align-center mouse-cursor"><span data-v-d186db08="" class="size-large form-switch__slider"></span>
     <!--v-if-->
   </label></div>"
 `;
 
-exports[`QFormSwitch 快照测试 > 开启 + 标签渲染 1`] = `"<div data-v-d186db08="" class="form-switch--checked form-switch"><input data-v-d186db08="" checked="" name="sw" class="form-switch__input" type="checkbox"><label data-v-d186db08="" class="form-switch__label container-align-center mouse-cursor"><span data-v-d186db08="" class="size-middle form-switch__slider"></span><span data-v-d186db08="" class="form-switch__label-text">启用通知</span></label></div>"`;
+exports[`QFormSwitch 快照测试 > 开启 + 标签渲染 1`] = `"<div data-v-d186db08="" aria-checked="true" aria-label="启用通知" class="form-switch--checked form-switch" tabindex="0" role="switch"><input data-v-d186db08="" checked="" name="sw" class="form-switch__input" type="checkbox"><label data-v-d186db08="" class="form-switch__label container-align-center mouse-cursor"><span data-v-d186db08="" class="size-middle form-switch__slider"></span><span data-v-d186db08="" class="form-switch__label-text">启用通知</span></label></div>"`;

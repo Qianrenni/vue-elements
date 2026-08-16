@@ -5,7 +5,16 @@
 <template>
   <div class="nav-section text-secondary">
     <!-- 返回按钮 -->
-    <div v-if="stack.length > 1" class="back-button" @click="goBack">
+    <div
+      v-if="stack.length > 1"
+      :tabindex="0"
+      class="back-button"
+      role="button"
+      title="返回上一级"
+      @click="goBack"
+      @keydown.enter.prevent="goBack"
+      @keydown.space.prevent="goBack"
+    >
       <QIcon icon="Left" size="24" />返回
     </div>
     <!-- 当前层级标题 -->
@@ -22,6 +31,7 @@
       >
         <a
           v-if="section.children?.length"
+          :aria-current="activeId === index ? 'page' : undefined"
           :class="{ active: activeId === index }"
           class="nav-link hover-primary"
           href="javascript:void(0)"
@@ -31,6 +41,7 @@
         </a>
         <a
           v-else
+          :aria-current="activeId === index ? 'page' : undefined"
           :class="{ active: activeId === index }"
           class="nav-link hover-primary"
           href="javascript:void(0)"
@@ -45,6 +56,7 @@
 
 <script lang="ts" setup>
 import { QIcon } from '@/components/basic/Icon';
+
 import { useNavSection } from './composable';
 import type { NavSectionProps } from './type';
 
