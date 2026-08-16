@@ -165,4 +165,36 @@ describe('useFormTable', () => {
       expect.arrayContaining([expect.objectContaining({ order: false })]),
     );
   });
+
+  it('应该在提供 rowKey 字段时返回稳定行 key', () => {
+    const { props, emit } = createTable({ rowKey: 'id' });
+    const { localData, getRowKey } = useFormTable(
+      props,
+      emit as FormTableEmits,
+    );
+
+    expect(getRowKey(localData[0], 0)).toBe(1);
+  });
+
+  it('应该在提供 rowKey 函数时使用函数结果', () => {
+    const { props, emit } = createTable({
+      rowKey: (row: Record<string, unknown>) => `row-${row.id}`,
+    });
+    const { localData, getRowKey } = useFormTable(
+      props,
+      emit as FormTableEmits,
+    );
+
+    expect(getRowKey(localData[1], 1)).toBe('row-2');
+  });
+
+  it('应该在未提供 rowKey 时回退行索引', () => {
+    const { props, emit } = createTable();
+    const { localData, getRowKey } = useFormTable(
+      props,
+      emit as FormTableEmits,
+    );
+
+    expect(getRowKey(localData[2], 2)).toBe(2);
+  });
 });

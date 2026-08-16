@@ -29,6 +29,7 @@ export const useFormTable = <T = Record<string, unknown>>(
   paginatedData: ComputedRef<Row<T>[]>;
   isAllSelected: ComputedRef<boolean>;
   sortChange: (columnIndex: number) => void;
+  getRowKey: (row: Row<T>, index: number) => string | number;
   handlePageChange: (page: number) => void;
   onSelectRow: (row: Row<T>) => void;
   onToggleAllSelection: () => void;
@@ -52,6 +53,18 @@ export const useFormTable = <T = Record<string, unknown>>(
   const currentPage = ref(1);
   /** 每页行数 */
   const internalPageSize = ref<number>(props.pageSize ?? 10);
+
+  /**
+   * 获取行 key
+   * @description 提供 rowKey（字段名或取值函数）时使用稳定标识，否则回退行索引（向后兼容）
+   */
+  const getRowKey = (row: Row<T>, index: number): string | number => {
+    if (!props.rowKey) return index;
+    if (typeof props.rowKey === 'function') {
+      return props.rowKey(row);
+    }
+    return (row as Record<string, unknown>)[props.rowKey] as string | number;
+  };
 
   // 同步传入的 data
   watch(
@@ -172,6 +185,7 @@ export const useFormTable = <T = Record<string, unknown>>(
     paginatedData,
     isAllSelected,
     sortChange,
+    getRowKey,
     handlePageChange,
     onSelectRow,
     onToggleAllSelection,

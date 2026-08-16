@@ -74,7 +74,7 @@
         <tbody>
           <tr
             v-for="(row, index) in paginatedData"
-            :key="index"
+            :key="getRowKey(row, index)"
             :class="[
               {
                 'row-selected': selectable && row.isSelected,
@@ -171,6 +171,7 @@ const {
   paginatedData,
   isAllSelected,
   sortChange,
+  getRowKey,
   handlePageChange,
   onSelectRow,
   onToggleAllSelection,

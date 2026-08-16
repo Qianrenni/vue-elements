@@ -56,21 +56,38 @@ const columns = [
 
 继承 `FormComponentProps<FormTableModelValueType<T>>`，其中 `FormTableModelValueType<T> = T[]`（`T` 从 `data` 推断，默认 `Record<string, unknown>`）。公共 `modelValue` 类型为 `T[] | null`，其他公共属性包括 `name`、`label`、`disabled`、`readonly`、`size`、`status`、`required`、`placeholder`、`clearable`、`autofocus`、`id`、`direction`、`errorMessage`。
 
-| 属性                    | 类型                             | 必填 | 默认值         | 说明                                                                                                                        |
-| ----------------------- | -------------------------------- | ---- | -------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `data`                  | `T[]`                            | 是   | —              | 表格行数据；`T` 为数据行类型，默认 `Record<string, unknown>`。                                                              |
-| `columns`               | `TableColumn[]`                  | 是   | —              | 列配置；`TableColumn` 为 `{ value: string; label: string; width?: string; order?: boolean }`。存在 `order` 即显示排序图标。 |
-| `selectable`            | `boolean`                        | 否   | `false`        | 是否显示选择列。                                                                                                            |
-| `selectionMode`         | `'single' \| 'multiple' \| null` | 否   | `'multiple'`   | 行选择模式。                                                                                                                |
-| `pagination`            | `boolean`                        | 否   | `true`         | 是否启用分页。                                                                                                              |
-| `pageSize`              | `number`                         | 否   | `10`           | 每页行数。                                                                                                                  |
-| `maxVisiblePages`       | `number`                         | 否   | `5`            | 分页栏最多显示的页码数。                                                                                                    |
-| `required`              | `boolean`                        | 否   | `false`        | 当前不影响渲染。                                                                                                            |
-| `direction`             | `'vertical' \| 'horizontal'`     | 否   | `'horizontal'` | 当前不影响渲染。                                                                                                            |
-| `disabled` / `readonly` | `boolean`                        | 否   | `false`        | `disabled` 禁止选择行；`readonly` 当前不影响渲染。                                                                          |
-| `size`                  | `FormSize`                       | 否   | `'middle'`     | 影响表格及排序图标尺寸。                                                                                                    |
+| 属性                    | 类型                                       | 必填 | 默认值         | 说明                                                                                                                          |
+| ----------------------- | ------------------------------------------ | ---- | -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `data`                  | `T[]`                                      | 是   | —              | 表格行数据；`T` 为数据行类型，默认 `Record<string, unknown>`。                                                                |
+| `columns`               | `TableColumn[]`                            | 是   | —              | 列配置；`TableColumn` 为 `{ value: string; label: string; width?: string; order?: boolean }`。存在 `order` 即显示排序图标。   |
+| `selectable`            | `boolean`                                  | 否   | `false`        | 是否显示选择列。                                                                                                              |
+| `selectionMode`         | `'single' \| 'multiple' \| null`           | 否   | `'multiple'`   | 行选择模式。                                                                                                                  |
+| `pagination`            | `boolean`                                  | 否   | `true`         | 是否启用分页。                                                                                                                |
+| `pageSize`              | `number`                                   | 否   | `10`           | 每页行数。                                                                                                                    |
+| `maxVisiblePages`       | `number`                                   | 否   | `5`            | 分页栏最多显示的页码数。                                                                                                      |
+| `rowKey`                | `string \| ((row: T) => string \| number)` | 否   | —              | 行唯一标识字段名或取值函数；提供后用作行 `v-for` 的 `key`，提升排序/分页下的 DOM 复用稳定性；未提供时回退行索引（向后兼容）。 |
+| `required`              | `boolean`                                  | 否   | `false`        | 当前不影响渲染。                                                                                                              |
+| `direction`             | `'vertical' \| 'horizontal'`               | 否   | `'horizontal'` | 当前不影响渲染。                                                                                                              |
+| `disabled` / `readonly` | `boolean`                                  | 否   | `false`        | `disabled` 禁止选择行；`readonly` 当前不影响渲染。                                                                            |
+| `size`                  | `FormSize`                                 | 否   | `'middle'`     | 影响表格及排序图标尺寸。                                                                                                      |
 
 未列出的继承属性没有组件默认值；`label`、`id`、`name` 用于标签及关联，其余当前不影响渲染。
+
+## 排序（外部 / 受控）
+
+`QFormTable` 采用**受控排序**：点击带 `order` 字段的列头，仅翻转该列 `order` 并触发 `update:columns` 事件，**数据排序由父组件完成**（组件内部不做排序）。
+
+典型用法：
+
+```vue
+<QFormTable
+  v-model:columns="columns"
+  :data="sortedData"
+  @update:columns="handleSort"
+/>
+```
+
+父组件在 `handleSort` 中监听 `update:columns`，读取各列 `order`（`true` 升序 / `false` 降序）自行重排 `data` 后传回。若行内容含输入框等交互状态，建议同时传入 `rowKey`，保证重排后行 DOM 稳定复用。
 
 ## Emits
 

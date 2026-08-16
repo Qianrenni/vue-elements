@@ -80,6 +80,12 @@ export interface FormTableProps<
    * 显示的页码数量
    */
   maxVisiblePages?: number;
+  /**
+   * 行唯一标识：字段名或取值函数
+   * @description 提供后用作行 v-for 的 key，提升排序/分页下的 DOM 复用稳定性；
+   * 未提供时回退使用行索引（向后兼容）
+   */
+  rowKey?: string | ((row: T) => string | number);
 }
 
 /**
