@@ -32,6 +32,10 @@ import { QThemeToggle } from 'qyani-components';
 
 无。
 
+## 可访问性（Accessibility）
+
+- 切换区域带 `role="button"`、`aria-pressed` 与 `aria-label="切换主题"`，支持 Enter / Space 切换。
+
 ## Exposes
 
 无。

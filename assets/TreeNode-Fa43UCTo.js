@@ -1,0 +1,1 @@
+import{D as o}from"./DemoBlock-Dh67CGSb.js";import{d as t,o as a,c as r,w as n,a as s}from"./index-C84iVYcc.js";const m="\n```html\n<!-- TreeNode Component Demo -->\n```\n",u=t({name:"DisplayLayoutTreeNode",__name:"TreeNode",setup(p){return(d,e)=>(a(),r(o,{code:m},{default:n(()=>[...e[0]||(e[0]=[s("p",null,"TreeNode 组件文档待完善",-1)])]),_:1}))}});export{u as default};

@@ -41,6 +41,10 @@
 
 无。
 
+## 可访问性（Accessibility）
+
+- 搜索图标带 `role="button"`、`title="搜索"` 与 `aria-label`，支持 Enter / Space 触发搜索。
+
 ## Exposes
 
 无。

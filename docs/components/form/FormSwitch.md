@@ -38,6 +38,10 @@
 
 无。
 
+## 可访问性（Accessibility）
+
+- 外层开关容器为 `role="switch"` 并带 `aria-checked`，禁用时移出 Tab 序；支持 Enter / Space 切换。
+
 ## Exposes
 
 无。

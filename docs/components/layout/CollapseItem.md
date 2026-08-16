@@ -32,6 +32,10 @@
 | --------- | ---------- | -------- |
 | `default` | 无         | 无。     |
 
+## 可访问性（Accessibility）
+
+- 折叠标题带 `role="button"` 与 `aria-expanded`，支持 Enter / Space 展开或收起。
+
 ## Exposes
 
 无。
