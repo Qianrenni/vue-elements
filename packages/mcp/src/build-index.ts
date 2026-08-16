@@ -464,6 +464,11 @@ function addStyle(cssPath: string, pkgRoot: string, pkgName: string): void {
   const variables = extractCssVariables(css);
   const classes = extractCssClasses(css);
   const description = extractCssHeaderComment(css);
+  // 伴随 README.md（同目录，如 style/theme/README.md）→ 纳入可检索文档
+  const styleDocPath = join(dirname(cssPath), 'README.md');
+  const styleDoc = existsSync(styleDocPath)
+    ? readFileSync(styleDocPath, 'utf-8')
+    : undefined;
   const entry: KnowledgeEntry = {
     name,
     package: pkgName,
@@ -476,6 +481,7 @@ function addStyle(cssPath: string, pkgRoot: string, pkgName: string): void {
     headings: [],
     style: { variables, classes },
     keywords: [...variables, ...classes],
+    styleDoc,
     readme: css,
   };
   entries.push(entry);

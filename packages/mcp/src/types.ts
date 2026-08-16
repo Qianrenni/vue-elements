@@ -57,6 +57,8 @@ export interface KnowledgeEntry {
   style?: StyleInfo;
   /** 额外可检索关键词（如 CSS 变量 / 类名），参与全文搜索 */
   keywords?: string[];
+  /** 样式条目（CSS 设计系统）的伴随 README.md 文档（同目录，可选），参与全文搜索 */
+  styleDoc?: string;
   readme: string;
 }
 

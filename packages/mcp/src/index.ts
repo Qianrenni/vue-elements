@@ -104,6 +104,9 @@ function renderEntryDoc(entry: KnowledgeEntry): string {
       lines.push('（无工具类）', '');
     }
   }
+  if (entry.styleDoc) {
+    lines.push('## 设计文档', '', entry.styleDoc, '');
+  }
   lines.push('---', '', '## 源码', '', '```css', entry.readme, '```');
   return lines.join('\n');
 }

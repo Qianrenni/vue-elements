@@ -36,6 +36,9 @@ function searchableText(entry: KnowledgeEntry): string {
   if (entry.keywords) {
     parts.push(...entry.keywords);
   }
+  if (entry.styleDoc) {
+    parts.push(entry.styleDoc);
+  }
   return parts.join(' ').toLowerCase();
 }
 
