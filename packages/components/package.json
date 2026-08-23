@@ -1,6 +1,6 @@
 {
   "name": "qyani-components",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "a frontend components lib",
   "main": "dist/qyani-components.cjs.js",
   "module": "dist/qyani-components.es.js",
@@ -12,6 +12,7 @@
     "type-check": "pnpm npx vue-tsc --build --declaration --clean",
     "build": "pnpm vite build && pnpm vite build --config vite.install.config.ts && vue-tsc --build --declaration --emitDeclarationOnly",
     "update": "python scripts/index_python.local.py && python scripts/global.d.ts.local.py",
+    "prepublishOnly": "node scripts/check-publish.mjs",
     "test": "vitest run",
     "test:ui": "vitest ui",
     "test:watch": "vitest watch",
