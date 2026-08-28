@@ -29,6 +29,8 @@ import { fileURLToPath } from 'node:url';
 import type {
   ApiRow,
   ComponentApi,
+  DeprecatedStyleInfo,
+  EntryDeprecation,
   KnowledgeEntry,
   KnowledgeIndex,
 } from './types.js';
@@ -362,6 +364,8 @@ function pushComponentEntry({
   const name = qName(rawName);
   const sections = splitSections(content);
   const api = extractComponentApi(content);
+  const description = extractDescription(content, sections);
+  const deprecation = extractEntryDeprecation(content, description);
   const entry: KnowledgeEntry = {
     name,
     package: pkgName,
@@ -370,9 +374,10 @@ function pushComponentEntry({
     relPath: `src/${relDir}`,
     docFile: 'README.md',
     title: name,
-    description: extractDescription(content, sections),
+    description,
     headings: sections.map((s) => s.text),
     api,
+    ...(deprecation ? { deprecated: deprecation } : {}),
     readme: content,
   };
   entries.push(entry);
@@ -392,6 +397,8 @@ function addUtil(
     type === 'event' ? 'events' : (relDir.split('/')[0] ?? 'business');
   const md = readFileSync(readmePath, 'utf-8');
   const sections = splitSections(md);
+  const description = extractDescription(md, sections);
+  const deprecation = extractEntryDeprecation(md, description);
   const entry: KnowledgeEntry = {
     name,
     package: pkgName,
@@ -400,9 +407,10 @@ function addUtil(
     relPath: `src/${relDir}`,
     docFile: 'README.md',
     title: name,
-    description: extractDescription(md, sections),
+    description,
     headings: sections.map((s) => s.text),
     functions: extractFunctions(md),
+    ...(deprecation ? { deprecated: deprecation } : {}),
     readme: md,
   };
   entries.push(entry);
@@ -454,6 +462,152 @@ function extractCssClasses(css: string): string[] {
   return [...set];
 }
 
+/* ------------------------------------------------------------------ *
+ *  废弃（向后兼容）样式提取
+ *
+ *  设计系统保留了一批「已废弃但兼容」的旧变量 / 旧类名 / 旧关键帧，
+ *  它们在源 CSS 中以「向后兼容 / 兼容别名 / 旧版」注释标记区块。
+ *  解析规则：
+ *    1. 文件头注释（首个规则前的注释块）不参与判定；
+ *    2. 命中废弃标记的注释 → 其后的规则进入「废弃区」；
+ *    3. 命中区块分隔注释（=== / --- / — 装饰或跨行）且非废弃标记
+ *       → 退出废弃区（开启新章节）；
+ *    4. 其余短注释（如「纯色」「背景」等小节标签）不改变当前状态，
+ *       用于延续废弃区（如 tokens/color 的 Legacy Aliases 小节）；
+ *    5. 在废弃区内按「行首定义」提取变量 / 类选择器 / 关键帧，
+ *       避免把 var(--x) 用法误当作定义。
+ * ------------------------------------------------------------------ */
+
+/** 废弃标记注释：向后兼容 / 兼容别名 / 旧版 / 废弃 / 弃用 / legacy */
+const DEPRECATED_COMMENT_RE = /向后兼容|兼容别名|旧版|废弃|弃用|legacy/i;
+
+/** 区块分隔注释：带 === / --- / — 装饰，或跨行注释体 */
+function isSectionComment(text: string): boolean {
+  return /={3,}|-{3,}|—/.test(text) || text.includes('\n');
+}
+
+/** 定位文件头结束位置：跳过前导空白与注释，返回首个内容起点 */
+function findHeaderEnd(css: string): number {
+  let i = 0;
+  while (i < css.length) {
+    const ch = css[i];
+    if (/\s/.test(ch)) {
+      i++;
+      continue;
+    }
+    if (ch === '/' && css[i + 1] === '*') {
+      const end = css.indexOf('*/', i + 2);
+      i = end === -1 ? css.length : end + 2;
+      continue;
+    }
+    break;
+  }
+  return i;
+}
+
+/** 把注释原文清理成一句说明（去 / * 装饰、纯装饰行与行首 *） */
+function cleanCommentText(comment: string): string {
+  return comment
+    .replace(/^\/\*+/, '')
+    .replace(/\*+\/$/, '')
+    .split(/\r?\n/)
+    .map((l) => l.replace(/^\s*\*?\s?/, '').trim())
+    .filter((l) => Boolean(l) && !/^[=\-*—\s]+$/.test(l))
+    .join(' ');
+}
+
+/** 提取 CSS 中「已废弃但兼容保留」的变量 / 类名 / 关键帧 */
+function extractDeprecatedCss(css: string): DeprecatedStyleInfo | null {
+  const comments: { index: number; end: number; text: string }[] = [];
+  for (const m of css.matchAll(/\/\*[\s\S]*?\*\//g)) {
+    comments.push({
+      index: m.index ?? 0,
+      end: (m.index ?? 0) + m[0].length,
+      text: m[0],
+    });
+  }
+  const headerEnd = findHeaderEnd(css);
+  const notes: string[] = [];
+  const variables: string[] = [];
+  const classes: string[] = [];
+  const keyframes: string[] = [];
+  let deprecated = false;
+
+  for (let i = 0; i < comments.length; i++) {
+    const c = comments[i];
+    if (c.index < headerEnd) continue; // 文件头，跳过
+    const isDep = DEPRECATED_COMMENT_RE.test(c.text);
+    if (isDep) {
+      deprecated = true;
+      notes.push(cleanCommentText(c.text));
+    } else if (isSectionComment(c.text)) {
+      deprecated = false;
+    }
+    if (!deprecated) continue;
+
+    // 该注释之后、下一注释之前的区间即废弃区
+    const segStart = c.end;
+    const segEnd = comments[i + 1] ? comments[i + 1].index : css.length;
+    const seg = css.slice(segStart, segEnd);
+    for (const m of seg.matchAll(/^\s*(--[\w-]+)\s*:/gm)) variables.push(m[1]);
+    for (const m of seg.matchAll(/^\s*\.([a-zA-Z][\w-]*)/gm))
+      classes.push(m[1]);
+    for (const m of seg.matchAll(/@keyframes\s+([\w-]+)/g))
+      keyframes.push(m[1]);
+  }
+
+  const unique = <T>(arr: T[]): T[] => [...new Set(arr)];
+  const variablesU = unique(variables);
+  const classesU = unique(classes);
+  const keyframesU = unique(keyframes);
+  // 仅出现「向后兼容」注释但没有实际废弃项（如 base/base 只在声明中使用旧变量）→ 不视为废弃区块
+  if (
+    variablesU.length === 0 &&
+    classesU.length === 0 &&
+    keyframesU.length === 0
+  ) {
+    return null;
+  }
+  return {
+    notes: unique(notes),
+    variables: variablesU,
+    classes: classesU,
+    keyframes: keyframesU,
+  };
+}
+
+/** 从 README 提取条目级废弃标记（组件 / 工具可选） */
+function extractEntryDeprecation(
+  content: string,
+  description: string,
+): EntryDeprecation | undefined {
+  const sections = splitSections(content);
+  const depSection = sections.find((s) =>
+    /^(已?废弃|Deprecated)$/i.test(s.text),
+  );
+  if (depSection) {
+    const d = firstParagraph(depSection.body.join('\n'));
+    return { note: d || depSection.text };
+  }
+  // 描述开头标注，如「> ⚠️ 已废弃：请改用 QDialog」
+  const m = /^[>!]?\s*[:：]?\s*(已?废弃|Deprecated)\s*[:：]?\s*([^\n]*)/i.exec(
+    description,
+  );
+  if (m) {
+    return {
+      note: m[2]?.trim() || m[1],
+      replacement: extractReplacement(m[2] ?? ''),
+    };
+  }
+  return undefined;
+}
+
+/** 从废弃说明中尝试提取「替代」名称（匹配 改用 / 使用 / -> / 推荐 后的令牌） */
+function extractReplacement(text: string): string | undefined {
+  const m = /(?:改用|使用|推荐|替代|->|→)\s*([A-Za-z][\w-]*)/.exec(text);
+  return m ? m[1] : undefined;
+}
+
 /** 通用样式（CSS 设计系统 → 单条目），name 用相对 style 的路径 */
 function addStyle(cssPath: string, pkgRoot: string, pkgName: string): void {
   const relFile = toPosix(relative(pkgRoot, cssPath));
@@ -463,6 +617,7 @@ function addStyle(cssPath: string, pkgRoot: string, pkgName: string): void {
   const css = readFileSync(cssPath, 'utf-8');
   const variables = extractCssVariables(css);
   const classes = extractCssClasses(css);
+  const deprecated = extractDeprecatedCss(css);
   const description = extractCssHeaderComment(css);
   // 伴随 README.md（同目录，如 style/theme/README.md）→ 纳入可检索文档
   const styleDocPath = join(dirname(cssPath), 'README.md');
@@ -479,8 +634,22 @@ function addStyle(cssPath: string, pkgRoot: string, pkgName: string): void {
     title: relFile.split('/').pop() ?? '',
     description,
     headings: [],
-    style: { variables, classes },
-    keywords: [...variables, ...classes],
+    style: {
+      variables,
+      classes,
+      ...(deprecated ? { deprecated } : {}),
+    },
+    keywords: [
+      ...variables,
+      ...classes,
+      ...(deprecated
+        ? [
+            ...deprecated.variables,
+            ...deprecated.classes,
+            ...deprecated.keyframes,
+          ]
+        : []),
+    ],
     styleDoc,
     readme: css,
   };

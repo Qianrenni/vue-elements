@@ -11,6 +11,7 @@
  *   - get_component_api 获取组件的 Props / Emits / Slots / Exposes
  *   - get_source        获取条目对应源码文件
  *   - list_entries      列出所有条目（可按类型 / 包过滤）
+ *   - list_deprecated   列出已废弃（兼容保留）的样式与条目
  * 暴露的 resources：
  *   - qyani://docs/{name}   该条目的完整文档（markdown）
  *   - qyani://api/{name}    该条目的 API 表格（markdown）
@@ -22,7 +23,14 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
 
-import { findEntry, listEntries, loadIndex, searchIndex } from './search.js';
+import {
+  findEntry,
+  hasDeprecation,
+  listEntries,
+  loadIndex,
+  renderDeprecated,
+  searchIndex,
+} from './search.js';
 import type { KnowledgeEntry } from './types.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -88,12 +96,7 @@ function renderEntryDoc(entry: KnowledgeEntry): string {
     const s = entry.style;
     lines.push('## CSS 变量', '');
     if (s.variables.length > 0) {
-      lines.push(
-        '```css',
-        s.variables.map((v) => `--${v}`).join(' '),
-        '```',
-        '',
-      );
+      lines.push('```css', s.variables.join(' '), '```', '');
     } else {
       lines.push('（无自定义变量）', '');
     }
@@ -106,6 +109,10 @@ function renderEntryDoc(entry: KnowledgeEntry): string {
   }
   if (entry.styleDoc) {
     lines.push('## 设计文档', '', entry.styleDoc, '');
+  }
+  const deprecated = renderDeprecated(entry);
+  if (deprecated) {
+    lines.push(deprecated, '');
   }
   lines.push('---', '', '## 源码', '', '```css', entry.readme, '```');
   return lines.join('\n');
@@ -170,7 +177,7 @@ export function createServer() {
       const text = hits
         .map(
           (h, i) =>
-            `${i + 1}. **${h.name}** \`${h.package}/${h.type}/${h.category}\` — ${h.description}`,
+            `${i + 1}. ${h.deprecated ? '⚠️ ' : ''}**${h.name}** \`${h.package}/${h.type}/${h.category}\` — ${h.description}`,
         )
         .join('\n');
       return {
@@ -332,7 +339,7 @@ export function createServer() {
       const text = entries
         .map(
           (e, i) =>
-            `${i + 1}. **${e.name}** \`${e.package}/${e.type}/${e.category}\` — ${e.description}`,
+            `${i + 1}. ${hasDeprecation(e) ? '⚠️ ' : ''}**${e.name}** \`${e.package}/${e.type}/${e.category}\` — ${e.description}`,
         )
         .join('\n');
       return {
@@ -340,6 +347,112 @@ export function createServer() {
           {
             type: 'text',
             text: `共 ${entries.length} 个条目：\n${text}`,
+          },
+        ],
+      };
+    },
+  );
+
+  server.registerTool(
+    'list_deprecated',
+    {
+      title: '列出已废弃（兼容保留）的样式与条目',
+      description:
+        '列出知识库中所有「已废弃但保留兼容」的内容：旧 CSS 变量、旧工具类、旧关键帧，以及标记为废弃的组件 / 工具。可按名称或类型过滤；不传 name 时返回全部废弃项概览。',
+      inputSchema: z.object({
+        name: z
+          .string()
+          .optional()
+          .describe(
+            '按条目名称过滤（可选），如 "tokens/color"、"utilities/spacing"',
+          ),
+        type: z
+          .enum([
+            'component',
+            'algorithm',
+            'business',
+            'componentUtil',
+            'event',
+            'style',
+          ])
+          .optional()
+          .describe('按类型过滤（可选）'),
+      }),
+    },
+    async (args) => {
+      const { name, type } = args;
+      if (name) {
+        const target = findEntry(index, name);
+        if (!target) return notFound(name);
+        if (!hasDeprecation(target)) {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `条目 \`${target.name}\` 没有废弃标记。`,
+              },
+            ],
+          };
+        }
+        return {
+          content: [
+            {
+              type: 'text',
+              text: [
+                `# ${target.title}（已废弃内容）`,
+                '',
+                `- 包：\`${target.package}\``,
+                `- 类型：\`${target.type}\``,
+                `- 路径：\`${target.relPath}\``,
+                '',
+                renderDeprecated(target),
+              ].join('\n'),
+            },
+          ],
+        };
+      }
+      let entries = index.entries;
+      if (type) entries = entries.filter((e) => e.type === type);
+      const hits = entries.filter(hasDeprecation);
+      const text = hits
+        .map((e) => {
+          const d = e.style?.deprecated;
+          const parts = [
+            `### ⚠️ ${e.name} \`${e.package}/${e.type}/${e.category}\``,
+          ];
+          if (e.deprecated) {
+            parts.push(
+              `- 条目废弃：${e.deprecated.note ?? ''}${e.deprecated.replacement ? `（替代：\`${e.deprecated.replacement}\`）` : ''}`,
+            );
+          }
+          if (d) {
+            if (d.notes.length > 0) {
+              parts.push(`- 说明：${d.notes.join('；')}`);
+            }
+            if (d.variables.length > 0) {
+              parts.push(
+                `- 旧变量（${d.variables.length}）：\`${d.variables.join(' ')}\``,
+              );
+            }
+            if (d.classes.length > 0) {
+              parts.push(
+                `- 旧类名（${d.classes.length}）：\`${d.classes.map((c) => `.${c}`).join(' ')}\``,
+              );
+            }
+            if (d.keyframes.length > 0) {
+              parts.push(`- 旧关键帧：\`${d.keyframes.join(' ')}\``);
+            }
+          }
+          return parts.join('\n');
+        })
+        .join('\n\n');
+      return {
+        content: [
+          {
+            type: 'text',
+            text: text
+              ? `共 ${hits.length} 个条目含废弃项：\n\n${text}\n\n提示：可用 list_deprecated 传 name 获取某个条目的完整废弃清单。`
+              : '知识库中没有标记为废弃的条目。',
           },
         ],
       };

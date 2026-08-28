@@ -39,6 +39,13 @@ function searchableText(entry: KnowledgeEntry): string {
   if (entry.styleDoc) {
     parts.push(entry.styleDoc);
   }
+  if (entry.deprecated) {
+    parts.push(entry.deprecated.note ?? '', entry.deprecated.replacement ?? '');
+  }
+  if (entry.style?.deprecated) {
+    const d = entry.style.deprecated;
+    parts.push(...d.notes, ...d.variables, ...d.classes, ...d.keyframes);
+  }
   return parts.join(' ').toLowerCase();
 }
 
@@ -73,6 +80,8 @@ export interface SearchHit {
   category: string;
   description: string;
   title: string;
+  /** 该条目或其样式是否含「已废弃（兼容保留）」标记 */
+  deprecated: boolean;
 }
 
 /** 全文搜索，返回按评分降序的条目摘要 */
@@ -125,7 +134,46 @@ function toHit(e: KnowledgeEntry): SearchHit {
     category: e.category,
     description: e.description,
     title: e.title,
+    deprecated: Boolean(e.style?.deprecated || e.deprecated),
   };
+}
+
+/** 判断条目是否含废弃标记（样式旧别名或条目级废弃说明） */
+export function hasDeprecation(entry: KnowledgeEntry): boolean {
+  return Boolean(entry.style?.deprecated || entry.deprecated);
+}
+
+/** 渲染某条目的废弃信息为 markdown（无则返回空字符串） */
+export function renderDeprecated(entry: KnowledgeEntry): string {
+  const lines: string[] = [];
+  if (entry.deprecated) {
+    lines.push(`## ⚠️ 已废弃（兼容保留）`);
+    if (entry.deprecated.note) lines.push('', entry.deprecated.note);
+    if (entry.deprecated.replacement) {
+      lines.push('', `- 推荐替代：\`${entry.deprecated.replacement}\``);
+    }
+  }
+  const d = entry.style?.deprecated;
+  if (d) {
+    lines.push(`## ⚠️ 已废弃（兼容保留）样式`);
+    if (d.notes.length > 0) {
+      lines.push('', '说明：');
+      for (const n of d.notes) lines.push(`- ${n}`);
+    }
+    if (d.variables.length > 0) {
+      lines.push('', '旧 CSS 变量：', '');
+      lines.push('```css', d.variables.join(' '), '```');
+    }
+    if (d.classes.length > 0) {
+      lines.push('', '旧工具类：', '');
+      lines.push('```css', d.classes.map((c) => `.${c}`).join(' '), '```');
+    }
+    if (d.keyframes.length > 0) {
+      lines.push('', '旧关键帧：', '');
+      lines.push('```css', d.keyframes.join(' '), '```');
+    }
+  }
+  return lines.join('\n');
 }
 
 /** 按精确名称取条目（支持省略 Q 前缀的模糊匹配） */

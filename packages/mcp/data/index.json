@@ -2,7 +2,7 @@
   "meta": {
     "name": "qyani-components knowledge base",
     "version": "1.0.0",
-    "generatedAt": "2026-08-16T08:43:47.038Z",
+    "generatedAt": "2026-08-28T15:45:10.860Z",
     "packages": ["qyani-components", "@qianrenni/core"],
     "counts": {
       "@qianrenni/core/algorithm": 8,
@@ -4327,7 +4327,44 @@
           "--gray-700",
           "--skeleton-linear-gradient"
         ],
-        "classes": ["dark-mode"]
+        "classes": ["dark-mode"],
+        "deprecated": {
+          "notes": ["向后兼容别名（暗色模式覆盖）"],
+          "variables": [
+            "--color-inverse",
+            "--background-color",
+            "--secondary-background-color",
+            "--text-color",
+            "--text-description",
+            "--text-color-secondary",
+            "--subtle-text-color",
+            "--border-color",
+            "--card-bg",
+            "--box-shadow",
+            "--primary-color",
+            "--primary-hover",
+            "--primary-light",
+            "--tag-primary-color",
+            "--link-color",
+            "--link-hover",
+            "--button-bg",
+            "--button-text",
+            "--button-hover",
+            "--button-disabled",
+            "--bg-overlay",
+            "--shadow-inverse",
+            "--gray-100",
+            "--gray-200",
+            "--gray-300",
+            "--gray-400",
+            "--gray-500",
+            "--gray-600",
+            "--gray-700",
+            "--skeleton-linear-gradient"
+          ],
+          "classes": [],
+          "keyframes": []
+        }
       },
       "keywords": [
         "--q-color-primary",
@@ -4401,7 +4438,37 @@
         "--gray-600",
         "--gray-700",
         "--skeleton-linear-gradient",
-        "dark-mode"
+        "dark-mode",
+        "--color-inverse",
+        "--background-color",
+        "--secondary-background-color",
+        "--text-color",
+        "--text-description",
+        "--text-color-secondary",
+        "--subtle-text-color",
+        "--border-color",
+        "--card-bg",
+        "--box-shadow",
+        "--primary-color",
+        "--primary-hover",
+        "--primary-light",
+        "--tag-primary-color",
+        "--link-color",
+        "--link-hover",
+        "--button-bg",
+        "--button-text",
+        "--button-hover",
+        "--button-disabled",
+        "--bg-overlay",
+        "--shadow-inverse",
+        "--gray-100",
+        "--gray-200",
+        "--gray-300",
+        "--gray-400",
+        "--gray-500",
+        "--gray-600",
+        "--gray-700",
+        "--skeleton-linear-gradient"
       ],
       "styleDoc": "# 主题 (Theme)\r\n\r\n## 用途\r\n\r\n通过 `body.dark-mode` 或 `[data-theme=\"dark\"]` 选择器切换暗色主题。\r\n暗色主题仅覆盖语义化 token，原始调色板不变。\r\n\r\n## 切换方式\r\n\r\n```html\r\n<!-- 方式一：body 类名 -->\r\n<body class=\"dark-mode\">\r\n  …\r\n</body>\r\n\r\n<!-- 方式二：data-theme 属性 -->\r\n<html data-theme=\"dark\">\r\n  …\r\n</html>\r\n```\r\n\r\n## 覆盖范围（dark.css）\r\n\r\n| 分类       | 说明                                         |\r\n| ---------- | -------------------------------------------- |\r\n| 品牌主色   | `--q-color-primary` 系列，暗色背景上提亮     |\r\n| 中性语义色 | 文字 / 背景 / 边框 / 链接 / 标签             |\r\n| 组件       | 按钮（`--q-color-button-*`）、遮罩层、阴影色 |\r\n| 灰阶       | `--q-color-gray-50` ~ `-900` 反转            |\r\n| 骨架屏     | `--q-skeleton-gradient` 暗色渐变             |\r\n\r\n## 自定义品牌主色（覆盖语义 token）\r\n\r\n给业务端换主色时，**必须覆盖 `--q-color-*` 语义 token**，只覆盖旧别名（`--primary-color` 等）不生效。\r\n\r\n> ⚠️ 原因：旧别名只是 `var(--q-color-*)` 的转发；组件与工具类（`.text-primary`、`.bg-primary`、\r\n> `.active-common`、`.link-primary`、按钮/表格/选中态等）直接引用新语义 token，别名覆盖会被绕过。\r\n\r\n### 需要覆盖的 token 清单\r\n\r\n| 语义 token                                | 对应旧别名                      | 说明                             |\r\n| ----------------------------------------- | ------------------------------- | -------------------------------- |\r\n| `--q-color-primary`                       | `--primary-color`               | 品牌主色                         |\r\n| `--q-color-primary-hover`                 | `--primary-hover`               | 悬停态                           |\r\n| `--q-color-primary-active`                | —                               | 按压态（不覆盖会闪回默认色）     |\r\n| `--q-color-primary-light`                 | `--primary-light`               | 主色浅色                         |\r\n| `--q-color-primary-lighter`               | —                               | 更浅色（表格选中行背景等）       |\r\n| `--q-color-link` / `--q-color-link-hover` | `--link-color` / `--link-hover` | 链接色                           |\r\n| `--q-color-tag`                           | `--tag-primary-color`           | 标签背景色（`.tag` 类用）        |\r\n| `--q-color-button-*`                      | `--button-*`                    | 按钮（默认跟随 primary，可不动） |\r\n| `--q-color-shadow-inverse`                | `--shadow-inverse`              | 反色阴影                         |\r\n\r\n### 正确示例（沿用旧别名，保证端内旧样式不断）\r\n\r\n```css\r\n:root {\r\n  /* 覆盖语义 token（qyani 组件真正读取的） */\r\n  --q-color-primary: #1d4ed8;\r\n  --q-color-primary-hover: #15399a;\r\n  --q-color-primary-active: #15399a;\r\n  --q-color-primary-light: #4e7dff;\r\n  --q-color-primary-lighter: #e6edff;\r\n  --q-color-link: #0240ed;\r\n  --q-color-link-hover: #0240ed;\r\n  --q-color-tag: #1d4ed8;\r\n\r\n  /* 兼容别名跟随语义 token */\r\n  --primary-color: var(--q-color-primary);\r\n  --primary-hover: var(--q-color-primary-hover);\r\n  --primary-light: var(--q-color-primary-light);\r\n  --link-hover: var(--q-color-link-hover);\r\n  --tag-primary-color: var(--q-color-tag);\r\n}\r\n\r\n/* 暗色模式要再次覆盖（qyani `dark.css` 会重置为默认黄） */\r\nbody.dark-mode {\r\n  --q-color-primary: #1d4ed8;\r\n  /* …同上，保持端内主色不变… */\r\n}\r\n```\r\n\r\n### 注意\r\n\r\n- `-active` / `-lighter` 漏了会闪回 qyani 默认黄（按钮按压态、表格选中行可见）。\r\n- QTag 组件默认 `background: var(--tag-primary-color)`（走旧别名），`.tag` 工具类走 `--q-color-tag`（新 token）——要改标签色需两头都覆盖。\r\n\r\n## 配合工具函数\r\n\r\n组件库提供 `useFollowSystemTheme`，可自动跟随系统主题并持久化用户选择：\r\n\r\n```ts\r\nimport { useFollowSystemTheme } from 'qyani-components';\r\n\r\nuseFollowSystemTheme();\r\n```\r\n\r\n组件 `<QThemeToggle>` 提供主题切换按钮，封装了手动切换与图标展示。\r\n",
       "readme": "/**\r\n * Dark Theme Overrides\r\n * ------------------------------------------------------------------\r\n * 通过 `body.dark-mode` 或 `[data-theme=\"dark\"]` 切换暗色主题。\r\n * 仅覆盖语义化 token，原始调色板不变。\r\n */\r\n\r\nbody.dark-mode,\r\n[data-theme='dark'] {\r\n  /* — 品牌主色：暗色背景上提亮，增强交互反馈 — */\r\n  --q-color-primary: var(--q-color-yellow-300);\r\n  --q-color-primary-hover: var(--q-color-yellow-400);\r\n  --q-color-primary-active: var(--q-color-yellow-200);\r\n  --q-color-primary-light: var(--q-color-yellow-100);\r\n  --q-color-primary-lighter: var(--q-color-yellow-50);\r\n\r\n  /* — 中性语义色 — */\r\n  --q-color-text: #f0f0f0;\r\n  --q-color-text-description: #b0b0b0;\r\n  --q-color-text-muted: #999999;\r\n  --q-color-text-secondary: #888888;\r\n  --q-color-text-inverse: #ffffff;\r\n\r\n  --q-color-bg: #121212;\r\n  --q-color-bg-secondary: #3f3f3f;\r\n  --q-color-bg-card: #232323;\r\n\r\n  --q-color-border: #c5bebe;\r\n  --q-color-border-light: #555555;\r\n\r\n  --q-color-link: var(--q-color-yellow-400);\r\n  --q-color-link-hover: var(--q-color-yellow-100);\r\n\r\n  --q-color-tag: var(--q-color-yellow-100);\r\n\r\n  /* — 按钮 — */\r\n  --q-color-button-bg: var(--q-color-primary);\r\n  --q-color-button-text: #ffffff;\r\n  --q-color-button-hover: var(--q-color-primary-hover);\r\n  --q-color-button-disabled: #555555;\r\n\r\n  /* — 遮罩层 — */\r\n  --q-color-overlay: rgba(255, 255, 255, 0.2);\r\n\r\n  /* — 阴影色 — */\r\n  --q-color-shadow: rgba(255, 255, 255, 0.5);\r\n  --q-color-shadow-inverse: rgba(255, 255, 255, 0.9);\r\n\r\n  /* — 灰阶反转 — */\r\n  --q-color-gray-50: #202020;\r\n  --q-color-gray-100: #202020;\r\n  --q-color-gray-200: #2a2a2a;\r\n  --q-color-gray-300: #333333;\r\n  --q-color-gray-400: #444444;\r\n  --q-color-gray-500: #555555;\r\n  --q-color-gray-600: #666666;\r\n  --q-color-gray-700: #888888;\r\n  --q-color-gray-800: #aaaaaa;\r\n  --q-color-gray-900: #cccccc;\r\n\r\n  /* — 骨架屏渐变 — */\r\n  --q-skeleton-gradient: linear-gradient(\r\n    90deg,\r\n    #202020 25%,\r\n    #101010 50%,\r\n    #202020 75%\r\n  );\r\n\r\n  /* ============================================================\r\n   * 向后兼容别名（暗色模式覆盖）\r\n   * ========================================================== */\r\n  --color-inverse: var(--q-color-text-inverse);\r\n  --background-color: var(--q-color-bg);\r\n  --secondary-background-color: var(--q-color-bg-secondary);\r\n  --text-color: var(--q-color-text);\r\n  --text-description: var(--q-color-text-description);\r\n  --text-color-secondary: var(--q-color-text-secondary);\r\n  --subtle-text-color: var(--q-color-text-muted);\r\n  --border-color: var(--q-color-border);\r\n  --card-bg: var(--q-color-bg-card);\r\n  --box-shadow: var(--q-color-shadow);\r\n\r\n  --primary-color: var(--q-color-primary);\r\n  --primary-hover: var(--q-color-primary-hover);\r\n  --primary-light: var(--q-color-primary-light);\r\n  --tag-primary-color: var(--q-color-tag);\r\n\r\n  --link-color: var(--q-color-link);\r\n  --link-hover: var(--q-color-link-hover);\r\n\r\n  --button-bg: var(--q-color-button-bg);\r\n  --button-text: var(--q-color-button-text);\r\n  --button-hover: var(--q-color-button-hover);\r\n  --button-disabled: var(--q-color-button-disabled);\r\n\r\n  --bg-overlay: var(--q-color-overlay);\r\n  --shadow-inverse: var(--q-color-shadow-inverse);\r\n\r\n  --gray-100: var(--q-color-gray-100);\r\n  --gray-200: var(--q-color-gray-200);\r\n  --gray-300: var(--q-color-gray-300);\r\n  --gray-400: var(--q-color-gray-400);\r\n  --gray-500: var(--q-color-gray-500);\r\n  --gray-600: var(--q-color-gray-600);\r\n  --gray-700: var(--q-color-gray-700);\r\n\r\n  --skeleton-linear-gradient: var(--q-skeleton-gradient);\r\n}\r\n"
@@ -4549,7 +4616,59 @@
           "--button-disabled",
           "--bg-overlay"
         ],
-        "classes": []
+        "classes": [],
+        "deprecated": {
+          "notes": [
+            "3. 向后兼容别名 (Legacy Aliases) 保持旧变量名可用，内部引用新 token，零破坏性迁移。"
+          ],
+          "variables": [
+            "--color-white",
+            "--color-black",
+            "--color-inverse",
+            "--background-color",
+            "--secondary-background-color",
+            "--card-bg",
+            "--text-color",
+            "--text-description",
+            "--text-color-secondary",
+            "--subtle-text-color",
+            "--border-color",
+            "--box-shadow",
+            "--shadow-inverse",
+            "--primary-color",
+            "--primary-hover",
+            "--primary-light",
+            "--tag-primary-color",
+            "--link-color",
+            "--link-hover",
+            "--success-color",
+            "--success-bg",
+            "--success-border",
+            "--warning-color",
+            "--warning-bg",
+            "--warning-border",
+            "--danger-color",
+            "--danger-bg",
+            "--danger-border",
+            "--info-color",
+            "--info-bg",
+            "--info-border",
+            "--gray-100",
+            "--gray-200",
+            "--gray-300",
+            "--gray-400",
+            "--gray-500",
+            "--gray-600",
+            "--gray-700",
+            "--button-bg",
+            "--button-text",
+            "--button-hover",
+            "--button-disabled",
+            "--bg-overlay"
+          ],
+          "classes": [],
+          "keyframes": []
+        }
       },
       "keywords": [
         "--q-color-gray-50",
@@ -4681,6 +4800,49 @@
         "--button-text",
         "--button-hover",
         "--button-disabled",
+        "--bg-overlay",
+        "--color-white",
+        "--color-black",
+        "--color-inverse",
+        "--background-color",
+        "--secondary-background-color",
+        "--card-bg",
+        "--text-color",
+        "--text-description",
+        "--text-color-secondary",
+        "--subtle-text-color",
+        "--border-color",
+        "--box-shadow",
+        "--shadow-inverse",
+        "--primary-color",
+        "--primary-hover",
+        "--primary-light",
+        "--tag-primary-color",
+        "--link-color",
+        "--link-hover",
+        "--success-color",
+        "--success-bg",
+        "--success-border",
+        "--warning-color",
+        "--warning-bg",
+        "--warning-border",
+        "--danger-color",
+        "--danger-bg",
+        "--danger-border",
+        "--info-color",
+        "--info-bg",
+        "--info-border",
+        "--gray-100",
+        "--gray-200",
+        "--gray-300",
+        "--gray-400",
+        "--gray-500",
+        "--gray-600",
+        "--gray-700",
+        "--button-bg",
+        "--button-text",
+        "--button-hover",
+        "--button-disabled",
         "--bg-overlay"
       ],
       "styleDoc": "# 设计变量 (Tokens)\r\n\r\n## 用途\r\n\r\n设计变量是整套样式系统的基础，所有组件与工具类均引用这些 `--q-*` CSS 自定义属性。\r\n分为三层：原始调色板 → 语义化颜色 → 向后兼容别名。\r\n\r\n命名约定：\r\n\r\n```\r\n--q-color-{role}-{shade}    颜色\r\n--q-space-{n}               间距\r\n--q-radius-{size}           圆角\r\n--q-shadow-{level}          阴影\r\n--q-opacity-{n}             透明度\r\n--q-font-{property}-{value} 排版\r\n--q-duration-{speed}        动效时长\r\n--q-easing-{type}           缓动函数\r\n```\r\n\r\n## 颜色 (Color)\r\n\r\n### 原始调色板（不随主题变化）\r\n\r\n| 变量                                           | 值                    | 说明             |\r\n| ---------------------------------------------- | --------------------- | ---------------- |\r\n| `--q-color-gray-50` ~ `--q-color-gray-900`     | `#f8f9fa` → `#212529` | 灰色阶梯         |\r\n| `--q-color-yellow-50` ~ `--q-color-yellow-700` | `#fffbeb` → `#806100` | 黄色（品牌主色） |\r\n| `--q-color-red-50` ~ `--q-color-red-700`       | `#fff0f1` → `#871718` | 红色（危险）     |\r\n| `--q-color-green-50` ~ `--q-color-green-700`   | `#e6f9f0` → `#0f5221` | 绿色（成功）     |\r\n| `--q-color-blue-50` ~ `--q-color-blue-700`     | `#e8f4fd` → `#084298` | 蓝色（信息）     |\r\n| `--q-color-orange-50` ~ `--q-color-orange-600` | `#fff8e1` → `#b37800` | 橙色（警告）     |\r\n| `--q-color-white` / `--q-color-black`          | `#ffffff` / `#000000` | 纯色             |\r\n\r\n### 语义化颜色（随主题切换）\r\n\r\n| 变量                                                                     | 说明             |\r\n| ------------------------------------------------------------------------ | ---------------- |\r\n| `--q-color-primary` / `-hover` / `-active` / `-light` / `-lighter`       | 品牌主色及交互态 |\r\n| `--q-color-success` / `-bg` / `-border`                                  | 成功             |\r\n| `--q-color-warning` / `-bg` / `-border`                                  | 警告             |\r\n| `--q-color-danger` / `-bg` / `-border`                                   | 危险             |\r\n| `--q-color-info` / `-bg` / `-border`                                     | 信息             |\r\n| `--q-color-text` / `-description` / `-muted` / `-secondary` / `-inverse` | 文字层级         |\r\n| `--q-color-bg` / `-secondary` / `-card`                                  | 背景层级         |\r\n| `--q-color-border` / `-light`                                            | 边框             |\r\n| `--q-color-link` / `-hover`                                              | 链接             |\r\n| `--q-color-tag`                                                          | 标签/标记        |\r\n| `--q-color-button-bg` / `-text` / `-hover` / `-disabled`                 | 按钮             |\r\n| `--q-color-overlay`                                                      | 遮罩层           |\r\n| `--q-color-shadow` / `-inverse`                                          | 阴影色           |\r\n\r\n## 间距 (Spacing)\r\n\r\n基于 4px 基础单位的 12 档间距阶梯：\r\n\r\n| 变量          | 值             | 变量           | 值             |\r\n| ------------- | -------------- | -------------- | -------------- |\r\n| `--q-space-0` | 0              | `--q-space-7`  | 1.25rem (20px) |\r\n| `--q-space-1` | 0.125rem (2px) | `--q-space-8`  | 1.5rem (24px)  |\r\n| `--q-space-2` | 0.25rem (4px)  | `--q-space-9`  | 2rem (32px)    |\r\n| `--q-space-3` | 0.375rem (6px) | `--q-space-10` | 2.5rem (40px)  |\r\n| `--q-space-4` | 0.5rem (8px)   | `--q-space-11` | 3rem (48px)    |\r\n| `--q-space-5` | 0.75rem (12px) | `--q-space-12` | 4rem (64px)    |\r\n| `--q-space-6` | 1rem (16px)    |                |                |\r\n\r\n## 圆角 (Radius)\r\n\r\n| 变量              | 值             | 变量              | 值             |\r\n| ----------------- | -------------- | ----------------- | -------------- |\r\n| `--q-radius-none` | 0              | `--q-radius-lg`   | 0.75rem (12px) |\r\n| `--q-radius-xs`   | 0.125rem (2px) | `--q-radius-xl`   | 1rem (16px)    |\r\n| `--q-radius-sm`   | 0.25rem (4px)  | `--q-radius-2xl`  | 1.5rem (24px)  |\r\n| `--q-radius-md`   | 0.5rem (8px)   | `--q-radius-full` | 9999px (圆形)  |\r\n\r\n## 阴影与层级 (Elevation)\r\n\r\n| 变量              | 说明        | 变量                   | 说明 |\r\n| ----------------- | ----------- | ---------------------- | ---- |\r\n| `--q-shadow-none` | 无阴影      | `--q-z-index-base`     | 1    |\r\n| `--q-shadow-xs`   | 0 1px 2px   | `--q-z-index-dropdown` | 100  |\r\n| `--q-shadow-sm`   | 0 2px 4px   | `--q-z-index-sticky`   | 200  |\r\n| `--q-shadow-md`   | 0 4px 8px   | `--q-z-index-fixed`    | 300  |\r\n| `--q-shadow-lg`   | 0 8px 16px  | `--q-z-index-overlay`  | 800  |\r\n| `--q-shadow-xl`   | 0 16px 32px | `--q-z-index-modal`    | 1000 |\r\n|                   |             | `--q-z-index-popover`  | 9999 |\r\n\r\n## 透明度 (Opacity)\r\n\r\n`--q-opacity-0` 至 `--q-opacity-100`，每 10% 一档（0 → 1）。\r\n\r\n## 排版 (Typography)\r\n\r\n| 变量                                                                    | 说明                      |\r\n| ----------------------------------------------------------------------- | ------------------------- |\r\n| `--q-font-family-base` / `-mono` / `-markdown`                          | 字体族                    |\r\n| `--q-font-size-xs` / `-sm` / `-base` / `-lg` / `-xl` / `-2xl` / `-3xl`  | 字号阶梯 (0.75rem → 2rem) |\r\n| `--q-font-weight-light` / `-normal` / `-medium` / `-semibold` / `-bold` | 字重 (300 → 700)          |\r\n| `--q-line-height-tight` / `-normal` / `-relaxed`                        | 行高 (1.2 / 1.5 / 1.75)   |\r\n| `--q-letter-spacing-normal` / `-wide` / `-wider`                        | 字间距                    |\r\n\r\n## 动效 (Motion)\r\n\r\n| 变量                                                                                                | 说明               |\r\n| --------------------------------------------------------------------------------------------------- | ------------------ |\r\n| `--q-duration-instant` / `-fast` / `-normal` / `-slow` / `-slower`                                  | 时长 (0ms → 800ms) |\r\n| `--q-easing-linear` / `-ease` / `-in` / `-out` / `-in-out`                                          | 基础缓动           |\r\n| `--q-easing-standard` / `-decelerate` / `-accelerate` / `-sharp`                                    | Material 风格缓动  |\r\n| `--q-transition-color` / `-background` / `-border` / `-opacity` / `-transform` / `-shadow` / `-all` | 复合过渡           |\r\n| `--q-skeleton-gradient`                                                                             | 骨架屏渐变         |\r\n\r\n关键帧：`q-rotate`（旋转）、`q-pulse`（脉冲）。\r\n\r\n## 向后兼容别名\r\n\r\n旧版变量（如 `--primary-color`、`--text-color`、`--background-color`、`--card-bg`、`--border-color`）均已映射到新 token，可直接混用。\r\n",
@@ -4716,7 +4878,18 @@
           "--z-index-level-2",
           "--z-index-level-3"
         ],
-        "classes": []
+        "classes": [],
+        "deprecated": {
+          "notes": ["— 阴影色（向后兼容） —", "— 向后兼容别名 —"],
+          "variables": [
+            "--q-color-shadow",
+            "--z-index-level-1",
+            "--z-index-level-2",
+            "--z-index-level-3"
+          ],
+          "classes": [],
+          "keyframes": []
+        }
       },
       "keywords": [
         "--q-shadow-none",
@@ -4733,6 +4906,10 @@
         "--q-z-index-overlay",
         "--q-z-index-modal",
         "--q-z-index-popover",
+        "--z-index-level-1",
+        "--z-index-level-2",
+        "--z-index-level-3",
+        "--q-color-shadow",
         "--z-index-level-1",
         "--z-index-level-2",
         "--z-index-level-3"
@@ -4778,7 +4955,13 @@
           "--q-color-gray-200",
           "--skeleton-linear-gradient"
         ],
-        "classes": []
+        "classes": [],
+        "deprecated": {
+          "notes": ["— 向后兼容别名 —", "— 向后兼容：旧版关键帧名称 —"],
+          "variables": ["--skeleton-linear-gradient"],
+          "classes": [],
+          "keyframes": ["rotate", "dash", "pulse", "shimmer", "up-down"]
+        }
       },
       "keywords": [
         "--q-duration-instant",
@@ -4805,7 +4988,13 @@
         "--q-skeleton-gradient",
         "--q-color-gray-100",
         "--q-color-gray-200",
-        "--skeleton-linear-gradient"
+        "--skeleton-linear-gradient",
+        "--skeleton-linear-gradient",
+        "rotate",
+        "dash",
+        "pulse",
+        "shimmer",
+        "up-down"
       ],
       "styleDoc": "# 设计变量 (Tokens)\r\n\r\n## 用途\r\n\r\n设计变量是整套样式系统的基础，所有组件与工具类均引用这些 `--q-*` CSS 自定义属性。\r\n分为三层：原始调色板 → 语义化颜色 → 向后兼容别名。\r\n\r\n命名约定：\r\n\r\n```\r\n--q-color-{role}-{shade}    颜色\r\n--q-space-{n}               间距\r\n--q-radius-{size}           圆角\r\n--q-shadow-{level}          阴影\r\n--q-opacity-{n}             透明度\r\n--q-font-{property}-{value} 排版\r\n--q-duration-{speed}        动效时长\r\n--q-easing-{type}           缓动函数\r\n```\r\n\r\n## 颜色 (Color)\r\n\r\n### 原始调色板（不随主题变化）\r\n\r\n| 变量                                           | 值                    | 说明             |\r\n| ---------------------------------------------- | --------------------- | ---------------- |\r\n| `--q-color-gray-50` ~ `--q-color-gray-900`     | `#f8f9fa` → `#212529` | 灰色阶梯         |\r\n| `--q-color-yellow-50` ~ `--q-color-yellow-700` | `#fffbeb` → `#806100` | 黄色（品牌主色） |\r\n| `--q-color-red-50` ~ `--q-color-red-700`       | `#fff0f1` → `#871718` | 红色（危险）     |\r\n| `--q-color-green-50` ~ `--q-color-green-700`   | `#e6f9f0` → `#0f5221` | 绿色（成功）     |\r\n| `--q-color-blue-50` ~ `--q-color-blue-700`     | `#e8f4fd` → `#084298` | 蓝色（信息）     |\r\n| `--q-color-orange-50` ~ `--q-color-orange-600` | `#fff8e1` → `#b37800` | 橙色（警告）     |\r\n| `--q-color-white` / `--q-color-black`          | `#ffffff` / `#000000` | 纯色             |\r\n\r\n### 语义化颜色（随主题切换）\r\n\r\n| 变量                                                                     | 说明             |\r\n| ------------------------------------------------------------------------ | ---------------- |\r\n| `--q-color-primary` / `-hover` / `-active` / `-light` / `-lighter`       | 品牌主色及交互态 |\r\n| `--q-color-success` / `-bg` / `-border`                                  | 成功             |\r\n| `--q-color-warning` / `-bg` / `-border`                                  | 警告             |\r\n| `--q-color-danger` / `-bg` / `-border`                                   | 危险             |\r\n| `--q-color-info` / `-bg` / `-border`                                     | 信息             |\r\n| `--q-color-text` / `-description` / `-muted` / `-secondary` / `-inverse` | 文字层级         |\r\n| `--q-color-bg` / `-secondary` / `-card`                                  | 背景层级         |\r\n| `--q-color-border` / `-light`                                            | 边框             |\r\n| `--q-color-link` / `-hover`                                              | 链接             |\r\n| `--q-color-tag`                                                          | 标签/标记        |\r\n| `--q-color-button-bg` / `-text` / `-hover` / `-disabled`                 | 按钮             |\r\n| `--q-color-overlay`                                                      | 遮罩层           |\r\n| `--q-color-shadow` / `-inverse`                                          | 阴影色           |\r\n\r\n## 间距 (Spacing)\r\n\r\n基于 4px 基础单位的 12 档间距阶梯：\r\n\r\n| 变量          | 值             | 变量           | 值             |\r\n| ------------- | -------------- | -------------- | -------------- |\r\n| `--q-space-0` | 0              | `--q-space-7`  | 1.25rem (20px) |\r\n| `--q-space-1` | 0.125rem (2px) | `--q-space-8`  | 1.5rem (24px)  |\r\n| `--q-space-2` | 0.25rem (4px)  | `--q-space-9`  | 2rem (32px)    |\r\n| `--q-space-3` | 0.375rem (6px) | `--q-space-10` | 2.5rem (40px)  |\r\n| `--q-space-4` | 0.5rem (8px)   | `--q-space-11` | 3rem (48px)    |\r\n| `--q-space-5` | 0.75rem (12px) | `--q-space-12` | 4rem (64px)    |\r\n| `--q-space-6` | 1rem (16px)    |                |                |\r\n\r\n## 圆角 (Radius)\r\n\r\n| 变量              | 值             | 变量              | 值             |\r\n| ----------------- | -------------- | ----------------- | -------------- |\r\n| `--q-radius-none` | 0              | `--q-radius-lg`   | 0.75rem (12px) |\r\n| `--q-radius-xs`   | 0.125rem (2px) | `--q-radius-xl`   | 1rem (16px)    |\r\n| `--q-radius-sm`   | 0.25rem (4px)  | `--q-radius-2xl`  | 1.5rem (24px)  |\r\n| `--q-radius-md`   | 0.5rem (8px)   | `--q-radius-full` | 9999px (圆形)  |\r\n\r\n## 阴影与层级 (Elevation)\r\n\r\n| 变量              | 说明        | 变量                   | 说明 |\r\n| ----------------- | ----------- | ---------------------- | ---- |\r\n| `--q-shadow-none` | 无阴影      | `--q-z-index-base`     | 1    |\r\n| `--q-shadow-xs`   | 0 1px 2px   | `--q-z-index-dropdown` | 100  |\r\n| `--q-shadow-sm`   | 0 2px 4px   | `--q-z-index-sticky`   | 200  |\r\n| `--q-shadow-md`   | 0 4px 8px   | `--q-z-index-fixed`    | 300  |\r\n| `--q-shadow-lg`   | 0 8px 16px  | `--q-z-index-overlay`  | 800  |\r\n| `--q-shadow-xl`   | 0 16px 32px | `--q-z-index-modal`    | 1000 |\r\n|                   |             | `--q-z-index-popover`  | 9999 |\r\n\r\n## 透明度 (Opacity)\r\n\r\n`--q-opacity-0` 至 `--q-opacity-100`，每 10% 一档（0 → 1）。\r\n\r\n## 排版 (Typography)\r\n\r\n| 变量                                                                    | 说明                      |\r\n| ----------------------------------------------------------------------- | ------------------------- |\r\n| `--q-font-family-base` / `-mono` / `-markdown`                          | 字体族                    |\r\n| `--q-font-size-xs` / `-sm` / `-base` / `-lg` / `-xl` / `-2xl` / `-3xl`  | 字号阶梯 (0.75rem → 2rem) |\r\n| `--q-font-weight-light` / `-normal` / `-medium` / `-semibold` / `-bold` | 字重 (300 → 700)          |\r\n| `--q-line-height-tight` / `-normal` / `-relaxed`                        | 行高 (1.2 / 1.5 / 1.75)   |\r\n| `--q-letter-spacing-normal` / `-wide` / `-wider`                        | 字间距                    |\r\n\r\n## 动效 (Motion)\r\n\r\n| 变量                                                                                                | 说明               |\r\n| --------------------------------------------------------------------------------------------------- | ------------------ |\r\n| `--q-duration-instant` / `-fast` / `-normal` / `-slow` / `-slower`                                  | 时长 (0ms → 800ms) |\r\n| `--q-easing-linear` / `-ease` / `-in` / `-out` / `-in-out`                                          | 基础缓动           |\r\n| `--q-easing-standard` / `-decelerate` / `-accelerate` / `-sharp`                                    | Material 风格缓动  |\r\n| `--q-transition-color` / `-background` / `-border` / `-opacity` / `-transform` / `-shadow` / `-all` | 复合过渡           |\r\n| `--q-skeleton-gradient`                                                                             | 骨架屏渐变         |\r\n\r\n关键帧：`q-rotate`（旋转）、`q-pulse`（脉冲）。\r\n\r\n## 向后兼容别名\r\n\r\n旧版变量（如 `--primary-color`、`--text-color`、`--background-color`、`--card-bg`、`--border-color`）均已映射到新 token，可直接混用。\r\n",
       "readme": "/**\r\n * Motion Design Tokens\r\n * ------------------------------------------------------------------\r\n * 动画时长、缓动函数与关键帧定义。\r\n *\r\n * 命名约定：--q-duration-{speed}\r\n *           --q-easing-{type}\r\n *           --q-transition-{property}\r\n */\r\n\r\n:root {\r\n  /* — 时长 — */\r\n  --q-duration-instant: 0ms;\r\n  --q-duration-fast: 150ms;\r\n  --q-duration-normal: 300ms;\r\n  --q-duration-slow: 500ms;\r\n  --q-duration-slower: 800ms;\r\n\r\n  /* — 缋动函数 — */\r\n  --q-easing-linear: linear;\r\n  --q-easing-ease: ease;\r\n  --q-easing-ease-in: ease-in;\r\n  --q-easing-ease-out: ease-out;\r\n  --q-easing-ease-in-out: ease-in-out;\r\n\r\n  /* — Material 风格缓动 — */\r\n  --q-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);\r\n  --q-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);\r\n  --q-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);\r\n  --q-easing-sharp: cubic-bezier(0.4, 0, 0.6, 1);\r\n\r\n  /* — 复合过渡 — */\r\n  --q-transition-color: color var(--q-duration-normal)\r\n    var(--q-easing-ease-in-out);\r\n  --q-transition-background: background-color var(--q-duration-normal)\r\n    var(--q-easing-ease-in-out);\r\n  --q-transition-border: border-color var(--q-duration-normal)\r\n    var(--q-easing-ease-in-out);\r\n  --q-transition-opacity: opacity var(--q-duration-normal) var(--q-easing-ease);\r\n  --q-transition-transform: transform var(--q-duration-normal)\r\n    var(--q-easing-ease-in-out);\r\n  --q-transition-shadow: box-shadow var(--q-duration-normal)\r\n    var(--q-easing-ease-in-out);\r\n  --q-transition-all: all var(--q-duration-normal) var(--q-easing-ease-in-out);\r\n\r\n  /* — 骨架屏渐变背景 — */\r\n  --q-skeleton-gradient: linear-gradient(\r\n    90deg,\r\n    var(--q-color-gray-100) 25%,\r\n    var(--q-color-gray-200) 50%,\r\n    var(--q-color-gray-100) 75%\r\n  );\r\n\r\n  /* — 向后兼容别名 — */\r\n  --skeleton-linear-gradient: var(--q-skeleton-gradient);\r\n}\r\n\r\n/* — 关键帧动画（必须在 :root 外部定义） — */\r\n\r\n/* 旋转 */\r\n@keyframes q-rotate {\r\n  0% {\r\n    transform: rotate(0);\r\n  }\r\n  100% {\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n\r\n/* 脉冲（呼吸灯） */\r\n@keyframes q-pulse {\r\n  0%,\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n  50% {\r\n    opacity: 0.5;\r\n  }\r\n}\r\n\r\n/* 骨架屏光泽流动 */\r\n@keyframes q-shimmer {\r\n  0% {\r\n    background-position: 200% 0;\r\n  }\r\n  100% {\r\n    background-position: -200% 0;\r\n  }\r\n}\r\n\r\n/* 虚线路径动画 */\r\n@keyframes q-dash {\r\n  0% {\r\n    stroke-dasharray: 20, 200;\r\n    stroke-dashoffset: 0;\r\n  }\r\n  50% {\r\n    stroke-dasharray: 200, 200;\r\n    stroke-dashoffset: 100px;\r\n  }\r\n  100% {\r\n    stroke-dasharray: 20, 200;\r\n    stroke-dashoffset: 0;\r\n  }\r\n}\r\n\r\n/* 卡片翻转 */\r\n@keyframes q-up-down {\r\n  0% {\r\n    transform: translateY(0);\r\n  }\r\n  50% {\r\n    transform: translateY(-10px) rotateY(270deg);\r\n  }\r\n  100% {\r\n    transform: translateY(0) rotateY(360deg);\r\n  }\r\n}\r\n\r\n/* 向上淡入 */\r\n@keyframes q-fade-in-up {\r\n  0% {\r\n    opacity: 0;\r\n    transform: translateY(8px);\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n    transform: translateY(0);\r\n  }\r\n}\r\n\r\n/* 向下淡入 */\r\n@keyframes q-fade-in-down {\r\n  0% {\r\n    opacity: 0;\r\n    transform: translateY(-8px);\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n    transform: translateY(0);\r\n  }\r\n}\r\n\r\n/* 淡入 */\r\n@keyframes q-fade-in {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n/* 淡出 */\r\n@keyframes q-fade-out {\r\n  0% {\r\n    opacity: 1;\r\n  }\r\n  100% {\r\n    opacity: 0;\r\n  }\r\n}\r\n\r\n/* 缩放淡入 */\r\n@keyframes q-scale-in {\r\n  0% {\r\n    opacity: 0;\r\n    transform: scale(0.95);\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n    transform: scale(1);\r\n  }\r\n}\r\n\r\n/* — 向后兼容：旧版关键帧名称 — */\r\n@keyframes rotate {\r\n  0% {\r\n    transform: rotate(0);\r\n  }\r\n  100% {\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n\r\n@keyframes dash {\r\n  0% {\r\n    stroke-dasharray: 20, 200;\r\n    stroke-dashoffset: 0;\r\n  }\r\n  50% {\r\n    stroke-dasharray: 200, 200;\r\n    stroke-dashoffset: 100px;\r\n  }\r\n  100% {\r\n    stroke-dasharray: 20, 200;\r\n    stroke-dashoffset: 0;\r\n  }\r\n}\r\n\r\n@keyframes pulse {\r\n  0%,\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n  50% {\r\n    opacity: 0.5;\r\n  }\r\n}\r\n\r\n@keyframes shimmer {\r\n  0% {\r\n    background-position: 200% 0;\r\n  }\r\n  100% {\r\n    background-position: -200% 0;\r\n  }\r\n}\r\n\r\n@keyframes up-down {\r\n  0% {\r\n    transform: translateY(0);\r\n  }\r\n  50% {\r\n    transform: translateY(-10px) rotateY(270deg);\r\n  }\r\n  100% {\r\n    transform: translateY(0) rotateY(360deg);\r\n  }\r\n}\r\n"
@@ -4918,7 +5107,18 @@
           "--third-distance",
           "--fourth-distance"
         ],
-        "classes": []
+        "classes": [],
+        "deprecated": {
+          "notes": ["— 向后兼容别名 —"],
+          "variables": [
+            "--distance",
+            "--half-distance",
+            "--third-distance",
+            "--fourth-distance"
+          ],
+          "classes": [],
+          "keyframes": []
+        }
       },
       "keywords": [
         "--q-space-0",
@@ -4934,6 +5134,10 @@
         "--q-space-10",
         "--q-space-11",
         "--q-space-12",
+        "--distance",
+        "--half-distance",
+        "--third-distance",
+        "--fourth-distance",
         "--distance",
         "--half-distance",
         "--third-distance",
@@ -4983,7 +5187,21 @@
           "--q-letter-spacing-wide",
           "--q-letter-spacing-wider"
         ],
-        "classes": []
+        "classes": [],
+        "deprecated": {
+          "notes": ["— 文字阶梯（旧版 rem 简写） —"],
+          "variables": [
+            "--q-font-size-03",
+            "--q-font-size-05",
+            "--q-font-size-08",
+            "--q-font-size-085",
+            "--q-font-size-12",
+            "--q-font-size-15",
+            "--q-font-size-2"
+          ],
+          "classes": [],
+          "keyframes": []
+        }
       },
       "keywords": [
         "--q-font-family-base",
@@ -5013,7 +5231,14 @@
         "--q-line-height-relaxed",
         "--q-letter-spacing-normal",
         "--q-letter-spacing-wide",
-        "--q-letter-spacing-wider"
+        "--q-letter-spacing-wider",
+        "--q-font-size-03",
+        "--q-font-size-05",
+        "--q-font-size-08",
+        "--q-font-size-085",
+        "--q-font-size-12",
+        "--q-font-size-15",
+        "--q-font-size-2"
       ],
       "styleDoc": "# 设计变量 (Tokens)\r\n\r\n## 用途\r\n\r\n设计变量是整套样式系统的基础，所有组件与工具类均引用这些 `--q-*` CSS 自定义属性。\r\n分为三层：原始调色板 → 语义化颜色 → 向后兼容别名。\r\n\r\n命名约定：\r\n\r\n```\r\n--q-color-{role}-{shade}    颜色\r\n--q-space-{n}               间距\r\n--q-radius-{size}           圆角\r\n--q-shadow-{level}          阴影\r\n--q-opacity-{n}             透明度\r\n--q-font-{property}-{value} 排版\r\n--q-duration-{speed}        动效时长\r\n--q-easing-{type}           缓动函数\r\n```\r\n\r\n## 颜色 (Color)\r\n\r\n### 原始调色板（不随主题变化）\r\n\r\n| 变量                                           | 值                    | 说明             |\r\n| ---------------------------------------------- | --------------------- | ---------------- |\r\n| `--q-color-gray-50` ~ `--q-color-gray-900`     | `#f8f9fa` → `#212529` | 灰色阶梯         |\r\n| `--q-color-yellow-50` ~ `--q-color-yellow-700` | `#fffbeb` → `#806100` | 黄色（品牌主色） |\r\n| `--q-color-red-50` ~ `--q-color-red-700`       | `#fff0f1` → `#871718` | 红色（危险）     |\r\n| `--q-color-green-50` ~ `--q-color-green-700`   | `#e6f9f0` → `#0f5221` | 绿色（成功）     |\r\n| `--q-color-blue-50` ~ `--q-color-blue-700`     | `#e8f4fd` → `#084298` | 蓝色（信息）     |\r\n| `--q-color-orange-50` ~ `--q-color-orange-600` | `#fff8e1` → `#b37800` | 橙色（警告）     |\r\n| `--q-color-white` / `--q-color-black`          | `#ffffff` / `#000000` | 纯色             |\r\n\r\n### 语义化颜色（随主题切换）\r\n\r\n| 变量                                                                     | 说明             |\r\n| ------------------------------------------------------------------------ | ---------------- |\r\n| `--q-color-primary` / `-hover` / `-active` / `-light` / `-lighter`       | 品牌主色及交互态 |\r\n| `--q-color-success` / `-bg` / `-border`                                  | 成功             |\r\n| `--q-color-warning` / `-bg` / `-border`                                  | 警告             |\r\n| `--q-color-danger` / `-bg` / `-border`                                   | 危险             |\r\n| `--q-color-info` / `-bg` / `-border`                                     | 信息             |\r\n| `--q-color-text` / `-description` / `-muted` / `-secondary` / `-inverse` | 文字层级         |\r\n| `--q-color-bg` / `-secondary` / `-card`                                  | 背景层级         |\r\n| `--q-color-border` / `-light`                                            | 边框             |\r\n| `--q-color-link` / `-hover`                                              | 链接             |\r\n| `--q-color-tag`                                                          | 标签/标记        |\r\n| `--q-color-button-bg` / `-text` / `-hover` / `-disabled`                 | 按钮             |\r\n| `--q-color-overlay`                                                      | 遮罩层           |\r\n| `--q-color-shadow` / `-inverse`                                          | 阴影色           |\r\n\r\n## 间距 (Spacing)\r\n\r\n基于 4px 基础单位的 12 档间距阶梯：\r\n\r\n| 变量          | 值             | 变量           | 值             |\r\n| ------------- | -------------- | -------------- | -------------- |\r\n| `--q-space-0` | 0              | `--q-space-7`  | 1.25rem (20px) |\r\n| `--q-space-1` | 0.125rem (2px) | `--q-space-8`  | 1.5rem (24px)  |\r\n| `--q-space-2` | 0.25rem (4px)  | `--q-space-9`  | 2rem (32px)    |\r\n| `--q-space-3` | 0.375rem (6px) | `--q-space-10` | 2.5rem (40px)  |\r\n| `--q-space-4` | 0.5rem (8px)   | `--q-space-11` | 3rem (48px)    |\r\n| `--q-space-5` | 0.75rem (12px) | `--q-space-12` | 4rem (64px)    |\r\n| `--q-space-6` | 1rem (16px)    |                |                |\r\n\r\n## 圆角 (Radius)\r\n\r\n| 变量              | 值             | 变量              | 值             |\r\n| ----------------- | -------------- | ----------------- | -------------- |\r\n| `--q-radius-none` | 0              | `--q-radius-lg`   | 0.75rem (12px) |\r\n| `--q-radius-xs`   | 0.125rem (2px) | `--q-radius-xl`   | 1rem (16px)    |\r\n| `--q-radius-sm`   | 0.25rem (4px)  | `--q-radius-2xl`  | 1.5rem (24px)  |\r\n| `--q-radius-md`   | 0.5rem (8px)   | `--q-radius-full` | 9999px (圆形)  |\r\n\r\n## 阴影与层级 (Elevation)\r\n\r\n| 变量              | 说明        | 变量                   | 说明 |\r\n| ----------------- | ----------- | ---------------------- | ---- |\r\n| `--q-shadow-none` | 无阴影      | `--q-z-index-base`     | 1    |\r\n| `--q-shadow-xs`   | 0 1px 2px   | `--q-z-index-dropdown` | 100  |\r\n| `--q-shadow-sm`   | 0 2px 4px   | `--q-z-index-sticky`   | 200  |\r\n| `--q-shadow-md`   | 0 4px 8px   | `--q-z-index-fixed`    | 300  |\r\n| `--q-shadow-lg`   | 0 8px 16px  | `--q-z-index-overlay`  | 800  |\r\n| `--q-shadow-xl`   | 0 16px 32px | `--q-z-index-modal`    | 1000 |\r\n|                   |             | `--q-z-index-popover`  | 9999 |\r\n\r\n## 透明度 (Opacity)\r\n\r\n`--q-opacity-0` 至 `--q-opacity-100`，每 10% 一档（0 → 1）。\r\n\r\n## 排版 (Typography)\r\n\r\n| 变量                                                                    | 说明                      |\r\n| ----------------------------------------------------------------------- | ------------------------- |\r\n| `--q-font-family-base` / `-mono` / `-markdown`                          | 字体族                    |\r\n| `--q-font-size-xs` / `-sm` / `-base` / `-lg` / `-xl` / `-2xl` / `-3xl`  | 字号阶梯 (0.75rem → 2rem) |\r\n| `--q-font-weight-light` / `-normal` / `-medium` / `-semibold` / `-bold` | 字重 (300 → 700)          |\r\n| `--q-line-height-tight` / `-normal` / `-relaxed`                        | 行高 (1.2 / 1.5 / 1.75)   |\r\n| `--q-letter-spacing-normal` / `-wide` / `-wider`                        | 字间距                    |\r\n\r\n## 动效 (Motion)\r\n\r\n| 变量                                                                                                | 说明               |\r\n| --------------------------------------------------------------------------------------------------- | ------------------ |\r\n| `--q-duration-instant` / `-fast` / `-normal` / `-slow` / `-slower`                                  | 时长 (0ms → 800ms) |\r\n| `--q-easing-linear` / `-ease` / `-in` / `-out` / `-in-out`                                          | 基础缓动           |\r\n| `--q-easing-standard` / `-decelerate` / `-accelerate` / `-sharp`                                    | Material 风格缓动  |\r\n| `--q-transition-color` / `-background` / `-border` / `-opacity` / `-transform` / `-shadow` / `-all` | 复合过渡           |\r\n| `--q-skeleton-gradient`                                                                             | 骨架屏渐变         |\r\n\r\n关键帧：`q-rotate`（旋转）、`q-pulse`（脉冲）。\r\n\r\n## 向后兼容别名\r\n\r\n旧版变量（如 `--primary-color`、`--text-color`、`--background-color`、`--card-bg`、`--border-color`）均已映射到新 token，可直接混用。\r\n",
       "readme": "/**\r\n * Typography Design Tokens\r\n * ------------------------------------------------------------------\r\n * 字体族、字号、字重、行高与排版阶梯。\r\n *\r\n * 命名约定：--q-font-{property}-{value}\r\n */\r\n\r\n:root {\r\n  /* — 字体族 — */\r\n  --q-font-family-base:\r\n    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',\r\n    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';\r\n  --q-font-family-mono:\r\n    'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;\r\n  --q-font-family-markdown:\r\n    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',\r\n    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';\r\n\r\n  /* — 基础字号 — */\r\n  --q-font-size-base: 1rem; /* 16px */\r\n  --q-font-size-sm: 0.875rem; /* 14px */\r\n  --q-font-size-xs: 0.75rem; /* 12px */\r\n  --q-font-size-lg: 1.125rem; /* 18px */\r\n  --q-font-size-xl: 1.25rem; /* 20px */\r\n  --q-font-size-2xl: 1.5rem; /* 24px */\r\n  --q-font-size-3xl: 2rem; /* 32px */\r\n\r\n  /* — 文字阶梯（旧版 rem 简写） — */\r\n  --q-font-size-03: 0.3rem;\r\n  --q-font-size-05: 0.5rem;\r\n  --q-font-size-08: 0.8rem;\r\n  --q-font-size-085: 0.85rem;\r\n  --q-font-size-12: 1.2rem;\r\n  --q-font-size-15: 1.5rem;\r\n  --q-font-size-2: 2rem;\r\n\r\n  /* — 字重 — */\r\n  --q-font-weight-light: 300;\r\n  --q-font-weight-normal: 400;\r\n  --q-font-weight-medium: 500;\r\n  --q-font-weight-semibold: 600;\r\n  --q-font-weight-bold: 700;\r\n\r\n  /* — 行高 — */\r\n  --q-line-height-tight: 1.2;\r\n  --q-line-height-normal: 1.5;\r\n  --q-line-height-relaxed: 1.75;\r\n\r\n  /* — 字间距 — */\r\n  --q-letter-spacing-normal: normal;\r\n  --q-letter-spacing-wide: 0.025em;\r\n  --q-letter-spacing-wider: 0.05em;\r\n}\r\n"
@@ -5270,7 +5495,18 @@
           "animation-pulse",
           "animation-rotate",
           "animation-shimmer"
-        ]
+        ],
+        "deprecated": {
+          "notes": ["— 向后兼容：旧版圆角类名 —", "— 向后兼容：旧版阴影类名 —"],
+          "variables": [],
+          "classes": [
+            "radius-rem",
+            "radius-half-rem",
+            "radius-third-rem",
+            "shadow-common"
+          ],
+          "keyframes": []
+        }
       },
       "keywords": [
         "--q-opacity-0",
@@ -5369,7 +5605,11 @@
         "required",
         "animation-pulse",
         "animation-rotate",
-        "animation-shimmer"
+        "animation-shimmer",
+        "radius-rem",
+        "radius-half-rem",
+        "radius-third-rem",
+        "shadow-common"
       ],
       "styleDoc": "# 工具类 (Utilities)\r\n\r\n## 用途\r\n\r\n直接作用于 HTML 的语义化样式类，覆盖布局、间距、颜色、排版、显示与响应式。\r\n类名统一短横线命名，均基于设计变量实现，随主题自动适配。\r\n\r\n## 布局 (Layout)\r\n\r\n基于 Flexbox / Grid 的布局工具：\r\n\r\n| 分类       | 类名                                                                       | 说明                      |\r\n| ---------- | -------------------------------------------------------------------------- | ------------------------- |\r\n| 容器       | `.flex` / `.inline-flex`                                                   | Flex 容器                 |\r\n| 方向       | `.flex-row` / `.flex-col` / `.flex-column`                                 | 主轴方向                  |\r\n| 反向       | `.flex-row-reverse` / `.flex-col-reverse`                                  | 反向排列                  |\r\n| 对齐主轴   | `.justify-start` / `-center` / `-end` / `-between` / `-around` / `-evenly` | justify-content           |\r\n| 对齐交叉轴 | `.items-start` / `-center` / `-end` / `-stretch` / `-baseline`             | align-items               |\r\n| 对齐内容   | `.content-center` / `-start` / `-end` / `-between` / `-around`             | align-content             |\r\n| 换行       | `.flex-wrap` / `-nowrap` / `-wrap-reverse`                                 | flex-wrap                 |\r\n| 伸缩       | `.flex-1` / `.flex-2`                                                      | flex-grow                 |\r\n| 间距       | `.gap-0` ~ `.gap-6`                                                        | gap（基于 `--q-space-*`） |\r\n| 旧版别名   | `.gap` / `.gap-half` / `.gap-third` / `.gap-fourth`                        | 兼容                      |\r\n\r\n```html\r\n<div class=\"flex justify-between items-center gap-4\">\r\n  <div>左</div>\r\n  <div>右</div>\r\n</div>\r\n```\r\n\r\n## 间距 (Spacing)\r\n\r\n格式：`.{m|p}{direction?}-{n}`\r\n\r\n- `m` = margin，`p` = padding\r\n- direction：`t`(top) / `r`(right) / `b`(bottom) / `l`(left) / `x`(horizontal) / `y`(vertical)\r\n- n = 0–12（对应 `--q-space-*` 阶梯）\r\n\r\n| 示例                                                    | 说明               |\r\n| ------------------------------------------------------- | ------------------ |\r\n| `.m-4` / `.p-4`                                         | 四周间距           |\r\n| `.mt-2` / `.mb-4` / `.mx-2` / `.my-4`                   | 单边 / 水平 / 垂直 |\r\n| `.padding-rem` / `.padding-half-rem` / `.padding-24rem` | 旧版 rem 别名      |\r\n| `.margin-rem` / `.margin-half-rem`                      | 旧版 margin 别名   |\r\n\r\n```html\r\n<div class=\"padding-rem\">内边距</div>\r\n<div class=\"mt-4\">上外边距</div>\r\n```\r\n\r\n## 颜色 (Color)\r\n\r\n| 分类     | 类名                                                                                                                         | 说明       |\r\n| -------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------- |\r\n| 背景     | `.bg-primary` / `-light` / `-success` / `-warning` / `-danger` / `-info` / `-card` / `-body` / `-secondary` / `-transparent` | 语义背景   |\r\n| 背景灰阶 | `.bg-gray-50` ~ `.bg-gray-700`                                                                                               | 灰阶背景   |\r\n| 文字     | `.text-primary` / `-description` / `-muted` / `-secondary` / `-white` / `-black`                                             | 语义文字色 |\r\n\r\n```html\r\n<div class=\"bg-primary text-white padding-rem\">主色背景</div>\r\n<span class=\"text-muted\">次要文字</span>\r\n```\r\n\r\n## 排版 (Typography)\r\n\r\n| 分类 | 类名                                                           | 说明        |\r\n| ---- | -------------------------------------------------------------- | ----------- |\r\n| 对齐 | `.text-left` / `-center` / `-right` / `-justify`               | text-align  |\r\n| 字号 | `.text-xs` / `-sm` / `-base` / `-lg` / `-xl` / `-2xl` / `-3xl` | font-size   |\r\n| 字重 | `.font-light` / `-normal` / `-medium` / `-semibold` / `-bold`  | font-weight |\r\n| 截断 | `.text-1-line` / `.text-2-line` / `.text-3-line`               | 行数截断    |\r\n\r\n```html\r\n<h1 class=\"text-2xl font-bold text-center\">标题</h1>\r\n<p class=\"text-sm text-muted\">说明文字</p>\r\n```\r\n\r\n## 显示 / 定位 / 圆角 / 阴影 (Display)\r\n\r\n| 分类 | 类名                                                                                                     | 说明       |\r\n| ---- | -------------------------------------------------------------------------------------------------------- | ---------- |\r\n| 显示 | `.d-none` / `-block` / `-inline` / `-inline-block` / `-flex` / `-inline-flex` / `-grid` / `-inline-grid` | display    |\r\n| 定位 | `.position-static` / `-relative` / `-absolute` / `-fixed` / `-sticky`                                    | position   |\r\n| 指针 | `.cursor-pointer` / `.cursor-not-allowed`                                                                | cursor     |\r\n| 圆角 | `.radius-half-rem` / `.radius-quarter-rem`                                                               | 圆角       |\r\n| 阴影 | `.shadow-none` / `-xs` / `-sm` / `-md` / `-lg` / `-xl`                                                   | box-shadow |\r\n\r\n## 响应式 (Responsive)\r\n\r\n断点 768px（移动端 / 桌面端切换）：\r\n\r\n| 类名                                 | 说明                    |\r\n| ------------------------------------ | ----------------------- |\r\n| `.hidden-768`                        | 移动端（≤768px）隐藏    |\r\n| `.show-768`                          | 仅在移动端显示          |\r\n| `.container-768-w100`                | 移动端宽度 100%         |\r\n| `.scroll-container` / `.scroll-text` | 滚动容器 / 横向滚动文本 |\r\n\r\n```html\r\n<div class=\"hidden-768\">桌面端可见</div>\r\n<div class=\"show-768\">移动端可见</div>\r\n```\r\n",
       "readme": "/**\r\n * Display, Position & Visibility Utilities\r\n * ------------------------------------------------------------------\r\n * display、position、cursor、opacity、border、radius 等工具类。\r\n * 同时保留旧版类名。\r\n */\r\n\r\n/* ============================================================\r\n * Display\r\n * ========================================================== */\r\n\r\n.d-none {\r\n  display: none;\r\n}\r\n\r\n.d-block {\r\n  display: block;\r\n}\r\n\r\n.d-inline {\r\n  display: inline;\r\n}\r\n\r\n.d-inline-block {\r\n  display: inline-block;\r\n}\r\n\r\n.d-flex {\r\n  display: flex;\r\n}\r\n\r\n.d-inline-flex {\r\n  display: inline-flex;\r\n}\r\n\r\n.d-grid {\r\n  display: grid;\r\n}\r\n\r\n.d-inline-grid {\r\n  display: inline-grid;\r\n}\r\n\r\n/* ============================================================\r\n * Position\r\n * ========================================================== */\r\n\r\n.position-static {\r\n  position: static;\r\n}\r\n\r\n.position-relative {\r\n  position: relative;\r\n}\r\n\r\n.position-absolute {\r\n  position: absolute;\r\n}\r\n\r\n.position-fixed {\r\n  position: fixed;\r\n}\r\n\r\n.position-sticky {\r\n  position: sticky;\r\n}\r\n\r\n/* ============================================================\r\n * Cursor\r\n * ========================================================== */\r\n\r\n.mouse-cursor,\r\n.cursor-pointer {\r\n  cursor: pointer;\r\n}\r\n\r\n.mouse-cursor-disable,\r\n.cursor-not-allowed {\r\n  cursor: not-allowed;\r\n}\r\n\r\n/* ============================================================\r\n * Opacity\r\n * ========================================================== */\r\n\r\n.opacity-0 {\r\n  opacity: var(--q-opacity-0);\r\n}\r\n.opacity-10 {\r\n  opacity: var(--q-opacity-10);\r\n}\r\n.opacity-20 {\r\n  opacity: var(--q-opacity-20);\r\n}\r\n.opacity-30 {\r\n  opacity: var(--q-opacity-30);\r\n}\r\n.opacity-40 {\r\n  opacity: var(--q-opacity-40);\r\n}\r\n.opacity-50 {\r\n  opacity: var(--q-opacity-50);\r\n}\r\n.opacity-60 {\r\n  opacity: var(--q-opacity-60);\r\n}\r\n.opacity-70 {\r\n  opacity: var(--q-opacity-70);\r\n}\r\n.opacity-80 {\r\n  opacity: var(--q-opacity-80);\r\n}\r\n.opacity-90 {\r\n  opacity: var(--q-opacity-90);\r\n}\r\n.opacity-100 {\r\n  opacity: var(--q-opacity-100);\r\n}\r\n\r\n/* — 交互态透明度 — */\r\n.opacity-2-9 {\r\n  opacity: var(--q-opacity-20);\r\n}\r\n\r\n.opacity-2-9:hover {\r\n  opacity: var(--q-opacity-90);\r\n}\r\n\r\n.opacity-6-hover:hover {\r\n  opacity: var(--q-opacity-60);\r\n}\r\n\r\n/* ============================================================\r\n * Border\r\n * ========================================================== */\r\n\r\n.border-gray {\r\n  border: 1px solid var(--q-color-border);\r\n}\r\n\r\n.border-vetical-gray {\r\n  border-left: 1px solid var(--q-color-border);\r\n  border-right: 1px solid var(--q-color-border);\r\n}\r\n\r\n.border-horizontal-gray {\r\n  border-top: 1px solid var(--q-color-border);\r\n  border-bottom: 1px solid var(--q-color-border);\r\n}\r\n\r\n.border-primary {\r\n  border: 2px solid var(--q-color-primary);\r\n}\r\n\r\n.border-none {\r\n  border: none;\r\n}\r\n\r\n/* ============================================================\r\n * Border Radius\r\n * ========================================================== */\r\n\r\n.radius-none {\r\n  border-radius: var(--q-radius-none);\r\n}\r\n\r\n.radius-xs {\r\n  border-radius: var(--q-radius-xs);\r\n}\r\n\r\n.radius-sm {\r\n  border-radius: var(--q-radius-sm);\r\n}\r\n\r\n.radius-md {\r\n  border-radius: var(--q-radius-md);\r\n}\r\n\r\n.radius-lg {\r\n  border-radius: var(--q-radius-lg);\r\n}\r\n\r\n.radius-xl {\r\n  border-radius: var(--q-radius-xl);\r\n}\r\n\r\n.radius-full {\r\n  border-radius: var(--q-radius-full);\r\n}\r\n\r\n/* — 向后兼容：旧版圆角类名 — */\r\n.radius-rem {\r\n  border-radius: var(--q-radius-xl);\r\n}\r\n\r\n.radius-half-rem {\r\n  border-radius: var(--q-radius-md);\r\n}\r\n\r\n.radius-third-rem {\r\n  border-radius: var(--q-space-3);\r\n}\r\n\r\n/* ============================================================\r\n * Shadow\r\n * ========================================================== */\r\n\r\n.shadow-none {\r\n  box-shadow: var(--q-shadow-none);\r\n}\r\n\r\n.shadow-xs {\r\n  box-shadow: var(--q-shadow-xs);\r\n}\r\n\r\n.shadow-sm {\r\n  box-shadow: var(--q-shadow-sm);\r\n}\r\n\r\n.shadow-md {\r\n  box-shadow: var(--q-shadow-md);\r\n}\r\n\r\n.shadow-lg {\r\n  box-shadow: var(--q-shadow-lg);\r\n}\r\n\r\n.shadow-xl {\r\n  box-shadow: var(--q-shadow-xl);\r\n}\r\n\r\n/* — 向后兼容：旧版阴影类名 — */\r\n.shadow-common {\r\n  box-shadow: 0 0 10px var(--q-color-shadow);\r\n}\r\n\r\n/* ============================================================\r\n * Overflow\r\n * ========================================================== */\r\n\r\n.overflow-hidden {\r\n  overflow: hidden;\r\n}\r\n\r\n.overflow-auto {\r\n  overflow: auto;\r\n}\r\n\r\n.overflow-scroll {\r\n  overflow: scroll;\r\n}\r\n\r\n.overflow-visible {\r\n  overflow: visible;\r\n}\r\n\r\n/* ============================================================\r\n * Misc\r\n * ========================================================== */\r\n\r\n.active-common {\r\n  color: var(--q-color-bg);\r\n  background-color: var(--q-color-text-inverse);\r\n}\r\n\r\n.dot {\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  transform: translateX(50%) translateY(-50%);\r\n  min-width: var(--q-space-4);\r\n  min-height: var(--q-space-4);\r\n  border-radius: var(--q-radius-full);\r\n  font-size: var(--q-font-size-xs);\r\n  background-color: var(--q-color-info-bg);\r\n}\r\n\r\n.required::before {\r\n  content: '*';\r\n  color: red;\r\n  margin-right: 2px;\r\n  font-weight: bold;\r\n}\r\n\r\n/* — 动画工具类 — */\r\n.animation-pulse {\r\n  animation: q-pulse var(--q-duration-slow) var(--q-easing-linear) infinite;\r\n}\r\n\r\n.animation-rotate {\r\n  animation: q-rotate 1s var(--q-easing-linear) infinite;\r\n}\r\n\r\n.animation-shimmer {\r\n  animation: q-shimmer var(--q-duration-slow) var(--q-easing-linear) infinite;\r\n}\r\n"
@@ -5479,7 +5719,43 @@
           "gap-half",
           "gap-third",
           "gap-fourth"
-        ]
+        ],
+        "deprecated": {
+          "notes": [
+            "向后兼容：旧版 container / inner-container 类名",
+            "— 向后兼容：旧版 gap 类名 —"
+          ],
+          "variables": [],
+          "classes": [
+            "inner-container",
+            "inner-container-column",
+            "container",
+            "container-column",
+            "container-center",
+            "container-align-center",
+            "container-align-content",
+            "container-flex-start",
+            "container-flex-end",
+            "container-space-between",
+            "container-space-around",
+            "container-space-evenly",
+            "container-wrap",
+            "container-nowrap",
+            "container-reverse",
+            "container-column-reverse",
+            "container-row-768-column",
+            "container-flex-1",
+            "container-flex-2",
+            "container-flex-3",
+            "container-w100",
+            "container-h100",
+            "gap",
+            "gap-half",
+            "gap-third",
+            "gap-fourth"
+          ],
+          "keyframes": []
+        }
       },
       "keywords": [
         "--q-space-1",
@@ -5547,6 +5823,32 @@
         "grid-cols-6",
         "grid-cols-12",
         "col-span-full",
+        "inner-container",
+        "inner-container-column",
+        "container",
+        "container-column",
+        "container-center",
+        "container-align-center",
+        "container-align-content",
+        "container-flex-start",
+        "container-flex-end",
+        "container-space-between",
+        "container-space-around",
+        "container-space-evenly",
+        "container-wrap",
+        "container-nowrap",
+        "container-reverse",
+        "container-column-reverse",
+        "container-row-768-column",
+        "container-flex-1",
+        "container-flex-2",
+        "container-flex-3",
+        "container-w100",
+        "container-h100",
+        "gap",
+        "gap-half",
+        "gap-third",
+        "gap-fourth",
         "inner-container",
         "inner-container-column",
         "container",
@@ -5714,7 +6016,42 @@
           "padding-half-horizontal",
           "padding-third-horizontal",
           "padding-fourth-horizontal"
-        ]
+        ],
+        "deprecated": {
+          "notes": ["向后兼容：旧版 margin / padding 类名", "— 旧版 padding —"],
+          "variables": [],
+          "classes": [
+            "margin-auto",
+            "margin-rem",
+            "margin-half-rem",
+            "margin-third-rem",
+            "margin-fourth-rem",
+            "margin-vetical",
+            "margin-half-vetical",
+            "margin-third-vetical",
+            "margin-fourth-vetical",
+            "margin-horizontal",
+            "margin-half-horizontal",
+            "margin-third-horizontal",
+            "margin-fourth-horizontal",
+            "padding-24rem",
+            "padding-28rem",
+            "padding-46rem",
+            "padding-rem",
+            "padding-half-rem",
+            "padding-third-rem",
+            "padding-fourth-rem",
+            "padding-vetical",
+            "padding-half-vetical",
+            "padding-third-vetical",
+            "padding-fourth-vetical",
+            "padding-horizontal",
+            "padding-half-horizontal",
+            "padding-third-horizontal",
+            "padding-fourth-horizontal"
+          ],
+          "keyframes": []
+        }
       },
       "keywords": [
         "--q-space-1",
@@ -5777,6 +6114,34 @@
         "py-2",
         "py-4",
         "py-6",
+        "margin-auto",
+        "margin-rem",
+        "margin-half-rem",
+        "margin-third-rem",
+        "margin-fourth-rem",
+        "margin-vetical",
+        "margin-half-vetical",
+        "margin-third-vetical",
+        "margin-fourth-vetical",
+        "margin-horizontal",
+        "margin-half-horizontal",
+        "margin-third-horizontal",
+        "margin-fourth-horizontal",
+        "padding-24rem",
+        "padding-28rem",
+        "padding-46rem",
+        "padding-rem",
+        "padding-half-rem",
+        "padding-third-rem",
+        "padding-fourth-rem",
+        "padding-vetical",
+        "padding-half-vetical",
+        "padding-third-vetical",
+        "padding-fourth-vetical",
+        "padding-horizontal",
+        "padding-half-horizontal",
+        "padding-third-horizontal",
+        "padding-fourth-horizontal",
         "margin-auto",
         "margin-rem",
         "margin-half-rem",
@@ -5876,7 +6241,21 @@
           "text-085rem",
           "text-05rem",
           "text-03rem"
-        ]
+        ],
+        "deprecated": {
+          "notes": ["向后兼容：旧版字号类名"],
+          "variables": [],
+          "classes": [
+            "text-2rem",
+            "text-15rem",
+            "text-12rem",
+            "text-08rem",
+            "text-085rem",
+            "text-05rem",
+            "text-03rem"
+          ],
+          "keyframes": []
+        }
       },
       "keywords": [
         "--q-font-size-xs",
@@ -5925,6 +6304,13 @@
         "text-title",
         "text-label",
         "user-select-none",
+        "text-2rem",
+        "text-15rem",
+        "text-12rem",
+        "text-08rem",
+        "text-085rem",
+        "text-05rem",
+        "text-03rem",
         "text-2rem",
         "text-15rem",
         "text-12rem",

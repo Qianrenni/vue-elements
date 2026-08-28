@@ -6,15 +6,20 @@ Query component APIs (Props / Emits / Slots / Exposes), algorithm & business uti
 
 ## 功能
 
-提供 5 个 MCP tools：
+提供 6 个 MCP tools：
 
-| Tool                | 说明                                                         |
-| ------------------- | ------------------------------------------------------------ |
-| `search`            | 全文搜索组件 / 工具 / 通用样式，支持按类型、包过滤           |
-| `get_doc`           | 获取某条目的完整 README 文档（含 API 表格 / 样式变量清单）   |
-| `get_component_api` | 获取组件的 Props / Emits / Slots / Exposes 表格              |
-| `get_source`        | 获取条目对应源码文件                                         |
-| `list_entries`      | 列出全部条目（组件 / 算法 / 业务工具 / 事件工具 / 通用样式） |
+| Tool                | 说明                                                                |
+| ------------------- | ------------------------------------------------------------------- |
+| `search`            | 全文搜索组件 / 工具 / 通用样式，支持按类型、包过滤                  |
+| `get_doc`           | 获取某条目的完整 README 文档（含 API 表格 / 样式变量清单）          |
+| `get_component_api` | 获取组件的 Props / Emits / Slots / Exposes 表格                     |
+| `get_source`        | 获取条目对应源码文件                                                |
+| `list_entries`      | 列出全部条目（组件 / 算法 / 业务工具 / 事件工具 / 通用样式）        |
+| `list_deprecated`   | 列出已废弃（兼容保留）的旧 CSS 变量 / 旧工具类 / 旧关键帧与废弃条目 |
+
+### 关于「已废弃（兼容保留）」样式
+
+组件库样式系统保留了一批**已废弃但为兼容而保留**的旧变量 / 旧类名 / 旧关键帧（如 `--primary-color`、`.padding-rem`、`.container`、旧版 `@keyframes rotate`）。它们仍可用，但新代码应优先使用 `--q-*` 新 token 与语义化类名。`build-index` 会按 CSS 源中的「向后兼容 / 兼容别名 / 旧版」注释自动提取这些废弃项并写入索引，`list_deprecated` 可直接查询。
 
 数据来源：`packages/components/src/**`（组件、业务工具、事件工具、`style/**` 通用样式）与 `packages/core/src/**`（算法、业务工具）。
 

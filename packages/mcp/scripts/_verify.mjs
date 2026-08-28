@@ -25,6 +25,44 @@ if (styleColor) {
     styleColor.style.variables.length,
     'classes:',
     styleColor.style.classes.length,
+    'deprecated:',
+    styleColor.style.deprecated
+      ? `${styleColor.style.deprecated.variables.length} vars`
+      : 'none',
+  );
+}
+
+// 废弃（兼容保留）样式解析验证
+const depChecks = [
+  // [条目, 期望在 旧变量/旧类名/旧关键帧 中出现的名称]
+  // 注意：变量带 -- 前缀存储，类名不带 . 前缀
+  ['tokens/color', ['--primary-color', '--text-color', '--background-color']],
+  ['tokens/spacing', ['--distance', '--half-distance', '--third-distance']],
+  ['tokens/elevation', ['--z-index-level-1', '--z-index-level-2']],
+  ['tokens/motion', ['rotate', 'dash', 'pulse', 'up-down']],
+  [
+    'utilities/spacing',
+    ['margin-rem', 'margin-auto', 'padding-rem', 'padding-24rem'],
+  ],
+  ['utilities/layout', ['container', 'inner-container', 'gap', 'gap-half']],
+  ['utilities/display', ['radius-rem', 'radius-half-rem', 'shadow-common']],
+  ['utilities/typography', ['text-2rem', 'text-08rem', 'text-05rem']],
+];
+for (const [name, expected] of depChecks) {
+  const e = data.entries.find((x) => x.name === name);
+  const d = e?.style?.deprecated;
+  const found = new Set([
+    ...(d?.variables ?? []),
+    ...(d?.classes ?? []),
+    ...(d?.keyframes ?? []),
+  ]);
+  const missing = expected.filter((x) => !found.has(x));
+  const status = d
+    ? `vars=${d.variables.length} classes=${d.classes.length} keyframes=${d.keyframes.length}`
+    : 'NONE';
+  console.log(
+    `deprecated ${name}: ${status}`,
+    missing.length ? `  MISSING: ${missing.join(', ')}` : '  ok',
   );
 }
 
