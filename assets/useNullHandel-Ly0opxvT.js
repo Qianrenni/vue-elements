@@ -1,0 +1,1 @@
+import{D as l}from"./DemoBlock-6OThNZgy.js";import{d as s,o as a,c as o,w as t,a as n}from"./index-3RdcHt7C.js";const u="\n```html\n<!-- useNullHandel Demo -->\n```\n",c=s({name:"DisplayUtilsBusinessuseNullHandel",__name:"useNullHandel",setup(r){return(m,e)=>(a(),o(l,{code:u},{default:t(()=>[...e[0]||(e[0]=[n("p",null,"useNullHandel 文档待完善",-1)])]),_:1}))}});export{c as default};

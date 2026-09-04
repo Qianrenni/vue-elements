@@ -1,0 +1,1 @@
+import{D as t}from"./DemoBlock-6OThNZgy.js";import{d as o,o as s,c as a,w as r,a as l}from"./index-3RdcHt7C.js";const n="\n```html\n<!-- useThrottle Demo -->\n```\n",i=o({name:"DisplayUtilsBusinessuseThrottle",__name:"useThrottle",setup(m){return(u,e)=>(s(),a(t,{code:n},{default:r(()=>[...e[0]||(e[0]=[l("p",null,"useThrottle 文档待完善",-1)])]),_:1}))}});export{i as default};
