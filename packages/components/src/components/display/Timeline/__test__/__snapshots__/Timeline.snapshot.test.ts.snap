@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QTimeline 快照/渲染 > 默认 left 模式渲染条目 1`] = `
+"<ul data-v-94a9a0bf="" class="q-timeline">
+  <li data-v-94a9a0bf="" class="q-timeline-item q-timeline-item--right">
+    <!-- alternate 模式下用于平衡左右半宽，使轴线居中 -->
+    <div data-v-94a9a0bf="" class="q-timeline-spacer" aria-hidden="true"></div>
+    <div data-v-94a9a0bf="" class="q-timeline-label">2024-01-01</div>
+    <div data-v-94a9a0bf="" class="q-timeline-rail" aria-hidden="true"><span data-v-94a9a0bf="" class="q-timeline-dot" style="background-color: var(--q-color-green-500);"></span></div>
+    <div data-v-94a9a0bf="" class="q-timeline-content">创建仓库</div>
+  </li>
+  <li data-v-94a9a0bf="" class="q-timeline-item q-timeline-item--right">
+    <!-- alternate 模式下用于平衡左右半宽，使轴线居中 -->
+    <div data-v-94a9a0bf="" class="q-timeline-spacer" aria-hidden="true"></div>
+    <div data-v-94a9a0bf="" class="q-timeline-label">2024-02-15</div>
+    <div data-v-94a9a0bf="" class="q-timeline-rail" aria-hidden="true"><span data-v-94a9a0bf="" class="q-timeline-dot" style="background-color: var(--q-color-blue-500);"></span></div>
+    <div data-v-94a9a0bf="" class="q-timeline-content">发布 v1.0</div>
+  </li>
+  <li data-v-94a9a0bf="" class="q-timeline-item q-timeline-item--right">
+    <!-- alternate 模式下用于平衡左右半宽，使轴线居中 -->
+    <div data-v-94a9a0bf="" class="q-timeline-spacer" aria-hidden="true"></div>
+    <!--v-if-->
+    <div data-v-94a9a0bf="" class="q-timeline-rail" aria-hidden="true"><span data-v-94a9a0bf="" class="q-timeline-dot" style="background-color: var(--q-color-red-500);"></span></div>
+    <div data-v-94a9a0bf="" class="q-timeline-content">回退问题</div>
+  </li>
+</ul>"
+`;

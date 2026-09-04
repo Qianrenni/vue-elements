@@ -21,6 +21,7 @@
 @import './tokens/radius.css';
 @import './tokens/typography.css';
 @import './tokens/motion.css';
+@import './tokens/antd.css';
 
 /* — 2. Theme — */
 @import './theme/dark.css';

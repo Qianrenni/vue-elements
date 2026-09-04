@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QTypography 快照测试 > copyable 渲染 1`] = `
+"<span data-v-d1af76ec="" class="q-typ--copyable q-typ"><span data-v-d1af76ec="" class="q-typ-content">可复制</span>
+<!--v-if--><button data-v-d1af76ec="" aria-label="复制" title="复制" class="q-typ-copy" type="button">⧉</button></span>"
+`;
+
+exports[`QTypography 快照测试 > level=1 + type=danger 渲染 1`] = `
+"<h1 data-v-d1af76ec="" class="q-typ--type-danger q-typ">危险标题
+  <!--v-if-->
+  <!--v-if-->
+</h1>"
+`;
+
+exports[`QTypography 快照测试 > paragraph + 组合样式渲染 1`] = `
+"<p data-v-d1af76ec="" class="q-typ--strong q-typ--delete q-typ--code q-typ--paragraph q-typ">段落样式
+  <!--v-if-->
+  <!--v-if-->
+</p>"
+`;
+
+exports[`QTypography 快照测试 > 多行省略渲染 1`] = `
+"<p data-v-d1af76ec="" class="q-typ--ellipsis q-typ--paragraph q-typ" style="--q-typ-lines: 2;">很长的一段文字内容用于测试多行省略效果……
+  <!--v-if-->
+  <!--v-if-->
+</p>"
+`;
+
+exports[`QTypography 快照测试 > 默认 span 渲染 1`] = `"<span data-v-d1af76ec="" class="q-typ">文本<!--v-if--><!--v-if--></span>"`;

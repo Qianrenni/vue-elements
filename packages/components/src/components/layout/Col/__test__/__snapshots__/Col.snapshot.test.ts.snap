@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QCol 快照测试 > span + offset 渲染 1`] = `"<div data-v-3e14adf7="" style="flex: 0 0 33.33333333333333%; max-width: 33.33333333333333%; margin-left: 16.666666666666664%;" class="q-col">内容</div>"`;
+
+exports[`QCol 快照测试 > 默认 span=24 渲染 1`] = `"<div data-v-3e14adf7="" style="flex: 0 0 100%; max-width: 100%; margin-left: 0%;" class="q-col">内容</div>"`;

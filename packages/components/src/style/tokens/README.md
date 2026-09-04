@@ -18,19 +18,26 @@
 --q-easing-{type}           缓动函数
 ```
 
+## Ant Design 对齐层（antd.css）
+
+`tokens/antd.css` 提供与 **Ant Design 语义命名对齐**的别名层 `--q-ant-*`（如 `colorPrimary` → `--q-ant-color-primary`、`colorText`、`colorBgContainer`、`colorBorder`、`controlHeight`、`borderRadius`、`fontSize` 等）。取值引用上方的调色板 / 语义 token，随主题自动切换。
+
+本层是 **antd token 对齐语义层**，作为未来 ConfigProvider / 主题定制统一注入的地基；现阶段各组件仍直接引用库内基础 / 语义 token，接入主题系统后可平滑迁移到本层。
+
 ## 颜色 (Color)
 
 ### 原始调色板（不随主题变化）
 
-| 变量                                           | 值                    | 说明             |
-| ---------------------------------------------- | --------------------- | ---------------- |
-| `--q-color-gray-50` ~ `--q-color-gray-900`     | `#f8f9fa` → `#212529` | 灰色阶梯         |
-| `--q-color-yellow-50` ~ `--q-color-yellow-700` | `#fffbeb` → `#806100` | 黄色（品牌主色） |
-| `--q-color-red-50` ~ `--q-color-red-700`       | `#fff0f1` → `#871718` | 红色（危险）     |
-| `--q-color-green-50` ~ `--q-color-green-700`   | `#e6f9f0` → `#0f5221` | 绿色（成功）     |
-| `--q-color-blue-50` ~ `--q-color-blue-700`     | `#e8f4fd` → `#084298` | 蓝色（信息）     |
-| `--q-color-orange-50` ~ `--q-color-orange-600` | `#fff8e1` → `#b37800` | 橙色（警告）     |
-| `--q-color-white` / `--q-color-black`          | `#ffffff` / `#000000` | 纯色             |
+| 变量                                           | 值                    | 说明                  |
+| ---------------------------------------------- | --------------------- | --------------------- |
+| `--q-color-gray-50` ~ `--q-color-gray-900`     | `#f8f9fa` → `#212529` | 灰色阶梯              |
+| `--q-color-brown-50` ~ `--q-color-brown-700`   | `#fbf6ee` → `#563619` | 褐色（品牌主色·书香） |
+| `--q-color-yellow-50` ~ `--q-color-yellow-700` | `#fffbeb` → `#806100` | 黄色（备用调色板）    |
+| `--q-color-red-50` ~ `--q-color-red-700`       | `#fff0f1` → `#871718` | 红色（危险）          |
+| `--q-color-green-50` ~ `--q-color-green-700`   | `#e6f9f0` → `#0f5221` | 绿色（成功）          |
+| `--q-color-blue-50` ~ `--q-color-blue-700`     | `#e8f4fd` → `#084298` | 蓝色（信息）          |
+| `--q-color-orange-50` ~ `--q-color-orange-600` | `#fff8e1` → `#b37800` | 橙色（警告）          |
+| `--q-color-white` / `--q-color-black`          | `#ffffff` / `#000000` | 纯色                  |
 
 ### 语义化颜色（随主题切换）
 

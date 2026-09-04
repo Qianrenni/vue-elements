@@ -12,13 +12,22 @@ const cssVar = (name: string): string =>
 /** 原始调色板（按 family × shade 生成，过滤不存在的档位） */
 const familyLabels: Record<string, string> = {
   gray: '灰色',
+  brown: '褐色',
   yellow: '黄色',
   red: '红色',
   green: '绿色',
   blue: '蓝色',
   orange: '橙色',
 };
-const paletteFamilies = ['gray', 'yellow', 'red', 'green', 'blue', 'orange'];
+const paletteFamilies = [
+  'gray',
+  'brown',
+  'yellow',
+  'red',
+  'green',
+  'blue',
+  'orange',
+];
 const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const palette = paletteFamilies.map((family) => ({
   family,

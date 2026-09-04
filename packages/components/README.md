@@ -75,9 +75,12 @@ const username = ref('');
 
 ### 基础组件 (Basic)
 
+- `QButton` - 通用按钮组件
 - `QIcon` - 图标组件
 - `QMessage` - 消息提示
 - `QPagination` - 分页组件
+- `QTag` - 标签
+- `QTypography` - 排版（Title / Text / Paragraph）
 
 ### 展示组件 (Display)
 
@@ -85,12 +88,16 @@ const username = ref('');
 - `QBadge` - 徽章组件
 - `QCarousel` / `QCarouselItem` - 轮播图
 - `QDivider` - 分割线
+- `QEmpty` - 空状态
 - `QLazyImage` - 懒加载图片
 - `QMarkdownRender` - Markdown 渲染
 - `QMobileFrame` - 手机框架
 - `QProgressBar` - 进度条
 - `QRainFigure` - 雨图
 - `QScrollNotice` - 滚动公告
+- `QSegmented` - 分段控制器
+- `QStatistic` - 统计数值
+- `QTimeline` - 时间轴
 - `QVideoPlayer` - 视频播放器
 - `QVirtualList` - 虚拟列表
 
@@ -112,16 +119,34 @@ const username = ref('');
 - `QFormTextarea` - 多行文本框
 - `QSearch` - 搜索框
 
+### 通用录入组件 (Input)
+
+- `QAutoComplete` - 自动完成
+- `QCascader` - 级联选择
+- `QInputNumber` - 数字输入框
+- `QRate` - 评分
+- `QSlider` - 滑动条
+- `QTransfer` - 穿梭框
+- `QTreeSelect` - 树选择
+
 ### 布局组件 (Layout)
 
 - `QCard` - 卡片
+- `QCol` / `QRow` - 24 栅格
 - `QCollapse` / `QCollapseItem` - 折叠面板
 - `QCollapsibleSection` - 可折叠区域
+- `QContent` - 内容区
 - `QDialog` - 对话框
 - `QDrawer` - 抽屉
+- `QFooter` - 底部栏
+- `QHeader` - 顶栏
+- `QLayout` - 布局容器
 - `QPopContainer` - 弹出容器
+- `QSider` - 侧边栏（可折叠）
 - `QScrollContainer` - 滚动容器
+- `QSpace` - 间距
 - `QSwiperAction` - 滑动操作
+- `QTooltip` - 文字提示
 - `QTree` / `QTreeNode` - 树形控件
 
 ### 加载组件 (Loading)
@@ -133,7 +158,12 @@ const username = ref('');
 
 ### 导航组件 (Navigation)
 
+- `QAnchor` - 锚点
+- `QBreadcrumb` - 面包屑
+- `QDropdown` - 下拉菜单
+- `QMenu` - 导航菜单
 - `QNavSection` - 导航区域
+- `QSteps` - 步骤条
 - `QTab` - 标签页
 
 ### 主题组件 (Theme)

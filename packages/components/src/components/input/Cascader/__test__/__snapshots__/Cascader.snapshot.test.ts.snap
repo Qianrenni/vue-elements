@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QCascader 快照/交互 > 占位态 + 展开根列 1`] = `
+"<div data-v-4eef8750="" class="q-cascader--middle q-cascader">
+  <!-- 触发器 --><button data-v-4eef8750="" type="button" class="q-cascader-trigger" aria-haspopup="listbox" aria-expanded="true"><span data-v-4eef8750="" class="q-cascader-placeholder">请选择区域</span>
+    <!--v-if--><span data-v-4eef8750="" class="q-cascader-arrow" aria-hidden="true">▾</span>
+  </button><!-- 弹层 -->
+  <div data-v-4eef8750="" class="q-cascader-dropdown" style="">
+    <!-- 搜索头 -->
+    <!--v-if-->
+    <!-- 搜索结果（单列） -->
+    <!-- 多列面板 -->
+    <div data-v-4eef8750="" class="q-cascader-cols">
+      <div data-v-4eef8750="" class="q-cascader-col">
+        <div data-v-4eef8750="" class="q-cascader-option"><span data-v-4eef8750="" class="q-cascader-option-label">浙江</span><span data-v-4eef8750="" class="q-cascader-option-caret" aria-hidden="true">›</span></div>
+        <div data-v-4eef8750="" class="q-cascader-option"><span data-v-4eef8750="" class="q-cascader-option-label">江苏</span>
+          <!--v-if-->
+        </div>
+      </div>
+      <!--v-if-->
+    </div>
+  </div>
+</div>"
+`;

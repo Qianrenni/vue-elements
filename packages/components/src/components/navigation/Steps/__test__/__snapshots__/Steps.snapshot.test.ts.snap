@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QSteps 快照测试 > 垂直 + error 渲染 1`] = `
+"<ol data-v-4a3a380c="" class="q-steps--vertical q-steps--default q-steps">
+  <li data-v-4a3a380c="" aria-current="step" class="q-step--error q-step">
+    <div data-v-4a3a380c="" class="q-step-head"><span data-v-4a3a380c="" class="q-step-icon" aria-hidden="true">1</span></div>
+    <div data-v-4a3a380c="" class="q-step-main">
+      <div data-v-4a3a380c="" class="q-step-title">失败步骤</div>
+      <!--v-if-->
+    </div>
+  </li>
+  <li data-v-4a3a380c="" class="q-step--wait q-step--last q-step">
+    <div data-v-4a3a380c="" class="q-step-head"><span data-v-4a3a380c="" class="q-step-icon" aria-hidden="true">2</span></div>
+    <div data-v-4a3a380c="" class="q-step-main">
+      <div data-v-4a3a380c="" class="q-step-title">重试</div>
+      <!--v-if-->
+    </div>
+  </li>
+</ol>"
+`;
+
+exports[`QSteps 快照测试 > 水平默认渲染 1`] = `
+"<ol data-v-4a3a380c="" class="q-steps--horizontal q-steps--default q-steps">
+  <li data-v-4a3a380c="" class="q-step--finish q-step">
+    <div data-v-4a3a380c="" class="q-step-head"><span data-v-4a3a380c="" class="q-step-icon" aria-hidden="true">✓</span></div>
+    <div data-v-4a3a380c="" class="q-step-main">
+      <div data-v-4a3a380c="" class="q-step-title">填写</div>
+      <!--v-if-->
+    </div>
+  </li>
+  <li data-v-4a3a380c="" aria-current="step" class="q-step--process q-step">
+    <div data-v-4a3a380c="" class="q-step-head"><span data-v-4a3a380c="" class="q-step-icon" aria-hidden="true">2</span></div>
+    <div data-v-4a3a380c="" class="q-step-main">
+      <div data-v-4a3a380c="" class="q-step-title">确认</div>
+      <div data-v-4a3a380c="" class="q-step-desc">请核对</div>
+    </div>
+  </li>
+  <li data-v-4a3a380c="" class="q-step--wait q-step--last q-step">
+    <div data-v-4a3a380c="" class="q-step-head"><span data-v-4a3a380c="" class="q-step-icon" aria-hidden="true">3</span></div>
+    <div data-v-4a3a380c="" class="q-step-main">
+      <div data-v-4a3a380c="" class="q-step-title">完成</div>
+      <!--v-if-->
+    </div>
+  </li>
+</ol>"
+`;

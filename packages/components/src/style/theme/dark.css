@@ -8,11 +8,11 @@
 body.dark-mode,
 [data-theme='dark'] {
   /* — 品牌主色：暗色背景上提亮，增强交互反馈 — */
-  --q-color-primary: var(--q-color-yellow-300);
-  --q-color-primary-hover: var(--q-color-yellow-400);
-  --q-color-primary-active: var(--q-color-yellow-200);
-  --q-color-primary-light: var(--q-color-yellow-100);
-  --q-color-primary-lighter: var(--q-color-yellow-50);
+  --q-color-primary: var(--q-color-brown-400);
+  --q-color-primary-hover: var(--q-color-brown-300);
+  --q-color-primary-active: var(--q-color-brown-200);
+  --q-color-primary-light: var(--q-color-brown-200);
+  --q-color-primary-lighter: var(--q-color-brown-100);
 
   /* — 中性语义色 — */
   --q-color-text: #f0f0f0;
@@ -28,10 +28,10 @@ body.dark-mode,
   --q-color-border: #c5bebe;
   --q-color-border-light: #555555;
 
-  --q-color-link: var(--q-color-yellow-400);
-  --q-color-link-hover: var(--q-color-yellow-100);
+  --q-color-link: var(--q-color-brown-300);
+  --q-color-link-hover: var(--q-color-brown-100);
 
-  --q-color-tag: var(--q-color-yellow-100);
+  --q-color-tag: var(--q-color-brown-200);
 
   /* — 按钮 — */
   --q-color-button-bg: var(--q-color-primary);

@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QHeader 快照测试 > 默认渲染 1`] = `"<header data-v-4e4e0c11="" class="q-layout-header"><span>Logo</span></header>"`;

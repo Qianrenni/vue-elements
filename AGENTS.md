@@ -118,6 +118,37 @@ pnpm run test -- useObject   # Runs tests matching "useObject"
 - `@/*` path alias maps to `src/*`
 - Tests use a separate `tsconfig.test.json` (extends main config, noEmit, excludes test files from dist/types)
 
+#### 组件 Props JSDoc 标注（`type.ts`）
+
+新增或修改组件时，`{Name}/type.ts` 中 `XxxProps` 接口的**每个属性成员**都必须用 JSDoc 块标注以下三个标签，供文档 / MCP 等自动提取：
+
+- `@property <属性名>`：属性名
+- `@defaultValue <默认值>`：默认值（字符串用引号包裹；无默认值时写 `无`）
+- `@description <说明>`：属性说明
+
+示例：
+
+```typescript
+/** QButton 组件 Props */
+export interface QButtonProps {
+  /**
+   * @property type
+   * @defaultValue 'primary'
+   * @description 按钮类型
+   */
+  type?: 'primary' | 'default' | 'dashed' | 'text' | 'link';
+
+  /**
+   * @property loading
+   * @defaultValue false
+   * @description 是否显示加载中状态
+   */
+  loading?: boolean;
+}
+```
+
+> 该标注写在每个 props 成员上方的 JSDoc 块中；`README.md` 的 Props 表格（名称/类型/必填/默认值/说明）仍是站点展示的唯一来源，改动 props 后须 `pnpm run docs:update` 同步。
+
 ### Testing
 
 - **Vitest** as test framework

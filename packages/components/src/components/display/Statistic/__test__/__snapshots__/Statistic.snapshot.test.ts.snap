@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QStatistic 快照/渲染 > 标题 + 千分位数值 1`] = `
+"<div data-v-984a0aef="" class="q-statistic">
+  <div data-v-984a0aef="" class="q-statistic-title">今日访问</div>
+  <div data-v-984a0aef="" class="q-statistic-content">
+    <!--v-if--><span data-v-984a0aef="" class="q-statistic-value">1,234,567</span>
+    <!--v-if-->
+  </div>
+</div>"
+`;

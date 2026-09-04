@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QLayout 快照测试 > 强制 hasSider 横向布局 1`] = `
+"<section data-v-c7fbd61e="" class="q-layout--has-sider q-layout">
+  <div class="child">内容</div>
+</section>"
+`;
+
+exports[`QLayout 快照测试 > 默认纵向布局渲染 1`] = `
+"<section data-v-c7fbd61e="" class="q-layout">
+  <div class="child">内容</div>
+</section>"
+`;

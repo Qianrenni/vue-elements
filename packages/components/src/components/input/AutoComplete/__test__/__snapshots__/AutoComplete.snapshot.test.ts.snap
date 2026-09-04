@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QAutoComplete 快照/基础 > 占位态渲染 1`] = `
+"<div data-v-0879d7d0="" class="q-auto-complete--middle q-auto-complete">
+  <div data-v-0879d7d0="" class="q-auto-complete-input-wrap"><input data-v-0879d7d0="" aria-autocomplete="list" aria-expanded="false" placeholder="输入关键字" aria-label="自动完成" autocomplete="off" class="q-auto-complete-input" role="combobox" value="">
+    <!--v-if-->
+  </div><!-- 候选下拉 -->
+  <div data-v-0879d7d0="" class="q-auto-complete-dropdown" style="display: none;">
+    <ul data-v-0879d7d0="" class="q-auto-complete-list" role="listbox">
+      <li data-v-0879d7d0="" id="qac-opt-0" aria-selected="false" class="q-auto-complete-option" role="option">Option A</li>
+      <li data-v-0879d7d0="" id="qac-opt-1" aria-selected="false" class="q-auto-complete-option" role="option">Option B</li>
+      <li data-v-0879d7d0="" id="qac-opt-2" aria-selected="false" class="q-auto-complete-option" role="option">Option C</li>
+    </ul>
+  </div>
+</div>"
+`;
+
+exports[`QAutoComplete 快照/基础 > 聚焦展开全部候选 1`] = `
+"<div data-v-0879d7d0="" class="q-auto-complete--middle q-auto-complete">
+  <div data-v-0879d7d0="" class="q-auto-complete-input-wrap"><input data-v-0879d7d0="" aria-autocomplete="list" aria-expanded="true" placeholder="" aria-label="自动完成" autocomplete="off" class="q-auto-complete-input" role="combobox" value="" aria-activedescendant="qac-opt-0">
+    <!--v-if-->
+  </div><!-- 候选下拉 -->
+  <div data-v-0879d7d0="" class="q-auto-complete-dropdown" style="">
+    <ul data-v-0879d7d0="" class="q-auto-complete-list" role="listbox">
+      <li data-v-0879d7d0="" id="qac-opt-0" aria-selected="true" class="q-auto-complete-option--active q-auto-complete-option" role="option">Option A</li>
+      <li data-v-0879d7d0="" id="qac-opt-1" aria-selected="false" class="q-auto-complete-option" role="option">Option B</li>
+      <li data-v-0879d7d0="" id="qac-opt-2" aria-selected="false" class="q-auto-complete-option" role="option">Option C</li>
+    </ul>
+  </div>
+</div>"
+`;

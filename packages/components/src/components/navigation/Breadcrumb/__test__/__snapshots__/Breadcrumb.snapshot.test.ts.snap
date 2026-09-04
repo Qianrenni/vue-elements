@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QBreadcrumb 快照测试 > 含 href + 自定义分隔符渲染 1`] = `
+"<nav data-v-ccea37a8="" aria-label="面包屑" class="q-breadcrumb">
+  <ol data-v-ccea37a8="" class="q-breadcrumb-list">
+    <li data-v-ccea37a8="" class="q-breadcrumb-item"><a data-v-ccea37a8="" href="/" class="q-breadcrumb-link">首页</a><span data-v-ccea37a8="" aria-hidden="true" class="q-breadcrumb-sep">&gt;</span></li>
+    <li data-v-ccea37a8="" aria-current="page" class="q-breadcrumb-item"><span data-v-ccea37a8="" class="q-breadcrumb-current">详情</span>
+      <!--v-if-->
+    </li>
+  </ol>
+</nav>"
+`;
+
+exports[`QBreadcrumb 快照测试 > 默认 items 渲染 1`] = `
+"<nav data-v-ccea37a8="" aria-label="面包屑" class="q-breadcrumb">
+  <ol data-v-ccea37a8="" class="q-breadcrumb-list">
+    <li data-v-ccea37a8="" class="q-breadcrumb-item"><button data-v-ccea37a8="" class="q-breadcrumb-btn" type="button">首页</button><span data-v-ccea37a8="" aria-hidden="true" class="q-breadcrumb-sep">/</span></li>
+    <li data-v-ccea37a8="" class="q-breadcrumb-item"><button data-v-ccea37a8="" class="q-breadcrumb-btn" type="button">组件</button><span data-v-ccea37a8="" aria-hidden="true" class="q-breadcrumb-sep">/</span></li>
+    <li data-v-ccea37a8="" aria-current="page" class="q-breadcrumb-item"><span data-v-ccea37a8="" class="q-breadcrumb-current">Button</span>
+      <!--v-if-->
+    </li>
+  </ol>
+</nav>"
+`;

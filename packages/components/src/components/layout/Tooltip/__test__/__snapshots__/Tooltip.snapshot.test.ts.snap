@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QTooltip 结构测试 > 内容存在时默认隐藏（触发区快照） 1`] = `
+"<span data-v-29d14be5="" class="q-tooltip-trigger"><button>触发</button></span>
+<!--teleport start-->
+<!--teleport end-->"
+`;

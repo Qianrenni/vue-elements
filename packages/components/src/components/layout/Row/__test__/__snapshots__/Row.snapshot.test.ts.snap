@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QRow 快照测试 > gutter + justify=center 渲染 1`] = `
+"<div data-v-e5b66c4a="" class="q-row--justify-center q-row--align-top q-row" style="column-gap: 16px; row-gap: 16px;">
+  <div>A</div>
+</div>"
+`;
+
+exports[`QRow 快照测试 > 默认渲染 1`] = `
+"<div data-v-e5b66c4a="" class="q-row--justify-start q-row--align-top q-row" style="column-gap: 0px; row-gap: 0px;">
+  <div>A</div>
+  <div>B</div>
+</div>"
+`;

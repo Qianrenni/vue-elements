@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QTreeSelect 快照/基础 > 占位态渲染 1`] = `
+"<div data-v-3a5dbde6="" class="q-tree-select">
+  <!-- 触发器 --><button data-v-3a5dbde6="" type="button" class="q-tree-select-trigger" aria-haspopup="listbox" aria-expanded="false"><span data-v-3a5dbde6="" class="q-tree-select-placeholder">请选择分类</span>
+    <!--v-if--><span data-v-3a5dbde6="" class="q-tree-select-arrow" aria-hidden="true">▾</span>
+  </button><!-- 下拉树 -->
+  <div data-v-3a5dbde6="" class="q-tree-select-dropdown" style="display: none;">
+    <ul data-v-3a5dbde6="" class="q-tree-select-list" role="listbox">
+      <li data-v-3a5dbde6="" class="q-tree-select-node" role="option" style="padding-left: 12px;"><span data-v-3a5dbde6="" class="q-tree-select-suffix" aria-hidden="true"><span data-v-3a5dbde6="" class="expanded q-tree-select-caret"> ▸ </span></span><span data-v-3a5dbde6="" class="q-tree-select-label">父级 1</span></li>
+      <li data-v-3a5dbde6="" class="q-tree-select-node" role="option" style="padding-left: 30px;"><span data-v-3a5dbde6="" class="q-tree-select-suffix" aria-hidden="true"><!--v-if--></span><span data-v-3a5dbde6="" class="q-tree-select-label">子级 1-1</span></li>
+      <li data-v-3a5dbde6="" class="q-tree-select-node" role="option" style="padding-left: 30px;"><span data-v-3a5dbde6="" class="q-tree-select-suffix" aria-hidden="true"><!--v-if--></span><span data-v-3a5dbde6="" class="q-tree-select-label">子级 1-2</span></li>
+      <li data-v-3a5dbde6="" class="q-tree-select-node" role="option" style="padding-left: 12px;"><span data-v-3a5dbde6="" class="q-tree-select-suffix" aria-hidden="true"><!--v-if--></span><span data-v-3a5dbde6="" class="q-tree-select-label">叶子</span></li>
+    </ul>
+  </div>
+</div>"
+`;
+
+exports[`QTreeSelect 快照/基础 > 已选中渲染 1`] = `
+"<div data-v-3a5dbde6="" class="q-tree-select">
+  <!-- 触发器 --><button data-v-3a5dbde6="" type="button" class="q-tree-select-trigger" aria-haspopup="listbox" aria-expanded="false"><span data-v-3a5dbde6="" class="q-tree-select-value">子级 1-1</span><span data-v-3a5dbde6="" class="q-tree-select-clear"><div data-v-3a5dbde6="" class="mouse-cursor user-select-none container-center"></div></span><span data-v-3a5dbde6="" class="q-tree-select-arrow" aria-hidden="true">▾</span></button><!-- 下拉树 -->
+  <div data-v-3a5dbde6="" class="q-tree-select-dropdown" style="display: none;">
+    <ul data-v-3a5dbde6="" class="q-tree-select-list" role="listbox">
+      <li data-v-3a5dbde6="" class="q-tree-select-node" role="option" style="padding-left: 12px;"><span data-v-3a5dbde6="" class="q-tree-select-suffix" aria-hidden="true"><span data-v-3a5dbde6="" class="expanded q-tree-select-caret"> ▸ </span></span><span data-v-3a5dbde6="" class="q-tree-select-label">父级 1</span></li>
+      <li data-v-3a5dbde6="" class="q-tree-select-node--selected q-tree-select-node" role="option" style="padding-left: 30px;"><span data-v-3a5dbde6="" class="q-tree-select-suffix" aria-hidden="true"><!--v-if--></span><span data-v-3a5dbde6="" class="q-tree-select-label">子级 1-1</span></li>
+      <li data-v-3a5dbde6="" class="q-tree-select-node" role="option" style="padding-left: 30px;"><span data-v-3a5dbde6="" class="q-tree-select-suffix" aria-hidden="true"><!--v-if--></span><span data-v-3a5dbde6="" class="q-tree-select-label">子级 1-2</span></li>
+      <li data-v-3a5dbde6="" class="q-tree-select-node" role="option" style="padding-left: 12px;"><span data-v-3a5dbde6="" class="q-tree-select-suffix" aria-hidden="true"><!--v-if--></span><span data-v-3a5dbde6="" class="q-tree-select-label">叶子</span></li>
+    </ul>
+  </div>
+</div>"
+`;

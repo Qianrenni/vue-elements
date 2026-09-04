@@ -1,0 +1,62 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QMenu 快照测试 > horizontal 模式渲染 1`] = `
+"<nav data-v-d2d96f43="" class="q-menu--horizontal q-menu" aria-label="横向菜单">
+  <ul data-v-d2d96f43="" class="q-menu-list" role="menu">
+    <!-- 分隔线 -->
+    <!-- 子菜单（有 children） -->
+    <li data-v-d2d96f43="" class="q-menu-submenu" role="none">
+      <div data-v-d2d96f43="" class="q-menu-submenu-title" aria-expanded="false" role="menuitem" tabindex="0">
+        <!--v-if--><span data-v-d2d96f43="" class="q-menu-label">导航</span><span data-v-d2d96f43="" class="q-menu-arrow" aria-hidden="true">▾</span>
+      </div><!-- inline：内联展开（缩进子级） -->
+      <!--v-if-->
+    </li><!-- 分隔线 -->
+    <!-- 顶层叶子项 -->
+    <li data-v-d2d96f43="" class="q-menu-item" role="menuitem" tabindex="0">
+      <!--v-if--><span data-v-d2d96f43="" class="q-menu-label">其他</span>
+    </li>
+  </ul>
+</nav>"
+`;
+
+exports[`QMenu 快照测试 > inline 模式渲染 1`] = `
+"<nav data-v-d2d96f43="" class="q-menu--inline q-menu" aria-label="菜单">
+  <ul data-v-d2d96f43="" class="q-menu-list" role="menu">
+    <!-- 分隔线 -->
+    <!-- 子菜单（有 children） -->
+    <li data-v-d2d96f43="" class="q-menu-submenu" role="none">
+      <div data-v-d2d96f43="" class="q-menu-submenu-title" aria-expanded="false" role="menuitem" tabindex="0">
+        <!--v-if--><span data-v-d2d96f43="" class="q-menu-label">导航</span><span data-v-d2d96f43="" class="q-menu-arrow" aria-hidden="true">▾</span>
+      </div><!-- inline：内联展开（缩进子级） -->
+      <!--v-if-->
+    </li><!-- 分隔线 -->
+    <!-- 顶层叶子项 -->
+    <li data-v-d2d96f43="" class="q-menu-item" role="menuitem" tabindex="0">
+      <!--v-if--><span data-v-d2d96f43="" class="q-menu-label">其他</span>
+    </li>
+  </ul>
+</nav>"
+`;
+
+exports[`QMenu 快照测试 > 选中态渲染 1`] = `
+"<nav data-v-d2d96f43="" class="q-menu--inline q-menu" aria-label="菜单">
+  <ul data-v-d2d96f43="" class="q-menu-list" role="menu">
+    <!-- 分隔线 -->
+    <!-- 子菜单（有 children） -->
+    <li data-v-d2d96f43="" class="q-menu-submenu--open q-menu-submenu" role="none">
+      <div data-v-d2d96f43="" class="q-menu-submenu-title" aria-expanded="true" role="menuitem" tabindex="0">
+        <!--v-if--><span data-v-d2d96f43="" class="q-menu-label">导航</span><span data-v-d2d96f43="" class="q-menu-arrow" aria-hidden="true">▾</span>
+      </div><!-- inline：内联展开（缩进子级） -->
+      <ul data-v-d2d96f43="" class="q-menu-sub" role="menu">
+        <li data-v-d2d96f43="" class="q-menu-item--selected q-menu-item" role="menuitem" tabindex="0">
+          <!--v-if--><span data-v-d2d96f43="" class="q-menu-label">子项</span>
+        </li>
+      </ul>
+    </li><!-- 分隔线 -->
+    <!-- 顶层叶子项 -->
+    <li data-v-d2d96f43="" class="q-menu-item" role="menuitem" tabindex="0">
+      <!--v-if--><span data-v-d2d96f43="" class="q-menu-label">其他</span>
+    </li>
+  </ul>
+</nav>"
+`;

@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QSlider 快照/基础 > 渲染轨道/填充/手柄 1`] = `
+"<div data-v-76025dbd="" class="q-slider--middle q-slider">
+  <div data-v-76025dbd="" class="q-slider-track">
+    <div data-v-76025dbd="" class="q-slider-rail"></div>
+    <div data-v-76025dbd="" class="q-slider-fill" style="width: 50%;"></div>
+    <div data-v-76025dbd="" aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" class="q-slider-handle" role="slider" style="left: 50%;" tabindex="0"></div>
+  </div>
+  <!--v-if-->
+</div>"
+`;

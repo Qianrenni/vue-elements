@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QButton 快照测试 > danger + loading 渲染 1`] = `"<button data-v-73295ee1="" aria-busy="true" class="q-btn--primary q-btn--level-3 q-btn--danger q-btn--loading q-btn" type="button" disabled=""><span data-v-73295ee1="" aria-hidden="true" class="q-btn-spinner"></span><span data-v-73295ee1="" class="q-btn-text">删除中</span></button>"`;
+
+exports[`QButton 快照测试 > disabled + block 渲染 1`] = `
+"<button data-v-73295ee1="" class="q-btn--default q-btn--level-3 q-btn--block q-btn--disabled q-btn" type="button" disabled="">
+  <!--v-if--><span data-v-73295ee1="" class="q-btn-text">禁用</span>
+</button>"
+`;
+
+exports[`QButton 快照测试 > href 链接渲染 1`] = `
+"<a data-v-73295ee1="" class="q-btn--default q-btn--level-3 q-btn" href="https://example.com" target="_blank">
+  <!--v-if--><span data-v-73295ee1="" class="q-btn-text">链接</span>
+</a>"
+`;
+
+exports[`QButton 快照测试 > type=primary + size=large 渲染 1`] = `
+"<button data-v-73295ee1="" class="q-btn--primary q-btn--level-4 q-btn" type="button">
+  <!--v-if--><span data-v-73295ee1="" class="q-btn-text">主按钮</span>
+</button>"
+`;
+
+exports[`QButton 快照测试 > 默认渲染 1`] = `
+"<button data-v-73295ee1="" class="q-btn--default q-btn--level-3 q-btn" type="button">
+  <!--v-if--><span data-v-73295ee1="" class="q-btn-text">按钮</span>
+</button>"
+`;

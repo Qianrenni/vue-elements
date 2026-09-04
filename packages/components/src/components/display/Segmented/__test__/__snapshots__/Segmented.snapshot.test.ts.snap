@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QSegmented 快照/渲染 > 渲染选项与选中态 1`] = `
+"<div data-v-e21b825c="" class="q-segmented q-segmented--middle" role="radiogroup" tabindex="0">
+  <div data-v-e21b825c="" class="q-segmented-item q-segmented-item--selected" role="radio" aria-checked="true" tabindex="-1"><span data-v-e21b825c="" class="q-segmented-item-label"><!--v-if--><span data-v-e21b825c="" class="q-segmented-item-text">日</span></span></div>
+  <div data-v-e21b825c="" class="q-segmented-item q-segmented-item--disabled" role="radio" aria-checked="false" aria-disabled="true" tabindex="-1"><span data-v-e21b825c="" class="q-segmented-item-label"><!--v-if--><span data-v-e21b825c="" class="q-segmented-item-text">周</span></span></div>
+  <div data-v-e21b825c="" class="q-segmented-item" role="radio" aria-checked="false" tabindex="-1"><span data-v-e21b825c="" class="q-segmented-item-label"><!--v-if--><span data-v-e21b825c="" class="q-segmented-item-text">月</span></span></div>
+</div>"
+`;

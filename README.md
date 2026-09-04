@@ -78,9 +78,12 @@ app.mount('#app');
 
 ### Basic Components
 
+- `QButton` - Button component
 - `QIcon` - Icon component
 - `QMessage` - Message prompt
 - `QPagination` - Pagination component
+- `QTag` - Tag
+- `QTypography` - Typography (Title / Text / Paragraph)
 
 ### Display Components
 
@@ -88,12 +91,16 @@ app.mount('#app');
 - `QBadge` - Badge component
 - `QCarousel` / `QCarouselItem` - Carousel
 - `QDivider` - Divider
+- `QEmpty` - Empty state
 - `QLazyImage` - Lazy load image
 - `QMarkdownRender` - Markdown renderer
 - `QMobileFrame` - Mobile phone frame
 - `QProgressBar` - Progress bar
 - `QRainFigure` - Rain figure effect
 - `QScrollNotice` - Scrolling notice
+- `QSegmented` - Segmented control
+- `QStatistic` - Statistic
+- `QTimeline` - Timeline
 - `QVideoPlayer` - Video player
 - `QVirtualList` - Virtual list
 
@@ -115,16 +122,34 @@ app.mount('#app');
 - `QFormTextarea` - Textarea
 - `QSearch` - Search box
 
+### Input Components (Input)
+
+- `QAutoComplete` - Auto complete
+- `QCascader` - Cascader
+- `QInputNumber` - Number input
+- `QRate` - Rate
+- `QSlider` - Slider
+- `QTransfer` - Transfer
+- `QTreeSelect` - Tree select
+
 ### Layout Components
 
 - `QCard` - Card
+- `QCol` / `QRow` - 24-grid
 - `QCollapse` / `QCollapseItem` - Collapse panel
 - `QCollapsibleSection` - Collapsible section
+- `QContent` - Layout content
 - `QDialog` - Dialog
 - `QDrawer` - Drawer
+- `QFooter` - Layout footer
+- `QHeader` - Layout header
+- `QLayout` - Layout container
 - `QPopContainer` - Pop-up container
+- `QSider` - Layout sider (collapsible)
 - `QScrollContainer` - Scroll container
+- `QSpace` - Space
 - `QSwiperAction` - Swipe action
+- `QTooltip` - Tooltip
 - `QTree` / `QTreeNode` - Tree control
 
 ### Loading Components
@@ -136,7 +161,12 @@ app.mount('#app');
 
 ### Navigation Components
 
+- `QAnchor` - Anchor
+- `QBreadcrumb` - Breadcrumb
+- `QDropdown` - Dropdown menu
+- `QMenu` - Navigation menu
 - `QNavSection` - Navigation section
+- `QSteps` - Steps
 - `QTab` - Tabs
 
 ### Theme Components

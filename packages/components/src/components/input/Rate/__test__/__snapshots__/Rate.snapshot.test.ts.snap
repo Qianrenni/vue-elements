@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QRate 快照/基础 > 渲染 count 颗星 1`] = `
+"<span data-v-917dbd8c="" class="q-rate" role="radiogroup"><span data-v-917dbd8c="" class="q-rate-star" role="radio" aria-checked="true" style="color: var(--q-rate-color, #f5b041);"><!--v-if--><span data-v-917dbd8c="" class="q-rate-inner">★</span>
+<!--v-if--></span><span data-v-917dbd8c="" class="q-rate-star" role="radio" aria-checked="true" style="color: var(--q-rate-color, #f5b041);"><!--v-if--><span data-v-917dbd8c="" class="q-rate-inner">★</span>
+<!--v-if--></span><span data-v-917dbd8c="" class="q-rate-star" role="radio" aria-checked="true" style="color: var(--q-rate-color, #f5b041);"><!--v-if--><span data-v-917dbd8c="" class="q-rate-inner">★</span>
+<!--v-if--></span><span data-v-917dbd8c="" class="q-rate-star" role="radio" aria-checked="false" style="color: var(--q-color-gray-300);"><!--v-if--><span data-v-917dbd8c="" class="q-rate-inner">★</span>
+<!--v-if--></span><span data-v-917dbd8c="" class="q-rate-star" role="radio" aria-checked="false" style="color: var(--q-color-gray-300);"><!--v-if--><span data-v-917dbd8c="" class="q-rate-inner">★</span>
+<!--v-if--></span></span>"
+`;

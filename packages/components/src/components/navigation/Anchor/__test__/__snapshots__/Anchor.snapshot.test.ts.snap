@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QAnchor 快照测试 > 渲染一级与二级锚点 1`] = `
+"<nav data-v-ef4a7902="" class="q-anchor" aria-label="锚点导航">
+  <ul data-v-ef4a7902="" class="q-anchor-list">
+    <li data-v-ef4a7902="" class="q-anchor-link"><a data-v-ef4a7902="" href="#s1">第一节</a></li>
+    <li data-v-ef4a7902="" class="q-anchor-link"><a data-v-ef4a7902="" href="#s2">第二节</a></li>
+    <li data-v-ef4a7902="" class="q-anchor-link q-anchor-link--child"><a data-v-ef4a7902="" href="#s2-1">子节</a></li>
+  </ul>
+</nav>"
+`;

@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QSider 快照测试 > 折叠态渲染（collapsed + collapsible） 1`] = `
+"<aside data-v-a440a40b="" class="q-layout-sider--dark q-layout-sider--collapsed q-layout-sider" style="width: 80px;">
+  <div data-v-a440a40b="" class="q-layout-sider-inner">
+    <div class="nav">导航</div>
+  </div><button data-v-a440a40b="" type="button" class="q-layout-sider-trigger" aria-label="展开侧边栏"><span data-v-a440a40b="" class="q-layout-sider-trigger-icon" aria-hidden="true">›</span></button>
+</aside>"
+`;
+
+exports[`QSider 快照测试 > 默认深色 Sider 渲染 1`] = `
+"<aside data-v-a440a40b="" class="q-layout-sider--dark q-layout-sider" style="width: 200px;">
+  <div data-v-a440a40b="" class="q-layout-sider-inner">
+    <div class="nav">导航</div>
+  </div>
+  <!--v-if-->
+</aside>"
+`;

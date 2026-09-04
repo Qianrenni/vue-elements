@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QSpace 快照测试 > vertical + large 渲染 1`] = `"<div data-v-1ee19a84="" class="q-space--vertical q-space--align-center q-space" style="row-gap: var(--q-space-8); column-gap: var(--q-space-8);"><span>一</span><span>二</span></div>"`;
+
+exports[`QSpace 快照测试 > wrap + align=end 渲染 1`] = `"<div data-v-1ee19a84="" class="q-space--align-end q-space--wrap q-space" style="row-gap: var(--q-space-6); column-gap: var(--q-space-6);"><span>A</span><span>B</span></div>"`;
+
+exports[`QSpace 快照测试 > 默认水平渲染 1`] = `"<div data-v-1ee19a84="" class="q-space--align-center q-space" style="row-gap: var(--q-space-6); column-gap: var(--q-space-6);"><span>A</span><span>B</span></div>"`;

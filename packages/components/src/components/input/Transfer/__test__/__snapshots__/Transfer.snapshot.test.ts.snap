@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QTransfer 快照/交互 > 初始渲染（左列表 + 禁用项） 1`] = `
+"<div data-v-d1640279="" class="q-transfer--middle q-transfer">
+  <!-- 左面板 -->
+  <section data-v-d1640279="" class="q-transfer-panel">
+    <header data-v-d1640279="" class="q-transfer-header"><span data-v-d1640279="" class="q-transfer-title">源</span><input data-v-d1640279="" type="checkbox" class="q-transfer-all" aria-label="全选左侧"></header>
+    <!--v-if-->
+    <ul data-v-d1640279="" class="q-transfer-list">
+      <li data-v-d1640279="" class="q-transfer-item"><input data-v-d1640279="" type="checkbox" class="q-transfer-item-check">
+        <div data-v-d1640279="" class="q-transfer-item-body">
+          <div data-v-d1640279="" class="q-transfer-item-title">Apple</div>
+          <p data-v-d1640279="" class="q-transfer-item-desc">red fruit</p>
+        </div>
+      </li>
+      <li data-v-d1640279="" class="q-transfer-item"><input data-v-d1640279="" type="checkbox" class="q-transfer-item-check">
+        <div data-v-d1640279="" class="q-transfer-item-body">
+          <div data-v-d1640279="" class="q-transfer-item-title">Banana</div>
+          <!--v-if-->
+        </div>
+      </li>
+      <li data-v-d1640279="" class="q-transfer-item--disabled q-transfer-item"><input data-v-d1640279="" type="checkbox" class="q-transfer-item-check" disabled="">
+        <div data-v-d1640279="" class="q-transfer-item-body">
+          <div data-v-d1640279="" class="q-transfer-item-title">Cherry</div>
+          <!--v-if-->
+        </div>
+      </li>
+      <li data-v-d1640279="" class="q-transfer-item"><input data-v-d1640279="" type="checkbox" class="q-transfer-item-check">
+        <div data-v-d1640279="" class="q-transfer-item-body">
+          <div data-v-d1640279="" class="q-transfer-item-title">Durian</div>
+          <!--v-if-->
+        </div>
+      </li>
+      <!--v-if-->
+    </ul>
+  </section><!-- 操作列 -->
+  <div data-v-d1640279="" class="q-transfer-operation"><button data-v-d1640279="" type="button" class="q-transfer-btn q-transfer-btn--right" disabled="" aria-label="向右移动">›</button><button data-v-d1640279="" type="button" class="q-transfer-btn q-transfer-btn--left" disabled="" aria-label="向左移动">‹</button></div><!-- 右面板 -->
+  <section data-v-d1640279="" class="q-transfer-panel">
+    <header data-v-d1640279="" class="q-transfer-header"><span data-v-d1640279="" class="q-transfer-title">目标</span><input data-v-d1640279="" type="checkbox" class="q-transfer-all" aria-label="全选右侧"></header>
+    <!--v-if-->
+    <ul data-v-d1640279="" class="q-transfer-list">
+      <li data-v-d1640279="" class="q-transfer-empty">暂无数据</li>
+    </ul>
+  </section>
+</div>"
+`;

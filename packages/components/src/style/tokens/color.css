@@ -27,7 +27,7 @@
   --q-color-gray-800: #343a40;
   --q-color-gray-900: #212529;
 
-  /* — 黄色 (Yellow / 品牌主色) — */
+  /* — 黄色 (Yellow / 备用) — */
   --q-color-yellow-50: #fffbeb;
   --q-color-yellow-100: #fff5cc;
   --q-color-yellow-200: #ffe680;
@@ -36,6 +36,16 @@
   --q-color-yellow-500: #dca000;
   --q-color-yellow-600: #b38600;
   --q-color-yellow-700: #806100;
+
+  /* — 褐色 (Brown / 品牌主色 · 书香) — */
+  --q-color-brown-50: #fbf6ee;
+  --q-color-brown-100: #f4eadd;
+  --q-color-brown-200: #e8d5bc;
+  --q-color-brown-300: #d4b48e;
+  --q-color-brown-400: #b38a5a;
+  --q-color-brown-500: #8c5a2b;
+  --q-color-brown-600: #6e4521;
+  --q-color-brown-700: #563619;
 
   /* — 红色 (Red / Danger) — */
   --q-color-red-50: #fff0f1;
@@ -84,12 +94,12 @@
    * 2. 语义化颜色 (Semantic)
    * ========================================================== */
 
-  /* — 品牌主色 — */
-  --q-color-primary: var(--q-color-yellow-300);
-  --q-color-primary-hover: var(--q-color-yellow-500);
-  --q-color-primary-active: var(--q-color-yellow-600);
-  --q-color-primary-light: var(--q-color-yellow-200);
-  --q-color-primary-lighter: var(--q-color-yellow-50);
+  /* — 品牌主色（书香褐） — */
+  --q-color-primary: var(--q-color-brown-500);
+  --q-color-primary-hover: var(--q-color-brown-600);
+  --q-color-primary-active: var(--q-color-brown-700);
+  --q-color-primary-light: var(--q-color-brown-100);
+  --q-color-primary-lighter: var(--q-color-brown-50);
 
   /* — 功能色 — */
   --q-color-success: var(--q-color-green-400);
@@ -126,7 +136,7 @@
   --q-color-link-hover: var(--q-color-primary);
 
   /* — 标签/标记色 — */
-  --q-color-tag: var(--q-color-yellow-100);
+  --q-color-tag: var(--q-color-brown-100);
 
   /* — 按钮 — */
   --q-color-button-bg: var(--q-color-primary);
