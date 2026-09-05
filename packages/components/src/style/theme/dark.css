@@ -11,8 +11,9 @@ body.dark-mode,
   --q-color-primary: var(--q-color-brown-400);
   --q-color-primary-hover: var(--q-color-brown-300);
   --q-color-primary-active: var(--q-color-brown-200);
-  --q-color-primary-light: var(--q-color-brown-200);
-  --q-color-primary-lighter: var(--q-color-brown-100);
+  /* 暗色下的“主色浅底”应取较深褐阶（否则浅米白底 + 浅色文字不可读）：hover 用 lighter、选中用 light */
+  --q-color-primary-light: var(--q-color-brown-600);
+  --q-color-primary-lighter: var(--q-color-brown-700);
 
   /* — 中性语义色 — */
   --q-color-text: #f0f0f0;
