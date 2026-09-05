@@ -1,1 +1,0 @@
-import{D as s}from"./DemoBlock-ClDmiYtN.js";import{d as a,o,c as t,w as i,a as m}from"./index-By45x_bw.js";const l="\n```html\n<!-- useTimeDisplay Demo -->\n```\n",c=a({name:"DisplayUtilsBusinessuseTimeDisplay",__name:"useTimeDisplay",setup(p){return(n,e)=>(o(),t(s,{code:l},{default:i(()=>[...e[0]||(e[0]=[m("p",null,"useTimeDisplay 文档待完善",-1)])]),_:1}))}});export{c as default};

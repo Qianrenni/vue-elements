@@ -1,1 +1,0 @@
-import{D as o}from"./DemoBlock-ClDmiYtN.js";import{d as t,o as s,c as r,w as a,a as m}from"./index-By45x_bw.js";const n="\n```html\n<!-- useSort Demo -->\n```\n",i=t({name:"DisplayUtilsAlgorithmuseSort",__name:"useSort",setup(l){return(p,e)=>(s(),r(o,{code:n},{default:a(()=>[...e[0]||(e[0]=[m("p",null,"useSort 文档待完善",-1)])]),_:1}))}});export{i as default};
