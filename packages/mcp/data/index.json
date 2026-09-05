@@ -2,8 +2,11 @@
   "meta": {
     "name": "qyani-components knowledge base",
     "version": "1.0.0",
-    "generatedAt": "2026-09-05T11:58:27.417Z",
-    "packages": ["qyani-components", "@qianrenni/core"],
+    "generatedAt": "2026-09-05T16:17:51.894Z",
+    "packages": [
+      "qyani-components",
+      "@qianrenni/core"
+    ],
     "counts": {
       "@qianrenni/core/algorithm": 8,
       "@qianrenni/core/business": 7,
@@ -83,7 +86,13 @@
       "docFile": "README.md",
       "title": "useGraph",
       "description": "提供以数字节点和邻接表表示的图的广度优先搜索（BFS）与深度优先搜索（DFS）。节点编号应可直接作为 `edges`、结果数组的索引使用。",
-      "headings": ["useGraph", "用途", "API", "`BFS`", "`DFS`"],
+      "headings": [
+        "useGraph",
+        "用途",
+        "API",
+        "`BFS`",
+        "`DFS`"
+      ],
       "functions": [
         {
           "name": "API",
@@ -225,7 +234,11 @@
       "docFile": "README.md",
       "title": "useSort",
       "description": "提供多种排序算法。除 `CountingSort`、`RadixSort`、`BucketSort` 外，比较器均为 `(a, b) => number`：负数表示 `a` 排在 `b` 前，`0` 表示相等，正数表示 `a` 排在 `b` 后。",
-      "headings": ["useSort", "用途", "API"],
+      "headings": [
+        "useSort",
+        "用途",
+        "API"
+      ],
       "functions": [
         {
           "name": "API",
@@ -243,7 +256,13 @@
       "docFile": "README.md",
       "title": "useClip",
       "description": "useClip",
-      "headings": ["useClip", "clipString", "参数", "返回", "throws"],
+      "headings": [
+        "useClip",
+        "clipString",
+        "参数",
+        "返回",
+        "throws"
+      ],
       "functions": [
         {
           "name": "clipString",
@@ -261,7 +280,13 @@
       "docFile": "README.md",
       "title": "useDebounce",
       "description": "useDebounce",
-      "headings": ["useDebounce", "useDebounce", "参数", "返回", "throws"],
+      "headings": [
+        "useDebounce",
+        "useDebounce",
+        "参数",
+        "返回",
+        "throws"
+      ],
       "functions": [
         {
           "name": "useDebounce",
@@ -305,7 +330,13 @@
       "docFile": "README.md",
       "title": "useNullHandel",
       "description": "useNullHandel",
-      "headings": ["useNullHandel", "letIfNotNull", "参数", "返回", "throws"],
+      "headings": [
+        "useNullHandel",
+        "letIfNotNull",
+        "参数",
+        "返回",
+        "throws"
+      ],
       "functions": [
         {
           "name": "letIfNotNull",
@@ -355,7 +386,13 @@
       "docFile": "README.md",
       "title": "useThrottle",
       "description": "useThrottle",
-      "headings": ["useThrottle", "useThrottle", "参数", "返回", "throws"],
+      "headings": [
+        "useThrottle",
+        "useThrottle",
+        "参数",
+        "返回",
+        "throws"
+      ],
       "functions": [
         {
           "name": "useThrottle",
@@ -1058,7 +1095,9 @@
       "docFile": "README.md",
       "title": "QBreathing",
       "description": "QBreathing",
-      "headings": ["QBreathing"],
+      "headings": [
+        "QBreathing"
+      ],
       "api": {
         "props": [],
         "emits": [],
@@ -1205,7 +1244,13 @@
       "docFile": "README.md",
       "title": "QCalendar",
       "description": "日历（对齐 antd Calendar 基础能力）：月视图网格，支持选中/今天高亮、前后月切换、今日按钮与 `disabledDate`。",
-      "headings": ["QCalendar", "用途", "Props", "Emits", "说明"],
+      "headings": [
+        "QCalendar",
+        "用途",
+        "Props",
+        "Emits",
+        "说明"
+      ],
       "api": {
         "props": [
           {
@@ -1620,7 +1665,14 @@
       "docFile": "README.md",
       "title": "QCol",
       "description": "24 栅格系统的**列**，配合 `QRow` 使用，对齐 Ant Design `Col`（`span` / `offset` / `flex`）。",
-      "headings": ["QCol", "用途", "基本用法", "Props", "Slots", "Exposes"],
+      "headings": [
+        "QCol",
+        "用途",
+        "基本用法",
+        "Props",
+        "Slots",
+        "Exposes"
+      ],
       "api": {
         "props": [
           {
@@ -1914,7 +1966,14 @@
       "docFile": "README.md",
       "title": "QContent",
       "description": "内容区布局组件，作为 `QLayout` 的自适应主体区域，对齐 Ant Design `Layout.Content`。默认占用剩余空间并自动滚动。",
-      "headings": ["QContent", "用途", "基本用法", "Props", "Slots", "Exposes"],
+      "headings": [
+        "QContent",
+        "用途",
+        "基本用法",
+        "Props",
+        "Slots",
+        "Exposes"
+      ],
       "api": {
         "props": [],
         "emits": [],
@@ -2435,7 +2494,13 @@
       "docFile": "README.md",
       "title": "QFlex",
       "description": "弹性布局容器（对齐 Ant Design Flex）：一行 CSS flex 封装，用于快速搭主子轴/对齐/间距的布局。",
-      "headings": ["QFlex", "用途", "Props", "Slots", "说明"],
+      "headings": [
+        "QFlex",
+        "用途",
+        "Props",
+        "Slots",
+        "说明"
+      ],
       "api": {
         "props": [
           {
@@ -2620,7 +2685,14 @@
       "docFile": "README.md",
       "title": "QFooter",
       "description": "底部栏布局组件，作为 `QLayout` 的底部区域，对齐 Ant Design `Layout.Footer`。默认居中展示版权信息等。",
-      "headings": ["QFooter", "用途", "基本用法", "Props", "Slots", "Exposes"],
+      "headings": [
+        "QFooter",
+        "用途",
+        "基本用法",
+        "Props",
+        "Slots",
+        "Exposes"
+      ],
       "api": {
         "props": [],
         "emits": [],
@@ -3217,7 +3289,12 @@
       "docFile": "README.md",
       "title": "QFormItem",
       "description": "表单项容器，用于 `QForm` 内部：提供 label、必填星号与错误信息展示，并按 `validateTrigger` 自动触发该校验。可自带 `rules`（覆盖/追加于表单 rules）或使用表单下同名 `rules`。",
-      "headings": ["QFormItem", "用途", "Props", "说明"],
+      "headings": [
+        "QFormItem",
+        "用途",
+        "Props",
+        "说明"
+      ],
       "api": {
         "props": [
           {
@@ -4071,7 +4148,14 @@
       "docFile": "README.md",
       "title": "QHeader",
       "description": "顶部栏布局组件，作为 `QLayout` 的顶部区域，对齐 Ant Design `Layout.Header`。默认高度由 CSS 变量 `--q-layout-header-height` 控制（默认 56px）。",
-      "headings": ["QHeader", "用途", "基本用法", "Props", "Slots", "Exposes"],
+      "headings": [
+        "QHeader",
+        "用途",
+        "基本用法",
+        "Props",
+        "Slots",
+        "Exposes"
+      ],
       "api": {
         "props": [
           {
@@ -4370,7 +4454,14 @@
       "docFile": "README.md",
       "title": "QLayout",
       "description": "页面整体布局容器，对齐 Ant Design `Layout`。与 `QHeader` / `QSider` / `QContent` / `QFooter` 组合使用；默认纵向排列，检测到内部直接包含 `QSider` 时自动切换为横向（Sider 在左，其余子件在右）。",
-      "headings": ["QLayout", "用途", "基本用法", "Props", "Slots", "Exposes"],
+      "headings": [
+        "QLayout",
+        "用途",
+        "基本用法",
+        "Props",
+        "Slots",
+        "Exposes"
+      ],
       "api": {
         "props": [
           {
@@ -4457,7 +4548,14 @@
       "docFile": "README.md",
       "title": "QListy",
       "description": "虚拟列表（对齐 antd Listy 虚拟列表能力，**定高**模式）：窗口化渲染超长列表，只挂载可视区 + overscan 行。",
-      "headings": ["QListy", "用途", "Props", "Slots", "Exposes", "说明"],
+      "headings": [
+        "QListy",
+        "用途",
+        "Props",
+        "Slots",
+        "Exposes",
+        "说明"
+      ],
       "api": {
         "props": [
           {
@@ -4641,7 +4739,13 @@
       "docFile": "README.md",
       "title": "QMasonry",
       "description": "瀑布流（对齐 antd Masonry 常用能力）：按指定列数以 CSS 多列填充任意高度卡片。",
-      "headings": ["QMasonry", "用途", "Props", "Slots", "说明"],
+      "headings": [
+        "QMasonry",
+        "用途",
+        "Props",
+        "Slots",
+        "说明"
+      ],
       "api": {
         "props": [
           {
@@ -4694,7 +4798,13 @@
       "docFile": "README.md",
       "title": "QMentions",
       "description": "提及输入（对齐 antd Mentions）：文本域中键入 `@` 触发候选下拉，选中后替换为 `@value` 文本；支持键盘上下选择 + Enter 确认。",
-      "headings": ["QMentions", "用途", "Props", "Emits", "说明"],
+      "headings": [
+        "QMentions",
+        "用途",
+        "Props",
+        "Emits",
+        "说明"
+      ],
       "api": {
         "props": [
           {
@@ -5746,7 +5856,14 @@
       "docFile": "README.md",
       "title": "QRow",
       "description": "24 栅格系统的**行容器**，配合 `QCol` 使用，对齐 Ant Design `Row`（`gutter` / `justify` / `align` / `wrap`）。",
-      "headings": ["QRow", "用途", "基本用法", "Props", "Slots", "Exposes"],
+      "headings": [
+        "QRow",
+        "用途",
+        "基本用法",
+        "Props",
+        "Slots",
+        "Exposes"
+      ],
       "api": {
         "props": [
           {
@@ -6199,7 +6316,9 @@
       "docFile": "README.md",
       "title": "QSkeleton",
       "description": "QSkeleton",
-      "headings": ["QSkeleton"],
+      "headings": [
+        "QSkeleton"
+      ],
       "api": {
         "props": [],
         "emits": [],
@@ -6373,7 +6492,9 @@
       "docFile": "README.md",
       "title": "QSpinner",
       "description": "QSpinner",
-      "headings": ["QSpinner"],
+      "headings": [
+        "QSpinner"
+      ],
       "api": {
         "props": [],
         "emits": [],
@@ -6391,7 +6512,14 @@
       "docFile": "README.md",
       "title": "QSplitter",
       "description": "分隔面板（对齐 antd Splitter 基础能力）：两个面板 + 可拖拽分隔条，支持左右/上下方向、受控尺寸、最小/最大限制与键盘调整。",
-      "headings": ["QSplitter", "用途", "Props", "Slots", "Emits", "说明"],
+      "headings": [
+        "QSplitter",
+        "用途",
+        "Props",
+        "Slots",
+        "Emits",
+        "说明"
+      ],
       "api": {
         "props": [
           {
@@ -7145,7 +7273,13 @@
       "docFile": "README.md",
       "title": "QTimePicker",
       "description": "时间选择器（对齐 antd TimePicker 常用能力）：点击弹出 时/分/秒 列表面板，支持格式、步长、清除、受控值。",
-      "headings": ["QTimePicker", "用途", "Props", "Emits", "说明"],
+      "headings": [
+        "QTimePicker",
+        "用途",
+        "Props",
+        "Emits",
+        "说明"
+      ],
       "api": {
         "props": [
           {
@@ -7351,7 +7485,13 @@
       "docFile": "README.md",
       "title": "QTour",
       "description": "漫游引导（对齐 antd Tour 基础能力）：按步骤依次高亮目标元素并展示说明卡片（遮罩挖孔 + 上一步/下一步/关闭/进度）。",
-      "headings": ["QTour", "用途", "Props", "Emits", "说明"],
+      "headings": [
+        "QTour",
+        "用途",
+        "Props",
+        "Emits",
+        "说明"
+      ],
       "api": {
         "props": [
           {
@@ -8202,7 +8342,14 @@
       "docFile": "README.md",
       "title": "useDrag",
       "description": "useDrag",
-      "headings": ["useDrag", "useDrag", "参数", "返回", "行为说明", "throws"],
+      "headings": [
+        "useDrag",
+        "useDrag",
+        "参数",
+        "返回",
+        "行为说明",
+        "throws"
+      ],
       "functions": [
         {
           "name": "useDrag",
@@ -8220,7 +8367,13 @@
       "docFile": "README.md",
       "title": "useFormEvents",
       "description": "useFormEvents",
-      "headings": ["useFormEvents", "useFormEvents", "参数", "返回", "throws"],
+      "headings": [
+        "useFormEvents",
+        "useFormEvents",
+        "参数",
+        "返回",
+        "throws"
+      ],
       "functions": [
         {
           "name": "useFormEvents",
@@ -8337,7 +8490,9 @@
           "--q-font-weight-semibold",
           "--q-radius-sm"
         ],
-        "classes": ["badge"]
+        "classes": [
+          "badge"
+        ]
       },
       "keywords": [
         "--q-space-2",
@@ -8653,7 +8808,9 @@
           "--q-color-tag",
           "--q-color-white"
         ],
-        "classes": ["tag"]
+        "classes": [
+          "tag"
+        ]
       },
       "keywords": [
         "--q-font-size-xs",
@@ -8679,9 +8836,13 @@
       "headings": [],
       "style": {
         "variables": [],
-        "classes": ["css"]
+        "classes": [
+          "css"
+        ]
       },
-      "keywords": ["css"],
+      "keywords": [
+        "css"
+      ],
       "styleDoc": "# 通用样式（CSS 设计系统）\r\n\r\n## 用途\r\n\r\n提供组件库统一的视觉变量、基础样式与工具类，保证跨组件一致的视觉语言。\r\n所有模块通过单入口 `src/style/index.css` 按层叠优先级组织，构建时合并为 `dist/style.css`。\r\n\r\n## 引入方式\r\n\r\n```css\r\n/* 全量引入（组件库默认行为） */\r\n@import 'qyani-components/dist/style.css';\r\n```\r\n\r\n## 加载顺序\r\n\r\n样式按 CSS 层叠优先级从低到高依次加载：\r\n\r\n| 顺序 | 模块       | 说明                                                     |\r\n| ---- | ---------- | -------------------------------------------------------- |\r\n| 1    | Tokens     | 设计变量：颜色、间距、圆角、阴影、透明度、排版、动效     |\r\n| 2    | Theme      | 暗色主题覆盖（`body.dark-mode` / `[data-theme=\"dark\"]`） |\r\n| 3    | Base       | 重置与基础元素样式                                       |\r\n| 4    | Utilities  | 工具类：布局、间距、颜色、排版、显示、响应式             |\r\n| 5    | Components | 组件级共享样式类                                         |\r\n\r\n## 目录结构\r\n\r\n```\r\nsrc/style/\r\n├── index.css        # 入口（@import 全部模块）\r\n├── tokens/          # 设计变量\r\n│   ├── color.css    # 颜色\r\n│   ├── spacing.css  # 间距\r\n│   ├── radius.css   # 圆角\r\n│   ├── elevation.css# 阴影与层级\r\n│   ├── opacity.css  # 透明度\r\n│   ├── typography.css # 排版\r\n│   └── motion.css   # 动效\r\n├── theme/\r\n│   └── dark.css     # 暗色主题\r\n├── base/\r\n│   ├── reset.css    # CSS 重置\r\n│   └── base.css     # 基础元素样式\r\n├── utilities/\r\n│   ├── layout.css   # 布局（Flex / Grid）\r\n│   ├── spacing.css  # 间距（margin / padding）\r\n│   ├── color.css    # 颜色（背景 / 文字）\r\n│   ├── typography.css # 排版\r\n│   ├── display.css  # 显示 / 定位 / 圆角 / 阴影\r\n│   └── responsive.css # 响应式\r\n└── components/      # 组件级共享样式\r\n```\r\n\r\n## 各模块文档\r\n\r\n| 模块     | 说明                                                      |\r\n| -------- | --------------------------------------------------------- |\r\n| 设计变量 | 颜色、间距、圆角、阴影、透明度、排版、动效的 `--q-*` 变量 |\r\n| 工具类   | 布局、间距、颜色、排版、显示、响应式语义化类名            |\r\n| 基础样式 | 重置规则与 body、pre、code 等基础元素样式                 |\r\n| 主题     | 暗色主题切换方式与覆盖变量                                |\r\n\r\n## 约定\r\n\r\n- 变量统一 `--q-*` 前缀，类名统一语义化短横线命名。\r\n- 保留旧版别名（如 `--primary-color`、`.padding-rem`、`.radius-half-rem`）实现零破坏迁移。\r\n- 暗色主题只覆盖语义化 token，原始调色板不变，保证两种主题下设计语言一致。\r\n",
       "readme": "/**\r\n * Design System Entry Point\r\n * ==================================================================\r\n * qyani-components 企业级 CSS 设计系统入口。\r\n *\r\n * 加载顺序（CSS 层叠优先级从低到高）：\r\n *   1. Tokens   — 设计变量（颜色、阴影、间距、圆角、排版、动画）\r\n *   2. Theme    — 暗色主题覆盖\r\n *   3. Base     — 重置与基础元素样式\r\n *   4. Utilities— 工具类（布局、间距、颜色、排版、显示、响应式）\r\n *   5. Components— 组件级共享样式类\r\n *\r\n * 使用 @import 确保构建时正确合并到 dist/style.css。\r\n */\r\n\r\n/* — 1. Tokens — */\r\n@import './tokens/color.css';\r\n@import './tokens/spacing.css';\r\n@import './tokens/elevation.css';\r\n@import './tokens/opacity.css';\r\n@import './tokens/radius.css';\r\n@import './tokens/typography.css';\r\n@import './tokens/motion.css';\r\n\r\n/* — 2. Theme — */\r\n@import './theme/dark.css';\r\n\r\n/* — 3. Base — */\r\n@import './base/reset.css';\r\n@import './base/base.css';\r\n\r\n/* — 4. Utilities — */\r\n@import './utilities/layout.css';\r\n@import './utilities/spacing.css';\r\n@import './utilities/color.css';\r\n@import './utilities/typography.css';\r\n@import './utilities/display.css';\r\n@import './utilities/responsive.css';\r\n\r\n/* — 5. Components — */\r\n@import './components/button.css';\r\n@import './components/badge.css';\r\n@import './components/card.css';\r\n@import './components/input.css';\r\n@import './components/tag.css';\r\n@import './components/form-table.css';\r\n@import './components/nav-section.css';\r\n"
     },
@@ -8716,7 +8877,11 @@
           "--q-color-gray-400",
           "--q-radius-full"
         ],
-        "classes": ["markdown-body", "markdown-table-wrapper", "task-list-item"]
+        "classes": [
+          "markdown-body",
+          "markdown-table-wrapper",
+          "task-list-item"
+        ]
       },
       "keywords": [
         "--q-color-text",
@@ -8821,9 +8986,13 @@
           "--gray-700",
           "--skeleton-linear-gradient"
         ],
-        "classes": ["dark-mode"],
+        "classes": [
+          "dark-mode"
+        ],
         "deprecated": {
-          "notes": ["向后兼容别名（暗色模式覆盖）"],
+          "notes": [
+            "向后兼容别名（暗色模式覆盖）"
+          ],
           "variables": [
             "--color-inverse",
             "--background-color",
@@ -9357,7 +9526,10 @@
         ],
         "classes": [],
         "deprecated": {
-          "notes": ["— 阴影色（向后兼容） —", "— 向后兼容别名 —"],
+          "notes": [
+            "— 阴影色（向后兼容） —",
+            "— 向后兼容别名 —"
+          ],
           "variables": [
             "--q-color-shadow",
             "--z-index-level-1",
@@ -9434,10 +9606,21 @@
         ],
         "classes": [],
         "deprecated": {
-          "notes": ["— 向后兼容别名 —", "— 向后兼容：旧版关键帧名称 —"],
-          "variables": ["--skeleton-linear-gradient"],
+          "notes": [
+            "— 向后兼容别名 —",
+            "— 向后兼容：旧版关键帧名称 —"
+          ],
+          "variables": [
+            "--skeleton-linear-gradient"
+          ],
           "classes": [],
-          "keyframes": ["rotate", "dash", "pulse", "shimmer", "up-down"]
+          "keyframes": [
+            "rotate",
+            "dash",
+            "pulse",
+            "shimmer",
+            "up-down"
+          ]
         }
       },
       "keywords": [
@@ -9586,7 +9769,9 @@
         ],
         "classes": [],
         "deprecated": {
-          "notes": ["— 向后兼容别名 —"],
+          "notes": [
+            "— 向后兼容别名 —"
+          ],
           "variables": [
             "--distance",
             "--half-distance",
@@ -9666,7 +9851,9 @@
         ],
         "classes": [],
         "deprecated": {
-          "notes": ["— 文字阶梯（旧版 rem 简写） —"],
+          "notes": [
+            "— 文字阶梯（旧版 rem 简写） —"
+          ],
           "variables": [
             "--q-font-size-03",
             "--q-font-size-05",
@@ -9974,7 +10161,10 @@
           "animation-shimmer"
         ],
         "deprecated": {
-          "notes": ["— 向后兼容：旧版圆角类名 —", "— 向后兼容：旧版阴影类名 —"],
+          "notes": [
+            "— 向后兼容：旧版圆角类名 —",
+            "— 向后兼容：旧版阴影类名 —"
+          ],
           "variables": [],
           "classes": [
             "radius-rem",
@@ -10367,7 +10557,11 @@
       "description": "Responsive Utilities ------------------------------------------------------------------ 响应式工具类，断点 768px（移动端 / 桌面端切换）。 格式：.hidden-{bp}   在断点以下隐藏 .show-{bp}     仅在断点以下显示",
       "headings": [],
       "style": {
-        "variables": ["--q-color-bg", "--q-color-primary", "--q-color-overlay"],
+        "variables": [
+          "--q-color-bg",
+          "--q-color-primary",
+          "--q-color-overlay"
+        ],
         "classes": [
           "show-768",
           "scroll-text",
@@ -10495,7 +10689,10 @@
           "padding-fourth-horizontal"
         ],
         "deprecated": {
-          "notes": ["向后兼容：旧版 margin / padding 类名", "— 旧版 padding —"],
+          "notes": [
+            "向后兼容：旧版 margin / padding 类名",
+            "— 旧版 padding —"
+          ],
           "variables": [],
           "classes": [
             "margin-auto",
@@ -10720,7 +10917,9 @@
           "text-03rem"
         ],
         "deprecated": {
-          "notes": ["向后兼容：旧版字号类名"],
+          "notes": [
+            "向后兼容：旧版字号类名"
+          ],
           "variables": [],
           "classes": [
             "text-2rem",
@@ -10811,9 +11010,13 @@
       "headings": [],
       "style": {
         "variables": [],
-        "classes": ["katex-display"]
+        "classes": [
+          "katex-display"
+        ]
       },
-      "keywords": ["katex-display"],
+      "keywords": [
+        "katex-display"
+      ],
       "readme": "/**\r\n * KaTeX Vendor Overrides\r\n * ------------------------------------------------------------------\r\n * 自定义 katex 样式：只启用 MathML 渲染。\r\n */\r\n\r\nmath {\r\n  font-size: 1.2em;\r\n  vertical-align: middle;\r\n  display: inline-block !important;\r\n}\r\n\r\n.katex-display {\r\n  text-align: center;\r\n  margin: 1em 0;\r\n}\r\n\r\n.katex-display math {\r\n  display: block;\r\n  margin: 0 auto;\r\n}\r\n"
     }
   ],
@@ -10870,7 +11073,7 @@
     },
     "QBadge": {
       "type.ts": "/**\r\n * Badge 组件 Props\r\n */\r\nexport interface BadgeProps {\r\n  /** 徽章类型，控制颜色样式 */\r\n  type?: 'primary' | 'success' | 'warning' | 'danger' | 'gray' | 'info';\r\n  /** 显示的数字或文本值 */\r\n  value?: number | string;\r\n  /** 最大值，超过时显示 99+，默认 99 */\r\n  max?: number;\r\n  /** 是否显示为小圆点模式 */\r\n  dot?: boolean;\r\n}\r\n",
-      "composable.ts": "import { computed, type ComputedRef } from 'vue';\r\n\r\nimport type { BadgeProps } from './type';\r\n\r\n/**\r\n * Badge 组件核心逻辑\r\n * @param props 组件 Props\r\n * @returns displayValue 显示的文本内容，isDot 是否为小圆点模式\r\n */\r\nexport const useBadge = (\r\n  props: BadgeProps,\r\n): {\r\n  displayValue: ComputedRef<string | number>;\r\n  typeClass: ComputedRef<string>;\r\n  isDot: ComputedRef<boolean>;\r\n} => {\r\n  /** 显示的文本值，超过 max 时显示 99+ */\r\n  const displayValue = computed(() => {\r\n    if (props.dot) return '';\r\n    const value = props.value ?? 0;\r\n    const max = props.max ?? 99;\r\n    if (\r\n      (typeof value === 'number' && value > max) ||\r\n      (typeof value === 'string' && parseInt(value) > max)\r\n    ) {\r\n      return '99+';\r\n    }\r\n    return value;\r\n  });\r\n\r\n  /** 徽章类型 CSS 类 */\r\n  const typeClass = computed(() => `text-${props.type ?? 'info'}`);\r\n\r\n  /** 是否为小圆点模式 */\r\n  const isDot = computed(() => props.dot ?? false);\r\n\r\n  return { displayValue, typeClass, isDot };\r\n};\r\n",
+      "composable.ts": "import { computed, type ComputedRef } from 'vue';\r\n\r\nimport type { BadgeProps } from './type';\r\n\r\n/**\r\n * Badge 组件核心逻辑\r\n * @param props 组件 Props\r\n * @returns displayValue 显示的文本内容，isDot 是否为小圆点模式\r\n */\r\nexport const useBadge = (\r\n  props: BadgeProps,\r\n): {\r\n  displayValue: ComputedRef<string | number>;\r\n  typeClass: ComputedRef<string>;\r\n  isDot: ComputedRef<boolean>;\r\n} => {\r\n  /** 显示的文本值，超过 max 时显示 99+ */\r\n  const displayValue = computed(() => {\r\n    if (props.dot) return '';\r\n    const value = props.value ?? 0;\r\n    const max = props.max ?? 99;\r\n    if (\r\n      (typeof value === 'number' && value > max) ||\r\n      (typeof value === 'string' && parseInt(value) > max)\r\n    ) {\r\n      return '99+';\r\n    }\r\n    return value;\r\n  });\r\n\r\n  /** 徽章类型 CSS 类（对应组件内 scoped 修饰类） */\r\n  const typeClass = computed(() => `q-badge--${props.type ?? 'info'}`);\r\n\r\n  /** 是否为小圆点模式 */\r\n  const isDot = computed(() => props.dot ?? false);\r\n\r\n  return { displayValue, typeClass, isDot };\r\n};\r\n",
       "index.ts": "export * from './type';\r\nexport { default as QBadge } from './Badge.vue';\r\n"
     },
     "QBorderBeam": {

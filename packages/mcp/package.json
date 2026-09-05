@@ -1,6 +1,6 @@
 {
   "name": "@qianrenni/mcp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Knowledge-base MCP server for qyani-components & @qianrenni/core — search docs and API on demand",
   "type": "module",
   "main": "dist/index.js",
