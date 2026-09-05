@@ -28,8 +28,8 @@ export const useBadge = (
     return value;
   });
 
-  /** 徽章类型 CSS 类 */
-  const typeClass = computed(() => `text-${props.type ?? 'info'}`);
+  /** 徽章类型 CSS 类（对应组件内 scoped 修饰类） */
+  const typeClass = computed(() => `q-badge--${props.type ?? 'info'}`);
 
   /** 是否为小圆点模式 */
   const isDot = computed(() => props.dot ?? false);

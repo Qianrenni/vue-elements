@@ -57,7 +57,9 @@ const code = `
         <QButton danger>危险默认</QButton>
         <QButton type="dashed" danger>危险虚线</QButton>
         <QButton type="text" danger>危险文本</QButton>
-        <QButton type="link" danger>危险链接</QButton>
+        <QButton type="link" danger href="https://example.com" target="_blank">
+          危险链接
+        </QButton>
       </div>
 
       <div class="container-row gap-4 flex-wrap align-center">

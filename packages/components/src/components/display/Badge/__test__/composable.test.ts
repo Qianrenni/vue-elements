@@ -51,13 +51,13 @@ describe('useBadge', () => {
     const props: BadgeProps = { type: 'success' };
     const { typeClass } = useBadge(props);
 
-    expect(typeClass.value).toBe('text-success');
+    expect(typeClass.value).toBe('q-badge--success');
   });
 
   it('应该在未传 type 时使用默认 info', () => {
     const props: BadgeProps = {};
     const { typeClass } = useBadge(props);
 
-    expect(typeClass.value).toBe('text-info');
+    expect(typeClass.value).toBe('q-badge--info');
   });
 });

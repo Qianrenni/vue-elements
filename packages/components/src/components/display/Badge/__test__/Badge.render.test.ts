@@ -12,8 +12,8 @@ describe('QBadge 渲染', () => {
 
   it('dot 模式应渲染圆点而不显示数字', () => {
     const { container } = render(QBadge, { props: { dot: true } });
-    expect(container.querySelector('.dot')).toBeTruthy();
-    expect(container.querySelector('[class*="text-"]')).toBeNull();
+    expect(container.querySelector('.q-badge__dot')).toBeTruthy();
+    expect(container.querySelector('.q-badge__count')).toBeNull();
   });
 
   it('数字超过 max 应显示 99+', () => {
@@ -44,6 +44,6 @@ describe('QBadge 渲染', () => {
     const { container } = render(QBadge, {
       props: { type: 'danger', value: 5 },
     });
-    expect(container.querySelector('.text-danger')).toBeTruthy();
+    expect(container.querySelector('.q-badge--danger')).toBeTruthy();
   });
 });
