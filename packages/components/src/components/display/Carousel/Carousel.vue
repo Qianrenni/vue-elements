@@ -165,7 +165,7 @@ defineExpose({
   position: absolute;
   display: flex;
   gap: 6px;
-  z-index: var(--z-index-level-2);
+  z-index: var(--q-z-index-modal);
 }
 
 .carousel-indicators.center-bottom {
@@ -219,13 +219,13 @@ defineExpose({
 .indicator {
   width: 8px;
   height: 8px;
-  background-color: #ccc;
+  background-color: var(--q-color-gray-400);
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .indicator.active {
-  background-color: var(--primary-color);
+  background-color: var(--q-color-primary);
 }
 </style>

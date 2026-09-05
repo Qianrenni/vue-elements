@@ -65,13 +65,13 @@ const { close, handleOverlayClick } = useDrawer(props, emit);
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: var(--z-index-level-2);
+  z-index: var(--q-z-index-modal);
 }
 
 .drawer-container {
   position: absolute;
-  background-color: var(--card-bg);
-  box-shadow: 0 0 10px var(--box-shadow);
+  background-color: var(--q-color-bg-card);
+  box-shadow: 0 0 10px var(--q-color-shadow);
   display: flex;
   flex-direction: column;
   overflow: hidden;

@@ -197,7 +197,7 @@ defineExpose({ toggle, close, open });
 .toggle-button-up {
   width: 100%;
   height: 20px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--q-color-border-light);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
@@ -207,7 +207,7 @@ defineExpose({ toggle, close, open });
 .toggle-button-down {
   width: 100%;
   height: 20px;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--q-color-border-light);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -217,7 +217,7 @@ defineExpose({ toggle, close, open });
 .toggle-button-left {
   width: 20px;
   height: auto;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid var(--q-color-border-light);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
@@ -227,7 +227,7 @@ defineExpose({ toggle, close, open });
 .toggle-button-right {
   width: 20px;
   height: auto;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid var(--q-color-border-light);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);

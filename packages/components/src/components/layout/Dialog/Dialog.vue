@@ -47,8 +47,9 @@
 
 <script lang="ts" setup>
 import { QFormButton } from '@/components/form/FormButton';
-import type { DialogProps, DialogEmits } from './type';
+
 import { useDialog } from './composable';
+import type { DialogEmits, DialogProps } from './type';
 
 defineOptions({
   name: 'QDialog',
@@ -79,16 +80,16 @@ const { dialogClass, close, handleOverlayClick, handleConfirm, handleCancel } =
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--bg-overlay);
+  background-color: var(--q-color-overlay);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: var(--z-index-level-2);
+  z-index: var(--q-z-index-modal);
 }
 
 .dialog-container {
-  background-color: var(--card-bg);
-  box-shadow: 0 0 10px var(--box-shadow);
+  background-color: var(--q-color-bg-card);
+  box-shadow: 0 0 10px var(--q-color-shadow);
   min-width: 450px;
   max-width: 90vw;
   max-height: 90vh;

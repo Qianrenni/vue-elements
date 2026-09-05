@@ -18,7 +18,7 @@ defineOptions({ name: 'QTag' });
 
 const props = withDefaults(defineProps<TagProps>(), {
   color: 'white',
-  background: 'var(--tag-primary-color)',
+  background: 'var(--q-color-tag)',
 });
 </script>
 

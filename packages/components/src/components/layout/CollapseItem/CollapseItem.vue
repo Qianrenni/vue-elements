@@ -39,7 +39,7 @@ const { isActive, handleClick } = useCollapseItem(props);
 
 <style scoped>
 .collapse-item {
-  border-bottom: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--q-color-primary);
 }
 
 .collapse-item:last-child {
@@ -51,14 +51,14 @@ const { isActive, handleClick } = useCollapseItem(props);
   justify-content: space-between;
   align-items: center;
   padding: 0.4rem 0.8rem;
-  background-color: var(--card-bg);
+  background-color: var(--q-color-bg-card);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .collapse-item__header.is-active {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: var(--q-color-primary);
+  color: var(--q-color-white);
 }
 
 .collapse-item__title {
@@ -71,7 +71,7 @@ const { isActive, handleClick } = useCollapseItem(props);
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid var(--text-color);
+  border-top: 5px solid var(--q-color-text);
   transition: transform 0.3s ease;
   transform: rotateZ(90deg);
 }

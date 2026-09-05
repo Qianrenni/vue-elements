@@ -779,7 +779,7 @@ const firstDataIndent = (row: TableDisplayRow<T>, colIndex: number): boolean =>
   background-color: var(--q-color-bg-card);
   border: 1px solid var(--q-color-border-light);
   border-radius: var(--q-radius-sm, 6px);
-  box-shadow: var(--q-elevation-2, 0 4px 12px rgba(0, 0, 0, 0.12));
+  box-shadow: var(--q-shadow-md, 0 4px 8px rgba(0, 0, 0, 0.12));
   display: flex;
   flex-direction: column;
   gap: 2px;

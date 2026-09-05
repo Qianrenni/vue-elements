@@ -123,11 +123,14 @@
   --q-color-text-description: #565656;
   --q-color-text-muted: #6c757d;
   --q-color-text-secondary: #868e96;
+  --q-color-text-disabled: var(--q-color-gray-500);
   --q-color-text-inverse: #111111;
 
   --q-color-bg: var(--q-color-gray-50);
   --q-color-bg-secondary: #e8e8e8;
   --q-color-bg-card: var(--q-color-white);
+  --q-color-bg-nav: #1f1f1f;
+  --q-color-bg-nav-hover: #141414;
 
   --q-color-border: #686c71;
   --q-color-border-light: var(--q-color-gray-300);

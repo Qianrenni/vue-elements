@@ -108,7 +108,7 @@ function toggle() {
 }
 
 .q-layout-sider--dark .q-layout-sider-trigger {
-  background: #141414;
+  background: var(--q-color-bg-nav-hover, #141414);
   color: rgba(255, 255, 255, 0.65);
 }
 

@@ -334,7 +334,7 @@ onBeforeUnmount(() => {
   background-color: var(--q-color-bg-card);
   border: 1px solid var(--q-color-border-light);
   border-radius: var(--q-radius-md, 8px);
-  box-shadow: var(--q-elevation-3, 0 6px 16px rgba(0, 0, 0, 0.12));
+  box-shadow: var(--q-shadow-lg, 0 8px 16px rgba(0, 0, 0, 0.16));
   padding: var(--q-space-3, 12px);
   font-size: var(--q-font-size-sm, 14px);
   color: var(--q-color-text);

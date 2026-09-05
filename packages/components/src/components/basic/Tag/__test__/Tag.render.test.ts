@@ -15,7 +15,7 @@ describe('QTag 渲染', () => {
     const span = container.querySelector('.tag')!;
     const style = span.getAttribute('style') ?? '';
     expect(style).toContain('color: white');
-    expect(style).toContain('background: var(--tag-primary-color)');
+    expect(style).toContain('background: var(--q-color-tag)');
   });
 
   it('应将自定义 color/background 应用到 style', () => {

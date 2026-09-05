@@ -56,8 +56,9 @@
 
 <script lang="ts" setup>
 import type { FormComponentEmits } from '@/types';
-import type { FormRangeSliderProps } from './type';
+
 import { useFormRangeSlider } from './composable';
+import type { FormRangeSliderProps } from './type';
 
 defineOptions({
   name: 'QFormRangeSlider',
@@ -89,8 +90,8 @@ const { labelId, outputId, displayValue, onInput, onChange, onFocus, onBlur } =
   border-radius: 0.25rem;
   background: linear-gradient(
     to right,
-    var(--primary-color),
-    var(--primary-hover)
+    var(--q-color-primary),
+    var(--q-color-primary-hover)
   );
 }
 
@@ -100,8 +101,8 @@ const { labelId, outputId, displayValue, onInput, onChange, onFocus, onBlur } =
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-  background: #fff;
-  border: 2px solid var(--primary-color);
+  background: var(--q-color-bg-card);
+  border: 2px solid var(--q-color-primary);
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: transform 0.15s ease;
@@ -115,8 +116,8 @@ const { labelId, outputId, displayValue, onInput, onChange, onFocus, onBlur } =
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-  background: #fff;
-  border: 2px solid var(--primary-color);
+  background: var(--q-color-bg-card);
+  border: 2px solid var(--q-color-primary);
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: transform 0.15s ease;
@@ -128,13 +129,13 @@ const { labelId, outputId, displayValue, onInput, onChange, onFocus, onBlur } =
   border-radius: 0.25rem;
   background: linear-gradient(
     to right,
-    var(--primary-color),
-    var(--primary-hover)
+    var(--q-color-primary),
+    var(--q-color-primary-hover)
   );
 }
 
 .range-slider output {
-  color: var(--primary-color);
+  color: var(--q-color-primary);
   font-weight: 500;
 }
 </style>

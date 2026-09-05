@@ -81,7 +81,7 @@ body.dark-mode {
 ### 注意
 
 - `-active` / `-lighter` 漏了会闪回 qyani 默认黄（按钮按压态、表格选中行可见）。
-- QTag 组件默认 `background: var(--tag-primary-color)`（走旧别名），`.tag` 工具类走 `--q-color-tag`（新 token）——要改标签色需两头都覆盖。
+- QTag 组件默认 `background: var(--q-color-tag)`，`.tag` 工具类同样走 `--q-color-tag`——改标签色统一覆盖 `--q-color-tag` 即可（旧别名 `--tag-primary-color` 仍兼容）。
 
 ## 配合工具函数
 

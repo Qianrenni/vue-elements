@@ -35,20 +35,20 @@
 
 ### 语义化颜色（随主题切换）
 
-| 变量                                                                     | 说明             |
-| ------------------------------------------------------------------------ | ---------------- |
-| `--q-color-primary` / `-hover` / `-active` / `-light` / `-lighter`       | 品牌主色及交互态 |
-| `--q-color-success` / `-bg` / `-border`                                  | 成功             |
-| `--q-color-warning` / `-bg` / `-border`                                  | 警告             |
-| `--q-color-danger` / `-bg` / `-border`                                   | 危险             |
-| `--q-color-info` / `-bg` / `-border`                                     | 信息             |
-| `--q-color-text` / `-description` / `-muted` / `-secondary` / `-inverse` | 文字层级         |
-| `--q-color-bg` / `-secondary` / `-card`                                  | 背景层级         |
-| `--q-color-border` / `-light`                                            | 边框             |
-| `--q-color-link` / `-hover`                                              | 链接             |
-| `--q-color-tag`                                                          | 标签/标记        |
-| `--q-color-overlay`                                                      | 遮罩层           |
-| `--q-color-shadow` / `-inverse`                                          | 阴影色           |
+| 变量                                                                                   | 说明                                                      |
+| -------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `--q-color-primary` / `-hover` / `-active` / `-light` / `-lighter`                     | 品牌主色及交互态                                          |
+| `--q-color-success` / `-bg` / `-border`                                                | 成功                                                      |
+| `--q-color-warning` / `-bg` / `-border`                                                | 警告                                                      |
+| `--q-color-danger` / `-bg` / `-border`                                                 | 危险                                                      |
+| `--q-color-info` / `-bg` / `-border`                                                   | 信息                                                      |
+| `--q-color-text` / `-description` / `-muted` / `-secondary` / `-disabled` / `-inverse` | 文字层级（`-disabled` 禁用文字）                          |
+| `--q-color-bg` / `-secondary` / `-card` / `-nav` / `-nav-hover`                        | 背景层级（`-nav` 深色导航底 / `-nav-hover` 其加深触发器） |
+| `--q-color-border` / `-light`                                                          | 边框                                                      |
+| `--q-color-link` / `-hover`                                                            | 链接                                                      |
+| `--q-color-tag`                                                                        | 标签/标记                                                 |
+| `--q-color-overlay`                                                                    | 遮罩层                                                    |
+| `--q-color-shadow` / `-inverse`                                                        | 阴影色                                                    |
 
 ## 间距 (Spacing)
 

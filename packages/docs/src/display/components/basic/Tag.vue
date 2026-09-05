@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { QTag } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QTag } from 'qyani-components';
 
 defineOptions({
   name: 'DisplayBasicTag',
 });
 
 const tags = [
-  { text: '默认标签', color: 'white', background: 'var(--tag-primary-color)' },
+  { text: '默认标签', color: 'white', background: 'var(--q-color-tag)' },
   { text: '成功标签', color: 'white', background: '#52c41a' },
   { text: '警告标签', color: 'white', background: '#faad14' },
   { text: '危险标签', color: 'white', background: '#ff4d4f' },

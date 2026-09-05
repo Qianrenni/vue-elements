@@ -78,7 +78,7 @@ const parseSize = (size: string | number): string => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: var(--q-skeleton-gradient);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite linear;
 }
@@ -90,7 +90,7 @@ const parseSize = (size: string | number): string => {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: var(--card-bg);
+  background-color: var(--q-color-bg-card);
   font-size: 0.8rem;
   text-align: center;
   border: 1px dashed var(--border-color);
