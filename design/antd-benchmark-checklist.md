@@ -274,6 +274,6 @@ ProLayout、ProForm、ProTable、ProDescriptions、ProList、EditableProTable（
 - [x] type.ts JSDoc 三标签 + README（Props/Emits/Slots/Exposes）+ `docs:update`（P5–P8 均随批完成）
 - [x] 三文件注册 index.ts / install.ts / global.d.ts（util 则挂 utils/business）+ SearchBar 别名 + README 计数 + 本清单勾选（P5–P8 均随批完成）
 - [x] 测试：纯逻辑（node）+ jsdom；eslint / prettier / vue-tsc / build 全绿；浏览器验证（P5–P8 均随批完成）
-- [ ] 弹层 / 空态逐步接入 useQConfig——✅ 已接入 QTooltip/QPopover 的 getPopupContainer（Teleport 目标随 ConfigProvider）；renderEmpty / componentSize 及 Select/Dropdown/Table 等控件接入进行中
+- [ ] useQConfig 接入进度（2026-09-05）：✅ getPopupContainer → QTooltip/QPopover；✅ renderEmpty → QTable 空态（无 #empty 插槽时）；componentSize 接入已回退——**决策：暂不统一大小，尺寸由各组件 size prop 控制，自定义走颜色（cssVars 覆盖 `--q-*`）**；剩余：getPopupContainer 扩展至 Select/Dropdown/Table 等、renderEmpty 扩展至其余空态消费方
 - [x] token 决策（2026-09-05）：**只保留自有语义层、删除全部派生中间层**——antd 别名层 `--q-ant-*` 与按钮派生 token（`--q-color-button-*`）、遗留短名 `--button-*` 均已删除；`QButton` / 旧式 `.button-primary` 直读语义（`--q-color-primary` / `-white` / `-primary-hover`）。目标 = 一套主色全局统一（改一处主色带动按钮），局部仍可 `QConfigProvider.cssVars` 覆盖 `--q-color-primary/-hover/-active` 自定义
 - [x] 每批完成打 commit（conventional commit，≤127 字符）——最近：`ee68f3b`（P5–P8）

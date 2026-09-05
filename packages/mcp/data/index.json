@@ -2,7 +2,7 @@
   "meta": {
     "name": "qyani-components knowledge base",
     "version": "1.0.0",
-    "generatedAt": "2026-09-05T08:34:07.112Z",
+    "generatedAt": "2026-09-05T09:12:51.645Z",
     "packages": ["qyani-components", "@qianrenni/core"],
     "counts": {
       "@qianrenni/core/algorithm": 8,

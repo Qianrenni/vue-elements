@@ -288,7 +288,7 @@
 
       <div v-if="isEmpty" class="q-table-empty">
         <slot name="empty">
-          <QEmpty description="暂无数据" />
+          <EmptyFallback />
         </slot>
       </div>
 
@@ -339,7 +339,15 @@
 <script lang="ts" setup generic="T">
 import { QPagination } from '@/components/basic/Pagination';
 import { QEmpty } from '@/components/display/Empty';
-import { computed, type StyleValue, useSlots } from 'vue';
+import { useQConfig } from '@/components/theme/ConfigProvider/composable';
+import {
+  computed,
+  defineComponent,
+  h,
+  type StyleValue,
+  useSlots,
+  type VNodeChild,
+} from 'vue';
 
 import { type TableDisplayRow, useQTable } from './composable';
 import type {
@@ -350,6 +358,19 @@ import type {
 } from './type';
 
 defineOptions({ name: 'QTable' });
+
+const config = useQConfig();
+
+/** 空态兜底：优先 QConfigProvider.renderEmpty，缺省用内置 QEmpty（无 #empty 插槽时） */
+const EmptyFallback = defineComponent({
+  name: 'QTableEmptyFallback',
+  setup() {
+    const cfg = config;
+    return () =>
+      (cfg?.renderEmpty?.() ??
+        h(QEmpty, { description: '暂无数据' })) as VNodeChild;
+  },
+});
 
 const props = withDefaults(defineProps<QTableProps<T>>(), {
   dataSource: () => [],
