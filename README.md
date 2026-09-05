@@ -79,6 +79,7 @@ app.mount('#app');
 ### Basic Components
 
 - `QButton` - Button component
+- `QFloatButton` - Float button (badge/tooltip/backTop)
 - `QIcon` - Icon component
 - `QMessage` - Message prompt
 - `QNotification` - Notification (imperative util)
@@ -90,6 +91,7 @@ app.mount('#app');
 
 - `QAvatar` - Avatar component
 - `QBadge` - Badge component
+- `QBorderBeam` - Border beam
 - `QCarousel` / `QCarouselItem` - Carousel
 - `QDivider` - Divider
 - `QEmpty` - Empty state
@@ -139,6 +141,7 @@ app.mount('#app');
 - `QInputNumber` - Number input
 - `QRate` - Rate
 - `QSlider` - Slider
+- `QTimePicker` - Time picker
 - `QTransfer` - Transfer
 - `QTreeSelect` - Tree select
 
@@ -152,6 +155,7 @@ app.mount('#app');
 - `QContent` - Layout content
 - `QDialog` - Dialog
 - `QDrawer` - Drawer
+- `QFlex` - Flex layout
 - `QFooter` - Layout footer
 - `QHeader` - Layout header
 - `QLayout` - Layout container
@@ -159,6 +163,7 @@ app.mount('#app');
 - `QSider` - Layout sider (collapsible)
 - `QScrollContainer` - Scroll container
 - `QSpace` - Space
+- `QSplitter` - Splitter (draggable)
 - `QSwiperAction` - Swipe action
 - `QTooltip` - Tooltip
 - `QTree` / `QTreeNode` - Tree control

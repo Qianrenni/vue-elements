@@ -1,14 +1,15 @@
 <!--
  * @component QApp
- * @description App 包裹组件（对标 antd App）：为子树提供作用域上下文（QAppContext），把命令式通知渲染进本 App 根下以继承主题/变量；通过 useQApp() 消费。
+ * @description App 包裹组件（对标 antd App）：为子树提供作用域上下文（QAppContext），把命令式 message / notification / modal 渲染进本 App 根下以继承主题/变量；通过 useQApp() 消费。
  -->
 <script lang="ts" setup>
-import { useMessage } from '@/utils/business/useMessage';
 import { createNotification } from '@/utils/business/useNotification';
 import type { QNotificationScope } from '@/utils/business/useNotification';
 import { onBeforeUnmount, ref } from 'vue';
 
 import { provideQApp } from './composable';
+import { createMessageScope, type MessageScope } from './messageScope';
+import { createModalScope, type QModalScope } from './modalScope';
 
 defineOptions({ name: 'QApp' });
 
@@ -19,13 +20,24 @@ const notification: QNotificationScope = createNotification({
   host: () => rootEl.value ?? document.body,
 });
 
+// 作用域消息：同样挂到本 App 根，继承主题变量
+const message: MessageScope = createMessageScope({
+  host: () => rootEl.value ?? document.body,
+});
+
+// 作用域弹窗：命令式 QDialog
+const modal: QModalScope = createModalScope();
+
 provideQApp({
-  message: useMessage,
+  message,
   notification,
+  modal,
 });
 
 onBeforeUnmount(() => {
+  message.destroy();
   notification.destroy();
+  modal.destroy();
 });
 </script>
 

@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QSplitter 渲染 > 两个面板 + 分隔条，首个面板宽度 = size 1`] = `
+"<div data-v-05ced6f9="" class="q-splitter q-splitter--row">
+  <div data-v-05ced6f9="" class="q-splitter-pane" style="flex: 0 0 auto; min-width: 0px; min-height: 0px; overflow: hidden; width: 200px;">
+    <div class="pane-a">A</div>
+  </div>
+  <div data-v-05ced6f9="" class="q-splitter-gutter" tabindex="0" role="separator" aria-orientation="vertical" style="flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 8px;"><span data-v-05ced6f9="" class="q-splitter-gutter__line" aria-hidden="true"></span></div>
+  <div data-v-05ced6f9="" class="q-splitter-pane q-splitter-pane--rest">
+    <div class="pane-b">B</div>
+  </div>
+</div>"
+`;

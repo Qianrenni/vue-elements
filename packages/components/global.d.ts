@@ -8,9 +8,11 @@ import type {
   QAutoComplete,
   QAvatar,
   QBadge,
+  QBorderBeam,
   QBreadcrumb,
   QBreathing,
   QButton,
+  QCalendar,
   QCard,
   QCarousel,
   QCarouselItem,
@@ -27,12 +29,16 @@ import type {
   QDrawer,
   QDropdown,
   QEmpty,
+  QFlex,
+  QFloatButton,
   QFooter,
+  QForm,
   QFormButton,
   QFormCheckboxGroup,
   QFormColorPicker,
   QFormDatePicker,
   QFormFileUpload,
+  QFormItem,
   QFormRadioGroup,
   QFormRangeSlider,
   QFormSelect,
@@ -46,8 +52,11 @@ import type {
   QInputNumber,
   QLayout,
   QLazyImage,
+  QListy,
   QLoading,
   QMarkdownRender,
+  QMasonry,
+  QMentions,
   QMenu,
   QMessage,
   QNavSection,
@@ -70,6 +79,7 @@ import type {
   QSlider,
   QSpace,
   QSpinner,
+  QSplitter,
   QStatistic,
   QSteps,
   QSwiperAction,
@@ -78,7 +88,9 @@ import type {
   QTag,
   QThemeToggle,
   QTimeline,
+  QTimePicker,
   QTooltip,
+  QTour,
   QTransfer,
   QTree,
   QTreeNode,
@@ -96,9 +108,11 @@ declare module 'vue' {
     QAutoComplete: typeof QAutoComplete;
     QAvatar: typeof QAvatar;
     QBadge: typeof QBadge;
+    QBorderBeam: typeof QBorderBeam;
     QBreadcrumb: typeof QBreadcrumb;
     QBreathing: typeof QBreathing;
     QButton: typeof QButton;
+    QCalendar: typeof QCalendar;
     QCard: typeof QCard;
     QCarousel: typeof QCarousel;
     QCarouselItem: typeof QCarouselItem;
@@ -115,12 +129,16 @@ declare module 'vue' {
     QDrawer: typeof QDrawer;
     QDropdown: typeof QDropdown;
     QEmpty: typeof QEmpty;
+    QFlex: typeof QFlex;
+    QFloatButton: typeof QFloatButton;
     QFooter: typeof QFooter;
+    QForm: typeof QForm;
     QFormButton: typeof QFormButton;
     QFormCheckboxGroup: typeof QFormCheckboxGroup;
     QFormColorPicker: typeof QFormColorPicker;
     QFormDatePicker: typeof QFormDatePicker;
     QFormFileUpload: typeof QFormFileUpload;
+    QFormItem: typeof QFormItem;
     QFormRadioGroup: typeof QFormRadioGroup;
     QFormRangeSlider: typeof QFormRangeSlider;
     QFormSelect: typeof QFormSelect;
@@ -134,8 +152,11 @@ declare module 'vue' {
     QInputNumber: typeof QInputNumber;
     QLayout: typeof QLayout;
     QLazyImage: typeof QLazyImage;
+    QListy: typeof QListy;
     QLoading: typeof QLoading;
     QMarkdownRender: typeof QMarkdownRender;
+    QMasonry: typeof QMasonry;
+    QMentions: typeof QMentions;
     QMenu: typeof QMenu;
     QMessage: typeof QMessage;
     QNavSection: typeof QNavSection;
@@ -158,6 +179,7 @@ declare module 'vue' {
     QSlider: typeof QSlider;
     QSpace: typeof QSpace;
     QSpinner: typeof QSpinner;
+    QSplitter: typeof QSplitter;
     QStatistic: typeof QStatistic;
     QSteps: typeof QSteps;
     QSwiperAction: typeof QSwiperAction;
@@ -166,7 +188,9 @@ declare module 'vue' {
     QTag: typeof QTag;
     QThemeToggle: typeof QThemeToggle;
     QTimeline: typeof QTimeline;
+    QTimePicker: typeof QTimePicker;
     QTooltip: typeof QTooltip;
+    QTour: typeof QTour;
     QTransfer: typeof QTransfer;
     QTree: typeof QTree;
     QTreeNode: typeof QTreeNode;

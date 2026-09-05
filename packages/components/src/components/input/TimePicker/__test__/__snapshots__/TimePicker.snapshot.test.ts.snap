@@ -1,0 +1,171 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QTimePicker > 受控 open 渲染时/分/秒列 1`] = `
+"<div data-v-df25f38b="" class="q-timepicker">
+  <div data-v-df25f38b="" class="q-timepicker__field"><input data-v-df25f38b="" class="q-timepicker__input" placeholder="请选择时间" readonly="" value="12:30:45"><button data-v-df25f38b="" class="q-timepicker__clear" type="button" aria-label="清除"> × </button><span data-v-df25f38b="" class="q-timepicker__caret" aria-hidden="true">▾</span></div>
+  <div data-v-df25f38b="" class="q-timepicker__panel">
+    <div data-v-df25f38b="" class="q-timepicker__cols">
+      <div data-v-df25f38b="" class="q-timepicker__col">
+        <div data-v-df25f38b="" class="q-timepicker__col-label">时</div>
+        <ul data-v-df25f38b="" class="q-timepicker__list">
+          <li data-v-df25f38b="" class="q-timepicker__item">00</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">01</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">02</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">03</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">04</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">05</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">06</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">07</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">08</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">09</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">10</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">11</li>
+          <li data-v-df25f38b="" class="q-timepicker__item is-active">12</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">13</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">14</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">15</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">16</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">17</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">18</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">19</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">20</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">21</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">22</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">23</li>
+        </ul>
+      </div>
+      <div data-v-df25f38b="" class="q-timepicker__col">
+        <div data-v-df25f38b="" class="q-timepicker__col-label">分</div>
+        <ul data-v-df25f38b="" class="q-timepicker__list">
+          <li data-v-df25f38b="" class="q-timepicker__item">00</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">01</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">02</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">03</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">04</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">05</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">06</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">07</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">08</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">09</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">10</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">11</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">12</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">13</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">14</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">15</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">16</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">17</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">18</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">19</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">20</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">21</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">22</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">23</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">24</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">25</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">26</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">27</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">28</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">29</li>
+          <li data-v-df25f38b="" class="q-timepicker__item is-active">30</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">31</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">32</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">33</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">34</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">35</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">36</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">37</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">38</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">39</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">40</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">41</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">42</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">43</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">44</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">45</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">46</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">47</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">48</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">49</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">50</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">51</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">52</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">53</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">54</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">55</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">56</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">57</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">58</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">59</li>
+        </ul>
+      </div>
+      <div data-v-df25f38b="" class="q-timepicker__col">
+        <div data-v-df25f38b="" class="q-timepicker__col-label">秒</div>
+        <ul data-v-df25f38b="" class="q-timepicker__list">
+          <li data-v-df25f38b="" class="q-timepicker__item">00</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">01</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">02</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">03</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">04</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">05</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">06</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">07</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">08</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">09</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">10</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">11</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">12</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">13</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">14</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">15</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">16</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">17</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">18</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">19</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">20</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">21</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">22</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">23</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">24</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">25</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">26</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">27</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">28</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">29</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">30</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">31</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">32</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">33</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">34</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">35</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">36</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">37</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">38</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">39</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">40</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">41</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">42</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">43</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">44</li>
+          <li data-v-df25f38b="" class="q-timepicker__item is-active">45</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">46</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">47</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">48</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">49</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">50</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">51</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">52</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">53</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">54</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">55</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">56</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">57</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">58</li>
+          <li data-v-df25f38b="" class="q-timepicker__item">59</li>
+        </ul>
+      </div>
+    </div>
+    <div data-v-df25f38b="" class="q-timepicker__footer"><button data-v-df25f38b="" class="q-timepicker__btn" type="button"> 清除 </button><button data-v-df25f38b="" class="q-timepicker__btn q-timepicker__btn--primary" type="button"> 确定 </button></div>
+  </div>
+</div>"
+`;

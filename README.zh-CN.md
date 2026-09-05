@@ -90,6 +90,7 @@ const username = ref('');
 ### 基础组件 (Basic)
 
 - `QButton` - 通用按钮组件
+- `QFloatButton` - 悬浮按钮（badge/tooltip/backTop）
 - `QIcon` - 图标组件
 - `QMessage` - 消息提示
 - `QNotification` - 通知提醒框（命令式 useNotification 单例）
@@ -101,6 +102,7 @@ const username = ref('');
 
 - `QAvatar` - 头像组件
 - `QBadge` - 徽章组件
+- `QBorderBeam` - 边框流光
 - `QCarousel` / `QCarouselItem` - 轮播图
 - `QDivider` - 分割线
 - `QEmpty` - 空状态
@@ -150,6 +152,7 @@ const username = ref('');
 - `QInputNumber` - 数字输入框
 - `QRate` - 评分
 - `QSlider` - 滑动条
+- `QTimePicker` - 时间选择
 - `QTransfer` - 穿梭框
 - `QTreeSelect` - 树选择
 
@@ -163,6 +166,7 @@ const username = ref('');
 - `QContent` - 内容区
 - `QDialog` - 对话框
 - `QDrawer` - 抽屉
+- `QFlex` - 弹性布局
 - `QFooter` - 底部栏
 - `QHeader` - 顶栏
 - `QLayout` - 布局容器
@@ -170,6 +174,7 @@ const username = ref('');
 - `QSider` - 侧边栏（可折叠）
 - `QScrollContainer` - 滚动容器
 - `QSpace` - 间距
+- `QSplitter` - 分隔面板（拖拽调整）
 - `QSwiperAction` - 滑动操作
 - `QTooltip` - 文字提示
 - `QTree` / `QTreeNode` - 树形控件

@@ -2,17 +2,17 @@
   "meta": {
     "name": "qyani-components knowledge base",
     "version": "1.0.0",
-    "generatedAt": "2026-09-05T04:08:49.287Z",
+    "generatedAt": "2026-09-05T06:33:33.173Z",
     "packages": ["qyani-components", "@qianrenni/core"],
     "counts": {
       "@qianrenni/core/algorithm": 8,
       "@qianrenni/core/business": 7,
-      "qyani-components/component": 84,
+      "qyani-components/component": 96,
       "qyani-components/componentUtil": 9,
       "qyani-components/event": 3,
       "qyani-components/style": 27
     },
-    "total": 138
+    "total": 150
   },
   "entries": [
     {
@@ -656,13 +656,15 @@
       "relPath": "src/components/theme/App",
       "docFile": "README.md",
       "title": "QApp",
-      "description": "App 包裹组件（对标 Ant Design App）：为子树提供**作用域上下文**，把命令式通知渲染进本 App 根（而非直接挂 `body`），从而继承外层 `QConfigProvider` 的 CSS 变量 / 主题。子树内通过 `useQApp()` 消费。",
+      "description": "App 包裹组件（对标 Ant Design App）：为子树提供**作用域上下文**，把命令式 `message` / `notification` / `modal` 渲染进本 App 根（而非直接挂 `body`），从而继承外层 `QConfigProvider` 的 CSS 变量 / 主题。子树内通过 `useQApp()` 消费。",
       "headings": [
         "QApp",
         "用途",
         "基本用法",
         "结合 ConfigProvider",
         "useQApp()",
+        "message",
+        "modal",
         "Slots",
         "说明"
       ],
@@ -678,7 +680,7 @@
         ],
         "exposes": []
       },
-      "readme": "# QApp\r\n\r\n## 用途\r\n\r\nApp 包裹组件（对标 Ant Design App）：为子树提供**作用域上下文**，把命令式通知渲染进本 App 根（而非直接挂 `body`），从而继承外层 `QConfigProvider` 的 CSS 变量 / 主题。子树内通过 `useQApp()` 消费。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<script lang=\"ts\" setup>\r\nimport { useQApp } from 'qyani-components';\r\n\r\nconst { notification, message } = useQApp();\r\n</script>\r\n\r\n<template>\r\n  <QApp>\r\n    <QButton type=\"primary\" @click=\"notification.success('已保存')\">\r\n      打开通知\r\n    </QButton>\r\n  </QApp>\r\n</template>\r\n```\r\n\r\n## 结合 ConfigProvider\r\n\r\n```vue\r\n<template>\r\n  <QConfigProvider :css-vars=\"{ '--q-color-primary': '#722ed1' }\">\r\n    <QApp>\r\n      <!-- App 内的通知会渲染进本根，继承紫色主题 -->\r\n      <MyPage />\r\n    </QApp>\r\n  </QConfigProvider>\r\n</template>\r\n```\r\n\r\n## useQApp()\r\n\r\n| 字段           | 类型           | 说明                                         |\r\n| -------------- | -------------- | -------------------------------------------- |\r\n| `notification` | 通知作用域实例 | 绑定到本 QApp 的通知 API（open/success/…）。 |\r\n| `message`      | 全局消息 util  | 当前为全局单例。                             |\r\n\r\n未包 `QApp` 时 `useQApp()` 回退到全局单例（`useNotification` / `useMessage`），保证代码可无 `QApp` 运行。\r\n\r\n## Slots\r\n\r\n| 插槽     | 说明       |\r\n| -------- | ---------- |\r\n| 默认插槽 | 页面内容。 |\r\n\r\n## 说明\r\n\r\n- `QApp` 根为普通 `div.q-app`（`position: relative`），不会影响布局。\r\n- 卸载时自动销毁作用域通知容器并清理定时器。\r\n- 当前作用域化的是 `notification`；`message` / modal 上下文为后续扩展预留。\r\n"
+      "readme": "# QApp\r\n\r\n## 用途\r\n\r\nApp 包裹组件（对标 Ant Design App）：为子树提供**作用域上下文**，把命令式 `message` / `notification` / `modal` 渲染进本 App 根（而非直接挂 `body`），从而继承外层 `QConfigProvider` 的 CSS 变量 / 主题。子树内通过 `useQApp()` 消费。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<script lang=\"ts\" setup>\r\nimport { useQApp } from 'qyani-components';\r\n\r\nconst { message, notification, modal } = useQApp();\r\nconst onDelete = async () => {\r\n  const ok = await modal.confirm({\r\n    title: '删除确认',\r\n    content: '确定要删除这条数据吗？',\r\n  });\r\n  if (ok) message.success('已删除');\r\n};\r\n</script>\r\n\r\n<template>\r\n  <QApp>\r\n    <QButton type=\"primary\" @click=\"notification.success('已保存')\">\r\n      打开通知\r\n    </QButton>\r\n    <QButton @click=\"message.info('这是一条消息')\">消息</QButton>\r\n    <QButton @click=\"onDelete\">确认弹窗</QButton>\r\n  </QApp>\r\n</template>\r\n```\r\n\r\n## 结合 ConfigProvider\r\n\r\n```vue\r\n<template>\r\n  <QConfigProvider :css-vars=\"{ '--q-color-primary': '#722ed1' }\">\r\n    <QApp>\r\n      <!-- App 内的通知会渲染进本根，继承紫色主题 -->\r\n      <MyPage />\r\n    </QApp>\r\n  </QConfigProvider>\r\n</template>\r\n```\r\n\r\n## useQApp()\r\n\r\n| 字段           | 类型               | 说明                                                    |\r\n| -------------- | ------------------ | ------------------------------------------------------- |\r\n| `notification` | 通知作用域实例     | 绑定到本 QApp 的通知 API（open/success/…）。            |\r\n| `message`      | 消息作用域实例     | 绑定到本 QApp 的消息 API（info/success/warning/error）。|\r\n| `modal`        | 弹窗作用域实例     | 绑定到本 QApp 的命令式弹窗（confirm / alert）。          |\r\n\r\n未包 `QApp` 时 `useQApp()` 回退到全局单例（`useNotification` / `useMessage` / 全局弹窗），保证代码可无 `QApp` 运行。\r\n\r\n### message\r\n\r\n`message.success('已保存')`、`message.info(content)` 等。内容可为字符串或 `{ message, type?, duration? }`；`duration: 0` 常驻。返回句柄含 `close()`。\r\n\r\n### modal\r\n\r\n```ts\r\nconst ok = await modal.confirm({\r\n  title: '删除确认',\r\n  content: '确定删除？',\r\n  confirmText: '删除',\r\n  cancelText: '再想想',\r\n});\r\n// ok === true 用户确认，false 取消/关闭\r\n```\r\n\r\n`modal.alert({ title, content })`：仅「确定」的提示弹窗。\r\n\r\n## Slots\r\n\r\n| 插槽     | 说明       |\r\n| -------- | ---------- |\r\n| 默认插槽 | 页面内容。 |\r\n\r\n## 说明\r\n\r\n- `QApp` 根为普通 `div.q-app`（`position: relative`），不会影响布局。\r\n- 卸载时自动销毁作用域 message / notification / modal，清理定时器与容器。\r\n- 作用域化的 message / notification 挂在本 App 根内，可继承 `QConfigProvider` 的 CSS 变量；modal 命令式渲染 `QDialog`。\r\n"
     },
     {
       "name": "QAutoComplete",
@@ -910,6 +912,90 @@
       "readme": "# QBadge\r\n\r\n## 用途\r\n\r\n在默认插槽内容的右上角展示数值/文本徽章或小圆点。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<QBadge :value=\"12\" :max=\"99\">\r\n  <button>消息</button>\r\n</QBadge>\r\n```\r\n\r\n## Props\r\n\r\n| 名称    | 类型                                                                  | 必填 | 默认值   | 说明                                                                              |\r\n| ------- | --------------------------------------------------------------------- | ---- | -------- | --------------------------------------------------------------------------------- |\r\n| `type`  | `'primary' \\| 'success' \\| 'warning' \\| 'danger' \\| 'gray' \\| 'info'` | 否   | `'info'` | 徽章颜色类型。                                                                    |\r\n| `value` | `number \\| string`                                                    | 否   | `1`      | 徽章显示值；数值或可被 `parseInt` 解析的字符串超过 `max` 时，显示固定文本 `99+`。 |\r\n| `max`   | `number`                                                              | 否   | `99`     | 触发超限显示的阈值。                                                              |\r\n| `dot`   | `boolean`                                                             | 否   | `false`  | 是否仅显示小圆点；为 `true` 时不显示 `value`。                                    |\r\n\r\n## Emits\r\n\r\n无。\r\n\r\n## Slots\r\n\r\n| 名称     | 作用域参数 | 说明                                   |\r\n| -------- | ---------- | -------------------------------------- |\r\n| 默认插槽 | 无         | 徽章所附着的内容；未提供时仅渲染徽章。 |\r\n\r\n## Exposes\r\n\r\n无。\r\n"
     },
     {
+      "name": "QBorderBeam",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "display",
+      "relPath": "src/components/display/BorderBeam",
+      "docFile": "README.md",
+      "title": "QBorderBeam",
+      "description": "边框流光（对齐 Ant Design BorderBeam，🆕6.4）：沿容器边框持续移动的装饰性光束，用于登录面板、推荐卡片、AI 模块、关键 CTA 等强调场景。仅作装饰，不应替代焦点环 / 校验边框等语义状态。",
+      "headings": [
+        "QBorderBeam",
+        "用途",
+        "基本用法",
+        "颜色 / 时长 / 数量",
+        "悬停显示",
+        "Props",
+        "Slots",
+        "Exposes / Emits",
+        "说明"
+      ],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "var(--q-color-primary)",
+            "description": "光束颜色（任意 CSS 颜色 / var()）。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "1",
+            "description": "光束数量（沿边框均匀分布）。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "6",
+            "description": "环绕一圈秒数。"
+          },
+          {
+            "name": "",
+            "type": "number \\",
+            "required": "string",
+            "default": "否",
+            "description": "100"
+          },
+          {
+            "name": "",
+            "type": "number \\",
+            "required": "string",
+            "default": "否",
+            "description": "1"
+          },
+          {
+            "name": "",
+            "type": "number \\",
+            "required": "string",
+            "default": "否",
+            "description": "0"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "false",
+            "description": "仅悬停容器时显示光束。"
+          }
+        ],
+        "emits": [],
+        "slots": [
+          {
+            "name": "",
+            "scope": "",
+            "fallback": ""
+          }
+        ],
+        "exposes": []
+      },
+      "readme": "# QBorderBeam\r\n\r\n## 用途\r\n\r\n边框流光（对齐 Ant Design BorderBeam，🆕6.4）：沿容器边框持续移动的装饰性光束，用于登录面板、推荐卡片、AI 模块、关键 CTA 等强调场景。仅作装饰，不应替代焦点环 / 校验边框等语义状态。\r\n\r\n## 基本用法\r\n\r\n包裹任意内容；容器圆角通过 class / style 设置，光束层自动 `border-radius: inherit`：\r\n\r\n```vue\r\n<template>\r\n  <QBorderBeam style=\"border-radius: 16px\">\r\n    <div class=\"card\">渐变卡片</div>\r\n  </QBorderBeam>\r\n</template>\r\n```\r\n\r\n## 颜色 / 时长 / 数量\r\n\r\n```vue\r\n<template>\r\n  <QBorderBeam color=\"#36cfc9\" :duration=\"4\" :count=\"2\">\r\n    <div class=\"card\">多光束 · 快速环绕</div>\r\n  </QBorderBeam>\r\n</template>\r\n```\r\n\r\n## 悬停显示\r\n\r\n```vue\r\n<template>\r\n  <QBorderBeam hover>\r\n    <div class=\"card\">悬停显示光束</div>\r\n  </QBorderBeam>\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性        | 类型               | 必填 | 默认值                   | 说明                                          |\r\n| ----------- | ------------------ | ---- | ------------------------ | --------------------------------------------- |\r\n| `color`     | `string`           | 否   | `var(--q-color-primary)` | 光束颜色（任意 CSS 颜色 / var()）。           |\r\n| `count`     | `number`           | 否   | `1`                      | 光束数量（沿边框均匀分布）。                  |\r\n| `duration`  | `number`           | 否   | `6`                      | 环绕一圈秒数。                                |\r\n| `size`      | `number \\| string` | 否   | `100`                    | 可见光束弧长（数字视为 px，内部换算为角度）。 |\r\n| `lineWidth` | `number \\| string` | 否   | `1`                      | 光束线宽（数字视为 px）。                     |\r\n| `outset`    | `number \\| string` | 否   | `0`                      | 光束层相对容器外扩距离（数字视为 px）。       |\r\n| `hover`     | `boolean`          | 否   | `false`                  | 仅悬停容器时显示光束。                        |\r\n\r\n## Slots\r\n\r\n| 插槽     | 说明               |\r\n| -------- | ------------------ |\r\n| 默认插槽 | 被光束装饰的内容。 |\r\n\r\n## Exposes / Emits\r\n\r\n无。\r\n\r\n## 说明\r\n\r\n- 组件自身**不产生边框**：光束沿容器边缘移动，需要内容本身具备背景/圆角以形成视觉容器。\r\n- 圆角同步：在 `QBorderBeam` 根节点（class/style 透传）设置 `border-radius`，光束层 `border-radius: inherit` 自动跟随。\r\n- 开启系统「减弱动态效果」时（`prefers-reduced-motion`）光束隐藏。\r\n- `size` 为本库近似换算（px 语义映射到角度区间 20°–300°），用于控制弧段长短；如需更精细可后续按实测容器周长换算。\r\n"
+    },
+    {
       "name": "QBreadcrumb",
       "package": "qyani-components",
       "type": "component",
@@ -1109,6 +1195,62 @@
         "exposes": []
       },
       "readme": "# QButton\r\n\r\n## 用途\r\n\r\n通用按钮组件，对齐 Ant Design 的按钮 API。支持 `primary / default / dashed / text / link` 五种语义类型，`level1~6` 六档大小（默认 `level3`），以及 `danger`、`ghost`、`block`、`loading`、图标插槽等能力；传入 `href` 时渲染为链接按钮。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<template>\r\n  <QButton type=\"primary\">主按钮</QButton>\r\n  <QButton>默认按钮</QButton>\r\n  <QButton type=\"dashed\">虚线按钮</QButton>\r\n  <QButton type=\"text\">文本按钮</QButton>\r\n  <QButton type=\"link\">链接按钮</QButton>\r\n</template>\r\n```\r\n\r\n带图标、加载态与大小档位：\r\n\r\n```vue\r\n<template>\r\n  <QButton type=\"primary\" loading>加载中</QButton>\r\n  <QButton type=\"primary\" danger>危险按钮</QButton>\r\n  <QButton block>块级按钮</QButton>\r\n  <QButton href=\"https://example.com\" target=\"_blank\">链接</QButton>\r\n</template>\r\n```\r\n\r\n六档大小（1 最小 → 6 最大，默认 `level3`）：\r\n\r\n```vue\r\n<template>\r\n  <QButton type=\"primary\" :level=\"1\">level 1</QButton>\r\n  <QButton type=\"primary\" :level=\"3\">level 3（默认）</QButton>\r\n  <QButton type=\"primary\" :level=\"6\">level 6</QButton>\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性        | 类型                                                     | 必填 | 默认值      | 说明                                                         |\r\n| ----------- | -------------------------------------------------------- | ---- | ----------- | ------------------------------------------------------------ |\r\n| `type`      | `'primary' \\| 'default' \\| 'dashed' \\| 'text' \\| 'link'` | 否   | `'default'` | 按钮语义类型。                                               |\r\n| `level`     | `1 \\| 2 \\| 3 \\| 4 \\| 5 \\| 6`                             | 否   | `3`         | 按钮大小档位（1 最小 → 6 最大）。                            |\r\n| `size`      | `'small' \\| 'middle' \\| 'large'`                         | 否   | `'middle'`  | 兼容旧 API 的尺寸，映射到 `level` 2/3/4；传 `level` 时忽略。 |\r\n| `htmlType`  | `'button' \\| 'submit' \\| 'reset'`                        | 否   | `'button'`  | 原生 `button` 的 type，用于表单提交或重置。                  |\r\n| `disabled`  | `boolean`                                                | 否   | `false`     | 是否禁用按钮。                                               |\r\n| `loading`   | `boolean`                                                | 否   | `false`     | 是否加载中；加载时禁用点击并显示加载指示器。                 |\r\n| `danger`    | `boolean`                                                | 否   | `false`     | 危险按钮（使用红色系）。                                     |\r\n| `ghost`     | `boolean`                                                | 否   | `false`     | 幽灵按钮（透明背景 + 主题色描边/文字），适合深色背景。       |\r\n| `block`     | `boolean`                                                | 否   | `false`     | 块级按钮，占满父容器整行。                                   |\r\n| `autofocus` | `boolean`                                                | 否   | `false`     | 页面加载后是否自动聚焦。                                     |\r\n| `href`      | `string`                                                 | 否   | 无          | 传入后渲染为 `<a>` 链接按钮。                                |\r\n| `target`    | `string`                                                 | 否   | 无          | 链接按钮的打开方式（配合 `href`，如 `_blank`）。             |\r\n\r\n> `level` 与 `size` 同时传入时以 `level` 为准；`small/middle/large` → `level 2/3/4`。\r\n> 现阶段本组件样式**直接引用**设计系统库内 token（`--q-color-*` / `--q-font-*` / `--q-radius-*`）。antd 对齐语义层（`src/style/tokens/antd.css` 的 `--q-ant-*`）已为 ConfigProvider / 主题定制预留，后续可无痛迁移。\r\n\r\n> 原生 `button` 的其他标准属性（如 `name`、`form`、`formaction` 等）可通过普通 attribute 透传到根元素。\r\n\r\n## Emits\r\n\r\n| 事件名  | 参数类型     | 触发时机                                                 |\r\n| ------- | ------------ | -------------------------------------------------------- |\r\n| `click` | `MouseEvent` | 点击按钮时触发；`disabled` 或 `loading` 状态下不会触发。 |\r\n\r\n## Slots\r\n\r\n| 插槽     | 说明                         |\r\n| -------- | ---------------------------- |\r\n| 默认插槽 | 按钮内容（文字或任意节点）。 |\r\n| `icon`   | 前置图标（未加载时显示）。   |\r\n\r\n## 可访问性（Accessibility）\r\n\r\n- 默认渲染为原生 `<button>`；传 `href` 时渲染为 `<a>` 并保留链接语义。\r\n- `loading` 时设置 `aria-busy=\"true\"`；`disabled`/`loading` 时设置 `aria-disabled` 并从 Tab 键序移除（`<a>` 形态设 `tabindex=\"-1\"`）。\r\n- 键盘支持：`Enter`/`Space` 触发点击，`focus-visible` 时显示主题色焦点环。\r\n- 仅图标按钮（无文本内容）请自行补充 `aria-label`。\r\n\r\n## Exposes\r\n\r\n无。\r\n"
+    },
+    {
+      "name": "QCalendar",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "display",
+      "relPath": "src/components/display/Calendar",
+      "docFile": "README.md",
+      "title": "QCalendar",
+      "description": "日历（对齐 antd Calendar 基础能力）：月视图网格，支持选中/今天高亮、前后月切换、今日按钮与 `disabledDate`。",
+      "headings": ["QCalendar", "用途", "Props", "Emits", "说明"],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "Date \\",
+            "required": "null",
+            "default": "否",
+            "description": "—"
+          },
+          {
+            "name": "",
+            "type": "(date: Date) => boolean",
+            "required": "否",
+            "default": "—",
+            "description": "禁用日期判断。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "true",
+            "description": "再次点击已选日期取消。"
+          }
+        ],
+        "emits": [
+          {
+            "event": "update:modelValue",
+            "payload": "",
+            "trigger": ""
+          },
+          {
+            "event": "change",
+            "payload": "",
+            "trigger": ""
+          },
+          {
+            "event": "panel-change",
+            "payload": "",
+            "trigger": ""
+          }
+        ],
+        "slots": [],
+        "exposes": []
+      },
+      "readme": "# QCalendar\r\n\r\n## 用途\r\n\r\n日历（对齐 antd Calendar 基础能力）：月视图网格，支持选中/今天高亮、前后月切换、今日按钮与 `disabledDate`。\r\n\r\n```vue\r\n<script lang=\"ts\" setup>\r\nimport { ref } from 'vue';\r\n\r\nconst value = ref(new Date());\r\n</script>\r\n\r\n<template>\r\n  <QCalendar v-model=\"value\" />\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性           | 类型                      | 必填 | 默认值 | 说明                   |\r\n| -------------- | ------------------------- | ---- | ------ | ---------------------- |\r\n| `modelValue`   | `Date \\| null`            | 否   | —      | 选中日期（v-model）。  |\r\n| `disabledDate` | `(date: Date) => boolean` | 否   | —      | 禁用日期判断。         |\r\n| `allowClear`   | `boolean`                 | 否   | `true` | 再次点击已选日期取消。 |\r\n\r\n## Emits\r\n\r\n| 事件                | 参数            | 说明             |\r\n| ------------------- | --------------- | ---------------- |\r\n| `update:modelValue` | `Date \\| null`  | 选中变化。       |\r\n| `change`            | `Date \\| null`  | 选中变化。       |\r\n| `panel-change`      | `(year, month)` | 切换月份面板时。 |\r\n\r\n## 说明\r\n\r\n- 目前为「月视图 + 选择日期」基础能力；年/季度切换、日期单元格插槽等可按需扩展。\r\n"
     },
     {
       "name": "QCard",
@@ -2285,6 +2427,191 @@
       "readme": "# QEmpty\r\n\r\n## 用途\r\n\r\n空状态组件，对齐 Ant Design `Empty`：数据为空/无结果时展示占位插画与文案，可自定义插画、描述与底部操作区。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<template>\r\n  <!-- 默认插画 + 默认文案 -->\r\n  <QEmpty />\r\n\r\n  <!-- 自定义描述 + 底部操作 -->\r\n  <QEmpty description=\"暂无搜索结果\">\r\n    <QButton>重新搜索</QButton>\r\n  </QEmpty>\r\n\r\n  <!-- 简洁插画 -->\r\n  <QEmpty preset=\"simple\" description=\"暂无数据\" />\r\n\r\n  <!-- 完全自定义插画 -->\r\n  <QEmpty>\r\n    <template #image>\r\n      <img src=\"/custom-empty.svg\" width=\"120\" alt=\"\" />\r\n    </template>\r\n  </QEmpty>\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性          | 类型                    | 必填 | 默认值       | 说明                                      |\r\n| ------------- | ----------------------- | ---- | ------------ | ----------------------------------------- |\r\n| `description` | `string`                | 否   | `'暂无数据'` | 描述文案（用 `description` 插槽可覆盖）。 |\r\n| `preset`      | `'default' \\| 'simple'` | 否   | `'default'`  | 插画预设。                                |\r\n| `imageStyle`  | `CSSProperties`         | 否   | 无           | 图片容器样式。                            |\r\n\r\n## Slots\r\n\r\n| 插槽          | 说明                         |\r\n| ------------- | ---------------------------- |\r\n| `image`       | 替换整张插画。               |\r\n| `description` | 替换描述文案。               |\r\n| 默认插槽      | 渲染为底部操作区（footer）。 |\r\n\r\n## 可访问性（Accessibility）\r\n\r\n- 插画 SVG 以 `aria-hidden=\"true\"` 隐藏（纯装饰）。\r\n\r\n## Exposes\r\n\r\n无。\r\n"
     },
     {
+      "name": "QFlex",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "layout",
+      "relPath": "src/components/layout/Flex",
+      "docFile": "README.md",
+      "title": "QFlex",
+      "description": "弹性布局容器（对齐 Ant Design Flex）：一行 CSS flex 封装，用于快速搭主子轴/对齐/间距的布局。",
+      "headings": ["QFlex", "用途", "Props", "Slots", "说明"],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "false",
+            "description": "主轴纵向（column）。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "false",
+            "description": "是否换行。"
+          },
+          {
+            "name": "",
+            "type": "flex-start \\",
+            "required": "center \\",
+            "default": "flex-end \\",
+            "description": "space-between \\"
+          },
+          {
+            "name": "",
+            "type": "flex-start \\",
+            "required": "center \\",
+            "default": "flex-end \\",
+            "description": "stretch \\"
+          },
+          {
+            "name": "",
+            "type": "number \\",
+            "required": "'small' \\",
+            "default": "'middle' \\",
+            "description": "'large' \\"
+          },
+          {
+            "name": "",
+            "type": "number \\",
+            "required": "string",
+            "default": "否",
+            "description": "—"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "'div'",
+            "description": "渲染标签。"
+          }
+        ],
+        "emits": [],
+        "slots": [
+          {
+            "name": "",
+            "scope": "",
+            "fallback": ""
+          }
+        ],
+        "exposes": []
+      },
+      "readme": "# QFlex\r\n\r\n## 用途\r\n\r\n弹性布局容器（对齐 Ant Design Flex）：一行 CSS flex 封装，用于快速搭主子轴/对齐/间距的布局。\r\n\r\n```vue\r\n<template>\r\n  <QFlex justify=\"space-between\" gap=\"middle\">\r\n    <div>左</div>\r\n    <div>右</div>\r\n  </QFlex>\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性       | 类型                                                                                | 必填 | 默认值         | 说明                        |\r\n| ---------- | ----------------------------------------------------------------------------------- | ---- | -------------- | --------------------------- |\r\n| `vertical` | `boolean`                                                                           | 否   | `false`        | 主轴纵向（column）。        |\r\n| `wrap`     | `boolean`                                                                           | 否   | `false`        | 是否换行。                  |\r\n| `justify`  | `flex-start \\| center \\| flex-end \\| space-between \\| space-around \\| space-evenly` | 否   | `'flex-start'` | 主轴对齐。                  |\r\n| `align`    | `flex-start \\| center \\| flex-end \\| stretch \\| baseline`                           | 否   | `'flex-start'` | 交叉轴对齐。                |\r\n| `gap`      | `number \\| 'small' \\| 'middle' \\| 'large' \\| string`                                | 否   | `'middle'`     | 间距（16px）。              |\r\n| `flex`     | `number \\| string`                                                                  | 否   | —              | 容器 CSS flex（父级子项）。 |\r\n| `tag`      | `string`                                                                            | 否   | `'div'`        | 渲染标签。                  |\r\n\r\n## Slots\r\n\r\n| 插槽     | 说明     |\r\n| -------- | -------- |\r\n| 默认插槽 | 子元素。 |\r\n\r\n## 说明\r\n\r\n- `gap` 档位 small/middle/large = 8/16/24px；数字视为 px。\r\n- 如需按 24 栅格布局，请用 `QRow`/`QCol`。\r\n"
+    },
+    {
+      "name": "QFloatButton",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "basic",
+      "relPath": "src/components/basic/FloatButton",
+      "docFile": "README.md",
+      "title": "QFloatButton",
+      "description": "悬浮按钮（对齐 Ant Design FloatButton）：常用于页面右下角的操作入口，支持圆形/方形、primary/default、图标插槽、角标（数字/红点）、tooltip、链接与**返回顶部**模式。",
+      "headings": [
+        "QFloatButton",
+        "用途",
+        "基本用法",
+        "形状与类型",
+        "返回顶部 backTop",
+        "Props",
+        "Slots",
+        "Emits",
+        "说明"
+      ],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "'default' \\",
+            "required": "'primary'",
+            "default": "否",
+            "description": "'default'"
+          },
+          {
+            "name": "",
+            "type": "'circle' \\",
+            "required": "'square'",
+            "default": "否",
+            "description": "'circle'"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "—",
+            "description": "方形按钮下方文字。"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "—",
+            "description": "悬停气泡提示文案。"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "—",
+            "description": "传入后渲染为链接悬浮按钮。"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "—",
+            "description": "链接打开方式（配合 href）。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "false",
+            "description": "返回顶部模式。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "400",
+            "description": "backTop 出现/隐藏阈值(px)。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "false",
+            "description": "禁用。"
+          },
+          {
+            "name": "",
+            "type": "{ count?, dot?, color?, max? }",
+            "required": "否",
+            "default": "—",
+            "description": "角标：count 数字 / dot 红点 / color 颜色 / max 上限(默认99)。"
+          }
+        ],
+        "emits": [
+          {
+            "event": "click",
+            "payload": "",
+            "trigger": "点击时触发（disabled / 隐藏时不触发）。"
+          }
+        ],
+        "slots": [
+          {
+            "name": "",
+            "scope": "",
+            "fallback": ""
+          }
+        ],
+        "exposes": []
+      },
+      "readme": "# QFloatButton\r\n\r\n## 用途\r\n\r\n悬浮按钮（对齐 Ant Design FloatButton）：常用于页面右下角的操作入口，支持圆形/方形、primary/default、图标插槽、角标（数字/红点）、tooltip、链接与**返回顶部**模式。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<template>\r\n  <div style=\"position: fixed; right: 24px; bottom: 24px\">\r\n    <QFloatButton type=\"primary\" :badge=\"{ count: 3 }\" @click=\"onClick\">\r\n      <template #icon>＋</template>\r\n    </QFloatButton>\r\n  </div>\r\n</template>\r\n```\r\n\r\n## 形状与类型\r\n\r\n```vue\r\n<template>\r\n  <QFloatButton type=\"primary\" shape=\"circle\" />\r\n  <QFloatButton type=\"primary\" shape=\"square\">\r\n    <template #icon>\r\n      <span>📌</span>\r\n    </template>\r\n  </QFloatButton>\r\n  <QFloatButton shape=\"square\" description=\"问\">\r\n    <template #icon>?</template>\r\n  </QFloatButton>\r\n</template>\r\n```\r\n\r\n## 返回顶部 backTop\r\n\r\n滚动超过 `visibilityHeight`（默认 400px）后显示，点击平滑回顶：\r\n\r\n```vue\r\n<template>\r\n  <QFloatButton back-top />\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性               | 类型                             | 必填 | 默认值      | 说明                                                          |\r\n| ------------------ | -------------------------------- | ---- | ----------- | ------------------------------------------------------------- |\r\n| `type`             | `'default' \\| 'primary'`         | 否   | `'default'` | 语义类型；primary 使用主题色填充。                            |\r\n| `shape`            | `'circle' \\| 'square'`           | 否   | `'circle'`  | 形状。                                                        |\r\n| `description`      | `string`                         | 否   | —           | 方形按钮下方文字。                                            |\r\n| `tooltip`          | `string`                         | 否   | —           | 悬停气泡提示文案。                                            |\r\n| `href`             | `string`                         | 否   | —           | 传入后渲染为链接悬浮按钮。                                    |\r\n| `target`           | `string`                         | 否   | —           | 链接打开方式（配合 href）。                                   |\r\n| `backTop`          | `boolean`                        | 否   | `false`     | 返回顶部模式。                                                |\r\n| `visibilityHeight` | `number`                         | 否   | `400`       | backTop 出现/隐藏阈值(px)。                                   |\r\n| `disabled`         | `boolean`                        | 否   | `false`     | 禁用。                                                        |\r\n| `badge`            | `{ count?, dot?, color?, max? }` | 否   | —           | 角标：count 数字 / dot 红点 / color 颜色 / max 上限(默认99)。 |\r\n\r\n## Slots\r\n\r\n| 插槽    | 说明                                |\r\n| ------- | ----------------------------------- |\r\n| `#icon` | 图标内容（可用 QIcon 或任意内容）。 |\r\n\r\n## Emits\r\n\r\n| 事件    | 参数         | 触发时机                                |\r\n| ------- | ------------ | --------------------------------------- |\r\n| `click` | `MouseEvent` | 点击时触发（disabled / 隐藏时不触发）。 |\r\n\r\n## 说明\r\n\r\n- 位置由使用者控制（如 `position: fixed` + 容器定位），组件本身不内置固定定位。\r\n- `backTop` 模式默认监听窗口滚动；默认图标为「↑」，可用 `#icon` 覆盖。\r\n"
+    },
+    {
       "name": "QFooter",
       "package": "qyani-components",
       "type": "component",
@@ -2307,6 +2634,117 @@
         "exposes": []
       },
       "readme": "# QFooter\r\n\r\n## 用途\r\n\r\n底部栏布局组件，作为 `QLayout` 的底部区域，对齐 Ant Design `Layout.Footer`。默认居中展示版权信息等。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<template>\r\n  <QLayout style=\"height: 480px\">\r\n    <QContent>主体</QContent>\r\n    <QFooter>© 2026 QYANI</QFooter>\r\n  </QLayout>\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n无（内容经默认插槽放置）。\r\n\r\n## Slots\r\n\r\n| 插槽     | 说明         |\r\n| -------- | ------------ |\r\n| 默认插槽 | 底部栏内容。 |\r\n\r\n## Exposes\r\n\r\n无。\r\n"
+    },
+    {
+      "name": "QForm",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "form",
+      "relPath": "src/components/form/QForm",
+      "docFile": "README.md",
+      "title": "QForm",
+      "description": "表单容器 + 校验（对齐 antd Form 基础能力）：`model` + `rules` 声明式校验，与子 `QFormItem` 联动（必填星号、label、错误提示、自动按 change/blur 触发校验）。支持 `validate` / `validateField` / `clearValidate` / `resetFields` 及表单提交 `finish` / `finish-…",
+      "headings": [
+        "QForm",
+        "用途",
+        "Props",
+        "Emits",
+        "Exposes",
+        "校验规则 QFormRule",
+        "说明"
+      ],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "Record<string, unknown>",
+            "required": "否",
+            "default": "{}",
+            "description": "表单数据对象。"
+          },
+          {
+            "name": "",
+            "type": "Record<string, QFormRule[]>",
+            "required": "否",
+            "default": "{}",
+            "description": "字段 → 规则数组。"
+          },
+          {
+            "name": "",
+            "type": "number \\",
+            "required": "string",
+            "default": "否",
+            "description": "'100px'"
+          },
+          {
+            "name": "",
+            "type": "'horizontal' \\",
+            "required": "'vertical'",
+            "default": "否",
+            "description": "'horizontal'"
+          },
+          {
+            "name": "",
+            "type": "'left' \\",
+            "required": "'right'",
+            "default": "否",
+            "description": "'left'"
+          },
+          {
+            "name": "",
+            "type": "'change' \\",
+            "required": "'blur'",
+            "default": "否",
+            "description": "'blur'"
+          }
+        ],
+        "emits": [
+          {
+            "event": "finish",
+            "payload": "",
+            "trigger": ""
+          },
+          {
+            "event": "finish-failed",
+            "payload": "",
+            "trigger": ""
+          }
+        ],
+        "slots": [],
+        "exposes": [
+          {
+            "name": "",
+            "type": "",
+            "description": "校验全部字段，返回是否通过。"
+          },
+          {
+            "name": "",
+            "type": "",
+            "description": "校验单个字段。"
+          },
+          {
+            "name": "",
+            "type": "",
+            "description": "清除错误。"
+          },
+          {
+            "name": "",
+            "type": "",
+            "description": "还原初始值并清错。"
+          },
+          {
+            "name": "",
+            "type": "",
+            "description": "读取字段值。"
+          },
+          {
+            "name": "",
+            "type": "",
+            "description": "错误信息表。"
+          }
+        ]
+      },
+      "readme": "# QForm\r\n\r\n## 用途\r\n\r\n表单容器 + 校验（对齐 antd Form 基础能力）：`model` + `rules` 声明式校验，与子 `QFormItem` 联动（必填星号、label、错误提示、自动按 change/blur 触发校验）。支持 `validate` / `validateField` / `clearValidate` / `resetFields` 及表单提交 `finish` / `finish-failed`。\r\n\r\n```vue\r\n<script lang=\"ts\" setup>\r\nimport { reactive } from 'vue';\r\n\r\nconst form = reactive({ name: '', age: 20 });\r\nconst rules = {\r\n  name: [{ required: true, message: '请输入姓名' }, { min: 2 }],\r\n  age: [{ type: 'number' }],\r\n};\r\n</script>\r\n\r\n<template>\r\n  <QForm :model=\"form\" :rules=\"rules\" @finish=\"console.log\">\r\n    <QFormItem name=\"name\" label=\"姓名\">\r\n      <input v-model=\"form.name\" />\r\n    </QFormItem>\r\n    <QFormButton html-type=\"submit\">提交</QFormButton>\r\n  </QForm>\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性              | 类型                          | 必填 | 默认值         | 说明                                 |\r\n| ----------------- | ----------------------------- | ---- | -------------- | ------------------------------------ |\r\n| `model`           | `Record<string, unknown>`     | 否   | `{}`           | 表单数据对象。                       |\r\n| `rules`           | `Record<string, QFormRule[]>` | 否   | `{}`           | 字段 → 规则数组。                    |\r\n| `labelWidth`      | `number \\| string`            | 否   | `'100px'`      | label 宽度（horizontal）。           |\r\n| `layout`          | `'horizontal' \\| 'vertical'`  | 否   | `'horizontal'` | 标签在左 / 在上。                    |\r\n| `labelAlign`      | `'left' \\| 'right'`           | 否   | `'left'`       | label 对齐。                         |\r\n| `validateTrigger` | `'change' \\| 'blur'`          | 否   | `'blur'`       | 默认字段校验触发（可被 item 覆盖）。 |\r\n\r\n## Emits\r\n\r\n| 事件            | 参数               | 说明           |\r\n| --------------- | ------------------ | -------------- |\r\n| `finish`        | `values`           | 提交校验通过。 |\r\n| `finish-failed` | `(values, errors)` | 提交校验失败。 |\r\n\r\n## Exposes\r\n\r\n| 方法                   | 说明                         |\r\n| ---------------------- | ---------------------------- |\r\n| `validate()`           | 校验全部字段，返回是否通过。 |\r\n| `validateField(name)`  | 校验单个字段。               |\r\n| `clearValidate(name?)` | 清除错误。                   |\r\n| `resetFields()`        | 还原初始值并清错。           |\r\n| `getFieldValue(name)`  | 读取字段值。                 |\r\n| `errors`               | 错误信息表。                 |\r\n\r\n## 校验规则 QFormRule\r\n\r\n| 字段          | 类型                                             | 说明                              |\r\n| ------------- | ------------------------------------------------ | --------------------------------- |\r\n| `required`    | `boolean`                                        | 必填。                            |\r\n| `message`     | `string`                                         | 失败提示（缺省有默认文案）。      |\r\n| `pattern`     | `RegExp`                                         | 正则匹配（字符串）。              |\r\n| `min` / `max` | `number`                                         | 数值大小或长度范围。              |\r\n| `len`         | `number`                                         | 精确长度。                        |\r\n| `whitespace`  | `boolean`                                        | 仅空白视为缺失（配合 required）。 |\r\n| `validator`   | `(value, model) => boolean \\| string \\| Promise` | 自定义校验。                      |\r\n\r\n## 说明\r\n\r\n- `QFormItem` 通过 provide/inject 注册字段；错误在表单项下方展示，触发后消失自动重校验。\r\n- 校验基于字段最新值（`model[name]`），与具体控件解耦，可直接包裹任意输入。\r\n"
     },
     {
       "name": "QFormButton",
@@ -2769,6 +3207,60 @@
         "exposes": []
       },
       "readme": "# QFormFileUpload\r\n\r\n## 用途\r\n\r\n基于原生文件输入框选择单个或多个文件。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<QFormFileUpload v-model=\"file\" accept=\"image/*\" />\r\n```\r\n\r\n## Props\r\n\r\n继承 `FormComponentProps<FileType>`；`FileType = File | FileList | null`。公共属性包括 `modelValue?: FileType | null`、`name?: string`、`label?: string`、`disabled?: boolean`、`readonly?: boolean`、`size?: FormSize`、`status?: FormStatus`、`required?: boolean`、`placeholder?: string`、`clearable?: boolean`、`autofocus?: boolean`、`id?: string`、`direction?: 'vertical' | 'horizontal'`、`errorMessage?: string`。\r\n\r\n| 属性                     | 类型                         | 必填 | 默认值                                  | 说明                                              |\r\n| ------------------------ | ---------------------------- | ---- | --------------------------------------- | ------------------------------------------------- |\r\n| `multiple`               | `boolean`                    | 否   | `false`                                 | 是否允许多选；决定事件值为 `File` 或 `FileList`。 |\r\n| `accept`                 | `string`                     | 否   | `'*'`                                   | 允许选择的 MIME 类型或扩展名。                    |\r\n| `required`               | `boolean`                    | 否   | `true`                                  | 传递给原生输入框。                                |\r\n| `direction`              | `'vertical' \\| 'horizontal'` | 否   | `'vertical'`                            | 布局方向。                                        |\r\n| `disabled`               | `boolean`                    | 否   | `false`                                 | 禁用输入框。                                      |\r\n| `autofocus` / `readonly` | `boolean`                    | 否   | `false`                                 | 当前未绑定到原生控件。                            |\r\n| `name`                   | `string`                     | 否   | `` `files${Math.random() * 1000000}` `` | 原生输入框名称；未传入时运行时生成。              |\r\n| `size`                   | `FormSize`                   | 否   | `'middle'`                              | 当前不影响渲染。                                  |\r\n| `placeholder`            | `string`                     | 否   | `'选择文件'`                            | 当前不影响渲染。                                  |\r\n| `clearable`              | `boolean`                    | 否   | `true`                                  | 当前不影响渲染。                                  |\r\n\r\n其余继承属性没有组件默认值，且当前不影响渲染。\r\n\r\n## Emits\r\n\r\n| 事件                | 参数       | 触发时机                                                                  |\r\n| ------------------- | ---------- | ------------------------------------------------------------------------- |\r\n| `update:modelValue` | `FileType` | 文件选择变化时；无文件时为 `null`，单选为首个 `File`，多选为 `FileList`。 |\r\n\r\n不继承 `FormComponentEmits` 的其他事件。\r\n\r\n## Slots\r\n\r\n无。\r\n\r\n## Exposes\r\n\r\n无。\r\n"
+    },
+    {
+      "name": "QFormItem",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "form",
+      "relPath": "src/components/form/QFormItem",
+      "docFile": "README.md",
+      "title": "QFormItem",
+      "description": "表单项容器，用于 `QForm` 内部：提供 label、必填星号与错误信息展示，并按 `validateTrigger` 自动触发该校验。可自带 `rules`（覆盖/追加于表单 rules）或使用表单下同名 `rules`。",
+      "headings": ["QFormItem", "用途", "Props", "说明"],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "无",
+            "description": "对应 model 字段名。"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "无",
+            "description": "标签文本。"
+          },
+          {
+            "name": "",
+            "type": "QFormRule[]",
+            "required": "否",
+            "default": "无",
+            "description": "自有校验规则。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "false",
+            "description": "强制必填（显式星号）。"
+          },
+          {
+            "name": "",
+            "type": "'change' \\",
+            "required": "'blur'",
+            "default": "否",
+            "description": "表单默认"
+          }
+        ],
+        "emits": [],
+        "slots": [],
+        "exposes": []
+      },
+      "readme": "# QFormItem\r\n\r\n## 用途\r\n\r\n表单项容器，用于 `QForm` 内部：提供 label、必填星号与错误信息展示，并按 `validateTrigger` 自动触发该校验。可自带 `rules`（覆盖/追加于表单 rules）或使用表单下同名 `rules`。\r\n\r\n```vue\r\n<QForm :model=\"form\" :rules=\"rules\">\r\n  <QFormItem name=\"name\" label=\"姓名\" required>\r\n    <input v-model=\"form.name\" />\r\n  </QFormItem>\r\n  <!-- 错误提示在下方自动展示 -->\r\n</QForm>\r\n```\r\n\r\n## Props\r\n\r\n| 属性              | 类型                 | 必填 | 默认值   | 说明                      |\r\n| ----------------- | -------------------- | ---- | -------- | ------------------------- |\r\n| `name`            | `string`             | 否   | `无`     | 对应 model 字段名。       |\r\n| `label`           | `string`             | 否   | `无`     | 标签文本。                |\r\n| `rules`           | `QFormRule[]`        | 否   | `无`     | 自有校验规则。            |\r\n| `required`        | `boolean`            | 否   | `false`  | 强制必填（显式星号）。    |\r\n| `validateTrigger` | `'change' \\| 'blur'` | 否   | 表单默认 | 触发时机（change/blur）。 |\r\n\r\n## 说明\r\n\r\n- 必须位于 `QForm` 内部才能工作（通过注入获取校验上下文）。\r\n- 事件监听在 `.q-form-item` 根节点以 capture 捕获子控件冒泡的 `change` / `focusout`，无需给控件绑定额外事件。\r\n- 错误文案来自命中规则的 `message` 或默认提示，展示于控件下方，占位避免跳动。\r\n"
     },
     {
       "name": "QFormRadioGroup",
@@ -3957,6 +4449,72 @@
       "readme": "# QLazyImage\r\n\r\n## 用途\r\n\r\n展示懒加载图片。容器进入视口后才渲染图片；加载期间显示骨架屏，加载失败时显示“加载失败”占位。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<QLazyImage src=\"/banner.png\" width=\"320px\" height=\"180px\" alt=\"横幅\" />\r\n```\r\n\r\n## Props\r\n\r\n| 名称     | 类型               | 必填 | 默认值   | 说明                           |\r\n| -------- | ------------------ | ---- | -------- | ------------------------------ |\r\n| `src`    | `string`           | 是   | 无       | 图片地址。                     |\r\n| `alt`    | `string`           | 否   | `''`     | 图片替代文本。                 |\r\n| `width`  | `string \\| number` | 否   | `'100%'` | 容器宽度；数值会转为像素单位。 |\r\n| `height` | `string \\| number` | 否   | `'100%'` | 容器高度；数值会转为像素单位。 |\r\n\r\n## Emits\r\n\r\n无。\r\n\r\n## Slots\r\n\r\n无。\r\n\r\n## Exposes\r\n\r\n无。\r\n"
     },
     {
+      "name": "QListy",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "display",
+      "relPath": "src/components/display/Listy",
+      "docFile": "README.md",
+      "title": "QListy",
+      "description": "虚拟列表（对齐 antd Listy 虚拟列表能力，**定高**模式）：窗口化渲染超长列表，只挂载可视区 + overscan 行。",
+      "headings": ["QListy", "用途", "Props", "Slots", "Exposes", "说明"],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "T[]",
+            "required": "否",
+            "default": "[]",
+            "description": "数据源。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "40",
+            "description": "行高(px)。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "400",
+            "description": "视口高度(px)。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "4",
+            "description": "预渲染额外行数。"
+          },
+          {
+            "name": "",
+            "type": "(item, index) => key",
+            "required": "否",
+            "default": "—",
+            "description": "行 key 函数。"
+          }
+        ],
+        "emits": [],
+        "slots": [
+          {
+            "name": "",
+            "scope": "",
+            "fallback": ""
+          }
+        ],
+        "exposes": [
+          {
+            "name": "",
+            "type": "",
+            "description": "滚动到索引。"
+          }
+        ]
+      },
+      "readme": "# QListy\r\n\r\n## 用途\r\n\r\n虚拟列表（对齐 antd Listy 虚拟列表能力，**定高**模式）：窗口化渲染超长列表，只挂载可视区 + overscan 行。\r\n\r\n```vue\r\n<script lang=\"ts\" setup>\r\nconst items = Array.from({ length: 10000 }, (_, i) => `第 ${i} 行`);\r\n</script>\r\n\r\n<template>\r\n  <QListy :items=\"items\" :item-height=\"40\" :height=\"400\">\r\n    <template #default=\"{ item }\">\r\n      <span>{{ item }}</span>\r\n    </template>\r\n  </QListy>\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性         | 类型                   | 必填 | 默认值 | 说明             |\r\n| ------------ | ---------------------- | ---- | ------ | ---------------- |\r\n| `items`      | `T[]`                  | 否   | `[]`   | 数据源。         |\r\n| `itemHeight` | `number`               | 否   | `40`   | 行高(px)。       |\r\n| `height`     | `number`               | 否   | `400`  | 视口高度(px)。   |\r\n| `overscan`   | `number`               | 否   | `4`    | 预渲染额外行数。 |\r\n| `itemKey`    | `(item, index) => key` | 否   | —      | 行 key 函数。    |\r\n\r\n## Slots\r\n\r\n| 插槽     | 作用域            | 说明     |\r\n| -------- | ----------------- | -------- |\r\n| 默认插槽 | `{ item, index }` | 行渲染。 |\r\n\r\n## Exposes\r\n\r\n| 方法       | 说明         |\r\n| ---------- | ------------ |\r\n| `scrollTo` | 滚动到索引。 |\r\n\r\n## 说明\r\n\r\n- 当前为定高虚拟列表；如需动态行高（measure 模式）可基于本组件扩展。\r\n"
+    },
+    {
       "name": "QLoading",
       "package": "qyani-components",
       "type": "component",
@@ -4073,6 +4631,150 @@
         ]
       },
       "readme": "# QMarkdownRender\r\n\r\n## 用途\r\n\r\n将 Markdown 内容渲染为 HTML，支持常用代码语法高亮、数学公式和可选的复制按钮、右侧固定目录。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<QMarkdownRender content=\"# 标题\\n\\n正文\" :show-toc=\"true\" />\r\n```\r\n\r\n## Props\r\n\r\n| 名称       | 类型      | 必填 | 默认值  | 说明                                                              |\r\n| ---------- | --------- | ---- | ------- | ----------------------------------------------------------------- |\r\n| `content`  | `string`  | 是   | 无      | 要渲染的 Markdown 原文；变更后会重新解析。                        |\r\n| `showCopy` | `boolean` | 否   | `true`  | 是否在内容非空时显示复制按钮；点击后将原始 `content` 写入剪贴板。 |\r\n| `showToc`  | `boolean` | 否   | `false` | 是否在存在标题时显示悬浮目录；启用后目录默认展开。                |\r\n\r\n## Emits\r\n\r\n无。\r\n\r\n## Slots\r\n\r\n无。\r\n\r\n## 可访问性（Accessibility）\r\n\r\n- 复制按钮带 `role=\"button\"`、`title=\"复制\"` 与 `aria-label`，支持 Enter / Space 触发。\r\n- 悬浮目录折叠头带 `role=\"button\"` 与 `aria-expanded`；目录项带 `role=\"link\"`、`title`（超长省略时悬停显示全文）与键盘支持。\r\n\r\n## Exposes\r\n\r\n| 方法           | 类型                                                                                             | 说明                                                                                   |\r\n| -------------- | ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |\r\n| `getTOC`       | `() => TocItem[]`                                                                                | 返回当前解析得到的目录项。`TocItem` 为 `{ id: string; text: string; level: number }`。 |\r\n| `scrollToById` | `(id: string) => void`                                                                           | 平滑滚动到指定标题 ID，并更新地址栏锚点。                                              |\r\n| `scrollTo`     | `(options: { left?: number; top?: number; behavior?: 'smooth' \\| 'auto' \\| 'instant' }) => void` | 调用组件根容器的滚动方法。                                                             |\r\n| `getContent`   | `() => string`                                                                                   | 返回当前原始 Markdown 内容。                                                           |\r\n"
+    },
+    {
+      "name": "QMasonry",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "layout",
+      "relPath": "src/components/layout/Masonry",
+      "docFile": "README.md",
+      "title": "QMasonry",
+      "description": "瀑布流（对齐 antd Masonry 常用能力）：按指定列数以 CSS 多列填充任意高度卡片。",
+      "headings": ["QMasonry", "用途", "Props", "Slots", "说明"],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "T[]",
+            "required": "否",
+            "default": "[]",
+            "description": "数据源。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "4",
+            "description": "列数。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "16",
+            "description": "列/行间距(px)。"
+          },
+          {
+            "name": "",
+            "type": "(item, index) => key",
+            "required": "否",
+            "default": "—",
+            "description": "子项 key 函数。"
+          }
+        ],
+        "emits": [],
+        "slots": [
+          {
+            "name": "",
+            "scope": "",
+            "fallback": ""
+          }
+        ],
+        "exposes": []
+      },
+      "readme": "# QMasonry\r\n\r\n## 用途\r\n\r\n瀑布流（对齐 antd Masonry 常用能力）：按指定列数以 CSS 多列填充任意高度卡片。\r\n\r\n```vue\r\n<script lang=\"ts\" setup>\r\nconst cards = [1, 2, 3, 4, 5, 6, 7, 8];\r\n</script>\r\n\r\n<template>\r\n  <QMasonry :items=\"cards\" :columns=\"3\" :gap=\"16\">\r\n    <template #default=\"{ item }\">\r\n      <div class=\"card\" :style=\"{ height: 80 + (item % 4) * 30 + 'px' }\">\r\n        #{{ item }}\r\n      </div>\r\n    </template>\r\n  </QMasonry>\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性      | 类型                   | 必填 | 默认值 | 说明            |\r\n| --------- | ---------------------- | ---- | ------ | --------------- |\r\n| `items`   | `T[]`                  | 否   | `[]`   | 数据源。        |\r\n| `columns` | `number`               | 否   | `4`    | 列数。          |\r\n| `gap`     | `number`               | 否   | `16`   | 列/行间距(px)。 |\r\n| `itemKey` | `(item, index) => key` | 否   | —      | 子项 key 函数。 |\r\n\r\n## Slots\r\n\r\n| 插槽     | 作用域            | 说明       |\r\n| -------- | ----------------- | ---------- |\r\n| 默认插槽 | `{ item, index }` | 卡片渲染。 |\r\n\r\n## 说明\r\n\r\n- 采用 CSS 多列实现，内容按“逐列”顺序填充；每列内自动断页避免跨列截断（`break-inside: avoid`）。\r\n"
+    },
+    {
+      "name": "QMentions",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "input",
+      "relPath": "src/components/input/Mentions",
+      "docFile": "README.md",
+      "title": "QMentions",
+      "description": "提及输入（对齐 antd Mentions）：文本域中键入 `@` 触发候选下拉，选中后替换为 `@value` 文本；支持键盘上下选择 + Enter 确认。",
+      "headings": ["QMentions", "用途", "Props", "Emits", "说明"],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "''",
+            "description": "文本值（v-model）。"
+          },
+          {
+            "name": "",
+            "type": "{ value, label?, disabled? }[]",
+            "required": "否",
+            "default": "[]",
+            "description": "候选列表。"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "'@'",
+            "description": "触发前缀。"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "'请输入，@ 提及'",
+            "description": "占位文案。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "false",
+            "description": "禁用。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "3",
+            "description": "行数。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "false",
+            "description": "自适应高度。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "—",
+            "description": "受控展开（v-model:open）。"
+          }
+        ],
+        "emits": [
+          {
+            "event": "update:modelValue",
+            "payload": "",
+            "trigger": ""
+          },
+          {
+            "event": "change",
+            "payload": "",
+            "trigger": ""
+          },
+          {
+            "event": "update:open",
+            "payload": "",
+            "trigger": ""
+          }
+        ],
+        "slots": [],
+        "exposes": []
+      },
+      "readme": "# QMentions\r\n\r\n## 用途\r\n\r\n提及输入（对齐 antd Mentions）：文本域中键入 `@` 触发候选下拉，选中后替换为 `@value` 文本；支持键盘上下选择 + Enter 确认。\r\n\r\n```vue\r\n<script lang=\"ts\" setup>\r\nimport { ref } from 'vue';\r\n\r\nconst text = ref('你好 @');\r\nconst options = [{ value: 'Alice' }, { value: 'Bob', label: 'Bob 波比' }];\r\n</script>\r\n\r\n<template>\r\n  <QMentions v-model=\"text\" :options=\"options\" />\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性          | 类型                             | 必填 | 默认值             | 说明                       |\r\n| ------------- | -------------------------------- | ---- | ------------------ | -------------------------- |\r\n| `modelValue`  | `string`                         | 否   | `''`               | 文本值（v-model）。        |\r\n| `options`     | `{ value, label?, disabled? }[]` | 否   | `[]`               | 候选列表。                 |\r\n| `prefix`      | `string`                         | 否   | `'@'`              | 触发前缀。                 |\r\n| `placeholder` | `string`                         | 否   | `'请输入，@ 提及'` | 占位文案。                 |\r\n| `disabled`    | `boolean`                        | 否   | `false`            | 禁用。                     |\r\n| `rows`        | `number`                         | 否   | `3`                | 行数。                     |\r\n| `autoSize`    | `boolean`                        | 否   | `false`            | 自适应高度。               |\r\n| `open`        | `boolean`                        | 否   | —                  | 受控展开（v-model:open）。 |\r\n\r\n## Emits\r\n\r\n| 事件                | 参数      | 说明               |\r\n| ------------------- | --------- | ------------------ |\r\n| `update:modelValue` | `string`  | 输入/选择输出。    |\r\n| `change`            | `string`  | 值变化时。         |\r\n| `update:open`       | `boolean` | 候选展开状态变化。 |\r\n\r\n## 说明\r\n\r\n- 触发判定基于光标末尾最后一个 `@词`（支持中英文/数字/下划线/连字符），词内无空格。\r\n- 候选按 label/value 做包含匹配；`@` 后无词时展示全部。\r\n"
     },
     {
       "name": "QMenu",
@@ -5681,6 +6383,101 @@
       "readme": "### QSpinner\n\n#### 用途\n\n`QSpinner` 显示持续旋转的 SVG 圆环加载动画。\n\n#### 基本用法\n\n```vue\n<script setup lang=\"ts\">\nimport { QSpinner } from 'qyani-components';\n</script>\n\n<template>\n  <QSpinner />\n</template>\n```\n\n#### Props\n\n无。\n\n#### Emits\n\n无。\n\n#### Slots\n\n无。\n\n#### Exposes\n\n无。\n"
     },
     {
+      "name": "QSplitter",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "layout",
+      "relPath": "src/components/layout/Splitter",
+      "docFile": "README.md",
+      "title": "QSplitter",
+      "description": "分隔面板（对齐 antd Splitter 基础能力）：两个面板 + 可拖拽分隔条，支持左右/上下方向、受控尺寸、最小/最大限制与键盘调整。",
+      "headings": ["QSplitter", "用途", "Props", "Slots", "Emits", "说明"],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "'row' \\",
+            "required": "'column'",
+            "default": "否",
+            "description": "'row'"
+          },
+          {
+            "name": "",
+            "type": "number \\",
+            "required": "string",
+            "default": "否",
+            "description": "—"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "300",
+            "description": "首个面板默认尺寸(px)。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "60",
+            "description": "首个面板最小尺寸(px)。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "—",
+            "description": "最大尺寸(px)，默认不超过容器减 min。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "true",
+            "description": "是否可拖拽。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "8",
+            "description": "分隔条宽/厚(px)。"
+          }
+        ],
+        "emits": [
+          {
+            "event": "update:size",
+            "payload": "",
+            "trigger": "拖拽/键盘调整时。"
+          },
+          {
+            "event": "resize-start",
+            "payload": "",
+            "trigger": "开始拖拽时。"
+          },
+          {
+            "event": "resize-end",
+            "payload": "",
+            "trigger": "拖拽结束时。"
+          }
+        ],
+        "slots": [
+          {
+            "name": "",
+            "scope": "",
+            "fallback": ""
+          },
+          {
+            "name": "",
+            "scope": "",
+            "fallback": ""
+          }
+        ],
+        "exposes": []
+      },
+      "readme": "# QSplitter\r\n\r\n## 用途\r\n\r\n分隔面板（对齐 antd Splitter 基础能力）：两个面板 + 可拖拽分隔条，支持左右/上下方向、受控尺寸、最小/最大限制与键盘调整。\r\n\r\n```vue\r\n<template>\r\n  <QSplitter :size=\"260\" :default-size=\"300\" style=\"height: 320px\">\r\n    <template #first>\r\n      <div class=\"list-pane\">列表</div>\r\n    </template>\r\n    <template #second>\r\n      <div class=\"detail-pane\">详情</div>\r\n    </template>\r\n  </QSplitter>\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性          | 类型                | 必填 | 默认值  | 说明                                  |\r\n| ------------- | ------------------- | ---- | ------- | ------------------------------------- |\r\n| `direction`   | `'row' \\| 'column'` | 否   | `'row'` | 方向：row 左右 / column 上下。        |\r\n| `size`        | `number \\| string`  | 否   | —       | 首个面板尺寸（受控 `v-model:size`）。 |\r\n| `defaultSize` | `number`            | 否   | `300`   | 首个面板默认尺寸(px)。                |\r\n| `min`         | `number`            | 否   | `60`    | 首个面板最小尺寸(px)。                |\r\n| `max`         | `number`            | 否   | —       | 最大尺寸(px)，默认不超过容器减 min。  |\r\n| `resizable`   | `boolean`           | 否   | `true`  | 是否可拖拽。                          |\r\n| `gutter`      | `number`            | 否   | `8`     | 分隔条宽/厚(px)。                     |\r\n\r\n## Slots\r\n\r\n| 插槽      | 说明         |\r\n| --------- | ------------ |\r\n| `#first`  | 首面板内容。 |\r\n| `#second` | 次面板内容。 |\r\n\r\n## Emits\r\n\r\n| 事件           | 参数     | 触发时机          |\r\n| -------------- | -------- | ----------------- |\r\n| `update:size`  | `number` | 拖拽/键盘调整时。 |\r\n| `resize-start` | —        | 开始拖拽时。      |\r\n| `resize-end`   | `number` | 拖拽结束时。      |\r\n\r\n## 说明\r\n\r\n- 尺寸拖拽在主轴方向上生效；分隔条支持鼠标/触屏拖拽与键盘方向键（每次 ±10px）。\r\n- 多栏布局可用 `QSplitter` 嵌套实现。\r\n"
+    },
+    {
       "name": "QStatistic",
       "package": "qyani-components",
       "type": "component",
@@ -6340,6 +7137,104 @@
       "readme": "# QTimeline\r\n\r\n## 用途\r\n\r\n时间轴组件，对齐 Ant Design `Timeline`：垂直时间线按时间顺序展示事件，支持左右/交替布局、时间标签、自定义圆点颜色与内容、幽灵待定条目。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<template>\r\n  <!-- 默认（轴线居左） -->\r\n  <QTimeline\r\n    :items=\"[\r\n      { content: '创建仓库', color: 'green' },\r\n      { content: '发布 v1.0', color: 'blue' },\r\n      { content: '修复若干问题', color: 'red' },\r\n    ]\"\r\n  />\r\n\r\n  <!-- 带时间标签 + 交替布局 -->\r\n  <QTimeline mode=\"alternate\" :items=\"items\" />\r\n\r\n  <!-- 倒序 + 幽灵待定 -->\r\n  <QTimeline :items=\"items\" reverse pending=\"进行中…\" />\r\n\r\n  <!-- 用 content 插槽渲染富内容 -->\r\n  <QTimeline :items=\"items\">\r\n    <template #content=\"{ item, index }\">\r\n      <strong>{{ index + 1 }}. </strong>{{ item.content }}\r\n    </template>\r\n  </QTimeline>\r\n</template>\r\n\r\n<script lang=\"ts\" setup>\r\nconst items = [\r\n  { label: '2024-01', content: '第一件事' },\r\n  { label: '2024-02', content: '第二件事', color: 'green', dot: '★' },\r\n  { content: '第三件事', position: 'left' },\r\n];\r\n</script>\r\n```\r\n\r\n## Props\r\n\r\n| 属性      | 类型                               | 必填 | 默认值   | 说明                                                        |\r\n| --------- | ---------------------------------- | ---- | -------- | ----------------------------------------------------------- |\r\n| `items`   | `TimelineItem[]`                   | 否   | `[]`     | 条目数组。                                                  |\r\n| `mode`    | `'left' \\| 'right' \\| 'alternate'` | 否   | `'left'` | 轴线位置：`left` 居左、`right` 居右、`alternate` 居中交替。 |\r\n| `reverse` | `boolean`                          | 否   | `false`  | 是否倒序（幽灵条目恒在末尾）。                              |\r\n| `pending` | `boolean \\| string`                | 否   | `false`  | 幽灵待定条目：`true` 显示虚线占位；字符串作为内容。         |\r\n\r\n> `TimelineItem = { content?: string; label?: string; color?: string; dot?: string; position?: 'left' \\| 'right' }`\r\n> `color` 支持预设 `blue / red / green / gray / success / error / warning / processing`，也支持任意 CSS 颜色。\r\n\r\n## Slots\r\n\r\n| 插槽      | 作用域参数        | 说明             |\r\n| --------- | ----------------- | ---------------- |\r\n| `content` | `{ item, index }` | 自定义条目内容。 |\r\n| `label`   | `{ item, index }` | 自定义时间标签。 |\r\n| `dot`     | `{ item, index }` | 自定义圆点。     |\r\n\r\n## Emits\r\n\r\n无。\r\n\r\n## Exposes\r\n\r\n无。\r\n"
     },
     {
+      "name": "QTimePicker",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "input",
+      "relPath": "src/components/input/TimePicker",
+      "docFile": "README.md",
+      "title": "QTimePicker",
+      "description": "时间选择器（对齐 antd TimePicker 常用能力）：点击弹出 时/分/秒 列表面板，支持格式、步长、清除、受控值。",
+      "headings": ["QTimePicker", "用途", "Props", "Emits", "说明"],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "—",
+            "description": "时间字符串（v-model）。"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "'HH:mm:ss'",
+            "description": "格式，支持 HH/mm/ss。"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "'请选择时间'",
+            "description": "占位文案。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "false",
+            "description": "禁用。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "true",
+            "description": "允许清除。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "1",
+            "description": "小时步长。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "1",
+            "description": "分钟步长。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "1",
+            "description": "秒步长。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "—",
+            "description": "受控展开（v-model:open）。"
+          }
+        ],
+        "emits": [
+          {
+            "event": "update:modelValue",
+            "payload": "",
+            "trigger": "确定/清除后输出新值。"
+          },
+          {
+            "event": "change",
+            "payload": "",
+            "trigger": "值变化时（确定后）。"
+          },
+          {
+            "event": "update:open",
+            "payload": "",
+            "trigger": "展开状态变化。"
+          }
+        ],
+        "slots": [],
+        "exposes": []
+      },
+      "readme": "# QTimePicker\r\n\r\n## 用途\r\n\r\n时间选择器（对齐 antd TimePicker 常用能力）：点击弹出 时/分/秒 列表面板，支持格式、步长、清除、受控值。\r\n\r\n```vue\r\n<script lang=\"ts\" setup>\r\nimport { ref } from 'vue';\r\n\r\nconst time = ref('');\r\n</script>\r\n\r\n<template>\r\n  <QTimePicker v-model=\"time\" placeholder=\"请选择时间\" />\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性          | 类型      | 必填 | 默认值         | 说明                       |\r\n| ------------- | --------- | ---- | -------------- | -------------------------- |\r\n| `modelValue`  | `string`  | 否   | —              | 时间字符串（v-model）。    |\r\n| `format`      | `string`  | 否   | `'HH:mm:ss'`   | 格式，支持 HH/mm/ss。      |\r\n| `placeholder` | `string`  | 否   | `'请选择时间'` | 占位文案。                 |\r\n| `disabled`    | `boolean` | 否   | `false`        | 禁用。                     |\r\n| `allowClear`  | `boolean` | 否   | `true`         | 允许清除。                 |\r\n| `hourStep`    | `number`  | 否   | `1`            | 小时步长。                 |\r\n| `minuteStep`  | `number`  | 否   | `1`            | 分钟步长。                 |\r\n| `secondStep`  | `number`  | 否   | `1`            | 秒步长。                   |\r\n| `open`        | `boolean` | 否   | —              | 受控展开（v-model:open）。 |\r\n\r\n## Emits\r\n\r\n| 事件                | 参数      | 触发时机              |\r\n| ------------------- | --------- | --------------------- |\r\n| `update:modelValue` | `string`  | 确定/清除后输出新值。 |\r\n| `change`            | `string`  | 值变化时（确定后）。  |\r\n| `update:open`       | `boolean` | 展开状态变化。        |\r\n\r\n## 说明\r\n\r\n- 值格式与 `format` 对应：含 `ss` 时输出/面板含秒列，否则为 `HH:mm`。\r\n- 面板提供“清除 / 确定”；点击外部或按 `Esc` 收起。\r\n- 目前为 24 小时制；12 小时制（`use12Hours`）暂未实现。\r\n"
+    },
+    {
       "name": "QTooltip",
       "package": "qyani-components",
       "type": "component",
@@ -6446,6 +7341,90 @@
         "exposes": []
       },
       "readme": "# QTooltip\r\n\r\n## 用途\r\n\r\n文字提示组件，对齐 Ant Design Tooltip。弹层 `Teleport` 到 `body` 并基于触发元素视口定位（支持 8 个位置、箭头、hover/focus/click 触发、受控 `open` 与进出延迟）。\r\n\r\n## 基本用法\r\n\r\n```vue\r\n<template>\r\n  <QTooltip content=\"提示文字\">\r\n    <QButton type=\"primary\">悬停查看</QButton>\r\n  </QTooltip>\r\n</template>\r\n```\r\n\r\n不同位置与触发方式：\r\n\r\n```vue\r\n<template>\r\n  <QTooltip content=\"上方提示\" placement=\"top\">上</QTooltip>\r\n  <QTooltip content=\"下方提示\" placement=\"bottomRight\">下</QTooltip>\r\n  <QTooltip content=\"点击触发\" trigger=\"click\">点我</QTooltip>\r\n</template>\r\n```\r\n\r\n受控显隐：\r\n\r\n```vue\r\n<template>\r\n  <QTooltip v-model:open=\"open\" content=\"受控提示\">\r\n    <span>受控示例</span>\r\n  </QTooltip>\r\n</template>\r\n\r\n<script setup lang=\"ts\">\r\nimport { ref } from 'vue';\r\n\r\nconst open = ref(false);\r\n</script>\r\n```\r\n\r\n## Props\r\n\r\n| 属性              | 类型                                                                                                 | 必填 | 默认值    | 说明                                                    |\r\n| ----------------- | ---------------------------------------------------------------------------------------------------- | ---- | --------- | ------------------------------------------------------- |\r\n| `content`         | `string`                                                                                             | 否   | 无        | 提示内容（也可用 `content` 插槽）。                     |\r\n| `placement`       | `'top' \\| 'topLeft' \\| 'topRight' \\| 'bottom' \\| 'bottomLeft' \\| 'bottomRight' \\| 'left' \\| 'right'` | 否   | `'top'`   | 弹出位置。                                              |\r\n| `open`            | `boolean`                                                                                            | 否   | 无        | 受控显隐（`v-model:open`）；缺省由 `trigger` 自动管理。 |\r\n| `trigger`         | `'hover' \\| 'focus' \\| 'click'`                                                                      | 否   | `'hover'` | 触发方式；`hover` 同时启用键盘 `focus`。                |\r\n| `arrow`           | `boolean`                                                                                            | 否   | `true`    | 是否显示箭头。                                          |\r\n| `color`           | `string`                                                                                             | 否   | 无        | 气泡背景色（缺省深色）。                                |\r\n| `disabled`        | `boolean`                                                                                            | 否   | `false`   | 禁用提示。                                              |\r\n| `mouseEnterDelay` | `number`                                                                                             | 否   | `0`       | 悬停后延时（ms）显示。                                  |\r\n| `mouseLeaveDelay` | `number`                                                                                             | 否   | `0`       | 移出后延时（ms）隐藏。                                  |\r\n\r\n## Emits\r\n\r\n| 事件名        | 参数类型  | 触发时机                                |\r\n| ------------- | --------- | --------------------------------------- |\r\n| `update:open` | `boolean` | 显隐变化时触发（配合 `v-model:open`）。 |\r\n\r\n## Slots\r\n\r\n| 插槽      | 说明                                |\r\n| --------- | ----------------------------------- |\r\n| 默认插槽  | 触发元素（任意内容）。              |\r\n| `content` | 提示内容（优先于 `content` prop）。 |\r\n\r\n## 可访问性（Accessibility）\r\n\r\n- 弹层带 `role=\"tooltip\"`；`hover` 触发同时响应键盘 `focus`/`blur`，键盘可达。\r\n- `disabled` 时不渲染弹层。\r\n\r\n## Exposes\r\n\r\n无。\r\n"
+    },
+    {
+      "name": "QTour",
+      "package": "qyani-components",
+      "type": "component",
+      "category": "display",
+      "relPath": "src/components/display/Tour",
+      "docFile": "README.md",
+      "title": "QTour",
+      "description": "漫游引导（对齐 antd Tour 基础能力）：按步骤依次高亮目标元素并展示说明卡片（遮罩挖孔 + 上一步/下一步/关闭/进度）。",
+      "headings": ["QTour", "用途", "Props", "Emits", "说明"],
+      "api": {
+        "props": [
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "false",
+            "description": "是否显示（v-model）。"
+          },
+          {
+            "name": "",
+            "type": "{ target?, title?, description?, placement? }[]",
+            "required": "否",
+            "default": "[]",
+            "description": "引导步骤。"
+          },
+          {
+            "name": "",
+            "type": "number",
+            "required": "否",
+            "default": "0",
+            "description": "当前步骤（v-model）。"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "'rgba(0,0,0,0.45)'",
+            "description": "遮罩颜色。"
+          },
+          {
+            "name": "",
+            "type": "boolean",
+            "required": "否",
+            "default": "true",
+            "description": "显示关闭按钮。"
+          },
+          {
+            "name": "",
+            "type": "string",
+            "required": "否",
+            "default": "'上一步' / '下一步'",
+            "description": "按钮文案。"
+          },
+          {
+            "name": "",
+            "type": "() => void",
+            "required": "否",
+            "default": "—",
+            "description": "完成回调。"
+          }
+        ],
+        "emits": [
+          {
+            "event": "update:open",
+            "payload": "",
+            "trigger": ""
+          },
+          {
+            "event": "update:current",
+            "payload": "",
+            "trigger": ""
+          },
+          {
+            "event": "finish",
+            "payload": "",
+            "trigger": ""
+          }
+        ],
+        "slots": [],
+        "exposes": []
+      },
+      "readme": "# QTour\r\n\r\n## 用途\r\n\r\n漫游引导（对齐 antd Tour 基础能力）：按步骤依次高亮目标元素并展示说明卡片（遮罩挖孔 + 上一步/下一步/关闭/进度）。\r\n\r\n```vue\r\n<script lang=\"ts\" setup>\r\nimport { ref } from 'vue';\r\n\r\nconst open = ref(false);\r\nconst steps = [\r\n  { target: '.step-a', title: '第一步', description: '这里是功能 A' },\r\n  { target: '.step-b', title: '第二步', description: '这里是功能 B' },\r\n];\r\n</script>\r\n\r\n<template>\r\n  <QButton @click=\"open = true\">开始引导</QButton>\r\n  <div class=\"step-a\">目标一</div>\r\n  <div class=\"step-b\">目标二</div>\r\n  <QTour v-model:open=\"open\" :steps=\"steps\" />\r\n</template>\r\n```\r\n\r\n## Props\r\n\r\n| 属性                    | 类型                                              | 必填 | 默认值                  | 说明                  |\r\n| ----------------------- | ------------------------------------------------- | ---- | ----------------------- | --------------------- |\r\n| `open`                  | `boolean`                                         | 否   | `false`                 | 是否显示（v-model）。 |\r\n| `steps`                 | `{ target?, title?, description?, placement? }[]` | 否   | `[]`                    | 引导步骤。            |\r\n| `current`               | `number`                                          | 否   | `0`                     | 当前步骤（v-model）。 |\r\n| `maskColor`             | `string`                                          | 否   | `'rgba(0,0,0,0.45)'`    | 遮罩颜色。            |\r\n| `closable`              | `boolean`                                         | 否   | `true`                  | 显示关闭按钮。        |\r\n| `prevText` / `nextText` | `string`                                          | 否   | `'上一步'` / `'下一步'` | 按钮文案。            |\r\n| `onFinish`              | `() => void`                                      | 否   | —                       | 完成回调。            |\r\n\r\n## Emits\r\n\r\n| 事件             | 参数      | 说明           |\r\n| ---------------- | --------- | -------------- |\r\n| `update:open`    | `boolean` | 显示状态变化。 |\r\n| `update:current` | `number`  | 当前步骤变化。 |\r\n| `finish`         | —         | 完成全部步骤。 |\r\n\r\n## 说明\r\n\r\n- 步骤的 `target` 是选择器，解析为页面元素高亮；无目标时卡片居中展示。\r\n- 卡片位置默认在目标下方，空间不足自动翻转到上方；会随滚动/缩放重新定位。\r\n- 目标应可被 `document.querySelector` 命中。\r\n"
     },
     {
       "name": "QTransfer",
@@ -10032,6 +11011,11 @@
       "composable.ts": "import { computed } from 'vue';\r\nimport type { ComputedRef } from 'vue';\r\n\r\nimport type {\r\n  QButtonLevel,\r\n  QButtonProps,\r\n  QButtonSize,\r\n  QButtonType,\r\n} from './type';\r\n\r\n/** 兼容映射：旧 size → level 档位 */\r\nconst SIZE_LEVEL_MAP: Record<QButtonSize, QButtonLevel> = {\r\n  small: 2,\r\n  middle: 3,\r\n  large: 4,\r\n};\r\n\r\n/** useQButton 返回值接口 */\r\nexport interface UseQButtonReturn {\r\n  /** 按钮语义类型（含默认值） */\r\n  type: ComputedRef<QButtonType>;\r\n  /** 兼容旧 API 的尺寸（默认 middle） */\r\n  size: ComputedRef<QButtonSize>;\r\n  /** 有效大小档位 1~6（默认 3）；level 优先，未传时由 size 映射 */\r\n  level: ComputedRef<QButtonLevel>;\r\n  /** 根元素标签：传 href 时渲染为 a，否则为 button */\r\n  tag: ComputedRef<'button' | 'a'>;\r\n  /** 是否处于禁用态（含 loading） */\r\n  isDisabled: ComputedRef<boolean>;\r\n  /** disabled prop 原始值 */\r\n  disabledState: ComputedRef<boolean>;\r\n  /** 是否加载中 */\r\n  isLoading: ComputedRef<boolean>;\r\n  /** 按钮状态修饰类 */\r\n  buttonClass: ComputedRef<Record<string, boolean>>;\r\n}\r\n\r\n/**\r\n * QButton 组件核心逻辑\r\n * @param props 组件 Props\r\n * @returns 按钮状态类、档位与派生状态\r\n */\r\nexport const useQButton = (props: QButtonProps): UseQButtonReturn => {\r\n  /** 语义类型默认值 */\r\n  const type = computed<QButtonType>(() => props.type ?? 'default');\r\n\r\n  /** 兼容旧 API 的尺寸默认值 */\r\n  const size = computed<QButtonSize>(() => props.size ?? 'middle');\r\n\r\n  /** 有效档位：level 优先，否则按 size 映射（默认 3） */\r\n  const level = computed<QButtonLevel>(\r\n    () => props.level ?? SIZE_LEVEL_MAP[size.value],\r\n  );\r\n\r\n  /** 是否禁用 */\r\n  const disabledState = computed(() => props.disabled ?? false);\r\n\r\n  /** 是否加载中 */\r\n  const isLoading = computed(() => props.loading ?? false);\r\n\r\n  /** 禁用或加载中均视为不可点击 */\r\n  const isDisabled = computed(() => disabledState.value || isLoading.value);\r\n\r\n  /** 根标签：提供 href 时渲染为链接，否则为原生按钮 */\r\n  const tag = computed<'button' | 'a'>(() => (props.href ? 'a' : 'button'));\r\n\r\n  /** 按钮修饰类，供模板绑定到 class */\r\n  const buttonClass = computed(() => ({\r\n    [`q-btn--${type.value}`]: true,\r\n    [`q-btn--level-${level.value}`]: true,\r\n    'q-btn--danger': props.danger ?? false,\r\n    'q-btn--ghost': props.ghost ?? false,\r\n    'q-btn--block': props.block ?? false,\r\n    'q-btn--disabled': disabledState.value,\r\n    'q-btn--loading': isLoading.value,\r\n  }));\r\n\r\n  return {\r\n    type,\r\n    size,\r\n    level,\r\n    tag,\r\n    isDisabled,\r\n    disabledState,\r\n    isLoading,\r\n    buttonClass,\r\n  };\r\n};\r\n",
       "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QButton } from './Button.vue';\r\n"
     },
+    "QFloatButton": {
+      "type.ts": "/** 悬浮按钮语义类型 */\r\nexport type QFloatButtonType = 'default' | 'primary';\r\n/** 悬浮按钮形状 */\r\nexport type QFloatButtonShape = 'circle' | 'square';\r\n\r\n/** 悬浮按钮角标配置 */\r\nexport interface QFloatButtonBadge {\r\n  /** 计数；超过 max 显示 max+ */\r\n  count?: number | string;\r\n  /** 是否为红点（优先级高于 count 显示） */\r\n  dot?: boolean;\r\n  /** 角标颜色 */\r\n  color?: string;\r\n  /** 计数上限 */\r\n  max?: number;\r\n}\r\n\r\n/** QFloatButton 组件 Props */\r\nexport interface QFloatButtonProps {\r\n  /**\r\n   * @property type\r\n   * @defaultValue 'default'\r\n   * @description 语义类型：primary 使用主题色填充\r\n   */\r\n  type?: QFloatButtonType;\r\n  /**\r\n   * @property shape\r\n   * @defaultValue 'circle'\r\n   * @description 形状：circle 圆形 / square 圆角方形\r\n   */\r\n  shape?: QFloatButtonShape;\r\n  /**\r\n   * @property description\r\n   * @defaultValue 无\r\n   * @description 方形按钮下方文字（可放简短说明/字母）\r\n   */\r\n  description?: string;\r\n  /**\r\n   * @property tooltip\r\n   * @defaultValue 无\r\n   * @description 悬停气泡提示文案\r\n   */\r\n  tooltip?: string;\r\n  /**\r\n   * @property href\r\n   * @defaultValue 无\r\n   * @description 传入后渲染为 <a> 链接悬浮按钮\r\n   */\r\n  href?: string;\r\n  /**\r\n   * @property target\r\n   * @defaultValue 无\r\n   * @description 链接打开方式（配合 href）\r\n   */\r\n  target?: string;\r\n  /**\r\n   * @property backTop\r\n   * @defaultValue false\r\n   * @description 返回顶部模式：点按平滑回顶，滚动超过 visibilityHeight 时显示\r\n   */\r\n  backTop?: boolean;\r\n  /**\r\n   * @property visibilityHeight\r\n   * @defaultValue 400\r\n   * @description backTop 模式下出现/隐藏的滚动阈值(px)\r\n   */\r\n  visibilityHeight?: number;\r\n  /**\r\n   * @property disabled\r\n   * @defaultValue false\r\n   * @description 禁用\r\n   */\r\n  disabled?: boolean;\r\n  /**\r\n   * @property badge\r\n   * @defaultValue 无\r\n   * @description 角标配置（count / dot / color / max）\r\n   */\r\n  badge?: QFloatButtonBadge;\r\n}\r\n\r\n/** QFloatButton 组件 Emits */\r\nexport interface QFloatButtonEmits {\r\n  /**\r\n   * @property click\r\n   * @description 点击时触发（disabled 或未显示时不触发）\r\n   */\r\n  (e: 'click', ev: MouseEvent): void;\r\n}\r\n",
+      "composable.ts": "import { computed, type ComputedRef } from 'vue';\r\n\r\nimport type {\r\n  QFloatButtonBadge,\r\n  QFloatButtonProps,\r\n  QFloatButtonShape,\r\n} from './type';\r\n\r\n/** backTop 默认显示阈值 */\r\nexport const DEFAULT_VISIBILITY_HEIGHT = 400;\r\n\r\n/** 角标默认计数上限 */\r\nexport const DEFAULT_BADGE_MAX = 99;\r\n\r\n/** 角标解析结果 */\r\nexport interface QFloatButtonBadgeView {\r\n  /** 是否展示红点（优先于数字） */\r\n  dot: boolean;\r\n  /** 显示文本（红点模式为空串） */\r\n  text: string;\r\n  /** 角标背景色（缺省使用红/主题色） */\r\n  color: string | undefined;\r\n}\r\n\r\n/**\r\n * 解析角标显示\r\n * @param badge 角标配置\r\n */\r\nexport function resolveBadge(\r\n  badge: QFloatButtonBadge | undefined,\r\n): QFloatButtonBadgeView {\r\n  if (!badge) return { dot: false, text: '', color: undefined };\r\n  const max = badge.max ?? DEFAULT_BADGE_MAX;\r\n  let text = '';\r\n  if (!badge.dot && badge.count !== undefined && badge.count !== null) {\r\n    const num = Number(badge.count);\r\n    if (!Number.isNaN(num) && num > max) text = `${max}+`;\r\n    else text = String(badge.count);\r\n  }\r\n  return { dot: !!badge.dot, text, color: badge.color };\r\n}\r\n\r\n/** useQFloatButton 返回值 */\r\nexport interface UseQFloatButtonReturn {\r\n  /** 是否为链接形态 */\r\n  isLink: ComputedRef<boolean>;\r\n  /** 是否禁用点击 */\r\n  isDisabled: ComputedRef<boolean>;\r\n  /** 默认图标文本（backTop 时为 ↑） */\r\n  defaultGlyph: ComputedRef<string>;\r\n  /** 角标解析结果 */\r\n  badgeView: ComputedRef<QFloatButtonBadgeView>;\r\n  /** 尺寸档位类名（未用，占位保持一致 API） */\r\n  shapeClass: ComputedRef<string>;\r\n}\r\n\r\n/**\r\n * QFloatButton 核心逻辑\r\n * @param props 组件 Props\r\n */\r\nexport const useQFloatButton = (\r\n  props: QFloatButtonProps,\r\n): UseQFloatButtonReturn => {\r\n  const isLink = computed(() => !!props.href);\r\n  const isDisabled = computed(() => props.disabled === true);\r\n  const defaultGlyph = computed(() => (props.backTop ? '↑' : ''));\r\n  const badgeView = computed(() => resolveBadge(props.badge));\r\n  const shapeClass = computed<QFloatButtonShape>(() => props.shape ?? 'circle');\r\n  return { isLink, isDisabled, defaultGlyph, badgeView, shapeClass };\r\n};\r\n",
+      "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QFloatButton } from './FloatButton.vue';\r\n"
+    },
     "QIcon": {
       "type.ts": "export interface IconProps {\r\n  icon: string;\r\n  size?: number | string;\r\n}\r\n",
       "composable.ts": "/** 存储正在加载中的 SVG 请求 Promise，实现对相同图标的并发请求去重 */\r\nconst pendingRequests = new Map<string, Promise<string>>();\r\n\r\nexport const IconConfig = {\r\n  base: '',\r\n  setBase: function (base: string) {\r\n    this.base = base;\r\n  },\r\n};\r\n\r\n/**\r\n * 加载svg\r\n * @param icon  图标名称\r\n * @param width  图标宽度\r\n * @param height 图标高度\r\n * @returns SVG 内容字符串\r\n */\r\nexport const loadSvg = async (\r\n  icon: string,\r\n  width: number | string,\r\n  height: number | string,\r\n) => {\r\n  const key = `Qicon-${icon}`;\r\n\r\n  // 如果相同图标正在加载中，直接复用已有请求\r\n  if (pendingRequests.has(key)) {\r\n    return pendingRequests.get(key)!;\r\n  }\r\n\r\n  const promise = (async () => {\r\n    try {\r\n      const response = await fetch(`${IconConfig.base}/assets/svg/${icon}.svg`);\r\n\r\n      // 1. 检查 HTTP 状态是否成功\r\n      if (!response.ok) {\r\n        throw new Error(`HTTP ${response.status}: ${response.statusText}`);\r\n      }\r\n\r\n      // 2. 检查 Content-Type 是否表明是 SVG\r\n      const contentType = response.headers.get('content-type') || '';\r\n      if (\r\n        !contentType.includes('image/svg+xml') &&\r\n        !contentType.includes('text/xml') &&\r\n        !contentType.includes('application/xml')\r\n      ) {\r\n        // 有些服务器可能返回 text/plain，但内容仍是 SVG，所以不能仅凭 MIME 拒绝，可以继续检查内容\r\n        // 这里记录警告，但不立即报错，留待内容检查\r\n        console.warn(\r\n          `Response for ${icon} has unexpected Content-Type: ${contentType}, attempting to parse as SVG anyway.`,\r\n        );\r\n      }\r\n\r\n      const rawContent = await response.text();\r\n\r\n      // 3. 检查内容是否包含 <svg 标签（忽略前导空白和 XML 声明）\r\n      if (!/<svg[\\s>]/i.test(rawContent.trim())) {\r\n        throw new Error(\r\n          'Response content does not appear to be SVG (no <svg tag found)',\r\n        );\r\n      }\r\n\r\n      // 4. 替换并返回\r\n      const content = rawContent.replace(\r\n        /<svg/,\r\n        `<svg width=\"${width}\" height=\"${height}\"`,\r\n      );\r\n      return content;\r\n    } catch (e) {\r\n      console.error(`Failed to load SVG \"${icon}\":`, e);\r\n      return ''; // 返回空字符串，上层需要做好降级处理\r\n    } finally {\r\n      // 请求完成后清理记录，以便后续可以重新尝试\r\n      pendingRequests.delete(key);\r\n    }\r\n  })();\r\n\r\n  pendingRequests.set(key, promise);\r\n  return promise;\r\n};\r\n",
@@ -10077,6 +11061,16 @@
       "composable.ts": "import { computed, type ComputedRef } from 'vue';\r\n\r\nimport type { BadgeProps } from './type';\r\n\r\n/**\r\n * Badge 组件核心逻辑\r\n * @param props 组件 Props\r\n * @returns displayValue 显示的文本内容，isDot 是否为小圆点模式\r\n */\r\nexport const useBadge = (\r\n  props: BadgeProps,\r\n): {\r\n  displayValue: ComputedRef<string | number>;\r\n  typeClass: ComputedRef<string>;\r\n  isDot: ComputedRef<boolean>;\r\n} => {\r\n  /** 显示的文本值，超过 max 时显示 99+ */\r\n  const displayValue = computed(() => {\r\n    if (props.dot) return '';\r\n    const value = props.value ?? 0;\r\n    const max = props.max ?? 99;\r\n    if (\r\n      (typeof value === 'number' && value > max) ||\r\n      (typeof value === 'string' && parseInt(value) > max)\r\n    ) {\r\n      return '99+';\r\n    }\r\n    return value;\r\n  });\r\n\r\n  /** 徽章类型 CSS 类 */\r\n  const typeClass = computed(() => `text-${props.type ?? 'info'}`);\r\n\r\n  /** 是否为小圆点模式 */\r\n  const isDot = computed(() => props.dot ?? false);\r\n\r\n  return { displayValue, typeClass, isDot };\r\n};\r\n",
       "index.ts": "export * from './type';\r\nexport { default as QBadge } from './Badge.vue';\r\n"
     },
+    "QBorderBeam": {
+      "type.ts": "/** QBorderBeam 光束颜色（单色） */\r\nexport type QBorderBeamColor = string;\r\n\r\n/** QBorderBeam 组件 Props */\r\nexport interface QBorderBeamProps {\r\n  /**\r\n   * @property color\r\n   * @defaultValue 'var(--q-color-primary)'\r\n   * @description 光束颜色（支持任意 CSS 颜色 / var()）\r\n   */\r\n  color?: QBorderBeamColor;\r\n  /**\r\n   * @property count\r\n   * @defaultValue 1\r\n   * @description 光束数量（沿边框均匀分布）\r\n   */\r\n  count?: number;\r\n  /**\r\n   * @property duration\r\n   * @defaultValue 6\r\n   * @description 光束环绕一圈所需秒数\r\n   */\r\n  duration?: number;\r\n  /**\r\n   * @property size\r\n   * @defaultValue 100\r\n   * @description 可见光束弧长（数字视为 px，内部换算为角度）\r\n   */\r\n  size?: number | string;\r\n  /**\r\n   * @property lineWidth\r\n   * @defaultValue 1\r\n   * @description 光束线宽（数字视为 px）\r\n   */\r\n  lineWidth?: number | string;\r\n  /**\r\n   * @property outset\r\n   * @defaultValue 0\r\n   * @description 光束层相对容器外扩距离（数字视为 px）\r\n   */\r\n  outset?: number | string;\r\n  /**\r\n   * @property hover\r\n   * @defaultValue false\r\n   * @description 仅悬停容器时显示光束\r\n   */\r\n  hover?: boolean;\r\n}\r\n",
+      "composable.ts": "/** 默认环绕时长(秒) */\r\nexport const DEFAULT_BORDER_BEAM_DURATION = 6;\r\n/** 默认可见弧长 */\r\nexport const DEFAULT_BORDER_BEAM_SIZE = 100;\r\n/** 默认线宽 */\r\nexport const DEFAULT_BORDER_BEAM_LINE_WIDTH = 1;\r\n/** 默认光束数 */\r\nexport const DEFAULT_BORDER_BEAM_COUNT = 1;\r\n/** 默认颜色 */\r\nexport const DEFAULT_BORDER_BEAM_COLOR = 'var(--q-color-primary)';\r\n\r\n/** 角度范围上限/下限 */\r\nconst MIN_SWEEP_DEG = 20;\r\nconst MAX_SWEEP_DEG = 300;\r\n\r\n/**\r\n * 数字 → CSS 长度\r\n * @param value 数值（视为 px）或 CSS 长度字符串\r\n */\r\nexport function toCssLength(value?: number | string): string | undefined {\r\n  if (value === undefined || value === null || value === '') return undefined;\r\n  return typeof value === 'number' ? `${value}px` : String(value);\r\n}\r\n\r\n/**\r\n * 将 size（px 语义）换算为光束弧段角度\r\n * @param size 弧长（数字 px 或字符串）\r\n */\r\nexport function sweepDegrees(size?: number | string): number {\r\n  if (typeof size === 'string') {\r\n    const num = parseFloat(size);\r\n    const deg = Number.isNaN(num) ? DEFAULT_BORDER_BEAM_SIZE : num * 0.5;\r\n    return clampSweep(deg);\r\n  }\r\n  const deg = (size ?? DEFAULT_BORDER_BEAM_SIZE) * 0.5;\r\n  return clampSweep(deg);\r\n}\r\n\r\nfunction clampSweep(deg: number): number {\r\n  return Math.min(MAX_SWEEP_DEG, Math.max(MIN_SWEEP_DEG, deg));\r\n}\r\n\r\n/**\r\n * 构建重复锥形渐变：每段=一个「前亮尾淡」的光束，均匀分布于 count 段\r\n * @param color 光束颜色\r\n * @param count 光束数（>=1 整数）\r\n * @param arcDeg 单段可见弧角度\r\n */\r\nexport function buildBeamGradient(\r\n  color: string,\r\n  count: number,\r\n  arcDeg: number,\r\n): string {\r\n  const safeCount = Math.max(1, Math.floor(count) || 1);\r\n  const period = 360 / safeCount;\r\n  const arc = Math.min(arcDeg, period);\r\n  const head = arc * 0.25; // 头部亮度区\r\n  const tail = arc * 0.7;\r\n  return (\r\n    `repeating-conic-gradient(from var(--q-bb-angle, 0deg), ` +\r\n    `transparent 0deg, transparent ${(arc * 0.1).toFixed(1)}deg, ` +\r\n    `${color} ${head.toFixed(1)}deg, ${color} ${(arc * 0.55).toFixed(1)}deg, ` +\r\n    `transparent ${tail.toFixed(1)}deg, transparent ${period.toFixed(1)}deg)`\r\n  );\r\n}\r\n\r\n/** useQBorderBeam 所需派生参数 */\r\nexport interface QBorderBeamDerived {\r\n  color: string;\r\n  count: number;\r\n  duration: number;\r\n  gradient: string;\r\n  lineWidth: string;\r\n  outset: string;\r\n}\r\n\r\n/**\r\n * 由 props 派生 QBorderBeam 渲染参数（纯函数，便于测试）\r\n * @param props 组件 Props\r\n */\r\nexport function deriveBorderBeam(props: {\r\n  color?: string;\r\n  count?: number;\r\n  duration?: number;\r\n  size?: number | string;\r\n  lineWidth?: number | string;\r\n  outset?: number | string;\r\n}): QBorderBeamDerived {\r\n  const color = props.color || DEFAULT_BORDER_BEAM_COLOR;\r\n  const count = Math.max(\r\n    1,\r\n    Math.floor(props.count ?? DEFAULT_BORDER_BEAM_COUNT),\r\n  );\r\n  const duration =\r\n    props.duration !== undefined && props.duration > 0\r\n      ? props.duration\r\n      : DEFAULT_BORDER_BEAM_DURATION;\r\n  const lineWidth =\r\n    toCssLength(props.lineWidth) ?? `${DEFAULT_BORDER_BEAM_LINE_WIDTH}px`;\r\n  const outset = toCssLength(props.outset) ?? '0px';\r\n  const gradient = buildBeamGradient(color, count, sweepDegrees(props.size));\r\n  return { color, count, duration, gradient, lineWidth, outset };\r\n}\r\n",
+      "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QBorderBeam } from './BorderBeam.vue';\r\n"
+    },
+    "QCalendar": {
+      "type.ts": "/** QCalendar 组件 Props */\r\nexport interface QCalendarProps {\r\n  /**\r\n   * @property modelValue\r\n   * @defaultValue 无\r\n   * @description 选中日期（Date，v-model）\r\n   */\r\n  modelValue?: Date | null;\r\n  /**\r\n   * @property disabledDate\r\n   * @defaultValue 无\r\n   * @description 禁用日期判断函数\r\n   */\r\n  disabledDate?: (date: Date) => boolean;\r\n  /**\r\n   * @property allowClear\r\n   * @defaultValue true\r\n   * @description 点击已选中日期是否可取消选择\r\n   */\r\n  allowClear?: boolean;\r\n}\r\n\r\n/** QCalendar 组件 Emits */\r\nexport interface QCalendarEmits {\r\n  /**\r\n   * @property update:modelValue\r\n   * @description 选中日期变化\r\n   */\r\n  (e: 'update:modelValue', date: Date | null): void;\r\n  /**\r\n   * @property change\r\n   * @description 选中变化时触发\r\n   */\r\n  (e: 'change', date: Date | null): void;\r\n  /**\r\n   * @property panel-change\r\n   * @description 切换月份面板时触发\r\n   */\r\n  (e: 'panel-change', year: number, month: number): void;\r\n}\r\n",
+      "composable.ts": "/** 星期表头 */\r\nexport const WEEK_HEADERS = ['日', '一', '二', '三', '四', '五', '六'];\r\n\r\n/** 某月的天数 */\r\nexport function daysInMonth(year: number, month: number): number {\r\n  return new Date(year, month + 1, 0).getDate();\r\n}\r\n\r\n/** 构造某月的 6x7 网格（含前后月补位） */\r\nexport function monthMatrix(year: number, month: number): Date[] {\r\n  const first = new Date(year, month, 1);\r\n  const lead = first.getDay();\r\n  const cells: Date[] = [];\r\n  const start = new Date(year, month, 1 - lead);\r\n  for (let i = 0; i < 42; i += 1) {\r\n    const d = new Date(start);\r\n    d.setDate(start.getDate() + i);\r\n    cells.push(d);\r\n  }\r\n  return cells;\r\n}\r\n\r\n/** 年月标题 */\r\nexport function monthTitle(year: number, month: number): string {\r\n  return `${year} 年 ${month + 1} 月`;\r\n}\r\n\r\n/** 日期是否同一天 */\r\nexport function isSameDay(\r\n  a: Date | null | undefined,\r\n  b: Date | null | undefined,\r\n): boolean {\r\n  if (!a || !b) return false;\r\n  return (\r\n    a.getFullYear() === b.getFullYear() &&\r\n    a.getMonth() === b.getMonth() &&\r\n    a.getDate() === b.getDate()\r\n  );\r\n}\r\n\r\n/** 所在月份内是否一致 */\r\nexport function inMonth(date: Date, year: number, month: number): boolean {\r\n  return date.getFullYear() === year && date.getMonth() === month;\r\n}\r\n",
+      "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QCalendar } from './Calendar.vue';\r\n"
+    },
     "QCarouselItem": {
       "composable.ts": "import { computed, type ComputedRef } from 'vue';\r\n\r\n/**\r\n * CarouselItem 组件核心逻辑\r\n * @returns containerClass 轮播项容器类名\r\n */\r\nexport const useCarouselItem = (): {\r\n  containerClass: ComputedRef<string>;\r\n} => {\r\n  const containerClass = computed(() => 'carousel-item');\r\n\r\n  return { containerClass };\r\n};\r\n",
       "index.ts": "export { default as QCarouselItem } from './CarouselItem.vue';\r\n"
@@ -10109,6 +11103,11 @@
       "type.ts": "/**\r\n * LazyImage 组件 Props\r\n */\r\nexport interface LazyImageProps {\r\n  /** 图片地址 */\r\n  src: string;\r\n  /** 图片替代文本 */\r\n  alt?: string;\r\n  /** 容器宽度，默认 100% */\r\n  width?: string | number;\r\n  /** 容器高度，默认 100% */\r\n  height?: string | number;\r\n}\r\n",
       "composable.ts": "import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue';\r\nimport type { LazyImageProps } from './type';\r\n\r\nexport function useLazyImage(props: LazyImageProps) {\r\n  // 样式用的字符串\r\n  const width = computed(() => parseSize(props.width));\r\n  const height = computed(() => parseSize(props.height));\r\n\r\n  // 引用\r\n  const containerRef = useTemplateRef<HTMLElement>('containerRef');\r\n  const imgRef = useTemplateRef<HTMLImageElement>('imgRef');\r\n\r\n  // 状态\r\n  const loaded = ref(false);\r\n  const shouldRenderImage = ref(false);\r\n  const loadError = ref(false);\r\n\r\n  // 事件处理\r\n  const handleImageLoad = () => {\r\n    loaded.value = true;\r\n    loadError.value = false;\r\n  };\r\n\r\n  const handleImageError = () => {\r\n    loaded.value = true;\r\n    loadError.value = true;\r\n    console.warn(`Image failed to load: ${props.src}`);\r\n  };\r\n\r\n  // IntersectionObserver 相关\r\n  let observer: IntersectionObserver | null = null;\r\n\r\n  const loadImage = () => {\r\n    shouldRenderImage.value = true;\r\n  };\r\n\r\n  onMounted(() => {\r\n    const container = containerRef.value;\r\n    if (!container) return;\r\n\r\n    observer = new IntersectionObserver((entries) => {\r\n      entries.forEach((entry) => {\r\n        if (entry.isIntersecting) {\r\n          loadImage();\r\n          observer?.unobserve(container);\r\n        }\r\n      });\r\n    });\r\n\r\n    observer.observe(container);\r\n  });\r\n\r\n  onUnmounted(() => {\r\n    if (observer) {\r\n      observer.disconnect();\r\n      observer = null;\r\n    }\r\n  });\r\n\r\n  return {\r\n    width,\r\n    height,\r\n    loaded,\r\n    shouldRenderImage,\r\n    loadError,\r\n    containerRef,\r\n    imgRef,\r\n    handleImageLoad,\r\n    handleImageError,\r\n  };\r\n}\r\n\r\n/** 解析 size 为带单位的字符串 */\r\nfunction parseSize(size: string | number | undefined): string {\r\n  if (size === undefined) return '100%';\r\n  return typeof size === 'number' ? `${size}px` : size;\r\n}\r\n",
       "index.ts": "export * from './type';\r\nexport { default as QLazyImage } from './LazyImage.vue';\r\n"
+    },
+    "QListy": {
+      "type.ts": "/** QListy 组件 Props */\r\nexport interface QListyProps<T = unknown> {\r\n  /**\r\n   * @property items\r\n   * @defaultValue []\r\n   * @description 数据源\r\n   */\r\n  items?: T[];\r\n  /**\r\n   * @property itemHeight\r\n   * @defaultValue 40\r\n   * @description 行高(px)，定高虚拟列表\r\n   */\r\n  itemHeight?: number;\r\n  /**\r\n   * @property height\r\n   * @defaultValue 400\r\n   * @description 视口高度(px)\r\n   */\r\n  height?: number;\r\n  /**\r\n   * @property overscan\r\n   * @defaultValue 4\r\n   * @description 预渲染额外行数\r\n   */\r\n  overscan?: number;\r\n  /**\r\n   * @property itemKey\r\n   * @defaultValue 无\r\n   * @description 行 key 取值函数\r\n   */\r\n  itemKey?: (item: T, index: number) => string | number;\r\n}\r\n\r\n/** QListy 暴露方法 */\r\nexport interface QListyExpose {\r\n  /** 滚动到指定索引 */\r\n  scrollTo: (index: number) => void;\r\n}\r\n",
+      "composable.ts": "/** 虚拟窗口计算结果 */\r\nexport interface ListWindow {\r\n  /** 起始渲染索引 */\r\n  start: number;\r\n  /** 结束渲染索引（不含） */\r\n  end: number;\r\n  /** 顶部占位高度(px) */\r\n  offset: number;\r\n  /** 渲染条目 */\r\n  count: number;\r\n}\r\n\r\n/**\r\n * 计算可视窗口\r\n * @param scrollTop 滚动位置\r\n * @param viewportHeight 视口高度\r\n * @param itemHeight 行高\r\n * @param total 总条目\r\n * @param overscan 额外行\r\n */\r\nexport function computeListWindow(\r\n  scrollTop: number,\r\n  viewportHeight: number,\r\n  itemHeight: number,\r\n  total: number,\r\n  overscan = 4,\r\n): ListWindow {\r\n  const safe = Math.max(itemHeight, 1);\r\n  const first = Math.floor(scrollTop / safe);\r\n  const visibleCount = Math.ceil(viewportHeight / safe);\r\n  const maxStart = Math.max(0, total - Math.max(1, visibleCount));\r\n  const startRaw = Math.max(0, first - overscan);\r\n  const start = Math.min(maxStart, startRaw);\r\n  const end = Math.min(total, start + visibleCount + overscan * 2);\r\n  const offset = start * safe;\r\n  return { start, end, offset, count: Math.max(0, end - start) };\r\n}\r\n",
+      "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QListy } from './Listy.vue';\r\n"
     },
     "QMarkdownRender": {
       "type.ts": "/**\r\n * MarkdownRender 组件 Props\r\n */\r\nexport interface MarkdownRenderProps {\r\n  /** Markdown 原始内容 */\r\n  content: string;\r\n  /** 是否显示复制按钮，默认 true */\r\n  showCopy?: boolean;\r\n  /** 是否显示悬浮目录，默认 false */\r\n  showToc?: boolean;\r\n}\r\n\r\n/**\r\n * 目录项\r\n */\r\nexport interface TocItem {\r\n  id: string;\r\n  text: string;\r\n  level: number;\r\n}\r\n",
@@ -10154,6 +11153,11 @@
       "type.ts": "/** 整体排布模式 */\r\nexport type TimelineMode = 'left' | 'right' | 'alternate';\r\n\r\n/** alternate 模式下单条目的方向 */\r\nexport type TimelineItemPosition = 'left' | 'right';\r\n\r\n/** 圆点颜色预设 */\r\nexport type TimelineDotPreset =\r\n  | 'blue'\r\n  | 'red'\r\n  | 'green'\r\n  | 'gray'\r\n  | 'success'\r\n  | 'error'\r\n  | 'warning'\r\n  | 'processing';\r\n\r\n/** 时间轴条目 */\r\nexport interface TimelineItem {\r\n  /** 内容（纯文本；复杂内容请使用 content 插槽按索引渲染） */\r\n  content?: string;\r\n  /** 时间/位置标签 */\r\n  label?: string;\r\n  /** 圆点颜色：CSS 颜色或预设（blue/red/green/gray…） */\r\n  color?: TimelineDotPreset | string;\r\n  /** 自定义圆点：QIcon 名称或任意文本（默认实心圆点） */\r\n  dot?: string;\r\n  /** alternate 模式下本条目的方向（覆盖全局左右分布） */\r\n  position?: TimelineItemPosition;\r\n}\r\n\r\n/** QTimeline 组件 Props（对齐 Ant Design Timeline） */\r\nexport interface TimelineProps {\r\n  /**\r\n   * @property items\r\n   * @defaultValue []\r\n   * @description 时间轴条目：[{ content?, label?, color?, dot?, position? }]\r\n   */\r\n  items?: TimelineItem[];\r\n\r\n  /**\r\n   * @property mode\r\n   * @defaultValue 'left'\r\n   * @description 排布模式：left / right / alternate\r\n   */\r\n  mode?: TimelineMode;\r\n\r\n  /**\r\n   * @property reverse\r\n   * @defaultValue false\r\n   * @description 是否倒序排列（pending 幽灵条目始终置于末尾）\r\n   */\r\n  reverse?: boolean;\r\n\r\n  /**\r\n   * @property pending\r\n   * @defaultValue false\r\n   * @description 幽灵待定条目：true 显示占位，字符串作为其内容\r\n   */\r\n  pending?: boolean | string;\r\n}\r\n",
       "composable.ts": "import { computed } from 'vue';\r\nimport type { ComputedRef } from 'vue';\r\n\r\nimport type { TimelineItem, TimelineProps } from './type';\r\n\r\n/** 圆点颜色预设 → token */\r\nexport const DOT_PRESET_COLORS: Record<string, string> = {\r\n  blue: 'var(--q-color-blue-500)',\r\n  red: 'var(--q-color-red-500)',\r\n  green: 'var(--q-color-green-500)',\r\n  gray: 'var(--q-color-gray-400)',\r\n  success: 'var(--q-color-green-500)',\r\n  error: 'var(--q-color-red-500)',\r\n  warning: 'var(--q-color-orange-500)',\r\n  processing: 'var(--q-color-primary)',\r\n};\r\n\r\n/** 默认圆点颜色 */\r\nexport const DEFAULT_DOT_COLOR = 'var(--q-color-primary)';\r\n\r\n/**\r\n * 解析圆点颜色：预设名映射 token，其余视为 CSS 颜色。\r\n * @param color 颜色或预设\r\n * @returns 可用的颜色值\r\n */\r\nexport function resolveDotColor(color: TimelineItem['color']): string {\r\n  if (!color) return DEFAULT_DOT_COLOR;\r\n  return DOT_PRESET_COLORS[color] ?? color;\r\n}\r\n\r\n/** 展示用条目（携带派生信息） */\r\nexport interface TimelineDisplayItem {\r\n  /** 原始条目 */\r\n  item: TimelineItem;\r\n  /** 是否为幽灵待定条目 */\r\n  pending: boolean;\r\n  /** 内容相对轴线所在侧：right = 内容在右（轴线居左） */\r\n  side: 'left' | 'right';\r\n}\r\n\r\n/**\r\n * 计算某条目的内容侧。\r\n * @param mode 整体模式\r\n * @param index 索引\r\n * @param item 条目\r\n * @returns 'right'（内容在右）或 'left'\r\n */\r\nexport function resolveItemSide(\r\n  mode: TimelineProps['mode'],\r\n  index: number,\r\n  item?: TimelineItem,\r\n): 'left' | 'right' {\r\n  if (mode === 'alternate') {\r\n    if (item?.position) return item.position;\r\n    return index % 2 === 0 ? 'right' : 'left';\r\n  }\r\n  // mode left → 轴线在左（内容在右）；mode right → 轴线在右（内容在左）\r\n  return mode === 'right' ? 'left' : 'right';\r\n}\r\n\r\n/**\r\n * 组装最终展示列表：可选倒序 + 追加幽灵条目（始终在末尾）。\r\n * @param items 条目\r\n * @param reverse 是否倒序\r\n * @param pending 幽灵待定\r\n * @returns 展示列表\r\n */\r\nexport function buildDisplayItems(\r\n  items: TimelineItem[] | undefined,\r\n  reverse: boolean | undefined,\r\n  pending: boolean | string | undefined,\r\n): TimelineDisplayItem[] {\r\n  const base = (items ?? []).map<TimelineDisplayItem>((item) => ({\r\n    item,\r\n    pending: false,\r\n    side: 'right',\r\n  }));\r\n  const ordered = reverse ? base.slice().reverse() : base;\r\n  const hasPending = pending !== undefined && pending !== false;\r\n  if (!hasPending) return ordered;\r\n\r\n  const pendingItem: TimelineDisplayItem = {\r\n    item: { content: typeof pending === 'string' ? pending : '' },\r\n    pending: true,\r\n    side: 'right',\r\n  };\r\n  return [...ordered, pendingItem];\r\n}\r\n\r\n/** useTimeline 返回值接口 */\r\nexport interface UseTimelineReturn {\r\n  /** 展示条目 */\r\n  displayItems: ComputedRef<TimelineDisplayItem[]>;\r\n  /** 是否 alternate 模式 */\r\n  alternate: ComputedRef<boolean>;\r\n  /** 容器修饰类 */\r\n  classList: ComputedRef<Record<string, boolean>>;\r\n}\r\n\r\n/**\r\n * QTimeline 组件核心逻辑：条目组装 + 侧向派生。\r\n * @param props 组件 Props\r\n * @returns 状态\r\n */\r\nexport const useTimeline = (props: TimelineProps): UseTimelineReturn => {\r\n  const mode = computed(() => props.mode ?? 'left');\r\n  const alternate = computed(() => mode.value === 'alternate');\r\n\r\n  const displayItems = computed<TimelineDisplayItem[]>(() => {\r\n    const built = buildDisplayItems(props.items, props.reverse, props.pending);\r\n    // 逐一解析内容侧（含幽灵条目，参与 alternate 交替）\r\n    return built.map((entry, i) => ({\r\n      ...entry,\r\n      side: resolveItemSide(mode.value, i, entry.item),\r\n    }));\r\n  });\r\n\r\n  const classList = computed(() => ({\r\n    'q-timeline--alternate': alternate.value,\r\n    'q-timeline--reverse': props.reverse === true,\r\n    'q-timeline--pending':\r\n      props.pending !== undefined && props.pending !== false,\r\n  }));\r\n\r\n  return { displayItems, alternate, classList };\r\n};\r\n",
       "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QTimeline } from './Timeline.vue';\r\n"
+    },
+    "QTour": {
+      "type.ts": "/** Tour 引导步骤 */\r\nexport interface QTourStep {\r\n  /** 目标元素选择器（缺省居中展示） */\r\n  target?: string;\r\n  /** 标题 */\r\n  title?: string;\r\n  /** 描述 */\r\n  description?: string;\r\n  /** 卡片相对目标的位置 */\r\n  placement?: 'top' | 'bottom' | 'left' | 'right';\r\n}\r\n\r\n/** QTour 组件 Props */\r\nexport interface QTourProps {\r\n  /**\r\n   * @property open\r\n   * @defaultValue false\r\n   * @description 是否显示（v-model:open）\r\n   */\r\n  open?: boolean;\r\n  /**\r\n   * @property steps\r\n   * @defaultValue []\r\n   * @description 引导步骤\r\n   */\r\n  steps?: QTourStep[];\r\n  /**\r\n   * @property current\r\n   * @defaultValue 0\r\n   * @description 当前步骤索引（v-model:current）\r\n   */\r\n  current?: number;\r\n  /**\r\n   * @property maskColor\r\n   * @defaultValue 'rgba(0, 0, 0, 0.45)'\r\n   * @description 遮罩颜色\r\n   */\r\n  maskColor?: string;\r\n  /**\r\n   * @property closable\r\n   * @defaultValue true\r\n   * @description 是否显示关闭按钮\r\n   */\r\n  closable?: boolean;\r\n  /**\r\n   * @property prevText\r\n   * @defaultValue '上一步'\r\n   * @description 上一步文案\r\n   */\r\n  prevText?: string;\r\n  /**\r\n   * @property nextText\r\n   * @defaultValue '下一步'\r\n   * @description 下一步文案\r\n   */\r\n  nextText?: string;\r\n  /**\r\n   * @property onFinish\r\n   * @defaultValue 无\r\n   * @description 最后一步点击完成回调\r\n   */\r\n  onFinish?: () => void;\r\n}\r\n\r\n/** QTour 组件 Emits */\r\nexport interface QTourEmits {\r\n  /**\r\n   * @property update:open\r\n   * @description 显示状态变化\r\n   */\r\n  (e: 'update:open', open: boolean): void;\r\n  /**\r\n   * @property update:current\r\n   * @description 当前步骤变化\r\n   */\r\n  (e: 'update:current', current: number): void;\r\n  /**\r\n   * @property finish\r\n   * @description 完成全部步骤\r\n   */\r\n  (e: 'finish'): void;\r\n}\r\n",
+      "composable.ts": "/** 默认遮罩色 */\r\nexport const DEFAULT_TOUR_MASK = 'rgba(0, 0, 0, 0.45)';\r\n/** 卡片距目标的偏移 */\r\nexport const TOUR_GAP = 10;\r\n/** 卡片近似宽度 */\r\nexport const TOUR_CARD_WIDTH = 280;\r\n\r\n/** 目标矩形 */\r\nexport interface TourRect {\r\n  top: number;\r\n  bottom: number;\r\n  left: number;\r\n  right: number;\r\n  width: number;\r\n  height: number;\r\n}\r\n\r\n/** 四块遮罩矩形 */\r\nexport interface MaskPanes {\r\n  top: { top: number; left: number; width: number; height: number };\r\n  bottom: { top: number; left: number; width: number; height: number };\r\n  left: { top: number; left: number; width: number; height: number };\r\n  right: { top: number; left: number; width: number; height: number };\r\n}\r\n\r\n/**\r\n * 由目标矩形与视口尺寸构造四周遮罩（中间留出高亮孔）\r\n * @param rect 目标矩形（视口坐标）\r\n * @param viewport 视口宽高\r\n */\r\nexport function computeMaskPanes(\r\n  rect: TourRect,\r\n  viewport: { width: number; height: number },\r\n): MaskPanes {\r\n  return {\r\n    top: {\r\n      top: 0,\r\n      left: 0,\r\n      width: viewport.width,\r\n      height: Math.max(0, rect.top),\r\n    },\r\n    bottom: {\r\n      top: rect.bottom,\r\n      left: 0,\r\n      width: viewport.width,\r\n      height: Math.max(0, viewport.height - rect.bottom),\r\n    },\r\n    left: {\r\n      top: rect.top,\r\n      left: 0,\r\n      width: Math.max(0, rect.left),\r\n      height: rect.height,\r\n    },\r\n    right: {\r\n      top: rect.top,\r\n      left: rect.right,\r\n      width: Math.max(0, viewport.width - rect.right),\r\n      height: rect.height,\r\n    },\r\n  };\r\n}\r\n\r\n/**\r\n * 计算卡片位置（默认下方，放不下则上方；横向夹在视口内）\r\n * @param rect 目标矩形\r\n * @param placement 期望位置\r\n * @param viewport 视口\r\n */\r\nexport function computeCardPos(\r\n  rect: TourRect,\r\n  placement: 'top' | 'bottom' | 'left' | 'right',\r\n  viewport: { width: number; height: number },\r\n): { top: number; left: number; flip: boolean } {\r\n  const centerX = Math.min(\r\n    Math.max(rect.left + rect.width / 2 - TOUR_CARD_WIDTH / 2, 12),\r\n    viewport.width - TOUR_CARD_WIDTH - 12,\r\n  );\r\n  if (placement === 'top') {\r\n    if (rect.top > TOUR_CARD_WIDTH) {\r\n      return {\r\n        top: rect.top - TOUR_CARD_WIDTH - TOUR_GAP,\r\n        left: centerX,\r\n        flip: false,\r\n      };\r\n    }\r\n    return { top: rect.bottom + TOUR_GAP, left: centerX, flip: true };\r\n  }\r\n  if (placement === 'left' || placement === 'right') {\r\n    const left =\r\n      placement === 'left'\r\n        ? Math.max(12, rect.left - TOUR_CARD_WIDTH - TOUR_GAP)\r\n        : rect.right + TOUR_GAP;\r\n    return {\r\n      top: rect.top,\r\n      left: Math.min(left, viewport.width - TOUR_CARD_WIDTH - 12),\r\n      flip: false,\r\n    };\r\n  }\r\n  // bottom\r\n  if (rect.bottom + TOUR_CARD_WIDTH > viewport.height) {\r\n    return {\r\n      top: Math.max(12, rect.top - TOUR_CARD_WIDTH - TOUR_GAP),\r\n      left: centerX,\r\n      flip: true,\r\n    };\r\n  }\r\n  return { top: rect.bottom + TOUR_GAP, left: centerX, flip: false };\r\n}\r\n",
+      "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QTour } from './Tour.vue';\r\n"
     },
     "QWatermark": {
       "type.ts": "/** 水印字体配置 */\r\nexport interface QWatermarkFont {\r\n  /** 字体颜色 */\r\n  color?: string;\r\n  /** 字号(px) */\r\n  fontSize?: number;\r\n  /** 字重 */\r\n  fontWeight?: number | string;\r\n  /** 字体族 */\r\n  fontFamily?: string;\r\n}\r\n\r\n/** QWatermark 组件 Props */\r\nexport interface QWatermarkProps {\r\n  /**\r\n   * @property content\r\n   * @defaultValue 无\r\n   * @description 水印文本：单行字符串或多行字符串数组；为空则不渲染\r\n   */\r\n  content?: string | string[];\r\n  /**\r\n   * @property gap\r\n   * @defaultValue [100, 100]\r\n   * @description 水印间距 [水平, 垂直]（px）\r\n   */\r\n  gap?: [number, number];\r\n  /**\r\n   * @property offset\r\n   * @defaultValue [0, 0]\r\n   * @description 首个水印相对容器偏移 [x, y]（px）\r\n   */\r\n  offset?: [number, number];\r\n  /**\r\n   * @property rotate\r\n   * @defaultValue -22\r\n   * @description 水印旋转角度（deg）\r\n   */\r\n  rotate?: number;\r\n  /**\r\n   * @property font\r\n   * @defaultValue { color: 'rgba(0,0,0,0.12)', fontSize: 16 }\r\n   * @description 字体配置\r\n   */\r\n  font?: QWatermarkFont;\r\n  /**\r\n   * @property zIndex\r\n   * @defaultValue 1\r\n   * @description 水印层 z-index（需低于交互内容或保持 pointer-events none）\r\n   */\r\n  zIndex?: number;\r\n}\r\n",
@@ -10220,6 +11224,15 @@
       "composable.ts": "import { useFormEvents } from '@/events';\r\nimport type { FormComponentEmits } from '@/types';\r\n\r\nimport type { FormTextareaProps } from './type';\r\n\r\n/**\r\n * FormTextarea 组件核心逻辑\r\n * @param _props 组件 Props\r\n * @param emit 组件 Emits\r\n * @returns onInput 文本输入处理函数\r\n */\r\nexport const useFormTextarea = (\r\n  _props: FormTextareaProps,\r\n  emit: FormComponentEmits<string>,\r\n): {\r\n  onInput: (e: Event) => void;\r\n} => {\r\n  const { handleInput } = useFormEvents<string>(emit);\r\n\r\n  /** 处理文本输入 */\r\n  const onInput = (e: Event) => {\r\n    handleInput((e.target as HTMLInputElement).value as string);\r\n  };\r\n\r\n  return { onInput };\r\n};\r\n",
       "index.ts": "export * from './type';\r\nexport { default as QFormTextarea } from './FormTextarea.vue';\r\n"
     },
+    "QFormItem": {
+      "type.ts": "import type { QFormRule, QFormValidateTrigger } from '../QForm/type';\r\n\r\n/** QFormItem 组件 Props */\r\nexport interface QFormItemProps {\r\n  /**\r\n   * @property name\r\n   * @defaultValue 无\r\n   * @description 对应 model 中的字段名\r\n   */\r\n  name?: string;\r\n  /**\r\n   * @property label\r\n   * @defaultValue 无\r\n   * @description 标签文案\r\n   */\r\n  label?: string;\r\n  /**\r\n   * @property rules\r\n   * @defaultValue 无\r\n   * @description 该字段校验规则（优先于 QForm 全局 rules）\r\n   */\r\n  rules?: QFormRule[];\r\n  /**\r\n   * @property required\r\n   * @defaultValue 无\r\n   * @description 是否必填（可覆盖 rules 推导，仅影响红星/提示）\r\n   */\r\n  required?: boolean;\r\n  /**\r\n   * @property validateTrigger\r\n   * @defaultValue 无\r\n   * @description 校验触发（缺省用 QForm 的默认值）\r\n   */\r\n  validateTrigger?: QFormValidateTrigger;\r\n}\r\n",
+      "index.ts": "export * from './type';\r\nexport { default as QFormItem } from './QFormItem.vue';\r\n"
+    },
+    "QForm": {
+      "type.ts": "/** 校验触发时机 */\r\nexport type QFormValidateTrigger = 'change' | 'blur';\r\n\r\n/** 校验规则 */\r\nexport interface QFormRule {\r\n  /**\r\n   * 是否必填（空字符串/空数组/null/undefined 视为缺失）\r\n   */\r\n  required?: boolean;\r\n  /**\r\n   * 校验失败提示\r\n   */\r\n  message?: string;\r\n  /**\r\n   * 正则匹配\r\n   */\r\n  pattern?: RegExp;\r\n  /**\r\n   * 数字最小值，或字符串/数组最小长度\r\n   */\r\n  min?: number;\r\n  /**\r\n   * 数字最大值，或字符串/数组最大长度\r\n   */\r\n  max?: number;\r\n  /**\r\n   * 精确长度\r\n   */\r\n  len?: number;\r\n  /**\r\n   * 字符串是否仅空白也算缺失（配合 required）\r\n   */\r\n  whitespace?: boolean;\r\n  /**\r\n   * 自定义校验：返回 true 通过、false/string 失败（可返回 Promise）\r\n   */\r\n  validator?: (\r\n    value: unknown,\r\n    model: Record<string, unknown>,\r\n  ) => boolean | string | Promise<boolean | string>;\r\n}\r\n\r\n/** 字段规则表（key 为字段名） */\r\nexport type QFormRules = Record<string, QFormRule[]>;\r\n\r\n/** QForm 组件 Props */\r\nexport interface QFormProps {\r\n  /**\r\n   * @property model\r\n   * @defaultValue 无\r\n   * @description 表单数据对象（各字段由子 QFormItem 的 name 读取）\r\n   */\r\n  model?: Record<string, unknown>;\r\n  /**\r\n   * @property rules\r\n   * @defaultValue 无\r\n   * @description 全局校验规则（字段名 → 规则数组）\r\n   */\r\n  rules?: QFormRules;\r\n  /**\r\n   * @property labelWidth\r\n   * @defaultValue '100px'\r\n   * @description label 宽度（horizontal 布局）\r\n   */\r\n  labelWidth?: number | string;\r\n  /**\r\n   * @property layout\r\n   * @defaultValue 'horizontal'\r\n   * @description 布局：horizontal 标签在左 / vertical 标签在上\r\n   */\r\n  layout?: 'horizontal' | 'vertical';\r\n  /**\r\n   * @property labelAlign\r\n   * @defaultValue 'left'\r\n   * @description label 对齐方式\r\n   */\r\n  labelAlign?: 'left' | 'right';\r\n  /**\r\n   * @property validateTrigger\r\n   * @defaultValue 'blur'\r\n   * @description 字段默认校验触发（可被 QFormItem 覆盖）\r\n   */\r\n  validateTrigger?: QFormValidateTrigger;\r\n}\r\n\r\n/** QForm 组件 Emits */\r\nexport interface QFormEmits {\r\n  /**\r\n   * @property finish\r\n   * @description 提交校验通过\r\n   */\r\n  (e: 'finish', values: Record<string, unknown>): void;\r\n  /**\r\n   * @property finish-failed\r\n   * @description 提交校验失败\r\n   */\r\n  (\r\n    e: 'finish-failed',\r\n    values: Record<string, unknown>,\r\n    errors: Record<string, string>,\r\n  ): void;\r\n}\r\n\r\n/** QForm 暴露方法 */\r\nexport interface QFormExpose {\r\n  /** 校验全部字段，返回是否通过 */\r\n  validate: () => Promise<boolean>;\r\n  /** 校验单个字段 */\r\n  validateField: (name: string) => Promise<boolean>;\r\n  /** 清除校验状态 */\r\n  clearValidate: (name?: string) => void;\r\n  /** 重置字段为初始值并清除校验 */\r\n  resetFields: () => void;\r\n  /** 获取某字段值 */\r\n  getFieldValue: (name: string) => unknown;\r\n  /** 当前错误表 */\r\n  errors: Record<string, string>;\r\n}\r\n",
+      "composable.ts": "import type { QFormRule } from './type';\r\n\r\n/** 是否视为“缺失” */\r\nexport function isMissing(value: unknown, whitespace = false): boolean {\r\n  if (value === undefined || value === null) return true;\r\n  if (typeof value === 'string') {\r\n    if (whitespace) return value.trim() === '';\r\n    return value === '';\r\n  }\r\n  if (Array.isArray(value)) return value.length === 0;\r\n  return false;\r\n}\r\n\r\n/** 判断是否超长/超短（数字比较大小，其余比较 length） */\r\nfunction compareLength(\r\n  value: unknown,\r\n  target: number,\r\n  kind: 'min' | 'max' | 'len',\r\n): boolean {\r\n  const size =\r\n    typeof value === 'number'\r\n      ? value\r\n      : Array.isArray(value) || typeof value === 'string'\r\n        ? value.length\r\n        : 0;\r\n  if (kind === 'min') return size < target;\r\n  if (kind === 'max') return size > target;\r\n  return size !== target;\r\n}\r\n\r\n/** 默认提示 */\r\nexport function defaultMessage(rule: QFormRule, field?: string): string {\r\n  const label = field ? `「${field}」` : '';\r\n  if (rule.required) return `${label}为必填项`;\r\n  if (rule.pattern) return `${label}格式不正确`;\r\n  if (rule.min !== undefined && rule.max !== undefined)\r\n    return `${label}长度/数值需在 ${rule.min} ~ ${rule.max}`;\r\n  if (rule.min !== undefined) return `${label}长度/数值不能小于 ${rule.min}`;\r\n  if (rule.max !== undefined) return `${label}长度/数值不能大于 ${rule.max}`;\r\n  if (rule.len !== undefined) return `${label}长度需为 ${rule.len}`;\r\n  return '校验不通过';\r\n}\r\n\r\n/**\r\n * 执行单条规则\r\n * @returns 失败信息或 null\r\n */\r\nexport async function validateRule(\r\n  rule: QFormRule,\r\n  value: unknown,\r\n  model: Record<string, unknown>,\r\n  field?: string,\r\n): Promise<string | null> {\r\n  if (rule.required && isMissing(value, rule.whitespace)) {\r\n    return rule.message ?? defaultMessage(rule, field);\r\n  }\r\n  if (!isMissing(value)) {\r\n    if (\r\n      rule.pattern &&\r\n      typeof value === 'string' &&\r\n      !rule.pattern.test(value)\r\n    ) {\r\n      return rule.message ?? defaultMessage(rule, field);\r\n    }\r\n    if (rule.len !== undefined && compareLength(value, rule.len, 'len')) {\r\n      return rule.message ?? defaultMessage(rule, field);\r\n    }\r\n    if (rule.min !== undefined && compareLength(value, rule.min, 'min')) {\r\n      return rule.message ?? defaultMessage(rule, field);\r\n    }\r\n    if (rule.max !== undefined && compareLength(value, rule.max, 'max')) {\r\n      return rule.message ?? defaultMessage(rule, field);\r\n    }\r\n  }\r\n  if (rule.validator) {\r\n    const result = await rule.validator(value, model);\r\n    if (result === false) return rule.message ?? defaultMessage(rule, field);\r\n    if (typeof result === 'string') return result;\r\n  }\r\n  return null;\r\n}\r\n\r\n/**\r\n * 依次执行规则，返回第一条失败信息\r\n */\r\nexport async function validateRules(\r\n  rules: QFormRule[] | undefined,\r\n  value: unknown,\r\n  model: Record<string, unknown>,\r\n  field?: string,\r\n): Promise<string | null> {\r\n  if (!rules || rules.length === 0) return null;\r\n  for (const rule of rules) {\r\n    const msg = await validateRule(rule, value, model, field);\r\n    if (msg !== null) return msg;\r\n  }\r\n  return null;\r\n}\r\n",
+      "index.ts": "export * from './composable';\r\nexport * from './formContext';\r\nexport * from './type';\r\nexport { default as QForm } from './QForm.vue';\r\n"
+    },
     "QSearch": {
       "type.ts": "import type { FormComponentProps, FormComponentEmits } from '@/types';\r\n\r\n/**\r\n * Search 组件 Props\r\n */\r\nexport type SearchProps = FormComponentProps<string>;\r\n\r\n/**\r\n * Search 组件 Emits\r\n */\r\nexport interface SearchEmits extends FormComponentEmits<string> {\r\n  /** 搜索事件（Enter 键或点击图标触发） */\r\n  (e: 'search', value: string): void;\r\n}\r\n",
       "composable.ts": "import { ref, watch, type Ref } from 'vue';\r\nimport type { SearchProps, SearchEmits } from './type';\r\n\r\n/**\r\n * Search 组件核心逻辑\r\n * @param props 组件 Props\r\n * @param emit 组件 Emits\r\n * @returns 搜索值绑定和事件处理\r\n */\r\nexport const useSearch = (\r\n  props: SearchProps,\r\n  emit: SearchEmits,\r\n): {\r\n  searchValue: Ref<string>;\r\n  keyDownhandler: (e: KeyboardEvent) => void;\r\n  handleFocus: () => void;\r\n  handleBlur: () => void;\r\n  handleSearchClick: () => void;\r\n} => {\r\n  /** 搜索输入值 */\r\n  const searchValue = ref(props.modelValue || '');\r\n\r\n  /** 键盘事件处理 */\r\n  const keyDownhandler = (e: KeyboardEvent) => {\r\n    if (e.key === 'Enter') {\r\n      emit('search', searchValue.value);\r\n    } else {\r\n      emit('change', searchValue.value);\r\n    }\r\n  };\r\n\r\n  /** 聚焦事件 */\r\n  const handleFocus = () => {\r\n    emit('focus');\r\n  };\r\n\r\n  /** 失焦事件 */\r\n  const handleBlur = () => {\r\n    emit('blur');\r\n  };\r\n\r\n  /** 点击搜索图标 */\r\n  const handleSearchClick = () => {\r\n    emit('search', searchValue.value);\r\n  };\r\n\r\n  // 双向同步\r\n  watch(\r\n    () => searchValue.value,\r\n    (newValue) => {\r\n      emit('update:modelValue', newValue);\r\n      emit('change', newValue);\r\n    },\r\n  );\r\n\r\n  return {\r\n    searchValue,\r\n    keyDownhandler,\r\n    handleFocus,\r\n    handleBlur,\r\n    handleSearchClick,\r\n  };\r\n};\r\n",
@@ -10240,6 +11253,11 @@
       "composable.ts": "import { computed, ref, watch } from 'vue';\r\nimport type { ComputedRef, Ref } from 'vue';\r\n\r\nimport type { InputNumberEmits, InputNumberProps } from './type';\r\n\r\n/** 将任意输入值转数字；无法解析返回 null */\r\nexport function parseToNumber(\r\n  raw: string | number | null | undefined,\r\n): number | null {\r\n  if (raw === null || raw === undefined || raw === '') return null;\r\n  const n = typeof raw === 'number' ? raw : Number(raw);\r\n  return Number.isNaN(n) ? null : n;\r\n}\r\n\r\n/** 数字在 [min, max] 内收敛 */\r\nexport function clamp(value: number, min: number, max: number): number {\r\n  if (Number.isNaN(value)) return min;\r\n  return Math.min(Math.max(value, min), max);\r\n}\r\n\r\n/** 四舍五入到 step 的整数倍（从 0 对齐；供需要对齐步长的场景使用） */\r\nexport function roundToStep(value: number, step: number): number {\r\n  if (step <= 0 || !Number.isFinite(step)) return value;\r\n  return Math.round(value / step) * step;\r\n}\r\n\r\n/** 四舍五入到 precision 位小数 */\r\nexport function roundToPrecision(value: number, precision?: number): number {\r\n  if (precision === undefined || precision < 0) return value;\r\n  const factor = 10 ** precision;\r\n  return Math.round(value * factor) / factor;\r\n}\r\n\r\n/** useInputNumber 返回值接口 */\r\nexport interface UseInputNumberReturn {\r\n  /** 展示文本 */\r\n  displayText: Ref<string>;\r\n  /** 是否禁用 */\r\n  isDisabled: ComputedRef<boolean>;\r\n  /** 增减可用性（受限时禁用） */\r\n  canPlus: ComputedRef<boolean>;\r\n  canMinus: ComputedRef<boolean>;\r\n  /** 文本输入 */\r\n  onInput: (e: Event) => void;\r\n  /** 失焦提交 */\r\n  onBlur: (e: FocusEvent) => void;\r\n  /** 聚焦 */\r\n  onFocus: (e: FocusEvent) => void;\r\n  /** 键盘上/下 */\r\n  onKeydown: (e: KeyboardEvent) => void;\r\n  /** 增加 / 减少 */\r\n  plus: () => void;\r\n  minus: () => void;\r\n}\r\n\r\n/**\r\n * QInputNumber 组件核心逻辑：受控值 + 本地编辑文本 + 步进/限制。\r\n * @param props 组件 Props\r\n * @param emit  组件 Emits\r\n * @returns 状态与处理器\r\n */\r\nexport const useInputNumber = (\r\n  props: InputNumberProps,\r\n  emit: InputNumberEmits,\r\n): UseInputNumberReturn => {\r\n  const min = computed(() => props.min ?? -Infinity);\r\n  const max = computed(() => props.max ?? Infinity);\r\n  const step = computed(() => props.step ?? 1);\r\n\r\n  /** 本地编辑文本（输入时使用，失焦回填规范化值） */\r\n  const editing = ref(false);\r\n  const draft = ref('');\r\n\r\n  const displayText = ref('');\r\n\r\n  /** 当前规范值 */\r\n  function normalize(raw: number | null): number | null {\r\n    if (raw === null) return null;\r\n    const c = clamp(raw, min.value, max.value);\r\n    return roundToPrecision(c, props.precision);\r\n  }\r\n\r\n  /** 同步展示文本 */\r\n  function syncText() {\r\n    const v = normalize(parseToNumber(props.modelValue));\r\n    displayText.value = v === null ? '' : String(v);\r\n  }\r\n\r\n  syncText();\r\n  watch(\r\n    () => props.modelValue,\r\n    () => {\r\n      if (!editing.value) syncText();\r\n    },\r\n  );\r\n\r\n  /** 提交新值 */\r\n  function commit(value: number | null) {\r\n    const next = normalize(value);\r\n    emit('update:modelValue', next);\r\n    emit('change', next);\r\n    // 非编辑态直接回填展示文本（避免依赖父级异步回写）\r\n    if (!editing.value) {\r\n      displayText.value = next === null ? '' : String(next);\r\n    }\r\n    return next;\r\n  }\r\n\r\n  /** 增减可用性 */\r\n  const current = computed(() => parseToNumber(props.modelValue));\r\n\r\n  const canPlus = computed(() => {\r\n    if (props.disabled || current.value === null) return false;\r\n    return current.value < max.value;\r\n  });\r\n\r\n  const canMinus = computed(() => {\r\n    if (props.disabled || current.value === null) return false;\r\n    return current.value > min.value;\r\n  });\r\n\r\n  const isDisabled = computed(() => props.disabled === true);\r\n\r\n  /** 文本输入：仅存草稿，不做提交 */\r\n  function onInput(e: Event) {\r\n    if (props.disabled) return;\r\n    const el = e.target as HTMLInputElement;\r\n    // 允许负号、数字与小数\r\n    const cleaned = el.value.replace(/[^\\d.-]/g, '');\r\n    editing.value = true;\r\n    draft.value = cleaned;\r\n    el.value = cleaned;\r\n  }\r\n\r\n  /** 失焦：解析并提交规范值 */\r\n  function onBlur(e: FocusEvent) {\r\n    editing.value = false;\r\n    const raw = draft.value === '' ? null : parseToNumber(draft.value);\r\n    const next = normalize(raw);\r\n    displayText.value = next === null ? '' : String(next);\r\n    draft.value = '';\r\n    emit('update:modelValue', next);\r\n    emit('change', next);\r\n    emit('blur', e);\r\n  }\r\n\r\n  /** 聚焦 */\r\n  function onFocus(e: FocusEvent) {\r\n    draft.value = displayText.value;\r\n    emit('focus', e);\r\n  }\r\n\r\n  /** 键盘上/下 */\r\n  function onKeydown(e: KeyboardEvent) {\r\n    if (props.disabled) return;\r\n    if (e.key === 'ArrowUp') {\r\n      e.preventDefault();\r\n      plus();\r\n    } else if (e.key === 'ArrowDown') {\r\n      e.preventDefault();\r\n      minus();\r\n    } else if (e.key === 'Enter') {\r\n      (e.target as HTMLInputElement).blur();\r\n    }\r\n  }\r\n\r\n  /** 增加 */\r\n  function plus() {\r\n    if (!canPlus.value) return;\r\n    const base = current.value ?? 0;\r\n    commit(base + step.value);\r\n  }\r\n\r\n  /** 减少 */\r\n  function minus() {\r\n    if (!canMinus.value) return;\r\n    const base = current.value ?? 0;\r\n    commit(base - step.value);\r\n  }\r\n\r\n  return {\r\n    displayText,\r\n    isDisabled,\r\n    canPlus,\r\n    canMinus,\r\n    onInput,\r\n    onBlur,\r\n    onFocus,\r\n    onKeydown,\r\n    plus,\r\n    minus,\r\n  };\r\n};\r\n",
       "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QInputNumber } from './InputNumber.vue';\r\n"
     },
+    "QMentions": {
+      "type.ts": "/** QMentions 候选项 */\r\nexport interface QMentionsOption {\r\n  /** 值 */\r\n  value: string;\r\n  /** 显示文案（缺省用 value） */\r\n  label?: string;\r\n  /** 是否禁用 */\r\n  disabled?: boolean;\r\n}\r\n\r\n/** QMentions 组件 Props */\r\nexport interface QMentionsProps {\r\n  /**\r\n   * @property modelValue\r\n   * @defaultValue ''\r\n   * @description 文本值（v-model，含 @提及 的完整文本）\r\n   */\r\n  modelValue?: string;\r\n  /**\r\n   * @property options\r\n   * @defaultValue []\r\n   * @description 候选列表\r\n   */\r\n  options?: QMentionsOption[];\r\n  /**\r\n   * @property prefix\r\n   * @defaultValue '@'\r\n   * @description 触发前缀（单个字符）\r\n   */\r\n  prefix?: string;\r\n  /**\r\n   * @property placeholder\r\n   * @defaultValue '请输入，@ 提及'\r\n   * @description 占位文案\r\n   */\r\n  placeholder?: string;\r\n  /**\r\n   * @property disabled\r\n   * @defaultValue false\r\n   * @description 禁用\r\n   */\r\n  disabled?: boolean;\r\n  /**\r\n   * @property rows\r\n   * @defaultValue 3\r\n   * @description textarea 行数\r\n   */\r\n  rows?: number;\r\n  /**\r\n   * @property autoSize\r\n   * @defaultValue false\r\n   * @description 是否随内容自适应高度\r\n   */\r\n  autoSize?: boolean;\r\n  /**\r\n   * @property open\r\n   * @defaultValue 无\r\n   * @description 受控展开候选（v-model:open）\r\n   */\r\n  open?: boolean;\r\n}\r\n\r\n/** QMentions 组件 Emits */\r\nexport interface QMentionsEmits {\r\n  /**\r\n   * @property update:modelValue\r\n   * @description 输入或选择候选时输出\r\n   */\r\n  (e: 'update:modelValue', value: string): void;\r\n  /**\r\n   * @property change\r\n   * @description 值变化时触发\r\n   */\r\n  (e: 'change', value: string): void;\r\n  /**\r\n   * @property update:open\r\n   * @description 候选展开状态变化\r\n   */\r\n  (e: 'update:open', open: boolean): void;\r\n}\r\n",
+      "composable.ts": "import type { QMentionsOption } from './type';\r\n\r\n/** 匹配到的 @ 片段 */\r\nexport interface MentionsTrigger {\r\n  /** 片段起点（不含前缀） */\r\n  start: number;\r\n  /** 片段终点 */\r\n  end: number;\r\n  /** 查询词 */\r\n  query: string;\r\n}\r\n\r\n/** 是否命中 @ 触发的词尾 */\r\nexport function findTriggerAtEnd(\r\n  value: string,\r\n  prefix = '@',\r\n): MentionsTrigger | null {\r\n  let i = value.length - 1;\r\n  while (i >= 0 && /[\\w\\u4e00-\\u9fa5-]/.test(value[i])) i -= 1;\r\n  const start = i + 1;\r\n  if (start <= 0 || value[start - 1] !== prefix) return null;\r\n  const query = value.slice(start);\r\n  return { start, end: value.length, query };\r\n}\r\n\r\n/** 过滤候选 */\r\nexport function filterMentions(\r\n  options: QMentionsOption[],\r\n  query: string,\r\n): QMentionsOption[] {\r\n  if (!query) return options;\r\n  const q = query.toLowerCase();\r\n  return options.filter((opt) => {\r\n    const source = `${opt.label ?? ''}${opt.value}`.toLowerCase();\r\n    return source.includes(q);\r\n  });\r\n}\r\n\r\n/** 选中候选后替换 @query 为 @value  */\r\nexport function replaceTrigger(\r\n  value: string,\r\n  trigger: MentionsTrigger,\r\n  choice: string,\r\n): string {\r\n  return `${value.slice(0, trigger.start - 1)}@${choice} ${value.slice(trigger.end)}`;\r\n}\r\n\r\n/** 候选项展示文本 */\r\nexport function optionLabel(opt: QMentionsOption): string {\r\n  return opt.label ?? opt.value;\r\n}\r\n",
+      "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QMentions } from './Mentions.vue';\r\n"
+    },
     "QRate": {
       "type.ts": "/** QRate 组件 Props（对齐 Ant Design Rate） */\r\nexport interface RateProps {\r\n  /**\r\n   * @property modelValue\r\n   * @defaultValue 0\r\n   * @description 当前评分（0 ~ count，支持 v-model）\r\n   */\r\n  modelValue?: number;\r\n\r\n  /**\r\n   * @property count\r\n   * @defaultValue 5\r\n   * @description 星星总数\r\n   */\r\n  count?: number;\r\n\r\n  /**\r\n   * @property allowHalf\r\n   * @defaultValue false\r\n   * @description 是否允许半星\r\n   */\r\n  allowHalf?: boolean;\r\n\r\n  /**\r\n   * @property allowClear\r\n   * @defaultValue true\r\n   * @description 再次点击同一值是否清除（置 0）\r\n   */\r\n  allowClear?: boolean;\r\n\r\n  /**\r\n   * @property disabled\r\n   * @defaultValue false\r\n   * @description 是否只读（禁用交互）\r\n   */\r\n  disabled?: boolean;\r\n\r\n  /**\r\n   * @property character\r\n   * @defaultValue '★'\r\n   * @description 自定义字符（也可用 character 插槽覆盖整颗星）\r\n   */\r\n  character?: string;\r\n}\r\n\r\n/** QRate 组件 Emits */\r\nexport interface RateEmits {\r\n  /**\r\n   * @property update:modelValue\r\n   * @description 评分变化时触发\r\n   */\r\n  (e: 'update:modelValue', value: number): void;\r\n\r\n  /**\r\n   * @property change\r\n   * @description 评分变化时触发\r\n   */\r\n  (e: 'change', value: number): void;\r\n\r\n  /**\r\n   * @property hoverChange\r\n   * @description 悬停预览值变化时触发\r\n   */\r\n  (e: 'hoverChange', value: number): void;\r\n}\r\n",
       "composable.ts": "import { computed, ref } from 'vue';\r\nimport type { ComputedRef, Ref } from 'vue';\r\n\r\nimport type { RateEmits, RateProps } from './type';\r\n\r\n/** 某颗星（0-based）是否满星 */\r\nexport function isFull(display: number, index: number): boolean {\r\n  return display >= index + 1;\r\n}\r\n\r\n/** 某颗星（0-based）是否半星（仅 allowHalf 场景） */\r\nexport function isHalf(\r\n  display: number,\r\n  index: number,\r\n  allowHalf: boolean,\r\n): boolean {\r\n  return allowHalf && display === index + 0.5;\r\n}\r\n\r\n/** useRate 返回值接口 */\r\nexport interface UseRateReturn {\r\n  /** 展示值（悬停预览优先，否则为 modelValue） */\r\n  displayValue: ComputedRef<number>;\r\n  /** 悬停预览值（0 表示无预览） */\r\n  hoverValue: Ref<number>;\r\n  /** 是否禁用 */\r\n  isDisabled: ComputedRef<boolean>;\r\n  /** 指针悬停某颗星（half=true 命中左半 → 半星预览） */\r\n  onHover: (index: number, half?: boolean) => void;\r\n  /** 移出 */\r\n  onLeave: () => void;\r\n  /** 点击某颗星：index 为 0-based，half=true 表示命中左半（半星） */\r\n  onPick: (index: number, half: boolean) => void;\r\n}\r\n\r\n/**\r\n * QRate 组件核心逻辑：展示/悬停派生 + 取值（含半星、清除）。\r\n * @param props 组件 Props\r\n * @param emit  组件 Emits\r\n * @returns 状态与处理器\r\n */\r\nexport const useRate = (props: RateProps, emit: RateEmits): UseRateReturn => {\r\n  const count = computed(() => props.count ?? 5);\r\n  const hoverValue = ref(0);\r\n  const isDisabled = computed(() => props.disabled === true);\r\n\r\n  /** 展示值 */\r\n  const displayValue = computed(() =>\r\n    hoverValue.value > 0 ? hoverValue.value : (props.modelValue ?? 0),\r\n  );\r\n\r\n  /** 悬停某颗星（默认整星 index+1；半星左半为 index+0.5） */\r\n  function onHover(index: number, half?: boolean) {\r\n    if (isDisabled.value) return;\r\n    const preview = half && props.allowHalf ? index + 0.5 : index + 1;\r\n    hoverValue.value = Math.min(preview, count.value);\r\n    emit('hoverChange', hoverValue.value);\r\n  }\r\n\r\n  /** 移出 */\r\n  function onLeave() {\r\n    hoverValue.value = 0;\r\n    emit('hoverChange', 0);\r\n  }\r\n\r\n  /** 点击取值 */\r\n  function onPick(index: number, half: boolean) {\r\n    if (isDisabled.value) return;\r\n    // 命中左半且允许半星 → x.5（index=0 时即 0.5）；否则整数 index+1\r\n    const raw = half && props.allowHalf ? index + 0.5 : index + 1;\r\n    const next = Math.min(Math.max(raw, 0), count.value);\r\n\r\n    // 可清除：再次点击同一值 → 归零\r\n    const current = props.modelValue ?? 0;\r\n    const final = props.allowClear && current === next ? 0 : next;\r\n\r\n    hoverValue.value = 0;\r\n    emit('update:modelValue', final);\r\n    emit('change', final);\r\n  }\r\n\r\n  return { displayValue, hoverValue, isDisabled, onHover, onLeave, onPick };\r\n};\r\n",
@@ -10249,6 +11267,11 @@
       "type.ts": "import type { FormSize } from '@/types';\r\n\r\n/** 刻度标记：{ [位置]: 文本 } */\r\nexport type SliderMarks = Record<number, string>;\r\n\r\n/** QSlider 组件 Props（对齐 Ant Design Slider 单值能力） */\r\nexport interface SliderProps {\r\n  /**\r\n   * @property modelValue\r\n   * @defaultValue 0\r\n   * @description 当前值（支持 v-model）\r\n   */\r\n  modelValue?: number;\r\n\r\n  /**\r\n   * @property min\r\n   * @defaultValue 0\r\n   * @description 最小值\r\n   */\r\n  min?: number;\r\n\r\n  /**\r\n   * @property max\r\n   * @defaultValue 100\r\n   * @description 最大值\r\n   */\r\n  max?: number;\r\n\r\n  /**\r\n   * @property step\r\n   * @defaultValue 1\r\n   * @description 步长；0 表示自由取值\r\n   */\r\n  step?: number;\r\n\r\n  /**\r\n   * @property disabled\r\n   * @defaultValue false\r\n   * @description 是否禁用\r\n   */\r\n  disabled?: boolean;\r\n\r\n  /**\r\n   * @property marks\r\n   * @defaultValue 无\r\n   * @description 刻度标记 { [值]: 文本 }\r\n   */\r\n  marks?: SliderMarks;\r\n\r\n  /**\r\n   * @property size\r\n   * @defaultValue 'middle'\r\n   * @description 尺寸：small / middle / large\r\n   */\r\n  size?: FormSize;\r\n}\r\n\r\n/** QSlider 组件 Emits */\r\nexport interface SliderEmits {\r\n  /**\r\n   * @property update:modelValue\r\n   * @description 拖动/点击/键盘变化时触发（拖动过程持续触发）\r\n   */\r\n  (e: 'update:modelValue', value: number): void;\r\n\r\n  /**\r\n   * @property change\r\n   * @description 值变化提交（鼠标释放/键盘）时触发\r\n   */\r\n  (e: 'change', value: number): void;\r\n}\r\n",
       "composable.ts": "import { computed } from 'vue';\r\nimport type { ComputedRef } from 'vue';\r\n\r\nimport type { SliderEmits, SliderMarks, SliderProps } from './type';\r\n\r\n/** 值收敛到 [min, max] */\r\nexport function clampValue(value: number, min: number, max: number): number {\r\n  return Math.min(Math.max(value, min), max);\r\n}\r\n\r\n/** 按 step 对齐（step<=0 时原样返回） */\r\nexport function alignToStep(value: number, step: number, min: number): number {\r\n  if (step <= 0 || !Number.isFinite(step)) return value;\r\n  return min + Math.round((value - min) / step) * step;\r\n}\r\n\r\n/** 规范化值：收敛 + 步长对齐 + 浮点精度 */\r\nexport function normalizeSlider(\r\n  value: number,\r\n  min: number,\r\n  max: number,\r\n  step: number,\r\n): number {\r\n  const c = clampValue(value, min, max);\r\n  const a = alignToStep(c, step, min);\r\n  const rounded = Math.round(a * 1e6) / 1e6;\r\n  return clampValue(rounded, min, max);\r\n}\r\n\r\n/** 值 → 百分比（0-100） */\r\nexport function toPercent(value: number, min: number, max: number): number {\r\n  if (max === min) return 0;\r\n  return ((value - min) / (max - min)) * 100;\r\n}\r\n\r\n/** 百分比 → 值（按 min/max 缩放后再 step 对齐） */\r\nexport function percentToValue(\r\n  percent: number,\r\n  min: number,\r\n  max: number,\r\n  step: number,\r\n): number {\r\n  const value = min + (percent / 100) * (max - min);\r\n  return normalizeSlider(value, min, max, step);\r\n}\r\n\r\n/** useSlider 返回值接口 */\r\nexport interface UseSliderReturn {\r\n  /** 当前值 */\r\n  value: ComputedRef<number>;\r\n  /** 当前值百分比（填充/手柄定位用） */\r\n  percent: ComputedRef<number>;\r\n  /** 刻度数组（排序） */\r\n  markList: ComputedRef<{ value: number; label: string }[]>;\r\n  /** 是否禁用 */\r\n  isDisabled: ComputedRef<boolean>;\r\n  /** 点击轨道 / 拖动 → 设值 */\r\n  setFromClientX: (clientX: number, el: HTMLElement, commit: boolean) => void;\r\n  /** 键盘调整 */\r\n  onKeydown: (e: KeyboardEvent) => void;\r\n}\r\n\r\n/**\r\n * QSlider 组件核心逻辑：单值滑动条派生值/百分比/刻度 + 事件换算。\r\n * @param props 组件 Props\r\n * @param emit  组件 Emits\r\n * @returns 派生状态与处理器\r\n */\r\nexport const useSlider = (\r\n  props: SliderProps,\r\n  emit: SliderEmits,\r\n): UseSliderReturn => {\r\n  const min = computed(() => props.min ?? 0);\r\n  const max = computed(() => props.max ?? 100);\r\n  const step = computed(() => props.step ?? 1);\r\n\r\n  /** 当前值 */\r\n  const value = computed(() =>\r\n    normalizeSlider(\r\n      props.modelValue ?? min.value,\r\n      min.value,\r\n      max.value,\r\n      step.value,\r\n    ),\r\n  );\r\n\r\n  /** 百分比 */\r\n  const percent = computed(() => toPercent(value.value, min.value, max.value));\r\n\r\n  /** 刻度 */\r\n  const markList = computed<{ value: number; label: string }[]>(() => {\r\n    const marks: SliderMarks = props.marks ?? {};\r\n    return Object.entries(marks)\r\n      .map(([v, label]) => ({\r\n        value: Number(v),\r\n        label,\r\n      }))\r\n      .sort((a, b) => a.value - b.value);\r\n  });\r\n\r\n  /** 是否禁用 */\r\n  const isDisabled = computed(() => props.disabled === true);\r\n\r\n  /** 派发新值 */\r\n  function commit(next: number, isChange: boolean) {\r\n    emit('update:modelValue', next);\r\n    if (isChange) emit('change', next);\r\n  }\r\n\r\n  /** 由 clientX 计算并写入 */\r\n  function setFromClientX(clientX: number, el: HTMLElement, isChange: boolean) {\r\n    if (isDisabled.value) return;\r\n    const rect = el.getBoundingClientRect();\r\n    if (rect.width === 0) return;\r\n    const ratio = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);\r\n    const next = percentToValue(ratio * 100, min.value, max.value, step.value);\r\n    commit(next, isChange);\r\n  }\r\n\r\n  /** 键盘方向键（每次一步） */\r\n  function onKeydown(e: KeyboardEvent) {\r\n    if (isDisabled.value) return;\r\n    const delta = step.value > 0 ? step.value : (max.value - min.value) / 10;\r\n    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {\r\n      e.preventDefault();\r\n      commit(\r\n        normalizeSlider(value.value + delta, min.value, max.value, step.value),\r\n        true,\r\n      );\r\n    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {\r\n      e.preventDefault();\r\n      commit(\r\n        normalizeSlider(value.value - delta, min.value, max.value, step.value),\r\n        true,\r\n      );\r\n    }\r\n  }\r\n\r\n  return {\r\n    value,\r\n    percent,\r\n    markList,\r\n    isDisabled,\r\n    setFromClientX,\r\n    onKeydown,\r\n  };\r\n};\r\n",
       "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QSlider } from './Slider.vue';\r\n"
+    },
+    "QTimePicker": {
+      "type.ts": "/** QTimePicker 组件 Props */\r\nexport interface QTimePickerProps {\r\n  /**\r\n   * @property modelValue\r\n   * @defaultValue 无\r\n   * @description 选中时间字符串（如 '12:30:45'，v-model）\r\n   */\r\n  modelValue?: string;\r\n  /**\r\n   * @property format\r\n   * @defaultValue 'HH:mm:ss'\r\n   * @description 展示/输出格式，支持 HH/mm/ss（24 小时制）\r\n   */\r\n  format?: string;\r\n  /**\r\n   * @property placeholder\r\n   * @defaultValue '请选择时间'\r\n   * @description 占位文案\r\n   */\r\n  placeholder?: string;\r\n  /**\r\n   * @property disabled\r\n   * @defaultValue false\r\n   * @description 禁用\r\n   */\r\n  disabled?: boolean;\r\n  /**\r\n   * @property allowClear\r\n   * @defaultValue true\r\n   * @description 是否允许清除\r\n   */\r\n  allowClear?: boolean;\r\n  /**\r\n   * @property hourStep\r\n   * @defaultValue 1\r\n   * @description 小时步长\r\n   */\r\n  hourStep?: number;\r\n  /**\r\n   * @property minuteStep\r\n   * @defaultValue 1\r\n   * @description 分钟步长\r\n   */\r\n  minuteStep?: number;\r\n  /**\r\n   * @property secondStep\r\n   * @defaultValue 1\r\n   * @description 秒步长\r\n   */\r\n  secondStep?: number;\r\n  /**\r\n   * @property open\r\n   * @defaultValue 无\r\n   * @description 受控展开（v-model:open）\r\n   */\r\n  open?: boolean;\r\n}\r\n\r\n/** QTimePicker 组件 Emits */\r\nexport interface QTimePickerEmits {\r\n  /**\r\n   * @property update:modelValue\r\n   * @description 确认时输出新值\r\n   */\r\n  (e: 'update:modelValue', value: string): void;\r\n  /**\r\n   * @property change\r\n   * @description 确认变化时触发\r\n   */\r\n  (e: 'change', value: string): void;\r\n  /**\r\n   * @property update:open\r\n   * @description 展开状态变化\r\n   */\r\n  (e: 'update:open', open: boolean): void;\r\n}\r\n",
+      "composable.ts": "/** 默认格式 */\r\nexport const DEFAULT_TIME_FORMAT = 'HH:mm:ss';\r\n/** 默认占位 */\r\nexport const DEFAULT_TIME_PLACEHOLDER = '请选择时间';\r\n\r\n/** 补零 */\r\nexport function pad2(value: number): string {\r\n  return String(value).padStart(2, '0');\r\n}\r\n\r\n/** 时间三要素 */\r\nexport interface TimeParts {\r\n  hour: number;\r\n  minute: number;\r\n  second: number;\r\n}\r\n\r\n/** 是否含秒字段 */\r\nexport function formatHasSeconds(format: string): boolean {\r\n  return /ss/.test(format);\r\n}\r\n\r\n/**\r\n * 解析时间字符串为三要素\r\n * @param value 如 '12:30' / '12:30:45'（含秒与否均可）\r\n */\r\nexport function parseTimeValue(value: string | undefined | null): TimeParts {\r\n  const [h = '0', m = '0', s = '0'] = (value ?? '').split(':');\r\n  return {\r\n    hour: clampNumber(parseInt(h, 10), 0, 23),\r\n    minute: clampNumber(parseInt(m, 10), 0, 59),\r\n    second: clampNumber(parseInt(s, 10), 0, 59),\r\n  };\r\n}\r\n\r\n/** 按格式输出时间字符串 */\r\nexport function formatTime(parts: TimeParts, format: string): string {\r\n  const map: Record<string, string> = {\r\n    HH: pad2(parts.hour),\r\n    H: String(parts.hour),\r\n    mm: pad2(parts.minute),\r\n    m: String(parts.minute),\r\n    ss: pad2(parts.second),\r\n    s: String(parts.second),\r\n  };\r\n  return format.replace(/HH|H|mm|m|ss|s/g, (token) => map[token] ?? token);\r\n}\r\n\r\n/** 构造某单位可选项（按步长） */\r\nexport function buildOptions(total: number, step = 1): number[] {\r\n  const safe = Math.max(1, Math.floor(step) || 1);\r\n  const list: number[] = [];\r\n  for (let i = 0; i < total; i += safe) list.push(i);\r\n  return list;\r\n}\r\n\r\nfunction clampNumber(value: number, min: number, max: number): number {\r\n  if (Number.isNaN(value)) return min;\r\n  return Math.min(max, Math.max(min, value));\r\n}\r\n\r\n/**\r\n * 归一化模型值（对齐步长/越界）\r\n * @param value 原值\r\n * @param steps 步长配置\r\n */\r\nexport function normalizeTimeValue(\r\n  value: string | undefined | null,\r\n  steps: { hour?: number; minute?: number; second?: number },\r\n): string | undefined {\r\n  if (!value) return value === '' ? '' : undefined;\r\n  const parts = parseTimeValue(value);\r\n  return formatTime(\r\n    {\r\n      hour: parts.hour,\r\n      minute: parts.minute - (parts.minute % (steps.minute ?? 1)),\r\n      second: parts.second - (parts.second % (steps.second ?? 1)),\r\n    },\r\n    DEFAULT_TIME_FORMAT,\r\n  );\r\n}\r\n",
+      "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QTimePicker } from './TimePicker.vue';\r\n"
     },
     "QTransfer": {
       "type.ts": "import type { FormSize } from '@/types';\r\n\r\n/** 穿梭项 key */\r\nexport type TransferKey = string | number;\r\n\r\n/** 穿梭项数据 */\r\nexport interface TransferItem {\r\n  /** 唯一标识 */\r\n  key: TransferKey;\r\n  /** 主标题 */\r\n  title: string;\r\n  /** 描述（可选） */\r\n  description?: string;\r\n  /** 是否禁用（不可勾选/移动） */\r\n  disabled?: boolean;\r\n}\r\n\r\n/** 面板方向 */\r\nexport type TransferDirection = 'left' | 'right';\r\n\r\n/** QTransfer 组件 Props（对齐 Ant Design Transfer 常用能力） */\r\nexport interface TransferProps {\r\n  /**\r\n   * @property dataSource\r\n   * @defaultValue []\r\n   * @description 穿梭框数据源：[{ key, title, description?, disabled? }]\r\n   */\r\n  dataSource?: TransferItem[];\r\n\r\n  /**\r\n   * @property modelValue\r\n   * @defaultValue []\r\n   * @description 右侧（目标）key 集合（支持 v-model）\r\n   */\r\n  modelValue?: TransferKey[];\r\n\r\n  /**\r\n   * @property titles\r\n   * @defaultValue ['', '']\r\n   * @description 左右面板标题\r\n   */\r\n  titles?: [string, string];\r\n\r\n  /**\r\n   * @property operations\r\n   * @defaultValue ['', '']\r\n   * @description 中部操作按钮文案（空串用 › / ‹ 图标）\r\n   */\r\n  operations?: [string, string];\r\n\r\n  /**\r\n   * @property disabled\r\n   * @defaultValue false\r\n   * @description 是否禁用\r\n   */\r\n  disabled?: boolean;\r\n\r\n  /**\r\n   * @property showSearch\r\n   * @defaultValue false\r\n   * @description 是否显示搜索框\r\n   */\r\n  showSearch?: boolean;\r\n\r\n  /**\r\n   * @property searchPlaceholder\r\n   * @defaultValue ['搜索', '搜索']\r\n   * @description 左右面板搜索占位\r\n   */\r\n  searchPlaceholder?: [string, string];\r\n\r\n  /**\r\n   * @property oneWay\r\n   * @defaultValue false\r\n   * @description 单向模式（禁止从右向左移回）\r\n   */\r\n  oneWay?: boolean;\r\n\r\n  /**\r\n   * @property showSelectAll\r\n   * @defaultValue true\r\n   * @description 是否显示全选复选框\r\n   */\r\n  showSelectAll?: boolean;\r\n\r\n  /**\r\n   * @property size\r\n   * @defaultValue 'middle'\r\n   * @description 尺寸：small / middle / large\r\n   */\r\n  size?: FormSize;\r\n}\r\n\r\n/** QTransfer 组件 Emits */\r\nexport interface TransferEmits {\r\n  /**\r\n   * @property update:modelValue\r\n   * @description 右侧 key 集合变化时触发\r\n   */\r\n  (e: 'update:modelValue', value: TransferKey[]): void;\r\n\r\n  /**\r\n   * @property change\r\n   * @description 数据移动完成时触发\r\n   */\r\n  (\r\n    e: 'change',\r\n    value: TransferKey[],\r\n    direction: TransferDirection,\r\n    moveKeys: TransferKey[],\r\n  ): void;\r\n}\r\n",
@@ -10304,6 +11327,11 @@
       "composable.ts": "import type { DrawerProps, DrawerEmits } from './type';\r\n\r\n/**\r\n * Drawer 组件核心逻辑\r\n * @param props 组件 Props\r\n * @param emit 组件 Emits\r\n * @returns close、handleOverlayClick\r\n */\r\nexport const useDrawer = (\r\n  props: DrawerProps,\r\n  emit: DrawerEmits,\r\n): {\r\n  close: () => void;\r\n  handleOverlayClick: () => void;\r\n} => {\r\n  /** 关闭抽屉 */\r\n  const close = (): void => {\r\n    emit('update:visible', false);\r\n    emit('close');\r\n  };\r\n\r\n  /** 点击遮罩层 */\r\n  const handleOverlayClick = (): void => {\r\n    if (props.closeOnClickOverlay) {\r\n      close();\r\n    }\r\n  };\r\n\r\n  return { close, handleOverlayClick };\r\n};\r\n",
       "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QDrawer } from './Drawer.vue';\r\n"
     },
+    "QFlex": {
+      "type.ts": "/** QFlex 主轴方向 */\r\nexport type QFlexJustify =\r\n  | 'flex-start'\r\n  | 'center'\r\n  | 'flex-end'\r\n  | 'space-between'\r\n  | 'space-around'\r\n  | 'space-evenly';\r\n\r\n/** QFlex 交叉轴对齐 */\r\nexport type QFlexAlign =\r\n  | 'flex-start'\r\n  | 'center'\r\n  | 'flex-end'\r\n  | 'stretch'\r\n  | 'baseline';\r\n\r\n/** QFlex 间距档位 */\r\nexport type QFlexGap = number | 'small' | 'middle' | 'large' | string;\r\n\r\n/** QFlex 组件 Props */\r\nexport interface QFlexProps {\r\n  /**\r\n   * @property vertical\r\n   * @defaultValue false\r\n   * @description 主轴是否为纵向（column）\r\n   */\r\n  vertical?: boolean;\r\n  /**\r\n   * @property wrap\r\n   * @defaultValue false\r\n   * @description 是否换行\r\n   */\r\n  wrap?: boolean;\r\n  /**\r\n   * @property justify\r\n   * @defaultValue 'flex-start'\r\n   * @description 主轴对齐方式\r\n   */\r\n  justify?: QFlexJustify;\r\n  /**\r\n   * @property align\r\n   * @defaultValue 'flex-start'\r\n   * @description 交叉轴对齐方式\r\n   */\r\n  align?: QFlexAlign;\r\n  /**\r\n   * @property gap\r\n   * @defaultValue 'middle'\r\n   * @description 间距：small/middle/large 或数字(px)/CSS 长度\r\n   */\r\n  gap?: QFlexGap;\r\n  /**\r\n   * @property flex\r\n   * @defaultValue 无\r\n   * @description 本容器的 CSS flex 简写（作为父级 flex 子项时生效）\r\n   */\r\n  flex?: number | string;\r\n  /**\r\n   * @property tag\r\n   * @defaultValue 'div'\r\n   * @description 渲染的 HTML 标签\r\n   */\r\n  tag?: string;\r\n}\r\n",
+      "composable.ts": "import { computed, type ComputedRef } from 'vue';\r\nimport type { CSSProperties } from 'vue';\r\n\r\nimport type { QFlexGap, QFlexProps } from './type';\r\n\r\n/** gap 档位 → px */\r\nexport const FLEX_GAP_MAP: Record<string, string> = {\r\n  small: '8px',\r\n  middle: '16px',\r\n  large: '24px',\r\n};\r\n\r\n/** 默认间距 */\r\nexport const DEFAULT_FLEX_GAP = '16px';\r\n\r\n/**\r\n * 归一化 gap\r\n * @param gap 间距值\r\n */\r\nexport function normalizeFlexGap(gap: QFlexGap | undefined): string {\r\n  if (gap === undefined || gap === null) return DEFAULT_FLEX_GAP;\r\n  if (typeof gap === 'number') return `${gap}px`;\r\n  if (gap in FLEX_GAP_MAP) return FLEX_GAP_MAP[gap];\r\n  return gap;\r\n}\r\n\r\n/** useQFlex 返回值 */\r\nexport interface UseQFlexReturn {\r\n  /** 渲染标签 */\r\n  tag: ComputedRef<string>;\r\n  /** 容器样式 */\r\n  style: ComputedRef<CSSProperties>;\r\n}\r\n\r\n/**\r\n * QFlex 核心逻辑：由 props 派生容器样式\r\n * @param props 组件 Props\r\n */\r\nexport const useQFlex = (props: QFlexProps): UseQFlexReturn => {\r\n  const tag = computed(() => props.tag ?? 'div');\r\n  const style = computed<CSSProperties>(() => ({\r\n    display: 'flex',\r\n    flexDirection: props.vertical ? 'column' : 'row',\r\n    flexWrap: props.wrap ? 'wrap' : 'nowrap',\r\n    justifyContent: props.justify ?? 'flex-start',\r\n    alignItems: props.align ?? 'flex-start',\r\n    gap: normalizeFlexGap(props.gap),\r\n    flex: props.flex !== undefined ? String(props.flex) : undefined,\r\n  }));\r\n  return { tag, style };\r\n};\r\n",
+      "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QFlex } from './Flex.vue';\r\n"
+    },
     "QFooter": {
       "composable.ts": "import { computed } from 'vue';\r\nimport type { ComputedRef } from 'vue';\r\n\r\n/** useFooter 返回值接口 */\r\nexport interface UseFooterReturn {\r\n  /** 底部栏根元素 class */\r\n  containerClass: ComputedRef<string>;\r\n}\r\n\r\n/**\r\n * QFooter 组件核心逻辑\r\n * @returns 底部栏容器 class\r\n */\r\nexport const useFooter = (): UseFooterReturn => {\r\n  /** 底部栏根元素 class */\r\n  const containerClass = computed<string>(() => 'q-layout-footer');\r\n\r\n  return { containerClass };\r\n};\r\n",
       "index.ts": "export * from './composable';\r\nexport { default as QFooter } from './Footer.vue';\r\n"
@@ -10317,6 +11345,11 @@
       "type.ts": "/** QLayout 组件 Props（对齐 Ant Design Layout） */\r\nexport interface LayoutProps {\r\n  /**\r\n   * @property hasSider\r\n   * @defaultValue 自动检测\r\n   * @description 是否强制按「含 Sider」的横向方式渲染；缺省时自动检测内部是否直接含 QSider\r\n   */\r\n  hasSider?: boolean;\r\n}\r\n",
       "composable.ts": "import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue';\r\nimport type { ComputedRef, Ref } from 'vue';\r\n\r\nimport type { LayoutProps } from './type';\r\n\r\n/** useLayout 返回值接口 */\r\nexport interface UseLayoutReturn {\r\n  /** 是否检测到含 Sider */\r\n  hasSider: Ref<boolean>;\r\n  /** 最终 class 对象 */\r\n  classes: ComputedRef<Record<string, boolean>>;\r\n}\r\n\r\n/**\r\n * QLayout 组件核心逻辑：通过自身根元素的直接子元素检测是否存在 QSider，\r\n * 从而自动切换为「含 Sider」的横向布局。\r\n *\r\n * 说明：QSider 以插槽内容渲染，provide/inject 无法跨插槽边界；\r\n * 采用「MutationObserver 监听根元素子节点 + 初次挂载后补扫」的方式检测\r\n * 直接子元素中是否存在 `.q-layout-sider`，从而兼容异步/动态内容。\r\n * @param props 组件 Props\r\n * @returns 状态\r\n */\r\nexport const useLayout = (props: LayoutProps): UseLayoutReturn => {\r\n  /** QLayout 根元素 */\r\n  const rootRef = useTemplateRef<HTMLElement>('layoutRoot');\r\n\r\n  /** 直接子元素中含 Sider */\r\n  const detected = ref(false);\r\n\r\n  let observer: MutationObserver | null = null;\r\n\r\n  /** 刷新检测结果：扫描直接子元素 */\r\n  function refresh() {\r\n    const root = rootRef.value;\r\n    if (!root) return;\r\n    let found = false;\r\n    for (const child of Array.from(root.children)) {\r\n      if (child.classList.contains('q-layout-sider')) {\r\n        found = true;\r\n        break;\r\n      }\r\n    }\r\n    detected.value = found;\r\n  }\r\n\r\n  onMounted(() => {\r\n    // 初次挂载：插槽内容可能尚未插入，微任务后再补扫一次\r\n    refresh();\r\n    requestAnimationFrame(() => refresh());\r\n    // setTimeout(0)：在所有子组件同步挂载完成后补扫（rAF 在测试/某些环境可能不触发）\r\n    setTimeout(() => refresh(), 0);\r\n\r\n    // 监听子节点增删（覆盖动态切换 Sider 的场景）\r\n    observer = new MutationObserver(() => refresh());\r\n    const root = rootRef.value;\r\n    if (root) {\r\n      observer.observe(root, { childList: true });\r\n    }\r\n  });\r\n\r\n  onBeforeUnmount(() => {\r\n    observer?.disconnect();\r\n    observer = null;\r\n    detected.value = false;\r\n  });\r\n\r\n  /** 是否按「含 Sider」布局（props.hasSider === true 时强制；否则自动检测） */\r\n  const hasSider = computed(() =>\r\n    props.hasSider === true ? true : detected.value,\r\n  );\r\n\r\n  /** 根元素 class */\r\n  const classes = computed<Record<string, boolean>>(() => ({\r\n    'q-layout--has-sider': hasSider.value,\r\n  }));\r\n\r\n  return { hasSider, classes };\r\n};\r\n",
       "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QLayout } from './Layout.vue';\r\n"
+    },
+    "QMasonry": {
+      "type.ts": "/** QMasonry 组件 Props */\r\nexport interface QMasonryProps<T = unknown> {\r\n  /**\r\n   * @property items\r\n   * @defaultValue []\r\n   * @description 数据源（数组顺序决定内容，采用多列填充）\r\n   */\r\n  items?: T[];\r\n  /**\r\n   * @property columns\r\n   * @defaultValue 4\r\n   * @description 列数\r\n   */\r\n  columns?: number;\r\n  /**\r\n   * @property gap\r\n   * @defaultValue 16\r\n   * @description 列/行间距(px)\r\n   */\r\n  gap?: number;\r\n  /**\r\n   * @property itemKey\r\n   * @defaultValue 无\r\n   * @description 子项 key 取值函数\r\n   */\r\n  itemKey?: (item: T, index: number) => string | number;\r\n}\r\n\r\n/** QMasonry 暴露 */\r\nexport interface QMasonryExpose {\r\n  /** 重新布局 */\r\n  refresh: () => void;\r\n}\r\n",
+      "composable.ts": "import type { CSSProperties } from 'vue';\r\n\r\n/** 默认列数 */\r\nexport const DEFAULT_MASONRY_COLUMNS = 4;\r\n/** 默认间距 */\r\nexport const DEFAULT_MASONRY_GAP = 16;\r\n\r\n/** 归一化列数（>=1 整数） */\r\nexport function normalizeColumns(columns?: number): number {\r\n  return Math.max(1, Math.floor(columns ?? DEFAULT_MASONRY_COLUMNS));\r\n}\r\n\r\n/** 间距数字 → px 字符串 */\r\nexport function masonryGap(gap?: number): string {\r\n  return `${Math.max(0, gap ?? DEFAULT_MASONRY_GAP)}px`;\r\n}\r\n\r\n/** 容器样式 */\r\nexport function masonryContainerStyle(\r\n  columns?: number,\r\n  gap?: number,\r\n): CSSProperties {\r\n  return {\r\n    columnCount: normalizeColumns(columns),\r\n    columnGap: masonryGap(gap),\r\n  };\r\n}\r\n\r\n/** 子项样式（避免跨列截断） */\r\nexport function masonryItemStyle(gap?: number): CSSProperties {\r\n  return { breakInside: 'avoid', marginBottom: masonryGap(gap) };\r\n}\r\n",
+      "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QMasonry } from './Masonry.vue';\r\n"
     },
     "QPopContainer": {
       "type.ts": "/**\r\n * PopContainer 组件 Props\r\n */\r\nexport interface PopContainerProps {\r\n  /** 是否可见 */\r\n  visible?: boolean;\r\n  /** 是否 hover 时显示 */\r\n  hoverShow?: boolean;\r\n  /** 弹出位置 */\r\n  position?:\r\n    | 'top-left'\r\n    | 'top-center'\r\n    | 'top-right'\r\n    | 'bottom-left'\r\n    | 'bottom-center'\r\n    | 'bottom-right'\r\n    | 'left-center'\r\n    | 'right-center';\r\n}\r\n",
@@ -10352,6 +11385,11 @@
       "type.ts": "/** 排列方向 */\r\nexport type QSpaceDirection = 'horizontal' | 'vertical';\r\n\r\n/** 交叉轴对齐（水平模式生效） */\r\nexport type QSpaceAlign = 'start' | 'end' | 'center' | 'baseline';\r\n\r\n/** 间距：预设档位 / 数值(px) / CSS 长度 */\r\nexport type QSpaceSize = 'small' | 'middle' | 'large' | number | string;\r\n\r\n/** QSpace 组件 Props（对齐 Ant Design Space） */\r\nexport interface QSpaceProps {\r\n  /**\r\n   * @property direction\r\n   * @defaultValue 'horizontal'\r\n   * @description 排列方向：horizontal 水平 / vertical 垂直\r\n   */\r\n  direction?: QSpaceDirection;\r\n\r\n  /**\r\n   * @property size\r\n   * @defaultValue 'middle'\r\n   * @description 间距：small / middle / large；或数值（px）与任意 CSS 长度\r\n   */\r\n  size?: QSpaceSize;\r\n\r\n  /**\r\n   * @property align\r\n   * @defaultValue 'center'\r\n   * @description 水平排列时的垂直对齐：start / end / center / baseline\r\n   */\r\n  align?: QSpaceAlign;\r\n\r\n  /**\r\n   * @property wrap\r\n   * @defaultValue false\r\n   * @description 是否允许换行（水平模式）\r\n   */\r\n  wrap?: boolean;\r\n\r\n  /**\r\n   * @property split\r\n   * @defaultValue 无\r\n   * @description 是否在子项之间插入分隔：true 为分隔条；传入字符串则作为分隔文本（适合文本/行内子项）\r\n   */\r\n  split?: boolean | string;\r\n}\r\n",
       "composable.ts": "import { computed } from 'vue';\r\nimport type { ComputedRef } from 'vue';\r\n\r\nimport type { QSpaceProps, QSpaceSize } from './type';\r\n\r\n/** 预设档位 → 间距 token */\r\nconst SIZE_TOKEN: Record<string, string> = {\r\n  small: 'var(--q-space-4)', // 8px\r\n  middle: 'var(--q-space-6)', // 16px\r\n  large: 'var(--q-space-8)', // 24px\r\n};\r\n\r\n/** useQSpace 返回值接口 */\r\nexport interface UseQSpaceReturn {\r\n  /** 布局修饰类 */\r\n  classList: ComputedRef<Record<string, boolean>>;\r\n  /** 内联样式（gap / align-items） */\r\n  inlineStyle: ComputedRef<Record<string, string>>;\r\n}\r\n\r\n/**\r\n * QSpace 组件核心逻辑\r\n * @param props 组件 Props\r\n * @returns 布局类与内联样式\r\n */\r\nexport const useQSpace = (props: QSpaceProps): UseQSpaceReturn => {\r\n  /** 方向默认值 */\r\n  const direction = computed<QSpaceProps['direction']>(\r\n    () => props.direction ?? 'horizontal',\r\n  );\r\n\r\n  /** 间距值解析 */\r\n  const gap = computed<string>(() => {\r\n    const size: QSpaceSize = props.size ?? 'middle';\r\n    if (typeof size === 'number') return `${size}px`;\r\n    if (typeof size === 'string') return SIZE_TOKEN[size] ?? size;\r\n    return SIZE_TOKEN.middle;\r\n  });\r\n\r\n  /** 是否开启分隔 */\r\n  const hasSplit = computed<boolean>(\r\n    () => props.split !== undefined && props.split !== false,\r\n  );\r\n\r\n  /** 分隔文本（string 时） */\r\n  const splitText = computed<string>(() =>\r\n    typeof props.split === 'string' ? props.split : '',\r\n  );\r\n\r\n  /** 布局修饰类 */\r\n  const classList = computed(() => ({\r\n    'q-space--vertical': direction.value === 'vertical',\r\n    [`q-space--align-${props.align ?? 'center'}`]: true,\r\n    'q-space--wrap': props.wrap ?? false,\r\n    'q-space--split': hasSplit.value,\r\n    'q-space--split-text': typeof props.split === 'string',\r\n    'q-space--split-bar': props.split === true,\r\n  }));\r\n\r\n  /** 内联样式：普通模式用 gap；分隔模式取消 gap，改由子项伪元素 + 分隔变量控制 */\r\n  const inlineStyle = computed<Record<string, string>>(() => {\r\n    const style: Record<string, string> = {};\r\n    if (hasSplit.value) {\r\n      style.rowGap = '0px';\r\n      style.columnGap = '0px';\r\n      style['--q-split-gap'] = gap.value;\r\n      style['--q-split-content'] = splitText.value\r\n        ? JSON.stringify(splitText.value)\r\n        : '\"\"';\r\n    } else {\r\n      style.rowGap = gap.value;\r\n      style.columnGap = gap.value;\r\n    }\r\n    return style;\r\n  });\r\n\r\n  return { classList, inlineStyle };\r\n};\r\n",
       "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QSpace } from './Space.vue';\r\n"
+    },
+    "QSplitter": {
+      "type.ts": "/** QSplitter 分隔方向 */\r\nexport type QSplitterDirection = 'row' | 'column';\r\n\r\n/** QSplitter 组件 Props */\r\nexport interface QSplitterProps {\r\n  /**\r\n   * @property direction\r\n   * @defaultValue 'row'\r\n   * @description 分隔方向：row 左右排列 / column 上下排列\r\n   */\r\n  direction?: QSplitterDirection;\r\n  /**\r\n   * @property size\r\n   * @defaultValue 无\r\n   * @description 首个面板尺寸（受控 v-model:size；数字为 px，字符串为 CSS 长度如 50%）\r\n   */\r\n  size?: number | string;\r\n  /**\r\n   * @property defaultSize\r\n   * @defaultValue 300\r\n   * @description 首个面板默认尺寸（px），未受控时使用\r\n   */\r\n  defaultSize?: number;\r\n  /**\r\n   * @property min\r\n   * @defaultValue 60\r\n   * @description 首个面板最小尺寸(px)\r\n   */\r\n  min?: number;\r\n  /**\r\n   * @property max\r\n   * @defaultValue 无\r\n   * @description 首个面板最大尺寸(px)，默认不超过容器减 min\r\n   */\r\n  max?: number;\r\n  /**\r\n   * @property resizable\r\n   * @defaultValue true\r\n   * @description 是否可拖拽调整\r\n   */\r\n  resizable?: boolean;\r\n  /**\r\n   * @property gutter\r\n   * @defaultValue 8\r\n   * @description 分隔条宽度/厚度(px)\r\n   */\r\n  gutter?: number;\r\n}\r\n\r\n/** QSplitter 组件 Emits */\r\nexport interface QSplitterEmits {\r\n  /**\r\n   * @property update:size\r\n   * @description 尺寸变化时触发（受控 v-model:size）\r\n   */\r\n  (e: 'update:size', size: number): void;\r\n  /**\r\n   * @property resize-start\r\n   * @description 开始拖拽时触发\r\n   */\r\n  (e: 'resize-start'): void;\r\n  /**\r\n   * @property resize-end\r\n   * @description 拖拽结束时触发\r\n   */\r\n  (e: 'resize-end', size: number): void;\r\n}\r\n",
+      "composable.ts": "import { computed } from 'vue';\r\nimport type { ComputedRef, CSSProperties } from 'vue';\r\n\r\nimport type { QSplitterDirection, QSplitterProps } from './type';\r\n\r\n/** 默认最小尺寸 */\r\nexport const DEFAULT_SPLITTER_MIN = 60;\r\n/** 默认首个面板尺寸 */\r\nexport const DEFAULT_SPLITTER_SIZE = 300;\r\n/** 默认分隔条宽 */\r\nexport const DEFAULT_SPLITTER_GUTTER = 8;\r\n\r\n/**\r\n * 解析受控/默认 size 为 CSS 长度\r\n * @param size 受控 size（px 数字或 CSS 长度）\r\n * @param defaultSize 默认 px\r\n */\r\nexport function resolvePanelBasis(\r\n  size: number | string | undefined,\r\n  defaultSize: number,\r\n): string {\r\n  if (typeof size === 'number') return `${size}px`;\r\n  if (typeof size === 'string' && size.trim()) return size;\r\n  return `${defaultSize}px`;\r\n}\r\n\r\n/**\r\n * 钳制面板尺寸\r\n * @param value 期望值(px)\r\n * @param min 最小值(px)\r\n * @param max 最大值(px)，null 表示不限制\r\n */\r\nexport function clampPanelSize(\r\n  value: number,\r\n  min: number,\r\n  max: number | null,\r\n): number {\r\n  if (Number.isNaN(value)) return min;\r\n  if (max !== null) return Math.min(max, Math.max(min, value));\r\n  return Math.max(min, value);\r\n}\r\n\r\n/** 把百分比 CSS 长度换算为 px */\r\nexport function percentToPx(basis: string, containerPx: number): number {\r\n  const match = /^\\s*([\\d.]+)%\\s*$/.exec(basis);\r\n  if (!match) return Number.NaN;\r\n  return (parseFloat(match[1]) / 100) * containerPx;\r\n}\r\n\r\n/** 方向对应的主轴样式属性 */\r\nexport function directionAxis(direction: QSplitterDirection): {\r\n  sizeProp: 'width' | 'height';\r\n  posProp: 'clientX' | 'clientY';\r\n} {\r\n  return direction === 'row'\r\n    ? { sizeProp: 'width', posProp: 'clientX' }\r\n    : { sizeProp: 'height', posProp: 'clientY' };\r\n}\r\n\r\n/** useQSplitter 返回值 */\r\nexport interface UseQSplitterReturn {\r\n  /** 主轴尺寸属性 */\r\n  sizeProp: 'width' | 'height';\r\n  /** 指针坐标属性 */\r\n  posProp: 'clientX' | 'clientY';\r\n  /** 首个面板样式 */\r\n  paneStyle: ComputedRef<CSSProperties>;\r\n  /** 分隔条样式 */\r\n  gutterStyle: ComputedRef<CSSProperties>;\r\n  /** 面板基准尺寸 */\r\n  basis: ComputedRef<string>;\r\n}\r\n\r\n/**\r\n * QSplitter 派生（纯计算面板/分隔条样式）\r\n * @param props 组件 Props\r\n * @param direction 方向\r\n */\r\nexport function useQSplitter(\r\n  props: QSplitterProps,\r\n  basisValue: ComputedRef<string>,\r\n): UseQSplitterReturn {\r\n  const axis = directionAxis(props.direction ?? 'row');\r\n  const { sizeProp, posProp } = axis;\r\n  const basis = basisValue;\r\n  const paneStyle = computed<CSSProperties>(() => {\r\n    const style: CSSProperties = {\r\n      flex: '0 0 auto',\r\n      minWidth: 0,\r\n      minHeight: 0,\r\n      overflow: 'hidden',\r\n    };\r\n    style[sizeProp] = basis.value;\r\n    return style;\r\n  });\r\n  const gutterStyle = computed<CSSProperties>(() => {\r\n    const g = props.gutter ?? DEFAULT_SPLITTER_GUTTER;\r\n    const style: CSSProperties = {\r\n      flex: 'none',\r\n      display: 'flex',\r\n      alignItems: 'center',\r\n      justifyContent: 'center',\r\n    };\r\n    if (sizeProp === 'width') style.width = `${g}px`;\r\n    else style.height = `${g}px`;\r\n    return style;\r\n  });\r\n  return { sizeProp, posProp, paneStyle, gutterStyle, basis };\r\n}\r\n",
+      "index.ts": "export * from './composable';\r\nexport * from './type';\r\nexport { default as QSplitter } from './Splitter.vue';\r\n"
     },
     "QSwiperAction": {
       "type.ts": "/**\r\n * SwiperAction 组件 Props\r\n */\r\nexport interface SwiperActionProps {\r\n  /** 是否禁用滑动 */\r\n  disabled?: boolean;\r\n  /** 触发滑动的阈值（px） */\r\n  threshold?: number;\r\n}\r\n\r\n/**\r\n * SwiperAction 组件 Emits\r\n */\r\nexport interface SwiperActionEmits {\r\n  (e: 'swipe'): void;\r\n  (e: 'update:open', open: boolean): void;\r\n}\r\n",
@@ -10423,7 +11461,7 @@
       "index.ts": "export * from './type';\r\nexport * from './composable';\r\nexport { default as QTab } from './Tab.vue';\r\n"
     },
     "QApp": {
-      "composable.ts": "import { useMessage } from '@/utils/business/useMessage';\r\nimport { useNotification } from '@/utils/business/useNotification';\r\nimport type { QNotificationScope } from '@/utils/business/useNotification';\r\nimport { inject, type InjectionKey, provide } from 'vue';\r\n\r\n/** QApp 提供的上下文（含作用域通知 API） */\r\nexport interface QAppContext {\r\n  /** 全局消息（当前为全局单例，未作用域化） */\r\n  message: typeof useMessage;\r\n  /** 绑定到本 QApp 作用域的通知 API */\r\n  notification: QNotificationScope;\r\n}\r\n\r\n/** provide/inject 用的 key */\r\nexport const Q_APP_KEY: InjectionKey<QAppContext> = Symbol('q-app');\r\n\r\n/**\r\n * 注入 QApp 上下文（组件内部）\r\n * @param context App 上下文\r\n */\r\nexport function provideQApp(context: QAppContext): void {\r\n  provide(Q_APP_KEY, context);\r\n}\r\n\r\n/**\r\n * 读取 QApp 上下文；未包裹时回退到全局单例（notification / message）。\r\n * 用法：`const { notification } = useQApp(); notification.success('已保存')`\r\n */\r\nexport function useQApp(): QAppContext {\r\n  const context = inject(Q_APP_KEY, null);\r\n  if (context) return context;\r\n  return {\r\n    message: useMessage,\r\n    notification: useNotification,\r\n  };\r\n}\r\n",
+      "composable.ts": "import { useMessage } from '@/utils/business/useMessage';\r\nimport { useNotification } from '@/utils/business/useNotification';\r\nimport type { QNotificationScope } from '@/utils/business/useNotification';\r\nimport { inject, type InjectionKey, provide } from 'vue';\r\n\r\nimport type { MessageScope } from './messageScope';\r\nimport { createModalScope, type QModalScope } from './modalScope';\r\n\r\n/** QApp 提供的上下文（作用域 message / notification / modal） */\r\nexport interface QAppContext {\r\n  /** 绑定到本 QApp 作用域的消息 API */\r\n  message: MessageScope;\r\n  /** 绑定到本 QApp 作用域的通知 API */\r\n  notification: QNotificationScope;\r\n  /** 绑定到本 QApp 作用域的命令式弹窗（confirm / alert） */\r\n  modal: QModalScope;\r\n}\r\n\r\n/** provide/inject 用的 key */\r\nexport const Q_APP_KEY: InjectionKey<QAppContext> = Symbol('q-app');\r\n\r\n/** 全局消息单例 + destroy 适配（满足 MessageScope） */\r\nconst globalMessage: MessageScope = {\r\n  ...useMessage,\r\n  destroy: () => useMessage.closeAll(),\r\n};\r\n\r\nlet globalModal: QModalScope | null = null;\r\n/** 全局弹窗单例（懒创建） */\r\nconst getGlobalModal = (): QModalScope => (globalModal ??= createModalScope());\r\n\r\n/**\r\n * 注入 QApp 上下文（组件内部）\r\n * @param context App 上下文\r\n */\r\nexport function provideQApp(context: QAppContext): void {\r\n  provide(Q_APP_KEY, context);\r\n}\r\n\r\n/**\r\n * 读取 QApp 上下文；未包裹时回退到全局单例（message / notification / modal）。\r\n * 用法：`const { message, notification, modal } = useQApp();`\r\n */\r\nexport function useQApp(): QAppContext {\r\n  const context = inject(Q_APP_KEY, null);\r\n  if (context) return context;\r\n  return {\r\n    message: globalMessage,\r\n    notification: useNotification,\r\n    modal: getGlobalModal(),\r\n  };\r\n}\r\n",
       "index.ts": "export * from './composable';\r\nexport { default as QApp } from './App.vue';\r\n"
     },
     "QConfigProvider": {

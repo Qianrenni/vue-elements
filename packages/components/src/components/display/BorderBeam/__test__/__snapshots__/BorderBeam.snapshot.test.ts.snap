@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QBorderBeam 渲染 > 渲染内容 + 光束层 1`] = `
+"<div class="q-border-beam">
+  <div class="q-border-beam__content">
+    <div class="card">卡片内容</div>
+  </div>
+  <div class="q-border-beam__layer" style="inset: 0px; padding: 1px;" aria-hidden="true"><span class="q-border-beam__spin" style="background: repeating-conic-gradient(from var(--q-bb-angle, 0deg), transparent 0deg, transparent 5.0deg, var(--q-color-primary) 12.5deg, var(--q-color-primary) 27.5deg, transparent 35.0deg, transparent 360.0deg); animation-duration: 6s;"></span></div>
+</div>"
+`;

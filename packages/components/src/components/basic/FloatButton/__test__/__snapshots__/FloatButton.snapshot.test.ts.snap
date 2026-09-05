@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QFloatButton 渲染 > 默认圆形 default 渲染插槽图标 1`] = `
+"<button data-v-69c4c1de="" class="q-float-btn q-float-btn--default q-float-btn--circle q-float-btn" type="button">
+  <!--v-if-->
+  <!--v-if--><span data-v-69c4c1de="" class="q-float-btn__content"><span data-v-69c4c1de="" class="q-float-btn__icon">＋</span>
+  <!--v-if--></span>
+</button>"
+`;
