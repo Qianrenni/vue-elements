@@ -21,13 +21,13 @@
 
 ## 覆盖范围（dark.css）
 
-| 分类       | 说明                                         |
-| ---------- | -------------------------------------------- |
-| 品牌主色   | `--q-color-primary` 系列，暗色背景上提亮     |
-| 中性语义色 | 文字 / 背景 / 边框 / 链接 / 标签             |
-| 组件       | 按钮（`--q-color-button-*`）、遮罩层、阴影色 |
-| 灰阶       | `--q-color-gray-50` ~ `-900` 反转            |
-| 骨架屏     | `--q-skeleton-gradient` 暗色渐变             |
+| 分类       | 说明                                     |
+| ---------- | ---------------------------------------- |
+| 品牌主色   | `--q-color-primary` 系列，暗色背景上提亮 |
+| 中性语义色 | 文字 / 背景 / 边框 / 链接 / 标签         |
+| 组件       | 按钮（跟随主色语义）、遮罩层、阴影色     |
+| 灰阶       | `--q-color-gray-50` ~ `-900` 反转        |
+| 骨架屏     | `--q-skeleton-gradient` 暗色渐变         |
 
 ## 自定义品牌主色（覆盖语义 token）
 
@@ -38,17 +38,16 @@
 
 ### 需要覆盖的 token 清单
 
-| 语义 token                                | 对应旧别名                      | 说明                             |
-| ----------------------------------------- | ------------------------------- | -------------------------------- |
-| `--q-color-primary`                       | `--primary-color`               | 品牌主色                         |
-| `--q-color-primary-hover`                 | `--primary-hover`               | 悬停态                           |
-| `--q-color-primary-active`                | —                               | 按压态（不覆盖会闪回默认色）     |
-| `--q-color-primary-light`                 | `--primary-light`               | 主色浅色                         |
-| `--q-color-primary-lighter`               | —                               | 更浅色（表格选中行背景等）       |
-| `--q-color-link` / `--q-color-link-hover` | `--link-color` / `--link-hover` | 链接色                           |
-| `--q-color-tag`                           | `--tag-primary-color`           | 标签背景色（`.tag` 类用）        |
-| `--q-color-button-*`                      | `--button-*`                    | 按钮（默认跟随 primary，可不动） |
-| `--q-color-shadow-inverse`                | `--shadow-inverse`              | 反色阴影                         |
+| 语义 token                                | 对应旧别名                      | 说明                         |
+| ----------------------------------------- | ------------------------------- | ---------------------------- |
+| `--q-color-primary`                       | `--primary-color`               | 品牌主色                     |
+| `--q-color-primary-hover`                 | `--primary-hover`               | 悬停态                       |
+| `--q-color-primary-active`                | —                               | 按压态（不覆盖会闪回默认色） |
+| `--q-color-primary-light`                 | `--primary-light`               | 主色浅色                     |
+| `--q-color-primary-lighter`               | —                               | 更浅色（表格选中行背景等）   |
+| `--q-color-link` / `--q-color-link-hover` | `--link-color` / `--link-hover` | 链接色                       |
+| `--q-color-tag`                           | `--tag-primary-color`           | 标签背景色（`.tag` 类用）    |
+| `--q-color-shadow-inverse`                | `--shadow-inverse`              | 反色阴影                     |
 
 ### 正确示例（沿用旧别名，保证端内旧样式不断）
 

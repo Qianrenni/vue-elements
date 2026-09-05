@@ -17,7 +17,7 @@
     <slot />
   </span>
 
-  <Teleport to="body">
+  <Teleport :to="teleportTarget">
     <div
       v-if="showable"
       ref="popRef"
@@ -51,6 +51,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useQConfig } from '@/components/theme/ConfigProvider/composable';
 import {
   computed,
   nextTick,
@@ -65,6 +66,10 @@ import { useQPopover } from './composable';
 import type { QPopoverEmits, QPopoverProps } from './type';
 
 defineOptions({ name: 'QPopover' });
+
+/** 弹层 Teleport 目标：优先取最近 QConfigProvider 的 getPopupContainer，否则 body */
+const config = useQConfig();
+const teleportTarget = computed(() => config?.getPopupContainer?.() ?? 'body');
 
 const props = withDefaults(defineProps<QPopoverProps>(), {
   title: '',

@@ -55,7 +55,7 @@
 | `target`    | `string`                                                 | 否   | 无          | 链接按钮的打开方式（配合 `href`，如 `_blank`）。             |
 
 > `level` 与 `size` 同时传入时以 `level` 为准；`small/middle/large` → `level 2/3/4`。
-> 现阶段本组件样式**直接引用**设计系统库内 token（`--q-color-*` / `--q-font-*` / `--q-radius-*`）。antd 对齐语义层（`src/style/tokens/antd.css` 的 `--q-ant-*`）已为 ConfigProvider / 主题定制预留，后续可无痛迁移。
+> 现阶段本组件样式**直接引用**设计系统库内 token（`--q-color-*` / `--q-font-*` / `--q-radius-*`）；局部主题通过 `QConfigProvider.cssVars` 覆盖这些语义 token 实现。
 
 > 原生 `button` 的其他标准属性（如 `name`、`form`、`formaction` 等）可通过普通 attribute 透传到根元素。
 

@@ -19,8 +19,8 @@
 
 .button-primary {
   padding: var(--q-space-3) var(--q-space-5);
-  background-color: var(--q-color-button-bg);
-  color: var(--q-color-button-text);
+  background-color: var(--q-color-primary);
+  color: var(--q-color-white);
   cursor: pointer;
   border: 1px solid var(--q-color-white);
   border-radius: var(--q-radius-md);
@@ -28,7 +28,7 @@
 }
 
 .button-primary:hover {
-  background-color: var(--q-color-button-hover);
+  background-color: var(--q-color-primary-hover);
 }
 
 body.dark-mode .button-primary,
@@ -46,7 +46,7 @@ body.dark-mode .button-primary,
 
 .button-outline:hover {
   background-color: var(--q-color-primary);
-  color: var(--q-color-button-text);
+  color: var(--q-color-white);
 }
 
 /* — 悬停态 — */

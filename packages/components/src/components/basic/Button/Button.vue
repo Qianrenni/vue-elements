@@ -143,12 +143,12 @@ function handleClick(ev: MouseEvent) {
 /* — 语义类型：primary（实心主按钮） — */
 .q-btn--primary {
   border-color: transparent;
-  background-color: var(--q-color-button-bg);
-  color: var(--q-color-button-text);
+  background-color: var(--q-color-primary);
+  color: var(--q-color-white);
 }
 
 .q-btn--primary:hover:not(.q-btn--disabled):not(.q-btn--loading) {
-  background-color: var(--q-color-button-hover);
+  background-color: var(--q-color-primary-hover);
 }
 
 .q-btn--primary:active:not(.q-btn--disabled):not(.q-btn--loading) {

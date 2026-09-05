@@ -33,12 +33,6 @@ body.dark-mode,
 
   --q-color-tag: var(--q-color-brown-200);
 
-  /* — 按钮 — */
-  --q-color-button-bg: var(--q-color-primary);
-  --q-color-button-text: #ffffff;
-  --q-color-button-hover: var(--q-color-primary-hover);
-  --q-color-button-disabled: #555555;
-
   /* — 遮罩层 — */
   --q-color-overlay: rgba(255, 255, 255, 0.2);
 
@@ -87,11 +81,6 @@ body.dark-mode,
 
   --link-color: var(--q-color-link);
   --link-hover: var(--q-color-link-hover);
-
-  --button-bg: var(--q-color-button-bg);
-  --button-text: var(--q-color-button-text);
-  --button-hover: var(--q-color-button-hover);
-  --button-disabled: var(--q-color-button-disabled);
 
   --bg-overlay: var(--q-color-overlay);
   --shadow-inverse: var(--q-color-shadow-inverse);

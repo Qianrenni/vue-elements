@@ -138,12 +138,6 @@
   /* — 标签/标记色 — */
   --q-color-tag: var(--q-color-brown-100);
 
-  /* — 按钮 — */
-  --q-color-button-bg: var(--q-color-primary);
-  --q-color-button-text: var(--q-color-white);
-  --q-color-button-hover: var(--q-color-primary-hover);
-  --q-color-button-disabled: var(--q-color-gray-200);
-
   /* — 遮罩层 — */
   --q-color-overlay: rgba(0, 0, 0, 0.5);
 
@@ -213,12 +207,6 @@
   --gray-500: var(--q-color-gray-500);
   --gray-600: var(--q-color-gray-600);
   --gray-700: var(--q-color-gray-700);
-
-  /* 按钮 */
-  --button-bg: var(--q-color-button-bg);
-  --button-text: var(--q-color-button-text);
-  --button-hover: var(--q-color-button-hover);
-  --button-disabled: var(--q-color-button-disabled);
 
   /* 遮罩 */
   --bg-overlay: var(--q-color-overlay);

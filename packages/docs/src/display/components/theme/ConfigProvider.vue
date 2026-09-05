@@ -7,25 +7,22 @@ defineOptions({ name: 'DisplayThemeConfigProvider' });
 
 const brand = ref<'brown' | 'blue' | 'purple'>('brown');
 
-// 覆盖整套「主色」语义变量：文字/描边用 --q-color-primary，实心按钮用 --q-color-button-*
+// 覆盖「主色」语义变量：--q-color-primary / -hover / -active（文字、描边、实心按钮均跟随）
 const palette: Record<string, Record<string, string>> = {
   brown: {
     '--q-color-primary': '#8c5a2b',
-    '--q-color-button-bg': '#8c5a2b',
-    '--q-color-button-hover': '#7a4e24',
-    '--q-color-button-active': '#6e451f',
+    '--q-color-primary-hover': '#7a4e24',
+    '--q-color-primary-active': '#6e451f',
   },
   blue: {
     '--q-color-primary': '#3b82f6',
-    '--q-color-button-bg': '#3b82f6',
-    '--q-color-button-hover': '#2f6fe0',
-    '--q-color-button-active': '#2a63c6',
+    '--q-color-primary-hover': '#2f6fe0',
+    '--q-color-primary-active': '#2a63c6',
   },
   purple: {
     '--q-color-primary': '#722ed1',
-    '--q-color-button-bg': '#722ed1',
-    '--q-color-button-hover': '#5f22b8',
-    '--q-color-button-active': '#521d9e',
+    '--q-color-primary-hover': '#5f22b8',
+    '--q-color-primary-active': '#521d9e',
   },
 };
 
@@ -34,8 +31,8 @@ const code = `
 <QConfigProvider
   :css-vars="{
     '--q-color-primary': '#3b82f6',
-    '--q-color-button-bg': '#3b82f6',
-    '--q-color-button-hover': '#2f6fe0',
+    '--q-color-primary-hover': '#2f6fe0',
+    '--q-color-primary-active': '#2a63c6',
   }"
 >
   <QButton type="primary">蓝色主题</QButton>

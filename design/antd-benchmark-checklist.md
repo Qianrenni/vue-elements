@@ -169,7 +169,7 @@ ProLayout、ProForm、ProTable、ProDescriptions、ProList、EditableProTable（
 
 ---
 
-## 四、建议建设优先级（勾选即完成）
+## 四、早期建设记录（P0–P4，已完成）
 
 ### P0 基础设施 / 常用
 
@@ -223,30 +223,30 @@ ProLayout、ProForm、ProTable、ProDescriptions、ProList、EditableProTable（
 
 ---
 
-## 四、下一步 Roadmap：完整对齐 antd（2026-09-05 起）
+## 五、下一步 Roadmap：完整对齐 antd（2026-09-05 起）
 
-> 基线：本库 **84** 个组件（见上「二」）。上文「一、速览表」为早期记录、个别状态滞后，**当前覆盖以「二」+「P 系列勾选」+ 源码为准**。
-> 覆盖现状：导航 7/7、反馈 11/11、其他(去 Util) 3/4 已完成；数据录入 ~16/18、数据展示 ~16/21、布局 4/7、通用 3/4。
+> 基线：本库 **96** 个组件（见上「二」，P5–P8 已收官）。上文「一、速览表」为早期记录、个别状态滞后，**当前覆盖以「二」+「P 系列勾选」+ 源码为准**。
+> 覆盖现状（P5–P8 后）：导航 7/7、反馈 11/11 已完成；通用/数据录入/数据展示/布局经 P5–P8 大幅补齐（FloatButton Flex Splitter Masonry Mentions TimePicker Calendar Tour Listy Form FormItem 均已落地，见下方批勾选与「二」表）。
 
 ### 剩余缺口（对应 antd v6 基础可视组件）
 
-| antd 组件       | 分类           | 建议目录           | 说明                                                |
-| --------------- | -------------- | ------------------ | --------------------------------------------------- |
-| FloatButton     | 通用           | basic/FloatButton  | ✅ QFloatButton（圆形/方形、badge/tooltip/backTop） |
-| BorderBeam      | 其他 🆕6.4     | display/BorderBeam | ✅ QBorderBeam（color/count/duration/hover）        |
-| Flex            | 布局           | layout/Flex        | ✅ QFlex（justify/align/gap/wrap/vertical/tag）     |
-| Splitter        | 布局           | layout/Splitter    | ✅ QSplitter（row/column、拖拽+键盘、min/max）      |
-| Masonry         | 布局 🆕6.0     | layout/Masonry     | ✅ QMasonry（columns/gap 瀑布流）                   |
-| Mentions        | 数据录入       | input/Mentions     | ✅ QMentions（@ 提及下拉）                          |
-| TimePicker      | 数据录入       | input/TimePicker   | ✅ QTimePicker（HH:mm[:ss] 列表面板、步长/清除）    |
-| Calendar        | 数据展示       | display/Calendar   | ✅ QCalendar（月视图 + 选中/禁用）                  |
-| Tour            | 数据展示       | display/Tour       | ✅ QTour（steps 引导 + 遮罩挖孔）                   |
-| Listy           | 数据展示 🆕6.6 | display/Listy      | ✅ QListy（定高虚拟列表）                           |
-| Form / FormItem | 数据录入       | form/              | 表单容器 + 校验（横切驱动 QForm\* 控件）            |
+| antd 组件       | 分类           | 建议目录           | 说明                                                                       |
+| --------------- | -------------- | ------------------ | -------------------------------------------------------------------------- |
+| FloatButton     | 通用           | basic/FloatButton  | ✅ QFloatButton（圆形/方形、badge/tooltip/backTop）                        |
+| BorderBeam      | 其他 🆕6.4     | display/BorderBeam | ✅ QBorderBeam（color/count/duration/hover）                               |
+| Flex            | 布局           | layout/Flex        | ✅ QFlex（justify/align/gap/wrap/vertical/tag）                            |
+| Splitter        | 布局           | layout/Splitter    | ✅ QSplitter（row/column、拖拽+键盘、min/max）                             |
+| Masonry         | 布局 🆕6.0     | layout/Masonry     | ✅ QMasonry（columns/gap 瀑布流）                                          |
+| Mentions        | 数据录入       | input/Mentions     | ✅ QMentions（@ 提及下拉）                                                 |
+| TimePicker      | 数据录入       | input/TimePicker   | ✅ QTimePicker（HH:mm[:ss] 列表面板、步长/清除）                           |
+| Calendar        | 数据展示       | display/Calendar   | ✅ QCalendar（月视图 + 选中/禁用）                                         |
+| Tour            | 数据展示       | display/Tour       | ✅ QTour（steps 引导 + 遮罩挖孔）                                          |
+| Listy           | 数据展示 🆕6.6 | display/Listy      | ✅ QListy（定高虚拟列表）                                                  |
+| Form / FormItem | 数据录入       | form/              | ✅ QForm + QFormItem（model/rules/validate 校验体系，可驱动 QForm\* 控件） |
 
 ### P5 轻量批次
 
-- [ ] 一致性整理：刷新「一、速览表」✅/⬜ 与源码一致（当前 84）
+- [x] 一致性整理：刷新「一、速览表」与源码一致（2026-09-05，P5–P8 后共 96）
 - [x] QFloatButton（basic/FloatButton）：shape/type/icon/#icon/badge/tooltip/backTop
 - [x] QBorderBeam（display/BorderBeam）：动画边框容器 size/duration/color
 
@@ -271,9 +271,9 @@ ProLayout、ProForm、ProTable、ProDescriptions、ProList、EditableProTable（
 
 ### 横向一致性（每个新组件随批执行）
 
-- [ ] type.ts JSDoc 三标签 + README（Props/Emits/Slots/Exposes）+ `docs:update`
-- [ ] 三文件注册 index.ts / install.ts / global.d.ts（util 则挂 utils/business）+ SearchBar 别名 + README 计数 + 本清单勾选
-- [ ] 测试：纯逻辑（node）+ jsdom；eslint / prettier / vue-tsc / build 全绿；浏览器验证
-- [ ] 弹层 / 空态组件逐步接入 useQConfig（getPopupContainer / renderEmpty / componentSize）
-- [ ] token 消费迁移试点：QButton 等 → `--q-ant-*` 对齐层
-- [ ] 每批完成打 commit（conventional commit，≤127 字符）
+- [x] type.ts JSDoc 三标签 + README（Props/Emits/Slots/Exposes）+ `docs:update`（P5–P8 均随批完成）
+- [x] 三文件注册 index.ts / install.ts / global.d.ts（util 则挂 utils/business）+ SearchBar 别名 + README 计数 + 本清单勾选（P5–P8 均随批完成）
+- [x] 测试：纯逻辑（node）+ jsdom；eslint / prettier / vue-tsc / build 全绿；浏览器验证（P5–P8 均随批完成）
+- [ ] 弹层 / 空态逐步接入 useQConfig——✅ 已接入 QTooltip/QPopover 的 getPopupContainer（Teleport 目标随 ConfigProvider）；renderEmpty / componentSize 及 Select/Dropdown/Table 等控件接入进行中
+- [x] token 决策（2026-09-05）：**只保留自有语义层、删除全部派生中间层**——antd 别名层 `--q-ant-*` 与按钮派生 token（`--q-color-button-*`）、遗留短名 `--button-*` 均已删除；`QButton` / 旧式 `.button-primary` 直读语义（`--q-color-primary` / `-white` / `-primary-hover`）。目标 = 一套主色全局统一（改一处主色带动按钮），局部仍可 `QConfigProvider.cssVars` 覆盖 `--q-color-primary/-hover/-active` 自定义
+- [x] 每批完成打 commit（conventional commit，≤127 字符）——最近：`ee68f3b`（P5–P8）

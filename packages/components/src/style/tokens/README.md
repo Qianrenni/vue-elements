@@ -18,12 +18,6 @@
 --q-easing-{type}           缓动函数
 ```
 
-## Ant Design 对齐层（antd.css）
-
-`tokens/antd.css` 提供与 **Ant Design 语义命名对齐**的别名层 `--q-ant-*`（如 `colorPrimary` → `--q-ant-color-primary`、`colorText`、`colorBgContainer`、`colorBorder`、`controlHeight`、`borderRadius`、`fontSize` 等）。取值引用上方的调色板 / 语义 token，随主题自动切换。
-
-本层是 **antd token 对齐语义层**，作为未来 ConfigProvider / 主题定制统一注入的地基；现阶段各组件仍直接引用库内基础 / 语义 token，接入主题系统后可平滑迁移到本层。
-
 ## 颜色 (Color)
 
 ### 原始调色板（不随主题变化）
@@ -53,7 +47,6 @@
 | `--q-color-border` / `-light`                                            | 边框             |
 | `--q-color-link` / `-hover`                                              | 链接             |
 | `--q-color-tag`                                                          | 标签/标记        |
-| `--q-color-button-bg` / `-text` / `-hover` / `-disabled`                 | 按钮             |
 | `--q-color-overlay`                                                      | 遮罩层           |
 | `--q-color-shadow` / `-inverse`                                          | 阴影色           |
 

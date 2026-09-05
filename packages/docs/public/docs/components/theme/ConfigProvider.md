@@ -6,16 +6,15 @@
 
 ## 局部主题定制（cssVars）
 
-把任意 CSS 自定义属性（如 `--q-color-primary`、`--q-radius-md`）作用到子树。注意：**实心主按钮背景读取 `--q-color-button-bg` 等派生 token**，覆盖主色时通常需把按钮族变量一并覆盖：
+把任意 CSS 自定义属性（如 `--q-color-primary`、`--q-radius-md`）作用到子树。按钮等组件**直接消费主色语义 token**，局部覆盖 `--q-color-primary` / `-hover` / `-active` 即可让主按钮、描边、链接一起换肤：
 
 ```vue
 <template>
   <QConfigProvider
     :css-vars="{
       '--q-color-primary': '#3b82f6',
-      '--q-color-button-bg': '#3b82f6',
-      '--q-color-button-hover': '#2f6fe0',
-      '--q-color-button-active': '#2a63c6',
+      '--q-color-primary-hover': '#2f6fe0',
+      '--q-color-primary-active': '#2a63c6',
     }"
   >
     <QButton type="primary">蓝色主题下的主按钮</QButton>
@@ -76,4 +75,4 @@ config?.componentSize.value; // 'small' | 'middle' | 'large'
 ## 说明
 
 - 组件默认直接消费设计系统 token（`--q-*`）；本组件把覆盖变量写在内联样式上，通过 CSS 继承作用于子树，适合局部主题 / 品牌色定制。
-- `componentSize` 等语义化字段已通过 `useQConfig()` 可注入，供弹层 / 空态等组件逐步接入（可无痛迁移到 `--q-ant-*` 对齐层）。
+- `componentSize` 等语义化字段已通过 `useQConfig()` 可注入，供弹层 / 空态等组件逐步接入（覆盖变量统一走自有语义 `--q-*`）。
