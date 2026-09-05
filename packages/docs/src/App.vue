@@ -1,8 +1,14 @@
 <!-- App.vue -->
 <script lang="ts" setup>
 import SearchBar from '@/components/SearchBar.vue';
+import TopNav from '@/components/TopNav.vue';
 import ComponentDetail from '@/docs/ComponentDetail.vue';
 import ComponentList from '@/docs/ComponentList.vue';
+import {
+  type DocsSectionMeta,
+  docsSections,
+  entriesOfSection,
+} from '@/utils/docsSections';
 import { docsEntries, type DocsEntry } from '@/utils/useComponentInfo.ts';
 import {
   QDrawer,
@@ -35,6 +41,27 @@ const onSelect = (entry: DocsEntry) => {
   router.push({ name: 'component', params: { name: entry.name } });
 };
 
+/** 当前顶层栏目：驱动顶栏高亮 + 侧边栏过滤 */
+const activeSection = ref<string>('Vue Components');
+const activeMeta = computed<DocsSectionMeta | undefined>(() =>
+  docsSections.find((s) => s.key === activeSection.value),
+);
+const sectionEntries = computed<DocsEntry[]>(() =>
+  entriesOfSection(activeSection.value),
+);
+
+// 选中条目若属于其它栏目，联动切换顶栏
+watch(selected, (entry) => {
+  if (entry) activeSection.value = entry.category[0];
+});
+
+const selectSection = (key: string) => {
+  activeSection.value = key;
+  if (selected.value && selected.value.category[0] !== key) {
+    router.push('/');
+  }
+};
+
 const showMenu = useScreenSize.getWidth(768);
 const showDrawer = ref(false);
 watch(
@@ -56,19 +83,27 @@ watch(
 
 <template>
   <div>
-    <header class="bg-card container" style="justify-content: space-between">
-      <QThemeToggle :size="24" :title="'主题变换'" />
-      <SearchBar class="search-bar" />
-      <QIcon
-        v-show="showMenu"
-        icon="Menu"
-        :size="24"
-        @click="showDrawer = !showDrawer"
-      />
+    <header class="docs-header bg-card container">
+      <router-link class="docs-brand" :to="{ path: '/' }">
+        qyani·components
+      </router-link>
+      <TopNav :active="activeSection" @select="selectSection" />
+      <div class="docs-actions">
+        <SearchBar class="search-bar" />
+        <QThemeToggle :size="22" :title="'主题变换'" />
+        <QIcon
+          v-show="showMenu"
+          icon="Menu"
+          :size="24"
+          @click="showDrawer = !showDrawer"
+        />
+      </div>
     </header>
-    <main class="container">
+    <main class="container docs-main">
       <ComponentList
         :selected="selected"
+        :entries="sectionEntries"
+        :title="activeMeta?.treeTitle"
         class="hidden-768"
         @select="onSelect"
       />
@@ -77,6 +112,8 @@ watch(
     <QDrawer v-model:visible="showDrawer" direction="left">
       <ComponentList
         :selected="selected"
+        :entries="sectionEntries"
+        :title="activeMeta?.treeTitle"
         style="height: 100vh"
         @select="onSelect"
       />
@@ -85,9 +122,45 @@ watch(
 </template>
 
 <style>
+.docs-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding-block: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: var(--q-z-index-sticky, 200);
+  flex-wrap: nowrap;
+}
+.docs-brand {
+  flex: none;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--q-color-text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.docs-main {
+  display: flex;
+  align-items: stretch;
+}
+.docs-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
 .search-bar {
-  flex: 1;
+  flex: 0 1 auto;
+  width: 15rem;
   max-width: 20rem;
-  margin: 0 1rem;
+}
+@media screen and (max-width: 768px) {
+  .docs-header {
+    flex-wrap: wrap;
+  }
+  .docs-actions {
+    margin-left: auto;
+  }
 }
 </style>
