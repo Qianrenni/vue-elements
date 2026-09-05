@@ -1,1 +1,0 @@
-import{D as o}from"./DemoBlock-A_lV7GyA.js";import{d as s,o as t,c as r,w as a,a as m}from"./index-OW0U782s.js";const n="\n```html\n<!-- useAVLTree Demo -->\n```\n",i=s({name:"DisplayUtilsAlgorithmuseAVLTree",__name:"useAVLTree",setup(l){return(p,e)=>(t(),r(o,{code:n},{default:a(()=>[...e[0]||(e[0]=[m("p",null,"useAVLTree 文档待完善",-1)])]),_:1}))}});export{i as default};
