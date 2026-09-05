@@ -1,0 +1,10 @@
+import{d as n,o as d,c as u,w as a,a as l,e as t,u as o,al as r,am as s,k as i,_ as f}from"./index-OW0U782s.js";import{D as _}from"./DemoBlock-A_lV7GyA.js";const C={class:"w-400"},v=`
+\`\`\`html
+<template>
+  <QCollapse v-model="activeNames">
+    <QCollapseItem name="1" title="面板1">内容1</QCollapseItem>
+    <QCollapseItem name="2" title="面板2">内容2</QCollapseItem>
+  </QCollapse>
+</template>
+\`\`\`
+`,c=n({name:"DisplayLayoutCollapse",__name:"Collapse",setup(Q){const m=i(["1"]);return(I,e)=>(d(),u(_,{code:v},{default:a(()=>[l("div",C,[t(o(r),{modelValue:m.value,"onUpdate:modelValue":e[0]||(e[0]=p=>m.value=p)},{default:a(()=>[t(o(s),{name:"1",title:"面板一"},{default:a(()=>[...e[1]||(e[1]=[l("p",null,"这是面板一的内容",-1)])]),_:1}),t(o(s),{name:"2",title:"面板二"},{default:a(()=>[...e[2]||(e[2]=[l("p",null,"这是面板二的内容",-1)])]),_:1}),t(o(s),{name:"3",title:"面板三"},{default:a(()=>[...e[3]||(e[3]=[l("p",null,"这是面板三的内容",-1)])]),_:1})]),_:1},8,["modelValue"])])]),_:1}))}}),x=f(c,[["__scopeId","data-v-366618b9"]]);export{x as default};
