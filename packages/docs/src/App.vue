@@ -126,7 +126,6 @@ watch(
   display: flex;
   align-items: center;
   gap: 0.5rem 1rem;
-  padding-block: 0.5rem;
   position: sticky;
   top: 0;
   z-index: var(--q-z-index-sticky, 200);

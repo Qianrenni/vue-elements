@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { DocsEntry } from '@/utils/useComponentInfo.ts';
-import { QMarkdownRender, QTab } from 'qyani-components';
+import { QMarkdownRender, QSkeleton, QTab } from 'qyani-components';
 import { computed, defineAsyncComponent, ref, shallowRef, watch } from 'vue';
 import type { Component } from 'vue';
 
@@ -17,6 +17,10 @@ const currentDemo = shallowRef<Component | null>(null);
 let activeRequestId = 0;
 const tabs = computed(() =>
   props.component?.demoPath ? ['文档说明', '组件展示'] : ['文档说明'],
+);
+/** 文档是否加载中 */
+const isLoading = computed(
+  () => currentContent.value === '' && !!props.component,
 );
 
 /**
@@ -87,14 +91,15 @@ watch(
       />
       <div
         v-show="currentTabIndex === 0"
-        class="component-display padding-rem radius-half-rem shadow-black"
+        class="component-display flex-1 padding-rem radius-half-rem shadow-black"
       >
         <QMarkdownRender
-          v-if="currentContent"
+          v-if="!isLoading"
           :key="component.docPath"
           :content="currentContent"
           show-toc
         />
+        <QSkeleton v-else />
       </div>
       <component
         :is="currentDemo"
