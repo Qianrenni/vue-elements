@@ -2,6 +2,7 @@ export * from './useFollowSystemTheme';
 export * from './useLRUCache';
 export * from './useLocalStorage';
 export * from './useMessage';
+export * from './useNotification';
 export * from './useScreenSize';
 export * from './useShowLoading';
 export * from './useTimeDisplay';

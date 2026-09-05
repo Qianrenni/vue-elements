@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QDescriptions 渲染 > 默认 horizontal 三列渲染项与标题 1`] = `
+"<div data-v-a84f8098="" class="q-descriptions q-descriptions-size--middle">
+  <div data-v-a84f8098="" class="q-descriptions-header">
+    <div data-v-a84f8098="" class="q-descriptions-title">用户信息</div>
+    <!--v-if-->
+  </div>
+  <div data-v-a84f8098="" class="q-descriptions-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+    <div data-v-a84f8098="" class="q-descriptions-item" style="grid-column: span 1;">
+      <div data-v-a84f8098="" class="q-descriptions-label">姓名<span data-v-a84f8098="" class="q-descriptions-colon">:</span></div>
+      <div data-v-a84f8098="" class="q-descriptions-content">张三</div>
+    </div>
+    <div data-v-a84f8098="" class="q-descriptions-item" style="grid-column: span 1;">
+      <div data-v-a84f8098="" class="q-descriptions-label">电话<span data-v-a84f8098="" class="q-descriptions-colon">:</span></div>
+      <div data-v-a84f8098="" class="q-descriptions-content">1810000000</div>
+    </div>
+    <div data-v-a84f8098="" class="q-descriptions-item" style="grid-column: span 1;">
+      <div data-v-a84f8098="" class="q-descriptions-label">城市<span data-v-a84f8098="" class="q-descriptions-colon">:</span></div>
+      <div data-v-a84f8098="" class="q-descriptions-content">杭州</div>
+    </div>
+  </div>
+</div>"
+`;

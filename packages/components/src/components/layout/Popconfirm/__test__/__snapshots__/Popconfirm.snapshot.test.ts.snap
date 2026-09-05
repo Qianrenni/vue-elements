@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QPopconfirm 渲染 > 受控 open 显示标题/按钮 1`] = `
+"<span data-v-d5df962f="" class="q-popover-trigger" aria-expanded="true" tabindex="0"><button type="button">删除</button></span>
+<!--teleport start-->
+<!--teleport end-->"
+`;

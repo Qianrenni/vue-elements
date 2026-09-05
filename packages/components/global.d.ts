@@ -1,7 +1,10 @@
 import type { Plugin } from 'vue';
 
 import type {
+  QAffix,
+  QAlert,
   QAnchor,
+  QApp,
   QAutoComplete,
   QAvatar,
   QBadge,
@@ -16,7 +19,9 @@ import type {
   QCollapse,
   QCollapseItem,
   QCollapsibleSection,
+  QConfigProvider,
   QContent,
+  QDescriptions,
   QDialog,
   QDivider,
   QDrawer,
@@ -37,6 +42,7 @@ import type {
   QFormTextarea,
   QHeader,
   QIcon,
+  QImage,
   QInputNumber,
   QLayout,
   QLazyImage,
@@ -45,10 +51,15 @@ import type {
   QMenu,
   QMessage,
   QNavSection,
+  QNotification,
   QPagination,
+  QPopconfirm,
   QPopContainer,
+  QPopover,
   QProgressBar,
+  QQRCode,
   QRate,
+  QResult,
   QRow,
   QScrollContainer,
   QScrollNotice,
@@ -63,6 +74,7 @@ import type {
   QSteps,
   QSwiperAction,
   QTab,
+  QTable,
   QTag,
   QThemeToggle,
   QTimeline,
@@ -72,11 +84,15 @@ import type {
   QTreeNode,
   QTreeSelect,
   QTypography,
+  QWatermark,
 } from './dist/types/index';
 
 declare module 'vue' {
   export interface GlobalComponents {
+    QAffix: typeof QAffix;
+    QAlert: typeof QAlert;
     QAnchor: typeof QAnchor;
+    QApp: typeof QApp;
     QAutoComplete: typeof QAutoComplete;
     QAvatar: typeof QAvatar;
     QBadge: typeof QBadge;
@@ -91,7 +107,9 @@ declare module 'vue' {
     QCollapse: typeof QCollapse;
     QCollapseItem: typeof QCollapseItem;
     QCollapsibleSection: typeof QCollapsibleSection;
+    QConfigProvider: typeof QConfigProvider;
     QContent: typeof QContent;
+    QDescriptions: typeof QDescriptions;
     QDialog: typeof QDialog;
     QDivider: typeof QDivider;
     QDrawer: typeof QDrawer;
@@ -112,6 +130,7 @@ declare module 'vue' {
     QFormTextarea: typeof QFormTextarea;
     QHeader: typeof QHeader;
     QIcon: typeof QIcon;
+    QImage: typeof QImage;
     QInputNumber: typeof QInputNumber;
     QLayout: typeof QLayout;
     QLazyImage: typeof QLazyImage;
@@ -120,10 +139,15 @@ declare module 'vue' {
     QMenu: typeof QMenu;
     QMessage: typeof QMessage;
     QNavSection: typeof QNavSection;
+    QNotification: typeof QNotification;
     QPagination: typeof QPagination;
     QPopContainer: typeof QPopContainer;
+    QPopconfirm: typeof QPopconfirm;
+    QPopover: typeof QPopover;
     QProgressBar: typeof QProgressBar;
+    QQRCode: typeof QQRCode;
     QRate: typeof QRate;
+    QResult: typeof QResult;
     QRow: typeof QRow;
     QScrollContainer: typeof QScrollContainer;
     QScrollNotice: typeof QScrollNotice;
@@ -138,6 +162,7 @@ declare module 'vue' {
     QSteps: typeof QSteps;
     QSwiperAction: typeof QSwiperAction;
     QTab: typeof QTab;
+    QTable: typeof QTable;
     QTag: typeof QTag;
     QThemeToggle: typeof QThemeToggle;
     QTimeline: typeof QTimeline;
@@ -147,6 +172,7 @@ declare module 'vue' {
     QTreeNode: typeof QTreeNode;
     QTreeSelect: typeof QTreeSelect;
     QTypography: typeof QTypography;
+    QWatermark: typeof QWatermark;
   }
 }
 declare const QyaniComponents: Plugin;

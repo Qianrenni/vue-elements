@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QNotification 单条渲染 > 渲染类型类名 / 标题 / 描述 / 图标 1`] = `
+"<div data-v-f8790089="" class="q-notification q-notification--success" role="alert"><button data-v-f8790089="" class="q-notification-close" aria-label="关闭通知" type="button"> × </button>
+  <div data-v-f8790089="" class="q-notification-body"><span data-v-f8790089="" class="q-notification-icon" aria-hidden="true"><span data-v-f8790089="" class="q-notification-glyph">✓</span></span>
+    <div data-v-f8790089="" class="q-notification-main">
+      <div data-v-f8790089="" class="q-notification-title">保存成功</div>
+      <div data-v-f8790089="" class="q-notification-desc">你的修改已保存。</div>
+      <!--v-if-->
+    </div>
+  </div>
+</div>"
+`;

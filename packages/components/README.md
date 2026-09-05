@@ -78,26 +78,34 @@ const username = ref('');
 - `QButton` - 通用按钮组件
 - `QIcon` - 图标组件
 - `QMessage` - 消息提示
+- `QNotification` - 通知提醒框（命令式 useNotification 单例）
 - `QPagination` - 分页组件
 - `QTag` - 标签
 - `QTypography` - 排版（Title / Text / Paragraph）
 
 ### 展示组件 (Display)
 
+- `QAlert` - 警告提示
 - `QAvatar` - 头像组件
 - `QBadge` - 徽章组件
 - `QCarousel` / `QCarouselItem` - 轮播图
+- `QDescriptions` - 描述列表
 - `QDivider` - 分割线
 - `QEmpty` - 空状态
+- `QImage` - 图片（可预览）
 - `QLazyImage` - 懒加载图片
 - `QMarkdownRender` - Markdown 渲染
 - `QMobileFrame` - 手机框架
 - `QProgressBar` - 进度条
+- `QQRCode` - 二维码
+- `QResult` - 结果页
 - `QRainFigure` - 雨图
 - `QScrollNotice` - 滚动公告
 - `QSegmented` - 分段控制器
 - `QStatistic` - 统计数值
+- `QTable` - 通用数据表格
 - `QTimeline` - 时间轴
+- `QWatermark` - 水印
 - `QVideoPlayer` - 视频播放器
 - `QVirtualList` - 虚拟列表
 
@@ -131,6 +139,7 @@ const username = ref('');
 
 ### 布局组件 (Layout)
 
+- `QAffix` - 固钉（滚动吸附，吸顶/吸底）
 - `QCard` - 卡片
 - `QCol` / `QRow` - 24 栅格
 - `QCollapse` / `QCollapseItem` - 折叠面板
@@ -142,6 +151,8 @@ const username = ref('');
 - `QHeader` - 顶栏
 - `QLayout` - 布局容器
 - `QPopContainer` - 弹出容器
+- `QPopconfirm` - 气泡确认框
+- `QPopover` - 气泡卡片
 - `QSider` - 侧边栏（可折叠）
 - `QScrollContainer` - 滚动容器
 - `QSpace` - 间距
@@ -168,6 +179,8 @@ const username = ref('');
 
 ### 主题组件 (Theme)
 
+- `QApp` - App 包裹组件（作用域通知 + useQApp）
+- `QConfigProvider` - 全局配置（cssVars 局部主题/尺寸/方向）
 - `QThemeToggle` - 主题切换
 
 ## 🛠️ 工具函数

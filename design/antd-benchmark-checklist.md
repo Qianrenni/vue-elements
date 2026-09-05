@@ -78,47 +78,47 @@
 | Card 卡片             | ✅ QCard（layout/Card）                        |
 | Carousel 走马灯       | ✅ QCarousel + CarouselItem                    |
 | Collapse 折叠面板     | ✅ QCollapse + CollapseItem/CollapsibleSection |
-| Descriptions 描述列表 | ⬜                                             |
-| Empty 空状态          | ⬜                                             |
-| Image 图片            | ⬜ 仅 LazyImage，缺独立 Image 预览             |
+| Descriptions 描述列表 | ✅ QDescriptions（display/Descriptions）       |
+| Empty 空状态          | ✅ QEmpty（display/Empty）                     |
+| Image 图片            | ✅ QImage（display/Image，可全屏预览）         |
 | List 列表（已废弃）   | ⬜                                             |
 | Listy 虚拟列表 🆕6.6  | ⬜                                             |
-| Popover 气泡卡片      | ⬜（PopContainer 部分类似）                    |
-| QRCode 二维码         | ⬜                                             |
-| Segmented 分段控制器  | ⬜                                             |
-| Statistic 统计数值    | ⬜                                             |
-| Table 表格            | ⬜ 仅表单场景 FormTable，缺通用 QTable         |
+| Popover 气泡卡片      | ✅ QPopover（layout/Popover）                  |
+| QRCode 二维码         | ✅ QQRCode（display/QRCode）                   |
+| Segmented 分段控制器  | ✅ QSegmented（display/Segmented）             |
+| Statistic 统计数值    | ✅ QStatistic（display/Statistic）             |
+| Table 表格            | ✅ QTable（display/Table，通用数据表格）       |
 | Tag 标签              | ✅ QTag（basic/Tag）                           |
-| Timeline 时间轴       | ⬜                                             |
-| Tooltip 文字提示      | ⬜                                             |
+| Timeline 时间轴       | ✅ QTimeline（display/Timeline）               |
+| Tooltip 文字提示      | ✅ QTooltip（layout/Tooltip）                  |
 | Tour 漫游引导         | ⬜                                             |
 | Tree 树形控件         | ✅ QTree + TreeNode（layout/Tree）             |
 
 ### 反馈 Feedback（11）
 
-| 组件                    | 本库状态                               |
-| ----------------------- | -------------------------------------- |
-| Alert 警告提示          | ⬜                                     |
-| Drawer 抽屉             | ✅ QDrawer（layout/Drawer）            |
-| Message 全局提示        | ✅ QMessage（basic/Message）           |
-| Modal 对话框            | ✅ QDialog（layout/Dialog）≈ Modal     |
-| Notification 通知提醒框 | ⬜                                     |
-| Popconfirm 气泡确认框   | ⬜                                     |
-| Progress 进度条         | ✅ QProgressBar（display/ProgressBar） |
-| Result 结果             | ⬜                                     |
-| Skeleton 骨架屏         | ✅ QSkeleton（loading/animations）     |
-| Spin 加载中             | ✅ QLoading / QSpinner（loading/）     |
-| Watermark 水印          | ⬜                                     |
+| 组件                    | 本库状态                                                            |
+| ----------------------- | ------------------------------------------------------------------- |
+| Alert 警告提示          | ✅ QAlert（display/Alert）                                          |
+| Drawer 抽屉             | ✅ QDrawer（layout/Drawer）                                         |
+| Message 全局提示        | ✅ QMessage（basic/Message）                                        |
+| Modal 对话框            | ✅ QDialog（layout/Dialog）≈ Modal                                  |
+| Notification 通知提醒框 | ✅ QNotification（basic/Notification + useNotification 命令式单例） |
+| Popconfirm 气泡确认框   | ✅ QPopconfirm（layout/Popconfirm）                                 |
+| Progress 进度条         | ✅ QProgressBar（display/ProgressBar）                              |
+| Result 结果             | ✅ QResult（display/Result）                                        |
+| Skeleton 骨架屏         | ✅ QSkeleton（loading/animations）                                  |
+| Spin 加载中             | ✅ QLoading / QSpinner（loading/）                                  |
+| Watermark 水印          | ✅ QWatermark（display/Watermark）                                  |
 
 ### 其他 Other（5）
 
-| 组件                      | 本库状态                              |
-| ------------------------- | ------------------------------------- |
-| Affix 固钉                | ⬜                                    |
-| App 包裹组件              | ⬜（全局 message/modal 上下文）       |
-| BorderBeam 边框流光 🆕6.4 | ⬜                                    |
-| ConfigProvider 全局化配置 | ⬜（主题由 ThemeToggle 承担部分能力） |
-| Util 工具类               | — 非视觉组件                          |
+| 组件                      | 本库状态                                                                       |
+| ------------------------- | ------------------------------------------------------------------------------ |
+| Affix 固钉                | ✅ QAffix（layout/Affix，吸顶/吸底 + target 滚动容器）                         |
+| App 包裹组件              | ✅ QApp（theme/App，作用域 notification + useQApp）                            |
+| BorderBeam 边框流光 🆕6.4 | ⬜                                                                             |
+| ConfigProvider 全局化配置 | ✅ QConfigProvider（theme/ConfigProvider，cssVars 局部主题/尺寸/方向 provide） |
+| Util 工具类               | — 非视觉组件                                                                   |
 
 ### 重型 Pro 组件（独立包 @ant-design/pro-components）
 
@@ -145,23 +145,24 @@ ProLayout、ProForm、ProTable、ProDescriptions、ProList、EditableProTable（
 
 ## 三、命名对照速查
 
-| qyani 组件                         | 对应 Ant Design              |
-| ---------------------------------- | ---------------------------- |
-| FormText / FormTextarea            | Input / Input.TextArea       |
-| FormSelect                         | Select                       |
-| FormCheckboxGroup / FormRadioGroup | Checkbox.Group / Radio.Group |
-| FormColorPicker                    | ColorPicker                  |
-| FormDatePicker                     | DatePicker                   |
-| FormFileUpload                     | Upload                       |
-| FormRangeSlider                    | Slider (range)               |
-| FormSwitch                         | Switch                       |
-| FormButton                         | Button（表单提交场景）       |
-| FormTable                          | Table（表单编辑场景）        |
-| Search                             | Input.Search / AutoComplete  |
-| Dialog                             | Modal                        |
-| ProgressBar                        | Progress                     |
-| Tab                                | Tabs                         |
-| Tree / TreeNode                    | Tree                         |
+| qyani 组件                         | 对应 Ant Design                           |
+| ---------------------------------- | ----------------------------------------- |
+| FormText / FormTextarea            | Input / Input.TextArea                    |
+| FormSelect                         | Select                                    |
+| FormCheckboxGroup / FormRadioGroup | Checkbox.Group / Radio.Group              |
+| FormColorPicker                    | ColorPicker                               |
+| FormDatePicker                     | DatePicker                                |
+| FormFileUpload                     | Upload                                    |
+| FormRangeSlider                    | Slider (range)                            |
+| FormSwitch                         | Switch                                    |
+| FormButton                         | Button（表单提交场景）                    |
+| FormTable                          | Table（表单编辑场景）                     |
+| QTable                             | Table（通用数据展示，由 QFormTable 泛化） |
+| Search                             | Input.Search / AutoComplete               |
+| Dialog                             | Modal                                     |
+| ProgressBar                        | Progress                                  |
+| Tab                                | Tabs                                      |
+| Tree / TreeNode                    | Tree                                      |
 
 ---
 
@@ -196,23 +197,23 @@ ProLayout、ProForm、ProTable、ProDescriptions、ProList、EditableProTable（
 
 ### P3 数据展示
 
-- [ ] QTable（通用数据表格：排序/筛选/分页/展开/选择）
+- [x] QTable（通用数据表格 dataSource+columns：排序/筛选/分页/展开/行选择）【display/】
 - [x] QEmpty（空状态）【display/】
 - [x] QStatistic（统计数值 + 滚动动画 countUp）【display/】
 - [x] QSegmented（分段控制器，roving radio 键盘导航/图标/禁用/block/vertical）【display/】
 - [x] QTimeline（时间轴 left/right/alternate + 标签/自定义圆点/倒序/幽灵待定）【display/】
-- [ ] QPopover（气泡卡片）
-- [ ] QImage（图片 + 预览）
-- [x] QTimeline（时间轴 left/right/alternate、标签/自定义圆点/倒序/幽灵待定）【display/】
-- [ ] QDescriptions（描述列表）
-- [ ] QQRCode（二维码）
+- [x] QDescriptions（描述列表：bordered/column/span/vertical）【display/】
+- [x] QPopover（气泡卡片：hover/focus/click、12 方向、点击外部关闭）【layout/】
+- [x] QImage（图片 + 全屏预览：缩放/旋转/还原/关闭）【display/】
+- [x] QQRCode（二维码：qrcode 生成 SVG + 图标/纠错）【display/】
 
 ### P4 反馈与其他
 
-- [ ] QAlert（警告提示）
-- [ ] QNotification（通知提醒框）
-- [ ] QPopconfirm（气泡确认框）
-- [ ] QResult（结果页）
-- [ ] QWatermark（水印）
-- [ ] QConfigProvider（全局主题/尺寸/语言配置）
-- [ ] QAffix（固钉）
+- [x] QAlert（警告提示）【display/】
+- [x] QNotification（通知提醒框：命令式 useNotification 单例 + QApp 作用域）
+- [x] QPopconfirm（气泡确认框）【layout/，复用 QPopover + 异步确认 loading】
+- [x] QResult（结果页）【display/】
+- [x] QWatermark（水印）【display/】
+- [x] QConfigProvider（全局主题/尺寸/方向/cssVars 局部主题）【theme/】
+- [x] QApp（App 包裹：作用域 notification + useQApp）【theme/】
+- [x] QAffix（固钉：吸顶/吸底 + 自定义滚动容器 target + onChange）【layout/】

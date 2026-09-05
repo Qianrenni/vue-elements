@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QResult 渲染 > success 渲染标题/副标题 1`] = `
+"<div data-v-02b3a799="" class="q-result q-result--success">
+  <div data-v-02b3a799="" class="q-result-icon"><span data-v-02b3a799="" class="q-result-glyph q-result-glyph--success" aria-hidden="true">✓</span></div>
+  <div data-v-02b3a799="" class="q-result-title">成功</div>
+  <div data-v-02b3a799="" class="q-result-subtitle">操作已完成</div>
+  <!--v-if-->
+  <!--v-if-->
+</div>"
+`;

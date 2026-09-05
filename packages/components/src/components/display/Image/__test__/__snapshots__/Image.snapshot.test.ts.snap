@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QImage 渲染与预览 > 基础缩略图 + 尺寸/适配样式 1`] = `
+"<div data-v-88f7757a="" class="q-image" style="width: 120px; height: 80px;"><img data-v-88f7757a="" alt="" class="q-image-img" height="80px" src="https://example.com/a.png" style="object-fit: cover;" width="120px">
+  <div data-v-88f7757a="" class="q-image-mask" role="button" aria-label="预览图片" tabindex="0"><span data-v-88f7757a="" class="q-image-mask-icon" aria-hidden="true"></span><span data-v-88f7757a="" class="q-image-mask-text">预览</span></div>
+</div>
+<!--teleport start-->
+<!--teleport end-->"
+`;

@@ -81,6 +81,7 @@ app.mount('#app');
 - `QButton` - Button component
 - `QIcon` - Icon component
 - `QMessage` - Message prompt
+- `QNotification` - Notification (imperative util)
 - `QPagination` - Pagination component
 - `QTag` - Tag
 - `QTypography` - Typography (Title / Text / Paragraph)
@@ -100,6 +101,15 @@ app.mount('#app');
 - `QScrollNotice` - Scrolling notice
 - `QSegmented` - Segmented control
 - `QStatistic` - Statistic
+- `QTable` - Data table
+- `QDescriptions` - Descriptions list
+- `QImage` - Image (with preview)
+- `QQRCode` - QR code
+- `QPopover` - Popover card
+- `QPopconfirm` - Popconfirm
+- `QAlert` - Alert
+- `QResult` - Result page
+- `QWatermark` - Watermark
 - `QTimeline` - Timeline
 - `QVideoPlayer` - Video player
 - `QVirtualList` - Virtual list
@@ -134,6 +144,7 @@ app.mount('#app');
 
 ### Layout Components
 
+- `QAffix` - Affix (scroll pin)
 - `QCard` - Card
 - `QCol` / `QRow` - 24-grid
 - `QCollapse` / `QCollapseItem` - Collapse panel
@@ -171,6 +182,8 @@ app.mount('#app');
 
 ### Theme Components
 
+- `QApp` - App wrapper (scoped notification)
+- `QConfigProvider` - Global config (theme/size/direction)
 - `QThemeToggle` - Theme toggle
 
 ## 🛠️ Utility Functions

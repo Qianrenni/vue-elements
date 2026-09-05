@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QAffix 渲染 > 未滚动到阈值：保持普通文档流 1`] = `
+"<div class="q-affix">
+  <!--v-if-->
+  <div class="q-affix-content">
+    <div class="demo-box" style="height: 60px;">内容</div>
+  </div>
+</div>"
+`;

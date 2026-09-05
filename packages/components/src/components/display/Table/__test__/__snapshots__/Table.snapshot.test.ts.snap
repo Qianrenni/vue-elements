@@ -1,0 +1,63 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QTable 快照/渲染 > 基础渲染表头与行 1`] = `
+"<div data-v-4cb0a2fa="" class="q-table">
+  <div data-v-4cb0a2fa="" class="q-table-container">
+    <table data-v-4cb0a2fa="" class="q-table-element q-table-size--middle">
+      <thead data-v-4cb0a2fa="">
+        <tr data-v-4cb0a2fa="" class="q-table-row q-table-row--head">
+          <!--v-if-->
+          <!--v-if-->
+          <th data-v-4cb0a2fa="" class="q-table-col-head q-table-col-data q-table-align--left" style="width: 80px;" scope="col">
+            <div data-v-4cb0a2fa="" class="q-table-th"><span data-v-4cb0a2fa="" class="q-table-th-title">ID</span>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </th>
+          <th data-v-4cb0a2fa="" class="q-table-col-head q-table-col-data q-table-align--left" scope="col">
+            <div data-v-4cb0a2fa="" class="q-table-th"><span data-v-4cb0a2fa="" class="q-table-th-title">姓名</span>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </th>
+          <th data-v-4cb0a2fa="" class="q-table-col-head q-table-col-data q-table-align--left" scope="col">
+            <div data-v-4cb0a2fa="" class="q-table-th"><span data-v-4cb0a2fa="" class="q-table-th-title">年龄</span><span data-v-4cb0a2fa="" class="q-table-th-tools"><span data-v-4cb0a2fa="" class="q-table-sort" role="group" aria-label="年龄排序"><button data-v-4cb0a2fa="" aria-label="年龄升序" aria-pressed="false" class="q-table-caret q-table-caret--up" title="升序" type="button"></button><button data-v-4cb0a2fa="" aria-label="年龄降序" aria-pressed="false" class="q-table-caret q-table-caret--down" title="降序" type="button"></button></span>
+              <!--v-if--></span>
+            </div>
+            <!--v-if-->
+          </th>
+        </tr>
+      </thead>
+      <tbody data-v-4cb0a2fa="">
+        <tr data-v-4cb0a2fa="" class="q-table-row q-table-row--body">
+          <!--v-if-->
+          <!--v-if-->
+          <td data-v-4cb0a2fa="" class="q-table-col-data q-table-col-body q-table-align--left" style="width: 80px;"><span data-v-4cb0a2fa="" class="q-table-cell-text">1</span></td>
+          <td data-v-4cb0a2fa="" class="q-table-col-data q-table-col-body q-table-align--left"><span data-v-4cb0a2fa="" class="q-table-cell-text">张三</span></td>
+          <td data-v-4cb0a2fa="" class="q-table-col-data q-table-col-body q-table-align--left"><span data-v-4cb0a2fa="" class="q-table-cell-text">25</span></td>
+        </tr>
+        <!--v-if-->
+        <tr data-v-4cb0a2fa="" class="q-table-row q-table-row--body">
+          <!--v-if-->
+          <!--v-if-->
+          <td data-v-4cb0a2fa="" class="q-table-col-data q-table-col-body q-table-align--left" style="width: 80px;"><span data-v-4cb0a2fa="" class="q-table-cell-text">2</span></td>
+          <td data-v-4cb0a2fa="" class="q-table-col-data q-table-col-body q-table-align--left"><span data-v-4cb0a2fa="" class="q-table-cell-text">李四</span></td>
+          <td data-v-4cb0a2fa="" class="q-table-col-data q-table-col-body q-table-align--left"><span data-v-4cb0a2fa="" class="q-table-cell-text">30</span></td>
+        </tr>
+        <!--v-if-->
+        <tr data-v-4cb0a2fa="" class="q-table-row q-table-row--body">
+          <!--v-if-->
+          <!--v-if-->
+          <td data-v-4cb0a2fa="" class="q-table-col-data q-table-col-body q-table-align--left" style="width: 80px;"><span data-v-4cb0a2fa="" class="q-table-cell-text">3</span></td>
+          <td data-v-4cb0a2fa="" class="q-table-col-data q-table-col-body q-table-align--left"><span data-v-4cb0a2fa="" class="q-table-cell-text">王五</span></td>
+          <td data-v-4cb0a2fa="" class="q-table-col-data q-table-col-body q-table-align--left"><span data-v-4cb0a2fa="" class="q-table-cell-text">20</span></td>
+        </tr>
+        <!--v-if-->
+      </tbody>
+    </table>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--v-if-->
+</div>"
+`;

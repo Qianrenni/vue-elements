@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QConfigProvider > 渲染包裹节点：cssVars 内联、dir、尺寸类 1`] = `
+"<div data-v-52601515="" class="q-config-provider q-config-provider--large" dir="rtl" style="--q-color-primary: #123456;">
+  <div class="inner">内容</div>
+</div>"
+`;

@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QAlert 渲染 > closable 点击关闭并 emit 1`] = `
+"<transition-stub data-v-beeaf09d="" name="q-alert" appear="false" persisted="false" css="true">
+  <!--v-if-->
+</transition-stub>"
+`;

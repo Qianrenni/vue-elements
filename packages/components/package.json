@@ -34,10 +34,12 @@
     "global.d.ts"
   ],
   "dependencies": {
-    "@qianrenni/core": "workspace:^"
+    "@qianrenni/core": "workspace:^",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "@types/node": "^24.1.0",
+    "@types/qrcode": "^1.5.6",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vitest/browser": "^3.2.4",
     "@vitest/coverage-v8": "^3.2.4",

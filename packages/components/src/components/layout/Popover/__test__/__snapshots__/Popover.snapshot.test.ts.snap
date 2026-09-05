@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QPopover 渲染 > 受控 open 时弹层显示标题与内容 1`] = `
+"<span data-v-d5df962f="" class="q-popover-trigger" aria-expanded="true" tabindex="0"><button type="button">点我</button></span>
+<!--teleport start-->
+<!--teleport end-->"
+`;
