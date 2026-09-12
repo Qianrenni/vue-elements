@@ -32,7 +32,7 @@ body.dark-mode,
   --q-color-link: var(--q-color-brown-300);
   --q-color-link-hover: var(--q-color-brown-100);
 
-  --q-color-tag: var(--q-color-brown-200);
+  --q-color-tag: var(--q-color-brown-500);
 
   /* — 遮罩层 — */
   --q-color-overlay: rgba(255, 255, 255, 0.2);

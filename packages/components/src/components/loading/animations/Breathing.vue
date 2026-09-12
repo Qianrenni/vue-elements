@@ -27,7 +27,7 @@ defineOptions({
 .loader-dot {
   width: 8px;
   height: 8px;
-  background-color: var(--color-inverse);
+  background-color: var(--q-color-text-inverse);
   border-radius: 50%;
   animation: pulse 1.2s ease-in-out infinite;
 }

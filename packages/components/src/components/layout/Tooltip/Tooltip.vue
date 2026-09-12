@@ -274,7 +274,7 @@ onBeforeUnmount(() => {
 
 .q-tooltip {
   position: fixed;
-  z-index: var(--z-index-level-3);
+  z-index: var(--q-z-index-popover);
   max-width: 280px;
 }
 

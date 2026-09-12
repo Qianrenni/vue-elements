@@ -17,7 +17,7 @@ defineOptions({
   width: 100%;
   height: 100%;
   min-height: 20px;
-  background: var(--skeleton-linear-gradient);
+  background: var(--q-skeleton-gradient);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite linear;
 }

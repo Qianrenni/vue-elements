@@ -36,7 +36,7 @@ defineProps<MessageProps>();
   align-items: center;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  z-index: var(--z-index-level-3);
+  z-index: var(--q-z-index-popover);
   min-height: 100px;
   min-width: 200px;
   max-width: 600px;

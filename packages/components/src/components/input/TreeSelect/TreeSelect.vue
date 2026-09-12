@@ -212,7 +212,7 @@ onBeforeUnmount(() => {
   top: calc(100% + var(--q-space-1));
   left: 0;
   right: 0;
-  z-index: var(--z-index-level-3);
+  z-index: var(--q-z-index-popover);
   box-sizing: border-box;
   max-height: 260px;
   overflow: auto;

@@ -287,14 +287,14 @@ function onSubmenuHover(item: MenuItem, open: boolean) {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: var(--z-index-level-2);
+  z-index: var(--q-z-index-modal);
 }
 
 .q-menu--vertical .q-menu-popup {
   position: absolute;
   top: 0;
   left: 100%;
-  z-index: var(--z-index-level-2);
+  z-index: var(--q-z-index-modal);
 }
 
 .q-menu-popup {

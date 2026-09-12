@@ -8,14 +8,14 @@ describe('useProgressBar', () => {
     const props: ProgressBarProps = {
       percent: '50%',
       direction: 'horizontal',
-      color: 'var(--primary-color)',
+      color: 'var(--q-color-primary)',
     };
     const { barStyle } = useProgressBar(props);
 
     expect(barStyle.value).toEqual({
       width: '50%',
       height: '100%',
-      backgroundColor: 'var(--primary-color)',
+      backgroundColor: 'var(--q-color-primary)',
     });
   });
 
@@ -23,14 +23,14 @@ describe('useProgressBar', () => {
     const props: ProgressBarProps = {
       percent: '50%',
       direction: 'vertical',
-      color: 'var(--primary-color)',
+      color: 'var(--q-color-primary)',
     };
     const { barStyle, containerClass } = useProgressBar(props);
 
     expect(barStyle.value).toEqual({
       width: '100%',
       height: '50%',
-      backgroundColor: 'var(--primary-color)',
+      backgroundColor: 'var(--q-color-primary)',
     });
     expect(containerClass.value['container-column']).toBe(true);
   });

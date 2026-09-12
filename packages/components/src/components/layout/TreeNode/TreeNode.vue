@@ -78,21 +78,21 @@ const {
 }
 
 .tree-node-content {
-  padding: var(--fourth-distance);
+  padding: var(--q-space-2);
   border-radius: 0.33rem;
   transition: background-color 0.2s;
 }
 
 .tree-node-content:hover:not(.mouse-cursor-disable) {
-  background-color: var(--secondary-background-color);
+  background-color: var(--q-color-bg-secondary);
 }
 
 .tree-node-selected {
-  background-color: var(--secondary-background-color);
+  background-color: var(--q-color-bg-secondary);
 }
 
 .tree-node-toggle {
-  margin-right: var(--fourth-distance);
+  margin-right: var(--q-space-2);
 }
 
 .tree-node-label {
@@ -101,6 +101,6 @@ const {
 
 .tree-node-children {
   margin-left: 0.75rem;
-  border-left: 1px dashed var(--border-color);
+  border-left: 1px dashed var(--q-color-border);
 }
 </style>

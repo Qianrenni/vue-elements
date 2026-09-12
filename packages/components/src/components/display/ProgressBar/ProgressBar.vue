@@ -25,7 +25,7 @@ import { ProgressBarProps } from './type';
 defineOptions({ name: 'QProgressBar' });
 
 const props = withDefaults(defineProps<ProgressBarProps>(), {
-  color: 'var(--primary-color)',
+  color: 'var(--q-color-primary)',
   direction: 'horizontal',
 });
 </script>

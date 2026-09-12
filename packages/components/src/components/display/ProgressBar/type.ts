@@ -4,7 +4,7 @@
 export interface ProgressBarProps {
   /** 进度百分比，如 '30%' */
   percent: string;
-  /** 进度条颜色，默认 'var(--primary-color)' */
+  /** 进度条颜色，默认 'var(--q-color-primary)' */
   color?: string;
   /** 进度条方向，默认 'horizontal' */
   direction?: 'horizontal' | 'vertical';

@@ -8,6 +8,6 @@ exports[`QProgressBar 快照测试 > 垂直方向 + 自定义颜色渲染 1`] = 
 
 exports[`QProgressBar 快照测试 > 水平方向渲染 1`] = `
 "<div class="container-w100 container-h100 bg-gray-300">
-  <div style="width: 30%; height: 100%; background-color: var(--primary-color);"></div>
+  <div style="width: 30%; height: 100%; background-color: var(--q-color-primary);"></div>
 </div>"
 `;

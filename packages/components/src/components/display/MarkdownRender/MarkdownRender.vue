@@ -128,7 +128,7 @@ defineExpose({
   align-self: start;
   max-height: calc(100vh - 2rem);
   padding-left: 1.5rem;
-  border-left: 1px solid var(--border-color);
+  border-left: 1px solid var(--q-color-border);
 }
 
 .toc-collapsed {
@@ -138,7 +138,7 @@ defineExpose({
 
 .toc-header {
   padding: 0 0 0.75rem;
-  color: var(--text-color);
+  color: var(--q-color-text);
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
@@ -155,7 +155,7 @@ defineExpose({
 
 .toc-item {
   padding: 0.25rem 0;
-  color: var(--subtle-text-color);
+  color: var(--q-color-text-muted);
   cursor: pointer;
   line-height: 1.5;
   overflow: hidden;
@@ -164,7 +164,7 @@ defineExpose({
 }
 
 .toc-item:hover {
-  color: var(--primary-color);
+  color: var(--q-color-primary);
 }
 
 .level-1 {
@@ -186,7 +186,7 @@ defineExpose({
 .level-6 {
   margin-left: 36px;
   font-size: 0.9em;
-  color: var(--subtle-text-color);
+  color: var(--q-color-text-muted);
 }
 
 /* 响应式设计 */
@@ -204,7 +204,7 @@ defineExpose({
     padding-bottom: 1rem;
     padding-left: 0;
     border-top: 0;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--q-color-border);
     border-left: 0;
   }
 

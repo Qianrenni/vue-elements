@@ -274,7 +274,7 @@ onBeforeUnmount(() => {
   position: absolute;
   top: calc(100% + var(--q-space-1));
   left: 0;
-  z-index: var(--z-index-level-3);
+  z-index: var(--q-z-index-popover);
   box-sizing: border-box;
   min-width: 200px;
   background: var(--q-color-bg-card);

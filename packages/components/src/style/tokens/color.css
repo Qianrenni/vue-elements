@@ -139,7 +139,7 @@
   --q-color-link-hover: var(--q-color-primary);
 
   /* — 标签/标记色 — */
-  --q-color-tag: var(--q-color-brown-100);
+  --q-color-tag: var(--q-color-brown-500);
 
   /* — 遮罩层 — */
   --q-color-overlay: rgba(0, 0, 0, 0.5);

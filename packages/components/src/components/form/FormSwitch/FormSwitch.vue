@@ -101,7 +101,7 @@ const { toggle } = useFormSwitch(props, emit);
 .form-switch__slider {
   width: 2.5rem;
   height: 1.5rem;
-  background-color: var(--gray-400);
+  background-color: var(--q-color-gray-400);
   border-radius: 0.75rem;
   position: relative;
   transition: background-color 0.3s;
@@ -114,7 +114,7 @@ const { toggle } = useFormSwitch(props, emit);
   width: 1.2rem;
   height: 1.3rem;
   border-radius: 50%;
-  background-color: var(--color-white);
+  background-color: var(--q-color-white);
   top: 0.1rem;
   left: 0.1rem;
   transition: transform 0.3s;
@@ -122,7 +122,7 @@ const { toggle } = useFormSwitch(props, emit);
 
 /* 选中状态样式 */
 .form-switch--checked .form-switch__slider {
-  background-color: var(--primary-color);
+  background-color: var(--q-color-primary);
 }
 
 .form-switch--checked .form-switch__slider::before {

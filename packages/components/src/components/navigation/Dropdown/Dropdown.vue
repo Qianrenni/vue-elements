@@ -228,7 +228,7 @@ onBeforeUnmount(() => {
 
 .q-dropdown {
   position: fixed;
-  z-index: var(--z-index-level-3);
+  z-index: var(--q-z-index-popover);
   min-width: 120px;
   padding: var(--q-space-2);
   background: var(--q-color-bg-card);

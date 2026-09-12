@@ -8,12 +8,12 @@ describe('useTag', () => {
     const props: TagProps = {
       text: '标签',
       color: 'white',
-      background: 'var(--tag-primary-color)',
+      background: 'var(--q-color-tag)',
     };
     const { styles } = useTag(props);
 
     expect(styles.value.color).toBe('white');
-    expect(styles.value.background).toBe('var(--tag-primary-color)');
+    expect(styles.value.background).toBe('var(--q-color-tag)');
   });
 
   it('应该透传自定义颜色和背景色', () => {
@@ -32,11 +32,11 @@ describe('useTag', () => {
     const props: TagProps = {
       text: '标签',
       color: '#333',
-      background: 'var(--tag-primary-color)',
+      background: 'var(--q-color-tag)',
     };
     const { styles } = useTag(props);
 
     expect(styles.value.color).toBe('#333');
-    expect(styles.value.background).toBe('var(--tag-primary-color)');
+    expect(styles.value.background).toBe('var(--q-color-tag)');
   });
 });

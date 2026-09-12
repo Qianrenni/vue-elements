@@ -58,8 +58,8 @@ const {
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  background-color: var(--card-bg);
-  border: 2px solid var(--primary-color);
+  background-color: var(--q-color-bg-card);
+  border: 2px solid var(--q-color-primary);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -91,8 +91,8 @@ const {
   background-color: var(--q-color-bg-card);
   font-size: 0.8rem;
   text-align: center;
-  border: 1px dashed var(--border-color);
-  color: var(--text-color-secondary);
+  border: 1px dashed var(--q-color-border);
+  color: var(--q-color-text-secondary);
 }
 
 /* 图片样式 */

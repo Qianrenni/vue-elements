@@ -65,8 +65,9 @@
 
 <script lang="ts" setup>
 import type { FormComponentEmits } from '@/types';
-import type { FormSelectProps } from './type';
+
 import { useFormSelect } from './composable';
+import type { FormSelectProps } from './type';
 
 defineOptions({
   name: 'QFormSelect',
@@ -103,6 +104,6 @@ const {
   right: 0.5rem;
   bottom: 0;
   transform: translateY(calc(100% + 0.25rem));
-  z-index: var(--z-index-level-3);
+  z-index: var(--q-z-index-popover);
 }
 </style>

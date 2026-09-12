@@ -44,18 +44,18 @@ const { activeCategory, clickHandler } = useTab(props, emit);
 .tab-item {
   font-weight: bold;
   position: relative;
-  margin-right: var(--half-distance);
+  margin-right: var(--q-space-4);
   transition: all 0.3s ease;
 }
 
 .tab-item:not(.active):hover {
-  background-color: var(--gray-200);
+  background-color: var(--q-color-gray-200);
   transform: translateY(-2px);
 }
 
 .tab-item.active {
-  color: var(--primary-color);
-  background-color: var(--color-white);
+  color: var(--q-color-primary);
+  background-color: var(--q-color-white);
 }
 
 .tab-item.active::after {
@@ -65,7 +65,7 @@ const { activeCategory, clickHandler } = useTab(props, emit);
   bottom: 0;
   width: 100%;
   height: 3px;
-  background-color: var(--primary-color);
+  background-color: var(--q-color-primary);
   transition: transform 0.3s ease-in-out;
 }
 

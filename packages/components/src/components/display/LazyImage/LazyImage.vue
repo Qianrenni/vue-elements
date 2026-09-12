@@ -64,7 +64,7 @@ const parseSize = (size: string | number): string => {
 .lazy-image-container {
   position: relative;
   overflow: hidden;
-  background-color: var(--card-bg);
+  background-color: var(--q-color-bg-card);
 }
 
 .lazy-image-container--loaded {
@@ -93,7 +93,7 @@ const parseSize = (size: string | number): string => {
   background-color: var(--q-color-bg-card);
   font-size: 0.8rem;
   text-align: center;
-  border: 1px dashed var(--border-color);
+  border: 1px dashed var(--q-color-border);
 }
 
 /* 图片样式 */

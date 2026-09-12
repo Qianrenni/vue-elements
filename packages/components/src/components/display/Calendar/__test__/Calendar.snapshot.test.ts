@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { mount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 
 import QCalendar from '../Calendar.vue';
 
@@ -8,6 +8,16 @@ const mountCal = (props: Record<string, unknown> = {}) =>
   mount(QCalendar, { props });
 
 describe('QCalendar 渲染', () => {
+  // 固定“今天”，避免 is-today 高亮随真实日期漂移导致快照不稳定
+  beforeAll(() => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 8, 6));
+  });
+
+  afterAll(() => {
+    vi.useRealTimers();
+  });
+
   it('渲染表头 + 42 格', () => {
     const wrapper = mountCal();
     expect(wrapper.findAll('.q-calendar__week-cell')).toHaveLength(7);

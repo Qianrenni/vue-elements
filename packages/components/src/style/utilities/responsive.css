@@ -27,13 +27,22 @@
   -ms-overflow-style: auto;
 }
 
+/* 滚动条默认透明，鼠标进入容器时才显现（WebKit / Blink） */
 .scroll-container::-webkit-scrollbar {
   width: 4px;
   height: 4px;
-  background-color: var(--q-color-bg);
+  background-color: transparent;
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.scroll-container:hover::-webkit-scrollbar {
+  background-color: var(--q-color-bg);
+}
+
+.scroll-container:hover::-webkit-scrollbar-thumb {
   background-color: var(--q-color-primary);
 }
 

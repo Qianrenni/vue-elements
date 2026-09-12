@@ -37,7 +37,7 @@ defineProps<PopContainerProps>();
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
-  z-index: var(--z-index-level-3);
+  z-index: var(--q-z-index-popover);
 }
 
 .pop-container:hover .pop-content.hover-show {
