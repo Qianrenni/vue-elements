@@ -76,9 +76,9 @@ watch(
     v-else
     class="bg-card component-detail container-column scroll-container scroll-y"
   >
-    <div class="container-column padding-rem container-flex-1">
+    <div class="container-column container-flex-1">
       <h2
-        class="text-primary text-center padding-half-rem margin-half-vetical border-horizontal-gray"
+        class="text-primary text-center margin-half-vetical border-horizontal-gray"
       >
         {{ component.displayName }}
       </h2>
@@ -91,7 +91,7 @@ watch(
       />
       <div
         v-show="currentTabIndex === 0"
-        class="component-display flex-1 padding-rem radius-half-rem shadow-black"
+        class="component-display flex-1 radius-half-rem shadow-black"
       >
         <QMarkdownRender
           v-if="!isLoading"
