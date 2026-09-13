@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QBreathing } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QBreathing } from 'qyani-components';
 
 defineOptions({ name: 'DisplayLoadingBreathing' });
 

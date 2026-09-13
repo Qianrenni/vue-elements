@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import DemoBlock from '@/DemoBlock.vue';
-import { QForm, QFormButton, QFormItem } from 'qyani-components';
+import { QButton, QForm, QFormItem } from 'qyani-components';
 import { reactive } from 'vue';
 
 defineOptions({
@@ -36,7 +36,7 @@ const code = `
           />
         </QFormItem>
         <div>
-          <QFormButton type="submit">提交</QFormButton>
+          <QButton html-type="submit">提交</QButton>
         </div>
       </QForm>
     </div>

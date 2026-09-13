@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QAvatar } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QAvatar } from 'qyani-components';
 
 defineOptions({
   name: 'DisplayAvatar',

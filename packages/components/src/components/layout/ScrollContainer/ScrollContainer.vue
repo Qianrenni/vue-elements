@@ -6,8 +6,9 @@
 
 <script lang="ts" setup>
 import { useTemplateRef } from 'vue';
-import type { ScrollContainerProps, ScrollContainerEmits } from './type';
+
 import { useScrollContainer } from './composable';
+import type { ScrollContainerEmits, ScrollContainerProps } from './type';
 
 defineOptions({
   name: 'QScrollContainer',

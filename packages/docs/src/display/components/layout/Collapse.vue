@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QCollapse, QCollapseItem } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QCollapse, QCollapseItem } from 'qyani-components';
 import { ref } from 'vue';
 
 defineOptions({ name: 'DisplayLayoutCollapse' });

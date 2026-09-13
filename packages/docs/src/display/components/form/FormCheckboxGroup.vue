@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QFormCheckboxGroup } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QFormCheckboxGroup } from 'qyani-components';
 import { ref } from 'vue';
 
 defineOptions({

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QMarkdownRender } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QMarkdownRender } from 'qyani-components';
 
 defineOptions({
   name: 'DisplayMarkdownRender',

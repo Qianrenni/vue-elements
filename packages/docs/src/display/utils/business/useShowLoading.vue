@@ -22,7 +22,7 @@ const func = () => {
 <template>
   <DemoBlock :code="code">
     <p>useShowLoading 文档待完善</p>
-    <QFormButton @click="func">开始加载</QFormButton>
+    <QButton @click="func">开始加载</QButton>
   </DemoBlock>
 </template>
 

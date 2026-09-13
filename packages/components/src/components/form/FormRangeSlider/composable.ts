@@ -1,7 +1,8 @@
-import { computed, type ComputedRef } from 'vue';
-import type { FormComponentEmits } from '@/types';
-import type { FormRangeSliderProps } from './type';
 import { useFormEvents } from '@/events';
+import type { FormComponentEmits } from '@/types';
+import { computed, type ComputedRef } from 'vue';
+
+import type { FormRangeSliderProps } from './type';
 
 /**
  * FormRangeSlider 组件核心逻辑

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QBadge } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QBadge } from 'qyani-components';
 
 defineOptions({
   name: 'DisplayBadge',

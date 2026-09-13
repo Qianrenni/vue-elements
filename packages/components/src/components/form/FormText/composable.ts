@@ -1,7 +1,8 @@
-import { ref, type Ref } from 'vue';
-import type { FormComponentEmits } from '@/types';
-import type { FormTextProps } from './type';
 import { useFormEvents } from '@/events';
+import type { FormComponentEmits } from '@/types';
+import { ref, type Ref } from 'vue';
+
+import type { FormTextProps } from './type';
 
 /**
  * FormText 组件核心逻辑

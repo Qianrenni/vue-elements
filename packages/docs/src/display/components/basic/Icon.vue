@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QIcon } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QIcon } from 'qyani-components';
 
 defineOptions({
   name: 'DisplayIcon',

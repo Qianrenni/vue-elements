@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QPagination } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QPagination } from 'qyani-components';
 import { ref } from 'vue';
 
 defineOptions({

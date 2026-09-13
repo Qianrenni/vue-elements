@@ -13,6 +13,7 @@ interface UseFormButtonReturn {
  * FormButton 组件核心逻辑
  * @param props 组件 Props
  * @returns buttonClass 按钮 CSS 类，componentDisabled 是否禁用
+ * @deprecated 已废弃，请改用 useQButton（basic/Button）
  */
 export const useFormButton = (props: FormButtonProps): UseFormButtonReturn => {
   /** 按钮 CSS 类，根据 size 和 disabled 状态计算 */

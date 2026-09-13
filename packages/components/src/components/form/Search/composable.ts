@@ -1,5 +1,6 @@
-import { ref, watch, type Ref } from 'vue';
-import type { SearchProps, SearchEmits } from './type';
+import { ref, type Ref, watch } from 'vue';
+
+import type { SearchEmits, SearchProps } from './type';
 
 /**
  * Search 组件核心逻辑

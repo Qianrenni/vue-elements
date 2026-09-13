@@ -116,7 +116,7 @@ const username = ref('');
 
 ### 表单组件 (Form)
 
-- `QFormButton` - 表单按钮
+- `QFormButton` - 表单按钮（已废弃，改用 `QButton`；详见组件 README 迁移指南）
 - `QFormCheckboxGroup` - 复选框组
 - `QFormColorPicker` - 颜色选择器
 - `QFormContainer` - 表单容器

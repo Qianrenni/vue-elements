@@ -1,5 +1,6 @@
-import { ref, onMounted, nextTick, type Ref } from 'vue';
-import type { SwiperActionProps, SwiperActionEmits } from './type';
+import { nextTick, onMounted, ref, type Ref } from 'vue';
+
+import type { SwiperActionEmits, SwiperActionProps } from './type';
 
 /**
  * SwiperAction 组件核心逻辑

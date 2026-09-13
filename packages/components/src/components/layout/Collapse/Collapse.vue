@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { CollapseProps, CollapseEmits } from './type';
 import { useCollapse } from './composable';
+import type { CollapseEmits, CollapseProps } from './type';
 
 defineOptions({
   name: 'QCollapse',

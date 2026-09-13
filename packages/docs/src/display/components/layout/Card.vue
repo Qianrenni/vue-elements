@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QCard } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QCard } from 'qyani-components';
 
 defineOptions({
   name: 'DisplayLayoutCard',

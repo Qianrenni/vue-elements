@@ -1,5 +1,6 @@
-import { ref, watch, type Ref } from 'vue';
-import type { PaginationProps, PaginationEmits } from './type';
+import { ref, type Ref, watch } from 'vue';
+
+import type { PaginationEmits, PaginationProps } from './type';
 
 /**
  * Pagination 组件核心逻辑

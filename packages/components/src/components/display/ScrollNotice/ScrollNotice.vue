@@ -11,8 +11,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ScrollNoticeProps } from './type';
 import { useScrollNotice } from './composable';
+import { ScrollNoticeProps } from './type';
 
 defineOptions({ name: 'QScrollNotice' });
 

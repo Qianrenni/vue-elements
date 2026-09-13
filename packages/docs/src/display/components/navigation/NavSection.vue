@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QNavSection, type NavSectionProps } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { type NavSectionProps, QNavSection } from 'qyani-components';
 
 defineOptions({ name: 'DisplayNavigationNavSection' });
 

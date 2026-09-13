@@ -1,11 +1,6 @@
 <script lang="ts" setup>
 import DemoBlock from '@/DemoBlock.vue';
-import {
-  QForm,
-  QFormButton,
-  type QFormExpose,
-  QFormItem,
-} from 'qyani-components';
+import { QButton, QForm, type QFormExpose, QFormItem } from 'qyani-components';
 import { reactive, ref } from 'vue';
 
 defineOptions({
@@ -52,7 +47,7 @@ const code = `
 \`\`\`html
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-import { QForm, QFormItem, QFormButton, type QFormExpose } from 'qyani-components';
+import { QButton, QForm, QFormItem, type QFormExpose } from 'qyani-components';
 
 const model = reactive({ name: '', age: 20, email: '' });
 const rules = {
@@ -77,8 +72,8 @@ const formRef = ref<QFormExpose | null>(null);
       <input v-model="model.email" style="border: 1px solid #ccc; padding: 4px 8px" />
     </QFormItem>
     <div style="display: flex; gap: 8px">
-      <QFormButton type="submit">提交</QFormButton>
-      <QFormButton type="reset" @click="() => {}">重置</QFormButton>
+      <QButton html-type="submit">提交</QButton>
+      <QButton html-type="reset" @click="() => {}">重置</QButton>
     </div>
   </QForm>
 </template>
@@ -117,8 +112,8 @@ const formRef = ref<QFormExpose | null>(null);
           />
         </QFormItem>
         <div style="display: flex; gap: 8px">
-          <QFormButton type="submit">提交</QFormButton>
-          <QFormButton @click="doReset">重置</QFormButton>
+          <QButton html-type="submit">提交</QButton>
+          <QButton @click="doReset">重置</QButton>
         </div>
       </QForm>
       <p v-if="result" style="margin: 8px 0 0; font-size: 13px">{{ result }}</p>

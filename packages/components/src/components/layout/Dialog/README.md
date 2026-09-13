@@ -14,7 +14,7 @@ const visible = ref(false);
 </script>
 
 <template>
-  <QFormButton @click="visible = true">打开</QFormButton>
+  <QButton type="primary" @click="visible = true">打开</QButton>
   <QDialog v-model:visible="visible" title="提示" @confirm="handleConfirm">
     对话框内容
   </QDialog>

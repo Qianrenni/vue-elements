@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QSpinner } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QSpinner } from 'qyani-components';
 
 defineOptions({ name: 'DisplayLoadingSpinner' });
 

@@ -10,7 +10,7 @@
 <QSwiperAction :threshold="50" @swipe="handleSwipe">
   列表项内容
   <template #action>
-    <QFormButton>删除</QFormButton>
+    <QButton danger>删除</QButton>
   </template>
 </QSwiperAction>
 ```

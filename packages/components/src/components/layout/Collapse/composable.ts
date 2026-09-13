@@ -1,5 +1,6 @@
-import { provide, ref, watch, type Ref } from 'vue';
-import type { CollapseProps, CollapseEmits, CollapseContext } from './type';
+import { provide, ref, type Ref, watch } from 'vue';
+
+import type { CollapseContext, CollapseEmits, CollapseProps } from './type';
 
 /** 将 modelValue 规范化为 string[] */
 const normalizeModelValue = (

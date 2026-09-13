@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QLazyImage } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QLazyImage } from 'qyani-components';
 
 defineOptions({
   name: 'DisplayLazyImage',

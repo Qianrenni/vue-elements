@@ -3,10 +3,12 @@
   <div class="demo-block">
     <div class="demo-header">
       <span class="title">{{ title }}</span>
-      <QFormButton
-        class="button-outline padding-24rem radius-half-rem"
+      <QButton
+        class="padding-24rem radius-half-rem"
+        ghost
+        type="primary"
         @click="copyCode"
-        >复制源代码</QFormButton
+        >复制源代码</QButton
       >
     </div>
     <div class="demo-example container-center">
@@ -17,8 +19,9 @@
 </template>
 
 <script lang="ts" setup>
+import { QButton, QMarkdownRender } from 'qyani-components';
 import { computed } from 'vue';
-import { QMarkdownRender, QFormButton } from 'qyani-components';
+
 const props = defineProps<{
   title?: string;
   code?: string;

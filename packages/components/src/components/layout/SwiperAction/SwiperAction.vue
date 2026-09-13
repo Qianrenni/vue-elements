@@ -31,8 +31,9 @@
 
 <script setup lang="ts">
 import { useTemplateRef } from 'vue';
-import type { SwiperActionProps, SwiperActionEmits } from './type';
+
 import { useSwiperAction } from './composable';
+import type { SwiperActionEmits, SwiperActionProps } from './type';
 
 defineOptions({
   name: 'QSwiperAction',

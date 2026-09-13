@@ -1,4 +1,4 @@
-import type { FormComponentProps, FormComponentEmits } from '@/types';
+import type { FormComponentEmits, FormComponentProps } from '@/types';
 
 /**
  * Search 组件 Props

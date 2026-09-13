@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QCarousel, QCarouselItem, QLazyImage } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QCarousel, QCarouselItem, QLazyImage } from 'qyani-components';
 import { ref } from 'vue';
 
 defineOptions({

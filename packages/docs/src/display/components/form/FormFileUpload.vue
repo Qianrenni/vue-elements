@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QFormFileUpload } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QFormFileUpload } from 'qyani-components';
 import { ref } from 'vue';
 
 defineOptions({

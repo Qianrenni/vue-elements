@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QTab } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QTab } from 'qyani-components';
 
 defineOptions({ name: 'DisplayNavigationTab' });
 

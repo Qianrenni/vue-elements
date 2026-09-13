@@ -1,6 +1,7 @@
-import type { FormComponentEmits } from '@/types';
-import type { FormSwitchProps } from './type';
 import { useFormEvents } from '@/events';
+import type { FormComponentEmits } from '@/types';
+
+import type { FormSwitchProps } from './type';
 
 /**
  * FormSwitch 组件核心逻辑

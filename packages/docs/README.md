@@ -49,6 +49,7 @@ pnpm run update
 ```
 
 该命令会执行以下脚本：
+
 - `scripts/init.py` - 初始化文档结构
 - `scripts/index_python.py` - 生成组件索引
 - `scripts/get_component_info.py` - 提取组件信息

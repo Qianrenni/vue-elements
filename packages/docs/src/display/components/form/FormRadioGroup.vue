@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QFormRadioGroup } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QFormRadioGroup } from 'qyani-components';
 import { ref } from 'vue';
 
 defineOptions({

@@ -1,4 +1,4 @@
-import type { DrawerProps, DrawerEmits } from './type';
+import type { DrawerEmits, DrawerProps } from './type';
 
 /**
  * Drawer 组件核心逻辑

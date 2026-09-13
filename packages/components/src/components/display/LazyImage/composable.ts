@@ -1,4 +1,5 @@
 import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue';
+
 import type { LazyImageProps } from './type';
 
 export function useLazyImage(props: LazyImageProps) {

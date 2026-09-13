@@ -20,7 +20,7 @@ const rules = {
     <QFormItem name="name" label="姓名">
       <input v-model="form.name" />
     </QFormItem>
-    <QFormButton html-type="submit">提交</QFormButton>
+    <QButton html-type="submit">提交</QButton>
   </QForm>
 </template>
 ```

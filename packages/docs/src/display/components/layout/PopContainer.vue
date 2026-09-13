@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import DemoBlock from '@/DemoBlock.vue';
-import { QFormButton, QPopContainer } from 'qyani-components';
+import { QButton, QPopContainer } from 'qyani-components';
 import { ref } from 'vue';
 
 defineOptions({ name: 'DisplayLayoutPopContainer' });
@@ -11,13 +11,13 @@ const code = `
 \`\`\`html
 <!-- 悬停显示弹出内容 -->
 <QPopContainer hover-show position="bottom-center">
-  <QFormButton>悬停查看</QFormButton>
+  <QButton>悬停查看</QButton>
   <template #pop>弹出内容</template>
 </QPopContainer>
 
 <!-- 通过 visible 控制显示 -->
 <QPopContainer :visible="visible" position="bottom-center">
-  <QFormButton @click="visible = !visible">点击切换</QFormButton>
+  <QButton @click="visible = !visible">点击切换</QButton>
   <template #pop>弹出内容</template>
 </QPopContainer>
 \`\`\`
@@ -28,21 +28,21 @@ const code = `
   <DemoBlock :code="code">
     <div class="container gap-8 items-center pop-area">
       <QPopContainer hover-show position="bottom-center">
-        <QFormButton>悬停查看</QFormButton>
+        <QButton>悬停查看</QButton>
         <template #pop>
           <div class="pop-card">悬停显示的弹出内容</div>
         </template>
       </QPopContainer>
 
       <QPopContainer :visible="visible" position="bottom-center">
-        <QFormButton @click="visible = !visible">点击切换</QFormButton>
+        <QButton @click="visible = !visible">点击切换</QButton>
         <template #pop>
           <div class="pop-card">点击控制的弹出内容</div>
         </template>
       </QPopContainer>
 
       <QPopContainer hover-show position="right-center">
-        <QFormButton>右侧弹出</QFormButton>
+        <QButton>右侧弹出</QButton>
         <template #pop>
           <div class="pop-card">右侧弹出的内容</div>
         </template>

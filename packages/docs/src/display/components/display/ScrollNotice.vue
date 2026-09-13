@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QScrollNotice } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QScrollNotice } from 'qyani-components';
 
 defineOptions({
   name: 'DisplayScrollNotice',

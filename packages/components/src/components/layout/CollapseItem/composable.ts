@@ -1,6 +1,7 @@
-import { computed, inject, type ComputedRef } from 'vue';
-import type { CollapseItemProps } from './type';
+import { computed, type ComputedRef, inject } from 'vue';
+
 import type { CollapseContext } from '../Collapse/type';
+import type { CollapseItemProps } from './type';
 
 /** 默认的 CollapseContext（兜底值） */
 const defaultCollapseContext: CollapseContext = {

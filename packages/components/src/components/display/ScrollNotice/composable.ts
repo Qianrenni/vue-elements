@@ -1,11 +1,12 @@
+import { useWindowResize } from '@/utils';
 import {
+  nextTick,
   onBeforeUnmount,
   onMounted,
-  watch,
-  nextTick,
   useTemplateRef,
+  watch,
 } from 'vue';
-import { useWindowResize } from '@/utils';
+
 import type { ScrollNoticeProps } from './type';
 
 /**

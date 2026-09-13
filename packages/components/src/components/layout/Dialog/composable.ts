@@ -1,5 +1,6 @@
 import { computed, type ComputedRef } from 'vue';
-import type { DialogProps, DialogEmits } from './type';
+
+import type { DialogEmits, DialogProps } from './type';
 
 /**
  * Dialog 组件核心逻辑

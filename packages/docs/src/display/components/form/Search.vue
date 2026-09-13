@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QSearch } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QSearch } from 'qyani-components';
 import { ref } from 'vue';
 
 defineOptions({

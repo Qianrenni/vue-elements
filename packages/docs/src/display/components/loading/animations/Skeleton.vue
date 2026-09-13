@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QSkeleton } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QSkeleton } from 'qyani-components';
 
 defineOptions({ name: 'DisplayLoadingSkeleton' });
 

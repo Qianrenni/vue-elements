@@ -1,6 +1,7 @@
-import type { FormComponentEmits } from '@/types';
-import type { FormCheckboxGroupProps } from './type';
 import { useFormEvents } from '@/events';
+import type { FormComponentEmits } from '@/types';
+
+import type { FormCheckboxGroupProps } from './type';
 
 /**
  * FormCheckboxGroup 组件核心逻辑

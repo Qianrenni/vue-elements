@@ -1,6 +1,7 @@
 import { computed, type ComputedRef } from 'vue';
+
 import type { TreeNodeData } from '../Tree/type';
-import type { TreeNodeProps, TreeNodeEmits } from './type';
+import type { TreeNodeEmits, TreeNodeProps } from './type';
 
 /**
  * TreeNode 组件核心逻辑

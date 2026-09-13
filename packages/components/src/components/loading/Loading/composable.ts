@@ -1,4 +1,5 @@
-import { computed, defineAsyncComponent, type Component } from 'vue';
+import { type Component, computed, defineAsyncComponent } from 'vue';
+
 import type { LoadingProps } from './type';
 
 const animationMap: Record<string, Component> = {

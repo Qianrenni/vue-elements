@@ -12,14 +12,9 @@
               <span v-if="title" class="dialog-title">{{ title }}</span>
             </slot>
           </div>
-          <QFormButton
-            v-if="showClose"
-            size="small"
-            class="button-primary"
-            @click="close"
-          >
+          <QButton v-if="showClose" size="small" type="primary" @click="close">
             ×
-          </QFormButton>
+          </QButton>
         </div>
 
         <div class="dialog-body scroll-container">
@@ -28,16 +23,12 @@
 
         <div v-if="showFooter" class="dialog-footer container-space-between">
           <slot name="footer">
-            <QFormButton
-              v-if="showCancel"
-              class="button-primary"
-              @click="handleCancel"
-            >
+            <QButton v-if="showCancel" type="primary" @click="handleCancel">
               {{ cancelText }}
-            </QFormButton>
-            <QFormButton class="button-primary" @click="handleConfirm">
+            </QButton>
+            <QButton type="primary" @click="handleConfirm">
               {{ confirmText }}
-            </QFormButton>
+            </QButton>
           </slot>
         </div>
       </div>
@@ -46,7 +37,7 @@
 </template>
 
 <script lang="ts" setup>
-import { QFormButton } from '@/components/form/FormButton';
+import { QButton } from '@/components/basic/Button';
 
 import { useDialog } from './composable';
 import type { DialogEmits, DialogProps } from './type';

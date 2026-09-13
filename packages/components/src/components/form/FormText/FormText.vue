@@ -57,10 +57,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { FormComponentEmits } from '@/types';
-import type { FormTextProps } from './type';
-import { useFormText } from './composable';
 import { QIcon } from '@/components/basic/Icon';
+import type { FormComponentEmits } from '@/types';
+
+import { useFormText } from './composable';
+import type { FormTextProps } from './type';
 
 defineOptions({
   name: 'QFormText',

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QDrawer, QFormButton } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QButton, QDrawer } from 'qyani-components';
 import { ref } from 'vue';
 
 defineOptions({ name: 'DisplayLayoutDrawer' });
@@ -10,7 +10,7 @@ const drawerVisible = ref(false);
 const code = `
 \`\`\`html
 <template>
-  <QFormButton @click="drawerVisible = true">打开抽屉</QFormButton>
+  <QButton type="primary" @click="drawerVisible = true">打开抽屉</QButton>
   <QDrawer v-model:visible="drawerVisible" title="抽屉标题">
     <p>抽屉内容</p>
   </QDrawer>
@@ -22,7 +22,9 @@ const code = `
 <template>
   <DemoBlock :code="code">
     <div class="container-column gap-6">
-      <QFormButton @click="drawerVisible = true">打开右侧抽屉</QFormButton>
+      <QButton type="primary" @click="drawerVisible = true"
+        >打开右侧抽屉</QButton
+      >
       <QDrawer v-model:visible="drawerVisible" title="示例抽屉">
         <p>这是抽屉的内容区域。</p>
         <p>抽屉可以从上下左右四个方向滑出。</p>

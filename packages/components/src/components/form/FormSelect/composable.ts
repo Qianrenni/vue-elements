@@ -1,16 +1,17 @@
+import type { FormComponentEmits } from '@/types';
+import { useWindowResize } from '@/utils';
 import {
   computed,
+  type ComputedRef,
   nextTick,
   onBeforeUnmount,
   onMounted,
   ref,
-  useTemplateRef,
-  type ComputedRef,
   type Ref,
+  useTemplateRef,
 } from 'vue';
-import type { FormComponentEmits } from '@/types';
+
 import type { FormSelectProps, Options } from './type';
-import { useWindowResize } from '@/utils';
 
 /**
  * FormSelect 组件核心逻辑

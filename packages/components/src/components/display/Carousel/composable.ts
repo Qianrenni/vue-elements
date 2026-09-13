@@ -7,6 +7,7 @@ import {
   useTemplateRef,
   watch,
 } from 'vue';
+
 import { CarouselEmits, CarouselProps } from './type';
 
 /**

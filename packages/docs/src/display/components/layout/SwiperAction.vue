@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import DemoBlock from '@/DemoBlock.vue';
-import { QFormButton, QSwiperAction } from 'qyani-components';
+import { QButton, QSwiperAction } from 'qyani-components';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 defineOptions({ name: 'DisplayLayoutSwiperAction' });
@@ -45,7 +45,7 @@ const code = `
   <QSwiperAction :threshold="50" @swipe="handleSwipe">
     <div class="item">向左滑动显示操作</div>
     <template #action>
-      <QFormButton>删除</QFormButton>
+      <QButton danger>删除</QButton>
     </template>
   </QSwiperAction>
 </template>
@@ -75,8 +75,8 @@ const handleSwipe = () => console.log('swipe');
         <div class="item">左滑我显示操作按钮</div>
         <template #action>
           <div class="action-area">
-            <QFormButton>删除</QFormButton>
-            <QFormButton>置顶</QFormButton>
+            <QButton danger>删除</QButton>
+            <QButton>置顶</QButton>
           </div>
         </template>
       </QSwiperAction>
@@ -85,7 +85,7 @@ const handleSwipe = () => console.log('swipe');
         <div class="item">已禁用滑动</div>
         <template #action>
           <div class="action-area">
-            <QFormButton>删除</QFormButton>
+            <QButton danger>删除</QButton>
           </div>
         </template>
       </QSwiperAction>

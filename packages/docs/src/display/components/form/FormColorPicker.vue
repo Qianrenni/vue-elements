@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QFormColorPicker } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QFormColorPicker } from 'qyani-components';
 import { ref } from 'vue';
 
 defineOptions({

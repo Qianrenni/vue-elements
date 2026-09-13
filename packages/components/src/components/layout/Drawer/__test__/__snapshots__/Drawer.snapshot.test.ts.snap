@@ -4,7 +4,9 @@ exports[`QDrawer 快照测试 > 右方向抽屉渲染 1`] = `
 "<!--teleport start-->
 <div data-v-9e7730e3="" class="overlay drawer-overlay" style="position: absolute;">
   <div data-v-9e7730e3="" class="drawer-right drawer-container">
-    <div data-v-9e7730e3="" class="container-space-between"><strong data-v-9e7730e3="">抽屉标题</strong><button data-v-9e7730e3="" class="button" type="button"> × </button></div>
+    <div data-v-9e7730e3="" class="container-space-between"><strong data-v-9e7730e3="">抽屉标题</strong><button data-v-73295ee1="" data-v-9e7730e3="" class="q-btn--default q-btn--level-3 q-btn" type="button">
+        <!--v-if--><span data-v-73295ee1="" class="q-btn-text">×</span>
+      </button></div>
     <div data-v-9e7730e3="" class="drawer-body">
       <p>抽屉内容</p>
     </div>

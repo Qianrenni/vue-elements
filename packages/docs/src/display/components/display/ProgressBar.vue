@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QProgressBar } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QProgressBar } from 'qyani-components';
 
 defineOptions({
   name: 'DisplayProgressBar',

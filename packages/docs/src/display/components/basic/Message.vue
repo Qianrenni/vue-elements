@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QMessage } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QMessage } from 'qyani-components';
 
 defineOptions({
   name: 'DisplayBasicMessage',

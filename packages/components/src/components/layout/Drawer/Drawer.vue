@@ -22,7 +22,7 @@
         <slot name="header">
           <div class="container-space-between">
             <strong>{{ title || '' }}</strong>
-            <QFormButton v-if="showClose" @click="close"> × </QFormButton>
+            <QButton v-if="showClose" type="default" @click="close">×</QButton>
           </div>
         </slot>
 
@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-import { QFormButton } from '@/components/form/FormButton';
+import { QButton } from '@/components/basic/Button';
 
 import { useDrawer } from './composable';
 import type { DrawerEmits, DrawerProps } from './type';

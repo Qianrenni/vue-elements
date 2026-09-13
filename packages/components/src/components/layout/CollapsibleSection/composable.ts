@@ -1,4 +1,5 @@
-import { computed, ref, type ComputedRef, type Ref } from 'vue';
+import { computed, type ComputedRef, ref, type Ref } from 'vue';
+
 import type { CollapsibleSectionProps } from './type';
 
 /**

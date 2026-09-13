@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QLoading } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QLoading } from 'qyani-components';
 
 defineOptions({ name: 'DisplayLoadingLoading' });
 

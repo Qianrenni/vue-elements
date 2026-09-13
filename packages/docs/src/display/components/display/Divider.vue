@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QDivider } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QDivider } from 'qyani-components';
 
 defineOptions({
   name: 'DisplayDivider',

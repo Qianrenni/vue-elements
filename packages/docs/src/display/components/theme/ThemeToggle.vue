@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { QThemeToggle } from 'qyani-components';
 import DemoBlock from '@/DemoBlock.vue';
+import { QThemeToggle } from 'qyani-components';
 
 defineOptions({ name: 'DisplayThemeToggle' });
 
