@@ -8,7 +8,7 @@
 
 ```vue
 <QPopContainer hover-show position="top-center">
-  <QFormButton>悬停查看</QFormButton>
+  <QButton>悬停查看</QButton>
   <template #pop>弹出内容</template>
 </QPopContainer>
 ```
