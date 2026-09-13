@@ -1,0 +1,10 @@
+import{D as d}from"./DemoBlock-D3lRM5dy.js";import{d as r,o as p,c as i,w as a,b as s,u as t,av as n,aC as c,a as u,ax as f,e as m,g as _,_ as x}from"./index-BM7kyQMa.js";const v=`
+\`\`\`html
+<QLayout style="height: 280px">
+  <QSider collapsible v-model:collapsed="collapsed">
+    <div class="sider-text">侧边栏菜单</div>
+  </QSider>
+  <QContent>主体</QContent>
+</QLayout>
+\`\`\`
+`,y=r({name:"DisplayLayoutSider",__name:"Sider",setup(Q){const o=_(!1);return(C,e)=>(p(),i(d,{code:v},{default:a(()=>[s(t(n),{class:"demo-layout"},{default:a(()=>[s(t(c),{width:200,collapsible:"",collapsed:o.value,"onUpdate:collapsed":e[0]||(e[0]=l=>o.value=l)},{default:a(()=>[...e[1]||(e[1]=[u("div",{class:"sider-text"},"侧边栏菜单",-1)])]),_:1},8,["collapsed"]),s(t(f),null,{default:a(()=>[...e[2]||(e[2]=[m("主体",-1)])]),_:1})]),_:1})]),_:1}))}}),B=x(y,[["__scopeId","data-v-68bf9005"]]);export{B as default};
