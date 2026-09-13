@@ -2,7 +2,7 @@
 
 ## 用途
 
-通用数据表格：数据源 `dataSource` + 列配置 `columns` 自研驱动，内置排序 `sorter`、筛选 `filters`、分页 `pagination`、行展开 `expandable`（树形子级 / 行级渲染）与行选择 `rowSelection`，对齐 Ant Design Table 常用能力（由 `QFormTable` 表单场景改造、泛化而来）。
+通用数据表格：数据源 `dataSource` + 列配置 `columns` 自研驱动，内置排序 `sorter`、筛选 `filters`、分页 `pagination`、行展开 `expandable`（树形子级 / 行级渲染）与行选择 `rowSelection`，对齐 Ant Design Table 常用能力。
 
 ## 基本用法
 
@@ -211,4 +211,4 @@ const columns = [
 
 - 当前为单列排序、单层筛下列；暂未提供列固定（`fixed`）/ 横向滚动（`scroll.x`）与「全选跨页」。远程分页请用受控 `current` / `pageSize`，并在外部数据变化时自行控制（组件不做请求）。
 - 数据 pipeline：筛选 → 排序 → 分页（分页按顶层行计数，树形子行随父行展示）。
-- `QFormTable`（表单编辑场景）仍保留；需要通用展示 / 排序 / 筛选 / 展开 / 选择请使用 `QTable`。
+- 表单编辑场景可直接组合 `QTable` 与 `QFormItem`：控件放在单元格内，校验提示由 `QFormItem` 提供。

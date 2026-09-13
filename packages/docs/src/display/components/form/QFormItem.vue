@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import DemoBlock from '@/DemoBlock.vue';
-import { QButton, QForm, QFormItem } from 'qyani-components';
+import { QButton, QForm, QFormItem, QInput } from 'qyani-components';
 import { reactive } from 'vue';
 
 defineOptions({
@@ -29,11 +29,7 @@ const code = `
     <div class="container-column" style="max-width: 320px">
       <QForm :model="model" :rules="rules" label-width="70px">
         <QFormItem name="city" label="城市" required>
-          <input
-            v-model="model.city"
-            placeholder="输入城市名（失焦校验）"
-            style="border: 1px solid #ccc; padding: 4px 8px; width: 100%"
-          />
+          <QInput v-model="model.city" placeholder="输入城市名（失焦校验）" />
         </QFormItem>
         <div>
           <QButton html-type="submit">提交</QButton>

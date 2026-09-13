@@ -116,21 +116,19 @@ const username = ref('');
 
 ### 表单组件 (Form)
 
-- `QFormButton` - 表单按钮（已废弃，改用 `QButton`；详见组件 README 迁移指南）
-- `QFormCheckboxGroup` - 复选框组
-- `QFormColorPicker` - 颜色选择器
-- `QFormContainer` - 表单容器
-- `QFormDatalist` - 数据列表
-- `QFormDatePicker` - 日期选择器
-- `QFormFileUpload` - 文件上传
-- `QFormRadioGroup` - 单选框组
-- `QFormRangeSlider` - 范围滑块
-- `QFormSelect` - 选择器
-- `QFormSwitch` - 开关
-- `QFormTable` - 表单表格
-- `QFormText` - 文本输入框
-- `QFormTextarea` - 多行文本框
+- `QCheckboxGroup` - 复选框组
+- `QColorPicker` - 颜色选择器
+- `QDatePicker` - 日期选择器
+- `QFileUpload` - 文件上传
+- `QForm` - 表单容器
+- `QFormItem` - 表单项
+- `QInput` - 文本输入框
+- `QRadioGroup` - 单选框组
+- `QRangeSlider` - 范围滑块
 - `QSearch` - 搜索框
+- `QSelect` - 选择器
+- `QSwitch` - 开关
+- `QTextArea` - 多行文本框
 
 ### 通用录入组件 (Input)
 

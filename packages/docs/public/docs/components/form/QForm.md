@@ -33,7 +33,7 @@ const rules = {
 | `rules`           | `Record<string, QFormRule[]>` | 否   | `{}`           | 字段 → 规则数组。                    |
 | `labelWidth`      | `number \| string`            | 否   | `'100px'`      | label 宽度（horizontal）。           |
 | `layout`          | `'horizontal' \| 'vertical'`  | 否   | `'horizontal'` | 标签在左 / 在上。                    |
-| `labelAlign`      | `'left' \| 'right'`           | 否   | `'left'`       | label 对齐。                         |
+| `labelAlign`      | `'left' \| 'right'`           | 否   | `'right'`      | label 对齐（水平布局）。             |
 | `validateTrigger` | `'change' \| 'blur'`          | 否   | `'blur'`       | 默认字段校验触发（可被 item 覆盖）。 |
 
 ## Emits

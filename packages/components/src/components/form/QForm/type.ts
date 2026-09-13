@@ -71,7 +71,7 @@ export interface QFormProps {
   layout?: 'horizontal' | 'vertical';
   /**
    * @property labelAlign
-   * @defaultValue 'left'
+   * @defaultValue 'right'
    * @description label 对齐方式
    */
   labelAlign?: 'left' | 'right';

@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import DemoBlock from '@/DemoBlock.vue';
-import { QButton, QForm, type QFormExpose, QFormItem } from 'qyani-components';
+import {
+  QButton,
+  QForm,
+  type QFormExpose,
+  QFormItem,
+  QInput,
+} from 'qyani-components';
 import { reactive, ref } from 'vue';
 
 defineOptions({
@@ -93,23 +99,13 @@ const formRef = ref<QFormExpose | null>(null);
         @finish-failed="onFail"
       >
         <QFormItem name="name" label="姓名">
-          <input
-            v-model="model.name"
-            style="border: 1px solid #ccc; padding: 4px 8px; width: 100%"
-          />
+          <QInput v-model="model.name" />
         </QFormItem>
         <QFormItem name="age" label="年龄">
-          <input
-            v-model.number="model.age"
-            type="number"
-            style="border: 1px solid #ccc; padding: 4px 8px; width: 100%"
-          />
+          <QInput v-model.number="model.age" type="number" />
         </QFormItem>
         <QFormItem name="email" label="邮箱">
-          <input
-            v-model="model.email"
-            style="border: 1px solid #ccc; padding: 4px 8px; width: 100%"
-          />
+          <QInput v-model="model.email" />
         </QFormItem>
         <div style="display: flex; gap: 8px">
           <QButton html-type="submit">提交</QButton>

@@ -104,7 +104,10 @@ onBeforeUnmount(() => {
 <style scoped>
 .q-form-item {
   display: flex;
-  margin-bottom: 18px;
+  margin-bottom: var(--q-space-8);
+  font-size: var(--q-font-size-sm);
+  line-height: var(--q-line-height-normal);
+  color: var(--q-color-text);
 }
 .q-form-item--horizontal {
   align-items: flex-start;
@@ -114,23 +117,28 @@ onBeforeUnmount(() => {
 }
 .q-form-item__label {
   flex: none;
-  padding-right: 12px;
-  line-height: 32px;
-  color: var(--q-color-text);
   box-sizing: border-box;
+  padding-inline-end: var(--q-space-4);
+  line-height: var(--q-space-9);
+  color: var(--q-color-text);
+}
+.q-form-item--vertical .q-form-item__label {
+  padding-inline-end: 0;
+  padding-bottom: var(--q-space-4);
+  line-height: var(--q-line-height-normal);
 }
 .q-form-item__star {
-  color: var(--q-color-red-500, #ff4d4f);
-  margin-right: 4px;
+  margin-inline-end: var(--q-space-1);
+  color: var(--q-color-red-400);
 }
 .q-form-item__content {
   flex: 1;
   min-width: 0;
 }
 .q-form-item__error {
-  margin-top: 4px;
-  color: var(--q-color-red-500, #ff4d4f);
-  font-size: var(--q-font-size-xs, 12px);
+  margin-top: var(--q-space-1);
+  color: var(--q-color-red-400);
+  font-size: var(--q-font-size-xs);
   line-height: 1.4;
 }
 .q-form-fade-enter-active,

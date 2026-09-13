@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<QFormProps>(), {
   rules: () => ({}),
   labelWidth: '100px',
   layout: 'horizontal',
-  labelAlign: 'left',
+  labelAlign: 'right',
   validateTrigger: 'blur',
 });
 

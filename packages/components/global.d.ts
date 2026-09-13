@@ -17,38 +17,31 @@ import type {
   QCarousel,
   QCarouselItem,
   QCascader,
+  QCheckboxGroup,
   QCol,
   QCollapse,
   QCollapseItem,
   QCollapsibleSection,
+  QColorPicker,
   QConfigProvider,
   QContent,
+  QDatePicker,
   QDescriptions,
   QDialog,
   QDivider,
   QDrawer,
   QDropdown,
   QEmpty,
+  QFileUpload,
   QFlex,
   QFloatButton,
   QFooter,
   QForm,
-  QFormButton,
-  QFormCheckboxGroup,
-  QFormColorPicker,
-  QFormDatePicker,
-  QFormFileUpload,
   QFormItem,
-  QFormRadioGroup,
-  QFormRangeSlider,
-  QFormSelect,
-  QFormSwitch,
-  QFormTable,
-  QFormText,
-  QFormTextarea,
   QHeader,
   QIcon,
   QImage,
+  QInput,
   QInputNumber,
   QLayout,
   QLazyImage,
@@ -67,6 +60,8 @@ import type {
   QPopover,
   QProgressBar,
   QQRCode,
+  QRadioGroup,
+  QRangeSlider,
   QRate,
   QResult,
   QRow,
@@ -74,6 +69,7 @@ import type {
   QScrollNotice,
   QSearch,
   QSegmented,
+  QSelect,
   QSider,
   QSkeleton,
   QSlider,
@@ -83,9 +79,11 @@ import type {
   QStatistic,
   QSteps,
   QSwiperAction,
+  QSwitch,
   QTab,
   QTable,
   QTag,
+  QTextArea,
   QThemeToggle,
   QTimeline,
   QTimePicker,
@@ -132,20 +130,18 @@ declare module 'vue' {
     QFlex: typeof QFlex;
     QFloatButton: typeof QFloatButton;
     QFooter: typeof QFooter;
+    QCheckboxGroup: typeof QCheckboxGroup;
+    QColorPicker: typeof QColorPicker;
+    QDatePicker: typeof QDatePicker;
+    QFileUpload: typeof QFileUpload;
     QForm: typeof QForm;
-    QFormButton: typeof QFormButton;
-    QFormCheckboxGroup: typeof QFormCheckboxGroup;
-    QFormColorPicker: typeof QFormColorPicker;
-    QFormDatePicker: typeof QFormDatePicker;
-    QFormFileUpload: typeof QFormFileUpload;
     QFormItem: typeof QFormItem;
-    QFormRadioGroup: typeof QFormRadioGroup;
-    QFormRangeSlider: typeof QFormRangeSlider;
-    QFormSelect: typeof QFormSelect;
-    QFormSwitch: typeof QFormSwitch;
-    QFormTable: typeof QFormTable;
-    QFormText: typeof QFormText;
-    QFormTextarea: typeof QFormTextarea;
+    QInput: typeof QInput;
+    QRadioGroup: typeof QRadioGroup;
+    QRangeSlider: typeof QRangeSlider;
+    QSelect: typeof QSelect;
+    QSwitch: typeof QSwitch;
+    QTextArea: typeof QTextArea;
     QHeader: typeof QHeader;
     QIcon: typeof QIcon;
     QImage: typeof QImage;
