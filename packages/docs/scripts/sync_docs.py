@@ -77,7 +77,13 @@ def get_component_readme(component_file: Path, components_root: Path) -> Path | 
 
 
 def get_demo_path(doc_relative_path: Path) -> str | None:
-    """Return the display module path when a matching demo file exists.
+    """Return the display module path when a matching demo exists.
+
+    Two demo layouts are supported, checked in the same order the docs UI uses:
+
+    1. Config-driven folder demo: ``display/<path>/index.ts`` (the sibling
+       ``config.ts`` declares props, ``index.ts`` injects them).
+    2. Single-file handwritten demo: ``display/<path>.vue``.
 
     Args:
         doc_relative_path: Documentation path relative to public/docs without suffix.
@@ -88,6 +94,9 @@ def get_demo_path(doc_relative_path: Path) -> str | None:
     Raises:
         OSError: If the display file cannot be inspected.
     """
+    folder_demo = DISPLAY_ROOT / doc_relative_path / 'index.ts'
+    if folder_demo.is_file():
+        return doc_relative_path.as_posix()
     demo_file = DISPLAY_ROOT / doc_relative_path.with_suffix('.vue')
     if demo_file.is_file():
         return doc_relative_path.as_posix()

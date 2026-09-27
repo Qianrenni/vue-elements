@@ -14,6 +14,7 @@
     <div class="demo-example container-center">
       <slot />
     </div>
+    <br />
     <q-markdown-render :content="wrapCode" :show-copy="false" />
   </div>
 </template>
@@ -37,12 +38,6 @@ const copyCode = () => {
 </script>
 
 <style scoped>
-.demo-block {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin: 20px 0;
-}
-
 .demo-header {
   padding: 10px 15px;
   display: flex;

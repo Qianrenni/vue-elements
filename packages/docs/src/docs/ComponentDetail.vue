@@ -4,8 +4,13 @@ import { QMarkdownRender, QSkeleton, QTab } from 'qyani-components';
 import { computed, defineAsyncComponent, ref, shallowRef, watch } from 'vue';
 import type { Component } from 'vue';
 
-const demoModules = import.meta.glob<{ default: Component }>(
+// 手写 demo：display/{demoPath}.vue
+const singleFileDemos = import.meta.glob<{ default: Component }>(
   '../display/**/*.vue',
+);
+// 配置驱动 demo：display/{demoPath}/index.ts（config.ts 声明 props，index.ts 注入组件）
+const folderDemos = import.meta.glob<{ default: Component }>(
+  '../display/**/index.ts',
 );
 const props = defineProps<{
   component: DocsEntry | null;
@@ -33,12 +38,18 @@ const resolveDocUrl = (docPath: string) =>
 
 /**
  * Load the optional demo module referenced by a documentation manifest entry.
+ *
+ * 优先匹配文件夹式配置驱动 demo（{demoPath}/index.ts），
+ * 回退到单文件手写 demo（{demoPath}.vue）。
+ *
  * @param demoPath Display path without extension from the generated manifest.
  * @returns An async Vue component, or null when the entry has no demo.
  */
 const loadDemo = (demoPath: string | undefined) => {
   if (!demoPath) return null;
-  const loader = demoModules[`../display/${demoPath}.vue`];
+  const loader =
+    folderDemos[`../display/${demoPath}/index.ts`] ??
+    singleFileDemos[`../display/${demoPath}.vue`];
   return loader ? defineAsyncComponent(loader) : null;
 };
 

@@ -272,7 +272,4 @@ const expandCode = `
   font-size: 12px;
   color: var(--q-color-text-muted);
 }
-.demo-block + .demo-block {
-  margin-top: 8px;
-}
 </style>
