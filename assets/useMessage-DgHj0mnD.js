@@ -1,0 +1,1 @@
+import{D as s}from"./DemoBlock-C3suQuB9.js";import{d as a,o,c as t,w as n,a as r}from"./index-D_lIdl8t.js";const m="\n```html\n<!-- useMessage Demo -->\n```\n",i=a({name:"DisplayUtilsBusinessuseMessage",__name:"useMessage",setup(u){return(l,e)=>(o(),t(s,{code:m},{default:n(()=>[...e[0]||(e[0]=[r("p",null,"useMessage 文档待完善",-1)])]),_:1}))}});export{i as default};

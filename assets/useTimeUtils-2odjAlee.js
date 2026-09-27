@@ -1,0 +1,1 @@
+import{D as s}from"./DemoBlock-C3suQuB9.js";import{d as t,o,c as a,w as i,a as m}from"./index-D_lIdl8t.js";const l="\n```html\n<!-- useTimeUtils Demo -->\n```\n",c=t({name:"DisplayUtilsBusinessuseTimeUtils",__name:"useTimeUtils",setup(n){return(r,e)=>(o(),a(s,{code:l},{default:i(()=>[...e[0]||(e[0]=[m("p",null,"useTimeUtils 文档待完善",-1)])]),_:1}))}});export{c as default};
